@@ -9,6 +9,6 @@ This app requires at least Windows 11 (10.0.22000.0) to work.
 
 ## TODO
 
-[] Configure using a config file
+* [ ] Configure using a config file
 
-[] Window blacklist
+* [ ] Window blacklist
