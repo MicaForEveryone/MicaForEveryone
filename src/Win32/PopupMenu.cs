@@ -1,17 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using Vanara.InteropServices;
 using Vanara.PInvoke;
 
-namespace MicaForEveryone
+namespace MicaForEveryone.Win32
 {
     public class PopupMenu : IDisposable
     {
-        private readonly User32.SafeHMENU _menuHandle = User32.CreatePopupMenu();
+        private readonly User32.SafeHMENU _menuHandle;
+
+        public PopupMenu()
+        {
+            _menuHandle = User32.CreatePopupMenu();
+            if (_menuHandle.IsNull)
+            {
+                Kernel32.GetLastError().ThrowIfFailed();
+            }
+        }
+
+        public IWindow Parent { get; set; }
 
         public void Dispose()
         {
@@ -86,9 +93,9 @@ namespace MicaForEveryone
             AddMenuItem(ref itemInfo);
         }
 
-        public void Show(HWND windowHandle)
+        public void Show()
         {
-            User32.SetForegroundWindow(windowHandle);
+            User32.SetForegroundWindow(Parent.Handle);
 
             var uFlags = User32.TrackPopupMenuFlags.TPM_RIGHTBUTTON;
             if (User32.GetSystemMetrics(User32.SystemMetric.SM_MENUDROPALIGNMENT) != 0)
@@ -100,9 +107,15 @@ namespace MicaForEveryone
                 uFlags |= User32.TrackPopupMenuFlags.TPM_LEFTALIGN;
             }
 
-            User32.GetCursorPos(out var point);
+            if (!User32.GetCursorPos(out var point))
+            {
+                Kernel32.GetLastError().ThrowIfFailed();
+            }
 
-            User32.TrackPopupMenuEx(_menuHandle, uFlags, point.X, point.Y, windowHandle);
+            if (User32.TrackPopupMenuEx(_menuHandle, uFlags, point.X, point.Y, Parent.Handle) == 0)
+            {
+                Kernel32.GetLastError().ThrowIfFailed();
+            }
         }
     }
 }

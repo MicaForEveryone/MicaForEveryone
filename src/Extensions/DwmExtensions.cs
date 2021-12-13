@@ -1,7 +1,7 @@
 ﻿using Vanara.InteropServices;
 using Vanara.PInvoke;
 
-namespace MicaForEveryone
+namespace MicaForEveryone.Extensions
 {
     public static class DwmExtensions
     {

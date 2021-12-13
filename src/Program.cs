@@ -15,8 +15,9 @@ namespace MicaForEveryone
                 Environment.Exit(1);
                 return;
             }
-            
-            new MicaForEveryoneApp().Run();
+
+            using var app = new Application();
+            app.Run();
         }
     }
 }

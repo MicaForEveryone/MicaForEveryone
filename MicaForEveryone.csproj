@@ -5,18 +5,10 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>src/app.manifest</ApplicationManifest>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="app.manifest" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="app.manifest" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ItemGroup>
     <PackageReference Include="Vanara.PInvoke.DwmApi" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.3.14" />

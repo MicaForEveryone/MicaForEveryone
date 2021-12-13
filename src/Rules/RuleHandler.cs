@@ -4,39 +4,17 @@ using System.Diagnostics;
 using System.Linq;
 using Vanara.PInvoke;
 
-namespace MicaForEveryone
+using MicaForEveryone.Extensions;
+
+namespace MicaForEveryone.Rules
 {
     public class RuleHandler
     {
-        public IList<IRule> Rules { get; } = new List<IRule>();
-
-        public GlobalRule GlobalRule { get; } = new(ThemeMode.Default, MicaMode.ForceMica);
-
-        public void ApplyToWindow(HWND windowHandle)
+        public static void ApplyRuleToWindow(HWND windowHandle, IRule rule)
         {
-            if (!GlobalRule.IsApplicable(windowHandle)) return;
-
-            var rule = Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle)) ?? GlobalRule;
-            windowHandle.ApplyRule(rule);
-        }
-
-        public void ApplyToAllWindows()
-        {
-            User32.EnumWindows((windowHandle, param) =>
-            {
-                ApplyToWindow(windowHandle);
-                return true;
-            }, IntPtr.Zero);
-        }
-    }
-
-    public static class RuleHandlerExtensions
-    {
-        public static void ApplyRule(this HWND windowHandle, IRule rule)
-        {
-            #if DEBUG
+#if DEBUG
             Debug.WriteLine($"Applying rule {rule} to {windowHandle.GetText()} ({windowHandle.GetClassName()}, {windowHandle.GetProcessName()})");
-            #endif
+#endif
 
             switch (rule.Mica)
             {
@@ -65,6 +43,27 @@ namespace MicaForEveryone
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public IList<IRule> Rules { get; } = new List<IRule>();
+
+        public GlobalRule GlobalRule { get; } = new(ThemeMode.Default, MicaMode.ForceMica);
+
+        public void MatchAndApplyRuleToWindow(HWND windowHandle)
+        {
+            if (!GlobalRule.IsApplicable(windowHandle)) return;
+
+            var rule = Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle)) ?? GlobalRule;
+            ApplyRuleToWindow(windowHandle, rule);
+        }
+
+        public void MatchAndApplyRuleToAllWindows()
+        {
+            User32.EnumWindows((windowHandle, param) =>
+            {
+                MatchAndApplyRuleToWindow(windowHandle);
+                return true;
+            }, IntPtr.Zero);
         }
     }
 }

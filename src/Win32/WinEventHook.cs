@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Vanara.PInvoke;
 
-namespace MicaForEveryone
+namespace MicaForEveryone.Win32
 {
     public class WinEventHook : Component
     {
@@ -35,6 +35,10 @@ namespace MicaForEveryone
                 0,
                 0,
                 User32.WINEVENT.WINEVENT_OUTOFCONTEXT);
+            if (_eventHook.IsNull)
+            {
+                Kernel32.GetLastError().ThrowIfFailed();
+            }
         }
 
         public void Unhook()

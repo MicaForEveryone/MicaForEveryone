@@ -2,7 +2,7 @@
 using System.Text;
 using Vanara.PInvoke;
 
-namespace MicaForEveryone
+namespace MicaForEveryone.Extensions
 {
     public static class HwndExtensions
     {
