@@ -47,9 +47,22 @@ namespace MicaForEveryone.Rules
             }
         }
 
+        public IConfigSource ConfigSource { get; set; }
+
         public IList<IRule> Rules { get; } = new List<IRule>();
 
-        public GlobalRule GlobalRule { get; } = new(TitlebarColorMode.Default, MicaPreference.PreferEnabled, false);
+        public GlobalRule GlobalRule { get; private set; }
+
+        public void LoadConfig()
+        {
+            if (ConfigSource == null) return;
+            Rules.Clear();
+            GlobalRule = ConfigSource.GetGlobalRule();
+            foreach (var rule in ConfigSource.ParseRules())
+            {
+                Rules.Add(rule);
+            }
+        }
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {

@@ -6,18 +6,16 @@ namespace MicaForEveryone.Rules
 {
     public class ProcessRule : IRule
     {
-        public ProcessRule(string processName, TitlebarColorMode titlebarColor, MicaPreference mica)
+        public ProcessRule(string processName)
         {
             ProcessName = processName;
-            TitlebarColor = titlebarColor;
-            MicaPreference = mica;
         }
 
         public string ProcessName { get; }
 
-        public TitlebarColorMode TitlebarColor { get; }
+        public TitlebarColorMode TitlebarColor { get; set; }
 
-        public MicaPreference MicaPreference { get; }
+        public MicaPreference MicaPreference { get; set; }
 
         public bool ExtendFrameIntoClientArea { get; set; }
 

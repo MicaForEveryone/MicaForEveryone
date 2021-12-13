@@ -5,9 +5,9 @@ namespace MicaForEveryone.Rules
     public interface IRule
     {
         bool IsApplicable(HWND windowHandle);
-        TitlebarColorMode TitlebarColor { get; }
-        MicaPreference MicaPreference { get; }
-        bool ExtendFrameIntoClientArea { get; }
+        TitlebarColorMode TitlebarColor { get; set; }
+        MicaPreference MicaPreference { get; set; }
+        bool ExtendFrameIntoClientArea { get; set; }
     }
 
     public enum TitlebarColorMode

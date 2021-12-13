@@ -1,4 +1,5 @@
 ﻿using System;
+using MicaForEveryone.Rules;
 using Vanara.PInvoke;
 
 namespace MicaForEveryone
@@ -17,6 +18,12 @@ namespace MicaForEveryone
             }
 
             using var app = new Application();
+
+            app.RuleHandler.ConfigSource = new ConfigFileReader(
+                args.Length > 1 ? args[2] : "config.ini"
+            );
+            app.RuleHandler.LoadConfig();
+
             app.Run();
         }
     }

@@ -9,9 +9,16 @@
   </PropertyGroup>
 
     <ItemGroup>
+    <PackageReference Include="ini-parser" Version="2.5.2" />
     <PackageReference Include="Vanara.PInvoke.DwmApi" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.3.14" />
   </ItemGroup>
+
+    <ItemGroup>
+      <None Update="config.ini">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>
