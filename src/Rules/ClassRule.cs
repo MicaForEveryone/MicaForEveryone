@@ -6,18 +6,20 @@ namespace MicaForEveryone.Rules
 {
     public class ClassRule : IRule
     {
-        public ClassRule(string className, ThemeMode theme, MicaMode mica)
+        public ClassRule(string className, TitlebarColorMode titlebarColor, MicaPreference mica)
         {
             ClassName = className;
-            Theme = theme;
-            Mica = mica;
+            TitlebarColor = titlebarColor;
+            MicaPreference = mica;
         }
 
         public string ClassName { get; }
 
-        public ThemeMode Theme { get; }
+        public TitlebarColorMode TitlebarColor { get; }
 
-        public MicaMode Mica { get; }
+        public MicaPreference MicaPreference { get; }
+
+        public bool ExtendFrameIntoClientArea { get; set; }
 
         public bool IsApplicable(HWND windowHandle)
         {

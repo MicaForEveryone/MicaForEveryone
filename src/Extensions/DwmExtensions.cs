@@ -21,5 +21,11 @@ namespace MicaForEveryone.Extensions
             using var pinned = new PinnedObject(value);
             return DwmApi.DwmSetWindowAttribute(hwnd, DWMWA_IMMERSIVE_DARK_MODE, pinned, sizeof(int));
         }
+
+        public static HRESULT ExtendFrameIntoClientArea(this HWND hwnd)
+        {
+            var margins = new DwmApi.MARGINS(-1);
+            return DwmApi.DwmExtendFrameIntoClientArea(hwnd, margins);
+        }
     }
 }

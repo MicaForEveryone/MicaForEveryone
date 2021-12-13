@@ -5,21 +5,22 @@ namespace MicaForEveryone.Rules
     public interface IRule
     {
         bool IsApplicable(HWND windowHandle);
-        ThemeMode Theme { get; }
-        MicaMode Mica { get; }
+        TitlebarColorMode TitlebarColor { get; }
+        MicaPreference MicaPreference { get; }
+        bool ExtendFrameIntoClientArea { get; }
     }
 
-    public enum ThemeMode
+    public enum TitlebarColorMode
     {
         Default = 0,
-        ForceLight = 1,
-        ForceDark = 2,
+        Light = 1,
+        Dark = 2,
     }
 
-    public enum MicaMode
+    public enum MicaPreference
     {
         Default = 0,
-        ForceMica = 1,
-        ForceNoMica = 2,
+        PreferEnabled = 1,
+        PreferDisabled = 3,
     }
 }

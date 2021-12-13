@@ -22,18 +22,21 @@ namespace MicaForEveryone
         private const uint IDM_FORCE_MICA_MODE = 21;
         private const uint IDM_FORCE_NO_MICA_MODE = 22;
 
+        private const uint IDM_ENABLE_EXTEND_FRAME = 30;
+        private const uint IDM_DISABLE_EXTEND_FRAME = 31;
+
         private readonly IContainer _components = new Container();
 
         private WinEventHook _eventHook;
         private MessageWindow _window;
-        private NotifyIcon _notifyIcon; 
-        
-        private readonly RuleHandler _ruleHandler = new();
+        private NotifyIcon _notifyIcon;
 
         public Application()
         {
             InitializeComponents();
         }
+
+        public RuleHandler RuleHandler { get; } = new();
 
         public void Run()
         {
@@ -83,12 +86,12 @@ namespace MicaForEveryone
 
         private void WindowOnCreate(object sender, EventArgs e)
         {
-            _ruleHandler.MatchAndApplyRuleToAllWindows();
+            RuleHandler.MatchAndApplyRuleToAllWindows();
         }
 
         private void OnHookTriggered(object sender, HookTriggeredEventArgs e)
         {
-            _ruleHandler.MatchAndApplyRuleToWindow(e.WindowHandle);
+            RuleHandler.MatchAndApplyRuleToWindow(e.WindowHandle);
         }
 
         private void WindowOnDestroy(object sender, EventArgs e)
@@ -106,31 +109,39 @@ namespace MicaForEveryone
                     break;
 
                 case (ushort)IDM_REAPPLY:
-                    _ruleHandler.MatchAndApplyRuleToAllWindows();
+                    RuleHandler.MatchAndApplyRuleToAllWindows();
                     break;
 
                 case (ushort)IDM_DEFAULT_THEME_MODE:
-                    _ruleHandler.GlobalRule.Theme = ThemeMode.Default;
+                    RuleHandler.GlobalRule.TitlebarColor = TitlebarColorMode.Default;
                     break;
 
                 case (ushort)IDM_LIGHT_THEME_MODE:
-                    _ruleHandler.GlobalRule.Theme = ThemeMode.ForceLight;
+                    RuleHandler.GlobalRule.TitlebarColor = TitlebarColorMode.Light;
                     break;
 
                 case (ushort)IDM_DARK_THEME_MODE:
-                    _ruleHandler.GlobalRule.Theme = ThemeMode.ForceDark;
+                    RuleHandler.GlobalRule.TitlebarColor = TitlebarColorMode.Dark;
                     break;
 
                 case (ushort)IDM_DEFAULT_MICA_MODE:
-                    _ruleHandler.GlobalRule.Mica = MicaMode.Default;
+                    RuleHandler.GlobalRule.MicaPreference = MicaPreference.Default;
                     break;
 
                 case (ushort)IDM_FORCE_MICA_MODE:
-                    _ruleHandler.GlobalRule.Mica = MicaMode.ForceMica;
+                    RuleHandler.GlobalRule.MicaPreference = MicaPreference.PreferEnabled;
                     break;
 
                 case (ushort)IDM_FORCE_NO_MICA_MODE:
-                    _ruleHandler.GlobalRule.Mica = MicaMode.ForceNoMica;
+                    RuleHandler.GlobalRule.MicaPreference = MicaPreference.PreferDisabled;
+                    break;
+
+                case (ushort)IDM_ENABLE_EXTEND_FRAME:
+                    RuleHandler.GlobalRule.ExtendFrameIntoClientArea = true;
+                    break;
+                    
+                case (ushort)IDM_DISABLE_EXTEND_FRAME:
+                    RuleHandler.GlobalRule.ExtendFrameIntoClientArea = false;
                     break;
             }
         }
@@ -138,21 +149,26 @@ namespace MicaForEveryone
         private void OnShowContextMenu(object sender, EventArgs e)
         {
             using var themeModeMenu = new PopupMenu();
-            themeModeMenu.AddCheckedTextItem(IDM_DEFAULT_THEME_MODE, "Default", _ruleHandler.GlobalRule.Theme == ThemeMode.Default);
-            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Force Light", _ruleHandler.GlobalRule.Theme == ThemeMode.ForceLight);
-            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Force Dark", _ruleHandler.GlobalRule.Theme == ThemeMode.ForceDark);
+            themeModeMenu.AddCheckedTextItem(IDM_DEFAULT_THEME_MODE, "Default", RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Default);
+            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Light", RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Light);
+            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Dark", RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Dark);
 
             using var micaModeMenu = new PopupMenu();
-            micaModeMenu.AddCheckedTextItem(IDM_DEFAULT_MICA_MODE, "Default", _ruleHandler.GlobalRule.Mica == MicaMode.Default);
-            micaModeMenu.AddCheckedTextItem(IDM_FORCE_MICA_MODE, "Force Mica", _ruleHandler.GlobalRule.Mica == MicaMode.ForceMica);
-            micaModeMenu.AddCheckedTextItem(IDM_FORCE_NO_MICA_MODE, "Force Disable Mica", _ruleHandler.GlobalRule.Mica == MicaMode.ForceNoMica);
+            micaModeMenu.AddCheckedTextItem(IDM_DEFAULT_MICA_MODE, "Default", RuleHandler.GlobalRule.MicaPreference == MicaPreference.Default);
+            micaModeMenu.AddCheckedTextItem(IDM_FORCE_MICA_MODE, "Prefer Enabled", RuleHandler.GlobalRule.MicaPreference == MicaPreference.PreferEnabled);
+            micaModeMenu.AddCheckedTextItem(IDM_FORCE_NO_MICA_MODE, "Prefer Disabled", RuleHandler.GlobalRule.MicaPreference == MicaPreference.PreferDisabled);
+
+            using var extendFrameMenu = new PopupMenu();
+            extendFrameMenu.AddCheckedTextItem(IDM_ENABLE_EXTEND_FRAME, "Enable", RuleHandler.GlobalRule.ExtendFrameIntoClientArea);
+            extendFrameMenu.AddCheckedTextItem(IDM_DISABLE_EXTEND_FRAME, "Disable", !RuleHandler.GlobalRule.ExtendFrameIntoClientArea);
 
             using var menu = new PopupMenu
             {
                 Parent = _window
             };
-            menu.AddSubMenu("Theme Mode", themeModeMenu);
-            menu.AddSubMenu("Mica Mode", micaModeMenu);
+            menu.AddSubMenu("Titlebar Color Mode", themeModeMenu);
+            menu.AddSubMenu("Mica Preference", micaModeMenu);
+            menu.AddSubMenu("Extend Frame Into Client Area", extendFrameMenu);
             menu.AddSeparatorItem();
             menu.AddTextItem(IDM_REAPPLY, "Reapply rules");
             menu.AddTextItem(IDM_EXIT, "Exit");

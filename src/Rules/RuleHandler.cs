@@ -13,31 +13,33 @@ namespace MicaForEveryone.Rules
         public static void ApplyRuleToWindow(HWND windowHandle, IRule rule)
         {
 #if DEBUG
-            Debug.WriteLine($"Applying rule {rule} to {windowHandle.GetText()} ({windowHandle.GetClassName()}, {windowHandle.GetProcessName()})");
+            Debug.WriteLine($"Applying rule `{rule}` to `{windowHandle.GetText()}` ({windowHandle.GetClassName()}, {windowHandle.GetProcessName()})");
 #endif
+            if (rule.ExtendFrameIntoClientArea)
+                windowHandle.ExtendFrameIntoClientArea();
 
-            switch (rule.Mica)
+            switch (rule.MicaPreference)
             {
-                case MicaMode.Default:
+                case MicaPreference.Default:
                     break;
-                case MicaMode.ForceMica:
+                case MicaPreference.PreferEnabled:
                     windowHandle.SetMica(true);
                     break;
-                case MicaMode.ForceNoMica:
+                case MicaPreference.PreferDisabled:
                     windowHandle.SetMica(false);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
-            switch (rule.Theme)
+            switch (rule.TitlebarColor)
             {
-                case ThemeMode.Default:
+                case TitlebarColorMode.Default:
                     break;
-                case ThemeMode.ForceLight:
+                case TitlebarColorMode.Light:
                     windowHandle.SetImmersiveDarkMode(false);
                     break;
-                case ThemeMode.ForceDark:
+                case TitlebarColorMode.Dark:
                     windowHandle.SetImmersiveDarkMode(true);
                     break;
                 default:
@@ -47,7 +49,7 @@ namespace MicaForEveryone.Rules
 
         public IList<IRule> Rules { get; } = new List<IRule>();
 
-        public GlobalRule GlobalRule { get; } = new(ThemeMode.Default, MicaMode.ForceMica);
+        public GlobalRule GlobalRule { get; } = new(TitlebarColorMode.Default, MicaPreference.PreferEnabled, false);
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {

@@ -6,18 +6,21 @@ namespace MicaForEveryone.Rules
 {
     public class GlobalRule : IRule
     {
-        public GlobalRule(ThemeMode theme, MicaMode mica)
+        public GlobalRule(TitlebarColorMode titlebarColor, MicaPreference mica, bool extendFrameIntoClientArea)
         {
-            Theme = theme;
-            Mica = mica;
+            TitlebarColor = titlebarColor;
+            MicaPreference = mica;
+            ExtendFrameIntoClientArea = extendFrameIntoClientArea;
         }
 
-        public ThemeMode Theme { get; set; }
+        public TitlebarColorMode TitlebarColor { get; set; }
 
-        public MicaMode Mica { get; set; }
+        public MicaPreference MicaPreference { get; set; }
+
+        public bool ExtendFrameIntoClientArea { get; set; }
 
         public bool IsApplicable(HWND windowHandle) => windowHandle.HasCaption();
 
-        public override string ToString() => $"Rule: Global";
+        public override string ToString() => "Rule: Global";
     }
 }
