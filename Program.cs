@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Windows.Forms;
+using Vanara.PInvoke;
 
 namespace MicaForEveryone
 {
@@ -8,17 +8,15 @@ namespace MicaForEveryone
         [STAThread]
         public static void Main(string[] args)
         {
-            Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(true);
-
-            if (Environment.OSVersion.Version.Build < 22000) {
-                MessageBox.Show("This app requires Windows 11.", "Error", MessageBoxButtons.OK);
+            if (Environment.OSVersion.Version.Build < 22000)
+            {
+                User32.MessageBox(HWND.NULL, "This app require at least Windows 11 (10.0.22000.0) to work.", "Error",
+                    User32.MB_FLAGS.MB_OK | User32.MB_FLAGS.MB_ICONERROR);
                 Environment.Exit(1);
                 return;
             }
-
-            Application.Run(new MicaForEveryoneApp());
+            
+            new MicaForEveryoneApp().Run();
         }
     }
 }

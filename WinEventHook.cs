@@ -6,17 +6,28 @@ namespace MicaForEveryone
 {
     public class WinEventHook : Component
     {
-        private User32.HWINEVENTHOOK hook = User32.HWINEVENTHOOK.NULL;
+        private User32.HWINEVENTHOOK _eventHook = User32.HWINEVENTHOOK.NULL;
+
+        public WinEventHook()
+        {
+            InitializeComponent();
+        }
 
         public WinEventHook(IContainer container)
         {
-            Disposed += OnDisposed;
             container.Add(this);
+
+            InitializeComponent();
+        }
+
+        private void InitializeComponent()
+        {
+            Disposed += OnDisposed;
         }
 
         public void Hook(uint eventMax, uint eventMin)
         {
-            hook = User32.SetWinEventHook(
+            _eventHook = User32.SetWinEventHook(
                 eventMin,
                 eventMax,
                 HINSTANCE.NULL,
@@ -28,9 +39,9 @@ namespace MicaForEveryone
 
         public void Unhook()
         {
-            if (hook.IsNull) return;
-            User32.UnhookWinEvent(hook);
-            hook = User32.HWINEVENTHOOK.NULL;
+            if (_eventHook.IsNull) return;
+            User32.UnhookWinEvent(_eventHook);
+            _eventHook = User32.HWINEVENTHOOK.NULL;
         }
 
         private void OnDisposed(object sender, EventArgs e)
