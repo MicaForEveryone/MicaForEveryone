@@ -7,8 +7,3 @@ All window borders are rendered by Windows using DWM and this app only sets its 
 
 This app requires at least Windows 11 (10.0.22000.0) to work.
 
-## TODO
-
-* [ ] Configure using a config file
-
-* [ ] Window blacklist
