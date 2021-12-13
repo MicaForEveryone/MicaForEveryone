@@ -64,6 +64,7 @@ namespace MicaForEveryone
                 Title = "Mica For Windows",
                 Icon = User32.LoadIcon(HINSTANCE.NULL, User32.IDI_APPLICATION),
             };
+            _window.Create += WindowOnCreate;
             _window.Destroy += WindowOnDestroy;
             _window.CommandInvoked += OnCommandInvoked;
 
@@ -78,6 +79,11 @@ namespace MicaForEveryone
             _notifyIcon.ShowContextMenu += OnShowContextMenu;
 
             Disposed += OnDisposed;
+        }
+
+        private void WindowOnCreate(object sender, EventArgs e)
+        {
+            _ruleHandler.MatchAndApplyRuleToAllWindows();
         }
 
         private void OnHookTriggered(object sender, HookTriggeredEventArgs e)
