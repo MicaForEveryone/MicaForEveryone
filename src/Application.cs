@@ -187,7 +187,7 @@ namespace MicaForEveryone
                 RuleHandler.GlobalRule.BackdropPreference == BackdropType.Default);
             micaModeMenu.AddCheckedTextItem(IDM_SET_NO_BACKDROP, "Prefer Disabled",
                 RuleHandler.GlobalRule.BackdropPreference == BackdropType.None);
-            micaModeMenu.AddCheckedTextItem(IDM_SET_MICA_BACKDROP, "Prefer Mica",
+            micaModeMenu.AddCheckedTextItem(IDM_SET_MICA_BACKDROP, "Prefer Mica (Tinted)",
                 RuleHandler.GlobalRule.BackdropPreference == BackdropType.Mica);
             #if !DEBUG
             if (SystemBackdrop.IsSupported)
@@ -195,7 +195,7 @@ namespace MicaForEveryone
             {
                 micaModeMenu.AddCheckedTextItem(IDM_SET_ACRYLIC_BACKDROP, "Prefer Acrylic",
                     RuleHandler.GlobalRule.BackdropPreference == BackdropType.Acrylic);
-                micaModeMenu.AddCheckedTextItem(IDM_SET_TABBED_BACKDROP, "Prefer Tabbed",
+                micaModeMenu.AddCheckedTextItem(IDM_SET_TABBED_BACKDROP, "Prefer Tabbed (Blurred)",
                     RuleHandler.GlobalRule.BackdropPreference == BackdropType.Tabbed);
             }
 
