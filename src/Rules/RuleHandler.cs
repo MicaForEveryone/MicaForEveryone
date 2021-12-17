@@ -35,6 +35,17 @@ namespace MicaForEveryone.Rules
             }
         }
 
+        private readonly User32.EnumWindowsProc _enumWindows;
+
+        public RuleHandler()
+        {
+            _enumWindows = (windowHandle, _) =>
+            {
+                MatchAndApplyRuleToWindow(windowHandle);
+                return true;
+            };
+        }
+
         public IConfigSource ConfigSource { get; set; }
 
         public IList<IRule> Rules { get; } = new List<IRule>();
@@ -62,13 +73,7 @@ namespace MicaForEveryone.Rules
 
         public void MatchAndApplyRuleToAllWindows()
         {
-            User32.EnumWindows(OnEnumerateWindow, IntPtr.Zero);
-        }
-
-        private bool OnEnumerateWindow(HWND windowHandle, IntPtr param)
-        {
-            MatchAndApplyRuleToWindow(windowHandle);
-            return true;
+            User32.EnumWindows(_enumWindows, IntPtr.Zero);
         }
     }
 }
