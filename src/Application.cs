@@ -9,6 +9,12 @@ namespace MicaForEveryone
 {
     internal class Application : Component
     {
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.ShowErrorTaskDialog("Error: " + (e.ExceptionObject as Exception)?.Message,
+                e.ExceptionObject.ToString());
+        }
+
         private const uint WM_NOTIFYICON = User32.WM_APP + 1;
 
         private const ushort IDM_EXIT = 0;
@@ -43,6 +49,9 @@ namespace MicaForEveryone
 
         public void Run()
         {
+            // show error message for unhandled exceptions
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+
             // hook an event to apply rules on new opened apps
             _eventHook.Hook(User32.EventConstants.EVENT_OBJECT_CREATE, User32.EventConstants.EVENT_OBJECT_CREATE);
 
@@ -180,7 +189,9 @@ namespace MicaForEveryone
                 RuleHandler.GlobalRule.BackdropPreference == BackdropType.None);
             micaModeMenu.AddCheckedTextItem(IDM_SET_MICA_BACKDROP, "Prefer Mica",
                 RuleHandler.GlobalRule.BackdropPreference == BackdropType.Mica);
+            #if !DEBUG
             if (SystemBackdrop.IsSupported)
+            #endif
             {
                 micaModeMenu.AddCheckedTextItem(IDM_SET_ACRYLIC_BACKDROP, "Prefer Acrylic",
                     RuleHandler.GlobalRule.BackdropPreference == BackdropType.Acrylic);
@@ -209,6 +220,7 @@ namespace MicaForEveryone
 
         private void OnDisposed(object sender, EventArgs e)
         {
+            AppDomain.CurrentDomain.UnhandledException -= OnUnhandledException;
             _components.Dispose();
         }
     }

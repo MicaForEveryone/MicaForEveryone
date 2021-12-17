@@ -1,6 +1,7 @@
 ﻿using System;
+
 using MicaForEveryone.Rules;
-using Vanara.PInvoke;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone
 {
@@ -11,8 +12,7 @@ namespace MicaForEveryone
         {
             if (Environment.OSVersion.Version.Build < 22000)
             {
-                User32.MessageBox(HWND.NULL, "This app require at least Windows 11 (10.0.22000.0) to work.", "Error",
-                    User32.MB_FLAGS.MB_OK | User32.MB_FLAGS.MB_ICONERROR);
+                MessageBox.ShowErrorMessage("This app require at least Windows 11 (10.0.22000.0) to work.");
                 Environment.Exit(1);
                 return;
             }
