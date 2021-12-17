@@ -7,6 +7,7 @@ namespace MicaForEveryone.Win32
     public class WinEventHook : Component
     {
         private User32.HWINEVENTHOOK _eventHook = User32.HWINEVENTHOOK.NULL;
+        private User32.WinEventProc _eventCallback;
 
         public WinEventHook()
         {
@@ -23,6 +24,7 @@ namespace MicaForEveryone.Win32
         private void InitializeComponent()
         {
             Disposed += OnDisposed;
+            _eventCallback = OnHookCallback;
         }
 
         public void Hook(uint eventMax, uint eventMin)
@@ -31,7 +33,7 @@ namespace MicaForEveryone.Win32
                 eventMin,
                 eventMax,
                 HINSTANCE.NULL,
-                OnHookCallback,
+                _eventCallback,
                 0,
                 0,
                 User32.WINEVENT.WINEVENT_OUTOFCONTEXT);
@@ -53,7 +55,7 @@ namespace MicaForEveryone.Win32
             Unhook();
         }
 
-        protected virtual void OnHookCallback(User32.HWINEVENTHOOK hwineventhook, uint winevent, HWND hwnd, int idobject, int idchild, uint ideventthread, uint dwmseventtime)
+        private void OnHookCallback(User32.HWINEVENTHOOK hwineventhook, uint winevent, HWND hwnd, int idobject, int idchild, uint ideventthread, uint dwmseventtime)
         {
             HookTriggered?.Invoke(this, new HookTriggeredEventArgs
             {

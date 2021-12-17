@@ -74,11 +74,13 @@ namespace MicaForEveryone.Rules
 
         public void MatchAndApplyRuleToAllWindows()
         {
-            User32.EnumWindows((windowHandle, param) =>
-            {
-                MatchAndApplyRuleToWindow(windowHandle);
-                return true;
-            }, IntPtr.Zero);
+            User32.EnumWindows(OnEnumerateWindow, IntPtr.Zero);
+        }
+
+        private bool OnEnumerateWindow(HWND windowHandle, IntPtr param)
+        {
+            MatchAndApplyRuleToWindow(windowHandle);
+            return true;
         }
     }
 }
