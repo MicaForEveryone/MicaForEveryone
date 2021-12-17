@@ -18,19 +18,7 @@ namespace MicaForEveryone.Rules
             if (rule.ExtendFrameIntoClientArea)
                 windowHandle.ExtendFrameIntoClientArea();
 
-            switch (rule.MicaPreference)
-            {
-                case MicaPreference.Default:
-                    break;
-                case MicaPreference.PreferEnabled:
-                    windowHandle.SetMica(true);
-                    break;
-                case MicaPreference.PreferDisabled:
-                    windowHandle.SetMica(false);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            windowHandle.ApplyBackdropRule(rule.BackdropPreference);
 
             switch (rule.TitlebarColor)
             {

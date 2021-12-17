@@ -15,7 +15,7 @@ namespace MicaForEveryone.Rules
 
         public TitlebarColorMode TitlebarColor { get; set; }
 
-        public MicaPreference MicaPreference { get; set; }
+        public BackdropType BackdropPreference { get; set; }
 
         public bool ExtendFrameIntoClientArea { get; set; }
 

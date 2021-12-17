@@ -11,20 +11,22 @@ namespace MicaForEveryone
     {
         private const uint WM_NOTIFYICON = User32.WM_APP + 1;
 
-        private const uint IDM_EXIT = 0;
-        private const uint IDM_REAPPLY = 1;
-        private const uint IDM_RELOAD_CONFIG = 2;
+        private const ushort IDM_EXIT = 0;
+        private const ushort IDM_REAPPLY = 1;
+        private const ushort IDM_RELOAD_CONFIG = 2;
 
-        private const uint IDM_DEFAULT_THEME_MODE = 10;
-        private const uint IDM_LIGHT_THEME_MODE = 11;
-        private const uint IDM_DARK_THEME_MODE = 12;
+        private const ushort IDM_DEFAULT_THEME_MODE = 10;
+        private const ushort IDM_LIGHT_THEME_MODE = 11;
+        private const ushort IDM_DARK_THEME_MODE = 12;
 
-        private const uint IDM_DEFAULT_MICA_MODE = 20;
-        private const uint IDM_FORCE_MICA_MODE = 21;
-        private const uint IDM_FORCE_NO_MICA_MODE = 22;
+        private const ushort IDM_SET_DEFAULT_BACKDROP = 20;
+        private const ushort IDM_SET_NO_BACKDROP = 21;
+        private const ushort IDM_SET_MICA_BACKDROP = 22;
+        private const ushort IDM_SET_ACRYLIC_BACKDROP = 23;
+        private const ushort IDM_SET_TABBED_BACKDROP = 24;
 
-        private const uint IDM_ENABLE_EXTEND_FRAME = 30;
-        private const uint IDM_DISABLE_EXTEND_FRAME = 31;
+        private const ushort IDM_ENABLE_EXTEND_FRAME = 30;
+        private const ushort IDM_DISABLE_EXTEND_FRAME = 31;
 
         private readonly IContainer _components = new Container();
 
@@ -105,49 +107,57 @@ namespace MicaForEveryone
         {
             switch (e.Id)
             {
-                case (ushort)IDM_EXIT:
+                case IDM_EXIT:
                     _window.PostDestroy();
                     break;
 
-                case (ushort)IDM_RELOAD_CONFIG:
+                case IDM_RELOAD_CONFIG:
                     RuleHandler.ConfigSource.Reload();
                     RuleHandler.LoadConfig();
                     RuleHandler.MatchAndApplyRuleToAllWindows();
                     break;
 
-                case (ushort)IDM_REAPPLY:
+                case IDM_REAPPLY:
                     RuleHandler.MatchAndApplyRuleToAllWindows();
                     break;
 
-                case (ushort)IDM_DEFAULT_THEME_MODE:
+                case IDM_DEFAULT_THEME_MODE:
                     RuleHandler.GlobalRule.TitlebarColor = TitlebarColorMode.Default;
                     break;
 
-                case (ushort)IDM_LIGHT_THEME_MODE:
+                case IDM_LIGHT_THEME_MODE:
                     RuleHandler.GlobalRule.TitlebarColor = TitlebarColorMode.Light;
                     break;
 
-                case (ushort)IDM_DARK_THEME_MODE:
+                case IDM_DARK_THEME_MODE:
                     RuleHandler.GlobalRule.TitlebarColor = TitlebarColorMode.Dark;
                     break;
 
-                case (ushort)IDM_DEFAULT_MICA_MODE:
-                    RuleHandler.GlobalRule.MicaPreference = MicaPreference.Default;
+                case IDM_SET_DEFAULT_BACKDROP:
+                    RuleHandler.GlobalRule.BackdropPreference = BackdropType.Default;
                     break;
 
-                case (ushort)IDM_FORCE_MICA_MODE:
-                    RuleHandler.GlobalRule.MicaPreference = MicaPreference.PreferEnabled;
+                case IDM_SET_NO_BACKDROP:
+                    RuleHandler.GlobalRule.BackdropPreference = BackdropType.None;
                     break;
 
-                case (ushort)IDM_FORCE_NO_MICA_MODE:
-                    RuleHandler.GlobalRule.MicaPreference = MicaPreference.PreferDisabled;
+                case IDM_SET_MICA_BACKDROP:
+                    RuleHandler.GlobalRule.BackdropPreference = BackdropType.Mica;
                     break;
 
-                case (ushort)IDM_ENABLE_EXTEND_FRAME:
+                case IDM_SET_ACRYLIC_BACKDROP:
+                    RuleHandler.GlobalRule.BackdropPreference = BackdropType.Acrylic;
+                    break;
+
+                case IDM_SET_TABBED_BACKDROP:
+                    RuleHandler.GlobalRule.BackdropPreference = BackdropType.Tabbed;
+                    break;
+
+                case IDM_ENABLE_EXTEND_FRAME:
                     RuleHandler.GlobalRule.ExtendFrameIntoClientArea = true;
                     break;
 
-                case (ushort)IDM_DISABLE_EXTEND_FRAME:
+                case IDM_DISABLE_EXTEND_FRAME:
                     RuleHandler.GlobalRule.ExtendFrameIntoClientArea = false;
                     break;
             }
@@ -156,14 +166,27 @@ namespace MicaForEveryone
         private void OnShowContextMenu(object sender, EventArgs e)
         {
             using var themeModeMenu = new PopupMenu();
-            themeModeMenu.AddCheckedTextItem(IDM_DEFAULT_THEME_MODE, "Default", RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Default);
-            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Light", RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Light);
-            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Dark", RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Dark);
+            themeModeMenu.AddCheckedTextItem(IDM_DEFAULT_THEME_MODE, "Default",
+                RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Default);
+            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Light",
+                RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Light);
+            themeModeMenu.AddCheckedTextItem(IDM_DARK_THEME_MODE, "Dark",
+                RuleHandler.GlobalRule.TitlebarColor == TitlebarColorMode.Dark);
 
             using var micaModeMenu = new PopupMenu();
-            micaModeMenu.AddCheckedTextItem(IDM_DEFAULT_MICA_MODE, "Default", RuleHandler.GlobalRule.MicaPreference == MicaPreference.Default);
-            micaModeMenu.AddCheckedTextItem(IDM_FORCE_MICA_MODE, "Prefer Enabled", RuleHandler.GlobalRule.MicaPreference == MicaPreference.PreferEnabled);
-            micaModeMenu.AddCheckedTextItem(IDM_FORCE_NO_MICA_MODE, "Prefer Disabled", RuleHandler.GlobalRule.MicaPreference == MicaPreference.PreferDisabled);
+            micaModeMenu.AddCheckedTextItem(IDM_SET_DEFAULT_BACKDROP, "Default",
+                RuleHandler.GlobalRule.BackdropPreference == BackdropType.Default);
+            micaModeMenu.AddCheckedTextItem(IDM_SET_NO_BACKDROP, "Prefer Disabled",
+                RuleHandler.GlobalRule.BackdropPreference == BackdropType.None);
+            micaModeMenu.AddCheckedTextItem(IDM_SET_MICA_BACKDROP, "Prefer Mica",
+                RuleHandler.GlobalRule.BackdropPreference == BackdropType.Mica);
+            if (SystemBackdrop.IsSupported)
+            {
+                micaModeMenu.AddCheckedTextItem(IDM_SET_ACRYLIC_BACKDROP, "Prefer Acrylic",
+                    RuleHandler.GlobalRule.BackdropPreference == BackdropType.Acrylic);
+                micaModeMenu.AddCheckedTextItem(IDM_SET_TABBED_BACKDROP, "Prefer Tabbed",
+                    RuleHandler.GlobalRule.BackdropPreference == BackdropType.Tabbed);
+            }
 
             using var extendFrameMenu = new PopupMenu();
             extendFrameMenu.AddCheckedTextItem(IDM_ENABLE_EXTEND_FRAME, "Enable", RuleHandler.GlobalRule.ExtendFrameIntoClientArea);
@@ -174,7 +197,7 @@ namespace MicaForEveryone
                 Parent = _window
             };
             menu.AddSubMenu("Titlebar Color Mode", themeModeMenu);
-            menu.AddSubMenu("Mica Preference", micaModeMenu);
+            menu.AddSubMenu("Backdrop Type Preference", micaModeMenu);
             menu.AddSubMenu("Extend Frame Into Client Area", extendFrameMenu);
             menu.AddSeparatorItem();
             menu.AddTextItem(IDM_RELOAD_CONFIG, "Reload config file");

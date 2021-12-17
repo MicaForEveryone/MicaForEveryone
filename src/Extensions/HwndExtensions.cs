@@ -1,6 +1,10 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Text;
 using Vanara.PInvoke;
+
+using MicaForEveryone.Rules;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Extensions
 {
@@ -32,6 +36,32 @@ namespace MicaForEveryone.Extensions
             var info = new User32.WINDOWINFO();
             User32.GetWindowInfo(hwnd, ref info);
             return info.dwStyle.HasFlag(User32.WindowStyles.WS_CAPTION);
+        }
+
+        public static void ApplyBackdropRule(this HWND windowHandle, BackdropType type)
+        {
+            if (SystemBackdrop.IsSupported)
+            {
+                if (type == BackdropType.Default)
+                    return;
+                
+                windowHandle.SetBackdropType(type.ToDwmSystemBackdropType());
+                return;
+            }
+
+            switch (type)
+            {
+                case BackdropType.Default:
+                    return;
+                case BackdropType.None:
+                    windowHandle.SetMica(false);
+                    return;
+                case BackdropType.Mica:
+                    windowHandle.SetMica(true);
+                    return;
+                default:
+                    throw new PlatformNotSupportedException("Using `Acrylic` or `Tabbed` backdrop is not supported.");
+            }
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MicaForEveryone.Extensions
         public static void ParseRule(this KeyDataCollection data, ref IRule rule)
         {
             rule.TitlebarColor = data.ValueOrDefault<TitlebarColorMode>("TitleBarColor");
-            rule.MicaPreference = data.ValueOrDefault("MicaPreference", MicaPreference.PreferEnabled);
+            rule.BackdropPreference = data.ValueOrDefault("BackdropPreference", BackdropType.Default);
             rule.ExtendFrameIntoClientArea = data.BoolOrDefault("ExtendFrameIntoClientArea");
         }
 

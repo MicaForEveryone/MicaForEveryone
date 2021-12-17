@@ -6,7 +6,7 @@ namespace MicaForEveryone.Rules
     {
         bool IsApplicable(HWND windowHandle);
         TitlebarColorMode TitlebarColor { get; set; }
-        MicaPreference MicaPreference { get; set; }
+        BackdropType BackdropPreference { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
     }
 
@@ -17,10 +17,12 @@ namespace MicaForEveryone.Rules
         Dark = 2,
     }
 
-    public enum MicaPreference
+    public enum BackdropType
     {
         Default = 0,
-        PreferEnabled = 1,
-        PreferDisabled = 3,
+        None = 1,
+        Mica = 2,
+        Acrylic = 3,
+        Tabbed = 4,
     }
 }
