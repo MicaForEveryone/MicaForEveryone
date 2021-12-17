@@ -13,6 +13,7 @@ namespace MicaForEveryone
 
         private const uint IDM_EXIT = 0;
         private const uint IDM_REAPPLY = 1;
+        private const uint IDM_RELOAD_CONFIG = 2;
 
         private const uint IDM_DEFAULT_THEME_MODE = 10;
         private const uint IDM_LIGHT_THEME_MODE = 11;
@@ -108,9 +109,13 @@ namespace MicaForEveryone
                     _window.PostDestroy();
                     break;
 
-                case (ushort)IDM_REAPPLY:
+                case (ushort)IDM_RELOAD_CONFIG:
                     RuleHandler.ConfigSource.Reload();
                     RuleHandler.LoadConfig();
+                    RuleHandler.MatchAndApplyRuleToAllWindows();
+                    break;
+
+                case (ushort)IDM_REAPPLY:
                     RuleHandler.MatchAndApplyRuleToAllWindows();
                     break;
 
@@ -141,7 +146,7 @@ namespace MicaForEveryone
                 case (ushort)IDM_ENABLE_EXTEND_FRAME:
                     RuleHandler.GlobalRule.ExtendFrameIntoClientArea = true;
                     break;
-                    
+
                 case (ushort)IDM_DISABLE_EXTEND_FRAME:
                     RuleHandler.GlobalRule.ExtendFrameIntoClientArea = false;
                     break;
@@ -172,6 +177,7 @@ namespace MicaForEveryone
             menu.AddSubMenu("Mica Preference", micaModeMenu);
             menu.AddSubMenu("Extend Frame Into Client Area", extendFrameMenu);
             menu.AddSeparatorItem();
+            menu.AddTextItem(IDM_RELOAD_CONFIG, "Reload config file");
             menu.AddTextItem(IDM_REAPPLY, "Reapply rules");
             menu.AddTextItem(IDM_EXIT, "Exit");
 
