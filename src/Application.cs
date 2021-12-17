@@ -110,6 +110,7 @@ namespace MicaForEveryone
 
                 case (ushort)IDM_REAPPLY:
                     RuleHandler.ConfigSource.Reload();
+                    RuleHandler.LoadConfig();
                     RuleHandler.MatchAndApplyRuleToAllWindows();
                     break;
 
