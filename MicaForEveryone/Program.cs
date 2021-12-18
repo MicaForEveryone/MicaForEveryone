@@ -17,6 +17,8 @@ namespace MicaForEveryone
                 return;
             }
 
+            using var uwpApp = new MicaForEveryone.UWP.App();
+
             using var app = new Application();
 
             app.RuleHandler.ConfigSource = new ConfigFileReader(

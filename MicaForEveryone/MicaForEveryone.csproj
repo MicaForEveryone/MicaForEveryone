@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
+    <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
     <LangVersion>9.0</LangVersion>
     <ApplicationIcon />
     <StartupObject />
@@ -11,6 +12,7 @@
     <Version>0.0.2</Version>
     <Authors>Minusium</Authors>
     <Product>Mica For Everyone</Product>
+    <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
   </PropertyGroup>
 
     <ItemGroup>
@@ -20,6 +22,11 @@
     <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.3.14" />
   </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MicaForEveryone.UWP\MicaForEveryone.UWP.csproj" />
+      <ProjectReference Include="..\MicaForEveryone.ViewModels\MicaForEveryone.ViewModels.csproj" />
+    </ItemGroup>
 
     <ItemGroup>
       <None Update="config.ini">

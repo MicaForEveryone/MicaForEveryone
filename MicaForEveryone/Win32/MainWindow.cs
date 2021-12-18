@@ -6,6 +6,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 using Vanara.PInvoke;
 
+using MicaForEveryone.UWP;
+using MicaForEveryone.ViewModels;
+
 namespace MicaForEveryone.Win32
 {
     public class MainWindow : Component, IWindow
@@ -64,7 +67,14 @@ namespace MicaForEveryone.Win32
                 Kernel32.GetLastError().ThrowIfFailed();
             }
 
-            XamlSource = new DesktopWindowXamlSource();
+            var view = new MainWindowView();
+            view.ViewModel.SystemBackdropIsSupported = SystemBackdrop.IsSupported;
+            view.ViewModel.Exit = new RelyCommand(() => PostDestroy());
+
+            XamlSource = new DesktopWindowXamlSource
+            {
+                Content = view,
+            };
         }
 
         public void AddCustomHandler(User32.WindowMessage message, User32.WindowProc handler)
@@ -140,11 +150,6 @@ namespace MicaForEveryone.Win32
         private void OnDestroy()
         {
             Destroy?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void OnContextFlyout()
-        {
-
         }
 
         private void OnDisposed(object sender, EventArgs e)

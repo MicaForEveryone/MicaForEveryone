@@ -59,6 +59,13 @@ namespace MicaForEveryone.Win32
             Shell32.Shell_NotifyIcon(Shell32.NIM.NIM_DELETE, _notifyIconData);
         }
 
+        public RECT GetRect()
+        {
+            var id = new Shell32.NOTIFYICONIDENTIFIER(Parent.Handle, Id);
+            Shell32.Shell_NotifyIconGetRect(id, out var result).ThrowIfFailed();
+            return result;
+        }
+
         private void InitializeComponent()
         {
             Disposed += OnDisposed;
