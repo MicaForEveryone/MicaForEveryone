@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Windows.Foundation;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 using Vanara.PInvoke;
 
 namespace MicaForEveryone.Win32
 {
-    public class MessageWindow : Component, IWindow
+    public class MainWindow : Component, IWindow
     {
         private User32.SafeHWND _windowHandle;
         private Kernel32.SafeHINSTANCE _instanceHandle;
@@ -13,12 +16,12 @@ namespace MicaForEveryone.Win32
 
         private readonly Dictionary<User32.WindowMessage, User32.WindowProc> _customHandlers = new();
 
-        public MessageWindow()
+        public MainWindow()
         {
             InitializeComponent();
         }
 
-        public MessageWindow(IContainer container)
+        public MainWindow(IContainer container)
         {
             container.Add(this);
 
@@ -30,13 +33,15 @@ namespace MicaForEveryone.Win32
         public HICON Icon { get; set; }
 
         public HWND Handle => _windowHandle;
+        
+        public DesktopWindowXamlSource XamlSource { get; private set; }
 
         public void Activate()
         {
             _class = new User32.WNDCLASS
             {
                 hInstance = _instanceHandle,
-                lpszClassName = nameof(MessageWindow),
+                lpszClassName = nameof(MainWindow),
                 hIcon = Icon,
                 lpfnWndProc = WndProc,
             };
@@ -58,6 +63,8 @@ namespace MicaForEveryone.Win32
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
+
+            XamlSource = new DesktopWindowXamlSource();
         }
 
         public void AddCustomHandler(User32.WindowMessage message, User32.WindowProc handler)
@@ -73,6 +80,14 @@ namespace MicaForEveryone.Win32
         public void PostDestroy()
         {
             User32.PostMessage(_windowHandle, (uint) User32.WindowMessage.WM_DESTROY);
+        }
+
+        public void ShowContextFlyout(RECT position)
+        {
+            if (XamlSource.Content.ContextFlyout is MenuFlyout menu)
+            {
+                menu.ShowAt(XamlSource.Content, new Point(position.X, position.Y));
+            }
         }
 
         private void InitializeComponent()
@@ -127,6 +142,11 @@ namespace MicaForEveryone.Win32
             Destroy?.Invoke(this, EventArgs.Empty);
         }
 
+        private void OnContextFlyout()
+        {
+
+        }
+
         private void OnDisposed(object sender, EventArgs e)
         {
             User32.DestroyWindow(_windowHandle);
@@ -137,6 +157,7 @@ namespace MicaForEveryone.Win32
         public event EventHandler<CommandInvokedEventArgs> CommandInvoked;
         public event EventHandler Create;
         public event EventHandler Destroy;
+        public event EventHandler ContextFlyout;
     }
 
     public class CommandInvokedEventArgs : EventArgs

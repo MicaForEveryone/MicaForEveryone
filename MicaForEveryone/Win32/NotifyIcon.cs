@@ -20,7 +20,7 @@ namespace MicaForEveryone.Win32
             InitializeComponent();
         }
 
-        public MessageWindow Parent { get; set; }
+        public MainWindow Parent { get; set; }
 
         public uint Id { get; set; } = 0;
 

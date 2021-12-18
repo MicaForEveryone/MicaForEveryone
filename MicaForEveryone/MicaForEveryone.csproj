@@ -2,7 +2,9 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
+    <LangVersion>9.0</LangVersion>
     <ApplicationIcon />
     <StartupObject />
     <ApplicationManifest>src/app.manifest</ApplicationManifest>
@@ -13,6 +15,7 @@
 
     <ItemGroup>
     <PackageReference Include="ini-parser" Version="2.5.2" />
+    <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
     <PackageReference Include="Vanara.PInvoke.DwmApi" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.14" />
     <PackageReference Include="Vanara.PInvoke.User32" Version="3.3.14" />

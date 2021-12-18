@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Windows.UI.Xaml.Hosting;
 using Vanara.PInvoke;
 
 using MicaForEveryone.Win32;
@@ -37,7 +38,8 @@ namespace MicaForEveryone
         private readonly IContainer _components = new Container();
 
         private WinEventHook _eventHook;
-        private MessageWindow _window;
+        private WindowsXamlManager _xamlManager;
+        private MainWindow _window;
         private NotifyIcon _notifyIcon;
 
         public Application()
@@ -73,8 +75,10 @@ namespace MicaForEveryone
             _eventHook = new WinEventHook(_components);
             _eventHook.HookTriggered += OnHookTriggered;
 
+            _xamlManager = WindowsXamlManager.InitializeForCurrentThread();
+
             // initialize main window
-            _window = new MessageWindow(_components)
+            _window = new MainWindow(_components)
             {
                 Title = "Mica For Windows",
                 Icon = User32.LoadIcon(HINSTANCE.NULL, User32.IDI_APPLICATION),
@@ -221,6 +225,7 @@ namespace MicaForEveryone
         private void OnDisposed(object sender, EventArgs e)
         {
             AppDomain.CurrentDomain.UnhandledException -= OnUnhandledException;
+            _xamlManager.Dispose();
             _components.Dispose();
         }
     }

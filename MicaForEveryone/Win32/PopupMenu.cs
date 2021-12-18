@@ -29,7 +29,7 @@ namespace MicaForEveryone.Win32
         private void AddMenuItem(ref User32.MENUITEMINFO item)
         {
             var pos = (uint)User32.GetMenuItemCount(_menuHandle) + 1;
-            if (User32.InsertMenuItem(_menuHandle, pos, true, ref item))
+            if (!User32.InsertMenuItem(_menuHandle, pos, true, ref item))
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
