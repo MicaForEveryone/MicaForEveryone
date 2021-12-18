@@ -1,7 +1,12 @@
 ﻿using System;
+using Vanara.PInvoke;
 
 using MicaForEveryone.Rules;
+using MicaForEveryone.UWP;
+using MicaForEveryone.ViewModels;
+using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone
 {
@@ -17,15 +22,7 @@ namespace MicaForEveryone
                 return;
             }
 
-            using var uwpApp = new MicaForEveryone.UWP.App();
-
-            using var app = new Application();
-
-            app.RuleHandler.ConfigSource = new ConfigFileReader(
-                args.Length > 1 ? args[2] : "config.ini"
-            );
-            app.RuleHandler.LoadConfig();
-
+            using var app = new App();
             app.Run();
         }
     }

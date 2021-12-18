@@ -8,36 +8,43 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+    <UserControl.Resources>
+        <converters:IsEqualConverter x:Key="IsEqualConverter" xmlns:converters="using:MicaForEveryone.UWP.Converters" />
+    </UserControl.Resources>
     <UserControl.ContextFlyout>
         <MenuFlyout>
             <MenuFlyoutSubItem Text="Titlebar Color">
                 <MenuFlyoutSubItem.Items>
-                    <ToggleMenuFlyoutItem Text="Default" />
-                    <ToggleMenuFlyoutItem Text="System" />
-                    <ToggleMenuFlyoutItem Text="Light" />
-                    <ToggleMenuFlyoutItem Text="Dark" />
+                    <ToggleMenuFlyoutItem Text="Default" IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeTitlebarColorMode}" CommandParameter="Default"/>
+                    <ToggleMenuFlyoutItem Text="System" IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=System, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeTitlebarColorMode}" CommandParameter="System"/>
+                    <ToggleMenuFlyoutItem Text="Light" IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Light, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeTitlebarColorMode}" CommandParameter="Light"/>
+                    <ToggleMenuFlyoutItem Text="Dark" IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeTitlebarColorMode}" CommandParameter="Dark"/>
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
             <MenuFlyoutSubItem Text="Backdrop Type">
                 <MenuFlyoutSubItem.Items>
-                    <ToggleMenuFlyoutItem Text="Default" />
-                    <ToggleMenuFlyoutItem Text="None" 
-                                    Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}" />
-                    <ToggleMenuFlyoutItem Text="Mica (Tinted Wallpaper)" />
-                    <ToggleMenuFlyoutItem Text="Acrylic"
-                                    Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}"/>
-                    <ToggleMenuFlyoutItem Text="Tabbed (Blurred Wallpaper)"
-                                    Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}"/>
+                    <ToggleMenuFlyoutItem Text="Default" IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeBackdropType}" CommandParameter="Default" />
+                    <ToggleMenuFlyoutItem Text="None" IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=None, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeBackdropType}" CommandParameter="None"/>
+                    <ToggleMenuFlyoutItem Text="Mica (Tinted Wallpaper)" IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Mica, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeBackdropType}" CommandParameter="Mica" />
+                    <ToggleMenuFlyoutItem Text="Acrylic" Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}" 
+                                          IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Acrylic, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeBackdropType}" CommandParameter="Acrylic" />
+                    <ToggleMenuFlyoutItem Text="Tabbed (Blurred Wallpaper)" Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}"
+                                          IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Tabbed, Mode=OneWay}"
+                                          Command="{x:Bind ViewModel.ChangeBackdropType}" CommandParameter="Tabbed" />
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
-            <MenuFlyoutSubItem Text="Extend Frame Into Client Area">
-                <MenuFlyoutSubItem.Items>
-                    <ToggleMenuFlyoutItem Text="Enable" />
-                    <ToggleMenuFlyoutItem Text="Disable" />
-                </MenuFlyoutSubItem.Items>
-            </MenuFlyoutSubItem>
+            <ToggleMenuFlyoutItem Text="Extend Frame Into Client Area" IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=OneWay}"
+                                  Command="{x:Bind ViewModel.ToggleExtendFrameIntoClientArea}" />
             <MenuFlyoutSeparator />
-            <MenuFlyoutItem Text="Reload Config" />
+            <MenuFlyoutItem Text="Reload Config" Command="{x:Bind ViewModel.ReloadConfig}" />
             <MenuFlyoutItem Text="Exit" Command="{x:Bind ViewModel.Exit}" />
         </MenuFlyout>
     </UserControl.ContextFlyout>

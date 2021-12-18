@@ -1,42 +1,33 @@
 ﻿using System;
-using System.ComponentModel;
 using Vanara.PInvoke;
+
+using static Vanara.PInvoke.User32;
 
 namespace MicaForEveryone.Win32
 {
-    public class WinEventHook : Component
+    public class WinEventHook : IDisposable
     {
-        private User32.HWINEVENTHOOK _eventHook = User32.HWINEVENTHOOK.NULL;
-        private User32.WinEventProc _eventCallback;
+        private readonly uint _eventId;
+        private readonly WinEventProc _eventCallback;
 
-        public WinEventHook()
+        private HWINEVENTHOOK _eventHook = HWINEVENTHOOK.NULL;
+
+        public WinEventHook(uint eventId)
         {
-            InitializeComponent();
-        }
-
-        public WinEventHook(IContainer container)
-        {
-            container.Add(this);
-
-            InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            Disposed += OnDisposed;
+            _eventId = eventId;
             _eventCallback = OnHookCallback;
         }
 
-        public void Hook(uint eventMax, uint eventMin)
+        public void Hook()
         {
-            _eventHook = User32.SetWinEventHook(
-                eventMin,
-                eventMax,
+            _eventHook = SetWinEventHook(
+                _eventId,
+                _eventId,
                 HINSTANCE.NULL,
                 _eventCallback,
                 0,
                 0,
-                User32.WINEVENT.WINEVENT_OUTOFCONTEXT);
+                WINEVENT.WINEVENT_OUTOFCONTEXT);
             if (_eventHook.IsNull)
             {
                 Kernel32.GetLastError().ThrowIfFailed();
@@ -46,16 +37,16 @@ namespace MicaForEveryone.Win32
         public void Unhook()
         {
             if (_eventHook.IsNull) return;
-            User32.UnhookWinEvent(_eventHook);
-            _eventHook = User32.HWINEVENTHOOK.NULL;
+            UnhookWinEvent(_eventHook);
+            _eventHook = HWINEVENTHOOK.NULL;
         }
 
-        private void OnDisposed(object sender, EventArgs e)
+        public void Dispose()
         {
             Unhook();
         }
 
-        private void OnHookCallback(User32.HWINEVENTHOOK hwineventhook, uint winevent, HWND hwnd, int idobject, int idchild, uint ideventthread, uint dwmseventtime)
+        private void OnHookCallback(HWINEVENTHOOK hwineventhook, uint winevent, HWND hwnd, int idobject, int idchild, uint ideventthread, uint dwmseventtime)
         {
             HookTriggered?.Invoke(this, new HookTriggeredEventArgs
             {
@@ -67,13 +58,5 @@ namespace MicaForEveryone.Win32
         }
 
         public event EventHandler<HookTriggeredEventArgs> HookTriggered;
-    }
-
-    public class HookTriggeredEventArgs : EventArgs
-    {
-        public uint Event { get; set; }
-        public HWND WindowHandle { get; set; }
-        public int ObjectId { get; set; }
-        public int ChildId { get; set; }
     }
 }

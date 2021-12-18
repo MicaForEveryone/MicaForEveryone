@@ -5,6 +5,7 @@ using System.Linq;
 using Vanara.PInvoke;
 
 using MicaForEveryone.Extensions;
+using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Rules
 {

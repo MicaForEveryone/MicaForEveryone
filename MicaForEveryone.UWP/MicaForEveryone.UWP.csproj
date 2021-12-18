@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\IsEqualConverter.cs" />
     <Compile Include="MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +164,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj">
+      <Project>{616f61a2-9df1-44a7-9190-e841bd7ef767}</Project>
+      <Name>MicaForEveryone.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MicaForEveryone.ViewModels\MicaForEveryone.ViewModels.csproj">
       <Project>{1fec7c4a-30a8-4064-8022-1a6325a8938c}</Project>
       <Name>MicaForEveryone.ViewModels</Name>

@@ -1,6 +1,7 @@
 ﻿using System;
 using IniParser.Model;
 
+using MicaForEveryone.Models;
 using MicaForEveryone.Rules;
 
 namespace MicaForEveryone.Extensions

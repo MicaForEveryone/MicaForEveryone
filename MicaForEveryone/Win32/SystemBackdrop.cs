@@ -1,6 +1,6 @@
 ﻿using System;
 
-using MicaForEveryone.Rules;
+using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Win32
 {

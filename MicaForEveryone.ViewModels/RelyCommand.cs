@@ -5,29 +5,24 @@ namespace MicaForEveryone.ViewModels
 {
     public class RelyCommand : ICommand
     {
-        private readonly Action mAction;
-        private readonly Func<bool> mCanExecute;
+        private readonly Action<object> _action;
+        private readonly Func<object, bool> _canExecute;
 
-        public RelyCommand(Action action) : this(action, null) { }
+        public RelyCommand(Action<object> action) : this(action, null) { }
 
-        public RelyCommand(Action action, Func<bool> canExecute)
+        public RelyCommand(Action<object> action, Func<object, bool> canExecute)
         {
-            if (action == null)
-                throw new ArgumentNullException(nameof(action));
-            mAction = action;
-            mCanExecute = canExecute;
+            _action = action ?? throw new ArgumentNullException(nameof(action));
+            _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter) =>
-            mCanExecute == null || mCanExecute();
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute(parameter);
 
-        public void Execute(object parameter) =>
-            mAction();
+        public void Execute(object parameter) => _action(parameter);
 
         public event EventHandler CanExecuteChanged;
 
-        public void RaiseCanExecuteChanged() =>
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
     }
 }

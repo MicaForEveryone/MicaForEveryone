@@ -5,6 +5,7 @@ using Vanara.PInvoke;
 
 using MicaForEveryone.Rules;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Extensions
 {

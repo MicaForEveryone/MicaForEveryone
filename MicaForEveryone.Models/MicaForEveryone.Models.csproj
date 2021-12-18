@@ -4,8 +4,4 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
-  </ItemGroup>
-
 </Project>
