@@ -164,16 +164,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj">
-      <Project>{616f61a2-9df1-44a7-9190-e841bd7ef767}</Project>
-      <Name>MicaForEveryone.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MicaForEveryone.ViewModels\MicaForEveryone.ViewModels.csproj">
-      <Project>{1fec7c4a-30a8-4064-8022-1a6325a8938c}</Project>
-      <Name>MicaForEveryone.ViewModels</Name>
+    <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj">
+      <Project>{198e1c79-b186-47ed-806d-9a02d78ec653}</Project>
+      <Name>MicaForEveryone.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

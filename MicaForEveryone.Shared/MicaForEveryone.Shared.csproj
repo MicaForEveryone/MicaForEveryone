@@ -2,10 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>MicaForEveryone</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
-  </ItemGroup>
 
 </Project>

@@ -24,9 +24,8 @@
   </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
+      <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
       <ProjectReference Include="..\MicaForEveryone.UWP\MicaForEveryone.UWP.csproj" />
-      <ProjectReference Include="..\MicaForEveryone.ViewModels\MicaForEveryone.ViewModels.csproj" />
     </ItemGroup>
 
     <ItemGroup>
