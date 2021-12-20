@@ -2,7 +2,7 @@
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" 
           xmlns:asmv3="urn:schemas-microsoft-com:asm.v3"
           manifestVersion="1.0">
-  <assemblyIdentity version="0.0.0.2" name="MicaForEveryone"/>
+  <assemblyIdentity version="0.0.2.0" name="MicaForEveryone"/>
 
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
     <security>

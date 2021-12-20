@@ -9,7 +9,7 @@
   <Identity
     Name="533584ee-ace8-4310-adb6-d59b701b7236"
     Publisher="CN=minusium"
-    Version="1.0.0.0" />
+    Version="0.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="533584ee-ace8-4310-adb6-d59b701b7236" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -20,7 +20,7 @@
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.22000.0" MaxVersionTested="10.0.22523.0" />
   </Dependencies>
 
   <Resources>
@@ -37,13 +37,10 @@
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="MicaForEveryone.UWP"
         BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
-    <Capability Name="internetClient" />
   </Capabilities>
 </Package>

@@ -5,17 +5,15 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
     <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
+    <Platforms>x64;ARM64</Platforms>
     <LangVersion>9.0</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <ApplicationIcon />
     <StartupObject />
-    <ApplicationManifest>src/app.manifest</ApplicationManifest>
-    <Version>0.0.2</Version>
-    <Authors>Minusium</Authors>
-    <Product>Mica For Everyone</Product>
-    <Platforms>AnyCPU;x64;x86;ARM64</Platforms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 
-    <ItemGroup>
+  <ItemGroup>
     <PackageReference Include="ini-parser" Version="2.5.2" />
     <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
     <PackageReference Include="Vanara.PInvoke.DwmApi" Version="3.3.14" />
@@ -32,6 +30,7 @@
       <None Update="config.ini">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
     </ItemGroup>
 
 </Project>
