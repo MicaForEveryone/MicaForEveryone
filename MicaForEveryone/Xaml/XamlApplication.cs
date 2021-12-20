@@ -23,7 +23,7 @@ namespace MicaForEveryone.Xaml
         {
             if (window is XamlWindow xamlWindow)
             {
-                processed = xamlWindow.GetInterop().PreTranslateMessage(ref message);
+                processed = xamlWindow.GetXamlWindowInterop().PreTranslateMessage(ref message);
             }
         }
     }

@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Text;
 using Vanara.PInvoke;
 
-using MicaForEveryone.Rules;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Models;
 
@@ -62,6 +61,14 @@ namespace MicaForEveryone.Extensions
                     return;
                 default:
                     throw new PlatformNotSupportedException("Using `Acrylic` or `Tabbed` backdrop is not supported.");
+            }
+        }
+
+        public static void SetWindowPos(this HWND windowHandle, HWND insertAfter, RECT rect, User32.SetWindowPosFlags flags)
+        {
+            if (!User32.SetWindowPos(windowHandle, insertAfter, rect.X, rect.Y, rect.Width, rect.Height, flags))
+            {
+                Kernel32.GetLastError().ThrowIfFailed();
             }
         }
     }

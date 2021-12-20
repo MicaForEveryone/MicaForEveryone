@@ -70,22 +70,12 @@ namespace MicaForEveryone.Win32
             Activated?.Invoke(this, EventArgs.Empty);
         }
 
-        public void Show()
-        {
-            ShowWindow(Handle, ShowWindowCommand.SW_SHOW);
-        }
-
         public void Close()
         {
             if (!PostMessage(_windowHandle, (uint)WindowMessage.WM_DESTROY))
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
-        }
-
-        public void Move(RECT size, bool repaint)
-        {
-            MoveWindow(Handle, size.X, Size.Y, Size.Width, Size.Height, repaint);
         }
 
         public virtual void Dispose()
