@@ -70,7 +70,14 @@ namespace MicaForEveryone.Views
                     new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
                     SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-                menu.ShowAt(View, new Point(0, 0));
+                var flyoutPosition = new Point(0, 0);
+                if (GetCursorPos(out var cursorPosition))
+                {
+                    flyoutPosition.X = cursorPosition.X - notifyIconRect.X;
+                    flyoutPosition.Y = cursorPosition.Y - notifyIconRect.Y;
+                }
+
+                menu.ShowAt(View, flyoutPosition);
             }
         }
 
