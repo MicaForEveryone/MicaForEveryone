@@ -8,6 +8,11 @@ namespace MicaForEveryone.Win32
 {
     public class NotifyIcon : Window
     {
+        private const uint NIN_SELECT = WM_USER + 0;
+        private const uint NIN_KEYSELECT = NIN_SELECT | 0x1;
+        private const uint NIN_POPUPOPEN = WM_USER + 6;
+        private const uint NIN_POPUPCLOSE = WM_USER + 7;
+
         private NOTIFYICONDATA _notifyIconData;
 
         public NotifyIcon()
@@ -17,18 +22,28 @@ namespace MicaForEveryone.Win32
             Activated += NotifyIcon_Activated;
         }
 
-        public uint Id { get; set; } = 0;
+        public uint Id
+        {
+            get => _notifyIconData.uID;
+            set => _notifyIconData.uID = value;
+        }
 
-        public uint CallbackId { get; set; }
+        public uint CallbackMessage
+        {
+            get => _notifyIconData.uCallbackMessage;
+            set => _notifyIconData.uCallbackMessage = value;
+        }
 
         private void NotifyIcon_Activated(object sender, EventArgs args)
         {
-            _notifyIconData.uFlags = NIF.NIF_ICON | NIF.NIF_TIP | NIF.NIF_MESSAGE;
+            _notifyIconData.uFlags = NIF.NIF_ICON | NIF.NIF_MESSAGE;
             _notifyIconData.hwnd = Handle;
-            _notifyIconData.uID = Id;
-            _notifyIconData.uCallbackMessage = CallbackId;
+            if (Title != null)
+            {
+                _notifyIconData.uFlags |= NIF.NIF_TIP;
+                _notifyIconData.szTip = Title;
+            }
             _notifyIconData.hIcon = Icon;
-            _notifyIconData.szTip = Title;
             if (!Shell_NotifyIcon(NIM.NIM_ADD, _notifyIconData))
             {
                 Kernel32.GetLastError().ThrowIfFailed();
@@ -55,16 +70,29 @@ namespace MicaForEveryone.Win32
 
         protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
-            if (umsg == CallbackId)
+            if (umsg == CallbackMessage)
             {
-                switch ((WindowMessage)Macros.LOWORD(lParam))
+                switch (Macros.LOWORD(lParam))
                 {
-                    case WindowMessage.WM_CONTEXTMENU:
+                    case (ushort)WindowMessage.WM_CONTEXTMENU:
                         ContextMenu?.Invoke(this, EventArgs.Empty);
                         break;
-                    case WindowMessage.WM_LBUTTONUP:
+
+                    case (ushort)NIN_SELECT:
+                    case (ushort)NIN_KEYSELECT:
+                    case (ushort)WindowMessage.WM_LBUTTONUP:
                         Click?.Invoke(this, EventArgs.Empty);
                         break;
+
+                    case (ushort)NIN_POPUPOPEN:
+                        if (OpenPopup == null) break;
+                        OpenPopup.Invoke(this, EventArgs.Empty);
+                        return IntPtr.Zero;
+
+                    case (ushort)NIN_POPUPCLOSE:
+                        if (ClosePopup == null) break;
+                        ClosePopup.Invoke(this, EventArgs.Empty);
+                        return IntPtr.Zero;
                 }
             }
             return DefWindowProc(hwnd, umsg, wParam, lParam);
@@ -72,5 +100,7 @@ namespace MicaForEveryone.Win32
 
         public event EventHandler ContextMenu;
         public event EventHandler Click;
+        public event EventHandler OpenPopup;
+        public event EventHandler ClosePopup;
     }
 }

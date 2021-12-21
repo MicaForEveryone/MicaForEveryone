@@ -8,6 +8,9 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
+    <ToolTipService.ToolTip>
+        <ToolTip Content="Mica For Everyone" />
+    </ToolTipService.ToolTip>
     <UserControl.Resources>
         <converters:IsEqualConverter x:Key="IsEqualConverter" xmlns:converters="using:MicaForEveryone.UWP.Converters" />
     </UserControl.Resources>

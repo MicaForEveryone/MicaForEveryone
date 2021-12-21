@@ -31,13 +31,16 @@ namespace MicaForEveryone.Views
 
             _notifyIcon = new NotifyIcon
             {
-                CallbackId = WM_APP_NOTIFYICON,
+                CallbackMessage = WM_APP_NOTIFYICON,
                 Id = 0,
                 Title = "Mica For Everyone",
                 Icon = Icon,
             };
 
+            _notifyIcon.Click += NotifyIcon_ContextMenu;
             _notifyIcon.ContextMenu += NotifyIcon_ContextMenu;
+            _notifyIcon.OpenPopup += NotifyIcon_OpenPopup;
+            _notifyIcon.ClosePopup += NotifyIcon_ClosePopup;
         }
 
         private void MainWindow_Activated(object sender, EventArgs e)
@@ -69,6 +72,28 @@ namespace MicaForEveryone.Views
 
                 menu.ShowAt(View, new Point(0, 0));
             }
+        }
+
+        private void NotifyIcon_OpenPopup(object sender, EventArgs e)
+        {
+            var notifyIconRect = _notifyIcon.GetRect();
+
+            Handle.SetWindowPos(
+                    HWND.NULL,
+                    notifyIconRect,
+                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
+
+            GetXamlWindowInterop().WindowHandle.SetWindowPos(
+                HWND.NULL,
+                new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
+                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
+
+            ((ToolTip)ToolTipService.GetToolTip(View)).IsOpen = true;
+        }
+
+        private void NotifyIcon_ClosePopup(object sender, EventArgs e)
+        {
+            ((ToolTip)ToolTipService.GetToolTip(View)).IsOpen = false;
         }
     }
 }
