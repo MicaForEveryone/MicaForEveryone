@@ -33,14 +33,16 @@ namespace MicaForEveryone.ViewModels
             set => SetProperty(ref _extendFrameIntoClientArea, value);
         }
 
-        public RelyCommand Exit { get; set; }
+        public RelyCommand ExitCommand { get; set; }
 
-        public RelyCommand ReloadConfig { get; set; }
+        public RelyCommand ReloadConfigCommand { get; set; }
 
-        public RelyCommand ChangeTitlebarColorMode { get; set; }
+        public RelyCommand ChangeTitlebarColorModeCommand { get; set; }
 
-        public RelyCommand ChangeBackdropType { get; set; }
+        public RelyCommand ChangeBackdropTypeCommand { get; set; }
 
-        public RelyCommand ToggleExtendFrameIntoClientArea { get; set; }
+        public RelyCommand ToggleExtendFrameIntoClientAreaCommand { get; set; }
+
+        public RelyCommand AboutCommand { get; set; }
     }
 }

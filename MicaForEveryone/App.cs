@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Vanara.PInvoke;
 
 using MicaForEveryone.Rules;
 using MicaForEveryone.UWP;
+using MicaForEveryone.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
 using MicaForEveryone.ViewModels;
-using Windows.UI.Xaml;
-using MicaForEveryone.Models;
-using System.Threading.Tasks;
 
 namespace MicaForEveryone
 {
@@ -90,11 +91,12 @@ namespace MicaForEveryone
 #else
             viewModel.SystemBackdropIsSupported = SystemBackdrop.IsSupported;
 #endif
-            viewModel.Exit = new RelyCommand(_ => _mainWindow.Close());
-            viewModel.ReloadConfig = new RelyCommand(ViewModel_ReloadConfig);
-            viewModel.ChangeTitlebarColorMode = new RelyCommand(ViewModel_ChangeTitlebarColorMode);
-            viewModel.ChangeBackdropType = new RelyCommand(ViewModel_ChangeBackdropType);
-            viewModel.ToggleExtendFrameIntoClientArea = new RelyCommand(ViewModel_ToggleExtendFrameIntoClientArea);
+            viewModel.ExitCommand = new RelyCommand(_ => _mainWindow.Close());
+            viewModel.ReloadConfigCommand = new RelyCommand(ViewModel_ReloadConfig);
+            viewModel.ChangeTitlebarColorModeCommand = new RelyCommand(ViewModel_ChangeTitlebarColorMode);
+            viewModel.ChangeBackdropTypeCommand = new RelyCommand(ViewModel_ChangeBackdropType);
+            viewModel.ToggleExtendFrameIntoClientAreaCommand = new RelyCommand(ViewModel_ToggleExtendFrameIntoClientArea);
+            viewModel.AboutCommand = new RelyCommand(ViewModel_About);
             UpdateViewModel();
             // find system mode
             _ruleHandler.SystemTitlebarMode = _uwpApp.RequestedTheme switch
@@ -171,6 +173,50 @@ namespace MicaForEveryone
             _ruleHandler.GlobalRule.ExtendFrameIntoClientArea = !_ruleHandler.GlobalRule.ExtendFrameIntoClientArea;
             UpdateViewModel();
             _mainWindow.RequestRematchRules();
+        }
+
+        private void ViewModel_About(object obj)
+        {
+            var openUrlCommand = new RelyCommand(async url => 
+                await Windows.System.Launcher.LaunchUriAsync((Uri)url));
+            var view = new ContentDialogView
+            {
+                ViewModel =
+                {
+                    Title = "Mica For Everyone",
+                    Content = new StackPanel
+                    {
+                        Children =
+                        {
+                            new TextBlock { Text = "v" + typeof(App).Assembly.GetName().Version},
+                            new HyperlinkButton { 
+                                Content = "Github",
+                                Command = openUrlCommand,
+                                CommandParameter = new Uri("https://github.com/minusium/MicaForEveryone"),
+                            },
+                        },
+                        Spacing = 5,
+                    },
+                    IsPrimaryButtonEnabled = true,
+                    PrimaryButtonContent = "Close",
+                },
+            };
+            var xamlDialog = new XamlDialog(view)
+            {
+                ClassName = "Dialog",
+                Parent = _mainWindow.Handle,
+                Title = "About",
+                Width = 400,
+                Height = 600,
+            };
+            view.ViewModel.PrimaryCommand = new RelyCommand(_ =>
+            {
+                xamlDialog.Close();
+            });
+            xamlDialog.CenterToDesktop();
+            xamlDialog.Activate();
+            xamlDialog.Show();
+            User32.SetForegroundWindow(xamlDialog.Handle);
         }
     }
 }
