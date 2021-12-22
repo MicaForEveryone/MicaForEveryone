@@ -20,7 +20,7 @@ namespace MicaForEveryone.Rules
                 windowHandle.ExtendFrameIntoClientArea();
 
             windowHandle.ApplyBackdropRule(rule.BackdropPreference);
-            windowHandle.ApplyTitlebarColorRule(rule.TitlebarColor, SystemTitlebarMode);
+            windowHandle.ApplyTitlebarColorRule(rule.TitlebarColor, SystemTitlebarColorMode);
         }
 
         private readonly User32.EnumWindowsProc _enumWindows;
@@ -40,7 +40,7 @@ namespace MicaForEveryone.Rules
 
         public GlobalRule GlobalRule { get; private set; }
 
-        public TitlebarColorMode SystemTitlebarMode { get; set; }
+        public TitlebarColorMode SystemTitlebarColorMode { get; set; }
 
         public void LoadConfig()
         {

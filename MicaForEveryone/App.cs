@@ -25,22 +25,7 @@ namespace MicaForEveryone
         {
             _mainWindow.ReloadConfigRequested += MainWindow_ReloadConfigRequested;
             _mainWindow.RematchRulesRequested += MainWindow_RematchRulesRequested;
-        }
-
-        private async void MainWindow_RematchRulesRequested(object sender, EventArgs e)
-        {
-            await Task.Run(() => _ruleHandler.MatchAndApplyRuleToAllWindows());
-        }
-
-        private async void MainWindow_ReloadConfigRequested(object sender, EventArgs e)
-        {
-            await Task.Run(() =>
-            {
-                _ruleHandler.ConfigSource.Reload();
-                _ruleHandler.LoadConfig();
-                _ruleHandler.MatchAndApplyRuleToAllWindows();
-                UpdateViewModel();
-            });
+            _mainWindow.ThemeChanged += MainWindow_ThemeChanged;
         }
 
         public void Run()
@@ -84,6 +69,7 @@ namespace MicaForEveryone
             var filePath = args.Length > 1 ? args[1] : "config.ini";
             _ruleHandler.ConfigSource = new ConfigFileReader(filePath);
             _ruleHandler.LoadConfig();
+            SetSystemColorMode();
             // initialize view model
             var viewModel = (_mainWindow.View as MainWindowView).ViewModel;
 #if DEBUG
@@ -98,13 +84,6 @@ namespace MicaForEveryone
             viewModel.ToggleExtendFrameIntoClientAreaCommand = new RelyCommand(ViewModel_ToggleExtendFrameIntoClientArea);
             viewModel.AboutCommand = new RelyCommand(ViewModel_About);
             UpdateViewModel();
-            // find system mode
-            _ruleHandler.SystemTitlebarMode = _uwpApp.RequestedTheme switch
-            {
-                ApplicationTheme.Light => TitlebarColorMode.Light,
-                ApplicationTheme.Dark => TitlebarColorMode.Dark,
-                _ => TitlebarColorMode.Default,
-            };
             // apply rules to open windows
             _ruleHandler.MatchAndApplyRuleToAllWindows();
             // hook event new window event to apply rules on new window
@@ -217,6 +196,38 @@ namespace MicaForEveryone
             xamlDialog.Activate();
             xamlDialog.Show();
             User32.SetForegroundWindow(xamlDialog.Handle);
+        }
+
+        private void SetSystemColorMode()
+        {
+            _ruleHandler.SystemTitlebarColorMode = _uwpApp.RequestedTheme switch
+            {
+                ApplicationTheme.Light => TitlebarColorMode.Light,
+                ApplicationTheme.Dark => TitlebarColorMode.Dark,
+                _ => TitlebarColorMode.Default,
+            };
+        }
+
+        private async void MainWindow_RematchRulesRequested(object sender, EventArgs e)
+        {
+            await Task.Run(() => _ruleHandler.MatchAndApplyRuleToAllWindows());
+        }
+
+        private async void MainWindow_ReloadConfigRequested(object sender, EventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                _ruleHandler.ConfigSource.Reload();
+                _ruleHandler.LoadConfig();
+                _ruleHandler.MatchAndApplyRuleToAllWindows();
+                UpdateViewModel();
+            });
+        }
+
+        private void MainWindow_ThemeChanged(object sender, EventArgs e)
+        {
+            SetSystemColorMode();
+            _mainWindow.RequestRematchRules();
         }
     }
 }
