@@ -1,90 +1,70 @@
 ﻿using System;
 using Windows.System;
-using Windows.UI.Xaml.Controls;
 
 using static Vanara.PInvoke.User32;
 
-using MicaForEveryone.UWP;
 using MicaForEveryone.ViewModels;
-using MicaForEveryone.Xaml;
+using MicaForEveryone.Win32;
+using MicaForEveryone.Views;
 
 namespace MicaForEveryone
 {
     internal partial class App
     {
+        public static RelyCommand UrlLauncherCommand { get; } =
+            new RelyCommand(async url => await Launcher.LaunchUriAsync((Uri)url));
+
+        public static RelyCommand CloseDialogCommand { get; } =
+            new RelyCommand(dialog => ((Dialog)dialog).Close());
+
         private void ShowAboutDialog()
         {
-            var openUrlCommand = new RelyCommand(async url =>
-                await Launcher.LaunchUriAsync((Uri)url));
-            var view = new ContentDialogView
+            var dialog = new AboutDialog()
             {
-                ViewModel =
-                {
-                    Title = "Mica For Everyone",
-                    Content = new StackPanel
-                    {
-                        Children =
-                        {
-                            new TextBlock { Text = "v" + typeof(App).Assembly.GetName().Version},
-                            new HyperlinkButton {
-                                Content = "Github",
-                                Command = openUrlCommand,
-                                CommandParameter = new Uri("https://github.com/minusium/MicaForEveryone"),
-                            },
-                        },
-                        Spacing = 5,
-                    },
-                    IsPrimaryButtonEnabled = true,
-                    PrimaryButtonContent = "Close",
-                },
-            };
-            var xamlDialog = new XamlDialog(view)
-            {
-                ClassName = "Dialog",
                 Parent = _mainWindow.Handle,
-                Title = "About",
-                Width = 400,
-                Height = 600,
             };
-            view.ViewModel.PrimaryCommand = new RelyCommand(_ =>
+            dialog.Destroy += (sender, args) =>
             {
-                xamlDialog.Close();
-                xamlDialog.Dispose();
-            });
-            xamlDialog.CenterToDesktop();
-            xamlDialog.Activate();
-            xamlDialog.Show();
-            SetForegroundWindow(xamlDialog.Handle);
+                dialog.Dispose();
+            };
+            dialog.CenterToDesktop();
+            dialog.Activate();
+            dialog.Show();
+            SetForegroundWindow(dialog.Handle);
         }
 
         private void ShowWindows11RequiredDialog()
         {
-            var errorContent = new ContentDialogView
+            using var errorDialog = new ErrorDialog();
+            errorDialog.SetMessage("This app requires at least Windows 11 (10.0.22000.0) to work.");
+            errorDialog.Destroy += (sender, args) =>
             {
-                ViewModel = 
-                {
-                    Title = "Error",
-                    Content = "Mica for Everyone at least requires Windows 11 (10.0.22000) to work.",
-                    IsPrimaryButtonEnabled = true,
-                    PrimaryButtonContent = "OK",
-                },
-            };
-            using var errorDialog = new XamlDialog(errorContent)
-            {
-                ClassName = "Dialog",
-                Title = "Mica For Everyone",
-                Width = 576,
-                Height = 320,
-            };
-            errorContent.ViewModel.PrimaryCommand = new RelyCommand(_ =>
-            {
-                errorDialog.Close();
                 Exit();
-            });
+            };
             errorDialog.CenterToDesktop();
             errorDialog.Activate();
             errorDialog.Show();
             Run(errorDialog);
+        }
+
+        private void ShowUnhandledExceptionDialog(object exception)
+        {
+            using var dialog = new ErrorDialog
+            {
+                Width = 576,
+                Height = 720,
+            };
+            dialog.Destroy += (sender, args) =>
+            {
+                Exit();
+            };
+            dialog.SetMessage(exception.ToString());
+            dialog.CenterToDesktop();
+            dialog.Activate();
+            dialog.Show();
+            SetForegroundWindow(dialog.Handle);
+
+            Run(dialog);
         }
     }
 }

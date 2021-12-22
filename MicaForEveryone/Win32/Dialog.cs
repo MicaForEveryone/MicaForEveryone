@@ -65,6 +65,7 @@ namespace MicaForEveryone.Win32
         public void Close(MB_RESULT result)
         {
             EndDialog(Handle, (IntPtr)result);
+            DestroyWindow(Handle);
         }
 
         protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)

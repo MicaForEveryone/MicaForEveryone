@@ -4,7 +4,7 @@
     {
         public App()
         {
-            this.Initialize();
+            Initialize();
         }
     }
 }

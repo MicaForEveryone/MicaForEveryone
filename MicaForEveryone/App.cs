@@ -18,11 +18,18 @@ namespace MicaForEveryone
 
             InitializeMainWindow();
             InitializeViewModel();
+
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            _uwpApp.UnhandledException += UwpApp_UnhandledException; ;
+
             InitializeRuleHandler();
             InitializeEventHook();
             UpdateViewModel();
             
             Run(_mainWindow);
+
+            AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
+            _uwpApp.UnhandledException -= UwpApp_UnhandledException;
         }
 
         public void Dispose()
@@ -30,6 +37,16 @@ namespace MicaForEveryone
             _eventHook.Dispose();
             _mainWindow.Dispose();
             _uwpApp.Dispose();
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
+        {
+            ShowUnhandledExceptionDialog(args.ExceptionObject);
+        }
+
+        private void UwpApp_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs args)
+        {
+            ShowUnhandledExceptionDialog(args.Exception);
         }
     }
 }

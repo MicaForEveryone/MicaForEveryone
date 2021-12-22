@@ -51,6 +51,10 @@ namespace MicaForEveryone.ViewModels
 
         public RelyCommand PrimaryCommand { get; set; }
 
+        public object PrimaryCommandParameter { get; set; }
+
         public RelyCommand SecondaryCommand { get; set; }
+
+        public object SecondaryCommandParameter { get; set; }
     }
 }
