@@ -1,8 +1,9 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 using Vanara.PInvoke;
+
+using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.Extensions;
 
@@ -15,25 +16,23 @@ namespace MicaForEveryone.Xaml
         public XamlWindow(UIElement view)
         {
             View = view;
-            Activated += XamlWindow_Activated;
+            Create += XamlWindow_Create;
         }
 
         public UIElement View { get; protected set; }
 
-        private void XamlWindow_Activated(object sender, EventArgs args)
-        {
-            _xamlSource = new()
-            {
-                Content = View,
-            };
-            var interop = GetXamlWindowInterop();
-            interop.AttachToWindow(Handle);
-            interop.WindowHandle.SetWindowPos(
-                HWND.NULL,
-                new RECT(0, 0, Size.Width, Size.Height),
-                User32.SetWindowPosFlags.SWP_NOZORDER | User32.SetWindowPosFlags.SWP_SHOWWINDOW);
-        }
+        public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() => 
+            _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
 
-        public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() => _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
+        private void XamlWindow_Create(object sender, Win32.WindowEventArgs e)
+        {
+            _xamlSource = new() { Content = View };
+            var interop = GetXamlWindowInterop();
+            interop.AttachToWindow(e.WindowHandle);
+            
+            GetWindowRect(e.WindowHandle, out var clientArea);
+            interop.WindowHandle.SetWindowPos(HWND.NULL, clientArea, 
+                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+        }
     }
 }

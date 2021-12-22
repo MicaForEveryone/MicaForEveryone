@@ -27,7 +27,7 @@ namespace MicaForEveryone.Views
             Style = WindowStyles.WS_POPUPWINDOW;
             StyleEx = WindowStylesEx.WS_EX_TOPMOST;
 
-            Activated += MainWindow_Activated;
+            Create += MainWindow_Create;
             Destroy += MainWindow_Destroy;
 
             _notifyIcon = new NotifyIcon
@@ -44,15 +44,16 @@ namespace MicaForEveryone.Views
             _notifyIcon.ClosePopup += NotifyIcon_ClosePopup;
         }
 
-        private void MainWindow_Activated(object sender, EventArgs e)
+        private void MainWindow_Create(object sender, WindowEventArgs e)
         {
-            _notifyIcon.Parent = Handle;
+            _notifyIcon.Parent = e.WindowHandle;
             _notifyIcon.Activate();
+            _notifyIcon.Show();
         }
 
-        private void MainWindow_Destroy(object sender, EventArgs e)
+        private void MainWindow_Destroy(object sender, WindowEventArgs e)
         {
-            _notifyIcon.Deactivate();
+            _notifyIcon.Hide();
         }
 
         private void ShowContextFlyout(int x, int y)

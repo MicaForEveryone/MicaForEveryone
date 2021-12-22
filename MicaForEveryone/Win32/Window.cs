@@ -38,7 +38,7 @@ namespace MicaForEveryone.Win32
 
         public WindowStylesEx StyleEx { get; set; } = 0;
 
-        public void Activate()
+        public virtual void Activate()
         {
             _class = new WNDCLASS
             {
@@ -49,7 +49,11 @@ namespace MicaForEveryone.Win32
             };
             if (RegisterClass(_class) == 0)
             {
-                Kernel32.GetLastError().ThrowIfFailed();
+                var error = Kernel32.GetLastError();
+                if (error != Win32Error.ERROR_CLASS_ALREADY_EXISTS)
+                {
+                    error.ThrowIfFailed();
+                }
             }
 
             _windowHandle = CreateWindowEx(
@@ -66,13 +70,11 @@ namespace MicaForEveryone.Win32
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
-
-            Activated?.Invoke(this, EventArgs.Empty);
         }
 
         public void Close()
         {
-            if (!PostMessage(_windowHandle, (uint)WindowMessage.WM_DESTROY))
+            if (!PostMessage(_windowHandle, (uint)WindowMessage.WM_CLOSE))
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
@@ -96,24 +98,33 @@ namespace MicaForEveryone.Win32
                     break;
 
                 case WindowMessage.WM_DESTROY:
-                    OnDestroy();
+                    OnDestroy(hwnd);
                     break;
             }
             return DefWindowProc(hwnd, umsg, wParam, lParam);
         }
 
-        private void OnCreate(HWND hwnd)
+        protected void OnCreate(HWND hwnd)
         {
-            Create?.Invoke(this, EventArgs.Empty);
+            Create?.Invoke(this, new WindowEventArgs(hwnd));
         }
 
-        private void OnDestroy()
+        protected void OnDestroy(HWND hwnd)
         {
-            Destroy?.Invoke(this, EventArgs.Empty);
+            Destroy?.Invoke(this, new WindowEventArgs(hwnd));
         }
 
-        public event EventHandler Create;
-        public event EventHandler Destroy;
-        public event EventHandler Activated;
+        public event EventHandler<WindowEventArgs> Create;
+        public event EventHandler<WindowEventArgs> Destroy;
+    }
+
+    public class WindowEventArgs : EventArgs
+    {
+        public WindowEventArgs(HWND windowHandle)
+        {
+            WindowHandle = windowHandle;
+        }
+
+        public HWND WindowHandle { get; }
     }
 }

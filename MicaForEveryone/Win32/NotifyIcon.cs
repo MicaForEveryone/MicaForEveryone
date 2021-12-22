@@ -19,8 +19,6 @@ namespace MicaForEveryone.Win32
         public NotifyIcon()
         {
             ClassName = nameof(NotifyIcon);
-
-            Activated += NotifyIcon_Activated;
         }
 
         public uint Id
@@ -35,7 +33,7 @@ namespace MicaForEveryone.Win32
             set => _notifyIconData.uCallbackMessage = value;
         }
 
-        private void NotifyIcon_Activated(object sender, EventArgs args)
+        public void Show()
         {
             _notifyIconData.uFlags = NIF.NIF_ICON | NIF.NIF_MESSAGE;
             _notifyIconData.hwnd = Handle;
@@ -57,7 +55,7 @@ namespace MicaForEveryone.Win32
             }
         }
 
-        public void Deactivate()
+        public void Hide()
         {
             Shell_NotifyIcon(NIM.NIM_DELETE, _notifyIconData);
         }
