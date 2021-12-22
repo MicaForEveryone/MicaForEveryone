@@ -7,20 +7,17 @@ namespace MicaForEveryone.Win32
 {
     public class Window : IDisposable
     {
-        private readonly Kernel32.SafeHINSTANCE _instanceHandle;
-
-        private WNDCLASS _class;
-        private SafeHWND _windowHandle;
-
         public Window()
         {
-            _instanceHandle = Kernel32.GetModuleHandle();
+            Instance = Kernel32.GetModuleHandle();
 
-            if (_instanceHandle.IsNull)
+            if (Instance.IsNull)
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
         }
+
+        public Kernel32.SafeHINSTANCE Instance { get; }
 
         public string ClassName { get; set; }
 
@@ -28,26 +25,37 @@ namespace MicaForEveryone.Win32
 
         public HICON Icon { get; set; }
 
-        public HWND Handle => _windowHandle;
+        public SafeHWND SafeHandle { get; protected set; }
+
+        public HWND Handle => SafeHandle ?? HWND.NULL;
 
         public HWND Parent { get; set; } = HWND.NULL;
 
-        public RECT Size { get; set; }
+        public int X { get; set; } = CW_USEDEFAULT;
+        
+        public int Y { get; set; } = CW_USEDEFAULT;
+
+        public int Width { get; set; } = CW_USEDEFAULT;
+
+        public int Height { get; set; } = CW_USEDEFAULT;
 
         public WindowStyles Style { get; set; } = 0;
 
         public WindowStylesEx StyleEx { get; set; } = 0;
 
+        protected WNDCLASS WindowClass { get; set; }
+
         public virtual void Activate()
         {
-            _class = new WNDCLASS
+            if (SafeHandle != null) return;
+            WindowClass = new WNDCLASS
             {
-                hInstance = _instanceHandle,
+                hInstance = Instance,
                 lpszClassName = ClassName,
                 hIcon = Icon,
                 lpfnWndProc = WndProc,
             };
-            if (RegisterClass(_class) == 0)
+            if (RegisterClass(WindowClass) == 0)
             {
                 var error = Kernel32.GetLastError();
                 if (error != Win32Error.ERROR_CLASS_ALREADY_EXISTS)
@@ -56,25 +64,25 @@ namespace MicaForEveryone.Win32
                 }
             }
 
-            _windowHandle = CreateWindowEx(
+            SafeHandle = CreateWindowEx(
                 StyleEx,
-                _class.lpszClassName,
+                ClassName,
                 Title,
                 Style,
-                Size.X, Size.Y, Size.Width, Size.Height,
+                X, Y, Width, Height,
                 Parent,
                 HMENU.NULL,
-                _instanceHandle);
+                Instance);
 
-            if (_windowHandle.IsNull)
+            if (Handle.IsNull)
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
         }
 
-        public void Close()
+        public virtual void Close()
         {
-            if (!PostMessage(_windowHandle, (uint)WindowMessage.WM_CLOSE))
+            if (!PostMessage(Handle, (uint)WindowMessage.WM_CLOSE))
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
@@ -82,11 +90,11 @@ namespace MicaForEveryone.Win32
 
         public virtual void Dispose()
         {
-            _ = DestroyWindow(_windowHandle);
-            _ = UnregisterClass(_class.lpszClassName, _instanceHandle);
+            _ = DestroyWindow(Handle);
+            _ = UnregisterClass(WindowClass.lpszClassName, Instance);
 
-            _windowHandle.Dispose();
-            _instanceHandle.Dispose();
+            SafeHandle?.Dispose();
+            Instance?.Dispose();
         }
 
         protected virtual IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)

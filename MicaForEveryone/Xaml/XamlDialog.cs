@@ -1,6 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using Microsoft.Toolkit.Win32.UI.XamlHost;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
-using Microsoft.Toolkit.Win32.UI.XamlHost;
 using Vanara.PInvoke;
 
 using static Vanara.PInvoke.User32;
@@ -9,27 +9,28 @@ using MicaForEveryone.Extensions;
 
 namespace MicaForEveryone.Xaml
 {
-    public class XamlWindow : Win32.Window
+    public class XamlDialog : Win32.Dialog
     {
         private DesktopWindowXamlSource _xamlSource;
 
-        public XamlWindow(UIElement view)
+        public XamlDialog(UIElement view)
         {
             _xamlSource = new() { Content = view };
-            Create += XamlWindow_Create;
         }
 
         public UIElement View => _xamlSource.Content;
 
         public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() => 
-            _xamlSource?.GetInterop<IDesktopWindowXamlSourceNative2>();
+            _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
 
-        private void XamlWindow_Create(object sender, Win32.WindowEventArgs e)
+        public override void Activate()
         {
+            base.Activate();
+
             var interop = GetXamlWindowInterop();
-            interop.AttachToWindow(e.WindowHandle);
+            interop.AttachToWindow(Handle);
             
-            GetClientRect(e.WindowHandle, out var clientArea);
+            GetClientRect(Handle, out var clientArea);
             interop.WindowHandle.SetWindowPos(
                 HWND.NULL,
                 new RECT(0, 0, clientArea.Width, clientArea.Height),
