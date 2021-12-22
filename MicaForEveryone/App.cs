@@ -7,6 +7,8 @@ using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
 using MicaForEveryone.ViewModels;
+using Windows.UI.Xaml;
+using MicaForEveryone.Models;
 
 namespace MicaForEveryone
 {
@@ -71,6 +73,13 @@ namespace MicaForEveryone
             viewModel.ChangeBackdropType = new RelyCommand(ViewModel_ChangeBackdropType);
             viewModel.ToggleExtendFrameIntoClientArea = new RelyCommand(ViewModel_ToggleExtendFrameIntoClientArea);
             UpdateViewModel();
+            // find system mode
+            _ruleHandler.SystemTitlebarMode = _uwpApp.RequestedTheme switch
+            {
+                ApplicationTheme.Light => TitlebarColorMode.Light,
+                ApplicationTheme.Dark => TitlebarColorMode.Dark,
+                _ => TitlebarColorMode.Default,
+            };
             // apply rules to open windows
             _ruleHandler.MatchAndApplyRuleToAllWindows();
             // hook event new window event to apply rules on new window

@@ -64,6 +64,27 @@ namespace MicaForEveryone.Extensions
             }
         }
 
+        public static void ApplyTitlebarColorRule(this HWND windowHandle, TitlebarColorMode colorMode, TitlebarColorMode systemMode)
+        {
+            switch (colorMode)
+            {
+                case TitlebarColorMode.Default:
+                    break;
+                case TitlebarColorMode.System:
+                    if (systemMode == TitlebarColorMode.System) break;
+                    ApplyTitlebarColorRule(windowHandle, systemMode, systemMode);
+                    break;
+                case TitlebarColorMode.Light:
+                    windowHandle.SetImmersiveDarkMode(false);
+                    break;
+                case TitlebarColorMode.Dark:
+                    windowHandle.SetImmersiveDarkMode(true);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public static void SetWindowPos(this HWND windowHandle, HWND insertAfter, RECT rect, User32.SetWindowPosFlags flags)
         {
             if (!User32.SetWindowPos(windowHandle, insertAfter, rect.X, rect.Y, rect.Width, rect.Height, flags))

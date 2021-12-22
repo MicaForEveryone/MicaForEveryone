@@ -11,7 +11,7 @@ namespace MicaForEveryone.Rules
 {
     public class RuleHandler
     {
-        public static void ApplyRuleToWindow(HWND windowHandle, IRule rule)
+        public void ApplyRuleToWindow(HWND windowHandle, IRule rule)
         {
 #if DEBUG
             Debug.WriteLine($"Applying rule `{rule}` to `{windowHandle.GetText()}` ({windowHandle.GetClassName()}, {windowHandle.GetProcessName()})");
@@ -20,20 +20,7 @@ namespace MicaForEveryone.Rules
                 windowHandle.ExtendFrameIntoClientArea();
 
             windowHandle.ApplyBackdropRule(rule.BackdropPreference);
-
-            switch (rule.TitlebarColor)
-            {
-                case TitlebarColorMode.Default:
-                    break;
-                case TitlebarColorMode.Light:
-                    windowHandle.SetImmersiveDarkMode(false);
-                    break;
-                case TitlebarColorMode.Dark:
-                    windowHandle.SetImmersiveDarkMode(true);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            windowHandle.ApplyTitlebarColorRule(rule.TitlebarColor, SystemTitlebarMode);
         }
 
         private readonly User32.EnumWindowsProc _enumWindows;
@@ -52,6 +39,8 @@ namespace MicaForEveryone.Rules
         public IList<IRule> Rules { get; } = new List<IRule>();
 
         public GlobalRule GlobalRule { get; private set; }
+
+        public TitlebarColorMode SystemTitlebarMode { get; set; }
 
         public void LoadConfig()
         {
