@@ -16,6 +16,7 @@ namespace MicaForEveryone.Xaml
         public XamlDialog(UIElement view)
         {
             _xamlSource = new() { Content = view };
+            Style = WindowStyles.WS_DLGFRAME;
         }
 
         public UIElement View => _xamlSource.Content;
