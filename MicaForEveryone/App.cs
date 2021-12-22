@@ -32,7 +32,11 @@ namespace MicaForEveryone
             _ruleHandler.LoadConfig();
             // initialize view model
             var viewModel = (_mainWindow.View as MainWindowView).ViewModel;
+            #if DEBUG
+            viewModel.SystemBackdropIsSupported = true;
+            #else
             viewModel.SystemBackdropIsSupported = SystemBackdrop.IsSupported;
+            #endif
             viewModel.Exit = new RelyCommand(_ => _mainWindow.Close());
             viewModel.ReloadConfig = new RelyCommand(ViewModel_ReloadConfig);
             viewModel.ChangeTitlebarColorMode = new RelyCommand(ViewModel_ChangeTitlebarColorMode);

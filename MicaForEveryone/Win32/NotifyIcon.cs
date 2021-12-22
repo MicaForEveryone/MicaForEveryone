@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Vanara.PInvoke;
 
 using static Vanara.PInvoke.Shell32;
@@ -75,13 +76,21 @@ namespace MicaForEveryone.Win32
                 switch (Macros.LOWORD(lParam))
                 {
                     case (ushort)WindowMessage.WM_CONTEXTMENU:
-                        ContextMenu?.Invoke(this, EventArgs.Empty);
+                        ContextMenu?.Invoke(this,
+                            new TrayIconClickEventArgs(
+                                new Point(
+                                    Macros.GET_X_LPARAM(wParam),
+                                    Macros.GET_Y_LPARAM(wParam))));
                         break;
 
                     case (ushort)NIN_SELECT:
                     case (ushort)NIN_KEYSELECT:
                     case (ushort)WindowMessage.WM_LBUTTONUP:
-                        Click?.Invoke(this, EventArgs.Empty);
+                        Click?.Invoke(this, 
+                            new TrayIconClickEventArgs(
+                                new Point(
+                                    Macros.GET_X_LPARAM(wParam),
+                                    Macros.GET_Y_LPARAM(wParam))));
                         break;
 
                     case (ushort)NIN_POPUPOPEN:
@@ -98,9 +107,19 @@ namespace MicaForEveryone.Win32
             return DefWindowProc(hwnd, umsg, wParam, lParam);
         }
 
-        public event EventHandler ContextMenu;
-        public event EventHandler Click;
+        public event EventHandler<TrayIconClickEventArgs> ContextMenu;
+        public event EventHandler<TrayIconClickEventArgs> Click;
         public event EventHandler OpenPopup;
         public event EventHandler ClosePopup;
+    }
+
+    public class TrayIconClickEventArgs : EventArgs
+    {
+        public TrayIconClickEventArgs(Point point)
+        {
+            Point = point;
+        }
+
+        public Point Point { get; }
     }
 }

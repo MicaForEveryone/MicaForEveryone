@@ -15,6 +15,7 @@ namespace MicaForEveryone.Views
     public class MainWindow : XamlWindow
     {
         private const uint WM_APP_NOTIFYICON = WM_APP + 1;
+        private const uint USER_DEFAULT_SCREEN_DPI = 96;
 
         private NotifyIcon _notifyIcon;
 
@@ -54,10 +55,18 @@ namespace MicaForEveryone.Views
             _notifyIcon.Deactivate();
         }
 
-        private void NotifyIcon_ContextMenu(object sender, EventArgs e)
+        private void ShowContextFlyout(int x, int y)
         {
             if (View.ContextFlyout is MenuFlyout menu)
             {
+                if (menu.IsOpen)
+                {
+                    menu.Hide();
+                    return;
+                }
+
+                SetForegroundWindow(Handle);
+
                 var notifyIconRect = _notifyIcon.GetRect();
 
                 Handle.SetWindowPos(
@@ -70,15 +79,18 @@ namespace MicaForEveryone.Views
                     new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
                     SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-                var flyoutPosition = new Point(0, 0);
-                if (GetCursorPos(out var cursorPosition))
-                {
-                    flyoutPosition.X = cursorPosition.X - notifyIconRect.X;
-                    flyoutPosition.Y = cursorPosition.Y - notifyIconRect.Y;
-                }
+                var scaleFactor = ((float)GetDpiForWindow(Handle)) / USER_DEFAULT_SCREEN_DPI;
 
-                menu.ShowAt(View, flyoutPosition);
+                menu.ShowAt(View, 
+                    new Point(
+                        (x - notifyIconRect.X)/scaleFactor,
+                        (y - notifyIconRect.Y)/scaleFactor));
             }
+        }
+
+        private void NotifyIcon_ContextMenu(object sender, TrayIconClickEventArgs e)
+        {
+            ShowContextFlyout(e.Point.X, e.Point.Y);
         }
 
         private void NotifyIcon_OpenPopup(object sender, EventArgs e)
