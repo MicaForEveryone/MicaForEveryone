@@ -9,6 +9,7 @@ using MicaForEveryone.Xaml;
 using MicaForEveryone.ViewModels;
 using Windows.UI.Xaml;
 using MicaForEveryone.Models;
+using System.Threading.Tasks;
 
 namespace MicaForEveryone
 {
@@ -18,6 +19,28 @@ namespace MicaForEveryone
         private readonly WinEventHook _eventHook = new(User32.EventConstants.EVENT_OBJECT_CREATE);
         private readonly UWP.App _uwpApp = new();
         private readonly MainWindow _mainWindow = new();
+
+        public App()
+        {
+            _mainWindow.ReloadConfigRequested += MainWindow_ReloadConfigRequested;
+            _mainWindow.RematchRulesRequested += MainWindow_RematchRulesRequested;
+        }
+
+        private async void MainWindow_RematchRulesRequested(object sender, EventArgs e)
+        {
+            await Task.Run(() => _ruleHandler.MatchAndApplyRuleToAllWindows());
+        }
+
+        private async void MainWindow_ReloadConfigRequested(object sender, EventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                _ruleHandler.ConfigSource.Reload();
+                _ruleHandler.LoadConfig();
+                _ruleHandler.MatchAndApplyRuleToAllWindows();
+                UpdateViewModel();
+            });
+        }
 
         public void Run()
         {
@@ -111,66 +134,43 @@ namespace MicaForEveryone
 
         private void ViewModel_ReloadConfig(object parameter)
         {
-            _ruleHandler.ConfigSource.Reload();
-            _ruleHandler.LoadConfig();
-            _ruleHandler.MatchAndApplyRuleToAllWindows();
-            UpdateViewModel();
+            _mainWindow.RequestReloadConfig();
         }
 
         private void ViewModel_ChangeTitlebarColorMode(object parameter)
         {
-            switch (parameter.ToString())
+            _ruleHandler.GlobalRule.TitlebarColor = parameter.ToString() switch
             {
-                case "Default":
-                    _ruleHandler.GlobalRule.TitlebarColor = Models.TitlebarColorMode.Default;
-                    break;
-                case "System":
-                    _ruleHandler.GlobalRule.TitlebarColor = Models.TitlebarColorMode.System;
-                    break;
-                case "Light":
-                    _ruleHandler.GlobalRule.TitlebarColor = Models.TitlebarColorMode.Light;
-                    break;
-                case "Dark":
-                    _ruleHandler.GlobalRule.TitlebarColor = Models.TitlebarColorMode.Dark;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(parameter));
-            }
-            _ruleHandler.MatchAndApplyRuleToAllWindows();
+                "Default" => TitlebarColorMode.Default,
+                "System" => TitlebarColorMode.System,
+                "Light" => TitlebarColorMode.Light,
+                "Dark" => TitlebarColorMode.Dark,
+                _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+            };
             UpdateViewModel();
+            _mainWindow.RequestRematchRules();
         }
 
         private void ViewModel_ChangeBackdropType(object parameter)
         {
-            switch (parameter.ToString())
+            _ruleHandler.GlobalRule.BackdropPreference = parameter.ToString() switch
             {
-                case "Default":
-                    _ruleHandler.GlobalRule.BackdropPreference = Models.BackdropType.Default;
-                    break;
-                case "None":
-                    _ruleHandler.GlobalRule.BackdropPreference = Models.BackdropType.None;
-                    break;
-                case "Mica":
-                    _ruleHandler.GlobalRule.BackdropPreference = Models.BackdropType.Mica;
-                    break;
-                case "Acrylic":
-                    _ruleHandler.GlobalRule.BackdropPreference = Models.BackdropType.Acrylic;
-                    break;
-                case "Tabbed":
-                    _ruleHandler.GlobalRule.BackdropPreference = Models.BackdropType.Tabbed;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(parameter));
-            }
-            _ruleHandler.MatchAndApplyRuleToAllWindows();
+                "Default" => BackdropType.Default,
+                "None" => BackdropType.None,
+                "Mica" => BackdropType.Mica,
+                "Acrylic" => BackdropType.Acrylic,
+                "Tabbed" => BackdropType.Tabbed,
+                _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+            };
             UpdateViewModel();
+            _mainWindow.RequestRematchRules();
         }
 
         private void ViewModel_ToggleExtendFrameIntoClientArea(object parameter)
         {
             _ruleHandler.GlobalRule.ExtendFrameIntoClientArea = !_ruleHandler.GlobalRule.ExtendFrameIntoClientArea;
-            _ruleHandler.MatchAndApplyRuleToAllWindows();
             UpdateViewModel();
+            _mainWindow.RequestRematchRules();
         }
     }
 }
