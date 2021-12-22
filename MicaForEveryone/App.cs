@@ -81,7 +81,7 @@ namespace MicaForEveryone
             viewModel.ReloadConfigCommand = new RelyCommand(ViewModel_ReloadConfig);
             viewModel.ChangeTitlebarColorModeCommand = new RelyCommand(ViewModel_ChangeTitlebarColorMode);
             viewModel.ChangeBackdropTypeCommand = new RelyCommand(ViewModel_ChangeBackdropType);
-            viewModel.ToggleExtendFrameIntoClientAreaCommand = new RelyCommand(ViewModel_ToggleExtendFrameIntoClientArea);
+            viewModel.ChangeExtendFrameIntoClientAreaCommand = new RelyCommand(ViewModel_ChangeExtendFrameIntoClientArea);
             viewModel.AboutCommand = new RelyCommand(ViewModel_About);
             UpdateViewModel();
             // apply rules to open windows
@@ -147,16 +147,21 @@ namespace MicaForEveryone
             _mainWindow.RequestRematchRules();
         }
 
-        private void ViewModel_ToggleExtendFrameIntoClientArea(object parameter)
+        private void ViewModel_ChangeExtendFrameIntoClientArea(object parameter)
         {
-            _ruleHandler.GlobalRule.ExtendFrameIntoClientArea = !_ruleHandler.GlobalRule.ExtendFrameIntoClientArea;
+            _ruleHandler.GlobalRule.ExtendFrameIntoClientArea = parameter switch
+            {
+                "True" => true,
+                "False" => false,
+                _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+            };
             UpdateViewModel();
             _mainWindow.RequestRematchRules();
         }
 
         private void ViewModel_About(object obj)
         {
-            var openUrlCommand = new RelyCommand(async url => 
+            var openUrlCommand = new RelyCommand(async url =>
                 await Windows.System.Launcher.LaunchUriAsync((Uri)url));
             var view = new ContentDialogView
             {
@@ -168,7 +173,7 @@ namespace MicaForEveryone
                         Children =
                         {
                             new TextBlock { Text = "v" + typeof(App).Assembly.GetName().Version},
-                            new HyperlinkButton { 
+                            new HyperlinkButton {
                                 Content = "Github",
                                 Command = openUrlCommand,
                                 CommandParameter = new Uri("https://github.com/minusium/MicaForEveryone"),

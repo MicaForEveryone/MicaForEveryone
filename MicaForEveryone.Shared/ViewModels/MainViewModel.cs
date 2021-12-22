@@ -41,7 +41,7 @@ namespace MicaForEveryone.ViewModels
 
         public RelyCommand ChangeBackdropTypeCommand { get; set; }
 
-        public RelyCommand ToggleExtendFrameIntoClientAreaCommand { get; set; }
+        public RelyCommand ChangeExtendFrameIntoClientAreaCommand { get; set; }
 
         public RelyCommand AboutCommand { get; set; }
     }

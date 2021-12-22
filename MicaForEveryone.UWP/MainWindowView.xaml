@@ -90,7 +90,15 @@
                 <MenuFlyoutSubItem.Items>
                     <ToggleMenuFlyoutItem
                         Text="Enabled"
-                        IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=OneWay}" />
+                        IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=OneWay}"
+                        Command="{x:Bind ViewModel.ChangeExtendFrameIntoClientAreaCommand}"
+                        CommandParameter="True"/>
+                    
+                    <ToggleMenuFlyoutItem
+                        Text="Disabled"
+                        IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea.Equals(x:False), Mode=OneWay}"
+                        Command="{x:Bind ViewModel.ChangeExtendFrameIntoClientAreaCommand}"
+                        CommandParameter="False"/>
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
             
