@@ -63,6 +63,7 @@
                             Grid.Row="1"
                             Margin="{StaticResource ContentDialogContentMargin}" 
                             TextWrapping="Wrap"
+							HorizontalAlignment="Left"
                             FontSize="{ThemeResource ContentControlFontSize}"
                             FontFamily="{StaticResource ContentControlThemeFontFamily}"
                             Foreground="{ThemeResource ContentDialogForeground}"
