@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MicaForEveryone.UWP;
-using MicaForEveryone.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
+
+using MicaForEveryone.UWP;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
@@ -15,27 +14,21 @@ namespace MicaForEveryone.Views
             ViewModel =
             {
                 Title = "Mica For Everyone",
-                Content = new StackPanel
+                Content = new TextBlock
                 {
-                    Children =
+                    Inlines =
                     {
-                        new TextBlock { Text = "v" + typeof(App).Assembly.GetName().Version},
-                        new TextBlock
+                        new Run { Text = "v" + typeof(App).Assembly.GetName().Version },
+                        new LineBreak(),
+                        new Hyperlink
                         {
+                            NavigateUri = new Uri("https://github.com/minusium/MicaForEveryone"),
                             Inlines =
                             {
-                                new Hyperlink
-                                {
-                                    NavigateUri = new Uri("https://github.com/minusium/MicaForEveryone"),
-                                    Inlines =
-                                    {
-                                        new Run { Text = "GitHub" }
-                                    }
-                                }
+                                new Run { Text = "GitHub" }
                             }
                         }
-                    },
-                    Spacing = 5,
+                    }
                 },
                 IsPrimaryButtonEnabled = true,
                 PrimaryButtonContent = "Close",
