@@ -1,7 +1,4 @@
-﻿using System;
-using Windows.System;
-
-using static Vanara.PInvoke.User32;
+﻿using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
@@ -33,8 +30,6 @@ namespace MicaForEveryone
         private void ShowWindows11RequiredDialog()
         {
             using var errorDialog = new ErrorDialog();
-            errorDialog.Height = 275;
-            errorDialog.Width = 400;
             errorDialog.SetMessage("This app requires at least Windows 11 (10.0.22000.0) to work.");
             errorDialog.Destroy += (sender, args) =>
             {

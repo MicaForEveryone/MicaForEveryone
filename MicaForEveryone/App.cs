@@ -10,7 +10,7 @@ namespace MicaForEveryone
 
         public void Run()
         {
-            if (Environment.OSVersion.Version.Build == 22000)
+            if (Environment.OSVersion.Version.Build < 22000)
             {
                 ShowWindows11RequiredDialog();
                 return;
