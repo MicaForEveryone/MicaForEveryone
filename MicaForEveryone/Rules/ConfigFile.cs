@@ -5,12 +5,12 @@ using MicaForEveryone.Extensions;
 
 namespace MicaForEveryone.Rules
 {
-    public class ConfigFileReader : IConfigSource
+    public class ConfigFile : IConfigSource
     {
         private readonly string _filePath;
         private IniData _data;
 
-        public ConfigFileReader(string path)
+        public ConfigFile(string path)
         {
             _filePath = path;
         }
@@ -51,6 +51,14 @@ namespace MicaForEveryone.Rules
         {
             _data = null;
             ReadFile();
+        }
+
+        public void Save(GlobalRule rule)
+        {
+            _data.Global["TitleBarColor"] = rule.TitlebarColor.ToString();
+            _data.Global["BackdropPreference"] = rule.BackdropPreference.ToString();
+            _data.Global["ExtendFrameIntoClientArea"] = rule.ExtendFrameIntoClientArea.ToString();
+            new FileIniDataParser().WriteFile(_filePath, _data);
         }
     }
 }

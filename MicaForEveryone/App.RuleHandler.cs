@@ -16,7 +16,7 @@ namespace MicaForEveryone
             var args = Environment.GetCommandLineArgs();
             var filePath = args.Length > 1 ? args[1] : "config.ini";
             // read config file and parse rules
-            _ruleHandler.ConfigSource = new ConfigFileReader(filePath);
+            _ruleHandler.ConfigSource = new ConfigFile(filePath);
             _ruleHandler.LoadConfig();
             // get system theme
             SetSystemColorMode();

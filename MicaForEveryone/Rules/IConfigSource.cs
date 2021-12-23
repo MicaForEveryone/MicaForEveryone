@@ -7,5 +7,6 @@ namespace MicaForEveryone.Rules
         GlobalRule GetGlobalRule();
         IEnumerable<IRule> ParseRules();
         void Reload();
+        void Save(GlobalRule rule);
     }
 }

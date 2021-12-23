@@ -53,6 +53,11 @@ namespace MicaForEveryone.Rules
             }
         }
 
+        public void SaveConfig()
+        {
+            ConfigSource.Save(GlobalRule);
+        }
+
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
             if (!GlobalRule.IsApplicable(windowHandle)) return;

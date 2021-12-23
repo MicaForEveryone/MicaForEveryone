@@ -48,6 +48,7 @@ namespace MicaForEveryone
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
             UpdateViewModel();
+            _ruleHandler.SaveConfig();
             _mainWindow.RequestRematchRules();
         }
 
@@ -63,6 +64,7 @@ namespace MicaForEveryone
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
             UpdateViewModel();
+            _ruleHandler.SaveConfig();
             _mainWindow.RequestRematchRules();
         }
 
@@ -75,12 +77,12 @@ namespace MicaForEveryone
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
             UpdateViewModel();
+            _ruleHandler.SaveConfig();
             _mainWindow.RequestRematchRules();
         }
 
         private void ViewModel_About(object obj)
         {
-            throw new Exception();
             ShowAboutDialog();
         }
     }
