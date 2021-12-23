@@ -43,6 +43,15 @@ namespace MicaForEveryone.Win32
                 HMENU.NULL,
                 Instance);
 
+            GetWindowRect(Handle, out var winRect);
+            X = winRect.X;
+            Y = winRect.Y;
+            Width = winRect.Width;
+            Height = winRect.Height;
+
+            UpdateScaleFactor();
+            UpdateSize();
+
             if (Handle.IsNull)
             {
                 Kernel32.GetLastError().ThrowIfFailed();
@@ -83,6 +92,14 @@ namespace MicaForEveryone.Win32
 
                 case WindowMessage.WM_DESTROY:
                     OnDestroy(hwnd);
+                    break;
+
+                case WindowMessage.WM_SIZE:
+                    OnSizeChanged(hwnd);
+                    break;
+
+                case WindowMessage.WM_DPICHANGED:
+                    OnDpiChanged(hwnd);
                     break;
             }
             return DefDlgProc(hwnd, umsg, wParam, lParam);

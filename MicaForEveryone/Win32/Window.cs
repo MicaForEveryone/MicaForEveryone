@@ -7,6 +7,8 @@ namespace MicaForEveryone.Win32
 {
     public class Window : IDisposable
     {
+        private const uint USER_DEFAULT_SCREEN_DPI = 96;
+
         public Window()
         {
             Instance = Kernel32.GetModuleHandle();
@@ -32,12 +34,18 @@ namespace MicaForEveryone.Win32
         public HWND Parent { get; set; } = HWND.NULL;
 
         public int X { get; set; } = CW_USEDEFAULT;
-        
+
         public int Y { get; set; } = CW_USEDEFAULT;
 
         public int Width { get; set; } = CW_USEDEFAULT;
 
         public int Height { get; set; } = CW_USEDEFAULT;
+
+        public float ScaleFactor { get; private set; }
+
+        public float ScaledWidth => Width * ScaleFactor;
+
+        public float ScaledHeight => Height * ScaleFactor;
 
         public WindowStyles Style { get; set; } = 0;
 
@@ -74,6 +82,15 @@ namespace MicaForEveryone.Win32
                 HMENU.NULL,
                 Instance);
 
+            GetWindowRect(Handle, out var winRect);
+            X = winRect.X;
+            Y = winRect.Y;
+            Width = winRect.Width;
+            Height = winRect.Height;
+
+            UpdateScaleFactor();
+            UpdateSize();
+
             if (Handle.IsNull)
             {
                 Kernel32.GetLastError().ThrowIfFailed();
@@ -97,6 +114,23 @@ namespace MicaForEveryone.Win32
             Instance?.Dispose();
         }
 
+        public void UpdateScaleFactor()
+        {
+            ScaleFactor = ((float)GetDpiForWindow(Handle)) / USER_DEFAULT_SCREEN_DPI;
+        }
+
+        public void UpdateSize()
+        {
+            SetWindowPos(Handle, HWND.NULL, 0, 0, (int)ScaledWidth, (int)ScaledHeight,
+                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE | SetWindowPosFlags.SWP_NOMOVE);
+        }
+
+        public void UpdatePosition()
+        {
+            SetWindowPos(Handle, HWND.NULL, X, Y, 0, 0,
+                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE | SetWindowPosFlags.SWP_NOSIZE);
+        }
+
         protected virtual IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
             switch ((WindowMessage)umsg)
@@ -107,6 +141,14 @@ namespace MicaForEveryone.Win32
 
                 case WindowMessage.WM_DESTROY:
                     OnDestroy(hwnd);
+                    break;
+
+                case WindowMessage.WM_SIZE:
+                    OnSizeChanged(hwnd);
+                    break;
+
+                case WindowMessage.WM_DPICHANGED:
+                    OnDpiChanged(hwnd);
                     break;
             }
             return DefWindowProc(hwnd, umsg, wParam, lParam);
@@ -122,8 +164,22 @@ namespace MicaForEveryone.Win32
             Destroy?.Invoke(this, new WindowEventArgs(hwnd));
         }
 
+        protected void OnSizeChanged(HWND hwnd)
+        {
+            SizeChanged?.Invoke(this, new WindowEventArgs(hwnd));
+        }
+
+        protected void OnDpiChanged(HWND hwnd)
+        {
+            UpdateScaleFactor();
+            UpdateSize();
+            DpiChanged?.Invoke(this, new WindowEventArgs(hwnd));
+        }
+
         public event EventHandler<WindowEventArgs> Create;
         public event EventHandler<WindowEventArgs> Destroy;
+        public event EventHandler<WindowEventArgs> SizeChanged;
+        public event EventHandler<WindowEventArgs> DpiChanged;
     }
 
     public class WindowEventArgs : EventArgs

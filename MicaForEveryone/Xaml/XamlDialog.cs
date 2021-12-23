@@ -12,17 +12,16 @@ namespace MicaForEveryone.Xaml
     public class XamlDialog : Win32.Dialog
     {
         private readonly DesktopWindowXamlSource _xamlSource = new();
-
+        
         public XamlDialog(FrameworkElement view)
         {
             _xamlSource.Content = view;
-            Create += XamlDialog_Create;
+            SizeChanged += XamlDialog_SizeChanged;
         }
 
         public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
 
-        public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() =>
-            _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
+        public IDesktopWindowXamlSourceNative2 Interop { get; private set; }
 
         public override void Dispose()
         {
@@ -30,16 +29,23 @@ namespace MicaForEveryone.Xaml
             base.Dispose();
         }
 
-        private void XamlDialog_Create(object sender, Win32.WindowEventArgs args)
+        public override void Activate()
         {
-            var interop = GetXamlWindowInterop();
-            interop.AttachToWindow(args.WindowHandle);
+            base.Activate();
+            Interop = _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
+            Interop.AttachToWindow(Handle);
+            UpdateXamlSourcePosition();
+        }
 
-            GetClientRect(args.WindowHandle, out var clientArea);
-            interop.WindowHandle.SetWindowPos(
-                HWND.NULL,
-                new RECT(0, 0, clientArea.Width, clientArea.Height),
-                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+        public void UpdateXamlSourcePosition()
+        {
+            GetClientRect(Handle, out var clientArea);
+            Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+        }
+
+        private void XamlDialog_SizeChanged(object sender, Win32.WindowEventArgs e)
+        {
+            UpdateXamlSourcePosition();
         }
     }
 }

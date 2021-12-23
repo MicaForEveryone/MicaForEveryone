@@ -41,7 +41,8 @@ namespace MicaForEveryone
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
-            ShowUnhandledExceptionDialog(args.ExceptionObject);
+            ShowUnhandledExceptionDialog(args.ExceptionObject as Exception ??
+                new Exception(args.ExceptionObject.ToString()));
         }
 
         private void UwpApp_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs args)

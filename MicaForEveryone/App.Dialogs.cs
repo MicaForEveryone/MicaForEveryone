@@ -1,4 +1,6 @@
-﻿using static Vanara.PInvoke.User32;
+﻿using System;
+
+using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
@@ -21,40 +23,45 @@ namespace MicaForEveryone
             {
                 dialog.Dispose();
             };
-            dialog.CenterToDesktop();
             dialog.Activate();
+            dialog.CenterToDesktop();
+            dialog.UpdatePosition();
             dialog.Show();
             SetForegroundWindow(dialog.Handle);
         }
 
         private void ShowWindows11RequiredDialog()
         {
-            using var errorDialog = new ErrorDialog();
-            errorDialog.SetMessage("This app requires at least Windows 11 (10.0.22000.0) to work.");
-            errorDialog.Destroy += (sender, args) =>
-            {
-                Exit();
-            };
-            errorDialog.CenterToDesktop();
-            errorDialog.Activate();
-            errorDialog.Show();
-            Run(errorDialog);
-        }
-
-        private void ShowUnhandledExceptionDialog(object exception)
-        {
             using var dialog = new ErrorDialog
             {
-                Width = 576,
-                Height = 720,
+                Width = 400,
+                Height = 275,
             };
+            dialog.SetTitle("Error!");
+            dialog.SetContent("This app requires at least Windows 11 (10.0.22000.0) to work.");
             dialog.Destroy += (sender, args) =>
             {
                 Exit();
             };
-            dialog.SetMessage(exception.ToString());
-            dialog.CenterToDesktop();
             dialog.Activate();
+            dialog.CenterToDesktop();
+            dialog.UpdatePosition();
+            dialog.Show();
+            Run(dialog);
+        }
+
+        private void ShowUnhandledExceptionDialog(Exception exception)
+        {
+            using var dialog = new ErrorDialog();
+            dialog.Destroy += (sender, args) =>
+            {
+                Exit();
+            };
+            dialog.SetTitle(exception.Message);
+            dialog.SetContent(exception.ToString());
+            dialog.Activate();
+            dialog.CenterToDesktop();
+            dialog.UpdatePosition();
             dialog.Show();
             SetForegroundWindow(dialog.Handle);
 

@@ -80,6 +80,7 @@ namespace MicaForEveryone
 
         private void ViewModel_About(object obj)
         {
+            throw new Exception();
             ShowAboutDialog();
         }
     }

@@ -36,8 +36,8 @@ namespace MicaForEveryone.Views
         {
             ClassName = nameof(AboutDialog);
             Title = "About";
-            Width = 400;
-            Height = 350;
+            Width = 320;
+            Height = 275;
         }
     }
 }

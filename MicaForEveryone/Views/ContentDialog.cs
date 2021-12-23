@@ -9,19 +9,32 @@ namespace MicaForEveryone.Views
 {
     public class ContentDialog : XamlDialog
     {
+        private readonly ContentDialogView _view;
+
         protected ContentDialog(ContentDialogView view) : base(view)
         {
-            view.ViewModel.IsPrimaryButtonEnabled = true;
-            view.ViewModel.PrimaryButtonContent = "OK";
-            view.ViewModel.PrimaryCommand = App.CloseDialogCommand;
-            view.ViewModel.PrimaryCommandParameter = this;
-            view.ActualThemeChanged += View_ActualThemeChanged;
+            _view = view;
+            _view.ViewModel.IsPrimaryButtonEnabled = true;
+            _view.ViewModel.PrimaryButtonContent = "OK";
+            _view.ViewModel.PrimaryCommand = App.CloseDialogCommand;
+            _view.ViewModel.PrimaryCommandParameter = this;
+            _view.ActualThemeChanged += View_ActualThemeChanged;
         }
 
         public override void Activate()
         {
             base.Activate();
             SetTitlebarColor();
+        }
+
+        public void SetTitle(object title)
+        {
+            _view.ViewModel.Title = title;
+        }
+
+        public void SetContent(object content)
+        {
+            _view.ViewModel.Content = content;
         }
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)

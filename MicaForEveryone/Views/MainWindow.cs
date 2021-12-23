@@ -15,7 +15,6 @@ namespace MicaForEveryone.Views
     public class MainWindow : XamlWindow
     {
         private const uint WM_APP_NOTIFYICON = WM_APP + 1;
-        private const uint USER_DEFAULT_SCREEN_DPI = 96;
 
         public const uint WM_APP_REMATCH_REQUEST = WM_APP + 2;
         public const uint WM_APP_RELOAD_CONFIG = WM_APP + 3;
@@ -88,17 +87,15 @@ namespace MicaForEveryone.Views
                     notifyIconRect,
                     SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-                GetXamlWindowInterop().WindowHandle.SetWindowPos(
+                Interop.WindowHandle.SetWindowPos(
                     HWND.NULL,
                     new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
                     SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-                var scaleFactor = ((float)GetDpiForWindow(Handle)) / USER_DEFAULT_SCREEN_DPI;
-
                 menu.ShowAt(View,
                     new Point(
-                        (x - notifyIconRect.X) / scaleFactor,
-                        (y - notifyIconRect.Y) / scaleFactor));
+                        (x - notifyIconRect.X) / ScaleFactor,
+                        (y - notifyIconRect.Y) / ScaleFactor));
             }
         }
 
@@ -116,7 +113,7 @@ namespace MicaForEveryone.Views
                     notifyIconRect,
                     SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-            GetXamlWindowInterop().WindowHandle.SetWindowPos(
+            Interop.WindowHandle.SetWindowPos(
                 HWND.NULL,
                 new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
                 SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);

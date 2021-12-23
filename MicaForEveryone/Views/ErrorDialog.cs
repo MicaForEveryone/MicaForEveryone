@@ -4,25 +4,12 @@ namespace MicaForEveryone.Views
 {
     public class ErrorDialog : ContentDialog
     {
-        private static ContentDialogView CreateView() => new ContentDialogView
+        public ErrorDialog() : base(new ContentDialogView())
         {
-            ViewModel =
-            {
-                Title = "Error",
-            },
-        };
-
-        public ErrorDialog() : base(CreateView())
-        {
-            ClassName = "Dialog";
+            ClassName = nameof(ErrorDialog);
             Title = "Mica For Everyone";
             Width = 576;
             Height = 320;
-        }
-
-        public void SetMessage(string message)
-        {
-            ((ContentDialogView)View).ViewModel.Content = message;
         }
     }
 }
