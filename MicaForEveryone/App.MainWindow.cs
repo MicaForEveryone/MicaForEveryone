@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 using MicaForEveryone.Views;
 
@@ -13,7 +14,7 @@ namespace MicaForEveryone
         {
             _mainWindow.ReloadConfigRequested += MainWindow_ReloadConfigRequested;
             _mainWindow.RematchRulesRequested += MainWindow_RematchRulesRequested;
-            _mainWindow.ThemeChanged += MainWindow_ThemeChanged;
+            _mainWindow.View.ActualThemeChanged += MainWindow_ThemeChanged;
             _mainWindow.Activate();
         }
 
@@ -33,7 +34,7 @@ namespace MicaForEveryone
             });
         }
 
-        private void MainWindow_ThemeChanged(object sender, EventArgs e)
+        private void MainWindow_ThemeChanged(FrameworkElement sender, object args)
         {
             SetSystemColorMode();
             _mainWindow.RequestRematchRules();

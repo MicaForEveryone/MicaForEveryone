@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
@@ -13,29 +12,23 @@ namespace MicaForEveryone.Xaml
 {
     public class XamlWindow : Win32.Window
     {
-        private DesktopWindowXamlSource _xamlSource;
+        private readonly DesktopWindowXamlSource _xamlSource = new();
 
-        public XamlWindow(UIElement view)
+        public XamlWindow(FrameworkElement view)
         {
-            _xamlSource = new() { Content = view };
+            _xamlSource.Content = view;
             Create += XamlWindow_Create;
         }
 
-        public UIElement View => _xamlSource.Content;
+        public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
 
         public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() =>
             _xamlSource?.GetInterop<IDesktopWindowXamlSourceNative2>();
 
-        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        public override void Dispose()
         {
-            switch ((WindowMessage)umsg)
-            {
-                case WindowMessage.WM_SETTINGCHANGE:
-                case WindowMessage.WM_THEMECHANGED:
-                    ThemeChanged?.Invoke(this, EventArgs.Empty);
-                    break;
-            }
-            return base.WndProc(hwnd, umsg, wParam, lParam);
+            _xamlSource.Dispose();
+            base.Dispose();
         }
 
         private void XamlWindow_Create(object sender, Win32.WindowEventArgs e)
@@ -49,7 +42,5 @@ namespace MicaForEveryone.Xaml
                 new RECT(0, 0, clientArea.Width, clientArea.Height),
                 SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
-
-        public event EventHandler ThemeChanged;
     }
 }

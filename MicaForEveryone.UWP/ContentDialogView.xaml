@@ -10,8 +10,6 @@
     d:DesignHeight="200">
     <Grid Background="{ThemeResource ContentDialogSmokeFill}" >
         <Border Background="{ThemeResource ContentDialogBackground}"
-                BorderThickness="{ThemeResource ContentDialogBorderWidth}"
-                BorderBrush="{ThemeResource ContentDialogBorderBrush}"
                 BackgroundSizing="InnerBorderEdge"
                 RenderTransformOrigin="0.5,0.5">
             <Grid>
@@ -66,7 +64,7 @@
                             Grid.Row="1"
                             Margin="{StaticResource ContentDialogContentMargin}" 
                             TextWrapping="Wrap"
-							HorizontalAlignment="Left"
+                            HorizontalAlignment="Left"
                             FontSize="{ThemeResource ContentControlFontSize}"
                             FontFamily="{StaticResource ContentControlThemeFontFamily}"
                             Foreground="{ThemeResource ContentDialogForeground}"
@@ -87,7 +85,7 @@
                         <ColumnDefinition Width="{ThemeResource ContentDialogButtonSpacing}" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    
+
                     <Button 
                         Grid.Column="3"
                         HorizontalAlignment="Stretch"
@@ -99,7 +97,7 @@
                         CommandParameter="{x:Bind ViewModel.PrimaryCommandParameter}"
                         Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.IsPrimaryButtonEnabled)}"
                         d:Content="OK" />
-                    
+
                     <Button 
                         Grid.Column="1"
                         HorizontalAlignment="Stretch"
