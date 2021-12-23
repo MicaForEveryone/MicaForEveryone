@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Toolkit.Win32.UI.XamlHost;
+﻿using Microsoft.Toolkit.Win32.UI.XamlHost;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
 using Vanara.PInvoke;

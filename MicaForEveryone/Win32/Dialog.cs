@@ -1,5 +1,4 @@
-﻿using MicaForEveryone.Extensions;
-using System;
+﻿using System;
 using Vanara.PInvoke;
 
 using static Vanara.PInvoke.User32;
