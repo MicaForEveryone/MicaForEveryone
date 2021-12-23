@@ -9,6 +9,11 @@ namespace MicaForEveryone.Win32
     {
         private const int DLGWINDOWEXTRA = 30;
 
+        public Dialog()
+        {
+            Style = WindowStyles.WS_DLGFRAME;
+        }
+
         public override void Activate()
         {
             WindowClass = new WNDCLASS

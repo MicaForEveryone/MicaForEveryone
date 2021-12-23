@@ -1,7 +1,4 @@
-﻿using System;
-using Windows.System;
-
-using static Vanara.PInvoke.User32;
+﻿using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
@@ -11,9 +8,6 @@ namespace MicaForEveryone
 {
     internal partial class App
     {
-        public static RelyCommand UrlLauncherCommand { get; } =
-            new RelyCommand(async url => await Launcher.LaunchUriAsync((Uri)url));
-
         public static RelyCommand CloseDialogCommand { get; } =
             new RelyCommand(dialog => ((Dialog)dialog).Close());
 

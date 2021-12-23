@@ -1,36 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MicaForEveryone.UWP;
-using MicaForEveryone.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
+
+using MicaForEveryone.UWP;
 
 namespace MicaForEveryone.Views
 {
-    public class AboutDialog : XamlDialog
+    public class AboutDialog : ContentDialog
     {
         private static ContentDialogView CreateView() => new ContentDialogView
         {
             ViewModel =
             {
-                Title = "Mica For Everyone",
-                Content = new StackPanel
+                Title = "Mica For Everyone!",
+                Content = new TextBlock
                 {
-                    Children =
+                    Inlines =
                     {
-                        new TextBlock { Text = "v" + typeof(App).Assembly.GetName().Version},
-                        new HyperlinkButton
+                        new Run { Text = "v" + typeof(App).Assembly.GetName().Version },
+                        new LineBreak(),
+                        new Hyperlink
                         {
-                            Content = "Github",
-                            Command = App.UrlLauncherCommand,
-                            CommandParameter = new Uri("https://github.com/minusium/MicaForEveryone"),
-                        },
-                    },
-                    Spacing = 5,
+                            NavigateUri = new Uri("https://github.com/minusium/MicaForEveryone"),
+                            Inlines =
+                            {
+                                new Run { Text = "GitHub" }
+                            }
+                        }
+                    }
                 },
-                IsPrimaryButtonEnabled = true,
-                PrimaryButtonContent = "Close",
-                PrimaryCommand = App.CloseDialogCommand,
             },
         };
 
@@ -39,8 +37,7 @@ namespace MicaForEveryone.Views
             ClassName = nameof(AboutDialog);
             Title = "About";
             Width = 400;
-            Height = 600;
-            ((ContentDialogView)View).ViewModel.PrimaryCommandParameter = this;
+            Height = 350;
         }
     }
 }

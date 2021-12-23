@@ -11,27 +11,31 @@ namespace MicaForEveryone.Xaml
 {
     public class XamlDialog : Win32.Dialog
     {
-        private DesktopWindowXamlSource _xamlSource;
+        private readonly DesktopWindowXamlSource _xamlSource = new();
 
-        public XamlDialog(UIElement view)
+        public XamlDialog(FrameworkElement view)
         {
-            _xamlSource = new() { Content = view };
-            Style = WindowStyles.WS_DLGFRAME;
+            _xamlSource.Content = view;
+            Create += XamlDialog_Create;
         }
 
-        public UIElement View => _xamlSource.Content;
+        public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
 
-        public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() => 
+        public IDesktopWindowXamlSourceNative2 GetXamlWindowInterop() =>
             _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
 
-        public override void Activate()
+        public override void Dispose()
         {
-            base.Activate();
+            _xamlSource.Dispose();
+            base.Dispose();
+        }
 
+        private void XamlDialog_Create(object sender, Win32.WindowEventArgs args)
+        {
             var interop = GetXamlWindowInterop();
-            interop.AttachToWindow(Handle);
-            
-            GetClientRect(Handle, out var clientArea);
+            interop.AttachToWindow(args.WindowHandle);
+
+            GetClientRect(args.WindowHandle, out var clientArea);
             interop.WindowHandle.SetWindowPos(
                 HWND.NULL,
                 new RECT(0, 0, clientArea.Width, clientArea.Height),

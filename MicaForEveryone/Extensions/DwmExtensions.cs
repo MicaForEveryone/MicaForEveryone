@@ -1,8 +1,7 @@
-﻿using System;
+﻿using System.Runtime.InteropServices;
 using Vanara.InteropServices;
 using Vanara.PInvoke;
 
-using MicaForEveryone.Rules;
 using MicaForEveryone.Win32;
 
 using static Vanara.PInvoke.DwmApi;
@@ -15,6 +14,8 @@ namespace MicaForEveryone.Extensions
         private const DWMWINDOWATTRIBUTE DWMWA_MICA = (DWMWINDOWATTRIBUTE) 1029;
         private const DWMWINDOWATTRIBUTE DWMWA_IMMERSIVE_DARK_MODE = (DWMWINDOWATTRIBUTE) 20;
         private const DWMWINDOWATTRIBUTE DWMWA_SYSTEMBACKDROP_TYPE = (DWMWINDOWATTRIBUTE) 38;
+        private const DWMWINDOWATTRIBUTE DWMWA_CAPTION_COLOR = (DWMWINDOWATTRIBUTE)35;
+        private const DWMWINDOWATTRIBUTE DWMWA_TEXT_COLOR = (DWMWINDOWATTRIBUTE)36;
 
         public static HRESULT SetMica(this HWND windowHandle, bool state)
         {
@@ -40,6 +41,20 @@ namespace MicaForEveryone.Extensions
         {
             var margins = new MARGINS(-1);
             return DwmExtendFrameIntoClientArea(windowHandle, margins);
+        }
+
+        public static HRESULT SetCaptionColor(this HWND windowHandle, byte r, byte g, byte b)
+        {
+            var color = new COLORREF(r, g, b);
+            using var pinned = new PinnedObject(color);
+            return DwmSetWindowAttribute(windowHandle, DWMWA_CAPTION_COLOR, pinned, Marshal.SizeOf(color));
+        }
+
+        public static HRESULT SetCaptionTextColor(this HWND windowHandle, byte r, byte g, byte b)
+        {
+            var color = new COLORREF(r, g, b);
+            using var pinned = new PinnedObject(color);
+            return DwmSetWindowAttribute(windowHandle, DWMWA_TEXT_COLOR, pinned, Marshal.SizeOf(color));
         }
     }
 }
