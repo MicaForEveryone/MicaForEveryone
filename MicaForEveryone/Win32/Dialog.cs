@@ -8,16 +8,12 @@ namespace MicaForEveryone.Win32
 {
     public class Dialog : Window
     {
-        private static bool AppsUseLightMode
-        {
-            get
-            {
-                var reg = (int)Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", "AppsUseLightTheme", 1);
-                return reg > 0;
-            }
-        }
-
         private const int DLGWINDOWEXTRA = 30;
+
+        public Dialog()
+        {
+            Style = WindowStyles.WS_DLGFRAME;
+        }
 
         public override void Activate()
         {
@@ -52,9 +48,6 @@ namespace MicaForEveryone.Win32
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
-
-            if (!AppsUseLightMode)
-                Handle.ApplyTitlebarColorRule(Models.TitlebarColorMode.Dark, Models.TitlebarColorMode.Dark);
         }
 
         public void CenterToDesktop()
@@ -91,14 +84,6 @@ namespace MicaForEveryone.Win32
 
                 case WindowMessage.WM_DESTROY:
                     OnDestroy(hwnd);
-                    break;
-
-                case WindowMessage.WM_SETTINGCHANGE:
-                case WindowMessage.WM_THEMECHANGED:
-                    if (!AppsUseLightMode)
-                        Handle.ApplyTitlebarColorRule(Models.TitlebarColorMode.Dark, Models.TitlebarColorMode.Dark);
-                    else
-                        Handle.ApplyTitlebarColorRule(Models.TitlebarColorMode.Light, Models.TitlebarColorMode.Light);
                     break;
             }
             return DefDlgProc(hwnd, umsg, wParam, lParam);

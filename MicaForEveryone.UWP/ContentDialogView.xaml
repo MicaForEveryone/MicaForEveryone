@@ -10,7 +10,8 @@
     d:DesignHeight="200">
     <Grid Background="{ThemeResource ContentDialogSmokeFill}" >
         <Border Background="{ThemeResource ContentDialogBackground}"
-                BorderThickness="0"
+                BorderThickness="{ThemeResource ContentDialogBorderWidth}"
+                BorderBrush="{ThemeResource ContentDialogBorderBrush}"
                 BackgroundSizing="InnerBorderEdge"
                 RenderTransformOrigin="0.5,0.5">
             <Grid>
@@ -22,6 +23,8 @@
                 <ScrollViewer 
                     Grid.Row="0"
                     Margin="{StaticResource ContentDialogContentScrollViewerMargin}"
+                    VerticalScrollBarVisibility="Auto"
+                    HorizontalScrollBarVisibility="Disabled"
                     ZoomMode="Disabled"
                     IsTabStop="False">
                     <Grid Background="{ThemeResource ContentDialogTopOverlay}"
