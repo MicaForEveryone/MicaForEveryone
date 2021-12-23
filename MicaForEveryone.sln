@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UWP", "Mica
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{979D1386-CC2A-4384-8FA9-8A9B915A86C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,8 +41,8 @@ Global
 		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|ARM.Build.0 = Release|Any CPU
 		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|ARM64.ActiveCfg = Release|Any CPU
 		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|ARM64.Build.0 = Release|Any CPU
-		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|x64.ActiveCfg = Release|Any CPU
-		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|x64.Build.0 = Release|Any CPU
+		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|x64.ActiveCfg = Release|x64
+		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|x64.Build.0 = Release|x64
 		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|x86.ActiveCfg = Release|Any CPU
 		{E6F45EE9-EA05-4119-8790-DAADDA796548}.Release|x86.Build.0 = Release|Any CPU
 		{740EA99D-B3F6-445D-A357-962A61357006}.Debug|Any CPU.ActiveCfg = Debug|x86
@@ -66,7 +66,6 @@ Global
 		{740EA99D-B3F6-445D-A357-962A61357006}.Release|ARM64.Deploy.0 = Release|ARM64
 		{740EA99D-B3F6-445D-A357-962A61357006}.Release|x64.ActiveCfg = Release|x64
 		{740EA99D-B3F6-445D-A357-962A61357006}.Release|x64.Build.0 = Release|x64
-		{740EA99D-B3F6-445D-A357-962A61357006}.Release|x64.Deploy.0 = Release|x64
 		{740EA99D-B3F6-445D-A357-962A61357006}.Release|x86.ActiveCfg = Release|x86
 		{740EA99D-B3F6-445D-A357-962A61357006}.Release|x86.Build.0 = Release|x86
 		{740EA99D-B3F6-445D-A357-962A61357006}.Release|x86.Deploy.0 = Release|x86

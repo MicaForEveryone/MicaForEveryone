@@ -3,6 +3,7 @@
 using MicaForEveryone.Models;
 using MicaForEveryone.UWP;
 using MicaForEveryone.ViewModels;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone
 {
