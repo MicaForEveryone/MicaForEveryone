@@ -11,9 +11,6 @@ namespace MicaForEveryone
 {
     internal partial class App
     {
-        public static RelyCommand UrlLauncherCommand { get; } =
-            new RelyCommand(async url => await Launcher.LaunchUriAsync((Uri)url));
-
         public static RelyCommand CloseDialogCommand { get; } =
             new RelyCommand(dialog => ((Dialog)dialog).Close());
 
@@ -36,6 +33,8 @@ namespace MicaForEveryone
         private void ShowWindows11RequiredDialog()
         {
             using var errorDialog = new ErrorDialog();
+            errorDialog.Height = 275;
+            errorDialog.Width = 400;
             errorDialog.SetMessage("This app requires at least Windows 11 (10.0.22000.0) to work.");
             errorDialog.Destroy += (sender, args) =>
             {

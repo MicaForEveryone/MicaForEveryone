@@ -10,8 +10,7 @@
     d:DesignHeight="200">
     <Grid Background="{ThemeResource ContentDialogSmokeFill}" >
         <Border Background="{ThemeResource ContentDialogBackground}"
-                BorderThickness="{ThemeResource ContentDialogBorderWidth}"
-                BorderBrush="{ThemeResource ContentDialogBorderBrush}"
+                BorderThickness="0"
                 BackgroundSizing="InnerBorderEdge"
                 RenderTransformOrigin="0.5,0.5">
             <Grid>

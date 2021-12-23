@@ -4,6 +4,7 @@ using System.Text;
 using MicaForEveryone.UWP;
 using MicaForEveryone.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
 
 namespace MicaForEveryone.Views
 {
@@ -19,12 +20,20 @@ namespace MicaForEveryone.Views
                     Children =
                     {
                         new TextBlock { Text = "v" + typeof(App).Assembly.GetName().Version},
-                        new HyperlinkButton
+                        new TextBlock
                         {
-                            Content = "Github",
-                            Command = App.UrlLauncherCommand,
-                            CommandParameter = new Uri("https://github.com/minusium/MicaForEveryone"),
-                        },
+                            Inlines =
+                            {
+                                new Hyperlink
+                                {
+                                    NavigateUri = new Uri("https://github.com/minusium/MicaForEveryone"),
+                                    Inlines =
+                                    {
+                                        new Run { Text = "GitHub" }
+                                    }
+                                }
+                            }
+                        }
                     },
                     Spacing = 5,
                 },
@@ -39,7 +48,7 @@ namespace MicaForEveryone.Views
             ClassName = nameof(AboutDialog);
             Title = "About";
             Width = 400;
-            Height = 600;
+            Height = 300;
             ((ContentDialogView)View).ViewModel.PrimaryCommandParameter = this;
         }
     }
