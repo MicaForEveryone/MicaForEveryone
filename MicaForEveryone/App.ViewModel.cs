@@ -25,12 +25,15 @@ namespace MicaForEveryone
             viewModel.AboutCommand = new RelyCommand(ViewModel_About);
         }
 
-        private void UpdateViewModel()
+        private async void UpdateViewModel()
         {
-            var viewModel = (_mainWindow.View as MainWindowView).ViewModel;
-            viewModel.BackdropType = _ruleHandler.GlobalRule.BackdropPreference;
-            viewModel.TitlebarColor = _ruleHandler.GlobalRule.TitlebarColor;
-            viewModel.ExtendFrameIntoClientArea = _ruleHandler.GlobalRule.ExtendFrameIntoClientArea;
+            await _mainWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                var viewModel = (_mainWindow.View as MainWindowView).ViewModel;
+                viewModel.BackdropType = _ruleHandler.GlobalRule.BackdropPreference;
+                viewModel.TitlebarColor = _ruleHandler.GlobalRule.TitlebarColor;
+                viewModel.ExtendFrameIntoClientArea = _ruleHandler.GlobalRule.ExtendFrameIntoClientArea;
+            });
         }
 
         private void ViewModel_ReloadConfig(object parameter)
