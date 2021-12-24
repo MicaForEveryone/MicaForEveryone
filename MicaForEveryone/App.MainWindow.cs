@@ -29,8 +29,8 @@ namespace MicaForEveryone
             {
                 _ruleHandler.ConfigSource.Reload();
                 _ruleHandler.LoadConfig();
-                _ruleHandler.MatchAndApplyRuleToAllWindows();
                 UpdateViewModel();
+                _ruleHandler.MatchAndApplyRuleToAllWindows();
             });
         }
 
