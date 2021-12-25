@@ -1,4 +1,4 @@
-﻿using MicaForEveryone.UWP;
+﻿using MicaForEveryone.UI;
 
 namespace MicaForEveryone.Views
 {

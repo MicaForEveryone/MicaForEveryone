@@ -5,7 +5,7 @@ using Vanara.PInvoke;
 
 using MicaForEveryone.Extensions;
 using MicaForEveryone.Win32;
-using MicaForEveryone.UWP;
+using MicaForEveryone.UI;
 using MicaForEveryone.Xaml;
 
 using static Vanara.PInvoke.User32;
@@ -21,7 +21,7 @@ namespace MicaForEveryone.Views
 
         private NotifyIcon _notifyIcon;
 
-        public MainWindow() : base(new MainWindowView())
+        public MainWindow() : base(new TrayIconView())
         {
             ClassName = nameof(MainWindow);
             Title = "Mica For Everyone";

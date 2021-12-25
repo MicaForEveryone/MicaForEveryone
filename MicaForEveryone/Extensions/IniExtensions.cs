@@ -10,7 +10,7 @@ namespace MicaForEveryone.Extensions
     {
         public static TEnum ValueOrDefault<TEnum>(this KeyDataCollection data, string key, TEnum defaultValue = default) where TEnum : struct
         {
-            return data.ContainsKey(key) ? Enum.Parse<TEnum>(data[key]) : defaultValue;
+            return data.ContainsKey(key) ? (TEnum)Enum.Parse(typeof(TEnum), data[key]) : defaultValue;
         }
 
         public static bool BoolOrDefault(this KeyDataCollection data, string key, bool defaultValue = false)

@@ -1,13 +1,17 @@
 ﻿<UserControl
-    x:Class="MicaForEveryone.UWP.ContentDialogView"
+    x:Class="MicaForEveryone.UI.ContentDialogView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MicaForEveryone.UWP"
+    xmlns:local="using:MicaForEveryone.UI"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:MicaForEveryone.UI.Converters"
     mc:Ignorable="d"
     d:DesignWidth="400"
     d:DesignHeight="200">
+    <UserControl.Resources>
+        <converters:VisibilityConverter x:Key="VisibilityConverter" />
+    </UserControl.Resources>
     <Grid Background="{ThemeResource ContentDialogSmokeFill}" >
         <Border Background="{ThemeResource ContentDialogBackground}"
                 BackgroundSizing="InnerBorderEdge"
@@ -95,7 +99,7 @@
                         Content="{x:Bind ViewModel.PrimaryButtonContent}"
                         Command="{x:Bind ViewModel.PrimaryCommand}"
                         CommandParameter="{x:Bind ViewModel.PrimaryCommandParameter}"
-                        Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.IsPrimaryButtonEnabled)}"
+                        Visibility="{x:Bind ViewModel.IsPrimaryButtonEnabled, Converter={StaticResource VisibilityConverter}}"
                         d:Content="OK" />
 
                     <Button 
@@ -106,7 +110,7 @@
                         Content="{x:Bind ViewModel.SecondaryButtonContent}"
                         Command="{x:Bind ViewModel.SecondaryCommand}"
                         CommandParameter="{x:Bind ViewModel.SecondaryCommandParameter}"
-                        Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.IsSecondaryButtonEnabled)}"
+                        Visibility="{x:Bind ViewModel.IsSecondaryButtonEnabled, Converter={StaticResource VisibilityConverter}}"
                         d:Content="Cancel" />
                 </Grid>
             </Grid>

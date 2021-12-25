@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Media;
 
 using MicaForEveryone.Extensions;
-using MicaForEveryone.UWP;
+using MicaForEveryone.UI;
 using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views

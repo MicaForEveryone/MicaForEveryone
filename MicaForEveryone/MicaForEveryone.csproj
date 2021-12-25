@@ -23,7 +23,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
-      <ProjectReference Include="..\MicaForEveryone.UWP\MicaForEveryone.UWP.csproj" />
+      <ProjectReference Include="..\MicaForEveryone.UI\MicaForEveryone.UI.csproj" />
     </ItemGroup>
 
     <ItemGroup>

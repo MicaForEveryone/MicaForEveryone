@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Documents;
 
-using MicaForEveryone.UWP;
+using MicaForEveryone.UI;
 
 namespace MicaForEveryone.Views
 {

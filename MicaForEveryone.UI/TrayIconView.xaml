@@ -1,8 +1,9 @@
 ﻿<UserControl 
-    x:Class="MicaForEveryone.UWP.MainWindowView"
+    x:Class="MicaForEveryone.UI.TrayIconView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MicaForEveryone.UWP"
+    xmlns:local="using:MicaForEveryone.UI"
+    xmlns:converters="using:MicaForEveryone.UI.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -12,7 +13,8 @@
         <ToolTip Content="Mica For Everyone" />
     </ToolTipService.ToolTip>
     <UserControl.Resources>
-        <converters:IsEqualConverter x:Key="IsEqualConverter" xmlns:converters="using:MicaForEveryone.UWP.Converters" />
+        <converters:IsEqualConverter x:Key="IsEqualConverter" />
+        <converters:VisibilityConverter x:Key="VisibilityConverter" />
     </UserControl.Resources>
     <UserControl.ContextFlyout>
         <MenuFlyout>
@@ -71,14 +73,14 @@
                     
                     <ToggleMenuFlyoutItem 
                         Text="Acrylic"
-                        Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}" 
+                        Visibility="{x:Bind ViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Acrylic, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}" 
                         CommandParameter="Acrylic" />
                     
                     <ToggleMenuFlyoutItem 
                         Text="Tabbed (Blurred Wallpaper)"
-                        Visibility="{x:Bind local:MainWindowView.VisibleOrCollapsed(ViewModel.SystemBackdropIsSupported)}"
+                        Visibility="{x:Bind ViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Tabbed, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}" 
                         CommandParameter="Tabbed" />

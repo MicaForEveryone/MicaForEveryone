@@ -1,7 +1,7 @@
 ﻿using System;
 
 using MicaForEveryone.Models;
-using MicaForEveryone.UWP;
+using MicaForEveryone.UI;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
 
@@ -11,7 +11,7 @@ namespace MicaForEveryone
     {
         private void InitializeViewModel()
         {
-            var viewModel = (_mainWindow.View as MainWindowView).ViewModel;
+            var viewModel = (_mainWindow.View as TrayIconView).ViewModel;
 #if DEBUG
             viewModel.SystemBackdropIsSupported = true;
 #else
@@ -29,7 +29,7 @@ namespace MicaForEveryone
         {
             await _mainWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                var viewModel = (_mainWindow.View as MainWindowView).ViewModel;
+                var viewModel = (_mainWindow.View as TrayIconView).ViewModel;
                 viewModel.BackdropType = _ruleHandler.GlobalRule.BackdropPreference;
                 viewModel.TitlebarColor = _ruleHandler.GlobalRule.TitlebarColor;
                 viewModel.ExtendFrameIntoClientArea = _ruleHandler.GlobalRule.ExtendFrameIntoClientArea;

@@ -1,4 +1,4 @@
-﻿namespace MicaForEveryone.UWP
+﻿namespace MicaForEveryone.UI
 {
     public sealed partial class App
     {

@@ -1,6 +1,6 @@
 ﻿using MicaForEveryone.ViewModels;
 
-namespace MicaForEveryone.UWP
+namespace MicaForEveryone.UI
 {
     public sealed partial class ContentDialogView
     {

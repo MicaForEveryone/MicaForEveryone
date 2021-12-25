@@ -6,7 +6,7 @@ namespace MicaForEveryone
 {
     internal partial class App : XamlApplication, IDisposable
     {
-        private readonly UWP.App _uwpApp = new();
+        private readonly UI.App _uwpApp = new();
 
         public void Run()
         {

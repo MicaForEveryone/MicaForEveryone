@@ -7,8 +7,8 @@
     <ProjectGuid>{740EA99D-B3F6-445D-A357-962A61357006}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MicaForEveryone.UWP</RootNamespace>
-    <AssemblyName>MicaForEveryone.UWP</AssemblyName>
+    <RootNamespace>MicaForEveryone.UI</RootNamespace>
+    <AssemblyName>MicaForEveryone.UI</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.22000.0</TargetPlatformVersion>
@@ -77,8 +77,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\IsEqualConverter.cs" />
-    <Compile Include="MainWindowView.xaml.cs">
-      <DependentUpon>MainWindowView.xaml</DependentUpon>
+    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="TrayIconView.xaml.cs">
+      <DependentUpon>TrayIconView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContentDialogView.xaml.cs">
       <DependentUpon>ContentDialogView.xaml</DependentUpon>
@@ -111,7 +112,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainWindowView.xaml">
+    <Page Include="TrayIconView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone", "MicaForEveryone\MicaForEveryone.csproj", "{E6F45EE9-EA05-4119-8790-DAADDA796548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UWP", "MicaForEveryone.UWP\MicaForEveryone.UWP.csproj", "{740EA99D-B3F6-445D-A357-962A61357006}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UI", "MicaForEveryone.UI\MicaForEveryone.UI.csproj", "{740EA99D-B3F6-445D-A357-962A61357006}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
 EndProject
