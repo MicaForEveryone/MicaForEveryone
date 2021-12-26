@@ -7,6 +7,8 @@ namespace MicaForEveryone.Rules
 {
     public class GlobalRule : IRule
     {
+        public string Name => "Global";
+
         public TitlebarColorMode TitlebarColor { get; set; }
 
         public BackdropType BackdropPreference { get; set; }
@@ -15,6 +17,6 @@ namespace MicaForEveryone.Rules
 
         public bool IsApplicable(HWND windowHandle) => windowHandle.HasCaption();
 
-        public override string ToString() => "Rule: Global";
+        public override string ToString() => Name;
     }
 }

@@ -27,7 +27,6 @@ namespace MicaForEveryone
         {
             await Task.Run(() =>
             {
-                _ruleHandler.ConfigSource.Reload();
                 _ruleHandler.LoadConfig();
                 UpdateViewModel();
                 _ruleHandler.MatchAndApplyRuleToAllWindows();

@@ -1,25 +1,21 @@
 ﻿# Mica For Everyone Configuration
 
 Global {
-  TitleBarColor=System # test comment
-  BackdropPreference=Mica
-  ExtendFrameToClientArea=false
+  TitleBarColor           = System  # available modes: default, system, light, dark
+  BackdropPreference      = Mica    # available modes: default, none, mica, acrylic, tabbed
+  ExtendFrameToClientArea = false   # enable to apply backdrop on background of apps
 }
 
 Process: explorer {
-  TitleBarColor=Default
-  BackdropPreference=Default
-  ExtendFrameToClientArea=false
+  TitleBarColor           = Default
+  BackdropPreference      = Default
+  ExtendFrameToClientArea = false
 }
 
 Process: mspaint {
-  TitleBarColor=Default
-  BackdropPreference=Default
-  ExtendFrameToClientArea=false
-}
-
-Process: "another process" {
-
+  TitleBarColor           = Default
+  BackdropPreference      = Default
+  ExtendFrameToClientArea = false
 }
 
 Override: Global {

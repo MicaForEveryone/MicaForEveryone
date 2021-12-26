@@ -12,6 +12,8 @@ namespace MicaForEveryone.Rules
             ProcessName = processName;
         }
 
+        public string Name => $"Process({ProcessName})";
+
         public string ProcessName { get; }
 
         public TitlebarColorMode TitlebarColor { get; set; }
@@ -25,6 +27,6 @@ namespace MicaForEveryone.Rules
             return windowHandle.GetProcessName() == ProcessName;
         }
 
-        public override string ToString() => $"Rule: Process={ProcessName}";
+        public override string ToString() => Name;
     }
 }

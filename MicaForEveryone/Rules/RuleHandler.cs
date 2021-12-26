@@ -46,16 +46,23 @@ namespace MicaForEveryone.Rules
         {
             if (ConfigSource == null) return;
             Rules.Clear();
-            GlobalRule = ConfigSource.GetGlobalRule();
-            foreach (var rule in ConfigSource.ParseRules())
+            var rules = ConfigSource.ParseRules();
+            foreach (var rule in rules)
             {
-                Rules.Add(rule);
+                if (rule is GlobalRule global)
+                {
+                    GlobalRule = global;
+                }
+                else
+                {
+                    Rules.Add(rule);
+                }
             }
         }
 
         public void SaveConfig()
         {
-            ConfigSource.Save(GlobalRule);
+            ConfigSource.OverrideRule(GlobalRule);
         }
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)

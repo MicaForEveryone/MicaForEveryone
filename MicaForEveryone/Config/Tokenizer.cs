@@ -57,13 +57,12 @@ namespace MicaForEveryone.Config
                         ParseSection();
                         break;
 
+                    case LexicalTokenType.StringLiteral:
                     case LexicalTokenType.Operator:
                         ThrowException();
                         break;
 
                     case LexicalTokenType.Space:
-                        break;
-
                     case LexicalTokenType.Comment:
                         break;
                 }
