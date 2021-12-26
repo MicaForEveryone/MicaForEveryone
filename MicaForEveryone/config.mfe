@@ -1,0 +1,26 @@
+﻿# Mica For Everyone Configuration
+
+Global {
+  TitleBarColor=System # test comment
+  BackdropPreference=Mica
+  ExtendFrameToClientArea=false
+}
+
+Process: explorer {
+  TitleBarColor=Default
+  BackdropPreference=Default
+  ExtendFrameToClientArea=false
+}
+
+Process: mspaint {
+  TitleBarColor=Default
+  BackdropPreference=Default
+  ExtendFrameToClientArea=false
+}
+
+Process: "another process" {
+
+}
+
+Override: Global {
+}
