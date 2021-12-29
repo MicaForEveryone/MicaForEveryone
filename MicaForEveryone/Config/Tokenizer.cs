@@ -1,40 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace MicaForEveryone.Config
 {
-    internal enum TokenType
-    {
-        SectionType,
-        SectionParameterStart,
-        SectionParameter,
-        SectionStart,
-        SectionEnd,
-        KeyName,
-        KeySet,
-        KeyValue,
-        Space,
-        Comment,
-    }
-
-    [DebuggerDisplay("{Type}: {Data} ({Line}:{Column})")]
-    internal class Token
-    {
-        public Token(TokenType type, string data, int line, int column)
-        {
-            Type = type;
-            Data = data;
-            Line = line;
-            Column = column;
-        }
-
-        public TokenType Type { get; }
-        public string Data { get; set; }
-        public int Line { get; }
-        public int Column { get; }
-    }
-
     internal class Tokenizer
     {
         private readonly List<Token> _tokens = new();
@@ -64,8 +32,7 @@ namespace MicaForEveryone.Config
 
                     case LexicalTokenType.StringLiteral:
                     case LexicalTokenType.Operator:
-                        ThrowException();
-                        break;
+                        throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Name, found `{CurrentToken.Data}`");
 
                     case LexicalTokenType.Space:
                         AddToken(TokenType.Space);
@@ -104,11 +71,6 @@ namespace MicaForEveryone.Config
             }
         }
 
-        private void ThrowException()
-        {
-            throw new FormatException($"unexpected token '{CurrentToken.Data}' at ({CurrentToken.Line}:{CurrentToken.Column})");
-        }
-
         private void AddToken(TokenType type)
         {
             _tokens.Add(new Token(type, CurrentToken.Data, CurrentToken.Line, CurrentToken.Column));
@@ -117,7 +79,7 @@ namespace MicaForEveryone.Config
         private void ParseSection()
         {
             if (CurrentToken.Type != LexicalTokenType.Identifier)
-                ThrowException();
+                throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Name, found `{CurrentToken.Data}`");
             AddToken(TokenType.SectionType);
             _position++;
             SkipSpace();
@@ -130,7 +92,7 @@ namespace MicaForEveryone.Config
                 SkipSpace();
 
                 if (CurrentToken.Type is not (LexicalTokenType.Identifier or LexicalTokenType.StringLiteral))
-                    ThrowException();
+                    throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Parameter, found `{CurrentToken.Data}`");
                 AddToken(TokenType.SectionParameter);
                 _position++;
 
@@ -144,7 +106,7 @@ namespace MicaForEveryone.Config
             }
             else
             {
-                ThrowException();
+                throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected `:` or `{{`, found `{CurrentToken.Data}`");
             }
 
             while (_position < Data.Length)
@@ -161,7 +123,7 @@ namespace MicaForEveryone.Config
                 }
                 else
                 {
-                    ThrowException();
+                    throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Key/Value Pair or `}}`, found `{CurrentToken.Data}`");
                 }
             }
         }
@@ -169,21 +131,21 @@ namespace MicaForEveryone.Config
         private void ParsePair()
         {
             if (CurrentToken.Type != LexicalTokenType.Identifier)
-                ThrowException();
+                throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Key Name, found `{CurrentToken.Data}`");
             AddToken(TokenType.KeyName);
             _position++;
 
             SkipSpace();
 
             if (CurrentToken.Type != LexicalTokenType.Operator || CurrentToken.Data != "=")
-                ThrowException();
+                throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected `=`, found `{CurrentToken.Data}`");
             AddToken(TokenType.KeySet);
             _position++;
 
             SkipSpace();
 
             if (CurrentToken.Type is not (LexicalTokenType.Identifier or LexicalTokenType.StringLiteral))
-                ThrowException();
+                throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Value, found `{CurrentToken.Data}`");
             AddToken(TokenType.KeyValue);
             _position++;
         }

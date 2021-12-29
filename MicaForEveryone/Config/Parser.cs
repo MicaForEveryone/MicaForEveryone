@@ -33,23 +33,23 @@ namespace MicaForEveryone.Config
             _position++;
             SkipSpace();
             if (_position >= Data.Length)
-                throw new FormatException("unexpected end of file");
+                throw new UnexpectedEndOfFile(Data[^1]);
         }
 
         private void ExpectToken(TokenType expected)
         {
             SkipSpace();
             if (_position >= Data.Length)
-                throw new FormatException("unexpected end of file");
+                throw new UnexpectedEndOfFile(Data[^1]);
             if (CurrentToken.Type != expected)
-                throw UnexpectedToken();
+                throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
         }
 
         private void NextToken(TokenType expected)
         {
             NextToken();
             if (CurrentToken.Type != expected)
-                throw UnexpectedToken();
+                throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
         }
 
         private Symbol GetNextSymbol(TokenType expected)
@@ -74,12 +74,6 @@ namespace MicaForEveryone.Config
             return _result;
         }
 
-        private Exception UnexpectedToken()
-        {
-            return new FormatException(
-                $"unexpected token '{CurrentToken.Data}' at ({CurrentToken.Line}:{CurrentToken.Column})");
-        }
-
         private void ParseSection()
         {
             ExpectToken(TokenType.SectionType);
@@ -90,7 +84,7 @@ namespace MicaForEveryone.Config
             {
                 TokenType.SectionParameterStart => GetNextSymbol(TokenType.SectionParameter),
                 TokenType.SectionStart => null,
-                _ => throw UnexpectedToken(),
+                _ => throw new UnexpectedTokenError(CurrentToken, $"Expected Section Parameter or Section Start, found `{CurrentToken.Data}`"),
             };
 
             var rule = new Section(type, parameter);

@@ -1,35 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace MicaForEveryone.Config
 {
-    internal enum LexicalTokenType
-    {
-        Identifier,
-        Operator,
-        Space,
-        StringLiteral,
-        Comment,
-    }
-
-    [DebuggerDisplay("{Type}: {Data} ({Line}:{Column})")]
-    internal class LexicalToken
-    {
-        public LexicalToken(LexicalTokenType type, string data, int line, int column)
-        {
-            Type = type;
-            Data = data;
-            Line = line;
-            Column = column;
-        }
-
-        public LexicalTokenType Type { get; }
-        public string Data { get; }
-        public int Line { get; }
-        public int Column { get; }
-    }
-
     internal class Lexer
     {
         private readonly string[] _data;

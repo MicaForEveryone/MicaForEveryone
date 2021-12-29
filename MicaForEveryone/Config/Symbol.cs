@@ -45,16 +45,6 @@ namespace MicaForEveryone.Config
         public int Column => Token.Column;
 
         internal Token Token { get; }
-
-        public IRule MatchRule(IEnumerable<IRule> rules)
-        {
-            if (string.IsNullOrWhiteSpace(Name))
-                throw new Exception($"rule match expected at {Line}:{Column}");
-            var result = rules.FirstOrDefault(rule => rule.Name == Name);
-            if (result == null)
-                throw new Exception($"invalid rule match '{Name}' at {Line}:{Column}");
-            return result;
-        }
     }
 
     public class EvaluatedSymbol<TValue> : Symbol
@@ -66,11 +56,26 @@ namespace MicaForEveryone.Config
             var type = typeof(TValue);
             if (type.IsEnum)
             {
-                _value = (TValue)Enum.Parse(typeof(TValue), Name);
+                try
+                {
+                    _value = (TValue)Enum.Parse(typeof(TValue), Name);
+                }
+                catch (ArgumentException)
+                {
+                    var values = string.Join("\n", typeof(TValue).GetEnumNames());
+                    throw new InvalidSymbolError(this, "Invalid Symbol, Possible Values are: \n" + values);
+                }
             }
             else if (type == typeof(bool))
             {
-                _value = (TValue)(object)bool.Parse(Name);
+                try
+                {
+                    _value = (TValue)(object)bool.Parse(Name);
+                }
+                catch (FormatException)
+                {
+                    throw new InvalidSymbolError(this, "Invalid Boolean Value, Should be `True` or `False`.");
+                }
             }
             else if (type == typeof(string))
             {

@@ -5,6 +5,7 @@ using static Vanara.PInvoke.User32;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Views;
+using MicaForEveryone.Config;
 
 namespace MicaForEveryone
 {
@@ -57,8 +58,16 @@ namespace MicaForEveryone
             {
                 Exit();
             };
-            dialog.SetTitle(exception.Message);
-            dialog.SetContent(exception.ToString());
+            if (exception is ParserError error)
+            {
+                dialog.SetTitle("Error in config file");
+                dialog.SetContent(error.Message);
+            }
+            else
+            {
+                dialog.SetTitle(exception.Message);
+                dialog.SetContent(exception.ToString());
+            }
             dialog.Activate();
             dialog.CenterToDesktop();
             dialog.UpdatePosition();
