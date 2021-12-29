@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace MicaForEveryone.Config
 {
-    public enum LexicalTokenType
+    internal enum LexicalTokenType
     {
         Identifier,
         Operator,
@@ -14,7 +14,7 @@ namespace MicaForEveryone.Config
     }
 
     [DebuggerDisplay("{Type}: {Data} ({Line}:{Column})")]
-    public class LexicalToken
+    internal class LexicalToken
     {
         public LexicalToken(LexicalTokenType type, string data, int line, int column)
         {
@@ -30,15 +30,15 @@ namespace MicaForEveryone.Config
         public int Column { get; }
     }
 
-    public class Lexer
+    internal class Lexer
     {
         private readonly string[] _data;
+        private readonly List<LexicalToken> _result = new();
 
         private int _line;
         private int _column;
         private int _start;
         private LexicalTokenType _type;
-        private List<LexicalToken> _result = new();
 
         public Lexer(string[] data)
         {

@@ -3,7 +3,6 @@ using Windows.UI.Xaml;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.Rules;
-using MicaForEveryone.Config;
 
 namespace MicaForEveryone
 {
@@ -15,7 +14,7 @@ namespace MicaForEveryone
         {
             // get config file path
             var args = Environment.GetCommandLineArgs();
-            var filePath = args.Length > 1 ? args[1] : "config.mfe";
+            var filePath = args.Length > 1 ? args[1] : "MicaForEveryone.conf";
             // read config file and parse rules
             _ruleHandler.ConfigSource = new ConfigFile(filePath);
             _ruleHandler.LoadConfig();

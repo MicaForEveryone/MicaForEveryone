@@ -45,12 +45,15 @@ namespace MicaForEveryone.Rules
         public void LoadConfig()
         {
             if (ConfigSource == null) return;
+            GlobalRule = null;
             Rules.Clear();
             var rules = ConfigSource.ParseRules();
             foreach (var rule in rules)
             {
                 if (rule is GlobalRule global)
                 {
+                    if (GlobalRule != null)
+                        throw new Exception("duplicate global rule section");
                     GlobalRule = global;
                 }
                 else
@@ -58,6 +61,8 @@ namespace MicaForEveryone.Rules
                     Rules.Add(rule);
                 }
             }
+            if (GlobalRule == null)
+                throw new Exception("no global rule");
         }
 
         public void SaveConfig()

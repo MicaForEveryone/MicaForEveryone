@@ -4,17 +4,22 @@ using System.Diagnostics;
 
 namespace MicaForEveryone.Config
 {
-    public enum TokenType
+    internal enum TokenType
     {
-        NewSection,
-        SectionData,
-        EndSection,
+        SectionType,
+        SectionParameterStart,
+        SectionParameter,
+        SectionStart,
+        SectionEnd,
         KeyName,
+        KeySet,
         KeyValue,
+        Space,
+        Comment,
     }
 
     [DebuggerDisplay("{Type}: {Data} ({Line}:{Column})")]
-    public class Token
+    internal class Token
     {
         public Token(TokenType type, string data, int line, int column)
         {
@@ -25,12 +30,12 @@ namespace MicaForEveryone.Config
         }
 
         public TokenType Type { get; }
-        public string Data { get; }
+        public string Data { get; set; }
         public int Line { get; }
         public int Column { get; }
     }
 
-    public class Tokenizer
+    internal class Tokenizer
     {
         private readonly List<Token> _tokens = new();
 
@@ -63,8 +68,15 @@ namespace MicaForEveryone.Config
                         break;
 
                     case LexicalTokenType.Space:
-                    case LexicalTokenType.Comment:
+                        AddToken(TokenType.Space);
                         break;
+
+                    case LexicalTokenType.Comment:
+                        AddToken(TokenType.Comment);
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
                 _position++;
             }
@@ -76,8 +88,18 @@ namespace MicaForEveryone.Config
         {
             while (_position < Data.Length)
             {
-                if (CurrentToken.Type is not (LexicalTokenType.Space or LexicalTokenType.Comment))
+                if (CurrentToken.Type == LexicalTokenType.Space)
+                {
+                    AddToken(TokenType.Space);
+                }
+                else if (CurrentToken.Type == LexicalTokenType.Comment)
+                {
+                    AddToken(TokenType.Comment);
+                }
+                else
+                {
                     break;
+                }
                 _position++;
             }
         }
@@ -96,33 +118,28 @@ namespace MicaForEveryone.Config
         {
             if (CurrentToken.Type != LexicalTokenType.Identifier)
                 ThrowException();
-            AddToken(TokenType.NewSection);
+            AddToken(TokenType.SectionType);
             _position++;
             SkipSpace();
 
-            if (CurrentToken.Type != LexicalTokenType.Operator)
-                ThrowException();
-
-            if (CurrentToken.Data == ":")
+            if (CurrentToken.Type == LexicalTokenType.Operator && CurrentToken.Data == ":")
             {
+                AddToken(TokenType.SectionParameterStart);
                 _position++;
 
                 SkipSpace();
 
                 if (CurrentToken.Type is not (LexicalTokenType.Identifier or LexicalTokenType.StringLiteral))
                     ThrowException();
-                AddToken(TokenType.SectionData);
+                AddToken(TokenType.SectionParameter);
                 _position++;
 
                 SkipSpace();
-
-                if (CurrentToken.Type != LexicalTokenType.Operator && CurrentToken.Data != "{")
-                    ThrowException();
-                _position++;
             }
-            else if (CurrentToken.Data == "{")
+            
+            if (CurrentToken.Type == LexicalTokenType.Operator && CurrentToken.Data == "{")
             {
-                _tokens.Add(new Token(TokenType.SectionData, "", CurrentToken.Line, CurrentToken.Column));
+                AddToken(TokenType.SectionStart);
                 _position++;
             }
             else
@@ -139,7 +156,7 @@ namespace MicaForEveryone.Config
                 }
                 else if (CurrentToken.Type == LexicalTokenType.Operator && CurrentToken.Data == "}")
                 {
-                    AddToken(TokenType.EndSection);
+                    AddToken(TokenType.SectionEnd);
                     break;
                 }
                 else
@@ -160,6 +177,7 @@ namespace MicaForEveryone.Config
 
             if (CurrentToken.Type != LexicalTokenType.Operator || CurrentToken.Data != "=")
                 ThrowException();
+            AddToken(TokenType.KeySet);
             _position++;
 
             SkipSpace();
