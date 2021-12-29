@@ -9,32 +9,26 @@ on all open windows to enable backdrop and dark titlebar.
 You can customize app behavior using a config file or its tray icon context menu.
 
 # Config File
-```ini
-; Availabe: Default, None, Mica, Acrylic, Tabbed
-BackdropPreference        = Mica
+Mica For Everyone can be configured using a rule-based configuration language.
 
-; Available: Default, Light, Dark
-TitleBarColor             = Default
+```
+# applies to all windows
+Global {
+  TitleBarColor           = System  # available modes: default, system, light, dark
+  BackdropPreference      = Mica    # available modes: default, none, mica, acrylic, tabbed
+  ExtendFrameToClientArea = false   # enable to apply backdrop on background of apps
+}
 
-; Set to True to get backdrop on apps background (not recommended)
-ExtendFrameIntoClientArea = False
+# only applies to windows from explorer process
+# note that process name must be without .exe extension.
+Process: explorer {
+  ...
+}
 
-; Applies to specific apps, by Process or ClassName
-
-; Applies to specific process
-; Name: Process name without ".exe" extension
-[Process]
-Name                      = explorer
-BackdropPreference        = Default
-TitleBarColor             = Default
-ExtendFrameIntoClientArea = False
-
-; Applies to specific window class
-[ClassName]
-Name                      = ApplicationFrameWindow
-BackdropPreference        = Default
-TitleBarColor             = Default
-ExtendFrameIntoClientArea = False
+# only applies to windows with ApplicationFrameWindow as class name
+Class: ApplicationFrameWindow {
+  ...
+}
 ```
 
 # Screenshots
