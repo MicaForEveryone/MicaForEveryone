@@ -34,6 +34,10 @@ namespace MicaForEveryone.Config
                     case LexicalTokenType.Operator:
                         throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Name, found `{CurrentToken.Data}`");
 
+                    case LexicalTokenType.NewLine:
+                        AddToken(TokenType.NewLine);
+                        break;
+
                     case LexicalTokenType.Space:
                         AddToken(TokenType.Space);
                         break;
@@ -62,6 +66,10 @@ namespace MicaForEveryone.Config
                 else if (CurrentToken.Type == LexicalTokenType.Comment)
                 {
                     AddToken(TokenType.Comment);
+                }
+                else if (CurrentToken.Type == LexicalTokenType.NewLine)
+                {
+                    AddToken(TokenType.NewLine);
                 }
                 else
                 {

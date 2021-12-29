@@ -1,31 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace MicaForEveryone.Config
 {
     internal class Lexer
     {
-        private readonly string[] _data;
+        private readonly TextReader _source;
         private readonly List<LexicalToken> _result = new();
 
+        private string _lineData;
         private int _line;
         private int _column;
         private int _start;
         private LexicalTokenType _type;
 
-        public Lexer(string[] data)
+        public Lexer(TextReader data)
         {
-            _data = data;
+            _source = data;
         }
 
-        private string Line => _data[_line];
+        private string Line => _lineData;
 
         public LexicalToken[] Parse()
         {
             if (_result.Count > 0)
                 return _result.ToArray();
 
-            while (_line < _data.Length)
+            _lineData = _source.ReadLine();
+
+            while (_lineData != null)
             {
                 while (_column < Line.Length)
                 {
@@ -103,8 +106,9 @@ namespace MicaForEveryone.Config
 
         private void AddLine()
         {
-            _result.Add(new LexicalToken(LexicalTokenType.Space, "\n", _line, _column));
+            _result.Add(new LexicalToken(LexicalTokenType.NewLine, "", _line, _column));
             _line++;
+            _lineData = _source.ReadLine();
             _column = 0;
             _start = 0;
         }
@@ -125,10 +129,11 @@ namespace MicaForEveryone.Config
                     break;
                 _column++;
             }
-            if (Line[_column] != '"')
-                throw new FormatException($"string literal not closed at ({_line}:{_column})");
             var data = Line.Substring(_start + 1, _column - _start - 1);
-            _result.Add(new LexicalToken(LexicalTokenType.StringLiteral, data, _line, _column));
+            var token = new LexicalToken(LexicalTokenType.StringLiteral, data, _line, _column);
+            if (Line[_column] != '"')
+                throw new ParserError(token, "String Literal not closed");
+            _result.Add(token);
             _column++;
             _start = _column;
         }

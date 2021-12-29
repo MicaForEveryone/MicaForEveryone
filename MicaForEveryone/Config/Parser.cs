@@ -22,7 +22,7 @@ namespace MicaForEveryone.Config
         {
             while (_position < Data.Length)
             {
-                if (CurrentToken.Type is not (TokenType.Space or TokenType.Comment))
+                if (CurrentToken.Type is not (TokenType.Space or TokenType.Comment or TokenType.NewLine))
                     break;
                 _position++;
             }

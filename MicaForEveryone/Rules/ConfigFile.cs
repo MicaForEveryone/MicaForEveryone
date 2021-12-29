@@ -20,8 +20,8 @@ namespace MicaForEveryone.Rules
 
         public IEnumerable<IRule> ParseRules()
         {
-            var lines = File.ReadAllLines(_filePath);
-            _configDocument = Document.Parse(lines);
+            using var reader = File.OpenText(_filePath);
+            _configDocument = Document.Parse(reader);
             return _configDocument.ToRules();
         }
 
@@ -32,7 +32,9 @@ namespace MicaForEveryone.Rules
             var target = _configDocument.Sections.First(
                 section => section.Type.Value == SectionType.Global);
             target.OverrideSection(rule);
-            File.WriteAllText(_filePath, _configDocument.ToString());
+            using var file = File.Open(_filePath, FileMode.Create, FileAccess.Write);
+            using var writer = new StreamWriter(file);
+            _configDocument.Save(writer);
         }
     }
 }

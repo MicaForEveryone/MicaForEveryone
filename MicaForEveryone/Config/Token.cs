@@ -21,6 +21,7 @@ namespace MicaForEveryone.Config
         KeyValue,
         Space,
         Comment,
+        NewLine,
     }
 
     internal enum LexicalTokenType
@@ -30,6 +31,7 @@ namespace MicaForEveryone.Config
         Space,
         StringLiteral,
         Comment,
+        NewLine,
     }
 
     [DebuggerDisplay("{Type}: {Data} ({Line}:{Column})")]
