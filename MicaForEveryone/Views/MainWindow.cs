@@ -18,6 +18,7 @@ namespace MicaForEveryone.Views
 
         public const uint WM_APP_REMATCH_REQUEST = WM_APP + 2;
         public const uint WM_APP_RELOAD_CONFIG = WM_APP + 3;
+        public const uint WM_APP_SAVE_CONFIG_REQUESTED = WM_APP + 4;
 
         private NotifyIcon _notifyIcon;
 
@@ -61,6 +62,11 @@ namespace MicaForEveryone.Views
         public void RequestReloadConfig()
         {
             PostMessage(Handle, WM_APP_RELOAD_CONFIG);
+        }
+
+        public void RequestSaveConfig()
+        {
+            PostMessage(Handle, WM_APP_SAVE_CONFIG_REQUESTED);
         }
 
         private void MainWindow_Destroy(object sender, WindowEventArgs e)
@@ -137,6 +143,10 @@ namespace MicaForEveryone.Views
                 case WM_APP_RELOAD_CONFIG:
                     ReloadConfigRequested?.Invoke(this, EventArgs.Empty);
                     break;
+
+                case WM_APP_SAVE_CONFIG_REQUESTED:
+                    SaveConfigRequested?.Invoke(this, EventArgs.Empty);
+                    break;
             }
 
             return base.WndProc(hwnd, umsg, wParam, lParam);
@@ -144,5 +154,6 @@ namespace MicaForEveryone.Views
 
         public event EventHandler RematchRulesRequested;
         public event EventHandler ReloadConfigRequested;
+        public event EventHandler SaveConfigRequested;
     }
 }

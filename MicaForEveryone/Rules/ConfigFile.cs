@@ -1,64 +1,40 @@
-﻿using System.Collections.Generic;
-using IniParser;
-using IniParser.Model;
-using MicaForEveryone.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+
+using MicaForEveryone.Config;
 
 namespace MicaForEveryone.Rules
 {
     public class ConfigFile : IConfigSource
     {
         private readonly string _filePath;
-        private IniData _data;
 
-        public ConfigFile(string path)
-        {
-            _filePath = path;
-        }
+        private Document _configDocument;
 
-        public void ReadFile()
+        public ConfigFile(string filePath)
         {
-            var parser = new FileIniDataParser();
-            _data = parser.ReadFile(_filePath);
+            _filePath = filePath;
         }
 
         public IEnumerable<IRule> ParseRules()
         {
-            if (_data == null)
-            {
-                ReadFile();
-            }
-
-            foreach (var iniRule in _data.Sections)
-            {
-                yield return iniRule.ParseRule();
-            }
+            using var reader = File.OpenText(_filePath);
+            _configDocument = Document.Parse(reader);
+            return _configDocument.ToRules();
         }
 
-        public GlobalRule GetGlobalRule()
+        public void OverrideRule(IRule rule)
         {
-            if (_data == null)
-            {
-                ReadFile();
-            }
-
-            var result = new GlobalRule();
-            var rule = (IRule) result;
-            _data.Global.ParseRule(ref rule);
-            return result;
-        }
-
-        public void Reload()
-        {
-            _data = null;
-            ReadFile();
-        }
-
-        public void Save(GlobalRule rule)
-        {
-            _data.Global["TitleBarColor"] = rule.TitlebarColor.ToString();
-            _data.Global["BackdropPreference"] = rule.BackdropPreference.ToString();
-            _data.Global["ExtendFrameIntoClientArea"] = rule.ExtendFrameIntoClientArea.ToString();
-            new FileIniDataParser().WriteFile(_filePath, _data);
+            if (rule is not GlobalRule)
+                throw new NotImplementedException();
+            var target = _configDocument.Sections.First(
+                section => section.Type.Value == SectionType.Global);
+            target.OverrideSection(rule);
+            using var file = File.Open(_filePath, FileMode.Create, FileAccess.Write);
+            using var writer = new StreamWriter(file);
+            _configDocument.Save(writer);
         }
     }
 }

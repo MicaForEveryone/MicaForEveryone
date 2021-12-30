@@ -25,6 +25,8 @@ namespace MicaForEveryone.Rules
 
         private readonly User32.EnumWindowsProc _enumWindows;
 
+        private bool _isLoading;
+
         public RuleHandler()
         {
             _enumWindows = (windowHandle, _) =>
@@ -45,21 +47,47 @@ namespace MicaForEveryone.Rules
         public void LoadConfig()
         {
             if (ConfigSource == null) return;
-            Rules.Clear();
-            GlobalRule = ConfigSource.GetGlobalRule();
-            foreach (var rule in ConfigSource.ParseRules())
+
+            try
             {
-                Rules.Add(rule);
+                _isLoading = true;
+
+                var rules = ConfigSource.ParseRules();
+
+                GlobalRule = null;
+                Rules.Clear();
+                foreach (var rule in rules)
+                {
+                    if (rule is GlobalRule global)
+                    {
+                        if (GlobalRule != null)
+                            throw new Exception("duplicate global rule section");
+                        GlobalRule = global;
+                    }
+                    else
+                    {
+                        Rules.Add(rule);
+                    }
+                }
             }
+            finally
+            {
+                _isLoading = false;
+            }
+
+            if (GlobalRule == null)
+                throw new Exception("no global rule");
         }
 
         public void SaveConfig()
         {
-            ConfigSource.Save(GlobalRule);
+            ConfigSource.OverrideRule(GlobalRule);
         }
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
+            if (_isLoading) return;
+
             if (!GlobalRule.IsApplicable(windowHandle)) return;
 
             var rule = Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle)) ?? GlobalRule;

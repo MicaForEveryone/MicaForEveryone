@@ -52,8 +52,8 @@ namespace MicaForEveryone
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
             UpdateViewModel();
-            _ruleHandler.SaveConfig();
             _mainWindow.RequestRematchRules();
+            _mainWindow.RequestSaveConfig();
         }
 
         private void ViewModel_ChangeBackdropType(object parameter)
@@ -68,8 +68,8 @@ namespace MicaForEveryone
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
             UpdateViewModel();
-            _ruleHandler.SaveConfig();
             _mainWindow.RequestRematchRules();
+            _mainWindow.RequestSaveConfig();
         }
 
         private void ViewModel_ChangeExtendFrameIntoClientArea(object parameter)
@@ -81,8 +81,8 @@ namespace MicaForEveryone
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
             UpdateViewModel();
-            _ruleHandler.SaveConfig();
             _mainWindow.RequestRematchRules();
+            _mainWindow.RequestSaveConfig();
         }
 
         private void ViewModel_About(object obj)

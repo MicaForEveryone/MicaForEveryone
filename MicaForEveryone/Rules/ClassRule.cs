@@ -12,6 +12,8 @@ namespace MicaForEveryone.Rules
             ClassName = className;
         }
 
+        public string Name => $"Class({ClassName})";
+
         public string ClassName { get; }
 
         public TitlebarColorMode TitlebarColor { get; set; }
@@ -25,6 +27,6 @@ namespace MicaForEveryone.Rules
             return windowHandle.GetClassName() == ClassName;
         }
 
-        public override string ToString() => $"Rule: ClassName={ClassName}";
+        public override string ToString() => Name;
     }
 }
