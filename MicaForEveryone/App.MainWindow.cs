@@ -14,8 +14,14 @@ namespace MicaForEveryone
         {
             _mainWindow.ReloadConfigRequested += MainWindow_ReloadConfigRequested;
             _mainWindow.RematchRulesRequested += MainWindow_RematchRulesRequested;
+            _mainWindow.SaveConfigRequested += MainWindow_SaveConfigRequested;
             _mainWindow.View.ActualThemeChanged += MainWindow_ThemeChanged;
             _mainWindow.Activate();
+        }
+
+        private async void MainWindow_SaveConfigRequested(object sender, EventArgs e)
+        {
+            await Task.Run(() => _ruleHandler.SaveConfig());
         }
 
         private async void MainWindow_RematchRulesRequested(object sender, EventArgs e)
