@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 
 using MicaForEveryone.Views;
+using MicaForEveryone.Config;
 
 namespace MicaForEveryone
 {
@@ -31,12 +32,20 @@ namespace MicaForEveryone
 
         private async void MainWindow_ReloadConfigRequested(object sender, EventArgs e)
         {
-            await Task.Run(() =>
+            try
             {
-                _ruleHandler.LoadConfig();
-                UpdateViewModel();
-                _ruleHandler.MatchAndApplyRuleToAllWindows();
-            });
+                await Task.Run(() =>
+                {
+                    _ruleHandler.LoadConfig();
+                    UpdateViewModel();
+                    _ruleHandler.MatchAndApplyRuleToAllWindows();
+                });
+            }
+            catch (ParserError error)
+            {
+                await _mainWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, 
+                    () => ShowParserErrorDialog(error));
+            }
         }
 
         private void MainWindow_ThemeChanged(FrameworkElement sender, object args)

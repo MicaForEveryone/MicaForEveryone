@@ -25,6 +25,8 @@ namespace MicaForEveryone.Rules
 
         private readonly User32.EnumWindowsProc _enumWindows;
 
+        private bool _isLoading;
+
         public RuleHandler()
         {
             _enumWindows = (windowHandle, _) =>
@@ -45,22 +47,34 @@ namespace MicaForEveryone.Rules
         public void LoadConfig()
         {
             if (ConfigSource == null) return;
-            GlobalRule = null;
-            Rules.Clear();
-            var rules = ConfigSource.ParseRules();
-            foreach (var rule in rules)
+
+            try
             {
-                if (rule is GlobalRule global)
+                _isLoading = true;
+
+                var rules = ConfigSource.ParseRules();
+
+                GlobalRule = null;
+                Rules.Clear();
+                foreach (var rule in rules)
                 {
-                    if (GlobalRule != null)
-                        throw new Exception("duplicate global rule section");
-                    GlobalRule = global;
-                }
-                else
-                {
-                    Rules.Add(rule);
+                    if (rule is GlobalRule global)
+                    {
+                        if (GlobalRule != null)
+                            throw new Exception("duplicate global rule section");
+                        GlobalRule = global;
+                    }
+                    else
+                    {
+                        Rules.Add(rule);
+                    }
                 }
             }
+            finally
+            {
+                _isLoading = false;
+            }
+
             if (GlobalRule == null)
                 throw new Exception("no global rule");
         }
@@ -72,6 +86,8 @@ namespace MicaForEveryone.Rules
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
+            if (_isLoading) return;
+
             if (!GlobalRule.IsApplicable(windowHandle)) return;
 
             var rule = Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle)) ?? GlobalRule;

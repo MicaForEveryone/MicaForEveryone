@@ -76,5 +76,24 @@ namespace MicaForEveryone
 
             Run(dialog);
         }
+
+        private void ShowParserErrorDialog(ParserError error)
+        {
+            var dialog = new ErrorDialog
+            {
+                Parent = _mainWindow.Handle,
+            };
+            dialog.Destroy += (sender, args) =>
+            {
+                dialog.Dispose();
+            };
+            dialog.SetTitle("Error in config file");
+            dialog.SetContent(error.Message);
+            dialog.Activate();
+            dialog.CenterToDesktop();
+            dialog.UpdatePosition();
+            dialog.Show();
+            SetForegroundWindow(dialog.Handle);
+        }
     }
 }
