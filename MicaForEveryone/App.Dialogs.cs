@@ -58,10 +58,10 @@ namespace MicaForEveryone
             {
                 Exit();
             };
-            if (exception is ParserError error)
+            if (exception is ParserError)
             {
                 dialog.SetTitle("Error in config file");
-                dialog.SetContent(error.Message);
+                dialog.SetContent(exception.Message);
             }
             else
             {
