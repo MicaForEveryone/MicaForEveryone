@@ -54,6 +54,12 @@ namespace MicaForEveryone.Views
             _notifyIcon.Show();
         }
 
+        public override void Dispose()
+        {
+            _notifyIcon.Dispose();
+            base.Dispose();
+        }
+
         public void RequestRematchRules()
         {
             PostMessage(Handle, WM_APP_REMATCH_REQUEST);

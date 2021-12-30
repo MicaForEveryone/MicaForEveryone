@@ -4,7 +4,7 @@ using Vanara.PInvoke;
 
 namespace MicaForEveryone.Xaml
 {
-    public class XamlApplication : Application
+    public class XamlApplication : Application, IDisposable
     {
         private WindowsXamlManager _xamlManager;
 
@@ -12,6 +12,11 @@ namespace MicaForEveryone.Xaml
         {
             _xamlManager = WindowsXamlManager.InitializeForCurrentThread();
             BeforeTranslateMessage += XamlApplication_BeforeTranslateMessage;
+        }
+
+        public virtual void Dispose()
+        {
+            _xamlManager.Dispose();
         }
 
         private void XamlApplication_BeforeTranslateMessage(Win32.Window window, ref MSG message, ref bool processed)
