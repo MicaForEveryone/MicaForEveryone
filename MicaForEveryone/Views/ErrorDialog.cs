@@ -8,8 +8,6 @@ namespace MicaForEveryone.Views
         {
             ClassName = nameof(ErrorDialog);
             Title = "Mica For Everyone";
-            Width = 576;
-            Height = 320;
         }
     }
 }

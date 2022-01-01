@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using MicaForEveryone.Models;
 
@@ -13,6 +15,12 @@ namespace MicaForEveryone.Config
         {
             Data = data;
             _result = new Document(data);
+        }
+
+        public Parser(IList<Token> data, Document document)
+        {
+            Data = data.ToArray();
+            _result = document;
         }
 
         private Token[] Data { get; }

@@ -20,11 +20,6 @@ namespace MicaForEveryone.Config
     [DebuggerDisplay("{Name} ({Line}:{Column})")]
     public class Symbol
     {
-        public Symbol(string name)
-        {
-            Name = name;
-        }
-
         internal Symbol(Token token)
         {
             Token = token;

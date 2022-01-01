@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using MicaForEveryone.Models;
@@ -11,11 +12,20 @@ namespace MicaForEveryone.Config
         {
             Type = type;
             Parameter = parameter;
+            Name = Type.Value switch
+            {
+                SectionType.Global => "Global",
+                SectionType.Process => $"Process({Parameter!.Name})",
+                SectionType.Class => $"Class({Parameter!.Name})",
+                _ => throw new ArgumentOutOfRangeException(),
+            };
         }
 
         public EvaluatedSymbol<SectionType> Type { get; }
 
         public Symbol Parameter { get; }
+
+        public string Name { get; }
 
         public Dictionary<EvaluatedSymbol<KeyName>, Symbol> Pairs { get; } = new();
 

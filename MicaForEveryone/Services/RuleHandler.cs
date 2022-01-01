@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Vanara.PInvoke;
 
@@ -9,7 +9,7 @@ using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Services
 {
-    public class RuleHandler
+    public class RuleHandler : IRuleService
     {
         public void ApplyRuleToWindow(HWND windowHandle, IRule rule)
         {
@@ -23,12 +23,12 @@ namespace MicaForEveryone.Services
             windowHandle.ApplyTitlebarColorRule(rule.TitlebarColor, SystemTitlebarColorMode);
         }
 
+        private readonly IConfigService _configService;
         private readonly User32.EnumWindowsProc _enumWindows;
 
-        private bool _isLoading;
-
-        public RuleHandler()
+        public RuleHandler(IConfigService configService)
         {
+            _configService = configService;
             _enumWindows = (windowHandle, _) =>
             {
                 MatchAndApplyRuleToWindow(windowHandle);
@@ -36,61 +36,13 @@ namespace MicaForEveryone.Services
             };
         }
 
-        public IConfigSource ConfigSource { get; set; }
-
-        public IList<IRule> Rules { get; } = new List<IRule>();
-
-        public GlobalRule GlobalRule { get; private set; }
-
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
-
-        public void LoadConfig()
-        {
-            if (ConfigSource == null) return;
-
-            try
-            {
-                _isLoading = true;
-
-                var rules = ConfigSource.ParseRules();
-
-                GlobalRule = null;
-                Rules.Clear();
-                foreach (var rule in rules)
-                {
-                    if (rule is GlobalRule global)
-                    {
-                        if (GlobalRule != null)
-                            throw new Exception("duplicate global rule section");
-                        GlobalRule = global;
-                    }
-                    else
-                    {
-                        Rules.Add(rule);
-                    }
-                }
-            }
-            finally
-            {
-                _isLoading = false;
-            }
-
-            if (GlobalRule == null)
-                throw new Exception("no global rule");
-        }
-
-        public void SaveConfig()
-        {
-            ConfigSource.OverrideRule(GlobalRule);
-        }
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
-            if (_isLoading) return;
-
-            if (!GlobalRule.IsApplicable(windowHandle)) return;
-
-            var rule = Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle)) ?? GlobalRule;
+            var rule = _configService.Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle));
+            if (rule == null)
+                return;
             ApplyRuleToWindow(windowHandle, rule);
         }
 

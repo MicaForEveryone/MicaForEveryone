@@ -27,7 +27,7 @@
 
     <ItemGroup>
       <None Update="MicaForEveryone.conf">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
       <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
     </ItemGroup>

@@ -54,6 +54,11 @@ namespace MicaForEveryone.Config
     [DebuggerDisplay("{Type}: {Data} ({Line}:{Column})")]
     internal class Token : IToken
     {
+        public Token(TokenType type, string data) : this(type, data, -1, -1)
+        {
+
+        }
+
         public Token(TokenType type, string data, int line, int column)
         {
             Type = type;

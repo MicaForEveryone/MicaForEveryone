@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MicaForEveryone.Config
 {
@@ -21,12 +22,12 @@ namespace MicaForEveryone.Config
 
         private string Line => _lineData;
 
-        public LexicalToken[] Parse()
+        public async Task<LexicalToken[]> ParseAsync()
         {
             if (_result.Count > 0)
                 return _result.ToArray();
 
-            _lineData = _source.ReadLine();
+            _lineData = await _source.ReadLineAsync();
 
             while (_lineData != null)
             {
