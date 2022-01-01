@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Vanara.PInvoke.DwmApi" Version="3.3.15" />
+    <PackageReference Include="Vanara.PInvoke.Shell32" Version="3.3.15" />
+    <PackageReference Include="Vanara.PInvoke.User32" Version="3.3.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

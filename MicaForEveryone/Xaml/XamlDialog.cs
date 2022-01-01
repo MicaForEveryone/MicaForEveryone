@@ -5,7 +5,7 @@ using Vanara.PInvoke;
 
 using static Vanara.PInvoke.User32;
 
-using MicaForEveryone.Extensions;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Xaml
 {
@@ -43,7 +43,7 @@ namespace MicaForEveryone.Xaml
             Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlDialog_SizeChanged(object sender, Win32.WindowEventArgs e)
+        private void XamlDialog_SizeChanged(object sender, Win32.Win32EventArgs e)
         {
             UpdateXamlSourcePosition();
         }

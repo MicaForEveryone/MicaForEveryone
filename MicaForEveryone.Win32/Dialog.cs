@@ -5,7 +5,7 @@ using static Vanara.PInvoke.User32;
 
 namespace MicaForEveryone.Win32
 {
-    public class Dialog : Window
+    public class Dialog : NativeWindow
     {
         private const int DLGWINDOWEXTRA = 30;
 

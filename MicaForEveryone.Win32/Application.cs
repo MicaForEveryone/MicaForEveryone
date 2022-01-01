@@ -3,13 +3,11 @@ using Vanara.PInvoke;
 
 using static Vanara.PInvoke.User32;
 
-using MicaForEveryone.Win32;
-
-namespace MicaForEveryone
+namespace MicaForEveryone.Win32
 {
     public class Application
     {
-        public void Run(Window window)
+        public void Run(NativeWindow window)
         {
             BeforeRun?.Invoke(this, EventArgs.Empty);
 
@@ -42,5 +40,5 @@ namespace MicaForEveryone
         public event EventHandler BeforeExit;
     }
 
-    public delegate void MessageLoopHandler(Window window, ref MSG message, ref bool processed);
+    public delegate void MessageLoopHandler(NativeWindow window, ref MSG message, ref bool processed);
 }

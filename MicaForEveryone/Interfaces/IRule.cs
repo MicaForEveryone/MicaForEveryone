@@ -2,7 +2,7 @@
 
 using MicaForEveryone.Models;
 
-namespace MicaForEveryone.Rules
+namespace MicaForEveryone.Interfaces
 {
     public interface IRule
     {

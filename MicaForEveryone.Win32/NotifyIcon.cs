@@ -7,7 +7,7 @@ using static Vanara.PInvoke.User32;
 
 namespace MicaForEveryone.Win32
 {
-    public class NotifyIcon : Window
+    public class NotifyIcon : NativeWindow
     {
         private const uint NIN_SELECT = WM_USER + 0;
         private const uint NIN_KEYSELECT = NIN_SELECT | 0x1;

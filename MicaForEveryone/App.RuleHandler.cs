@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.Rules;
+using MicaForEveryone.Services;
 
 namespace MicaForEveryone
 {

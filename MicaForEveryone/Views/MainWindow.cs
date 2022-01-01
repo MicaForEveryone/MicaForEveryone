@@ -75,7 +75,7 @@ namespace MicaForEveryone.Views
             PostMessage(Handle, WM_APP_SAVE_CONFIG_REQUESTED);
         }
 
-        private void MainWindow_Destroy(object sender, WindowEventArgs e)
+        private void MainWindow_Destroy(object sender, Win32EventArgs e)
         {
             _notifyIcon.Hide();
         }

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UI", "MicaF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Config", "MicaForEveryone.Config\MicaForEveryone.Config.csproj", "{307044B9-01A3-499F-8EE7-9DD184577E56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Win32", "MicaForEveryone.Win32\MicaForEveryone.Win32.csproj", "{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -41,6 +45,22 @@ Global
 		{198E1C79-B186-47ED-806D-9A02D78EC653}.Release|ARM64.Build.0 = Release|Any CPU
 		{198E1C79-B186-47ED-806D-9A02D78EC653}.Release|x64.ActiveCfg = Release|Any CPU
 		{198E1C79-B186-47ED-806D-9A02D78EC653}.Release|x64.Build.0 = Release|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|x64.Build.0 = Debug|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|ARM64.Build.0 = Release|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|x64.ActiveCfg = Release|Any CPU
+		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|x64.Build.0 = Release|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|x64.Build.0 = Debug|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|ARM64.Build.0 = Release|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|x64.ActiveCfg = Release|Any CPU
+		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -33,14 +33,14 @@ namespace MicaForEveryone.Config
             _position++;
             SkipSpace();
             if (_position >= Data.Length)
-                throw new UnexpectedEndOfFile(Data[^1]);
+                throw new UnexpectedEndOfFile(Data[Data.Length-1]);
         }
 
         private void ExpectToken(TokenType expected)
         {
             SkipSpace();
             if (_position >= Data.Length)
-                throw new UnexpectedEndOfFile(Data[^1]);
+                throw new UnexpectedEndOfFile(Data[Data.Length-1]);
             if (CurrentToken.Type != expected)
                 throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
         }
@@ -79,7 +79,15 @@ namespace MicaForEveryone.Config
             ExpectToken(TokenType.SectionType);
             var type = new EvaluatedSymbol<SectionType>(CurrentToken);
 
-            NextToken();
+            if (type.Value == SectionType.Global)
+            {
+                NextToken(TokenType.SectionStart);
+            }
+            else
+            {
+                NextToken(TokenType.SectionParameterStart);
+            }
+
             var parameter = CurrentToken.Type switch
             {
                 TokenType.SectionParameterStart => GetNextSymbol(TokenType.SectionParameter),

@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Media;
 using MicaForEveryone.Extensions;
 using MicaForEveryone.UI;
 using MicaForEveryone.Xaml;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Views
 {

@@ -3,10 +3,9 @@ using System.Diagnostics;
 using System.Text;
 using Vanara.PInvoke;
 
-using MicaForEveryone.Win32;
 using MicaForEveryone.Models;
 
-namespace MicaForEveryone.Extensions
+namespace MicaForEveryone.Win32
 {
     public static class HwndExtensions
     {

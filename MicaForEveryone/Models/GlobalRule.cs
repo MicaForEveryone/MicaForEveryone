@@ -1,9 +1,9 @@
 ﻿using Vanara.PInvoke;
 
-using MicaForEveryone.Extensions;
-using MicaForEveryone.Models;
+using MicaForEveryone.Interfaces;
+using MicaForEveryone.Win32;
 
-namespace MicaForEveryone.Rules
+namespace MicaForEveryone.Models
 {
     public class GlobalRule : IRule
     {

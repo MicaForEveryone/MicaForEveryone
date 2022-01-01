@@ -2,13 +2,10 @@
 using Vanara.InteropServices;
 using Vanara.PInvoke;
 
-using MicaForEveryone.Win32;
-
 using static Vanara.PInvoke.DwmApi;
 
-namespace MicaForEveryone.Extensions
+namespace MicaForEveryone.Win32
 {
-
     public static class DwmExtensions
     {
         private const DWMWINDOWATTRIBUTE DWMWA_MICA = (DWMWINDOWATTRIBUTE) 1029;
@@ -24,6 +21,7 @@ namespace MicaForEveryone.Extensions
             return DwmSetWindowAttribute(windowHandle, DWMWA_MICA, pinned, sizeof(int));
         }
 
+        // only supported on Windows 11 build 22523+
         public static HRESULT SetBackdropType(this HWND windowHandle, DWM_SYSTEMBACKDROP_TYPE backdropType)
         {
             using var pinned = new PinnedObject((int)backdropType);

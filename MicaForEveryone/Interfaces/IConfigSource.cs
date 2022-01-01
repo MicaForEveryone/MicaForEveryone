@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MicaForEveryone.Rules
+namespace MicaForEveryone.Interfaces
 {
     public interface IConfigSource
     {

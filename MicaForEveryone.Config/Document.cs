@@ -1,9 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-
-using MicaForEveryone.Rules;
 
 namespace MicaForEveryone.Config
 {
@@ -37,11 +33,6 @@ namespace MicaForEveryone.Config
                     writer.Write(token.Data);
                 }
             }
-        }
-
-        public IEnumerable<IRule> ToRules()
-        {
-            return Sections.Select(section => section.ToRule());
         }
     }
 }

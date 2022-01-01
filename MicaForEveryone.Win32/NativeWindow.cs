@@ -5,11 +5,11 @@ using static Vanara.PInvoke.User32;
 
 namespace MicaForEveryone.Win32
 {
-    public class Window : IDisposable
+    public class NativeWindow : IDisposable
     {
         private const uint USER_DEFAULT_SCREEN_DPI = 96;
 
-        public Window()
+        public NativeWindow()
         {
             Instance = Kernel32.GetModuleHandle();
 
@@ -156,35 +156,35 @@ namespace MicaForEveryone.Win32
 
         protected void OnCreate(HWND hwnd)
         {
-            Create?.Invoke(this, new WindowEventArgs(hwnd));
+            Create?.Invoke(this, new Win32EventArgs(hwnd));
         }
 
         protected void OnDestroy(HWND hwnd)
         {
-            Destroy?.Invoke(this, new WindowEventArgs(hwnd));
+            Destroy?.Invoke(this, new Win32EventArgs(hwnd));
         }
 
         protected void OnSizeChanged(HWND hwnd)
         {
-            SizeChanged?.Invoke(this, new WindowEventArgs(hwnd));
+            SizeChanged?.Invoke(this, new Win32EventArgs(hwnd));
         }
 
         protected void OnDpiChanged(HWND hwnd)
         {
             UpdateScaleFactor();
             UpdateSize();
-            DpiChanged?.Invoke(this, new WindowEventArgs(hwnd));
+            DpiChanged?.Invoke(this, new Win32EventArgs(hwnd));
         }
 
-        public event EventHandler<WindowEventArgs> Create;
-        public event EventHandler<WindowEventArgs> Destroy;
-        public event EventHandler<WindowEventArgs> SizeChanged;
-        public event EventHandler<WindowEventArgs> DpiChanged;
+        public event EventHandler<Win32EventArgs> Create;
+        public event EventHandler<Win32EventArgs> Destroy;
+        public event EventHandler<Win32EventArgs> SizeChanged;
+        public event EventHandler<Win32EventArgs> DpiChanged;
     }
 
-    public class WindowEventArgs : EventArgs
+    public class Win32EventArgs : EventArgs
     {
-        public WindowEventArgs(HWND windowHandle)
+        public Win32EventArgs(HWND windowHandle)
         {
             WindowHandle = windowHandle;
         }
