@@ -1,4 +1,6 @@
-﻿namespace MicaForEveryone.UI
+﻿using System;
+
+namespace MicaForEveryone.UI
 {
     public sealed partial class App
     {
@@ -6,5 +8,7 @@
         {
             Initialize();
         }
+
+        public IServiceProvider Container { get; set; }
     }
 }

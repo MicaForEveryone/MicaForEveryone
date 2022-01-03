@@ -9,7 +9,7 @@ using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Services
 {
-    public class RuleHandler : IRuleService
+    internal class RuleHandler : IRuleService
     {
         public void ApplyRuleToWindow(HWND windowHandle, IRule rule)
         {

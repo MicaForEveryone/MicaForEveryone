@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace MicaForEveryone.ViewModels
 {
-    public class RelyCommand : ICommand
+    internal class RelyCommand : ICommand
     {
         private readonly Action<object> _action;
         private readonly Func<object, bool> _canExecute;

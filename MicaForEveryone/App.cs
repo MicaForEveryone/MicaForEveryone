@@ -5,6 +5,8 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Services;
 using MicaForEveryone.Xaml;
 using MicaForEveryone.Config;
+using MicaForEveryone.ViewModels;
+using MicaForEveryone.Views;
 
 namespace MicaForEveryone
 {
@@ -17,9 +19,9 @@ namespace MicaForEveryone
         public void Run()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-            _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             Container = RegiserServices();
+            _uwpApp.Container = Container;
 
             if (Environment.OSVersion.Version.Build < 22000)
             {
@@ -28,19 +30,14 @@ namespace MicaForEveryone
                 return;
             }
 
+            _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
-            var mainWindow = Container.GetService<IViewService>().MainWindow;
-            mainWindow.Activate();
-            Run(mainWindow);
+            var mainWindow = new MainWindow();
+            var viewService = Container.GetService<IViewService>();
+            viewService.Run(mainWindow);
 
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
             _uwpApp.UnhandledException -= UwpApp_UnhandledException;
-        }
-
-        public override void Dispose()
-        {
-            _uwpApp.Dispose();
-            base.Dispose();
         }
 
         private IServiceProvider RegiserServices()
@@ -51,11 +48,20 @@ namespace MicaForEveryone
             services.AddSingleton<IConfigService, ConfigService>();
             services.AddSingleton<IEventHookService, EventHookService>();
             services.AddSingleton<IRuleService, RuleHandler>();
-            services.AddTransient<IViewModel, ViewModel>();
-            services.AddSingleton<IViewService, ViewService>();
             services.AddSingleton<IDialogService, DialogService>();
 
+            services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
+            services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
+
+            services.AddSingleton<IViewService, ViewService>();
+
             return services.BuildServiceProvider();
+        }
+
+        public override void Dispose()
+        {
+            _uwpApp.Dispose();
+            base.Dispose();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
@@ -67,7 +73,7 @@ namespace MicaForEveryone
             }
             else
             {
-                dialogService.RunErrorDialog("Unhanlded Exception", args.ExceptionObject.ToString(), 576, 400);
+                dialogService.RunErrorDialog("Unhandled Exception", args.ExceptionObject.ToString(), 576, 400);
             }
         }
 

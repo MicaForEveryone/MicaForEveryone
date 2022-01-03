@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Extensions;
 using MicaForEveryone.UI;
@@ -19,6 +20,7 @@ namespace MicaForEveryone.Views
         protected ContentDialog(ContentDialogView view) : base(view)
         {
             _view = view;
+            _view.ViewModel = Program.CurrentApp.Container.GetService<IContentDialogViewModel>();
             _view.ViewModel.IsPrimaryButtonEnabled = true;
             _view.ViewModel.PrimaryButtonContent = "OK";
             _view.ViewModel.PrimaryCommand = CloseDialogCommand;

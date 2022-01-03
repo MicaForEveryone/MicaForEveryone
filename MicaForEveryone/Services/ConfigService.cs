@@ -5,7 +5,7 @@ using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Services
 {
-    public class ConfigService : IConfigService
+    internal class ConfigService : IConfigService
     {
         public ConfigService(IConfigSource source)
         {

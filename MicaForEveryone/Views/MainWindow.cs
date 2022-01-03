@@ -1,18 +1,17 @@
 ﻿using System;
-using Windows.Foundation;
-using Windows.UI.Xaml.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using Vanara.PInvoke;
 
-using MicaForEveryone.Extensions;
 using MicaForEveryone.Win32;
 using MicaForEveryone.UI;
 using MicaForEveryone.Xaml;
+using MicaForEveryone.ViewModels;
 
 using static Vanara.PInvoke.User32;
 
 namespace MicaForEveryone.Views
 {
-    public class MainWindow : XamlWindow
+    internal class MainWindow : XamlWindow
     {
         private const uint WM_APP_NOTIFYICON = WM_APP + 1;
 
@@ -22,7 +21,11 @@ namespace MicaForEveryone.Views
 
         private NotifyIcon _notifyIcon;
 
-        public MainWindow() : base(new TrayIconView())
+        public MainWindow() : this(new())
+        {
+        }
+
+        private MainWindow(TrayIconView view) : base(view)
         {
             ClassName = nameof(MainWindow);
             Title = "Mica For Everyone";
@@ -44,7 +47,14 @@ namespace MicaForEveryone.Views
             _notifyIcon.ContextMenu += NotifyIcon_ContextMenu;
             _notifyIcon.OpenPopup += NotifyIcon_OpenPopup;
             _notifyIcon.ClosePopup += NotifyIcon_ClosePopup;
+
+            view.ViewModel = ViewModel;
+            view.Loaded += View_Loaded;
+            view.ActualThemeChanged += View_ActualThemeChanged;
         }
+
+        private ITrayIconViewModel ViewModel { get; } = 
+            Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
 
         public override void Activate()
         {
@@ -75,67 +85,37 @@ namespace MicaForEveryone.Views
             PostMessage(Handle, WM_APP_SAVE_CONFIG_REQUESTED);
         }
 
+        // event handlers
         private void MainWindow_Destroy(object sender, Win32EventArgs e)
         {
             _notifyIcon.Hide();
         }
 
-        private void ShowContextFlyout(int x, int y)
-        {
-            if (View.ContextFlyout is MenuFlyout menu)
-            {
-                if (menu.IsOpen)
-                {
-                    menu.Hide();
-                    return;
-                }
-
-                SetForegroundWindow(Handle);
-
-                var notifyIconRect = _notifyIcon.GetRect();
-
-                Handle.SetWindowPos(
-                    HWND.NULL,
-                    notifyIconRect,
-                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
-                Interop.WindowHandle.SetWindowPos(
-                    HWND.NULL,
-                    new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
-                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
-                menu.ShowAt(View,
-                    new Point(
-                        (x - notifyIconRect.X) / ScaleFactor,
-                        (y - notifyIconRect.Y) / ScaleFactor));
-            }
-        }
-
         private void NotifyIcon_ContextMenu(object sender, TrayIconClickEventArgs e)
         {
-            ShowContextFlyout(e.Point.X, e.Point.Y);
+            var notifyIconRect = _notifyIcon.GetRect();
+            ViewModel.ShowContextMenu(e.Point, notifyIconRect);
         }
 
         private void NotifyIcon_OpenPopup(object sender, EventArgs e)
         {
             var notifyIconRect = _notifyIcon.GetRect();
-
-            Handle.SetWindowPos(
-                    HWND.NULL,
-                    notifyIconRect,
-                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
-            Interop.WindowHandle.SetWindowPos(
-                HWND.NULL,
-                new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
-                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
-            ((ToolTip)ToolTipService.GetToolTip(View)).IsOpen = true;
+            ViewModel.ShowTipPopup(notifyIconRect);
         }
 
         private void NotifyIcon_ClosePopup(object sender, EventArgs e)
         {
-            ((ToolTip)ToolTipService.GetToolTip(View)).IsOpen = false;
+            ViewModel.HideTipPopup();
+        }
+
+        private void View_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            ViewModel.InitializeApp(this);
+        }
+
+        private void View_ActualThemeChanged(Windows.UI.Xaml.FrameworkElement sender, object args)
+        {
+            RequestRematchRules();
         }
 
         protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
@@ -143,23 +123,19 @@ namespace MicaForEveryone.Views
             switch (umsg)
             {
                 case WM_APP_REMATCH_REQUEST:
-                    RematchRulesRequested?.Invoke(this, EventArgs.Empty);
+                    ViewModel.RematchRules();
                     break;
 
                 case WM_APP_RELOAD_CONFIG:
-                    ReloadConfigRequested?.Invoke(this, EventArgs.Empty);
+                    ViewModel.ReloadConfig();
                     break;
 
                 case WM_APP_SAVE_CONFIG_REQUESTED:
-                    SaveConfigRequested?.Invoke(this, EventArgs.Empty);
+                    ViewModel.SaveConfig();
                     break;
             }
 
             return base.WndProc(hwnd, umsg, wParam, lParam);
         }
-
-        public event EventHandler RematchRulesRequested;
-        public event EventHandler ReloadConfigRequested;
-        public event EventHandler SaveConfigRequested;
     }
 }

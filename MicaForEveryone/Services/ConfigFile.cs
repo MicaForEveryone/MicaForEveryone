@@ -11,7 +11,7 @@ using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Services
 {
-    public class ConfigFile : IConfigSource
+    internal class ConfigFile : IConfigSource
     {
         private static void OverrideToRuleFromSection(IRule rule, Section section)
         {

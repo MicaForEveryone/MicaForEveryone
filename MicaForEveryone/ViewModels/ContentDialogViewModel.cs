@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Windows.Input;
 
 namespace MicaForEveryone.ViewModels
 {
-    public class ContentDialogViewModel : BaseViewModel
+    internal class ContentDialogViewModel : BaseViewModel, IContentDialogViewModel
     {
         private object _title;
         private object _content;
@@ -49,11 +47,11 @@ namespace MicaForEveryone.ViewModels
             set => SetProperty(ref _secondaryButtonContent, value);
         }
 
-        public RelyCommand PrimaryCommand { get; set; }
+        public ICommand PrimaryCommand { get; set; }
 
         public object PrimaryCommandParameter { get; set; }
 
-        public RelyCommand SecondaryCommand { get; set; }
+        public ICommand SecondaryCommand { get; set; }
 
         public object SecondaryCommandParameter { get; set; }
     }

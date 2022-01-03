@@ -1,6 +1,4 @@
-﻿using Windows.UI.Xaml;
-
-using MicaForEveryone.ViewModels;
+﻿using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.UI
 {
@@ -11,6 +9,6 @@ namespace MicaForEveryone.UI
             InitializeComponent();
         }
 
-        public MainViewModel ViewModel { get; } = new MainViewModel();
+        public ITrayIconViewModel ViewModel { get; set; }
     }
 }

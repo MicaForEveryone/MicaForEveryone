@@ -3,10 +3,12 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Interfaces
 {
-    public interface IViewService
+    internal interface IViewService
     {
-        public TitlebarColorMode SystemColorMode { get; }
+        TitlebarColorMode SystemColorMode { get; }
 
-        public MainWindow MainWindow { get; }
+        MainWindow MainWindow { get; }
+
+        void Run(MainWindow window);
     }
 }

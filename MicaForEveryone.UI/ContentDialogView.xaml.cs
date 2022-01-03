@@ -9,6 +9,6 @@ namespace MicaForEveryone.UI
             InitializeComponent();
         }
 
-        public ContentDialogViewModel ViewModel { get; } = new ContentDialogViewModel();
+        public IContentDialogViewModel ViewModel { get; set; }
     }
 }

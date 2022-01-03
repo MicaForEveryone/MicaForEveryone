@@ -131,6 +131,11 @@ namespace MicaForEveryone.Win32
                 SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE | SetWindowPosFlags.SWP_NOSIZE);
         }
 
+        public void SetForegroundWindow()
+        {
+            User32.SetForegroundWindow(Handle);
+        }
+
         protected virtual IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
             switch ((WindowMessage)umsg)

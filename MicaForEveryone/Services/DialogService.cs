@@ -6,12 +6,8 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Services
 {
-    public class DialogService : IDialogService
+    internal class DialogService : IDialogService
     {
-        public DialogService()
-        {
-        }
-
         public void ShowDialog(NativeWindow parent, Dialog dialog)
         {
             dialog.Parent = parent.Handle;

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace MicaForEveryone.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    internal class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

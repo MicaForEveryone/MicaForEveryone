@@ -6,28 +6,22 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Services
 {
-    public class ViewService : IViewService
+    internal class ViewService : IViewService
     {
-        public ViewService(IViewModel viewModel)
-        {
-            MainWindow.View.ActualThemeChanged += MainWindow_ThemeChanged;
+        public MainWindow MainWindow { get; private set; }
 
-            viewModel.Attach(MainWindow);
+        public void Run(MainWindow mainWindow)
+        {
+            MainWindow = mainWindow;
+            mainWindow.Activate();
+            Program.CurrentApp.Run(mainWindow);
         }
 
-        public MainWindow MainWindow { get; } = new();
-
-        private void MainWindow_ThemeChanged(FrameworkElement sender, object args)
+        public TitlebarColorMode SystemColorMode => Application.Current.RequestedTheme switch
         {
-            SystemColorMode = Application.Current.RequestedTheme switch
-            {
-                ApplicationTheme.Light => TitlebarColorMode.Light,
-                ApplicationTheme.Dark => TitlebarColorMode.Dark,
-                _ => TitlebarColorMode.Default,
-            };
-            MainWindow.RequestRematchRules();
-        }
-
-        public TitlebarColorMode SystemColorMode { get; private set; }
+            ApplicationTheme.Light => TitlebarColorMode.Light,
+            ApplicationTheme.Dark => TitlebarColorMode.Dark,
+            _ => TitlebarColorMode.Default,
+        };
     }
 }
