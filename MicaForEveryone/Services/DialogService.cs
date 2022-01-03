@@ -8,11 +8,8 @@ namespace MicaForEveryone.Services
 {
     public class DialogService : IDialogService
     {
-        private readonly IAppService _appService;
-
-        public DialogService(IAppService appService)
+        public DialogService()
         {
-            _appService = appService;
         }
 
         public void ShowDialog(NativeWindow parent, Dialog dialog)
@@ -29,13 +26,13 @@ namespace MicaForEveryone.Services
         {
             dialog.Destroy += (sender, args) =>
             {
-                _appService.Exit();
+                Program.CurrentApp.Exit();
             };
             dialog.Activate();
             dialog.CenterToDesktop();
             dialog.UpdatePosition();
             dialog.Show();
-            _appService.Run(dialog);
+            Program.CurrentApp.Run(dialog);
         }
 
         public void ShowErrorDialog(NativeWindow parent, object title, object content, int width, int height)

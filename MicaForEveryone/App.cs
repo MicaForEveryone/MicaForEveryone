@@ -8,7 +8,7 @@ using MicaForEveryone.Config;
 
 namespace MicaForEveryone
 {
-    internal partial class App : XamlApplication, IAppService, IDisposable
+    internal partial class App : XamlApplication, IDisposable
     {
         private readonly UI.App _uwpApp = new();
 
@@ -19,18 +19,7 @@ namespace MicaForEveryone
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
-            var services = new ServiceCollection();
-
-            services.AddSingleton<IAppService>(this);
-            services.AddSingleton<IConfigSource, ConfigFile>();
-            services.AddSingleton<IConfigService, ConfigService>();
-            services.AddSingleton<IEventHookService, EventHookService>();
-            services.AddSingleton<IRuleService, RuleHandler>();
-            services.AddTransient<IViewModel, ViewModel>();
-            services.AddSingleton<IViewService, ViewService>();
-            services.AddSingleton<IDialogService, DialogService>();
-
-            Container = services.BuildServiceProvider();
+            Container = RegiserServices();
 
             if (Environment.OSVersion.Version.Build < 22000)
             {
@@ -50,12 +39,23 @@ namespace MicaForEveryone
 
         public override void Dispose()
         {
-            foreach (var service in Container.GetServices<IDisposable>())
-            {
-                service.Dispose();
-            }
             _uwpApp.Dispose();
             base.Dispose();
+        }
+
+        private IServiceProvider RegiserServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddSingleton<IConfigSource, ConfigFile>();
+            services.AddSingleton<IConfigService, ConfigService>();
+            services.AddSingleton<IEventHookService, EventHookService>();
+            services.AddSingleton<IRuleService, RuleHandler>();
+            services.AddTransient<IViewModel, ViewModel>();
+            services.AddSingleton<IViewService, ViewService>();
+            services.AddSingleton<IDialogService, DialogService>();
+
+            return services.BuildServiceProvider();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)

@@ -4,6 +4,8 @@ namespace MicaForEveryone
 {
     internal static class Program
     {
+        public static App CurrentApp { get; } = new();
+
         [STAThread]
         public static void Main(string[] args)
         {
@@ -13,8 +15,8 @@ namespace MicaForEveryone
                 return;
             }
 
-            using var app = new App();
-            app.Run();
+            CurrentApp.Run();
+            CurrentApp.Dispose();
         }
     }
 }
