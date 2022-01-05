@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Interfaces;
@@ -7,6 +8,7 @@ using MicaForEveryone.Xaml;
 using MicaForEveryone.Config;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Views;
+using MicaForEveryone.Models;
 
 namespace MicaForEveryone
 {
@@ -20,7 +22,7 @@ namespace MicaForEveryone
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            Container = RegiserServices();
+            Container = RegisterServices();
             _uwpApp.Container = Container;
 
             if (Environment.OSVersion.Version.Build < 22000)
@@ -40,20 +42,36 @@ namespace MicaForEveryone
             _uwpApp.UnhandledException -= UwpApp_UnhandledException;
         }
 
-        private IServiceProvider RegiserServices()
+        private string GetConfigFilePath()
+        {
+            var args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                return args[1];
+            }
+            if (File.Exists("MicaForEveryone.conf"))
+            {
+                return "MicaForEveryone.conf";
+            }
+            var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
+        }
+
+        private IServiceProvider RegisterServices()
         {
             var services = new ServiceCollection();
 
-            services.AddSingleton<IConfigSource, ConfigFile>();
-            services.AddSingleton<IConfigService, ConfigService>();
+            var configSource = new ConfigFile(GetConfigFilePath());
+            var configService = new ConfigService(configSource);
+            services.AddSingleton<IConfigService>(configService);
+
             services.AddSingleton<IEventHookService, EventHookService>();
             services.AddSingleton<IRuleService, RuleHandler>();
             services.AddSingleton<IDialogService, DialogService>();
+            services.AddSingleton<IViewService, ViewService>();
 
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
-
-            services.AddSingleton<IViewService, ViewService>();
 
             return services.BuildServiceProvider();
         }

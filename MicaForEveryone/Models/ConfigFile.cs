@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 
-namespace MicaForEveryone.Services
+namespace MicaForEveryone.Models
 {
     internal class ConfigFile : IConfigSource
     {
@@ -31,18 +30,9 @@ namespace MicaForEveryone.Services
 
         private Document _configDocument;
 
-        public ConfigFile()
+        public ConfigFile(string filePath)
         {
-            var args = Environment.GetCommandLineArgs();
-            if (args.Length > 1)
-            {
-                _filePath = args[1];
-            }
-            else
-            {
-                var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                _filePath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
-            }
+            _filePath = filePath;
         }
 
         public void OpenInEditor()
