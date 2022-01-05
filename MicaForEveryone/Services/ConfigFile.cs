@@ -55,8 +55,6 @@ namespace MicaForEveryone.Services
             if (_configDocument == null)
                 throw new Exception("Config document not loaded.");
 
-            List<IRule> rules = new();
-
             foreach (var section in _configDocument.Sections)
             {
                 IRule rule = section.Type.Value switch
@@ -67,23 +65,8 @@ namespace MicaForEveryone.Services
                     _ => throw new ArgumentOutOfRangeException(),
                 };
                 OverrideToRuleFromSection(rule, section);
-                rules.Add(rule);
+                yield return rule;
             }
-
-            // Check if there are no rules
-            if (rules.Count == 0)
-                throw new Exception("There must be at least one rule in the config file.");
-
-            // Check for duplicates
-            var duplicates = rules.GroupBy(x => x.Name)
-                   .Where(x => x.Skip(1).Any());
-            if (duplicates.Any())
-            {
-                // There are duplicates in the config file.
-                var duplicateRuleNames = duplicates.Select(x => x.Key);
-                throw new Exception($"There are duplicate rules found in config file.{Environment.NewLine}{Environment.NewLine}List of duplicate rules:{Environment.NewLine}{string.Join(Environment.NewLine, duplicateRuleNames)}");
-            }
-            return rules;
         }
 
         public void SetRule(IRule rule)
