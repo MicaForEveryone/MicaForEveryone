@@ -80,7 +80,7 @@ namespace MicaForEveryone
         private void UwpApp_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
-            dialogService.RunErrorDialog("Unhanlded Exception in UI", args.Message, 576, 400);
+            dialogService.RunErrorDialog("Unhandled Exception in UI", args.Message, 576, 400);
         }
     }
 }

@@ -41,7 +41,7 @@ namespace MicaForEveryone.Services
             else
             {
                 var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                _filePath = Path.Join(appData, "MicaForEveryone.conf");
+                _filePath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
             }
         }
 
@@ -53,7 +53,7 @@ namespace MicaForEveryone.Services
         public IEnumerable<IRule> GetRules()
         {
             if (_configDocument == null)
-                throw new Exception("config document not loaded");
+                throw new Exception("Config document not loaded.");
 
             foreach (var section in _configDocument.Sections)
             {
@@ -72,7 +72,7 @@ namespace MicaForEveryone.Services
         public void SetRule(IRule rule)
         {
             if (_configDocument == null)
-                throw new Exception("config document not loaded");
+                throw new Exception("Config document not loaded.");
 
             var target = _configDocument.Sections.FirstOrDefault(
                 section => section.Name == rule.Name);
