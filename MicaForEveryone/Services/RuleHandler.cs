@@ -40,10 +40,19 @@ namespace MicaForEveryone.Services
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
-            var rule = _configService.Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle));
-            if (rule == null)
+            var rule = _configService.Rules.Where(rule => rule.IsApplicable(windowHandle)).ToList();
+            if (!rule.Any())
                 return;
-            ApplyRuleToWindow(windowHandle, rule);
+
+            var globalRule = rule.FirstOrDefault(f => f is GlobalRule);
+            if (globalRule != null)
+            {
+                // Move the global rule to the bottom.
+                rule.Remove(globalRule);
+                rule.Add(globalRule);
+            }
+
+            ApplyRuleToWindow(windowHandle, rule.First());
         }
 
         public void MatchAndApplyRuleToAllWindows()

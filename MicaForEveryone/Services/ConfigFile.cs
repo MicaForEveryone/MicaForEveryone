@@ -41,7 +41,7 @@ namespace MicaForEveryone.Services
             else
             {
                 var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                _filePath = Path.Join(appData, "MicaForEveryone.conf");
+                _filePath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
             }
         }
 
@@ -53,7 +53,9 @@ namespace MicaForEveryone.Services
         public IEnumerable<IRule> GetRules()
         {
             if (_configDocument == null)
-                throw new Exception("config document not loaded");
+                throw new Exception("Config document not loaded.");
+
+            List<IRule> rules = new();
 
             foreach (var section in _configDocument.Sections)
             {
@@ -65,14 +67,29 @@ namespace MicaForEveryone.Services
                     _ => throw new ArgumentOutOfRangeException(),
                 };
                 OverrideToRuleFromSection(rule, section);
-                yield return rule;
+                rules.Add(rule);
             }
+
+            // Check if there are no rules
+            if (rules.Count == 0)
+                throw new Exception("There must be at least one rule in the config file.");
+
+            // Check for duplicates
+            var duplicates = rules.GroupBy(x => x.Name)
+                   .Where(x => x.Skip(1).Any());
+            if (duplicates.Any())
+            {
+                // There are duplicates in the config file.
+                var duplicateRuleNames = duplicates.Select(x => x.Key);
+                throw new Exception($"There are duplicate rules found in config file.{Environment.NewLine}{Environment.NewLine}List of duplicate rules:{Environment.NewLine}{string.Join(Environment.NewLine, duplicateRuleNames)}");
+            }
+            return rules;
         }
 
         public void SetRule(IRule rule)
         {
             if (_configDocument == null)
-                throw new Exception("config document not loaded");
+                throw new Exception("Config document not loaded.");
 
             var target = _configDocument.Sections.FirstOrDefault(
                 section => section.Name == rule.Name);
