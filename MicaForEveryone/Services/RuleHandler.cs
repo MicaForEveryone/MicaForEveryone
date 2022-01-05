@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using Vanara.PInvoke;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
+
+#if DEBUG
+using System.Diagnostics;
+#endif
 
 namespace MicaForEveryone.Services
 {
@@ -40,19 +43,15 @@ namespace MicaForEveryone.Services
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
-            var rule = _configService.Rules.Where(rule => rule.IsApplicable(windowHandle)).ToList();
-            if (!rule.Any())
+            var applicableRules = _configService.Rules.Where(rule => rule.IsApplicable(windowHandle));
+
+            if (applicableRules.All(rule => rule is not GlobalRule))
                 return;
 
-            var globalRule = rule.FirstOrDefault(f => f is GlobalRule);
-            if (globalRule != null)
-            {
-                // Move the global rule to the bottom.
-                rule.Remove(globalRule);
-                rule.Add(globalRule);
-            }
+            var rule = applicableRules.FirstOrDefault(rule => rule is not GlobalRule) ??
+                applicableRules.First();
 
-            ApplyRuleToWindow(windowHandle, rule.First());
+            ApplyRuleToWindow(windowHandle, rule);
         }
 
         public void MatchAndApplyRuleToAllWindows()
