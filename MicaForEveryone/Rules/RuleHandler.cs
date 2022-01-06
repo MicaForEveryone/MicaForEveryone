@@ -87,11 +87,43 @@ namespace MicaForEveryone.Rules
         public void MatchAndApplyRuleToWindow(HWND windowHandle)
         {
             if (_isLoading) return;
+            try
+            {
+                if (!GlobalRule.IsApplicable(windowHandle)) return;
 
-            if (!GlobalRule.IsApplicable(windowHandle)) return;
+                var rule = Rules.FirstOrDefault(rule =>
+                {
+                    try
+                    {
+                        return rule.IsApplicable(windowHandle);
+                    }
+#if DEBUG
+                    catch
+                    {
+                        throw;
+                    }
+#else
+                    catch
+                    {
+                        // ignore errors
+                        return false;
+                    }
+#endif
+                }) ?? GlobalRule;
 
-            var rule = Rules.FirstOrDefault(rule => rule.IsApplicable(windowHandle)) ?? GlobalRule;
-            ApplyRuleToWindow(windowHandle, rule);
+                ApplyRuleToWindow(windowHandle, rule);
+            }
+#if DEBUG
+            catch
+            {
+                throw;
+            }
+#else
+            catch
+            {
+                // ignore errors
+            }
+#endif
         }
 
         public void MatchAndApplyRuleToAllWindows()
