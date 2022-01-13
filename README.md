@@ -16,7 +16,7 @@ Mica For Everyone can be configured using a rule-based configuration language.
 Global {
   TitleBarColor           = System  # available modes: default, system, light, dark
   BackdropPreference      = Mica    # available modes: default, none, mica, acrylic, tabbed
-  ExtendFrameToClientArea = false   # enable to apply backdrop on background of apps
+  ExtendFrameToClientArea = false   # enable to apply backdrop on background of apps (not recommended)
 }
 
 # only applies to windows from explorer process
@@ -30,6 +30,11 @@ Class: ApplicationFrameWindow {
   ...
 }
 ```
+
+# Extend Frame Into Client Area
+This option extends window frame to whole app background so you'll see Mica on app's background,
+but most of the apps draw their own background on top of window background so basically this won't work.
+This option is there for testing and it's not intended for daily usage, using it is not recommended.
 
 # Screenshots
 
