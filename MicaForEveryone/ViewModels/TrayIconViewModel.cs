@@ -16,10 +16,6 @@ using MicaForEveryone.Views;
 using MicaForEveryone.Config;
 using MicaForEveryone.Win32;
 
-#if !DEBUG
-using MicaForEveryone.Win32;
-#endif
-
 namespace MicaForEveryone.ViewModels
 {
     internal class TrayIconViewModel : BaseViewModel, ITrayIconViewModel
@@ -94,6 +90,9 @@ namespace MicaForEveryone.ViewModels
             eventHookService.Start();
 
             UpdateData();
+
+            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
+            ruleService.MatchAndApplyRuleToAllWindows();
         }
 
         public async void SaveConfig()
