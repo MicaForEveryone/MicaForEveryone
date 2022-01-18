@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MicaForEveryone.Interfaces
@@ -10,5 +11,7 @@ namespace MicaForEveryone.Interfaces
         void OpenInEditor();
         Task LoadAsync();
         Task SaveAsync();
+
+        event EventHandler Updated;
     }
 }

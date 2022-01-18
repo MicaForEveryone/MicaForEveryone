@@ -10,8 +10,26 @@ using MicaForEveryone.Interfaces;
 
 namespace MicaForEveryone.Models
 {
-    internal class ConfigFile : IConfigSource
+    internal class ConfigFile : IConfigSource, IDisposable
     {
+        private static StreamReader TryOpenFile(string filePath, int timeout = 1000)
+        {
+            var time = Stopwatch.StartNew();
+            while (time.ElapsedMilliseconds < timeout)
+            {
+                try
+                {
+                    return File.OpenText(filePath);
+                }
+                catch (IOException exception)
+                {
+                    if (exception.HResult != -2147024864)
+                        throw;
+                }
+            }
+            throw new TimeoutException($"Failed to get a write handle to {filePath} within {timeout}ms.");
+        }
+
         private static void OverrideToRuleFromSection(IRule rule, Section section)
         {
             rule.TitlebarColor = section.GetTitleBarColor().Value;
@@ -27,12 +45,28 @@ namespace MicaForEveryone.Models
         }
 
         private readonly string _filePath;
+        private readonly string _fileName;
 
         private Document _configDocument;
+        private FileSystemWatcher _fileSystemWatcher;
 
         public ConfigFile(string filePath)
         {
             _filePath = filePath;
+            _fileName = Path.GetFileName(filePath);
+            var directoryPath = Directory.GetParent(filePath).FullName;
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            _fileSystemWatcher = new FileSystemWatcher(directoryPath);
+            _fileSystemWatcher.Changed += FileSystemWatcher_Changed;
+            _fileSystemWatcher.EnableRaisingEvents = true;
+        }
+
+        public void Dispose()
+        {
+            _fileSystemWatcher.Dispose();
         }
 
         public void OpenInEditor()
@@ -107,15 +141,31 @@ namespace MicaForEveryone.Models
                 _configDocument = Document.Empty;
                 return;
             }
-            using var reader = File.OpenText(_filePath);
+            using var reader = TryOpenFile(_filePath);
             _configDocument = await Document.ParseAsync(reader);
         }
 
         public async Task SaveAsync()
         {
-            using var file = File.Open(_filePath, FileMode.Create, FileAccess.Write);
-            using var writer = new StreamWriter(file);
-            await _configDocument.SaveAsync(writer);
+            try
+            {
+                _fileSystemWatcher.EnableRaisingEvents = false;
+                using var file = File.Open(_filePath, FileMode.Create, FileAccess.Write);
+                using var writer = new StreamWriter(file);
+                await _configDocument.SaveAsync(writer);
+            }
+            finally
+            {
+                _fileSystemWatcher.EnableRaisingEvents = true;
+            }
         }
+
+        private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            if (e.Name == _fileName)
+                Updated?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler Updated;
     }
 }

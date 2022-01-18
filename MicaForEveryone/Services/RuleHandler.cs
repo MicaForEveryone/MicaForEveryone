@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Vanara.PInvoke;
+using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
+using MicaForEveryone.ViewModels;
 
 #if DEBUG
 using System.Diagnostics;
@@ -32,11 +34,17 @@ namespace MicaForEveryone.Services
         public RuleHandler(IConfigService configService)
         {
             _configService = configService;
+            _configService.ConfigSource.Updated += ConfigSource_Updated;
             _enumWindows = (windowHandle, _) =>
             {
                 MatchAndApplyRuleToWindow(windowHandle);
                 return true;
             };
+        }
+
+        ~RuleHandler()
+        {
+            _configService.ConfigSource.Updated -= ConfigSource_Updated;
         }
 
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
@@ -57,6 +65,12 @@ namespace MicaForEveryone.Services
         public void MatchAndApplyRuleToAllWindows()
         {
             User32.EnumWindows(_enumWindows, IntPtr.Zero);
+        }
+
+        private void ConfigSource_Updated(object sender, EventArgs e)
+        {
+            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+            viewService.MainWindow.RequestReloadConfig();
         }
     }
 }
