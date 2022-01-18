@@ -21,7 +21,7 @@ namespace MicaForEveryone.Xaml
             _xamlManager.Dispose();
         }
 
-        private void XamlApplication_BeforeTranslateMessage(Win32.NativeWindow window, ref MSG message, ref bool processed)
+        private void XamlApplication_BeforeTranslateMessage(NativeWindow window, ref MSG message, ref bool processed)
         {
             if (window is XamlWindow xamlWindow)
             {

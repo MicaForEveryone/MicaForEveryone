@@ -42,6 +42,12 @@ namespace MicaForEveryone
             _uwpApp.UnhandledException -= UwpApp_UnhandledException;
         }
 
+        public override void Dispose()
+        {
+            _uwpApp.Dispose();
+            base.Dispose();
+        }
+
         private string GetConfigFilePath()
         {
             var args = Environment.GetCommandLineArgs();
@@ -74,12 +80,6 @@ namespace MicaForEveryone
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
 
             return services.BuildServiceProvider();
-        }
-
-        public override void Dispose()
-        {
-            _uwpApp.Dispose();
-            base.Dispose();
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)

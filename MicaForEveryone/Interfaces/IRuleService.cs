@@ -1,5 +1,7 @@
 ﻿using Vanara.PInvoke;
 
+using MicaForEveryone.Models;
+
 namespace MicaForEveryone.Interfaces
 {
     public interface IRuleService
@@ -7,5 +9,7 @@ namespace MicaForEveryone.Interfaces
         public void MatchAndApplyRuleToAllWindows();
 
         public void MatchAndApplyRuleToWindow(HWND windowHandle);
+
+        TitlebarColorMode SystemTitlebarColorMode { get; set; }
     }
 }

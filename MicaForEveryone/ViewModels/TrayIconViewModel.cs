@@ -81,6 +81,7 @@ namespace MicaForEveryone.ViewModels
         public async void InitializeApp(object sender)
         {
             _window = (MainWindow)sender;
+            _window.View.ActualThemeChanged += View_ActualThemeChanged;
 
             var configService = Program.CurrentApp.Container.GetService<IConfigService>();
 
@@ -92,6 +93,13 @@ namespace MicaForEveryone.ViewModels
             UpdateData();
 
             var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
+            
+            await _window.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+                ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
+            });
+
             ruleService.MatchAndApplyRuleToAllWindows();
         }
 
@@ -204,6 +212,14 @@ namespace MicaForEveryone.ViewModels
             UpdateData();
             _window.RequestRematchRules();
             _window.RequestSaveConfig();
+        }
+
+        private void View_ActualThemeChanged(Windows.UI.Xaml.FrameworkElement sender, object args)
+        {
+            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
+            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+            ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
+            _window.RequestRematchRules();
         }
 
         // commands
