@@ -71,7 +71,15 @@ namespace MicaForEveryone.Models
 
         public void OpenInEditor()
         {
-            Process.Start(_filePath);
+            var startInfo = new ProcessStartInfo(_filePath)
+            {
+                UseShellExecute = true
+            };
+            if (startInfo.Verbs.Contains("edit"))
+            {
+                startInfo.Verb = "edit";
+            }
+            Process.Start(startInfo);
         }
 
         public IEnumerable<IRule> GetRules()
