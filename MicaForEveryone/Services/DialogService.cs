@@ -43,7 +43,7 @@ namespace MicaForEveryone.Services
                 dialog.Dispose();
             };
             dialog.SetTitle(title);
-            dialog.SetContent(title);
+            dialog.SetContent(content);
             ShowDialog(parent, dialog);
         }
 
@@ -55,7 +55,7 @@ namespace MicaForEveryone.Services
                 Height = height,
             };
             dialog.SetTitle(title);
-            dialog.SetContent(title);
+            dialog.SetContent(content);
             RunDialog(dialog);
         }
     }
