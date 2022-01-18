@@ -19,6 +19,7 @@ namespace MicaForEveryone.ViewModels
         ICommand ChangeBackdropTypeCommand { get; }
         ICommand ChangeExtendFrameIntoClientAreaCommand { get; }
         ICommand AboutCommand { get; }
+        ICommand EditConfigCommand { get; }
 
         void InitializeApp(object sender);
         void SaveConfig();

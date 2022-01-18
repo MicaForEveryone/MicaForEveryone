@@ -33,6 +33,7 @@ namespace MicaForEveryone.ViewModels
             ChangeBackdropTypeCommand = new RelyCommand(ChangeBackdropType);
             ChangeExtendFrameIntoClientAreaCommand = new RelyCommand(ChangeExtendFrameIntoClientArea);
             AboutCommand = new RelyCommand(ShowAboutDialog);
+            EditConfigCommand = new RelyCommand(OpenConfigInEditor);
 
 #if DEBUG
             SystemBackdropIsSupported = true;
@@ -77,6 +78,8 @@ namespace MicaForEveryone.ViewModels
         public ICommand ChangeExtendFrameIntoClientAreaCommand { get; }
 
         public ICommand AboutCommand { get; }
+
+        public ICommand EditConfigCommand { get; }
 
         public async void InitializeApp(object sender)
         {
@@ -280,6 +283,12 @@ namespace MicaForEveryone.ViewModels
 
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
             dialogService.ShowDialog(_window, dialog);
+        }
+
+        private void OpenConfigInEditor(object obj)
+        {
+            var configService = Program.CurrentApp.Container.GetService<IConfigService>();
+            configService.ConfigSource.OpenInEditor();
         }
     }
 }
