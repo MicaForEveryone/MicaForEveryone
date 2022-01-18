@@ -4,12 +4,10 @@ namespace MicaForEveryone.Views
 {
     public class ErrorDialog : ContentDialog
     {
-        public ErrorDialog() : base(new ContentDialogView())
+        public ErrorDialog() : base(new())
         {
             ClassName = nameof(ErrorDialog);
             Title = "Mica For Everyone";
-            Width = 576;
-            Height = 320;
         }
     }
 }

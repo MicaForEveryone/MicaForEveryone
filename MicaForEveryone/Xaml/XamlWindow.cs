@@ -1,15 +1,16 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
+using Windows.UI.Core;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 using Vanara.PInvoke;
 
 using static Vanara.PInvoke.User32;
 
-using MicaForEveryone.Extensions;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Xaml
 {
-    public class XamlWindow : Win32.Window
+    public class XamlWindow : NativeWindow
     {
         private readonly DesktopWindowXamlSource _xamlSource = new();
 
@@ -22,7 +23,7 @@ namespace MicaForEveryone.Xaml
 
         public IDesktopWindowXamlSourceNative2 Interop { get; private set; }
 
-        public Windows.UI.Core.CoreDispatcher Dispatcher { get; private set; }
+        public CoreDispatcher Dispatcher { get; private set; }
 
         public override void Dispose()
         {
@@ -36,7 +37,7 @@ namespace MicaForEveryone.Xaml
             Interop = _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
             Interop.AttachToWindow(Handle);
             UpdateXamlSourcePosition();
-            Dispatcher = Window.Current.Dispatcher;
+            Dispatcher = View.Dispatcher;
         }
 
         public void UpdateXamlSourcePosition()
@@ -45,7 +46,7 @@ namespace MicaForEveryone.Xaml
             Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlDialog_SizeChanged(object sender, Win32.WindowEventArgs e)
+        private void XamlDialog_SizeChanged(object sender, Win32EventArgs e)
         {
             UpdateXamlSourcePosition();
         }

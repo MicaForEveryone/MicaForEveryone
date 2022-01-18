@@ -1,22 +1,29 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Extensions;
 using MicaForEveryone.UI;
 using MicaForEveryone.Xaml;
+using MicaForEveryone.Win32;
+using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Views
 {
     public class ContentDialog : XamlDialog
     {
+        private static RelyCommand CloseDialogCommand { get; } =
+            new RelyCommand(dialog => ((Dialog)dialog).Close());
+
         private readonly ContentDialogView _view;
 
         protected ContentDialog(ContentDialogView view) : base(view)
         {
             _view = view;
+            _view.ViewModel = Program.CurrentApp.Container.GetService<IContentDialogViewModel>();
             _view.ViewModel.IsPrimaryButtonEnabled = true;
             _view.ViewModel.PrimaryButtonContent = "OK";
-            _view.ViewModel.PrimaryCommand = App.CloseDialogCommand;
+            _view.ViewModel.PrimaryCommand = CloseDialogCommand;
             _view.ViewModel.PrimaryCommandParameter = this;
             _view.ActualThemeChanged += View_ActualThemeChanged;
         }
