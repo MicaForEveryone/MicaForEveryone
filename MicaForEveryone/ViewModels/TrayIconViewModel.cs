@@ -96,7 +96,7 @@ namespace MicaForEveryone.ViewModels
             UpdateData();
 
             var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
-            
+
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
                 var viewService = Program.CurrentApp.Container.GetService<IViewService>();
@@ -285,10 +285,13 @@ namespace MicaForEveryone.ViewModels
             dialogService.ShowDialog(_window, dialog);
         }
 
-        private void OpenConfigInEditor(object obj)
+        private async void OpenConfigInEditor(object obj)
         {
-            var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-            configService.ConfigSource.OpenInEditor();
+            await Task.Run(() =>
+            {
+                var configService = Program.CurrentApp.Container.GetService<IConfigService>();
+                configService.ConfigSource.OpenInEditor();
+            });
         }
     }
 }
