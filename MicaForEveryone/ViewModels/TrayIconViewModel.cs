@@ -87,23 +87,20 @@ namespace MicaForEveryone.ViewModels
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
 
             var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-
             await configService.LoadAsync();
-
-            var eventHookService = Program.CurrentApp.Container.GetService<IEventHookService>();
-            eventHookService.Start();
 
             UpdateData();
 
-            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
-
-            await _window.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
                 var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-                ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
-            });
+                var eventHookService = Program.CurrentApp.Container.GetService<IEventHookService>();
 
-            ruleService.MatchAndApplyRuleToAllWindows();
+                ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
+                eventHookService.Start();
+                ruleService.MatchAndApplyRuleToAllWindows();
+            });
         }
 
         public async void SaveConfig()
