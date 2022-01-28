@@ -17,7 +17,7 @@ namespace MicaForEveryone.Services
             Program.CurrentApp.Run(mainWindow);
         }
 
-        public TitlebarColorMode SystemColorMode => Application.Current.RequestedTheme switch
+        public TitlebarColorMode SystemColorMode => Program.CurrentApp.UwpApp.RequestedTheme switch
         {
             ApplicationTheme.Light => TitlebarColorMode.Light,
             ApplicationTheme.Dark => TitlebarColorMode.Dark,

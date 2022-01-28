@@ -14,7 +14,7 @@ namespace MicaForEveryone
 {
     internal partial class App : XamlApplication, IDisposable
     {
-        private readonly UI.App _uwpApp = new();
+        public UI.App UwpApp { get; } = new();
 
         public IServiceProvider Container { get; private set; }
 
@@ -23,7 +23,7 @@ namespace MicaForEveryone
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             Container = RegisterServices();
-            _uwpApp.Container = Container;
+            UwpApp.Container = Container;
 
             if (Environment.OSVersion.Version.Build < 22000)
             {
@@ -32,19 +32,28 @@ namespace MicaForEveryone
                 return;
             }
 
-            _uwpApp.UnhandledException += UwpApp_UnhandledException;
+            UwpApp.UnhandledException += UwpApp_UnhandledException;
+
+            var viewService = Container.GetService<IViewService>();
+            var ruleService = Container.GetService<IRuleService>();
+            var configService = Container.GetService<IConfigService>();
+            var eventHookService = Container.GetService<IEventHookService>();
+
+            configService.LoadAsync().Wait();
+            ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
+            eventHookService.Start();
+            ruleService.MatchAndApplyRuleToAllWindows();
 
             using var mainWindow = new MainWindow();
-            var viewService = Container.GetService<IViewService>();
             viewService.Run(mainWindow);
 
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
-            _uwpApp.UnhandledException -= UwpApp_UnhandledException;
+            UwpApp.UnhandledException -= UwpApp_UnhandledException;
         }
 
         public override void Dispose()
         {
-            _uwpApp.Dispose();
+            UwpApp.Dispose();
             base.Dispose();
         }
 
