@@ -81,12 +81,29 @@ namespace MicaForEveryone.ViewModels
 
         public ICommand EditConfigCommand { get; }
 
-        public void InitializeApp(object sender)
+        public async void InitializeApp(object sender)
         {
             _window = (MainWindow)sender;
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
 
+            var configService = Program.CurrentApp.Container.GetService<IConfigService>();
+
+            await configService.LoadAsync();
+
+            var eventHookService = Program.CurrentApp.Container.GetService<IEventHookService>();
+            eventHookService.Start();
+
             UpdateData();
+
+            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
+
+            await _window.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+                ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
+            });
+
+            ruleService.MatchAndApplyRuleToAllWindows();
         }
 
         public async void SaveConfig()
