@@ -43,7 +43,7 @@ namespace MicaForEveryone.Xaml
             Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlDialog_SizeChanged(object sender, Win32.Win32EventArgs e)
+        private void XamlDialog_SizeChanged(object sender, Win32EventArgs e)
         {
             UpdateXamlSourcePosition();
         }

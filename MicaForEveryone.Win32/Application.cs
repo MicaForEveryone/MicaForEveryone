@@ -7,8 +7,12 @@ namespace MicaForEveryone.Win32
 {
     public class Application
     {
+        private NativeWindow _mainWindow;
+
         public void Run(NativeWindow window)
         {
+            _mainWindow = window;
+
             BeforeRun?.Invoke(this, EventArgs.Empty);
 
             window.Destroy += Window_OnDestroy;

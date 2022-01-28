@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MicaForEveryone": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

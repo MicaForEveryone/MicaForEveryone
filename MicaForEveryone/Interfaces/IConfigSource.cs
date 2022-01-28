@@ -11,6 +11,8 @@ namespace MicaForEveryone.Interfaces
         void OpenInEditor();
         Task LoadAsync();
         Task SaveAsync();
+        bool GetWatchState();
+        void SetWatchState(bool state);
 
         event EventHandler Updated;
     }

@@ -20,6 +20,7 @@ namespace MicaForEveryone.ViewModels
         ICommand ChangeExtendFrameIntoClientAreaCommand { get; }
         ICommand AboutCommand { get; }
         ICommand EditConfigCommand { get; }
+        ICommand OpenSettingsCommand { get; }
 
         void InitializeApp(object sender);
         void SaveConfig();

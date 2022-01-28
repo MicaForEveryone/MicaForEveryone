@@ -37,7 +37,8 @@ namespace MicaForEveryone.Services
             _configService.ConfigSource.Updated += ConfigSource_Updated;
             _enumWindows = (windowHandle, _) =>
             {
-                MatchAndApplyRuleToWindow(windowHandle);
+                if (!windowHandle.IsOwned())
+                    MatchAndApplyRuleToWindow(windowHandle);
                 return true;
             };
         }

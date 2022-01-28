@@ -78,6 +78,9 @@
     </Compile>
     <Compile Include="Converters\IsEqualConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TrayIconView.xaml.cs">
       <DependentUpon>TrayIconView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TrayIconView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

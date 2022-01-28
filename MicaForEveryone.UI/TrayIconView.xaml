@@ -28,19 +28,19 @@
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}"
                         CommandParameter="Default"/>
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="System" 
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=System, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}"
                         CommandParameter="System"/>
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="Light"
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Light, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}" 
                         CommandParameter="Light"/>
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="Dark" 
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Dark, Mode=OneWay}"
@@ -48,7 +48,7 @@
                         CommandParameter="Dark"/>
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
-            
+
             <MenuFlyoutSubItem Text="Backdrop Type">
                 <MenuFlyoutSubItem.Icon>
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF5EF;" />
@@ -59,25 +59,25 @@
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}" 
                         CommandParameter="Default" />
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="None" 
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=None, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}" 
                         CommandParameter="None"/>
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="Mica (Tinted Wallpaper)" IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Mica, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}" 
                         CommandParameter="Mica" />
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="Acrylic"
                         Visibility="{x:Bind ViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Acrylic, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}" 
                         CommandParameter="Acrylic" />
-                    
+
                     <ToggleMenuFlyoutItem 
                         Text="Tabbed (Blurred Wallpaper)"
                         Visibility="{x:Bind ViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}"
@@ -86,7 +86,7 @@
                         CommandParameter="Tabbed" />
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
-            
+
             <MenuFlyoutSubItem 
                 Text="Extend Frame Into Client Area">
                 <MenuFlyoutSubItem.Items>
@@ -95,7 +95,7 @@
                         IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=OneWay}"
                         Command="{x:Bind ViewModel.ChangeExtendFrameIntoClientAreaCommand}"
                         CommandParameter="True"/>
-                    
+
                     <ToggleMenuFlyoutItem
                         Text="Disabled"
                         IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea.Equals(x:False), Mode=OneWay}"
@@ -103,19 +103,28 @@
                         CommandParameter="False"/>
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
-            
+
             <MenuFlyoutSeparator />
-            
-            <MenuFlyoutItem Text="Edit Config File" Command="{x:Bind ViewModel.EditConfigCommand}">
-                <MenuFlyoutItem.Icon>
-                    <SymbolIcon Symbol="Edit" />
-                </MenuFlyoutItem.Icon>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Reload Config" Command="{x:Bind ViewModel.ReloadConfigCommand}">
-                <MenuFlyoutItem.Icon>
-                    <SymbolIcon Symbol="Refresh" />
-                </MenuFlyoutItem.Icon>
-            </MenuFlyoutItem>
+
+            <MenuFlyoutSubItem Text="Config">
+                <MenuFlyoutSubItem.Items>
+                    <MenuFlyoutItem Text="Settings" Command="{x:Bind ViewModel.OpenSettingsCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <SymbolIcon Symbol="Setting" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="Open in Editor" Command="{x:Bind ViewModel.EditConfigCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8E5;" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="Reload" Command="{x:Bind ViewModel.ReloadConfigCommand}">
+                        <MenuFlyoutItem.Icon>
+                            <SymbolIcon Symbol="Refresh" />
+                        </MenuFlyoutItem.Icon>
+                    </MenuFlyoutItem>
+                </MenuFlyoutSubItem.Items>
+            </MenuFlyoutSubItem>
             <MenuFlyoutItem Text="About" Command="{x:Bind ViewModel.AboutCommand}">
                 <MenuFlyoutItem.Icon>
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE946;" />

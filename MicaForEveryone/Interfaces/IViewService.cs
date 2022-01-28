@@ -8,7 +8,9 @@ namespace MicaForEveryone.Interfaces
         TitlebarColorMode SystemColorMode { get; }
 
         MainWindow MainWindow { get; }
+        SettingsWindow SettingsWindow { get; }
 
-        void Run(MainWindow window);
+        void Run();
+        void ShowSettingsWindow();
     }
 }

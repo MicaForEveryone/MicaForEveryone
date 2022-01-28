@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
@@ -6,15 +7,32 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Services
 {
-    internal class ViewService : IViewService
+    internal class ViewService : IViewService, IDisposable
     {
         public MainWindow MainWindow { get; private set; }
+        public SettingsWindow SettingsWindow { get; private set; }
 
-        public void Run(MainWindow mainWindow)
+        public void Run()
         {
-            MainWindow = mainWindow;
-            mainWindow.Activate();
-            Program.CurrentApp.Run(mainWindow);
+            if (MainWindow != null) return;
+            MainWindow = new MainWindow();
+            MainWindow.Destroy += MainWindow_Destroy;
+            MainWindow.Activate();
+            Program.CurrentApp.Run(MainWindow);
+        }
+
+        public void ShowSettingsWindow()
+        {
+            if (SettingsWindow == null)
+            {
+                SettingsWindow = new SettingsWindow();
+                SettingsWindow.Destroy += SettingsWindow_Destroy;
+
+                SettingsWindow.Activate();
+                SettingsWindow.SetForegroundWindow();
+            }
+
+            SettingsWindow.SetForegroundWindow();
         }
 
         public TitlebarColorMode SystemColorMode => Application.Current.RequestedTheme switch
@@ -23,5 +41,25 @@ namespace MicaForEveryone.Services
             ApplicationTheme.Dark => TitlebarColorMode.Dark,
             _ => TitlebarColorMode.Default,
         };
+
+        private void MainWindow_Destroy(object sender, Win32.Win32EventArgs e)
+        {
+            MainWindow.Dispose();
+            MainWindow = null;
+        }
+
+        private void SettingsWindow_Destroy(object sender, Win32.Win32EventArgs e)
+        {
+            SettingsWindow.Dispose();
+            SettingsWindow = null;
+        }
+
+        public void Dispose()
+        {
+            if (MainWindow != null)
+                MainWindow.Dispose();
+            if (SettingsWindow != null)
+                SettingsWindow.Dispose();
+        }
     }
 }

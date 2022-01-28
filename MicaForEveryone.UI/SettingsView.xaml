@@ -1,0 +1,64 @@
+﻿<UserControl
+    x:Class="MicaForEveryone.UI.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MicaForEveryone.UI"
+    xmlns:mux="using:Microsoft.UI.Xaml.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="500"
+    d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Padding="12">
+            <StackPanel Spacing="8">
+                <CheckBox Content="Reload config on changes" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
+                <CheckBox Content="Run on startup" />
+                <mux:Expander HorizontalAlignment="Stretch" Header="Global Rule" IsExpanded="True">
+                    <StackPanel Spacing="6">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Titlebar Color:" />
+                            <ComboBox Grid.Column="1">
+                                <ComboBoxItem Content="Default" />
+                                <ComboBoxItem Content="System" />
+                                <ComboBoxItem Content="Light" />
+                                <ComboBoxItem Content="Dark" />
+                            </ComboBox>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Backdrop Type:" />
+                            <ComboBox Grid.Column="1">
+                                <ComboBoxItem Content="Default" />
+                                <ComboBoxItem Content="None" />
+                                <ComboBoxItem Content="Mica" />
+                                <ComboBoxItem Content="Acrylic" />
+                                <ComboBoxItem Content="Tabbed" />
+                            </ComboBox>
+                        </Grid>
+                    </StackPanel>
+                </mux:Expander>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="Close" Style="{ThemeResource AccentButtonStyle}" Margin="8" />
+        </Grid>
+    </Grid>
+</UserControl>

@@ -23,6 +23,12 @@ namespace MicaForEveryone.Win32
             return Process.GetProcessById((int) pid).ProcessName;
         }
 
+        public static bool IsOwned(this HWND hwnd)
+        {
+            User32.GetWindowThreadProcessId(hwnd, out var pid);
+            return Process.GetCurrentProcess().Id == pid;
+        }
+
         public static string GetClassName(this HWND hwnd)
         {
             var buffer = new StringBuilder(256);

@@ -168,6 +168,16 @@ namespace MicaForEveryone.Models
             }
         }
 
+        public bool GetWatchState()
+        {
+            return _fileSystemWatcher.EnableRaisingEvents;
+        }
+
+        public void SetWatchState(bool state)
+        {
+            _fileSystemWatcher.EnableRaisingEvents = state;
+        }
+
         private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             if (e.Name == _fileName)

@@ -34,9 +34,8 @@ namespace MicaForEveryone
 
             _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
-            using var mainWindow = new MainWindow();
             var viewService = Container.GetService<IViewService>();
-            viewService.Run(mainWindow);
+            viewService.Run();
 
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
             _uwpApp.UnhandledException -= UwpApp_UnhandledException;
