@@ -9,7 +9,7 @@
             <converters:EnumConverter x:Name="EnumConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid x:Name="rootElement" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />

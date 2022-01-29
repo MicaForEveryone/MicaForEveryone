@@ -1,4 +1,5 @@
-﻿using MicaForEveryone.ViewModels;
+﻿using MicaForEveryone.UI.Brushes;
+using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.UI
 {
@@ -7,9 +8,6 @@ namespace MicaForEveryone.UI
         public SettingsView()
         {
             InitializeComponent();
-            #if DEBUG
-            rootElement.Background = new Brushes.BackdropBrushXaml();
-            #endif
         }
 
         public ISettingsViewModel ViewModel { get; set; }

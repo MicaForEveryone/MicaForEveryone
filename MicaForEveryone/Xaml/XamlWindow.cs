@@ -7,10 +7,12 @@ using Vanara.PInvoke;
 using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.Win32;
+using MicaForEveryone.Models;
+using System;
 
 namespace MicaForEveryone.Xaml
 {
-    public class XamlWindow : NativeWindow
+    public class XamlWindow : NativeWindow, IFocusableWindow
     {
         private readonly DesktopWindowXamlSource _xamlSource = new();
 
@@ -51,5 +53,24 @@ namespace MicaForEveryone.Xaml
         {
             UpdateXamlSourcePosition();
         }
+
+        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        {
+            if (umsg == (uint)WindowMessage.WM_ACTIVATE)
+            {
+                if (Macros.LOWORD(wParam) == 0) // WA_INACTIVE = 0
+                {
+                    LostFocus?.Invoke(this, EventArgs.Empty);
+                }
+                else // WA_ACTIVE or WA_CLICKACTIVE
+                {
+                    GotFocus?.Invoke(this, EventArgs.Empty);
+                }
+            }
+            return base.WndProc(hwnd, umsg, wParam, lParam);
+        }
+
+        public event EventHandler GotFocus;
+        public event EventHandler LostFocus;
     }
 }
