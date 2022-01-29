@@ -1,13 +1,14 @@
-﻿using MicaForEveryone.Models;
-using Microsoft.Graphics.Canvas.Effects;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Graphics.Canvas.Effects;
 using Windows.System.Power;
 using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+
+using MicaForEveryone.Models;
 
 // based on gist: https://gist.github.com/lhak/641becbc6a4a5f809c224fc83600bb36
 

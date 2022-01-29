@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Models;
+using System.Collections.ObjectModel;
+using System;
 
 namespace MicaForEveryone.ViewModels
 {
@@ -20,6 +22,23 @@ namespace MicaForEveryone.ViewModels
             CloseCommand = new RelyCommand(Close);
 
             _viewService.MainWindow.ViewModel.PropertyChanged += TrayIconViewModel_PropertyChanged;
+
+            BackdropTypesSource.Add(BackdropType.Default);
+            BackdropTypesSource.Add(BackdropType.None);
+            BackdropTypesSource.Add(BackdropType.Mica);
+
+            #if !DEBUG
+            if (SystemBackdropIsSupported)
+            #endif
+            {
+                BackdropTypesSource.Add(BackdropType.Acrylic);
+                BackdropTypesSource.Add(BackdropType.Tabbed);
+            }
+
+            foreach (TitlebarColorMode item in Enum.GetValues(typeof(TitlebarColorMode)))
+            {
+                TitlebarColorModesSource.Add(item);
+            }
         }
 
         ~SettingsViewModel()
@@ -64,6 +83,10 @@ namespace MicaForEveryone.ViewModels
         }
 
         public ICommand CloseCommand { get; }
+
+        public ObservableCollection<BackdropType> BackdropTypesSource { get; } = new ObservableCollection<BackdropType>();
+
+        public ObservableCollection<TitlebarColorMode> TitlebarColorModesSource { get; } = new ObservableCollection<TitlebarColorMode>();
 
         private void Close(object obj)
         {

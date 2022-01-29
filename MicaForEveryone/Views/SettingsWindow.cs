@@ -1,14 +1,14 @@
-﻿using MicaForEveryone.Interfaces;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+using static Vanara.PInvoke.User32;
+
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Brushes;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using Vanara.PInvoke;
-using static Vanara.PInvoke.User32;
 
 namespace MicaForEveryone.Views
 {

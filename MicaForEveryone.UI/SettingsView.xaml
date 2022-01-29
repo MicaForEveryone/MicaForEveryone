@@ -40,12 +40,7 @@
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Titlebar Color:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.TitlebarColor,Mode=TwoWay,Converter={StaticResource EnumConverter}}">
-                                    <ComboBoxItem Content="Default" />
-                                    <ComboBoxItem Content="System" />
-                                    <ComboBoxItem Content="Light" />
-                                    <ComboBoxItem Content="Dark" />
-                                </ComboBox>
+                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.TitlebarColor,Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.TitlebarColorModesSource}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -53,13 +48,7 @@
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Backdrop Type:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.BackdropType,Mode=TwoWay,Converter={StaticResource EnumConverter}}">
-                                    <ComboBoxItem Content="Default" />
-                                    <ComboBoxItem Content="None" />
-                                    <ComboBoxItem Content="Mica" />
-                                    <ComboBoxItem Content="Acrylic" IsEnabled="{x:Bind ViewModel.SystemBackdropIsSupported}" />
-                                    <ComboBoxItem Content="Tabbed" IsEnabled="{x:Bind ViewModel.SystemBackdropIsSupported}" />
-                                </ComboBox>
+                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.BackdropType,Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.BackdropTypesSource}" />
                             </Grid>
                             <CheckBox Content="Extend Frame Into Client Area (NOT RECOMMENDED)" IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea,Mode=TwoWay}" />
                         </StackPanel>
