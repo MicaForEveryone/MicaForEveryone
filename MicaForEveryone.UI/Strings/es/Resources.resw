@@ -117,40 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutTitle.Text" xml:space="preserve">
-    <value>About this app</value>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
   </data>
-  <data name="AppName.Text" xml:space="preserve">
-    <value>Mica for Everyone</value>
-  </data>
-  <data name="BackdropTypeLabel.Text" xml:space="preserve">
-    <value>Backdrop Type:</value>
-  </data>
-  <data name="ExtendFrameIntoClientAreaCheckBox.Content" xml:space="preserve">
-    <value>Extend Frame Into Client Area (NOT RECOMMENDED)</value>
-  </data>
-  <data name="GeneralExpander.Header" xml:space="preserve">
-    <value>General</value>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Configuración</value>
   </data>
   <data name="GithubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="GlobalRuleExpander.Header" xml:space="preserve">
-    <value>Global Rule</value>
+  <data name="GeneralExpander.Header" xml:space="preserve">
+    <value>General</value>
   </data>
-  <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
-    <value>Reload Config File on changes</value>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Acerca de esta aplicación</value>
   </data>
-  <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
-    <value>Run on Startup (not implemented)</value>
-  </data>
-  <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="TelegramButton.Content" xml:space="preserve">
-    <value>Telegram</value>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>Mica for Everyone</value>
   </data>
   <data name="TitlebarColorLabel.Text" xml:space="preserve">
-    <value>Titlebar Color:</value>
+    <value>Color de la barra de título:</value>
+  </data>
+  <data name="GlobalRuleExpander.Header" xml:space="preserve">
+    <value>Regla global</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaCheckBox.Content" xml:space="preserve">
+    <value>Extender el marco al área de cliente (NO RECOMENDADO)</value>
+  </data>
+  <data name="BackdropTypeLabel.Text" xml:space="preserve">
+    <value>Tipo de fondo:</value>
+  </data>
+  <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
+    <value>Ejecutar al inicio (no implementado)</value>
+  </data>
+  <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
+    <value>Volver a cargar el archivo de configuración cuando se produzcan cambios</value>
   </data>
 </root>
