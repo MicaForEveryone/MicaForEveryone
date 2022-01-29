@@ -14,60 +14,90 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ScrollViewer Padding="12">
-            <StackPanel Spacing="8">
-                <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="General">
-                    <StackPanel Spacing="6">
-                        <CheckBox Content="Reload config on changes" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-                        <Border Height="1" Background="{ThemeResource SystemControlPageBackgroundBaseLowBrush}" />
-                        <CheckBox Content="Run on startup" HorizontalAlignment="Stretch" IsEnabled="False" />
-                    </StackPanel>
-                </mux:Expander>
-                <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Global Rule">
-                    <StackPanel Spacing="6">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="200" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Titlebar Color:" HorizontalAlignment="Stretch" />
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
-                                <ComboBoxItem Content="Default" />
-                                <ComboBoxItem Content="System" />
-                                <ComboBoxItem Content="Light" />
-                                <ComboBoxItem Content="Dark" />
-                            </ComboBox>
-                        </Grid>
-                        <Border Height="1" Background="{ThemeResource SystemControlPageBackgroundBaseLowBrush}" />
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="200" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="Backdrop Type:" HorizontalAlignment="Stretch" />
-                            <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
-                                <ComboBoxItem Content="Default" />
-                                <ComboBoxItem Content="None" />
-                                <ComboBoxItem Content="Mica" />
-                                <ComboBoxItem Content="Acrylic" />
-                                <ComboBoxItem Content="Tabbed" />
-                            </ComboBox>
-                        </Grid>
-                        <Border Height="1" Background="{ThemeResource SystemControlPageBackgroundBaseLowBrush}" />
-                        <CheckBox Content="Extend Frame Into Client Area" />
-                    </StackPanel>
-                </mux:Expander>
-                <TextBlock Text="About this app" Style="{ThemeResource SubtitleTextBlockStyle}" />
-                <TextBlock Text="Mica for Everyone v0.0.0.0" />
-                <HyperlinkButton Content="Github" NavigateUri="https://github.com/minusium/MicaForEveryone" />
-            </StackPanel>
+        <ScrollViewer Padding="8">
+            <Grid Padding="16">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Spacing="12" Grid.Row="0">
+                    <TextBlock Text="Settings" Style="{ThemeResource TitleTextBlockStyle}" />
+                    <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="General">
+                        <StackPanel Spacing="6">
+                            <CheckBox Content="Reload config on changes" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+                            <CheckBox Content="Run on startup (coming soon)" HorizontalAlignment="Stretch" IsEnabled="False" />
+                        </StackPanel>
+                    </mux:Expander>
+                    <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Global Rule">
+                        <StackPanel Spacing="6">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" MaxWidth="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Titlebar Color:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
+                                    <ComboBoxItem Content="Default" />
+                                    <ComboBoxItem Content="System" />
+                                    <ComboBoxItem Content="Light" />
+                                    <ComboBoxItem Content="Dark" />
+                                </ComboBox>
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" MaxWidth="100" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Backdrop Type:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
+                                    <ComboBoxItem Content="Default" />
+                                    <ComboBoxItem Content="None" />
+                                    <ComboBoxItem Content="Mica" />
+                                    <ComboBoxItem Content="Acrylic" />
+                                    <ComboBoxItem Content="Tabbed" />
+                                </ComboBox>
+                            </Grid>
+                            <CheckBox Content="Extend Frame Into Client Area (NOT RECOMMENDED)" />
+                        </StackPanel>
+                    </mux:Expander>
+                </StackPanel>
+                <StackPanel x:Name="AboutSection" Orientation="Vertical" Grid.Row="1" Spacing="8" Margin="0, 16, 0, 0">
+                    <TextBlock Text="About this app" FontSize="14" FontWeight="Bold" />
+                    <TextBlock Text="Mica for Everyone v0.0.0.0" />
+                    <HyperlinkButton Content="Github" NavigateUri="https://github.com/minusium/MicaForEveryone" />
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Padding="12">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Close" Style="{ThemeResource AccentButtonStyle}" Margin="8" />
+            <Button Grid.Column="1" Content="Close" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind ViewModel.CloseCommand}" />
         </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="640" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AboutSection.(Grid.Row)" Value="0" />
+                        <Setter Target="AboutSection.(Grid.Column)" Value="1" />
+                        <Setter Target="AboutSection.Margin" Value="32,0,32,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>
