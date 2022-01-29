@@ -7,8 +7,11 @@ namespace MicaForEveryone.ViewModels
 {
     internal class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
-        public SettingsViewModel()
+        private readonly IConfigService _configService;
+
+        public SettingsViewModel(IConfigService configService)
         {
+            _configService = configService;
             CloseCommand = new RelyCommand(Close);
         }
 
@@ -16,13 +19,11 @@ namespace MicaForEveryone.ViewModels
         {
             get
             {
-                var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-                return configService.ConfigSource.GetWatchState();
+                return _configService.ConfigSource.GetWatchState();
             }
             set
             {
-                var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-                configService.ConfigSource.SetWatchState(value);
+                _configService.ConfigSource.SetWatchState(value);
                 OnPropertyChanged();
             }
         }

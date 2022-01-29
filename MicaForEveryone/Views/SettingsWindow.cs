@@ -1,11 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using MicaForEveryone.UI;
-using MicaForEveryone.Xaml;
-using MicaForEveryone.Win32;
-using MicaForEveryone.Models;
 using Vanara.PInvoke;
 using static Vanara.PInvoke.User32;
+
 using MicaForEveryone.Interfaces;
+using MicaForEveryone.Models;
+using MicaForEveryone.UI;
+using MicaForEveryone.ViewModels;
+using MicaForEveryone.Win32;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
@@ -24,7 +26,12 @@ namespace MicaForEveryone.Views
             Width = 400;
             Height = 500;
             Create += SettingsWindow_Create;
+            
+            view.ViewModel = ViewModel;
         }
+
+        private ISettingsViewModel ViewModel { get; } =
+            Program.CurrentApp.Container.GetService<ISettingsViewModel>();
 
         private void SettingsWindow_Create(object sender, Win32EventArgs e)
         {

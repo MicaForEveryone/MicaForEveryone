@@ -17,6 +17,7 @@ namespace MicaForEveryone.Xaml
         public XamlWindow(FrameworkElement view)
         {
             _xamlSource.Content = view;
+            SizeChanged += XamlWindow_SizeChanged;
         }
 
         public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
@@ -46,7 +47,7 @@ namespace MicaForEveryone.Xaml
             Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlDialog_SizeChanged(object sender, Win32EventArgs e)
+        private void XamlWindow_SizeChanged(object sender, Win32EventArgs e)
         {
             UpdateXamlSourcePosition();
         }

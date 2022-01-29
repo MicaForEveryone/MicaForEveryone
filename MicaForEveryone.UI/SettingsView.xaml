@@ -20,15 +20,15 @@
                     <StackPanel Spacing="6">
                         <CheckBox Content="Reload config on changes" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" HorizontalAlignment="Stretch" />
                         <Border Height="1" Background="{ThemeResource SystemControlPageBackgroundBaseLowBrush}" />
-                        <CheckBox Content="Run on startup" HorizontalAlignment="Stretch" />
+                        <CheckBox Content="Run on startup" HorizontalAlignment="Stretch" IsEnabled="False" />
                     </StackPanel>
                 </mux:Expander>
                 <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Global Rule">
                     <StackPanel Spacing="6">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Titlebar Color:" HorizontalAlignment="Stretch" />
                             <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
@@ -41,8 +41,8 @@
                         <Border Height="1" Background="{ThemeResource SystemControlPageBackgroundBaseLowBrush}" />
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="200" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="0" Text="Backdrop Type:" HorizontalAlignment="Stretch" />
                             <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
