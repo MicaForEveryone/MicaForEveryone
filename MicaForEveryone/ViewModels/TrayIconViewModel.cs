@@ -42,6 +42,7 @@ namespace MicaForEveryone.ViewModels
 #else
             SystemBackdropIsSupported = SystemBackdrop.IsSupported;
 #endif
+            PropertyChanged += TrayIconViewModel_PropertyChanged;
         }
 
         public bool SystemBackdropIsSupported
@@ -193,6 +194,27 @@ namespace MicaForEveryone.ViewModels
             tooltip.IsOpen = false;
         }
 
+        private void TrayIconViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var rule = GetGlobalRule();
+            switch (e.PropertyName)
+            {
+                case nameof(BackdropType):
+                    rule.BackdropPreference = BackdropType;
+                    break;
+                case nameof(TitlebarColor):
+                    rule.TitlebarColor = TitlebarColor;
+                    break;
+                case nameof(ExtendFrameIntoClientArea):
+                    rule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
+                    break;
+                default:
+                    return;
+            }
+            _window.RequestRematchRules();
+            _window.RequestSaveConfig();
+        }
+
         private async void UpdateData()
         {
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -208,13 +230,6 @@ namespace MicaForEveryone.ViewModels
         {
             var configService = Program.CurrentApp.Container.GetService<IConfigService>();
             return configService.Rules.First(rule => rule is GlobalRule);
-        }
-
-        private void PostRuleChanged()
-        {
-            UpdateData();
-            _window.RequestRematchRules();
-            _window.RequestSaveConfig();
         }
 
         private void View_ActualThemeChanged(Windows.UI.Xaml.FrameworkElement sender, object args)
@@ -234,8 +249,7 @@ namespace MicaForEveryone.ViewModels
 
         private void ChangeTitlebarColorMode(object parameter)
         {
-            var globalRule = GetGlobalRule();
-            globalRule.TitlebarColor = parameter.ToString() switch
+            TitlebarColor = parameter.ToString() switch
             {
                 "Default" => TitlebarColorMode.Default,
                 "System" => TitlebarColorMode.System,
@@ -243,13 +257,11 @@ namespace MicaForEveryone.ViewModels
                 "Dark" => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            PostRuleChanged();
         }
 
         private void ChangeBackdropType(object parameter)
         {
-            var globalRule = GetGlobalRule();
-            globalRule.BackdropPreference = parameter.ToString() switch
+            BackdropType = parameter.ToString() switch
             {
                 "Default" => BackdropType.Default,
                 "None" => BackdropType.None,
@@ -258,19 +270,16 @@ namespace MicaForEveryone.ViewModels
                 "Tabbed" => BackdropType.Tabbed,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            PostRuleChanged();
         }
 
         private void ChangeExtendFrameIntoClientArea(object parameter)
         {
-            var globalRule = GetGlobalRule();
-            globalRule.ExtendFrameIntoClientArea = parameter switch
+            ExtendFrameIntoClientArea = parameter switch
             {
                 "True" => true,
                 "False" => false,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            PostRuleChanged();
         }
 
         private void ShowAboutDialog(object obj)

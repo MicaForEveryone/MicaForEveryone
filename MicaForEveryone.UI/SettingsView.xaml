@@ -3,12 +3,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MicaForEveryone.UI"
-    xmlns:mux="using:Microsoft.UI.Xaml.Controls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    d:DesignHeight="500"
-    d:DesignWidth="400">
+    xmlns:mux="using:Microsoft.UI.Xaml.Controls">
+    <UserControl.Resources>
+        <ResourceDictionary xmlns:converters="using:MicaForEveryone.UI.Converters">
+            <converters:EnumConverter x:Name="EnumConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid x:Name="rootElement" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -40,7 +40,7 @@
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Titlebar Color:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
+                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.TitlebarColor,Mode=TwoWay,Converter={StaticResource EnumConverter}}">
                                     <ComboBoxItem Content="Default" />
                                     <ComboBoxItem Content="System" />
                                     <ComboBoxItem Content="Light" />
@@ -53,15 +53,15 @@
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="Backdrop Type:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch">
+                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.BackdropType,Mode=TwoWay,Converter={StaticResource EnumConverter}}">
                                     <ComboBoxItem Content="Default" />
                                     <ComboBoxItem Content="None" />
                                     <ComboBoxItem Content="Mica" />
-                                    <ComboBoxItem Content="Acrylic" />
-                                    <ComboBoxItem Content="Tabbed" />
+                                    <ComboBoxItem Content="Acrylic" IsEnabled="{x:Bind ViewModel.SystemBackdropIsSupported}" />
+                                    <ComboBoxItem Content="Tabbed" IsEnabled="{x:Bind ViewModel.SystemBackdropIsSupported}" />
                                 </ComboBox>
                             </Grid>
-                            <CheckBox Content="Extend Frame Into Client Area (NOT RECOMMENDED)" />
+                            <CheckBox Content="Extend Frame Into Client Area (NOT RECOMMENDED)" IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea,Mode=TwoWay}" />
                         </StackPanel>
                     </mux:Expander>
                 </StackPanel>

@@ -10,7 +10,7 @@
     d:DesignWidth="400"
     d:DesignHeight="200">
     <UserControl.Resources>
-        <converters:VisibilityConverter x:Key="VisibilityConverter" />
+        <converters:VisibilityConverter x:Name="VisibilityConverter" />
     </UserControl.Resources>
     <Grid Background="{ThemeResource ContentDialogSmokeFill}" >
         <Border Background="{ThemeResource ContentDialogBackground}"

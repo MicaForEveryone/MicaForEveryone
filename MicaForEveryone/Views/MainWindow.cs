@@ -53,7 +53,7 @@ namespace MicaForEveryone.Views
             view.ActualThemeChanged += View_ActualThemeChanged;
         }
 
-        private ITrayIconViewModel ViewModel { get; } = 
+        public ITrayIconViewModel ViewModel { get; } = 
             Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
 
         public override void Activate()
