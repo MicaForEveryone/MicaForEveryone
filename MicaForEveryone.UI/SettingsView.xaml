@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     d:DesignHeight="500"
     d:DesignWidth="400">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid x:Name="rootElement" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />

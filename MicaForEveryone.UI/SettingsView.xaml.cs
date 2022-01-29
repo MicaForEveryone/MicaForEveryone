@@ -1,13 +1,15 @@
 ﻿using MicaForEveryone.ViewModels;
-using Windows.UI.Xaml.Controls;
 
 namespace MicaForEveryone.UI
 {
-    public sealed partial class SettingsView : UserControl
+    public sealed partial class SettingsView
     {
         public SettingsView()
         {
             InitializeComponent();
+            #if DEBUG
+            rootElement.Background = new Brushes.BackdropBrushXaml();
+            #endif
         }
 
         public ISettingsViewModel ViewModel { get; set; }
