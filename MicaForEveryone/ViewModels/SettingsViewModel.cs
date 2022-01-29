@@ -82,6 +82,8 @@ namespace MicaForEveryone.ViewModels
             set => _viewService.MainWindow.ViewModel.ExtendFrameIntoClientArea = value;
         }
 
+        public Version Version { get; } = typeof(Program).Assembly.GetName().Version;
+
         public ICommand CloseCommand { get; }
 
         public ObservableCollection<BackdropType> BackdropTypesSource { get; } = new ObservableCollection<BackdropType>();

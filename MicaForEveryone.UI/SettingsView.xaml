@@ -25,21 +25,21 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Spacing="12" Grid.Row="0">
-                    <TextBlock Text="Settings" Style="{ThemeResource TitleTextBlockStyle}" />
-                    <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="General">
+                    <TextBlock x:Uid="SettingsTitle" Style="{ThemeResource TitleTextBlockStyle}" />
+                    <mux:Expander x:Uid="GeneralExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                         <StackPanel Spacing="6">
-                            <CheckBox Content="Reload config on changes" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" HorizontalAlignment="Stretch" />
-                            <CheckBox Content="Run on startup (coming soon)" HorizontalAlignment="Stretch" IsEnabled="False" />
+                            <CheckBox x:Uid="ReloadConfigCheckBox" HorizontalAlignment="Stretch" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
+                            <CheckBox x:Uid="RunOnStartupCheckBox" HorizontalAlignment="Stretch" IsEnabled="False" />
                         </StackPanel>
                     </mux:Expander>
-                    <mux:Expander HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" Header="Global Rule">
+                    <mux:Expander x:Uid="GlobalRuleExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                         <StackPanel Spacing="6">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*" />
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Titlebar Color:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="TitleBarColorLabel" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                                 <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.TitlebarColor,Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.TitlebarColorModesSource}" />
                             </Grid>
                             <Grid>
@@ -47,17 +47,22 @@
                                     <ColumnDefinition Width="2*" />
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="Backdrop Type:" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+                                <TextBlock x:Uid="BackdropTypeLabel" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
                                 <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.BackdropType,Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.BackdropTypesSource}" />
                             </Grid>
-                            <CheckBox Content="Extend Frame Into Client Area (NOT RECOMMENDED)" IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea,Mode=TwoWay}" />
+                            <CheckBox x:Uid="ExtendFrameIntoClientAreaCheckBox" IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea,Mode=TwoWay}" />
                         </StackPanel>
                     </mux:Expander>
                 </StackPanel>
                 <StackPanel x:Name="AboutSection" Orientation="Vertical" Grid.Row="1" Spacing="8" Margin="0, 16, 0, 0">
-                    <TextBlock Text="About this app" FontSize="14" FontWeight="Bold" />
-                    <TextBlock Text="Mica for Everyone v0.0.0.0" />
-                    <HyperlinkButton Content="Github" NavigateUri="https://github.com/minusium/MicaForEveryone" />
+                    <TextBlock x:Uid="AboutTitle" FontSize="14" FontWeight="Bold" />
+                    <TextBlock x:Uid="AppName" />
+                    <TextBlock>
+                        <Run Text="v" />
+                        <Run Text="{x:Bind ViewModel.Version}" />
+                    </TextBlock>
+                    <HyperlinkButton x:Uid="GithubButton" NavigateUri="https://github.com/minusium/MicaForEveryone" />
+                    <HyperlinkButton x:Uid="TelegramButton" NavigateUri="https://t.me/minusium" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>

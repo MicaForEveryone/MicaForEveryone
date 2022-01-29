@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -13,6 +14,7 @@ namespace MicaForEveryone.ViewModels
         BackdropType BackdropType { get; set; }
         TitlebarColorMode TitlebarColor { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
+        Version Version { get; }
 
         ObservableCollection<BackdropType> BackdropTypesSource { get; }
         ObservableCollection<TitlebarColorMode> TitlebarColorModesSource { get; }
