@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Vanara.PInvoke;
@@ -20,7 +21,6 @@ namespace MicaForEveryone.ViewModels
 {
     internal class TrayIconViewModel : BaseViewModel, ITrayIconViewModel
     {
-        private bool _systemBackdropIsSupported;
         private BackdropType _backdropType;
         private TitlebarColorMode _titlebarColor;
         private bool _extendFrameIntoClientArea;
@@ -31,25 +31,19 @@ namespace MicaForEveryone.ViewModels
             ReloadConfigCommand = new RelyCommand(ReloadConfig);
             ChangeTitlebarColorModeCommand = new RelyCommand(ChangeTitlebarColorMode);
             ChangeBackdropTypeCommand = new RelyCommand(ChangeBackdropType);
-            ChangeExtendFrameIntoClientAreaCommand = new RelyCommand(ChangeExtendFrameIntoClientArea);
-            AboutCommand = new RelyCommand(ShowAboutDialog);
             ExitCommand = new RelyCommand(Exit);
             EditConfigCommand = new RelyCommand(OpenConfigInEditor);
             OpenSettingsCommand = new RelyCommand(OpenSettings);
 
-#if DEBUG
-            SystemBackdropIsSupported = true;
-#else
-            SystemBackdropIsSupported = SystemBackdrop.IsSupported;
-#endif
             PropertyChanged += TrayIconViewModel_PropertyChanged;
         }
 
-        public bool SystemBackdropIsSupported
-        {
-            get => _systemBackdropIsSupported;
-            set => SetProperty(ref _systemBackdropIsSupported, value);
-        }
+        public bool SystemBackdropIsSupported { get; } =
+#if !DEBUG
+            SystemBackdrop.IsSupported;
+#else
+            true;
+#endif
 
         public BackdropType BackdropType
         {
@@ -76,10 +70,6 @@ namespace MicaForEveryone.ViewModels
         public ICommand ChangeTitlebarColorModeCommand { get; }
 
         public ICommand ChangeBackdropTypeCommand { get; }
-
-        public ICommand ChangeExtendFrameIntoClientAreaCommand { get; }
-
-        public ICommand AboutCommand { get; }
 
         public ICommand EditConfigCommand { get; }
 
@@ -232,7 +222,7 @@ namespace MicaForEveryone.ViewModels
             return configService.Rules.First(rule => rule is GlobalRule);
         }
 
-        private void View_ActualThemeChanged(Windows.UI.Xaml.FrameworkElement sender, object args)
+        private void View_ActualThemeChanged(FrameworkElement sender, object args)
         {
             var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
@@ -270,28 +260,6 @@ namespace MicaForEveryone.ViewModels
                 "Tabbed" => BackdropType.Tabbed,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-        }
-
-        private void ChangeExtendFrameIntoClientArea(object parameter)
-        {
-            ExtendFrameIntoClientArea = parameter switch
-            {
-                "True" => true,
-                "False" => false,
-                _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
-            };
-        }
-
-        private void ShowAboutDialog(object obj)
-        {
-            var dialog = new AboutDialog();
-            dialog.Destroy += (sender, args) =>
-            {
-                dialog.Dispose();
-            };
-
-            var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-            dialogService.ShowDialog(_window, dialog);
         }
 
         private void Exit(object obj)

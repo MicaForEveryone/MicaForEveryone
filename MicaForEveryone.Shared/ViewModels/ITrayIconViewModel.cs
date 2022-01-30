@@ -8,7 +8,7 @@ namespace MicaForEveryone.ViewModels
 {
     public interface ITrayIconViewModel : INotifyPropertyChanged
     {
-        bool SystemBackdropIsSupported { get; set; }
+        bool SystemBackdropIsSupported { get; }
         BackdropType BackdropType { get; set; }
         TitlebarColorMode TitlebarColor { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
@@ -17,8 +17,6 @@ namespace MicaForEveryone.ViewModels
         ICommand ReloadConfigCommand { get; }
         ICommand ChangeTitlebarColorModeCommand { get; }
         ICommand ChangeBackdropTypeCommand { get; }
-        ICommand ChangeExtendFrameIntoClientAreaCommand { get; }
-        ICommand AboutCommand { get; }
         ICommand EditConfigCommand { get; }
         ICommand OpenSettingsCommand { get; }
 
