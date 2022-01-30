@@ -59,12 +59,22 @@ namespace MicaForEveryone
             {
                 return args[1];
             }
-            if (File.Exists("MicaForEveryone.conf"))
-            {
-                return "MicaForEveryone.conf";
-            }
+            
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            return Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
+            var configPath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
+
+            if (!File.Exists(configPath))
+            {
+                var appFolder = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                var defaultConfigPath = Path.Join(appFolder, "MicaForEveryone.conf");
+                if (File.Exists(defaultConfigPath))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(configPath));
+                    File.Copy(defaultConfigPath, configPath);
+                }
+            }
+
+            return configPath;
         }
 
         private IServiceProvider RegisterServices()
