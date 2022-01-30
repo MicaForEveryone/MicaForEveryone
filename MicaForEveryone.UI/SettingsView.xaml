@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MicaForEveryone.UI"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls">
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -21,13 +21,13 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Spacing="12" Grid.Row="0">
                     <TextBlock x:Uid="SettingsTitle" Style="{ThemeResource TitleTextBlockStyle}" />
-                    <mux:Expander x:Uid="GeneralExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <mux:Expander x:Uid="GeneralExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsExpanded="True">
                         <StackPanel Spacing="6">
                             <CheckBox x:Uid="ReloadConfigCheckBox" HorizontalAlignment="Stretch" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
                             <CheckBox x:Uid="RunOnStartupCheckBox" HorizontalAlignment="Stretch" IsEnabled="False" />
                         </StackPanel>
                     </mux:Expander>
-                    <mux:Expander x:Uid="GlobalRuleExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <mux:Expander x:Uid="GlobalRuleExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsExpanded="True">
                         <StackPanel Spacing="6">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -57,7 +57,7 @@
                 </StackPanel>
                 <StackPanel x:Name="AboutSection"
                             Grid.Row="1" 
-                            Margin="0, 16, 0, 0"
+                            Margin="0, 24, 0, 0"
                             Spacing="8"
                             Orientation="Vertical">
                     <TextBlock x:Uid="AboutTitle" FontSize="14" FontWeight="Bold" />
@@ -89,7 +89,7 @@
                     <VisualState.Setters>
                         <Setter Target="AboutSection.(Grid.Row)" Value="0" />
                         <Setter Target="AboutSection.(Grid.Column)" Value="1" />
-                        <Setter Target="AboutSection.Margin" Value="32,0,32,0" />
+                        <Setter Target="AboutSection.Margin" Value="64,0,64,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>

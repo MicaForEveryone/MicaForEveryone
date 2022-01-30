@@ -43,7 +43,7 @@ namespace MicaForEveryone.Xaml
             Dispatcher = View.Dispatcher;
         }
 
-        public void UpdateXamlSourcePosition()
+        protected virtual void UpdateXamlSourcePosition()
         {
             GetClientRect(Handle, out var clientArea);
             Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
