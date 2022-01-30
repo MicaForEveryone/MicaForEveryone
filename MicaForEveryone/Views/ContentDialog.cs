@@ -22,9 +22,12 @@ namespace MicaForEveryone.Views
             _view = view;
             _view.ViewModel = Program.CurrentApp.Container.GetService<IContentDialogViewModel>();
             _view.ViewModel.IsPrimaryButtonEnabled = true;
-            _view.ViewModel.PrimaryButtonContent = "OK";
             _view.ViewModel.PrimaryCommand = CloseDialogCommand;
             _view.ViewModel.PrimaryCommandParameter = this;
+            
+            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            _view.ViewModel.PrimaryButtonContent = resources.GetString("OkButton/Text");
+
             _view.ActualThemeChanged += View_ActualThemeChanged;
         }
 

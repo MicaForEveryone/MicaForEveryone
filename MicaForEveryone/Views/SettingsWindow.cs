@@ -21,18 +21,22 @@ namespace MicaForEveryone.Views
         private SettingsWindow(SettingsView view) : base(view)
         {
             ClassName = nameof(SettingsWindow);
-            Title = "Settings";
             Style = WindowStyles.WS_OVERLAPPEDWINDOW | WindowStyles.WS_VISIBLE;
-            Width = 400;
-            Height = 500;
+            Width = 720;
+            Height = 600;
             Create += SettingsWindow_Create;
+
+            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            Title = resources.GetString("SettingsTitle/Text");
 
             view.ViewModel = ViewModel;
             view.ActualThemeChanged += View_ActualThemeChanged;
 
-            var micaBrush = new XamlMicaBrush();
-            micaBrush.RootElement = view;
-            micaBrush.FocusableWindow = this;
+            var micaBrush = new XamlMicaBrush
+            {
+                RootElement = view,
+                FocusableWindow = this
+            };
             if (view.Content is Windows.UI.Xaml.Controls.Grid element)
             {
                 element.Background = micaBrush;

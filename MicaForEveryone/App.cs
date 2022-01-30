@@ -28,7 +28,12 @@ namespace MicaForEveryone
             if (Environment.OSVersion.Version.Build < 22000)
             {
                 var dialogService = Container.GetService<IDialogService>();
-                dialogService.RunErrorDialog("Unsupported Windows Version", "This app requires at least Windows 11 (10.0.22000.0) to work.", 400, 275);
+
+                var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                var header = resources.GetString("UnsupportedError/Header");
+                var message = resources.GetString("UnsupportedError/Message");
+                dialogService.RunErrorDialog(header, message, 400, 275);
+
                 return;
             }
 
@@ -85,20 +90,26 @@ namespace MicaForEveryone
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
+            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
             if (args.ExceptionObject is ParserError error)
             {
-                dialogService.RunErrorDialog("Error in config file", error.Message, 576, 320);
+                var header = resources.GetString("ConfigFileError/Header");
+                dialogService.RunErrorDialog(header, error.Message, 576, 320);
             }
             else
             {
-                dialogService.RunErrorDialog("Unhandled Exception", args.ExceptionObject.ToString(), 576, 400);
+                var header = resources.GetString("UnhandledException/Header");
+                dialogService.RunErrorDialog(header, args.ExceptionObject.ToString(), 576, 400);
             }
         }
 
         private void UwpApp_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
-            dialogService.RunErrorDialog("Unhandled Exception in UI", args.Message, 576, 400);
+            
+            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var header = resources.GetString("UnhandledUIException/Header");
+            dialogService.RunErrorDialog(header, args.Message, 576, 400);
         }
     }
 }

@@ -120,11 +120,38 @@
   <data name="AboutTitle.Text" xml:space="preserve">
     <value>About this app</value>
   </data>
-  <data name="AppName.Text" xml:space="preserve">
-    <value>Mica for Everyone</value>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Config file</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Backdrop Type</value>
   </data>
   <data name="BackdropTypeLabel.Text" xml:space="preserve">
     <value>Backdrop Type:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Error in config file</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Exit</value>
   </data>
   <data name="ExtendFrameIntoClientAreaCheckBox.Content" xml:space="preserve">
     <value>Extend Frame Into Client Area (NOT RECOMMENDED)</value>
@@ -135,22 +162,82 @@
   <data name="GithubButton.Content" xml:space="preserve">
     <value>Github</value>
   </data>
+  <data name="GithubButton.NavigateUri" xml:space="preserve">
+    <value>https://github.com/minusium/MicaForEveryone</value>
+  </data>
   <data name="GlobalRuleExpander.Header" xml:space="preserve">
     <value>Global Rule</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica (Tinted Wallpaper)</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Open in text editor</value>
   </data>
   <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
     <value>Reload Config File on changes</value>
   </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Reload</value>
+  </data>
   <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
     <value>Run on Startup (not implemented)</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed (Blurred Wallpaper)</value>
+  </data>
   <data name="TelegramButton.Content" xml:space="preserve">
     <value>Telegram</value>
   </data>
+  <data name="TelegramButton.NavigateUri" xml:space="preserve">
+    <value>https://t.me/minusium</value>
+  </data>
   <data name="TitlebarColorLabel.Text" xml:space="preserve">
     <value>Titlebar Color:</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Titlebar Color</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="TwitterButton.NavigateUri" xml:space="preserve">
+    <value>https://twitter.com/minusium</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Unhandled Exception in UI</value>
+  </data>
+  <data name="UnsupportedError.Header" xml:space="preserve">
+    <value>Unsupported Windows Version</value>
+  </data>
+  <data name="UnsupportedError.Message" xml:space="preserve">
+    <value>This app requires at least Windows 11 (10.0.22000.0) to work.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Version</value>
   </data>
 </root>

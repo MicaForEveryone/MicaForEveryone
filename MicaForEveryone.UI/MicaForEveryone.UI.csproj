@@ -77,7 +77,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Brushes\XamlMicaBrush.cs" />
-    <Compile Include="Converters\EnumConverter.cs" />
     <Compile Include="Converters\IsEqualConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="SettingsView.xaml.cs">
