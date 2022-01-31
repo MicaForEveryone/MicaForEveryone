@@ -54,11 +54,14 @@ namespace MicaForEveryone.Services
         {
             var applicableRules = _configService.Rules.Where(rule => rule.IsApplicable(windowHandle));
 
-            if (applicableRules.All(rule => rule is not GlobalRule))
+            if (!applicableRules.Any(rule => rule is GlobalRule))
                 return;
 
             var rule = applicableRules.FirstOrDefault(rule => rule is not GlobalRule) ??
-                applicableRules.First();
+                applicableRules.FirstOrDefault();
+
+            if (rule == null)
+                return;
 
             ApplyRuleToWindow(windowHandle, rule);
         }
