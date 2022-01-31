@@ -20,6 +20,10 @@ namespace MicaForEveryone.Views
     {
         private readonly XamlMicaBrush _backgroundBrush;
 
+        private int _captionHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
+        private int _frameWidth = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
+        private int _frameHeight = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
+
         public SettingsWindow() : this(new())
         {
         }
@@ -51,6 +55,8 @@ namespace MicaForEveryone.Views
 
             SetForegroundWindow();
         }
+
+        // based on codes from https://docs.microsoft.com/en-us/windows/win32/dwm/customframe
 
         protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
@@ -87,6 +93,12 @@ namespace MicaForEveryone.Views
                     fCallDWP = false;
                 }
             }
+            else if (umsg == (uint)WindowMessage.WM_SETTINGCHANGE)
+            {
+                _captionHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
+                _frameWidth = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
+                _frameHeight = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
+            }
 
             return fCallDWP ? base.WndProc(hwnd, umsg, wParam, lParam) : plResult;
         }
@@ -94,9 +106,9 @@ namespace MicaForEveryone.Views
         protected override void UpdateXamlSourcePosition()
         {
             GetClientRect(Handle, out var clientArea);
-            var xborder = (int)(GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME) * ScaleFactor);
-            var yborder = (int)(GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * ScaleFactor);
-            var captionHeight = (int)(GetSystemMetrics(SystemMetric.SM_CYCAPTION) * ScaleFactor);
+            var xborder = (int)(_frameWidth * ScaleFactor);
+            var yborder = (int)(_frameHeight * ScaleFactor);
+            var captionHeight = (int)(_captionHeight * ScaleFactor);
             clientArea.left += xborder;
             clientArea.right -= xborder;
             clientArea.top += captionHeight;
@@ -114,9 +126,9 @@ namespace MicaForEveryone.Views
         // Hit test the frame for resizing and moving.
         private HitTestValues HitTestNCA(HWND hWnd, IntPtr wParam, IntPtr lParam)
         {
-            var xborder = (int)(GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME) * ScaleFactor);
-            var yborder = (int)(GetSystemMetrics(SystemMetric.SM_CYSIZEFRAME) * ScaleFactor);
-            var captionHeight = (int)(GetSystemMetrics(SystemMetric.SM_CYCAPTION) * ScaleFactor);
+            var xborder = (int)(_frameWidth * ScaleFactor);
+            var yborder = (int)(_frameHeight * ScaleFactor);
+            var captionHeight = (int)(_captionHeight * ScaleFactor);
 
             // Get the point coordinates for the hit test.
             var ptMouseX = Macros.GET_X_LPARAM(lParam);
@@ -159,11 +171,12 @@ namespace MicaForEveryone.Views
             }
 
             // Hit test (HTTOPLEFT, ... HTBOTTOMRIGHT)
+            var htCaptionOrHtTop = fOnResizeBorder? HitTestValues.HTTOP : HitTestValues.HTCAPTION;
             var hitTests = new[]
             {
-                new[] { HitTestValues.HTTOPLEFT,    fOnResizeBorder? HitTestValues.HTTOP : HitTestValues.HTCAPTION, HitTestValues.HTTOPRIGHT },
-                new[] { HitTestValues.HTLEFT,       HitTestValues.HTNOWHERE,                                        HitTestValues.HTRIGHT },
-                new[] { HitTestValues.HTBOTTOMLEFT, HitTestValues.HTBOTTOM,                                         HitTestValues.HTBOTTOMRIGHT },
+                new[] { HitTestValues.HTTOPLEFT,    htCaptionOrHtTop,        HitTestValues.HTTOPRIGHT },
+                new[] { HitTestValues.HTLEFT,       HitTestValues.HTNOWHERE, HitTestValues.HTRIGHT },
+                new[] { HitTestValues.HTBOTTOMLEFT, HitTestValues.HTBOTTOM,  HitTestValues.HTBOTTOMRIGHT },
             };
 
             return hitTests[uRow][uCol];
