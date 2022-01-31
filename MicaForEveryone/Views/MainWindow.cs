@@ -28,18 +28,20 @@ namespace MicaForEveryone.Views
         private MainWindow(TrayIconView view) : base(view)
         {
             ClassName = nameof(MainWindow);
-            Title = "Mica For Everyone";
             Icon = LoadIcon(HINSTANCE.NULL, IDI_APPLICATION);
             Style = WindowStyles.WS_POPUPWINDOW;
             StyleEx = WindowStylesEx.WS_EX_TOPMOST;
 
             Destroy += MainWindow_Destroy;
 
+            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            Title = resources.GetString("AppName");
+
             _notifyIcon = new NotifyIcon
             {
                 CallbackMessage = WM_APP_NOTIFYICON,
                 Id = 0,
-                Title = "Mica For Everyone",
+                Title = Title,
                 Icon = Icon,
             };
 

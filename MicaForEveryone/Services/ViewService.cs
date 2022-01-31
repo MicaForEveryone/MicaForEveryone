@@ -29,10 +29,11 @@ namespace MicaForEveryone.Services
                 SettingsWindow.Destroy += SettingsWindow_Destroy;
 
                 SettingsWindow.Activate();
+            }
+            else
+            {
                 SettingsWindow.SetForegroundWindow();
             }
-
-            SettingsWindow.SetForegroundWindow();
         }
 
         public TitlebarColorMode SystemColorMode => Application.Current.RequestedTheme switch

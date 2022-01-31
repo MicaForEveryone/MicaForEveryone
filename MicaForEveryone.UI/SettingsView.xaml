@@ -4,12 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MicaForEveryone.UI"
     xmlns:mux="using:Microsoft.UI.Xaml.Controls">
-    <UserControl.Resources>
-        <ResourceDictionary xmlns:converters="using:MicaForEveryone.UI.Converters">
-            <converters:EnumConverter x:Name="EnumConverter" />
-        </ResourceDictionary>
-    </UserControl.Resources>
-    <Grid>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -26,21 +21,27 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Spacing="12" Grid.Row="0">
                     <TextBlock x:Uid="SettingsTitle" Style="{ThemeResource TitleTextBlockStyle}" />
-                    <mux:Expander x:Uid="GeneralExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <mux:Expander x:Uid="GeneralExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsExpanded="True">
                         <StackPanel Spacing="6">
                             <CheckBox x:Uid="ReloadConfigCheckBox" HorizontalAlignment="Stretch" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
                             <CheckBox x:Uid="RunOnStartupCheckBox" HorizontalAlignment="Stretch" IsEnabled="False" />
                         </StackPanel>
                     </mux:Expander>
-                    <mux:Expander x:Uid="GlobalRuleExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <mux:Expander x:Uid="GlobalRuleExpander" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" IsExpanded="True">
                         <StackPanel Spacing="6">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="2*" />
                                     <ColumnDefinition Width="*" MaxWidth="100" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock x:Uid="TitleBarColorLabel" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Stretch" SelectedItem="{x:Bind ViewModel.TitlebarColor,Mode=TwoWay}" ItemsSource="{x:Bind ViewModel.TitlebarColorModesSource}" />
+                                <TextBlock x:Uid="TitleBarColorLabel" 
+                                           Grid.Column="0" 
+                                           HorizontalAlignment="Stretch"
+                                           VerticalAlignment="Center" />
+                                <ComboBox Grid.Column="1" 
+                                          HorizontalAlignment="Stretch" 
+                                          SelectedItem="{x:Bind ViewModel.TitlebarColor,Mode=TwoWay}"
+                                          ItemsSource="{x:Bind ViewModel.TitlebarColorModesSource}" />
                             </Grid>
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -54,15 +55,20 @@
                         </StackPanel>
                     </mux:Expander>
                 </StackPanel>
-                <StackPanel x:Name="AboutSection" Orientation="Vertical" Grid.Row="1" Spacing="8" Margin="0, 16, 0, 0">
+                <StackPanel x:Name="AboutSection"
+                            Grid.Row="1" 
+                            Margin="0, 24, 0, 0"
+                            Spacing="8"
+                            Orientation="Vertical">
                     <TextBlock x:Uid="AboutTitle" FontSize="14" FontWeight="Bold" />
-                    <TextBlock x:Uid="AppName" />
+                    <TextBlock x:Uid="AppNameLabel" />
                     <TextBlock>
-                        <Run Text="v" />
+                        <Run x:Uid="VersionLabel" />
                         <Run Text="{x:Bind ViewModel.Version}" />
                     </TextBlock>
-                    <HyperlinkButton x:Uid="GithubButton" NavigateUri="https://github.com/minusium/MicaForEveryone" />
-                    <HyperlinkButton x:Uid="TelegramButton" NavigateUri="https://t.me/minusium" />
+                    <HyperlinkButton x:Uid="GithubButton" />
+                    <HyperlinkButton x:Uid="TelegramButton" />
+                    <HyperlinkButton x:Uid="TwitterButton" />
                 </StackPanel>
             </Grid>
         </ScrollViewer>
@@ -71,7 +77,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="Close" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind ViewModel.CloseCommand}" />
+            <Button x:Uid="CloseButton" Grid.Column="1" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind ViewModel.CloseCommand}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -83,7 +89,7 @@
                     <VisualState.Setters>
                         <Setter Target="AboutSection.(Grid.Row)" Value="0" />
                         <Setter Target="AboutSection.(Grid.Column)" Value="1" />
-                        <Setter Target="AboutSection.Margin" Value="32,0,32,0" />
+                        <Setter Target="AboutSection.Margin" Value="64,0,64,0" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>

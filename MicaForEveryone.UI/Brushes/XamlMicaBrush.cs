@@ -103,13 +103,26 @@ namespace MicaForEveryone.UI.Brushes
             return animation;
         }
 
-        public XamlMicaBrush()
+        public XamlMicaBrush(FrameworkElement root, IFocusableWindow window)
         {
+            RootElement = root;
+            FocusableWindow = window;
+
+            FocusableWindow.GotFocus += Window_GotFocus;
+            FocusableWindow.LostFocus += Window_LostFocus;
+            RootElement.ActualThemeChanged += RootElement_ActualThemeChanged;
         }
 
-        public FrameworkElement RootElement { get; set; }
+        ~XamlMicaBrush()
+        {
+            FocusableWindow.GotFocus -= Window_GotFocus;
+            FocusableWindow.LostFocus -= Window_LostFocus;
+            RootElement.ActualThemeChanged -= RootElement_ActualThemeChanged;
+        }
 
-        public IFocusableWindow FocusableWindow { get; set; }
+        public FrameworkElement RootElement { get; }
+
+        public IFocusableWindow FocusableWindow { get; }
 
         protected override void OnConnected()
         {
@@ -133,8 +146,6 @@ namespace MicaForEveryone.UI.Brushes
             _accessibilitySettings.HighContrastChanged += AccessibilitySettings_HighContrastChanged;
             PowerManager.EnergySaverStatusChanged += PowerManager_EnergySaverStatusChanged;
             CompositionCapabilities.GetForCurrentView().Changed += CompositionCapabilities_Changed;
-            FocusableWindow.GotFocus += Window_GotFocus;
-            FocusableWindow.LostFocus += Window_LostFocus;
         }
 
         protected override void OnDisconnected()
@@ -154,9 +165,7 @@ namespace MicaForEveryone.UI.Brushes
             }
 
             PowerManager.EnergySaverStatusChanged -= PowerManager_EnergySaverStatusChanged;
-            CompositionCapabilities.GetForCurrentView().Changed -= CompositionCapabilities_Changed;
-            FocusableWindow.GotFocus -= Window_GotFocus;
-            FocusableWindow.LostFocus -= Window_LostFocus;
+            CompositionCapabilities.GetForCurrentView().Changed -= CompositionCapabilities_Changed;            
 
             if (CompositionBrush != null)
             {
@@ -167,6 +176,9 @@ namespace MicaForEveryone.UI.Brushes
 
         private void UpdateBrush()
         {
+            if (_settings == null || _accessibilitySettings == null)
+                return;
+
             var currentTheme = RootElement.ActualTheme;
             var compositor = Window.Current.Compositor;
 
@@ -267,6 +279,11 @@ namespace MicaForEveryone.UI.Brushes
         private void Window_LostFocus(object sender, EventArgs e)
         {
             _windowActivated = false;
+            UpdateBrush();
+        }
+
+        private void RootElement_ActualThemeChanged(FrameworkElement sender, object args)
+        {
             UpdateBrush();
         }
 
