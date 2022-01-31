@@ -132,9 +132,6 @@
   <data name="AboutTitle.Text" xml:space="preserve">
     <value>Acerca de esta aplicación</value>
   </data>
-  <data name="AppName.Text" xml:space="preserve">
-    <value>Mica for Everyone</value>
-  </data>
   <data name="TitlebarColorLabel.Text" xml:space="preserve">
     <value>Color de la barra de título:</value>
   </data>
@@ -152,5 +149,95 @@
   </data>
   <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
     <value>Volver a cargar el archivo de configuración cuando se produzcan cambios</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica for Everyone</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Tipo de fondo</value>
+  </data>
+  <data name="TelegramButton.NavigateUri" xml:space="preserve">
+    <value>https://t.me/minusium</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Color de la barra de título</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.NavigateUri" xml:space="preserve">
+    <value>https://twitter.com/minusium</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="GithubButton.NavigateUri" xml:space="preserve">
+    <value>https://github.com/minusium/MicaForEveryone</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Volver a cargar</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Oscuro</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Excepción no controlada</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Excepción no controlada en la IU</value>
+  </data>
+  <data name="UnsupportedError.Header" xml:space="preserve">
+    <value>Versión de Windows no compatible</value>
+  </data>
+  <data name="UnsupportedError.Message" xml:space="preserve">
+    <value>Esta aplicación requiere al menos Windows 11 (10.0.22000.0) para funcionar.</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Archivo de configuración</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Error en el archivo de configuración</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed (fondo de pantalla desenfocado)</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Abrir en el editor de texto</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Predeterminado</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica (fondo de pantalla tintado)</value>
   </data>
 </root>
