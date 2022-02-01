@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Vanara.PInvoke;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,10 +9,6 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 using MicaForEveryone.ViewModels;
 
-#if DEBUG
-using System.Diagnostics;
-#endif
-
 namespace MicaForEveryone.Services
 {
     internal class RuleHandler : IRuleService
@@ -19,7 +16,7 @@ namespace MicaForEveryone.Services
         public void ApplyRuleToWindow(HWND windowHandle, IRule rule)
         {
 #if DEBUG
-            Debug.WriteLine($"Applying rule `{rule}` to `{windowHandle.GetText()}` ({windowHandle.GetClassName()}, {windowHandle.GetProcessName()})");
+            System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{windowHandle.GetText()}` ({windowHandle.GetClassName()}, {windowHandle.GetProcessName()})");
 #endif
             if (rule.ExtendFrameIntoClientArea)
                 windowHandle.ExtendFrameIntoClientArea();
@@ -34,7 +31,8 @@ namespace MicaForEveryone.Services
         public RuleHandler(IConfigService configService)
         {
             _configService = configService;
-            _configService.ConfigSource.Updated += ConfigSource_Updated;
+            _configService.ConfigSource.Changed += ConfigSource_Changed;
+            _configService.Updated += ConfigService_Updated;
             _enumWindows = (windowHandle, _) =>
             {
                 if (!windowHandle.IsOwned())
@@ -45,7 +43,7 @@ namespace MicaForEveryone.Services
 
         ~RuleHandler()
         {
-            _configService.ConfigSource.Updated -= ConfigSource_Updated;
+            _configService.ConfigSource.Changed -= ConfigSource_Changed;
         }
 
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
@@ -71,10 +69,17 @@ namespace MicaForEveryone.Services
             User32.EnumWindows(_enumWindows, IntPtr.Zero);
         }
 
-        private void ConfigSource_Updated(object sender, EventArgs e)
+        private async void ConfigSource_Changed(object sender, EventArgs e)
         {
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            viewService.MainWindow.RequestReloadConfig();
+            await _configService.LoadAsync();
+        }
+
+        private async void ConfigService_Updated(object sender, EventArgs e)
+        {
+            await Task.Run(() =>
+            {
+                MatchAndApplyRuleToAllWindows();
+            });
         }
     }
 }

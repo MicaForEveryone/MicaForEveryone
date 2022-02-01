@@ -14,7 +14,7 @@
     </ToolTipService.ToolTip>
     <UserControl.Resources>
         <converters:IsEqualConverter x:Key="IsEqualConverter" />
-        <converters:VisibilityConverter x:Key="VisibilityConverter" />
+        <converters:VisibleIfTrue x:Key="VisibilityConverter" />
     </UserControl.Resources>
     <UserControl.ContextFlyout>
         <MenuFlyout>

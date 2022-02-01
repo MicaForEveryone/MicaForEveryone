@@ -32,8 +32,8 @@ namespace MicaForEveryone.Views
         {
             ClassName = nameof(SettingsWindow);
             Style = WindowStyles.WS_OVERLAPPEDWINDOW | WindowStyles.WS_VISIBLE;
-            Width = 720;
-            Height = 600;
+            Width = 800;
+            Height = 540;
 
             _backgroundBrush = new XamlMicaBrush(View, this);
 
@@ -42,6 +42,7 @@ namespace MicaForEveryone.Views
 
             view.ViewModel = ViewModel;
             view.ActualThemeChanged += View_ActualThemeChanged;
+            view.Loaded += View_Loaded;
         }
 
         private ISettingsViewModel ViewModel { get; } =
@@ -56,7 +57,20 @@ namespace MicaForEveryone.Views
             SetForegroundWindow();
         }
 
-        // based on codes from https://docs.microsoft.com/en-us/windows/win32/dwm/customframe
+        protected override void UpdateXamlSourcePosition()
+        {
+            GetClientRect(Handle, out var clientArea);
+            var xborder = (int)(_frameWidth * ScaleFactor);
+            var yborder = (int)(_frameHeight * ScaleFactor);
+            var captionHeight = (int)(_captionHeight * ScaleFactor);
+            clientArea.left += xborder;
+            clientArea.right -= xborder;
+            clientArea.top += captionHeight;
+            clientArea.bottom -= yborder;
+            Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+        }
+
+        // WndProc and HitTestNCA, based on codes from https://docs.microsoft.com/en-us/windows/win32/dwm/customframe
 
         protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
@@ -80,11 +94,13 @@ namespace MicaForEveryone.Views
             }
             else if (umsg == (uint)WindowMessage.WM_NCCALCSIZE && wParam != IntPtr.Zero)
             {
+                // remove standard frame
                 plResult = IntPtr.Zero;
                 fCallDWP = false;
             }
             else if (umsg == (uint)WindowMessage.WM_NCHITTEST && plResult == IntPtr.Zero)
             {
+                // hit test non-client area
                 var result = HitTestNCA(hwnd, wParam, lParam);
                 plResult = (IntPtr)result;
 
@@ -95,32 +111,13 @@ namespace MicaForEveryone.Views
             }
             else if (umsg == (uint)WindowMessage.WM_SETTINGCHANGE)
             {
+                // update frame size when system settings changed
                 _captionHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
                 _frameWidth = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
                 _frameHeight = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
             }
 
             return fCallDWP ? base.WndProc(hwnd, umsg, wParam, lParam) : plResult;
-        }
-
-        protected override void UpdateXamlSourcePosition()
-        {
-            GetClientRect(Handle, out var clientArea);
-            var xborder = (int)(_frameWidth * ScaleFactor);
-            var yborder = (int)(_frameHeight * ScaleFactor);
-            var captionHeight = (int)(_captionHeight * ScaleFactor);
-            clientArea.left += xborder;
-            clientArea.right -= xborder;
-            clientArea.top += captionHeight;
-            clientArea.bottom -= yborder;
-            Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
-        }
-
-        private void View_ActualThemeChanged(FrameworkElement sender, object args)
-        {
-            Handle.ApplyTitlebarColorRule(
-                Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode,
-                TitlebarColorMode.Default);
         }
 
         // Hit test the frame for resizing and moving.
@@ -180,6 +177,18 @@ namespace MicaForEveryone.Views
             };
 
             return hitTests[uRow][uCol];
+        }
+
+        private void View_Loaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Initialize(sender);
+        }
+
+        private void View_ActualThemeChanged(FrameworkElement sender, object args)
+        {
+            Handle.ApplyTitlebarColorRule(
+                Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode,
+                TitlebarColorMode.Default);
         }
     }
 }

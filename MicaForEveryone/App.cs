@@ -93,6 +93,8 @@ namespace MicaForEveryone
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
+            services.AddTransient<IGeneralSettingsViewModel, GeneralSettingsViewModel>();
+            services.AddTransient<IRuleSettingsViewModel, RuleSettingsViewModel>();
 
             return services.BuildServiceProvider();
         }

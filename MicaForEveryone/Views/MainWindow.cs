@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Vanara.PInvoke;
+using Windows.UI.Xaml;
 
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 using MicaForEveryone.UI;
 using MicaForEveryone.Xaml;
@@ -14,10 +17,6 @@ namespace MicaForEveryone.Views
     internal class MainWindow : XamlWindow
     {
         private const uint WM_APP_NOTIFYICON = WM_APP + 1;
-
-        public const uint WM_APP_REMATCH_REQUEST = WM_APP + 2;
-        public const uint WM_APP_RELOAD_CONFIG = WM_APP + 3;
-        public const uint WM_APP_SAVE_CONFIG_REQUESTED = WM_APP + 4;
 
         private NotifyIcon _notifyIcon;
 
@@ -52,10 +51,9 @@ namespace MicaForEveryone.Views
 
             view.ViewModel = ViewModel;
             view.Loaded += View_Loaded;
-            view.ActualThemeChanged += View_ActualThemeChanged;
         }
 
-        public ITrayIconViewModel ViewModel { get; } = 
+        public ITrayIconViewModel ViewModel { get; } =
             Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
 
         public override void Activate()
@@ -70,21 +68,6 @@ namespace MicaForEveryone.Views
         {
             _notifyIcon.Dispose();
             base.Dispose();
-        }
-
-        public void RequestRematchRules()
-        {
-            PostMessage(Handle, WM_APP_REMATCH_REQUEST);
-        }
-
-        public void RequestReloadConfig()
-        {
-            PostMessage(Handle, WM_APP_RELOAD_CONFIG);
-        }
-
-        public void RequestSaveConfig()
-        {
-            PostMessage(Handle, WM_APP_SAVE_CONFIG_REQUESTED);
         }
 
         // event handlers
@@ -102,42 +85,17 @@ namespace MicaForEveryone.Views
         private void NotifyIcon_OpenPopup(object sender, EventArgs e)
         {
             var notifyIconRect = _notifyIcon.GetRect();
-            ViewModel.ShowTipPopup(notifyIconRect);
+            ViewModel.ShowTooltipPopup(notifyIconRect);
         }
 
         private void NotifyIcon_ClosePopup(object sender, EventArgs e)
         {
-            ViewModel.HideTipPopup();
+            ViewModel.HideTooltipPopup();
         }
 
-        private void View_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.InitializeApp(this);
-        }
-
-        private void View_ActualThemeChanged(Windows.UI.Xaml.FrameworkElement sender, object args)
-        {
-            RequestRematchRules();
-        }
-
-        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
-        {
-            switch (umsg)
-            {
-                case WM_APP_REMATCH_REQUEST:
-                    ViewModel.RematchRules();
-                    break;
-
-                case WM_APP_RELOAD_CONFIG:
-                    ViewModel.ReloadConfig();
-                    break;
-
-                case WM_APP_SAVE_CONFIG_REQUESTED:
-                    ViewModel.SaveConfig();
-                    break;
-            }
-
-            return base.WndProc(hwnd, umsg, wParam, lParam);
+            ViewModel.Initialize(this);
         }
     }
 }

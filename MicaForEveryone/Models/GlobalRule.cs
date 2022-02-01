@@ -20,5 +20,13 @@ namespace MicaForEveryone.Models
         public bool IsApplicable(HWND windowHandle) => windowHandle.IsTopLevel() && windowHandle.HasCaption();
 
         public override string ToString() => Name;
+
+        public RulePaneItem GetPaneItem(ISettingsViewModel parent)
+        {
+            var viewModel = Program.CurrentApp.Container.GetService<IRuleSettingsViewModel>();
+            viewModel.ParentViewModel = parent;
+            viewModel.InitializeData(this);
+            return new RulePaneItem("", PaneItemType.Global, viewModel);
+        }
     }
 }

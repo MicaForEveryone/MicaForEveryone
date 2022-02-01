@@ -14,6 +14,6 @@ namespace MicaForEveryone.Interfaces
         bool GetWatchState();
         void SetWatchState(bool state);
 
-        event EventHandler Updated;
+        event EventHandler Changed;
     }
 }

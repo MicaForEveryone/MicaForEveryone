@@ -78,7 +78,11 @@
     </Compile>
     <Compile Include="Brushes\XamlMicaBrush.cs" />
     <Compile Include="Converters\IsEqualConverter.cs" />
-    <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="Converters\VisibleIfFlase.cs" />
+    <Compile Include="Converters\VisibleIfTrue.cs" />
+    <Compile Include="Selectors\BackdropTypeSelector.cs" />
+    <Compile Include="Selectors\PaneItemTypeSelector.cs" />
+    <Compile Include="Selectors\TitlebarColorSelector.cs" />
     <Compile Include="SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -89,6 +93,8 @@
       <DependentUpon>ContentDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Triggers\GeneralPaneTrigger.cs" />
+    <Compile Include="Triggers\RulePaneTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

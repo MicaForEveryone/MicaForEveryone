@@ -1,7 +1,9 @@
-﻿using Vanara.PInvoke;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Vanara.PInvoke;
 
 using MicaForEveryone.Win32;
 using MicaForEveryone.Interfaces;
+using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Models
 {
@@ -28,5 +30,13 @@ namespace MicaForEveryone.Models
         }
 
         public override string ToString() => Name;
+
+        public RulePaneItem GetPaneItem(ISettingsViewModel parent)
+        {
+            var viewModel = Program.CurrentApp.Container.GetService<IRuleSettingsViewModel>();
+            viewModel.ParentViewModel = parent;
+            viewModel.InitializeData(this);
+            return new RulePaneItem(ClassName, PaneItemType.Class, viewModel);
+        }
     }
 }

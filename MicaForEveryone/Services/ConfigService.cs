@@ -40,6 +40,7 @@ namespace MicaForEveryone.Services
             }
 
             Rules = rules.ToArray();
+            RaiseChanged();
         }
 
         public async Task SaveAsync()
@@ -50,5 +51,12 @@ namespace MicaForEveryone.Services
             }
             await ConfigSource.SaveAsync();
         }
+
+        public void RaiseChanged()
+        {
+            Updated?.Invoke(this, EventArgs.Empty);
+        }
+
+        public event EventHandler Updated;
     }
 }

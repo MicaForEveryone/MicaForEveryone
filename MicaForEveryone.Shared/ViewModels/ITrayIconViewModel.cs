@@ -20,12 +20,9 @@ namespace MicaForEveryone.ViewModels
         ICommand EditConfigCommand { get; }
         ICommand OpenSettingsCommand { get; }
 
-        void InitializeApp(object sender);
-        void SaveConfig();
-        void RematchRules();
-        void ReloadConfig();
+        void Initialize(object sender);
         void ShowContextMenu(Point offset, Rectangle notifyIconRect);
-        void ShowTipPopup(Rectangle notifyIconRect);
-        void HideTipPopup();
+        void ShowTooltipPopup(Rectangle notifyIconRect);
+        void HideTooltipPopup();
     }
 }
