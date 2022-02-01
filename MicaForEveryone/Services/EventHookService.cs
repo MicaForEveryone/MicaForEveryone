@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using static Vanara.PInvoke.User32;
 
@@ -28,9 +29,12 @@ namespace MicaForEveryone.Services
             _eventHook.Dispose();
         }
 
-        private void EventHook_Triggered(object sender, HookTriggeredEventArgs e)
+        private async void EventHook_Triggered(object sender, HookTriggeredEventArgs e)
         {
-            _ruleService.MatchAndApplyRuleToWindow(e.WindowHandle);
+            await Task.Run(() =>
+            {
+                _ruleService.MatchAndApplyRuleToWindow(e.WindowHandle);
+            });
         }
     }
 }

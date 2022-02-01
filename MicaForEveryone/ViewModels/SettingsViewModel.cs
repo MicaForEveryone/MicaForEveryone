@@ -3,57 +3,36 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 
-using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using MicaForEveryone.Interfaces;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.ViewModels
 {
     internal class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
         private readonly IConfigService _configService;
-        private readonly IViewService _viewService;
 
-        public SettingsViewModel(IConfigService configService, IViewService viewService)
+        private CoreDispatcher _dispatcher;
+        private IPaneItem _selectedPane;
+
+        public SettingsViewModel(IConfigService configService)
         {
             _configService = configService;
-            _viewService = viewService;
+            _configService.Updated += ConfigService_Changed;
+
             CloseCommand = new RelyCommand(Close);
-
-            _viewService.MainWindow.ViewModel.PropertyChanged += TrayIconViewModel_PropertyChanged;
-
-            BackdropTypesSource.Add(BackdropType.Default);
-            BackdropTypesSource.Add(BackdropType.None);
-            BackdropTypesSource.Add(BackdropType.Mica);
-
-            if (SystemBackdropIsSupported)
-            {
-                BackdropTypesSource.Add(BackdropType.Acrylic);
-                BackdropTypesSource.Add(BackdropType.Tabbed);
-            }
-
-            foreach (TitlebarColorMode item in Enum.GetValues(typeof(TitlebarColorMode)))
-            {
-                TitlebarColorModesSource.Add(item);
-            }
+            AddProcessRuleCommand = new RelyCommand(AddProcessRule);
+            AddClassRuleCommand = new RelyCommand(AddClassRule);
+            RemoveRuleCommand = new RelyCommand(RemoveRule, CanRemoveRule);
         }
 
         ~SettingsViewModel()
         {
-            _viewService.MainWindow.ViewModel.PropertyChanged -= TrayIconViewModel_PropertyChanged;
-        }
-
-        public bool ReloadOnChange
-        {
-            get
-            {
-                return _configService.ConfigSource.GetWatchState();
-            }
-            set
-            {
-                _configService.ConfigSource.SetWatchState(value);
-                OnPropertyChanged();
-            }
+            _configService.Updated -= ConfigService_Changed;
         }
 
         public bool SystemBackdropIsSupported { get; } =
@@ -63,31 +42,83 @@ namespace MicaForEveryone.ViewModels
             true;
 #endif
 
-        public BackdropType BackdropType
-        {
-            get => _viewService.MainWindow.ViewModel.BackdropType;
-            set => _viewService.MainWindow.ViewModel.BackdropType = value;
-        }
-
-        public TitlebarColorMode TitlebarColor
-        {
-            get => _viewService.MainWindow.ViewModel.TitlebarColor;
-            set => _viewService.MainWindow.ViewModel.TitlebarColor = value;
-        }
-
-        public bool ExtendFrameIntoClientArea
-        {
-            get => _viewService.MainWindow.ViewModel.ExtendFrameIntoClientArea;
-            set => _viewService.MainWindow.ViewModel.ExtendFrameIntoClientArea = value;
-        }
-
         public Version Version { get; } = typeof(Program).Assembly.GetName().Version;
 
+        public ObservableCollection<IPaneItem> PaneItems { get; set; } = new();
+        public IPaneItem SelectedPane
+        {
+            get => _selectedPane;
+            set
+            {
+                SetProperty(ref _selectedPane, value);
+                ((RelyCommand)RemoveRuleCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        public ObservableCollection<BackdropType> BackdropTypes { get; } = new();
+        public ObservableCollection<TitlebarColorMode> TitlebarColorModes { get; } = new();
+
         public ICommand CloseCommand { get; }
+        public ICommand AddProcessRuleCommand { get; }
+        public ICommand AddClassRuleCommand { get; }
+        public ICommand RemoveRuleCommand { get; }
 
-        public ObservableCollection<BackdropType> BackdropTypesSource { get; } = new ObservableCollection<BackdropType>();
+        public void Initialize(object sender)
+        {
+            if (sender is FrameworkElement element)
+            {
+                _dispatcher = element.Dispatcher;
+            }
 
-        public ObservableCollection<TitlebarColorMode> TitlebarColorModesSource { get; } = new ObservableCollection<TitlebarColorMode>();
+            if (BackdropTypes.Count <= 0)
+            {
+                BackdropTypes.Add(BackdropType.Default);
+                BackdropTypes.Add(BackdropType.None);
+                BackdropTypes.Add(BackdropType.Mica);
+                if (SystemBackdropIsSupported)
+                {
+                    BackdropTypes.Add(BackdropType.Acrylic);
+                    BackdropTypes.Add(BackdropType.Tabbed);
+                }
+            }
+
+            if (TitlebarColorModes.Count <= 0)
+            {
+                TitlebarColorModes.Add(TitlebarColorMode.Default);
+                TitlebarColorModes.Add(TitlebarColorMode.System);
+                TitlebarColorModes.Add(TitlebarColorMode.Light);
+                TitlebarColorModes.Add(TitlebarColorMode.Dark);
+            }
+
+            PopulatePanes();
+        }
+
+        private void PopulatePanes()
+        {
+            var generalPane = new GeneralPaneItem(
+                Program.CurrentApp.Container.GetService<IGeneralSettingsViewModel>());
+            PaneItems.Add(generalPane);
+            SelectedPane = generalPane;
+
+            foreach (var rule in _configService.Rules)
+            {
+                var item = rule.GetPaneItem(this);
+                item.ViewModel.ParentViewModel = this;
+                PaneItems.Add(item);
+            }
+        }
+
+        private async void ConfigService_Changed(object sender, EventArgs e)
+        {
+            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                SelectedPane = null;
+                PaneItems.Clear();
+                PopulatePanes();
+            });
+        }
+
+        // commands
 
         private void Close(object obj)
         {
@@ -95,17 +126,22 @@ namespace MicaForEveryone.ViewModels
             viewService.SettingsWindow?.Close();
         }
 
-        private void TrayIconViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void AddProcessRule(object obj)
         {
-            if (new[]
-            {
-                nameof(BackdropType),
-                nameof(TitlebarColor),
-                nameof(ExtendFrameIntoClientArea),
-            }.Contains(e.PropertyName))
-            {
-                OnPropertyChanged(e.PropertyName);
-            }
+            throw new NotImplementedException();
         }
+
+        private void AddClassRule(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void RemoveRule(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanRemoveRule(object obj) => SelectedPane != null &&
+            SelectedPane.ItemType is not (PaneItemType.General or PaneItemType.Global);
     }
 }

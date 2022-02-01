@@ -1,6 +1,7 @@
 ﻿using Vanara.PInvoke;
 
 using MicaForEveryone.Models;
+using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Interfaces
 {
@@ -13,5 +14,7 @@ namespace MicaForEveryone.Interfaces
         TitlebarColorMode TitlebarColor { get; set; }
         BackdropType BackdropPreference { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
+
+        RulePaneItem GetPaneItem(ISettingsViewModel parent);
     }
 }

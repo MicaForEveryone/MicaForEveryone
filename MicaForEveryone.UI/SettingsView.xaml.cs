@@ -1,4 +1,5 @@
-﻿using MicaForEveryone.UI.Brushes;
+﻿using Windows.UI.Xaml.Controls;
+
 using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.UI

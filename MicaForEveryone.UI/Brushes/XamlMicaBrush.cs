@@ -110,14 +110,12 @@ namespace MicaForEveryone.UI.Brushes
 
             FocusableWindow.GotFocus += Window_GotFocus;
             FocusableWindow.LostFocus += Window_LostFocus;
-            RootElement.ActualThemeChanged += RootElement_ActualThemeChanged;
         }
 
         ~XamlMicaBrush()
         {
             FocusableWindow.GotFocus -= Window_GotFocus;
             FocusableWindow.LostFocus -= Window_LostFocus;
-            RootElement.ActualThemeChanged -= RootElement_ActualThemeChanged;
         }
 
         public FrameworkElement RootElement { get; }
@@ -146,6 +144,7 @@ namespace MicaForEveryone.UI.Brushes
             _accessibilitySettings.HighContrastChanged += AccessibilitySettings_HighContrastChanged;
             PowerManager.EnergySaverStatusChanged += PowerManager_EnergySaverStatusChanged;
             CompositionCapabilities.GetForCurrentView().Changed += CompositionCapabilities_Changed;
+            RootElement.ActualThemeChanged += RootElement_ActualThemeChanged;
         }
 
         protected override void OnDisconnected()
@@ -166,6 +165,7 @@ namespace MicaForEveryone.UI.Brushes
 
             PowerManager.EnergySaverStatusChanged -= PowerManager_EnergySaverStatusChanged;
             CompositionCapabilities.GetForCurrentView().Changed -= CompositionCapabilities_Changed;            
+            RootElement.ActualThemeChanged -= RootElement_ActualThemeChanged;
 
             if (CompositionBrush != null)
             {

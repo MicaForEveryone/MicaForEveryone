@@ -181,9 +181,9 @@ namespace MicaForEveryone.Models
         private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
         {
             if (e.Name == _fileName)
-                Updated?.Invoke(this, EventArgs.Empty);
+                Changed?.Invoke(this, EventArgs.Empty);
         }
 
-        public event EventHandler Updated;
+        public event EventHandler Changed;
     }
 }

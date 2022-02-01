@@ -43,6 +43,11 @@ namespace MicaForEveryone.Win32
             return info.dwStyle.HasFlag(User32.WindowStyles.WS_CAPTION);
         }
 
+        public static bool IsTopLevel(this HWND hwnd)
+        {
+            return User32.GetParent(hwnd) == HWND.NULL;
+        }
+
         public static void ApplyBackdropRule(this HWND windowHandle, BackdropType type)
         {
             if (SystemBackdrop.IsSupported)

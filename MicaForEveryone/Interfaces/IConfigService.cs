@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace MicaForEveryone.Interfaces
 {
@@ -8,5 +9,8 @@ namespace MicaForEveryone.Interfaces
         IRule[] Rules { get; }
         Task LoadAsync();
         Task SaveAsync();
+        void RaiseChanged();
+
+        event EventHandler Updated;
     }
 }

@@ -120,8 +120,20 @@
   <data name="AboutTitle.Text" xml:space="preserve">
     <value>About this app</value>
   </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Acrylic forces all apps to use Windows 10-style blur backdrop effect.</value>
+  </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Add Class Rule</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Add Process Rule</value>
+  </data>
+  <data name="AddRuleButton.Content" xml:space="preserve">
+    <value>Add Rule</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>Config file</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="AppNameLabel.Text" xml:space="preserve">
     <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Set backdrop type,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
     <value>Backdrop Type</value>
@@ -147,16 +162,28 @@
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dark</value>
   </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Dark uses dark theme.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Default doesn't do anything to keep app's default backdrop.</value>
+  </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
     <value>Default</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Default doesn't do anything to keep app's default theme.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="ExtendFrameIntoClientAreaCheckBox.Content" xml:space="preserve">
-    <value>Extend Frame Into Client Area (NOT RECOMMENDED)</value>
+    <value>Extend Frame Into Client Area</value>
   </data>
-  <data name="GeneralExpander.Header" xml:space="preserve">
+  <data name="ExtendFrameIntoClientAreaDescription.Text" xml:space="preserve">
+    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, don't enable this unless you know what you are doing.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>General</value>
   </data>
   <data name="GithubButton.Content" xml:space="preserve">
@@ -165,14 +192,23 @@
   <data name="GithubButton.NavigateUri" xml:space="preserve">
     <value>https://github.com/minusium/MicaForEveryone</value>
   </data>
-  <data name="GlobalRuleExpander.Header" xml:space="preserve">
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
     <value>Global Rule</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
     <value>Light</value>
   </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Light uses light theme.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica forces all apps to use Windows 11-style tinted wallpaper backdrop effect.</value>
+  </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>Mica (Tinted Wallpaper)</value>
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>None disables backdrop, even on apps that already have.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
     <value>None</value>
@@ -186,11 +222,23 @@
   <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
     <value>Reload Config File on changes</value>
   </data>
+  <data name="ReloadConfigDescription.Text" xml:space="preserve">
+    <value>Reload config automatically when it got changed.</value>
+  </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
     <value>Reload</value>
   </data>
+  <data name="RemoveRuleButton.Content" xml:space="preserve">
+    <value>Remove Rule</value>
+  </data>
   <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
-    <value>Run on Startup (not implemented)</value>
+    <value>Run on Startup</value>
+  </data>
+  <data name="RunOnStartupDescription.Text" xml:space="preserve">
+    <value>Run this app automatically on startup.</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>Settings</value>
@@ -201,14 +249,23 @@
   <data name="SystemMenuItem.Text" xml:space="preserve">
     <value>System</value>
   </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>System uses your theme preference.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Tabbed forces all apps to use blurred wallpaper backdrop effect.</value>
+  </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>Tabbed (Blurred Wallpaper)</value>
+    <value>Tabbed</value>
   </data>
   <data name="TelegramButton.Content" xml:space="preserve">
     <value>Telegram</value>
   </data>
   <data name="TelegramButton.NavigateUri" xml:space="preserve">
     <value>https://t.me/minusium</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Set color theme of titlebars,</value>
   </data>
   <data name="TitlebarColorLabel.Text" xml:space="preserve">
     <value>Titlebar Color:</value>
@@ -230,6 +287,9 @@
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
     <value>Unhandled Exception in UI</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Acrylic and Tabbed backdrop effects require at least Windows build 22523</value>
   </data>
   <data name="UnsupportedError.Header" xml:space="preserve">
     <value>Unsupported Windows Version</value>

@@ -21,13 +21,18 @@ namespace MicaForEveryone.ViewModels
 {
     internal class TrayIconViewModel : BaseViewModel, ITrayIconViewModel
     {
+        private readonly IConfigService _configService;
+
         private BackdropType _backdropType;
         private TitlebarColorMode _titlebarColor;
         private bool _extendFrameIntoClientArea;
         private MainWindow _window;
+        private IRule _globalRule;
 
-        public TrayIconViewModel()
+        public TrayIconViewModel(IConfigService configService)
         {
+            _configService = configService;
+
             ReloadConfigCommand = new RelyCommand(ReloadConfig);
             ChangeTitlebarColorModeCommand = new RelyCommand(ChangeTitlebarColorMode);
             ChangeBackdropTypeCommand = new RelyCommand(ChangeBackdropType);
@@ -35,7 +40,12 @@ namespace MicaForEveryone.ViewModels
             EditConfigCommand = new RelyCommand(OpenConfigInEditor);
             OpenSettingsCommand = new RelyCommand(OpenSettings);
 
-            PropertyChanged += TrayIconViewModel_PropertyChanged;
+            _configService.Updated += ConfigService_Changed;
+        }
+
+        ~TrayIconViewModel()
+        {
+            _configService.Updated -= ConfigService_Changed;
         }
 
         public bool SystemBackdropIsSupported { get; } =
@@ -75,15 +85,13 @@ namespace MicaForEveryone.ViewModels
 
         public ICommand OpenSettingsCommand { get; }
 
-        public async void InitializeApp(object sender)
+        public async void Initialize(object sender)
         {
             _window = (MainWindow)sender;
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
 
             var configService = Program.CurrentApp.Container.GetService<IConfigService>();
             await configService.LoadAsync();
-
-            UpdateData();
 
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -97,28 +105,11 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        public async void SaveConfig()
-        {
-            var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-
-            await configService.SaveAsync();
-        }
-
-        public async void RematchRules()
-        {
-            await Task.Run(() =>
-            {
-                var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
-                ruleService.MatchAndApplyRuleToAllWindows();
-            });
-        }
-
-        public async void ReloadConfig()
+        public async Task ReloadConfig()
         {
             try
             {
-                var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-                await configService.LoadAsync();
+                await _configService.LoadAsync();
             }
             catch (ParserError error)
             {
@@ -128,9 +119,6 @@ namespace MicaForEveryone.ViewModels
                     dialogService.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
                 });
             }
-
-            UpdateData();
-            RematchRules();
         }
 
         public void ShowContextMenu(Point offset, Rectangle notifyIconRect)
@@ -162,7 +150,7 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        public void ShowTipPopup(Rectangle notifyIconRect)
+        public void ShowTooltipPopup(Rectangle notifyIconRect)
         {
             _window.Handle.SetWindowPos(
                     HWND.NULL,
@@ -178,66 +166,58 @@ namespace MicaForEveryone.ViewModels
             tooltip.IsOpen = true;
         }
 
-        public void HideTipPopup()
+        public void HideTooltipPopup()
         {
             var tooltip = (ToolTip)ToolTipService.GetToolTip(_window.View);
             tooltip.IsOpen = false;
         }
 
-        private void TrayIconViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async Task UpdateDataAsync()
         {
-            var rule = GetGlobalRule();
-            switch (e.PropertyName)
-            {
-                case nameof(BackdropType):
-                    rule.BackdropPreference = BackdropType;
-                    break;
-                case nameof(TitlebarColor):
-                    rule.TitlebarColor = TitlebarColor;
-                    break;
-                case nameof(ExtendFrameIntoClientArea):
-                    rule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
-                    break;
-                default:
-                    return;
-            }
-            _window.RequestRematchRules();
-            _window.RequestSaveConfig();
-        }
+            _globalRule = _configService.Rules.First(rule => rule is GlobalRule);
 
-        private async void UpdateData()
-        {
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                var globalRule = GetGlobalRule();
-                BackdropType = globalRule.BackdropPreference;
-                TitlebarColor = globalRule.TitlebarColor;
-                ExtendFrameIntoClientArea = globalRule.ExtendFrameIntoClientArea;
+                BackdropType = _globalRule.BackdropPreference;
+                TitlebarColor = _globalRule.TitlebarColor;
+                ExtendFrameIntoClientArea = _globalRule.ExtendFrameIntoClientArea;
             });
         }
 
-        private IRule GetGlobalRule()
+        private async Task UpdateRuleAsync()
         {
-            var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-            return configService.Rules.First(rule => rule is GlobalRule);
+            _globalRule.BackdropPreference = BackdropType;
+            _globalRule.TitlebarColor = TitlebarColor;
+            _globalRule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
+
+            _configService.RaiseChanged();
+            await _configService.SaveAsync();
         }
 
-        private void View_ActualThemeChanged(FrameworkElement sender, object args)
+        private async void View_ActualThemeChanged(FrameworkElement sender, object args)
         {
             var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
             ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
-            _window.RequestRematchRules();
+            await Task.Run(() =>
+            {
+                ruleService.MatchAndApplyRuleToAllWindows();
+            });
+        }
+
+        private async void ConfigService_Changed(object sender, EventArgs e)
+        {
+            await UpdateDataAsync();
         }
 
         // commands
 
-        private void ReloadConfig(object parameter)
+        private async void ReloadConfig(object parameter)
         {
-            _window.RequestReloadConfig();
+            await ReloadConfig();
         }
 
-        private void ChangeTitlebarColorMode(object parameter)
+        private async void ChangeTitlebarColorMode(object parameter)
         {
             TitlebarColor = parameter.ToString() switch
             {
@@ -247,9 +227,10 @@ namespace MicaForEveryone.ViewModels
                 "Dark" => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
+            await UpdateRuleAsync();
         }
 
-        private void ChangeBackdropType(object parameter)
+        private async void ChangeBackdropType(object parameter)
         {
             BackdropType = parameter.ToString() switch
             {
@@ -260,20 +241,19 @@ namespace MicaForEveryone.ViewModels
                 "Tabbed" => BackdropType.Tabbed,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
+            await UpdateRuleAsync();
         }
 
         private void Exit(object obj)
         {
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            viewService.MainWindow.Close();
+            _window.Close();
         }
 
         private async void OpenConfigInEditor(object obj)
         {
             await Task.Run(() =>
             {
-                var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-                configService.ConfigSource.OpenInEditor();
+                _configService.ConfigSource.OpenInEditor();
             });
         }
 
