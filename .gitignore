@@ -4,3 +4,4 @@ obj/
 *.csproj.user
 *.DotSettings.user
 packages/
+*.pubxml.user
