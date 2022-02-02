@@ -15,6 +15,7 @@ namespace MicaForEveryone.Win32
         private const uint NIN_POPUPCLOSE = WM_USER + 7;
 
         private NOTIFYICONDATA _notifyIconData;
+        private uint _taskbarCreatedMessage;
 
         public NotifyIcon()
         {
@@ -32,6 +33,8 @@ namespace MicaForEveryone.Win32
             get => _notifyIconData.uCallbackMessage;
             set => _notifyIconData.uCallbackMessage = value;
         }
+
+        public bool IsVisible { get; private set; }
 
         public void Show()
         {
@@ -53,11 +56,14 @@ namespace MicaForEveryone.Win32
             {
                 Kernel32.GetLastError().ThrowIfFailed();
             }
+
+            IsVisible = true;
         }
 
         public void Hide()
         {
             Shell_NotifyIcon(NIM.NIM_DELETE, _notifyIconData);
+            IsVisible = false;
         }
 
         public RECT GetRect()
@@ -69,7 +75,15 @@ namespace MicaForEveryone.Win32
 
         protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
-            if (umsg == CallbackMessage)
+            if (umsg == (uint)WindowMessage.WM_CREATE)
+            {
+                _taskbarCreatedMessage = RegisterWindowMessage("TaskbarCreated");
+            }
+            else if (umsg == _taskbarCreatedMessage && IsVisible)
+            {
+                Show();
+            }
+            else if (umsg == CallbackMessage)
             {
                 switch (Macros.LOWORD(lParam))
                 {
@@ -84,7 +98,7 @@ namespace MicaForEveryone.Win32
                     case (ushort)NIN_SELECT:
                     case (ushort)NIN_KEYSELECT:
                     case (ushort)WindowMessage.WM_LBUTTONUP:
-                        Click?.Invoke(this, 
+                        Click?.Invoke(this,
                             new TrayIconClickEventArgs(
                                 new Point(
                                     Macros.GET_X_LPARAM(wParam),
@@ -102,6 +116,7 @@ namespace MicaForEveryone.Win32
                         return IntPtr.Zero;
                 }
             }
+
             return DefWindowProc(hwnd, umsg, wParam, lParam);
         }
 
