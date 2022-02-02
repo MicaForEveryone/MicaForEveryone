@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
+using Windows.ApplicationModel.Resources;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.Services;
-using MicaForEveryone.Xaml;
 using MicaForEveryone.Config;
-using MicaForEveryone.ViewModels;
-using MicaForEveryone.Views;
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using MicaForEveryone.Services;
+using MicaForEveryone.ViewModels;
+using MicaForEveryone.UI.ViewModels;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone
 {
@@ -29,7 +30,7 @@ namespace MicaForEveryone
             {
                 var dialogService = Container.GetService<IDialogService>();
 
-                var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                var resources = ResourceLoader.GetForCurrentView();
                 var header = resources.GetString("UnsupportedError/Header");
                 var message = resources.GetString("UnsupportedError/Message");
                 dialogService.RunErrorDialog(header, message, 400, 275);
@@ -102,7 +103,7 @@ namespace MicaForEveryone
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             if (args.ExceptionObject is ParserError error)
             {
                 var header = resources.GetString("ConfigFileError/Header");
@@ -119,7 +120,7 @@ namespace MicaForEveryone
         {
             var dialogService = Container.GetService<IDialogService>();
             
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             var header = resources.GetString("UnhandledUIException/Header");
             dialogService.RunErrorDialog(header, args.Message, 576, 400);
         }

@@ -1,12 +1,14 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Extensions;
 using MicaForEveryone.UI;
-using MicaForEveryone.Xaml;
-using MicaForEveryone.Win32;
+using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.ViewModels;
+using MicaForEveryone.Win32;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
@@ -25,7 +27,7 @@ namespace MicaForEveryone.Views
             _view.ViewModel.PrimaryCommand = CloseDialogCommand;
             _view.ViewModel.PrimaryCommandParameter = this;
             
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             _view.ViewModel.PrimaryButtonContent = resources.GetString("OkButton/Text");
 
             _view.ActualThemeChanged += View_ActualThemeChanged;

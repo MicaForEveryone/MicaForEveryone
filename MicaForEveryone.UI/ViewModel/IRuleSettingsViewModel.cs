@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 
 using MicaForEveryone.Models;
 
-namespace MicaForEveryone.ViewModels
+namespace MicaForEveryone.UI.ViewModels
 {
     public interface IRuleSettingsViewModel : INotifyPropertyChanged
     {

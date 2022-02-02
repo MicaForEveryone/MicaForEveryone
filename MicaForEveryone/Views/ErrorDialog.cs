@@ -1,4 +1,6 @@
-﻿namespace MicaForEveryone.Views
+﻿using Windows.ApplicationModel.Resources;
+
+namespace MicaForEveryone.Views
 {
     public class ErrorDialog : ContentDialog
     {
@@ -6,7 +8,7 @@
         {
             ClassName = nameof(ErrorDialog);
 
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             Title = resources.GetString("AppName");
         }
     }

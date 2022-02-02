@@ -4,8 +4,9 @@ using System.ComponentModel;
 using System.Windows.Input;
 
 using MicaForEveryone.Models;
+using MicaForEveryone.UI.Models;
 
-namespace MicaForEveryone.ViewModels
+namespace MicaForEveryone.UI.ViewModels
 {
     public interface ISettingsViewModel : INotifyPropertyChanged
     {

@@ -2,12 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Vanara.PInvoke;
-using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
-using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Services
 {

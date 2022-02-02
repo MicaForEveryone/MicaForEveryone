@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Vanara.PInvoke;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 
-using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 using MicaForEveryone.UI;
+using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Xaml;
-using MicaForEveryone.ViewModels;
 
 using static Vanara.PInvoke.User32;
 
@@ -33,7 +32,7 @@ namespace MicaForEveryone.Views
 
             Destroy += MainWindow_Destroy;
 
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             Title = resources.GetString("AppName");
 
             _notifyIcon = new NotifyIcon

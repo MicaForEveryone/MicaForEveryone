@@ -1,5 +1,8 @@
-﻿namespace MicaForEveryone.Models
+﻿using System.Runtime.InteropServices;
+
+namespace MicaForEveryone.Models
 {
+    [ComVisible(true)]
     public enum TitlebarColorMode
     {
         Default = 0,

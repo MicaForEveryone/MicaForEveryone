@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
 
-namespace MicaForEveryone.ViewModels
+namespace MicaForEveryone.UI.ViewModels
 {
     public interface IContentDialogViewModel : INotifyPropertyChanged
     {

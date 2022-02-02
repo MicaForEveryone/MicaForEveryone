@@ -11,10 +11,11 @@ using Vanara.PInvoke;
 
 using static Vanara.PInvoke.User32;
 
+using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Views;
-using MicaForEveryone.Config;
 using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.ViewModels

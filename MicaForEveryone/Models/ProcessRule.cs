@@ -2,8 +2,9 @@
 using Vanara.PInvoke;
 
 using MicaForEveryone.Interfaces;
+using MicaForEveryone.UI.Models;
+using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Win32;
-using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Models
 {

@@ -2,15 +2,18 @@
     x:Class="MicaForEveryone.UI.SettingsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:models="using:MicaForEveryone.Models"
+    xmlns:converters="using:MicaForEveryone.UI.Converters"
+    xmlns:models="using:MicaForEveryone.UI.Models"
     xmlns:selectors="using:MicaForEveryone.UI.Selectors"
     xmlns:triggers="using:MicaForEveryone.UI.Triggers"
-    xmlns:converters="using:MicaForEveryone.UI.Converters"
     DataContext="{x:Bind ViewModel}">
     <UserControl.Resources>
         <converters:VisibleIfFalse x:Key="VisibilityConverter" />
 
-        <Style x:Key="OptionSummaryTextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource CaptionTextBlockStyle}">
+        <Style
+            x:Key="OptionSummaryTextBlockStyle"
+            BasedOn="{StaticResource CaptionTextBlockStyle}"
+            TargetType="TextBlock">
             <Setter Property="Margin" Value="0,0,24,6" />
             <Setter Property="Foreground" Value="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
             <Setter Property="TextWrapping" Value="WrapWholeWords" />
@@ -18,10 +21,26 @@
 
         <DataTemplate x:Key="GeneralTemplate" x:DataType="models:GeneralPaneItem">
             <StackPanel HorizontalAlignment="Stretch">
-                <CheckBox x:Uid="ReloadConfigCheckBox" Margin="6" HorizontalAlignment="Stretch" IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
-                <TextBlock x:Uid="ReloadConfigDescription" Margin="0,0,24,6" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
-                <CheckBox x:Uid="RunOnStartupCheckBox" HorizontalAlignment="Stretch" Margin="6" IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
-                <TextBlock x:Uid="RunOnStartupDescription" Margin="0,0,24,6" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
+                <CheckBox
+                    x:Uid="ReloadConfigCheckBox"
+                    Margin="6"
+                    HorizontalAlignment="Stretch"
+                    IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
+                <TextBlock
+                    x:Uid="ReloadConfigDescription"
+                    Margin="0,0,24,6"
+                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
+                <CheckBox
+                    x:Uid="RunOnStartupCheckBox"
+                    Margin="6"
+                    HorizontalAlignment="Stretch"
+                    IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
+                <TextBlock
+                    x:Uid="RunOnStartupDescription"
+                    Margin="0,0,24,6"
+                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>
 
@@ -43,8 +62,21 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock x:Uid="TitleBarColorLabel" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="6" />
-                <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="6" ItemsSource="{x:Bind ViewModel.ParentViewModel.TitlebarColorModes}" SelectedItem="{x:Bind ViewModel.TitlebarColor, Mode=TwoWay}">
+                <TextBlock
+                    x:Uid="TitleBarColorLabel"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="6"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center" />
+                <ComboBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="6"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    ItemsSource="{x:Bind ViewModel.ParentViewModel.TitlebarColorModes}"
+                    SelectedItem="{x:Bind ViewModel.TitlebarColor, Mode=TwoWay}">
                     <ComboBox.ItemTemplateSelector>
                         <selectors:TitlebarColorSelector>
                             <selectors:TitlebarColorSelector.Default>
@@ -70,7 +102,12 @@
                         </selectors:TitlebarColorSelector>
                     </ComboBox.ItemTemplateSelector>
                 </ComboBox>
-                <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{x:Bind ViewModel, Mode=OneWay}" Content="{Binding TitlebarColor}">
+                <ContentControl
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Content="{Binding TitlebarColor}"
+                    DataContext="{x:Bind ViewModel, Mode=OneWay}">
                     <ContentControl.ContentTemplateSelector>
                         <selectors:TitlebarColorSelector>
                             <selectors:TitlebarColorSelector.Default>
@@ -109,8 +146,21 @@
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
 
-                <TextBlock x:Uid="BackdropTypeLabel" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="6" />
-                <ComboBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="6" ItemsSource="{x:Bind ViewModel.ParentViewModel.BackdropTypes}" SelectedItem="{x:Bind ViewModel.BackdropType, Mode=TwoWay}">
+                <TextBlock
+                    x:Uid="BackdropTypeLabel"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="6"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center" />
+                <ComboBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="6"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    ItemsSource="{x:Bind ViewModel.ParentViewModel.BackdropTypes}"
+                    SelectedItem="{x:Bind ViewModel.BackdropType, Mode=TwoWay}">
                     <ComboBox.ItemTemplateSelector>
                         <selectors:BackdropTypeSelector>
                             <selectors:BackdropTypeSelector.Default>
@@ -141,7 +191,12 @@
                         </selectors:BackdropTypeSelector>
                     </ComboBox.ItemTemplateSelector>
                 </ComboBox>
-                <ContentControl Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{x:Bind ViewModel.BackdropType}" Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}">
+                <ContentControl
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}"
+                    DataContext="{x:Bind ViewModel.BackdropType}">
                     <ContentControl.ContentTemplateSelector>
                         <selectors:BackdropTypeSelector>
                             <selectors:BackdropTypeSelector.Default>
@@ -187,12 +242,38 @@
                         </selectors:BackdropTypeSelector>
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
-                <TextBlock x:Uid="UnsupportedBackdropDescription" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{ThemeResource OptionSummaryTextBlockStyle}" Visibility="{x:Bind ViewModel.ParentViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock
+                    x:Uid="UnsupportedBackdropDescription"
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}"
+                    Visibility="{x:Bind ViewModel.ParentViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}" />
 
-                <CheckBox x:Uid="ExtendFrameIntoClientAreaCheckBox" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="6" IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
-                <TextBlock x:Uid="ExtendFrameIntoClientAreaDescription" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,24,6" Style="{ThemeResource CaptionTextBlockStyle}" Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
-                
-                <Button x:Uid="SaveButton" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" Margin="8" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind ViewModel.SaveCommand}" />
+                <CheckBox
+                    x:Uid="ExtendFrameIntoClientAreaCheckBox"
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="6"
+                    IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
+                <TextBlock
+                    x:Uid="ExtendFrameIntoClientAreaDescription"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,24,6"
+                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                <Button
+                    x:Uid="SaveButton"
+                    Grid.Row="7"
+                    Grid.Column="1"
+                    Margin="8"
+                    HorizontalAlignment="Right"
+                    Command="{x:Bind ViewModel.SaveCommand}"
+                    Style="{ThemeResource AccentButtonStyle}" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
@@ -204,9 +285,18 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Uid="SettingsTitle" Grid.Row="0" Margin="24,12,12,12" Style="{ThemeResource TitleTextBlockStyle}" />
+        <TextBlock
+            x:Uid="SettingsTitle"
+            Grid.Row="0"
+            Margin="24,12,12,12"
+            Style="{ThemeResource TitleTextBlockStyle}" />
 
-        <SplitView Grid.Row="1" DisplayMode="Inline" IsPaneOpen="True" PaneBackground="Transparent" OpenPaneLength="250">
+        <SplitView
+            Grid.Row="1"
+            DisplayMode="Inline"
+            IsPaneOpen="True"
+            OpenPaneLength="250"
+            PaneBackground="Transparent">
             <SplitView.Pane>
                 <ListView ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}">
                     <ListView.ItemTemplateSelector>
@@ -214,32 +304,56 @@
                             <selectors:PaneItemTypeSelector.General>
                                 <DataTemplate x:DataType="models:GeneralPaneItem">
                                     <StackPanel Margin="7,12,0,12" Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE115;" FontSize="16" />
-                                        <TextBlock x:Uid="GeneralPaneItem" Margin="12,0,0,0" VerticalAlignment="Center" />
+                                        <FontIcon
+                                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                            FontSize="16"
+                                            Glyph="&#xE115;" />
+                                        <TextBlock
+                                            x:Uid="GeneralPaneItem"
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.General>
                             <selectors:PaneItemTypeSelector.Global>
                                 <DataTemplate x:DataType="models:RulePaneItem">
                                     <StackPanel Margin="7,12,0,12" Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xEE40;" FontSize="16" />
-                                        <TextBlock x:Uid="GlobalRulePaneItem" Margin="12,0,0,0" VerticalAlignment="Center" />
+                                        <FontIcon
+                                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                            FontSize="16"
+                                            Glyph="&#xEE40;" />
+                                        <TextBlock
+                                            x:Uid="GlobalRulePaneItem"
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.Global>
                             <selectors:PaneItemTypeSelector.Process>
                                 <DataTemplate x:DataType="models:RulePaneItem">
                                     <StackPanel Margin="7,12,0,12" Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xECAA;" FontSize="16" />
-                                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{x:Bind Title}" />
+                                        <FontIcon
+                                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                            FontSize="16"
+                                            Glyph="&#xECAA;" />
+                                        <TextBlock
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="{x:Bind Title}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.Process>
                             <selectors:PaneItemTypeSelector.Class>
                                 <DataTemplate x:DataType="models:RulePaneItem">
                                     <StackPanel Margin="7,12,0,12" Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE737;" FontSize="16" />
-                                        <TextBlock Margin="12,0,0,0" VerticalAlignment="Center" Text="{x:Bind Title}" />
+                                        <FontIcon
+                                            FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                            FontSize="16"
+                                            Glyph="&#xE737;" />
+                                        <TextBlock
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center"
+                                            Text="{x:Bind Title}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.Class>
@@ -260,14 +374,21 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <ContentControl x:Name="PaneDetails" HorizontalContentAlignment="Stretch" Content="{Binding SelectedPane}" />
+                        <ContentControl
+                            x:Name="PaneDetails"
+                            HorizontalContentAlignment="Stretch"
+                            Content="{Binding SelectedPane}" />
 
-                        <StackPanel x:Name="AboutSection"
-                            Grid.Row="1" 
-                            Margin="0, 24, 0, 0"
-                            Spacing="8"
-                            Orientation="Vertical">
-                            <TextBlock x:Uid="AboutTitle" FontSize="14" FontWeight="Bold" />
+                        <StackPanel
+                            x:Name="AboutSection"
+                            Grid.Row="1"
+                            Margin="0,24,0,0"
+                            Orientation="Vertical"
+                            Spacing="8">
+                            <TextBlock
+                                x:Uid="AboutTitle"
+                                FontSize="14"
+                                FontWeight="Bold" />
                             <TextBlock x:Uid="AppNameLabel" />
                             <TextBlock>
                                 <Run x:Uid="VersionLabel" />
@@ -284,13 +405,16 @@
 
         <Grid Grid.Row="2" Margin="8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button x:Uid="AddRuleButton" Grid.Column="0" Margin="2">
+            <Button
+                x:Uid="AddRuleButton"
+                Grid.Column="0"
+                Margin="2">
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem" Command="{x:Bind ViewModel.AddProcessRuleCommand}">
@@ -306,8 +430,17 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-            <Button x:Uid="RemoveRuleButton" Grid.Column="1" Margin="2" Command="{x:Bind ViewModel.RemoveRuleCommand}" />
-            <Button x:Uid="CloseButton" Grid.Column="3" Margin="2" Style="{ThemeResource AccentButtonStyle}" Command="{x:Bind ViewModel.CloseCommand}" />
+            <Button
+                x:Uid="RemoveRuleButton"
+                Grid.Column="1"
+                Margin="2"
+                Command="{x:Bind ViewModel.RemoveRuleCommand}" />
+            <Button
+                x:Uid="CloseButton"
+                Grid.Column="3"
+                Margin="2"
+                Command="{x:Bind ViewModel.CloseCommand}"
+                Style="{ThemeResource AccentButtonStyle}" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

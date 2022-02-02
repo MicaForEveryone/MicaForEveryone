@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Vanara.PInvoke;
 
-using MicaForEveryone.Win32;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.ViewModels;
+using MicaForEveryone.UI.Models;
+using MicaForEveryone.UI.ViewModels;
+using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Models
 {

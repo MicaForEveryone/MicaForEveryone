@@ -1,7 +1,8 @@
 ﻿using Vanara.PInvoke;
 
 using MicaForEveryone.Models;
-using MicaForEveryone.ViewModels;
+using MicaForEveryone.UI.Models;
+using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.Interfaces
 {

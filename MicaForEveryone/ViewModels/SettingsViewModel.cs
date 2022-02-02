@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-using MicaForEveryone.Models;
 using MicaForEveryone.Interfaces;
+using MicaForEveryone.Models;
+using MicaForEveryone.UI.Models;
+using MicaForEveryone.UI.ViewModels;
+
+#if !DEBUG
 using MicaForEveryone.Win32;
+#endif
 
 namespace MicaForEveryone.ViewModels
 {

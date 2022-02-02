@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +11,7 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Brushes;
-using MicaForEveryone.ViewModels;
+using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
 
@@ -37,7 +38,7 @@ namespace MicaForEveryone.Views
 
             _backgroundBrush = new XamlMicaBrush(View, this);
 
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             Title = resources.GetString("SettingsTitle/Text");
 
             view.ViewModel = ViewModel;

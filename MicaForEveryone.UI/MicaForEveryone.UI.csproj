@@ -80,6 +80,10 @@
     <Compile Include="Converters\IsEqualConverter.cs" />
     <Compile Include="Converters\VisibleIfFlase.cs" />
     <Compile Include="Converters\VisibleIfTrue.cs" />
+    <Compile Include="Models\GeneralPaneItem.cs" />
+    <Compile Include="Models\IPaneItem.cs" />
+    <Compile Include="Models\RulePaneItem.cs" />
+    <Compile Include="Models\PaneItemType.cs" />
     <Compile Include="Selectors\BackdropTypeSelector.cs" />
     <Compile Include="Selectors\PaneItemTypeSelector.cs" />
     <Compile Include="Selectors\TitlebarColorSelector.cs" />
@@ -95,6 +99,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Triggers\GeneralPaneTrigger.cs" />
     <Compile Include="Triggers\RulePaneTrigger.cs" />
+    <Compile Include="ViewModel\IContentDialogViewModel.cs" />
+    <Compile Include="ViewModel\IGeneralSettingsViewModel.cs" />
+    <Compile Include="ViewModel\IRuleSettingsViewModel.cs" />
+    <Compile Include="ViewModel\ISettingsViewModel.cs" />
+    <Compile Include="ViewModel\ITrayIconViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -121,7 +130,7 @@
       <Version>6.1.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">
-      <Version>2.7.1-prerelease.211026002</Version>
+      <Version>2.8.0-prerelease.220118001</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.26.0</Version>
