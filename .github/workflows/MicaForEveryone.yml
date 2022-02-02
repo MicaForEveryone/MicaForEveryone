@@ -50,5 +50,5 @@ jobs:
     - name: Upload build artifacts 
       uses: actions/upload-artifact@v1
       with:
-        name: MicaForEveryone
-        path: MicaForEveryone\bin
+        name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}
