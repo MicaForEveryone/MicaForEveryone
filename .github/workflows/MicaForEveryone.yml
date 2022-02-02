@@ -51,4 +51,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}
-        path: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}
+        path: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
