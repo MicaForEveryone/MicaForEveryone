@@ -126,26 +126,20 @@
   <data name="GithubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="GeneralExpander.Header" xml:space="preserve">
-    <value>General</value>
-  </data>
   <data name="AboutTitle.Text" xml:space="preserve">
     <value>Acerca de esta aplicación</value>
   </data>
   <data name="TitlebarColorLabel.Text" xml:space="preserve">
     <value>Color de la barra de título:</value>
   </data>
-  <data name="GlobalRuleExpander.Header" xml:space="preserve">
-    <value>Regla global</value>
-  </data>
   <data name="ExtendFrameIntoClientAreaCheckBox.Content" xml:space="preserve">
-    <value>Extender el marco al área de cliente (NO RECOMENDADO)</value>
+    <value>Extender el marco al área de cliente</value>
   </data>
   <data name="BackdropTypeLabel.Text" xml:space="preserve">
-    <value>Tipo de fondo:</value>
+    <value>Tipo de efecto de fondo:</value>
   </data>
   <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
-    <value>Ejecutar al inicio (no implementado)</value>
+    <value>Ejecutar al inicio</value>
   </data>
   <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
     <value>Volver a cargar el archivo de configuración cuando se produzcan cambios</value>
@@ -154,7 +148,7 @@
     <value>Mica for Everyone</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Tipo de fondo</value>
+    <value>Tipo de efecto de fondo</value>
   </data>
   <data name="TelegramButton.NavigateUri" xml:space="preserve">
     <value>https://t.me/minusium</value>
@@ -223,7 +217,7 @@
     <value>Error en el archivo de configuración</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>Tabbed (fondo de pantalla desenfocado)</value>
+    <value>Tabbed</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
     <value>Abrir en el editor de texto</value>
@@ -238,6 +232,72 @@
     <value>Sistema</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>Mica (fondo de pantalla tintado)</value>
+    <value>Mica</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Regla global</value>
+  </data>
+  <data name="AddRuleButton.Content" xml:space="preserve">
+    <value>Agregar regla</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Agregar regla de proceso</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Agregar regla de clase</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Oscuro usa el tema oscuro.</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Establezca el tema del color de las barras de título,</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Claro usa el tema claro.</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Establezca el tipo de efecto de fondo,</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Predeterminado no hace nada para así mantener el efecto de fondo predeterminado de la aplicación.</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Predeterminado no hace nada para así mantener el tema predeterminado de la aplicación.</value>
+  </data>
+  <data name="SaveButton.Content" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Sistema usa su tema de preferencia.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Tabbed obliga a todas las aplicaciones a usar el efecto de fondo de pantalla borroso.</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Los efectos de fondo Acrylic y Tabbed requieren al menos la compilación 22523 de Windows</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Acrylic obliga a todas las aplicaciones a usar el efecto de fondo de desenfoque al estilo de Windows 10.</value>
+  </data>
+  <data name="RemoveRuleButton.Content" xml:space="preserve">
+    <value>Quitar regla</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica obliga a todas las aplicaciones a usar el efecto de fondo de pantalla tintado al estilo de Windows 11.</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>Ninguno deshabilita el efecto de fondo, incluso en aplicaciones que ya lo tienen.</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaDescription.Text" xml:space="preserve">
+    <value>Extiende el marco de la ventana al área de cliente para agregar un efecto de fondo en algunas aplicaciones. No funciona en todas las aplicaciones y puede romperlas, no habilite esto a menos que sepa lo que está haciendo.</value>
+  </data>
+  <data name="RunOnStartupDescription.Text" xml:space="preserve">
+    <value>Ejecuta esta aplicación automáticamente al inicio.</value>
+  </data>
+  <data name="ReloadConfigDescription.Text" xml:space="preserve">
+    <value>Vuelve a cargar la configuración automáticamente cuando cambie.</value>
   </data>
 </root>
