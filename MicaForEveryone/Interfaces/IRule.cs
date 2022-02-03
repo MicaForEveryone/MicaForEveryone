@@ -1,6 +1,4 @@
-﻿using Vanara.PInvoke;
-
-using MicaForEveryone.Models;
+﻿using MicaForEveryone.Models;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
 
@@ -10,7 +8,7 @@ namespace MicaForEveryone.Interfaces
     {
         string Name { get; }
         
-        bool IsApplicable(HWND windowHandle);
+        bool IsApplicable(TargetWindow target);
 
         TitlebarColorMode TitlebarColor { get; set; }
         BackdropType BackdropPreference { get; set; }

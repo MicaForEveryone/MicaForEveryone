@@ -1,14 +1,13 @@
-﻿using Vanara.PInvoke;
-
-using MicaForEveryone.Models;
+﻿using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Interfaces
 {
     public interface IRuleService
     {
-        public void MatchAndApplyRuleToAllWindows();
-
-        public void MatchAndApplyRuleToWindow(HWND windowHandle);
+        void StartService();
+        void StopService();
+        void MatchAndApplyRuleToAllWindows();
+        void MatchAndApplyRuleToWindow(TargetWindow target);
 
         TitlebarColorMode SystemTitlebarColorMode { get; set; }
     }

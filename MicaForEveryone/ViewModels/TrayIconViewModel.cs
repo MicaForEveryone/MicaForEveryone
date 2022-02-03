@@ -90,6 +90,7 @@ namespace MicaForEveryone.ViewModels
         {
             _window = (MainWindow)sender;
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
+            _window.Destroy += Window_Destroy;
 
             var configService = Program.CurrentApp.Container.GetService<IConfigService>();
             await configService.LoadAsync();
@@ -98,11 +99,10 @@ namespace MicaForEveryone.ViewModels
             {
                 var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
                 var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-                var eventHookService = Program.CurrentApp.Container.GetService<IEventHookService>();
 
                 ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
-                eventHookService.Start();
                 ruleService.MatchAndApplyRuleToAllWindows();
+                ruleService.StartService();
             });
         }
 
@@ -209,6 +209,12 @@ namespace MicaForEveryone.ViewModels
         private async void ConfigService_Changed(object sender, EventArgs e)
         {
             await UpdateDataAsync();
+        }
+
+        private void Window_Destroy(object sender, Win32EventArgs e)
+        {
+            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
+            ruleService.StopService();
         }
 
         // commands

@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Vanara.PInvoke;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Models
 {
@@ -25,10 +23,8 @@ namespace MicaForEveryone.Models
 
         public bool ExtendFrameIntoClientArea { get; set; }
 
-        public bool IsApplicable(HWND windowHandle)
-        {
-            return windowHandle.GetClassName() == ClassName;
-        }
+        public bool IsApplicable(TargetWindow target) =>
+            target.ClassName == ClassName;
 
         public override string ToString() => Name;
 

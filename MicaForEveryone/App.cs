@@ -86,8 +86,7 @@ namespace MicaForEveryone
             var configService = new ConfigService(configSource);
             services.AddSingleton<IConfigService>(configService);
 
-            services.AddSingleton<IEventHookService, EventHookService>();
-            services.AddSingleton<IRuleService, RuleHandler>();
+            services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<IViewService, ViewService>();
 
