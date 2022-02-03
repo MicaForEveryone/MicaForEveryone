@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Core;
@@ -116,9 +117,19 @@ namespace MicaForEveryone.ViewModels
         {
             await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                // save current pane
+                var lastPane = SelectedPane;
+
                 SelectedPane = null;
                 PaneItems.Clear();
                 PopulatePanes();
+
+                // return to last pane if it's still there
+                lastPane = PaneItems.FirstOrDefault(item => item.Equals(lastPane));
+                if (lastPane != null)
+                {
+                    SelectedPane = lastPane;
+                }
             });
         }
 

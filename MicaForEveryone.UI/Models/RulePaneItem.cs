@@ -15,5 +15,15 @@ namespace MicaForEveryone.UI.Models
         public string Title { get; }
         public PaneItemType ItemType { get; }
         public IRuleSettingsViewModel ViewModel { get; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is RulePaneItem rulePaneItem)
+            {
+                return rulePaneItem.ItemType == ItemType &&
+                    rulePaneItem.Title == Title;
+            }
+            return false;
+        }
     }
 }
