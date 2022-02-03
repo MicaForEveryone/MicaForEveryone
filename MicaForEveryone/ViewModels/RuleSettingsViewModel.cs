@@ -74,7 +74,7 @@ namespace MicaForEveryone.ViewModels
         {
             Rule.BackdropPreference = BackdropType;
             Rule.TitlebarColor = TitlebarColor;
-            ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
+            Rule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
 
             _configService.RaiseChanged();
             await _configService.SaveAsync();
