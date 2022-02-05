@@ -1,25 +1,22 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
 using Windows.UI.Core;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
-using Vanara.PInvoke;
 
-using static Vanara.PInvoke.User32;
-
-using MicaForEveryone.Win32;
 using MicaForEveryone.Models;
-using System;
+using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Xaml
 {
-    public class XamlWindow : NativeWindow, IFocusableWindow
+    public class XamlWindow : Win32.Window, IFocusableWindow
     {
         private readonly DesktopWindowXamlSource _xamlSource = new();
 
         public XamlWindow(FrameworkElement view)
         {
             _xamlSource.Content = view;
-            SizeChanged += XamlWindow_SizeChanged;
         }
 
         public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
@@ -41,20 +38,28 @@ namespace MicaForEveryone.Xaml
             Interop.AttachToWindow(Handle);
             UpdateXamlSourcePosition();
             Dispatcher = View.Dispatcher;
+
+            SizeChanged += XamlWindow_SizeChanged;
         }
 
         protected virtual void UpdateXamlSourcePosition()
         {
-            GetClientRect(Handle, out var clientArea);
-            Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+            if (Interop == null) return;
+            var clientArea = GetClientRect();
+            var xamlWindow = FromHandle(Interop.WindowHandle);
+            xamlWindow.X = clientArea.X;
+            xamlWindow.Y = clientArea.Y;
+            xamlWindow.Width = clientArea.Width;
+            xamlWindow.Height = clientArea.Height;
+            xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlWindow_SizeChanged(object sender, Win32EventArgs e)
+        private void XamlWindow_SizeChanged(object sender, WndProcEventArgs e)
         {
             UpdateXamlSourcePosition();
         }
 
-        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
             if (umsg == (uint)WindowMessage.WM_ACTIVATE)
             {

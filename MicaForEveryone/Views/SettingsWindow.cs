@@ -1,11 +1,9 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Extensions.DependencyInjection;
-using Vanara.PInvoke;
-
-using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
@@ -13,17 +11,18 @@ using MicaForEveryone.UI;
 using MicaForEveryone.UI.Brushes;
 using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.PInvoke;
 using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
     internal class SettingsWindow : XamlWindow
     {
-        private readonly XamlMicaBrush _backgroundBrush;
+        [DllImport("dwmapi.dll", ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool DwmDefWindowProc(IntPtr hwnd, uint msg, IntPtr wParam, IntPtr lParam, out IntPtr plResult);
 
-        private int _captionHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
-        private int _frameWidth = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
-        private int _frameHeight = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
+        private readonly XamlMicaBrush _backgroundBrush;
 
         public SettingsWindow() : this(new())
         {
@@ -31,8 +30,7 @@ namespace MicaForEveryone.Views
 
         private SettingsWindow(SettingsView view) : base(view)
         {
-            ClassName = nameof(SettingsWindow);
-            Style = WindowStyles.WS_OVERLAPPEDWINDOW | WindowStyles.WS_VISIBLE;
+            Style = WindowStyles.WS_OVERLAPPEDWINDOW & ~WindowStyles.WS_MAXIMIZEBOX & ~WindowStyles.WS_MINIMIZEBOX;
             Width = 800;
             Height = 540;
 
@@ -53,43 +51,49 @@ namespace MicaForEveryone.Views
         {
             base.Activate();
 
+            CenterToDesktopScaled();
+            UpdatePosition();
+
             ((Grid)((SettingsView)View).Content).Background = _backgroundBrush;
 
+            Show();
             SetForegroundWindow();
         }
 
         protected override void UpdateXamlSourcePosition()
         {
-            GetClientRect(Handle, out var clientArea);
-            var xborder = (int)(_frameWidth * ScaleFactor);
-            var yborder = (int)(_frameHeight * ScaleFactor);
-            var captionHeight = (int)(_captionHeight * ScaleFactor);
-            clientArea.left += xborder;
-            clientArea.right -= xborder;
-            clientArea.top += captionHeight;
-            clientArea.bottom -= yborder;
-            Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+            if (Interop == null) return;
+            var clientArea = GetClientRect();
+            var xborder = (int)(SystemMetrics.FrameWidth * ScaleFactor);
+            var yborder = (int)(SystemMetrics.FrameHeight * ScaleFactor);
+            var captionHeight = (int)(SystemMetrics.CaptionHeight * ScaleFactor);
+            var xamlWindow = FromHandle(Interop.WindowHandle);
+            xamlWindow.X = clientArea.left + xborder;
+            xamlWindow.Y = clientArea.top + captionHeight;
+            xamlWindow.Width = clientArea.right - 2*xborder;
+            xamlWindow.Height = clientArea.bottom - yborder - captionHeight;
+            xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
         // WndProc and HitTestNCA, based on codes from https://docs.microsoft.com/en-us/windows/win32/dwm/customframe
 
-        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
-            var fCallDWP = !DwmApi.DwmDefWindowProc(hwnd, umsg, wParam, lParam, out var plResult);
+            var fCallDWP = !DwmDefWindowProc(hwnd, umsg, wParam, lParam, out var plResult);
 
             if (umsg == (uint)WindowMessage.WM_CREATE)
             {
-                hwnd.ExtendFrameIntoClientArea();
-                hwnd.ApplyBackdropRule(BackdropType.Mica);
-                hwnd.ApplyTitlebarColorRule(
-                    Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode,
-                    TitlebarColorMode.Default);
+                DesktopWindowManager.ExtendFrameIntoClientArea(hwnd);
+                DesktopWindowManager.SetImmersiveDarkMode(hwnd, Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode == TitlebarColorMode.Dark);
+                DesktopWindowManager.EnableMicaIfSupported(hwnd);
 
-                GetWindowRect(hwnd, out var lpRect);
-                SetWindowPos(hwnd,
-                    HWND.NULL,
-                    lpRect.left, lpRect.top, lpRect.Width, lpRect.Height,
-                    SetWindowPosFlags.SWP_FRAMECHANGED);
+                Handle = hwnd;
+                var clientArea = GetClientRect();
+                X = clientArea.left;
+                Y = clientArea.top;
+                Width = clientArea.Width;
+                Height = clientArea.Height;
+                SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_FRAMECHANGED);
 
                 fCallDWP = true;
             }
@@ -102,7 +106,7 @@ namespace MicaForEveryone.Views
             else if (umsg == (uint)WindowMessage.WM_NCHITTEST && plResult == IntPtr.Zero)
             {
                 // hit test non-client area
-                var result = HitTestNCA(hwnd, wParam, lParam);
+                var result = HitTestNCA(lParam);
                 plResult = (IntPtr)result;
 
                 if (result != HitTestValues.HTNOWHERE)
@@ -112,35 +116,29 @@ namespace MicaForEveryone.Views
             }
             else if (umsg == (uint)WindowMessage.WM_SETTINGCHANGE)
             {
-                // update frame size when system settings changed
-                _captionHeight = GetSystemMetrics(SystemMetric.SM_CYCAPTION);
-                _frameWidth = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
-                _frameHeight = GetSystemMetrics(SystemMetric.SM_CXSIZEFRAME);
+                SystemMetrics.Refresh();
             }
 
             return fCallDWP ? base.WndProc(hwnd, umsg, wParam, lParam) : plResult;
         }
 
         // Hit test the frame for resizing and moving.
-        private HitTestValues HitTestNCA(HWND hWnd, IntPtr wParam, IntPtr lParam)
+        private HitTestValues HitTestNCA(IntPtr lParam)
         {
-            var xborder = (int)(_frameWidth * ScaleFactor);
-            var yborder = (int)(_frameHeight * ScaleFactor);
-            var captionHeight = (int)(_captionHeight * ScaleFactor);
+            var xborder = (int)(SystemMetrics.FrameWidth * ScaleFactor);
+            var yborder = (int)(SystemMetrics.FrameHeight * ScaleFactor);
+            var captionHeight = (int)(SystemMetrics.CaptionHeight * ScaleFactor);
 
             // Get the point coordinates for the hit test.
             var ptMouseX = Macros.GET_X_LPARAM(lParam);
             var ptMouseY = Macros.GET_Y_LPARAM(lParam);
 
             // Get the window rectangle.
-            GetWindowRect(hWnd, out var rcWindow);
+            var rcWindow = GetWindowRect();
 
             // Get the frame rectangle, adjusted for the style without a caption.
             var rcFrame = new RECT();
-            AdjustWindowRectEx(ref rcFrame,
-                WindowStyles.WS_OVERLAPPEDWINDOW & ~WindowStyles.WS_CAPTION,
-                false,
-                0);
+            AdjustWindowRectEx(ref rcFrame, WindowStyles.WS_OVERLAPPEDWINDOW & ~WindowStyles.WS_CAPTION, 0);
 
             // Determine if the hit test is for resizing. Default middle (1,1).
             byte uRow = 1;
@@ -169,7 +167,7 @@ namespace MicaForEveryone.Views
             }
 
             // Hit test (HTTOPLEFT, ... HTBOTTOMRIGHT)
-            var htCaptionOrHtTop = fOnResizeBorder? HitTestValues.HTTOP : HitTestValues.HTCAPTION;
+            var htCaptionOrHtTop = fOnResizeBorder ? HitTestValues.HTTOP : HitTestValues.HTCAPTION;
             var hitTests = new[]
             {
                 new[] { HitTestValues.HTTOPLEFT,    htCaptionOrHtTop,        HitTestValues.HTTOPRIGHT },
@@ -187,9 +185,7 @@ namespace MicaForEveryone.Views
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)
         {
-            Handle.ApplyTitlebarColorRule(
-                Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode,
-                TitlebarColorMode.Default);
+            DesktopWindowManager.SetImmersiveDarkMode(Handle, Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode == TitlebarColorMode.Dark);
         }
     }
 }

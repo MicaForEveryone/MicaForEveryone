@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Vanara.PInvoke;
+
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Xaml
 {
@@ -9,8 +10,8 @@ namespace MicaForEveryone.Xaml
     [Guid("e3dcd8c7-3057-4692-99c3-7b7720afda31")]
     public interface IDesktopWindowXamlSourceNative2
     {
-        void AttachToWindow(HWND parentWnd);
-        HWND WindowHandle { get; }
+        void AttachToWindow(IntPtr parentWnd);
+        IntPtr WindowHandle { get; }
         bool PreTranslateMessage(ref MSG message);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
-using Vanara.PInvoke;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 
@@ -8,16 +7,15 @@ using MicaForEveryone.Win32;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Xaml;
-
-using static Vanara.PInvoke.User32;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Views
 {
     internal class MainWindow : XamlWindow
     {
-        private const uint WM_APP_NOTIFYICON = WM_APP + 1;
+        private const uint WM_APP_NOTIFYICON = Macros.WM_APP + 1;
 
-        private NotifyIcon _notifyIcon;
+        private readonly NotifyIcon _notifyIcon;
 
         public MainWindow() : this(new())
         {
@@ -25,8 +23,6 @@ namespace MicaForEveryone.Views
 
         private MainWindow(TrayIconView view) : base(view)
         {
-            ClassName = nameof(MainWindow);
-            Icon = LoadIcon(HINSTANCE.NULL, IDI_APPLICATION);
             Style = WindowStyles.WS_POPUPWINDOW;
             StyleEx = WindowStylesEx.WS_EX_TOPMOST;
 
@@ -40,7 +36,6 @@ namespace MicaForEveryone.Views
                 CallbackMessage = WM_APP_NOTIFYICON,
                 Id = 0,
                 Title = Title,
-                Icon = Icon,
             };
 
             _notifyIcon.Click += NotifyIcon_ContextMenu;
@@ -60,7 +55,7 @@ namespace MicaForEveryone.Views
             base.Activate();
             _notifyIcon.Parent = Handle;
             _notifyIcon.Activate();
-            _notifyIcon.Show();
+            _notifyIcon.ShowNotifyIcon();
         }
 
         public override void Dispose()
@@ -70,9 +65,9 @@ namespace MicaForEveryone.Views
         }
 
         // event handlers
-        private void MainWindow_Destroy(object sender, Win32EventArgs e)
+        private void MainWindow_Destroy(object sender, WndProcEventArgs e)
         {
-            _notifyIcon.Hide();
+            _notifyIcon.HideNotifyIcon();
         }
 
         private void NotifyIcon_ContextMenu(object sender, TrayIconClickEventArgs e)

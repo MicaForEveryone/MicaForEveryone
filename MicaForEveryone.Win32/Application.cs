@@ -1,37 +1,39 @@
 ﻿using System;
-using Vanara.PInvoke;
 
-using static Vanara.PInvoke.User32;
+using MicaForEveryone.Win32.PInvoke;
+using static MicaForEveryone.Win32.PInvoke.NativeMethods;
 
 namespace MicaForEveryone.Win32
 {
     public class Application
     {
-        private NativeWindow _mainWindow;
+        private Window _mainWindow;
 
-        public void Run(NativeWindow window)
+        public void Run(Window window)
         {
             _mainWindow = window;
 
             BeforeRun?.Invoke(this, EventArgs.Empty);
 
-            window.Destroy += Window_OnDestroy;
+            _mainWindow.Destroy += Window_OnDestroy;
 
-            while (GetMessage(out var msg, HWND.NULL, 0, 0))
+            while (GetMessageW(out var msg, IntPtr.Zero, 0, 0))
             {
                 var processed = false;
                 BeforeTranslateMessage?.Invoke(window, ref msg, ref processed);
                 if (processed) continue;
                 TranslateMessage(msg);
-                DispatchMessage(msg);
+                DispatchMessageW(msg);
             }
+
+            _mainWindow.Destroy -= Window_OnDestroy;
 
             BeforeExit?.Invoke(this, EventArgs.Empty);
         }
 
         public void Exit()
         {
-            PostQuitMessage();
+            PostQuitMessage(0);
         }
 
         private void Window_OnDestroy(object sender, EventArgs e)
@@ -44,5 +46,5 @@ namespace MicaForEveryone.Win32
         public event EventHandler BeforeExit;
     }
 
-    public delegate void MessageLoopHandler(NativeWindow window, ref MSG message, ref bool processed);
+    public delegate void MessageLoopHandler(Window window, ref MSG message, ref bool processed);
 }

@@ -1,25 +1,24 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
-using Vanara.PInvoke;
+using System.Runtime.InteropServices;
 
-using static Vanara.PInvoke.Shell32;
-using static Vanara.PInvoke.User32;
+using MicaForEveryone.Win32.PInvoke;
+
+using static MicaForEveryone.Win32.PInvoke.NativeMethods;
 
 namespace MicaForEveryone.Win32
 {
-    public class NotifyIcon : NativeWindow
+    public class NotifyIcon : Window
     {
-        private const uint NIN_SELECT = WM_USER + 0;
-        private const uint NIN_KEYSELECT = NIN_SELECT | 0x1;
-        private const uint NIN_POPUPOPEN = WM_USER + 6;
-        private const uint NIN_POPUPCLOSE = WM_USER + 7;
+        private const int NOTIFYICON_VERSION_4 = 4;
 
         private NOTIFYICONDATA _notifyIconData;
         private uint _taskbarCreatedMessage;
 
         public NotifyIcon()
         {
-            ClassName = nameof(NotifyIcon);
+            Parent = new IntPtr(-3); // message window
         }
 
         public uint Id
@@ -36,48 +35,55 @@ namespace MicaForEveryone.Win32
 
         public bool IsVisible { get; private set; }
 
-        public void Show()
+        public void ShowNotifyIcon()
         {
             _notifyIconData.uFlags = NIF.NIF_ICON | NIF.NIF_MESSAGE;
             _notifyIconData.hwnd = Handle;
+            _notifyIconData.hIcon = Class.Icon;
             if (Title != null)
             {
                 _notifyIconData.uFlags |= NIF.NIF_TIP;
                 _notifyIconData.szTip = Title;
             }
-            _notifyIconData.hIcon = Icon;
-            if (!Shell_NotifyIcon(NIM.NIM_ADD, _notifyIconData))
+            _notifyIconData.hIcon = Class.Icon;
+            if (!Shell_NotifyIconW(NIM.NIM_ADD, _notifyIconData))
             {
-                Kernel32.GetLastError().ThrowIfFailed();
+                throw new Win32Exception(Marshal.GetLastWin32Error());
             }
 
-            _notifyIconData.uTimeoutOrVersion = 4;
-            if (!Shell_NotifyIcon(NIM.NIM_SETVERSION, _notifyIconData))
+            _notifyIconData.uTimeoutOrVersion = NOTIFYICON_VERSION_4;
+            if (!Shell_NotifyIconW(NIM.NIM_SETVERSION, _notifyIconData))
             {
-                Kernel32.GetLastError().ThrowIfFailed();
+                throw new Win32Exception(Marshal.GetLastWin32Error());
             }
 
             IsVisible = true;
         }
 
-        public void Hide()
+        public void HideNotifyIcon()
         {
-            Shell_NotifyIcon(NIM.NIM_DELETE, _notifyIconData);
+            Shell_NotifyIconW(NIM.NIM_DELETE, _notifyIconData);
             IsVisible = false;
         }
 
         public RECT GetRect()
         {
             var id = new NOTIFYICONIDENTIFIER(Handle, Id);
-            Shell_NotifyIconGetRect(id, out var result).ThrowIfFailed();
+            var hr = Shell_NotifyIconGetRect(id, out var result);
+            if (hr != 0)
+                throw Marshal.GetExceptionForHR(hr);
             return result;
         }
 
-        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
             if (umsg == (uint)WindowMessage.WM_CREATE)
             {
-                _taskbarCreatedMessage = RegisterWindowMessage("TaskbarCreated");
+                _taskbarCreatedMessage = RegisterWindowMessageW("TaskbarCreated");
+                if (_taskbarCreatedMessage == 0)
+                {
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                }
             }
             else if (umsg == _taskbarCreatedMessage && IsVisible)
             {
@@ -95,8 +101,8 @@ namespace MicaForEveryone.Win32
                                     Macros.GET_Y_LPARAM(wParam))));
                         break;
 
-                    case (ushort)NIN_SELECT:
-                    case (ushort)NIN_KEYSELECT:
+                    case (ushort)NIN.NIN_SELECT:
+                    case (ushort)NIN.NIN_KEYSELECT:
                     case (ushort)WindowMessage.WM_LBUTTONUP:
                         Click?.Invoke(this,
                             new TrayIconClickEventArgs(
@@ -105,34 +111,24 @@ namespace MicaForEveryone.Win32
                                     Macros.GET_Y_LPARAM(wParam))));
                         break;
 
-                    case (ushort)NIN_POPUPOPEN:
+                    case (ushort)NIN.NIN_POPUPOPEN:
                         if (OpenPopup == null) break;
                         OpenPopup.Invoke(this, EventArgs.Empty);
                         return IntPtr.Zero;
 
-                    case (ushort)NIN_POPUPCLOSE:
+                    case (ushort)NIN.NIN_POPUPCLOSE:
                         if (ClosePopup == null) break;
                         ClosePopup.Invoke(this, EventArgs.Empty);
                         return IntPtr.Zero;
                 }
             }
 
-            return DefWindowProc(hwnd, umsg, wParam, lParam);
+            return DefWindowProcW(hwnd, umsg, wParam, lParam);
         }
 
         public event EventHandler<TrayIconClickEventArgs> ContextMenu;
         public event EventHandler<TrayIconClickEventArgs> Click;
         public event EventHandler OpenPopup;
         public event EventHandler ClosePopup;
-    }
-
-    public class TrayIconClickEventArgs : EventArgs
-    {
-        public TrayIconClickEventArgs(Point point)
-        {
-            Point = point;
-        }
-
-        public Point Point { get; }
     }
 }
