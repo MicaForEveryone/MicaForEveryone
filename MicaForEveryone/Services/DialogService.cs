@@ -1,6 +1,4 @@
-﻿using static Vanara.PInvoke.User32;
-
-using MicaForEveryone.Interfaces;
+﻿using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Views;
 
@@ -8,14 +6,14 @@ namespace MicaForEveryone.Services
 {
     internal class DialogService : IDialogService
     {
-        public void ShowDialog(NativeWindow parent, Dialog dialog)
+        public void ShowDialog(Window parent, Dialog dialog)
         {
             dialog.Parent = parent.Handle;
             dialog.Activate();
             dialog.CenterToDesktop();
             dialog.UpdatePosition();
             dialog.Show();
-            SetForegroundWindow(dialog.Handle);
+            dialog.SetForegroundWindow();
         }
 
         public void RunDialog(Dialog dialog)
@@ -31,7 +29,7 @@ namespace MicaForEveryone.Services
             Program.CurrentApp.Run(dialog);
         }
 
-        public void ShowErrorDialog(NativeWindow parent, object title, object content, int width, int height)
+        public void ShowErrorDialog(Window parent, object title, object content, int width, int height)
         {
             var dialog = new ErrorDialog
             {
