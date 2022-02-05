@@ -85,13 +85,17 @@ namespace MicaForEveryone.Services
             var windows = _uiAutomation.GetRootElement().FindAll(TreeScope.TreeScope_Children, _uiAutomation.CreateTrueCondition());
             for (var i = 0; i < windows.Length; i++)
             {
-                var window = windows.GetElement(i);
-                if (window.CurrentControlType == UIA_ControlTypeIds.UIA_WindowControlTypeId &&
-                    Window.ValidateHandle(window.CurrentNativeWindowHandle))
+                try
                 {
-                    var target = TargetWindow.FromAutomationElement(window);
-                    MatchAndApplyRuleToWindow(target);
+                    var window = windows.GetElement(i);
+                    if (window.CurrentControlType == UIA_ControlTypeIds.UIA_WindowControlTypeId &&
+                        Window.ValidateHandle(window.CurrentNativeWindowHandle))
+                    {
+                        var target = TargetWindow.FromAutomationElement(window);
+                        MatchAndApplyRuleToWindow(target);
+                    }
                 }
+                catch { }
             }
         }
 

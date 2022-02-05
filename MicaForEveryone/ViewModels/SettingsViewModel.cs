@@ -40,7 +40,7 @@ namespace MicaForEveryone.ViewModels
             _configService.Updated -= ConfigService_Changed;
         }
 
-        public bool SystemBackdropIsSupported { get; } =
+        public bool SystemBackdropIsSupported =>
 #if !DEBUG
             SystemBackdrop.IsSupported;
 #else

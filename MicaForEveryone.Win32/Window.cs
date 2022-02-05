@@ -70,12 +70,12 @@ namespace MicaForEveryone.Win32
 
         protected virtual void RegisterClass()
         {
-            var module = LoadLibraryW("imageres.dll");
+            var module = GetModuleHandleW(null);
             if (module == IntPtr.Zero)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
-            var icon = LoadIconW(module, "#15");
+            var icon = LoadIconW(module, "#32512");
             if (icon == IntPtr.Zero)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
