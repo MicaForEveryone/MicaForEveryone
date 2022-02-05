@@ -26,7 +26,7 @@ namespace MicaForEveryone.Views
         private MainWindow(TrayIconView view) : base(view)
         {
             ClassName = nameof(MainWindow);
-            Icon = LoadIcon(HINSTANCE.NULL, IDI_APPLICATION);
+            Icon = LoadIcon(Kernel32.GetModuleHandle(null), IDI_APPLICATION);
             Style = WindowStyles.WS_POPUPWINDOW;
             StyleEx = WindowStylesEx.WS_EX_TOPMOST;
 

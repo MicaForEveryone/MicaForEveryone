@@ -35,6 +35,7 @@ namespace MicaForEveryone.Views
             Style = WindowStyles.WS_OVERLAPPEDWINDOW | WindowStyles.WS_VISIBLE;
             Width = 800;
             Height = 540;
+            Icon = LoadIcon(Kernel32.GetModuleHandle(null), IDI_APPLICATION);
 
             _backgroundBrush = new XamlMicaBrush(View, this);
 
