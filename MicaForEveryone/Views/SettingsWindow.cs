@@ -47,6 +47,11 @@ namespace MicaForEveryone.Views
         private ISettingsViewModel ViewModel { get; } =
             Program.CurrentApp.Container.GetService<ISettingsViewModel>();
 
+        protected override IntPtr LoadIcon()
+        {
+            return LoadIcon(Module, "#32512");
+        }
+
         public override void Activate()
         {
             base.Activate();

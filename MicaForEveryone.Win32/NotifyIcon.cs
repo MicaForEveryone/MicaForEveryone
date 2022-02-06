@@ -33,13 +33,15 @@ namespace MicaForEveryone.Win32
             set => _notifyIconData.uCallbackMessage = value;
         }
 
+        public IntPtr Icon { get; set; }
+
         public bool IsVisible { get; private set; }
 
         public void ShowNotifyIcon()
         {
             _notifyIconData.uFlags = NIF.NIF_ICON | NIF.NIF_MESSAGE;
             _notifyIconData.hwnd = Handle;
-            _notifyIconData.hIcon = Class.Icon;
+            _notifyIconData.hIcon = Icon;
             if (Title != null)
             {
                 _notifyIconData.uFlags |= NIF.NIF_TIP;
@@ -73,6 +75,15 @@ namespace MicaForEveryone.Win32
             if (hr != 0)
                 throw Marshal.GetExceptionForHR(hr);
             return result;
+        }
+
+        protected override IntPtr LoadIcon()
+        {
+            if (Icon == IntPtr.Zero)
+            {
+                Icon = base.LoadIcon();
+            }
+            return Icon;
         }
 
         protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)

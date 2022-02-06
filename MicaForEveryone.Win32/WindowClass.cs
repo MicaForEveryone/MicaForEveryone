@@ -12,13 +12,13 @@ namespace MicaForEveryone.Win32
     {
         private readonly WNDCLASSEX _classData;
         
-        public WindowClass(string name, WndProc wndProc, IntPtr icon, WindowClassStyles styles = 0, int wndExtra = 0)
+        public WindowClass(IntPtr module, string name, WndProc wndProc, IntPtr icon, WindowClassStyles styles = 0, int wndExtra = 0)
         {
             _classData = new WNDCLASSEX
             {
                 cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEX)),
                 lpfnWndProc = wndProc,
-                hInstance = InstanceHandle,
+                hInstance = module,
                 lpszClassName = name,
                 style = styles,
                 hIcon = icon,

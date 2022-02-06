@@ -9,6 +9,7 @@ using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
 using MicaForEveryone.Win32.PInvoke;
+using System;
 
 namespace MicaForEveryone.Views
 {
@@ -43,6 +44,11 @@ namespace MicaForEveryone.Views
             _view.ViewModel.PrimaryButtonContent = resources.GetString("OkButton/Text");
 
             _view.ActualThemeChanged += View_ActualThemeChanged;
+        }
+
+        protected override IntPtr LoadIcon()
+        {
+            return LoadIcon(Module, "#32512");
         }
 
         public override void Activate()

@@ -17,7 +17,7 @@ namespace MicaForEveryone.Win32
 
         protected override void RegisterClass()
         {
-            Class = new WindowClass($"{GetType().Name}+{Guid.NewGuid()}", WndProc, IntPtr.Zero, 0, DLGWINDOWEXTRA);
+            Class = new WindowClass(Module, $"{GetType().Name}+{Guid.NewGuid()}", WndProc, IntPtr.Zero, 0, DLGWINDOWEXTRA);
         }
 
         public override void Close()

@@ -54,6 +54,7 @@ namespace MicaForEveryone.Views
         {
             base.Activate();
             _notifyIcon.Parent = Handle;
+            _notifyIcon.Icon = LoadIcon(Module, "#32512");
             _notifyIcon.Activate();
             _notifyIcon.ShowNotifyIcon();
         }

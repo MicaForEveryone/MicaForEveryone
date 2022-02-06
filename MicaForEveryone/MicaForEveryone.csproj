@@ -8,9 +8,9 @@
         <Platforms>x64;ARM64</Platforms>
         <LangVersion>9.0</LangVersion>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <ApplicationIcon>Resources\MicaForEveryone.ico</ApplicationIcon>
+        <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
         <RuntimeIdentifiers>win10-x64;win10-arm64</RuntimeIdentifiers>
-        <ApplicationIcon>MicaForEveryone.ico</ApplicationIcon>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Platform)'=='x64'">
@@ -64,14 +64,10 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="MicaForEveryone.conf">
+        <None Include="Resources\MicaForEveryone.conf" Link="MicaForEveryone.conf">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="MicaForEveryone.ico" />
     </ItemGroup>
 
     <Target Name="CleanUnusedFiles" AfterTargets="Build">

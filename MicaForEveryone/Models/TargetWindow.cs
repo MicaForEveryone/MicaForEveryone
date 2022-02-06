@@ -28,14 +28,14 @@ namespace MicaForEveryone.Models
 
         public void ApplyBackdropRule(BackdropType type)
         {
-            if (Environment.OSVersion.Version.Build >= 22523)
+            if (DesktopWindowManager.IsBackdropTypeSupported)
             {
                 if (type == BackdropType.Default)
                     return;
 
                 DesktopWindowManager.SetBackdropType(WindowHandle, type);
             }
-            else if (Environment.OSVersion.Version.Build >= 22000)
+            else if (DesktopWindowManager.IsUndocumentedMicaSupported)
             {
                 switch (type)
                 {
@@ -63,7 +63,7 @@ namespace MicaForEveryone.Models
 
         public void ApplyTitlebarColorRule(TitlebarColorMode targetMode, TitlebarColorMode systemMode)
         {
-            if (Environment.OSVersion.Version.Build >= 19041)
+            if (DesktopWindowManager.IsImmersiveDarkModeSupported)
             {
                 switch (targetMode)
                 {

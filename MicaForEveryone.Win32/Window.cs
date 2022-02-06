@@ -12,6 +12,7 @@ namespace MicaForEveryone.Win32
     {
         public const int CW_USEDEFAULT = unchecked((int)0x80000000);
 
+        private const uint ERROR_MOD_NOT_FOUND = 0x0000007E;
         private const uint USER_DEFAULT_SCREEN_DPI = 96;
 
         public static void AdjustWindowRectEx(ref RECT lpRect, WindowStyles dwStyle, WindowStylesEx dwExStyle)
@@ -48,6 +49,8 @@ namespace MicaForEveryone.Win32
 
         public IntPtr Parent { get; set; } = IntPtr.Zero;
 
+        public IntPtr Module { get; } = InstanceHandle;
+
         public int X { get; set; } = CW_USEDEFAULT;
 
         public int Y { get; set; } = CW_USEDEFAULT;
@@ -68,23 +71,48 @@ namespace MicaForEveryone.Win32
 
         public WindowClass Class { get; protected set; }
 
-        protected virtual void RegisterClass()
+        protected virtual IntPtr LoadIcon()
         {
-            var module = GetModuleHandleW(null);
+            var module = GetModule("imageres.dll");
+            return LoadIcon(module, "#15");
+        }
+
+        protected virtual IntPtr LoadIcon(IntPtr module, string resourceId)
+        {
+            var result = LoadIconW(module, resourceId);
+            if (result == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            return result;
+        }
+
+        protected IntPtr GetModule(string moduleName)
+        {
+            var module = GetModuleHandleW(moduleName);
             if (module == IntPtr.Zero)
             {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
+                var error = Marshal.GetLastWin32Error();
+                if (error == ERROR_MOD_NOT_FOUND)
+                {
+                    module = LoadLibraryW(moduleName);
+                    if (module == IntPtr.Zero)
+                    {
+                        throw new Win32Exception(Marshal.GetLastWin32Error());
+                    }
+                }
+                else
+                {
+                    throw new Win32Exception(error);
+                }
             }
-            var icon = LoadIconW(module, "#32512");
-            if (icon == IntPtr.Zero)
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-            Class = new WindowClass($"{GetType().Name}+{Guid.NewGuid()}", WndProc, icon);
-            if (!FreeLibrary(module))
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
+            return module;
+        }
+
+        protected virtual void RegisterClass()
+        {
+            var icon = LoadIcon();
+            Class = new WindowClass(Module, $"{GetType().Name}+{Guid.NewGuid()}", WndProc, icon);
         }
 
         protected virtual void CreateWindow()
@@ -97,7 +125,7 @@ namespace MicaForEveryone.Win32
                 X, Y, Width, Height,
                 Parent,
                 IntPtr.Zero,
-                InstanceHandle);
+                Module);
 
             if (Handle == IntPtr.Zero)
             {

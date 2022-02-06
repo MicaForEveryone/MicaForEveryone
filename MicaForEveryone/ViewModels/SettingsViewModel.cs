@@ -42,7 +42,7 @@ namespace MicaForEveryone.ViewModels
 
         public bool SystemBackdropIsSupported =>
 #if !DEBUG
-            SystemBackdrop.IsSupported;
+            DesktopWindowManager.IsBackdropTypeSupported;
 #else
             true;
 #endif

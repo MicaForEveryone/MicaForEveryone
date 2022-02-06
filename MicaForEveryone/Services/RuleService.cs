@@ -80,23 +80,36 @@ namespace MicaForEveryone.Services
 #endif
         }
 
-        public void MatchAndApplyRuleToAllWindows()
+        public async void MatchAndApplyRuleToAllWindows()
         {
-            var windows = _uiAutomation.GetRootElement().FindAll(TreeScope.TreeScope_Children, _uiAutomation.CreateTrueCondition());
-            for (var i = 0; i < windows.Length; i++)
+            await Task.Run(() =>
             {
-                try
+                var windows = _uiAutomation.GetRootElement().FindAll(TreeScope.TreeScope_Children, _uiAutomation.CreateTrueCondition());
+                for (var i = 0; i < windows.Length; i++)
                 {
-                    var window = windows.GetElement(i);
-                    if (window.CurrentControlType == UIA_ControlTypeIds.UIA_WindowControlTypeId &&
-                        Window.ValidateHandle(window.CurrentNativeWindowHandle))
+                    try
                     {
-                        var target = TargetWindow.FromAutomationElement(window);
-                        MatchAndApplyRuleToWindow(target);
+                        var window = windows.GetElement(i);
+                        if (window.CurrentControlType == UIA_ControlTypeIds.UIA_WindowControlTypeId &&
+                            Window.ValidateHandle(window.CurrentNativeWindowHandle))
+                        {
+                            var target = TargetWindow.FromAutomationElement(window);
+                            MatchAndApplyRuleToWindow(target);
+                        }
                     }
+#if DEBUG
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex);
+                    }
+#else
+                    catch
+                    {
+                        // ignore
+                    }
+#endif
                 }
-                catch { }
-            }
+            });
         }
 
         private async void ConfigSource_Changed(object sender, EventArgs e)

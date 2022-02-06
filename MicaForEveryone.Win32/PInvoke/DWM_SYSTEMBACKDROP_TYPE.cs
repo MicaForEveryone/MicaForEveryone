@@ -1,6 +1,6 @@
 ﻿namespace MicaForEveryone.Win32.PInvoke
 {
-    public enum DWM_SYSTEMBACKDROP_TYPE
+    public enum DWM_SYSTEMBACKDROP_TYPE : uint
     {
         DWMSBT_AUTO = 0,
         DWMSBT_NONE = 1,

@@ -16,6 +16,15 @@ namespace MicaForEveryone.Win32
         private const uint DWMWA_CAPTION_COLOR = 35;
         private const uint DWMWA_TEXT_COLOR = 36;
 
+        public static bool IsImmersiveDarkModeSupported { get; } =
+            Environment.OSVersion.Version.Build >= 19041;
+
+        public static bool IsUndocumentedMicaSupported { get; } =
+            Environment.OSVersion.Version.Build >= 22000;
+
+        public static bool IsBackdropTypeSupported { get; } =
+            Environment.OSVersion.Version.Build >= 22523;
+
         public static void EnableMicaIfSupported(IntPtr target)
         {
             if (Environment.OSVersion.Version.Build >= 22523)
@@ -42,8 +51,7 @@ namespace MicaForEveryone.Win32
         // only supported on Windows 11 build 22523+
         public static void SetBackdropType(IntPtr target, DWM_SYSTEMBACKDROP_TYPE backdropType)
         {
-            int backdropTypeInInt = (int)backdropType;
-            var value = GCHandle.Alloc(backdropTypeInInt, GCHandleType.Pinned);
+            var value = GCHandle.Alloc(backdropType, GCHandleType.Pinned);
             var result = DwmSetWindowAttribute(target, DWMWA_SYSTEMBACKDROP_TYPE, value.AddrOfPinnedObject(), sizeof(DWM_SYSTEMBACKDROP_TYPE));
             value.Free();
             if (result != 0)
