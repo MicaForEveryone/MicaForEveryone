@@ -31,8 +31,8 @@ namespace MicaForEveryone.Views
         private SettingsWindow(SettingsView view) : base(view)
         {
             Style = WindowStyles.WS_OVERLAPPEDWINDOW & ~WindowStyles.WS_MAXIMIZEBOX & ~WindowStyles.WS_MINIMIZEBOX;
-            Width = 800;
-            Height = 540;
+            Width = 820;
+            Height = 560;
 
             _backgroundBrush = new XamlMicaBrush(View, this);
 
@@ -46,11 +46,6 @@ namespace MicaForEveryone.Views
 
         private ISettingsViewModel ViewModel { get; } =
             Program.CurrentApp.Container.GetService<ISettingsViewModel>();
-
-        protected override IntPtr LoadIcon()
-        {
-            return LoadIcon(Module, "#32512");
-        }
 
         public override void Activate()
         {

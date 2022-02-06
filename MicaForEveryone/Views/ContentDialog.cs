@@ -46,11 +46,6 @@ namespace MicaForEveryone.Views
             _view.ActualThemeChanged += View_ActualThemeChanged;
         }
 
-        protected override IntPtr LoadIcon()
-        {
-            return LoadIcon(Module, "#32512");
-        }
-
         public override void Activate()
         {
             base.Activate();
