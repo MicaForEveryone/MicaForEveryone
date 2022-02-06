@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security;
+using System.Text;
 
 namespace MicaForEveryone.Win32.PInvoke
 {
@@ -131,7 +132,20 @@ namespace MicaForEveryone.Win32.PInvoke
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetClassInfoExW(IntPtr hInstance, string lpClassName, out WNDCLASSEX lpWndClass);
+        public static extern bool GetClassInfoExW(IntPtr hInstance, string lpszClass, ref WNDCLASSEX lpwcx);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern int GetClassNameW(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
+
+        public static string GetClassName(IntPtr hWnd)
+        {
+            var result = new StringBuilder(Macros.MAX_PATH);
+            if (GetClassNameW(hWnd, result, Macros.MAX_PATH) == 0)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            return result.ToString();
+        }
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr LoadIconW(IntPtr hInstance, string lpIconName);
@@ -150,5 +164,49 @@ namespace MicaForEveryone.Win32.PInvoke
         [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool IsWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern IntPtr SetWinEventHook(uint eventMin, uint eventMax, IntPtr hmodWinEventProc, WinEventProc pfnWinEventProc, uint idProcess, uint idThread, WINEVENT dwFlags);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool UnhookWinEvent(IntPtr hWinEventHook);
+
+        [DllImport("UIAutomationCore.dll", CharSet = CharSet.Unicode)]
+        public static extern bool UiaHasServerSideProvider(IntPtr hwnd);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
+
+        [DllImport("user32.dll", SetLastError = true, ExactSpelling = true)]
+        public static extern ushort GetClassWord(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern IntPtr GetClassLongPtrW(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [SecurityCritical]
+        public static extern IntPtr GetWindowLongPtrW(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern IntPtr GetAncestor(IntPtr hwnd, GetAncestorFlag gaFlags);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnumChildWindows(IntPtr hWndParent, EnumWindowsProc lpEnumFunc, IntPtr lParam);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
     }
+
+    [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+    public delegate void WinEventProc(IntPtr hWinEventHook, uint winEvent, IntPtr hwnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime);
+
+    [UnmanagedFunctionPointer(CallingConvention.Winapi)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public delegate bool EnumWindowsProc([In] IntPtr hwnd, [In] IntPtr lParam);
 }

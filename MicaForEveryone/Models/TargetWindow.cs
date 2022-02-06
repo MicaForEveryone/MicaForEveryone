@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using UIAutomationClient;
 
 using MicaForEveryone.Win32;
 
@@ -8,14 +7,25 @@ namespace MicaForEveryone.Models
 {
     public class TargetWindow
     {
-        public static TargetWindow FromAutomationElement(IUIAutomationElement element)
+        //public static TargetWindow FromAutomationElement(IUIAutomationElement element)
+        //{
+        //    return new TargetWindow
+        //    {
+        //        WindowHandle = element.CurrentNativeWindowHandle,
+        //        Title = element.CurrentName,
+        //        ClassName = element.CurrentClassName,
+        //        ProcessName = Process.GetProcessById(element.CurrentProcessId).ProcessName,
+        //    };
+        //}
+
+        public static TargetWindow FromWindow(Window window)
         {
             return new TargetWindow
             {
-                WindowHandle = element.CurrentNativeWindowHandle,
-                Title = element.CurrentName,
-                ClassName = element.CurrentClassName,
-                ProcessName = Process.GetProcessById(element.CurrentProcessId).ProcessName,
+                WindowHandle = window.Handle,
+                Title = window.GetText(),
+                ClassName = window.Class.Name,
+                ProcessName = Process.GetProcessById((int)window.GetProcessId()).ProcessName,
             };
         }
 

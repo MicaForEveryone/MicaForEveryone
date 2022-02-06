@@ -7,7 +7,9 @@ namespace MicaForEveryone.Win32.PInvoke
         public const uint WM_APP = 0x8000;
         public const uint WM_USER = 0x0400;
 
-        public const int IDI_APPLICATION = 32512;
+        public const int IDI_APPLICATION_ICON = 32512;
+
+        public const int MAX_PATH = 260;
 
         public static int GET_X_LPARAM(IntPtr lp) => unchecked((short)(long)lp);
 

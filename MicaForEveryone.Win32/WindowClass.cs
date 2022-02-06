@@ -10,6 +10,27 @@ namespace MicaForEveryone.Win32
 {
     public class WindowClass : IDisposable
     {
+        private const int GCW_ATOM = -32;
+        private const int GCL_HMODULE = -16;
+
+        public static WindowClass GetClassOfWindow(IntPtr hWnd)
+        {
+            var atom = Macros.MAKEINTATOM(GetClassWord(hWnd, GCW_ATOM));
+            var module = GetClassLongPtrW(hWnd, GCL_HMODULE);
+            var className = GetClassName(hWnd);
+            var classData = new WNDCLASSEX
+            {
+                cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEX)),
+                hInstance = module,
+                lpszClassName = className,
+            };
+            //if (!GetClassInfoExW(module, className, ref classData))
+            //{
+            //    throw new Win32Exception(Marshal.GetLastWin32Error());
+            //}
+            return new WindowClass(atom, classData);
+        }
+
         private readonly WNDCLASSEX _classData;
         
         public WindowClass(IntPtr module, string name, WndProc wndProc, IntPtr icon, WindowClassStyles styles = 0, int wndExtra = 0)
@@ -37,9 +58,17 @@ namespace MicaForEveryone.Win32
             }
         }
 
+        private WindowClass(IntPtr atom, WNDCLASSEX classData)
+        {
+            Atom = atom;
+            _classData = classData;
+        }
+
         public string Name => _classData.lpszClassName;
 
         public IntPtr Icon => _classData.hIcon;
+
+        public IntPtr Module => _classData.hInstance;
 
         public IntPtr Atom { get; private set; }
 

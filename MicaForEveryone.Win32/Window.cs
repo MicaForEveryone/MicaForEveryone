@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-
+using System.Text;
 using MicaForEveryone.Win32.PInvoke;
-
-using static MicaForEveryone.Win32.PInvoke.NativeMethods;
 
 namespace MicaForEveryone.Win32
 {
@@ -14,6 +12,8 @@ namespace MicaForEveryone.Win32
 
         private const uint ERROR_MOD_NOT_FOUND = 0x0000007E;
         private const uint USER_DEFAULT_SCREEN_DPI = 96;
+        private const int GWL_STYLE = -16;
+        private const int GWL_EXSTYLE = -20;
 
         public static void AdjustWindowRectEx(ref RECT lpRect, WindowStyles dwStyle, WindowStylesEx dwExStyle)
         {
@@ -25,21 +25,57 @@ namespace MicaForEveryone.Win32
 
         public static Window FromHandle(IntPtr hWnd)
         {
-            return new Window
+            var result = new Window
             {
                 Handle = hWnd,
+                Class = WindowClass.GetClassOfWindow(hWnd),
             };
+            result.Module = result.Class.Module;
+            return result;
         }
 
-        public static bool ValidateHandle(IntPtr hWnd)
+        public static Window GetWindowIfWindowPatternValid(IntPtr hWnd)
         {
-            return IsWindow(hWnd);
+            if (hWnd == IntPtr.Zero)
+                return null;
+
+            if (!NativeMethods.IsWindow(hWnd))
+                return null;
+
+            if (!NativeMethods.IsWindowVisible(hWnd))
+                return null;
+
+            var window = FromHandle(hWnd);
+
+            if (!window.IsWindowPatternValid())
+                return null;
+
+            return window;
         }
 
         public static Window GetDesktopWindow()
         {
             return FromHandle(NativeMethods.GetDesktopWindow());
         }
+
+        #region Window Enumerator
+
+        private class WindowEnumeratorEventArgs : EventArgs
+        {
+            public IntPtr WindowHandle { get; set; }
+        }
+
+        private static EnumWindowsProc _windowEnumerator = new(WindowEnumeratorCallback);
+
+        private static event EventHandler<WindowEnumeratorEventArgs> EnumerateItem;
+
+        private static bool WindowEnumeratorCallback([In] IntPtr hwnd, [In] IntPtr lParam)
+        {
+            EnumerateItem?.Invoke(null, new WindowEnumeratorEventArgs { WindowHandle = hwnd });
+            return true;
+        }
+
+        #endregion
 
         private bool _isDisposing = false;
 
@@ -49,7 +85,7 @@ namespace MicaForEveryone.Win32
 
         public IntPtr Parent { get; set; } = IntPtr.Zero;
 
-        public IntPtr Module { get; } = InstanceHandle;
+        public IntPtr Module { get; private set; } = NativeMethods.InstanceHandle;
 
         public int X { get; set; } = CW_USEDEFAULT;
 
@@ -73,13 +109,12 @@ namespace MicaForEveryone.Win32
 
         protected virtual IntPtr LoadIcon()
         {
-            var module = GetModule("imageres.dll");
-            return LoadIcon(module, "#15");
+            return LoadIcon(Module, $"#{Macros.IDI_APPLICATION_ICON}");
         }
 
         protected virtual IntPtr LoadIcon(IntPtr module, string resourceId)
         {
-            var result = LoadIconW(module, resourceId);
+            var result = NativeMethods.LoadIconW(module, resourceId);
             if (result == IntPtr.Zero)
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
@@ -89,13 +124,13 @@ namespace MicaForEveryone.Win32
 
         protected IntPtr GetModule(string moduleName)
         {
-            var module = GetModuleHandleW(moduleName);
+            var module = NativeMethods.GetModuleHandleW(moduleName);
             if (module == IntPtr.Zero)
             {
                 var error = Marshal.GetLastWin32Error();
                 if (error == ERROR_MOD_NOT_FOUND)
                 {
-                    module = LoadLibraryW(moduleName);
+                    module = NativeMethods.LoadLibraryW(moduleName);
                     if (module == IntPtr.Zero)
                     {
                         throw new Win32Exception(Marshal.GetLastWin32Error());
@@ -117,7 +152,7 @@ namespace MicaForEveryone.Win32
 
         protected virtual void CreateWindow()
         {
-            Handle = CreateWindowExW(
+            Handle = NativeMethods.CreateWindowExW(
                 StyleEx,
                 Class.Atom,
                 Title,
@@ -157,12 +192,12 @@ namespace MicaForEveryone.Win32
 
         public virtual void Show(ShowWindowCommand command)
         {
-            ShowWindow(Handle, command);
+            NativeMethods.ShowWindow(Handle, command);
         }
 
         public virtual void Close()
         {
-            if (!PostMessageW(Handle, (uint)WindowMessage.WM_CLOSE, IntPtr.Zero, IntPtr.Zero))
+            if (!NativeMethods.PostMessageW(Handle, (uint)WindowMessage.WM_CLOSE, IntPtr.Zero, IntPtr.Zero))
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
@@ -172,15 +207,15 @@ namespace MicaForEveryone.Win32
         {
             if (_isDisposing) return;
             _isDisposing = true;
-            _ = DestroyWindow(Handle);
+            _ = NativeMethods.DestroyWindow(Handle);
             Handle = IntPtr.Zero;
             Class.Dispose();
-            _ = DestroyIcon(Class.Icon);
+            _ = NativeMethods.DestroyIcon(Class.Icon);
         }
 
         public void UpdateScaleFactor()
         {
-            ScaleFactor = ((float)GetDpiForWindow(Handle)) / USER_DEFAULT_SCREEN_DPI;
+            ScaleFactor = ((float)NativeMethods.GetDpiForWindow(Handle)) / USER_DEFAULT_SCREEN_DPI;
         }
 
         public void UpdateSize()
@@ -246,6 +281,93 @@ namespace MicaForEveryone.Win32
             Y = (int)((desktopWindowRect.Height - ScaledHeight) / 2);
         }
 
+        public string GetText()
+        {
+            var result = new StringBuilder(Macros.MAX_PATH);
+            NativeMethods.GetWindowText(Handle, result, Macros.MAX_PATH);
+            return result.ToString();
+        }
+
+        public WindowStyles GetWindowStyle()
+        {
+            var style = NativeMethods.GetWindowLongPtrW(Handle, GWL_STYLE);
+            if (style == IntPtr.Zero)
+            {
+                var error = Marshal.GetLastWin32Error();
+                if (error != 0)
+                    throw new Win32Exception(error);
+            }
+            return (WindowStyles)unchecked((uint)style.ToInt64());
+        }
+
+        public WindowStylesEx GetWindowExStyle()
+        {
+            var style = NativeMethods.GetWindowLongPtrW(Handle, GWL_EXSTYLE);
+            if (style == IntPtr.Zero)
+            {
+                var error = Marshal.GetLastWin32Error();
+                if (error != 0)
+                    throw new Win32Exception(error);
+            }
+            return (WindowStylesEx)unchecked((uint)style.ToInt64());
+        }
+
+        public void ForEachChild(Action<Window> callback)
+        {
+            void ForEachChild(object sender, WindowEnumeratorEventArgs args)
+            {
+                if (args.WindowHandle == IntPtr.Zero)
+                    return;
+
+                if (!NativeMethods.IsWindow(args.WindowHandle))
+                    return;
+
+                callback?.Invoke(FromHandle(args.WindowHandle));
+            }
+
+            EnumerateItem += ForEachChild;
+            NativeMethods.EnumChildWindows(Handle, _windowEnumerator, IntPtr.Zero);
+            EnumerateItem -= ForEachChild;
+        }
+
+        public bool IsWindowPatternValid()
+        {
+            StyleEx = GetWindowExStyle();
+            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_APPWINDOW))
+                return true;
+
+            Style = GetWindowStyle();
+            if (Style == 0)
+                return false;
+
+            var hasTitleBar = Style.HasFlag(WindowStyles.WS_BORDER) &&
+                Style.HasFlag(WindowStyles.WS_DLGFRAME);
+
+            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_TOOLWINDOW) && !hasTitleBar)
+                return false;
+
+            if (Style.HasFlag(WindowStyles.WS_POPUP) && !hasTitleBar)
+                return false;
+
+            var desktopWindow = NativeMethods.GetDesktopWindow();
+            var parent = NativeMethods.GetAncestor(Handle, GetAncestorFlag.GA_PARENT);
+            if (parent != desktopWindow && !StyleEx.HasFlag(WindowStylesEx.WS_EX_MDICHILD))
+                return false;
+
+            return true;
+        }
+
+        public uint GetProcessId()
+        {
+            NativeMethods.GetWindowThreadProcessId(Handle, out var pid);
+            return pid;
+        }
+
+        public bool IsVisible()
+        {
+            return NativeMethods.IsWindowVisible(Handle);
+        }
+
         protected virtual IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
             switch ((WindowMessage)umsg)
@@ -266,7 +388,7 @@ namespace MicaForEveryone.Win32
                     OnDpiChanged(hwnd);
                     break;
             }
-            return DefWindowProcW(hwnd, umsg, wParam, lParam);
+            return NativeMethods.DefWindowProcW(hwnd, umsg, wParam, lParam);
         }
 
         protected void OnCreate(IntPtr hwnd)

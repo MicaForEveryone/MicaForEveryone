@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using UIAutomationClient;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.Events;
 
 namespace MicaForEveryone.Services
 {
-    internal class RuleService : IRuleService, IUIAutomationEventHandler
+    internal class RuleService : IRuleService
     {
         public void ApplyRuleToWindow(TargetWindow target, IRule rule)
         {
@@ -24,15 +24,12 @@ namespace MicaForEveryone.Services
         }
 
         private readonly IConfigService _configService;
-        private readonly IUIAutomation _uiAutomation;
 
         public RuleService(IConfigService configService)
         {
             _configService = configService;
             _configService.ConfigSource.Changed += ConfigSource_Changed;
             _configService.Updated += ConfigService_Updated;
-
-            _uiAutomation = new CUIAutomationClass();
         }
 
         ~RuleService()
@@ -44,14 +41,14 @@ namespace MicaForEveryone.Services
 
         public void StartService()
         {
-            _uiAutomation.AddAutomationEventHandler(UIA_EventIds.UIA_Window_WindowOpenedEventId,
-                _uiAutomation.GetRootElement(), TreeScope.TreeScope_Children, _uiAutomation.CreateCacheRequest(), this);
+            var winEvent = new WindowOpenedEvent();
+            winEvent.Handler += WinEvent_Handler;
+            WinEventManager.AddEventHandler(winEvent);
         }
 
         public void StopService()
         {
-            // app gets stucked here
-            //_uiAutomation.RemoveAllEventHandlers();
+            WinEventManager.RemoveAll();
         }
 
         public void MatchAndApplyRuleToWindow(TargetWindow target)
@@ -80,35 +77,17 @@ namespace MicaForEveryone.Services
 #endif
         }
 
-        public async void MatchAndApplyRuleToAllWindows()
+        public void MatchAndApplyRuleToAllWindows()
         {
-            await Task.Run(() =>
+            Window.GetDesktopWindow().ForEachChild(window =>
             {
-                var windows = _uiAutomation.GetRootElement().FindAll(TreeScope.TreeScope_Children, _uiAutomation.CreateTrueCondition());
-                for (var i = 0; i < windows.Length; i++)
-                {
-                    try
-                    {
-                        var window = windows.GetElement(i);
-                        if (window.CurrentControlType == UIA_ControlTypeIds.UIA_WindowControlTypeId &&
-                            Window.ValidateHandle(window.CurrentNativeWindowHandle))
-                        {
-                            var target = TargetWindow.FromAutomationElement(window);
-                            MatchAndApplyRuleToWindow(target);
-                        }
-                    }
-#if DEBUG
-                    catch (Exception ex)
-                    {
-                        System.Diagnostics.Debug.WriteLine(ex);
-                    }
-#else
-                    catch
-                    {
-                        // ignore
-                    }
-#endif
-                }
+                if (!window.IsVisible())
+                    return;
+
+                if (!window.IsWindowPatternValid())
+                    return;
+
+                MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
             });
         }
 
@@ -125,12 +104,13 @@ namespace MicaForEveryone.Services
             });
         }
 
-        async void IUIAutomationEventHandler.HandleAutomationEvent(IUIAutomationElement sender, int eventId)
+        private async void WinEvent_Handler(object sender, WinEventArgs e)
         {
-            var window = TargetWindow.FromAutomationElement(sender);
             await Task.Run(() =>
             {
-                MatchAndApplyRuleToWindow(window);
+                var window = Window.FromHandle(e.WindowHandle);
+                var target = TargetWindow.FromWindow(window);
+                MatchAndApplyRuleToWindow(target);
             });
         }
     }
