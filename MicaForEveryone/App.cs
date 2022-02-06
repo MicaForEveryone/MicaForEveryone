@@ -95,6 +95,8 @@ namespace MicaForEveryone
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
             services.AddTransient<IGeneralSettingsViewModel, GeneralSettingsViewModel>();
             services.AddTransient<IRuleSettingsViewModel, RuleSettingsViewModel>();
+            services.AddTransient<IAddProcessRuleViewModel, AddProcessRuleViewModel>();
+            services.AddTransient<IAddClassRuleViewModel, AddClassRuleViewModel>();
 
             return services.BuildServiceProvider();
         }

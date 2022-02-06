@@ -134,12 +134,18 @@ namespace MicaForEveryone.Models
                     new KeyValuePair<KeyName, object>(KeyName.ExtendFrameToClientArea, rule.ExtendFrameIntoClientArea),
                 };
 
-                _configDocument.AddNewSection(type, parameter, pairs);
+                _configDocument.Sections.Add(Section.Create(type, parameter, pairs));
             }
             else
             {
                 OverrideToSectionFromRule(target, rule);
             }
+        }
+
+        public void RemoveRule(IRule rule)
+        {
+            var section = _configDocument.Sections.First(section => section.Name == rule.Name);
+            _configDocument.Sections.Remove(section);
         }
 
         public async Task LoadAsync()
@@ -155,6 +161,7 @@ namespace MicaForEveryone.Models
 
         public async Task SaveAsync()
         {
+            var fileSystemWatcherState = _fileSystemWatcher.EnableRaisingEvents;
             try
             {
                 _fileSystemWatcher.EnableRaisingEvents = false;
@@ -164,7 +171,7 @@ namespace MicaForEveryone.Models
             }
             finally
             {
-                _fileSystemWatcher.EnableRaisingEvents = true;
+                _fileSystemWatcher.EnableRaisingEvents = fileSystemWatcherState;
             }
         }
 

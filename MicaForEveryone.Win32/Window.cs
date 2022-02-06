@@ -267,18 +267,18 @@ namespace MicaForEveryone.Win32
             return lpRect;
         }
 
-        public void CenterToDesktop()
+        public void CenterToWindow(Window parent)
         {
-            var desktopWindowRect = GetDesktopWindow().GetWindowRect();
-            X = (desktopWindowRect.Width - Width) / 2;
-            Y = (desktopWindowRect.Height - Height) / 2;
+            var parentRect = parent.GetWindowRect();
+            X = parentRect.X + (parentRect.Width - Width) / 2;
+            Y = parentRect.Y + (parentRect.Height - Height) / 2;
         }
 
-        public void CenterToDesktopScaled()
+        public void CenterToWindowScaled(Window parent)
         {
-            var desktopWindowRect = GetDesktopWindow().GetWindowRect();
-            X = (int)((desktopWindowRect.Width - ScaledWidth) / 2);
-            Y = (int)((desktopWindowRect.Height - ScaledHeight) / 2);
+            var parentRect = parent.GetWindowRect();
+            X = parentRect.X + (int)((parentRect.Width - ScaledWidth) / 2);
+            Y = parentRect.Y + (int)((parentRect.Height - ScaledHeight) / 2);
         }
 
         public string GetText()
@@ -366,6 +366,11 @@ namespace MicaForEveryone.Win32
         public bool IsVisible()
         {
             return NativeMethods.IsWindowVisible(Handle);
+        }
+
+        public void SetEnable(bool enabled)
+        {
+            NativeMethods.EnableWindow(Handle, enabled);
         }
 
         protected virtual IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)

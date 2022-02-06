@@ -10,6 +10,7 @@ namespace MicaForEveryone.Interfaces
         Task LoadAsync();
         Task SaveAsync();
         void RaiseChanged();
+        void PopulateRules();
 
         event EventHandler Updated;
     }

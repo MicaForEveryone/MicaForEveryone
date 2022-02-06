@@ -15,6 +15,7 @@ namespace MicaForEveryone.ViewModels
         private BackdropType _backdropType;
         private TitlebarColorMode _titlebarColorMode;
         private bool _extendFrameIntoClientArea;
+        private IRule _rule;
 
         public RuleSettingsViewModel(IConfigService configService)
         {
@@ -22,8 +23,6 @@ namespace MicaForEveryone.ViewModels
 
             _saveCommand = new RelyCommand(Save, CanSave);
         }
-
-        public IRule Rule { get; set; }
 
         public BackdropType BackdropType
         {
@@ -57,24 +56,26 @@ namespace MicaForEveryone.ViewModels
 
         public ISettingsViewModel ParentViewModel { get; set; }
 
+        public object Rule => _rule;
+
         public ICommand SaveCommand => _saveCommand;
 
         public void InitializeData(object data)
         {
             if (data is IRule rule)
             {
-                Rule = rule;
-                BackdropType = Rule.BackdropPreference;
-                TitlebarColor = Rule.TitlebarColor;
-                ExtendFrameIntoClientArea = Rule.ExtendFrameIntoClientArea;
+                _rule = rule;
+                BackdropType = _rule.BackdropPreference;
+                TitlebarColor = _rule.TitlebarColor;
+                ExtendFrameIntoClientArea = _rule.ExtendFrameIntoClientArea;
             }
         }
 
         private async void Save(object parameter)
         {
-            Rule.BackdropPreference = BackdropType;
-            Rule.TitlebarColor = TitlebarColor;
-            Rule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
+            _rule.BackdropPreference = BackdropType;
+            _rule.TitlebarColor = TitlebarColor;
+            _rule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
 
             _configService.RaiseChanged();
             await _configService.SaveAsync();
@@ -82,9 +83,9 @@ namespace MicaForEveryone.ViewModels
 
         private bool CanSave(object parameter)
         {
-            return BackdropType != Rule.BackdropPreference ||
-                TitlebarColor != Rule.TitlebarColor ||
-                ExtendFrameIntoClientArea != Rule.ExtendFrameIntoClientArea;
+            return BackdropType != _rule.BackdropPreference ||
+                TitlebarColor != _rule.TitlebarColor ||
+                ExtendFrameIntoClientArea != _rule.ExtendFrameIntoClientArea;
         }
     }
 }

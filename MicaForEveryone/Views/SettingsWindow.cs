@@ -51,7 +51,7 @@ namespace MicaForEveryone.Views
         {
             base.Activate();
 
-            CenterToDesktopScaled();
+            CenterToWindowScaled(GetDesktopWindow());
             UpdatePosition();
 
             ((Grid)((SettingsView)View).Content).Background = _backgroundBrush;

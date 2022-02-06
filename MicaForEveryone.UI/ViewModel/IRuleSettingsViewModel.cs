@@ -16,5 +16,6 @@ namespace MicaForEveryone.UI.ViewModels
         ICommand SaveCommand { get; }
 
         void InitializeData(object data);
+        object Rule { get; }
     }
 }

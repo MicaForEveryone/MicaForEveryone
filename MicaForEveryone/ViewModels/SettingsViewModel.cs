@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Markup;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using MicaForEveryone.UI;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
+using MicaForEveryone.Config;
 
 #if !DEBUG
 using MicaForEveryone.Win32;
@@ -33,6 +40,8 @@ namespace MicaForEveryone.ViewModels
             AddProcessRuleCommand = new RelyCommand(AddProcessRule);
             AddClassRuleCommand = new RelyCommand(AddClassRule);
             RemoveRuleCommand = new RelyCommand(RemoveRule, CanRemoveRule);
+            ReloadConfigCommand = new RelyCommand(ReloadConfig);
+            EditConfigCommand = new RelyCommand(OpenConfigInEditor);
         }
 
         ~SettingsViewModel()
@@ -67,6 +76,8 @@ namespace MicaForEveryone.ViewModels
         public ICommand AddProcessRuleCommand { get; }
         public ICommand AddClassRuleCommand { get; }
         public ICommand RemoveRuleCommand { get; }
+        public ICommand EditConfigCommand { get; }
+        public ICommand ReloadConfigCommand { get; }
 
         public void Initialize(object sender)
         {
@@ -143,20 +154,85 @@ namespace MicaForEveryone.ViewModels
 
         private void AddProcessRule(object obj)
         {
-            throw new NotImplementedException();
+            var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
+            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+            
+            var dialog = new Views.AddProcessRuleDialog();
+            dialog.Destroy += (sender, args) =>
+            {
+                dialog.Dispose();
+            };
+            dialog.ViewModel.Submit += async (sender, args) =>
+            {
+                var rule = new ProcessRule(dialog.ViewModel.ProcessName);
+                _configService.ConfigSource.SetRule(rule);
+                await _configService.ConfigSource.SaveAsync();
+                _configService.PopulateRules();
+            };
+
+            dialogService.ShowDialog(viewService.SettingsWindow, dialog);
         }
 
         private void AddClassRule(object obj)
         {
-            throw new NotImplementedException();
+            var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
+            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+            
+            var dialog = new Views.AddClassRuleDialog();
+            dialog.Destroy += (sender, args) =>
+            {
+                dialog.Dispose();
+            };
+            dialog.ViewModel.Submit += async (sender, args) =>
+            {
+                var rule = new ClassRule(dialog.ViewModel.ClassName);
+                _configService.ConfigSource.SetRule(rule);
+                await _configService.ConfigSource.SaveAsync();
+                _configService.PopulateRules();
+            };
+
+            dialogService.ShowDialog(viewService.SettingsWindow, dialog);
         }
 
-        private void RemoveRule(object obj)
+        private async void RemoveRule(object obj)
         {
-            throw new NotImplementedException();
+            if (SelectedPane is RulePaneItem rulePane)
+            {
+                if (rulePane.ViewModel.Rule is IRule rule)
+                {
+                    _configService.ConfigSource.RemoveRule(rule);
+                    await _configService.ConfigSource.SaveAsync();
+                    _configService.PopulateRules();
+                }
+            }
         }
 
         private bool CanRemoveRule(object obj) => SelectedPane != null &&
             SelectedPane.ItemType is not (PaneItemType.General or PaneItemType.Global);
+
+        private async void ReloadConfig(object parameter)
+        {
+            try
+            {
+                await _configService.LoadAsync();
+            }
+            catch (ParserError error)
+            {
+                var window = Program.CurrentApp.Container.GetService<IViewService>().SettingsWindow;
+                await window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
+                    dialogService.ShowErrorDialog(window, error.Message, error.ToString(), 576, 400);
+                });
+            }
+        }
+
+        private async void OpenConfigInEditor(object obj)
+        {
+            await Task.Run(() =>
+            {
+                _configService.ConfigSource.OpenInEditor();
+            });
+        }
     }
 }

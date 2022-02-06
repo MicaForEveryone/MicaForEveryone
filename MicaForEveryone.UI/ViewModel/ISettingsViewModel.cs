@@ -24,6 +24,8 @@ namespace MicaForEveryone.UI.ViewModels
         ICommand AddProcessRuleCommand { get; }
         ICommand AddClassRuleCommand { get; }
         ICommand RemoveRuleCommand { get; }
+        ICommand EditConfigCommand { get; }
+        ICommand ReloadConfigCommand { get; }
 
         void Initialize(object sender);
     }

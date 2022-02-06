@@ -11,23 +11,29 @@ namespace MicaForEveryone.Config
         {
             var lexTokens = await new Lexer(source).ParseAsync();
             var tokens = new Tokenizer(lexTokens).Parse();
-            return new Parser(tokens).Parse();
+            return new Parser(tokens).ParseDocument();
         }
 
-        public static Document Empty => new(new Token[0]);
+        public static Document Empty => new();
 
-        private Token[] _tokens;
-
-        internal Document(Token[] tokens)
+        internal Document()
         {
-            _tokens = tokens;
         }
 
         public IList<Section> Sections { get; } = new List<Section>();
 
         public async Task SaveAsync(TextWriter writer)
         {
-            foreach (var token in _tokens)
+            foreach (var section in Sections)
+            {
+                await WriteTokensAsync(writer, section.PreTokens);
+                await WriteTokensAsync(writer, section.Tokens);
+            }
+        }
+
+        private async Task WriteTokensAsync(TextWriter writer, IEnumerable<Token> tokens)
+        {
+            foreach (var token in tokens)
             {
                 if (token.Type == TokenType.NewLine)
                 {
@@ -35,33 +41,12 @@ namespace MicaForEveryone.Config
                 }
                 else
                 {
-                    await writer.WriteAsync(token.Data);
+                    if (token.LexialType == LexicalTokenType.StringLiteral)
+                        await writer.WriteAsync($"\"{token.Data}\"");
+                    else
+                        await writer.WriteAsync(token.Data);
                 }
             }
-        }
-
-        public void AddNewSection(SectionType type, string parameter, KeyValuePair<KeyName, object>[] pairs)
-        {
-            var tokens = _tokens.ToList();
-            tokens.Add(new Token(TokenType.SectionType, type.ToString()));
-            if (parameter != null)
-            {
-                tokens.Add(new Token(TokenType.SectionParameterStart, ":"));
-                tokens.Add(new Token(TokenType.SectionParameter, parameter));
-            }
-            tokens.Add(new Token(TokenType.SectionStart, "{"));
-            tokens.Add(new Token(TokenType.NewLine, ""));
-            foreach (var pair in pairs)
-            {
-                tokens.Add(new Token(TokenType.KeyName, pair.Key.ToString()));
-                tokens.Add(new Token(TokenType.KeySet, "="));
-                tokens.Add(new Token(TokenType.KeyValue, pair.Value.ToString()));
-                tokens.Add(new Token(TokenType.NewLine, ""));
-            }
-            tokens.Add(new Token(TokenType.SectionEnd, "}"));
-            _tokens = tokens.ToArray();
-            var parser = new Parser(_tokens, this);
-            parser.Parse();
         }
     }
 }

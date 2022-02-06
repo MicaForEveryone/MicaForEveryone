@@ -201,6 +201,13 @@ namespace MicaForEveryone.Win32.PInvoke
 
         [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
         public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, uint nIndex, IntPtr dwNewLong);
+
+        [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool EnableWindow(IntPtr hWnd, [MarshalAs(UnmanagedType.Bool)] bool bEnable);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]

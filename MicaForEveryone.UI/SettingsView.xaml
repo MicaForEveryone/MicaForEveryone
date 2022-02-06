@@ -406,35 +406,48 @@
         <Grid Grid.Row="2" Margin="8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button
-                x:Uid="AddRuleButton"
-                Grid.Column="0"
-                Margin="2">
-                <Button.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem" Command="{x:Bind ViewModel.AddProcessRuleCommand}">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xECAA;" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem x:Uid="AddClassRuleMenuItem" Command="{x:Bind ViewModel.AddClassRuleCommand}">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE737;" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                    </MenuFlyout>
-                </Button.Flyout>
-            </Button>
-            <Button
-                x:Uid="RemoveRuleButton"
-                Grid.Column="1"
-                Margin="2"
-                Command="{x:Bind ViewModel.RemoveRuleCommand}" />
+            <CommandBar DefaultLabelPosition="Right">
+                <AppBarButton
+                    x:Uid="AddRuleAppBarButton"
+                    Grid.Column="0"
+                    Margin="2"
+                    Icon="Add">
+                    <Button.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem" Command="{x:Bind ViewModel.AddProcessRuleCommand}">
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xECAA;" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                            <MenuFlyoutItem x:Uid="AddClassRuleMenuItem" Command="{x:Bind ViewModel.AddClassRuleCommand}">
+                                <MenuFlyoutItem.Icon>
+                                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE737;" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </AppBarButton>
+                <AppBarButton
+                    x:Uid="RemoveRuleAppBarButton"
+                    Grid.Column="1"
+                    Margin="2"
+                    Command="{x:Bind ViewModel.RemoveRuleCommand}"
+                    Icon="Remove" />
+                <CommandBar.SecondaryCommands>
+                    <AppBarButton
+                        x:Uid="OpenInEditorAppBarButton"
+                        Command="{x:Bind ViewModel.EditConfigCommand}"
+                        Icon="Edit" />
+                    <AppBarButton
+                        x:Uid="ReloadAppBarButton"
+                        Command="{x:Bind ViewModel.ReloadConfigCommand}"
+                        Icon="Refresh" />
+                </CommandBar.SecondaryCommands>
+            </CommandBar>
             <Button
                 x:Uid="CloseButton"
                 Grid.Column="3"

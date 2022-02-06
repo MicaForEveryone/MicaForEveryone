@@ -1,7 +1,8 @@
-﻿using Windows.ApplicationModel.Resources;
+﻿using System.Windows.Input;
+using Microsoft.Extensions.DependencyInjection;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.ViewModels;
@@ -9,13 +10,12 @@ using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
 using MicaForEveryone.Win32.PInvoke;
-using System;
 
 namespace MicaForEveryone.Views
 {
     public class ContentDialog : XamlDialog
     {
-        private static RelyCommand CloseDialogCommand { get; } =
+        protected static ICommand CloseDialogCommand { get; } =
             new RelyCommand(dialog => ((Dialog)dialog).Close());
 
         private static COLORREF GetResourceColor(ResourceDictionary resources, string name)
@@ -32,34 +32,36 @@ namespace MicaForEveryone.Views
 
         private readonly ContentDialogView _view;
 
-        protected ContentDialog(ContentDialogView view) : base(view)
+        public ContentDialog() : this(new())
         {
-            _view = view;
-            _view.ViewModel = Program.CurrentApp.Container.GetService<IContentDialogViewModel>();
-            _view.ViewModel.IsPrimaryButtonEnabled = true;
-            _view.ViewModel.PrimaryCommand = CloseDialogCommand;
-            _view.ViewModel.PrimaryCommandParameter = this;
+        }
+
+        protected ContentDialog(ContentDialogView view) : 
+            this(view, Program.CurrentApp.Container.GetService<IContentDialogViewModel>())
+        {
+            ViewModel.IsPrimaryButtonEnabled = true;
+            ViewModel.PrimaryCommand = CloseDialogCommand;
+            ViewModel.PrimaryCommandParameter = this;
 
             var resources = ResourceLoader.GetForCurrentView();
-            _view.ViewModel.PrimaryButtonContent = resources.GetString("OkButton/Text");
+            ViewModel.PrimaryButtonContent = resources.GetString("OkButton/Text");
+        }
 
+        protected ContentDialog(ContentDialogView view, IContentDialogViewModel viewModel) : base(view)
+        {
+            ViewModel = viewModel;
+
+            _view = view;
+            _view.ViewModel = ViewModel;
             _view.ActualThemeChanged += View_ActualThemeChanged;
         }
+
+        public IContentDialogViewModel ViewModel { get; }
 
         public override void Activate()
         {
             base.Activate();
             SetTitlebarColor();
-        }
-
-        public void SetTitle(object title)
-        {
-            _view.ViewModel.Title = title;
-        }
-
-        public void SetContent(object content)
-        {
-            _view.ViewModel.Content = content;
         }
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)

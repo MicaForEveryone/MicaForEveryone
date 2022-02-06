@@ -8,82 +8,54 @@ namespace MicaForEveryone.Config
 {
     internal class Parser
     {
-        private readonly Document _result;
         private int _position;
 
         public Parser(Token[] data)
         {
             Data = data;
-            _result = new Document(data);
-        }
-
-        public Parser(IList<Token> data, Document document)
-        {
-            Data = data.ToArray();
-            _result = document;
         }
 
         private Token[] Data { get; }
         private Token CurrentToken => Data[_position];
 
-        private void SkipSpace()
+        public Document ParseDocument()
         {
-            while (_position < Data.Length)
-            {
-                if (CurrentToken.Type is not (TokenType.Space or TokenType.Comment or TokenType.NewLine))
-                    break;
-                _position++;
-            }
-        }
+            var result = new Document();
 
-        private void NextToken()
-        {
-            _position++;
-            SkipSpace();
-            if (_position >= Data.Length)
-                throw new UnexpectedEndOfFile(Data[Data.Length-1]);
-        }
-
-        private void ExpectToken(TokenType expected)
-        {
-            SkipSpace();
-            if (_position >= Data.Length)
-                throw new UnexpectedEndOfFile(Data[Data.Length-1]);
-            if (CurrentToken.Type != expected)
-                throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
-        }
-
-        private void NextToken(TokenType expected)
-        {
-            NextToken();
-            if (CurrentToken.Type != expected)
-                throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
-        }
-
-        private Symbol GetNextSymbol(TokenType expected)
-        {
-            NextToken(expected);
-            return new Symbol(CurrentToken);
-        }
-
-        public Document Parse()
-        {
-            if (_result.Sections.Count > 0)
-                return _result;
+            int start = _position;
+            Section section = null;
 
             while (_position < Data.Length)
             {
                 ExpectToken(TokenType.SectionType);
-                ParseSection();
-                _position++;
+
+                var preTokens = new Token[_position - start];
+                if (_position > start)
+                {
+                    Array.Copy(Data, start, preTokens, 0, preTokens.Length);
+                }
+
+                section = ParseSection();
+                section.PreTokens = preTokens;
+                result.Sections.Add(section);
+
+                start = ++_position;
                 SkipSpace();
             }
 
-            return _result;
+            if (_position > start && section != null)
+            {
+                section.Tokens = new Token[section.Tokens.Length + _position - start - 1];
+                Array.Copy(Data, Data.Length - section.Tokens.Length - 1, section.Tokens, 0, section.Tokens.Length);
+            }
+
+            return result;
         }
 
-        private void ParseSection()
+        public Section ParseSection()
         {
+            var start = _position;
+
             ExpectToken(TokenType.SectionType);
             var type = new EvaluatedSymbol<SectionType>(CurrentToken);
 
@@ -103,7 +75,7 @@ namespace MicaForEveryone.Config
                 _ => throw new UnexpectedTokenError(CurrentToken, $"Expected Section Parameter or Section Start, found `{CurrentToken.Data}`"),
             };
 
-            var rule = new Section(type, parameter);
+            var section = new Section(type, parameter);
 
             if (CurrentToken.Type == TokenType.SectionParameter)
                 NextToken(TokenType.SectionStart);
@@ -128,11 +100,53 @@ namespace MicaForEveryone.Config
                     _ => throw new ArgumentOutOfRangeException(),
                 };
 
-                rule.Pairs.Add(name, value);
+                section.Pairs.Add(name, value);
             }
 
-            _result.Sections.Add(rule);
+            section.Tokens = new Token[_position - start + 1];
+            Array.Copy(Data, start, section.Tokens, 0, section.Tokens.Length);
+
+            return section;
         }
 
+        private void SkipSpace()
+        {
+            while (_position < Data.Length)
+            {
+                if (CurrentToken.Type is not (TokenType.Space or TokenType.Comment or TokenType.NewLine))
+                    break;
+                _position++;
+            }
+        }
+
+        private void NextToken()
+        {
+            _position++;
+            SkipSpace();
+            if (_position >= Data.Length)
+                throw new UnexpectedEndOfFile(Data[Data.Length - 1]);
+        }
+
+        private void ExpectToken(TokenType expected)
+        {
+            SkipSpace();
+            if (_position >= Data.Length)
+                throw new UnexpectedEndOfFile(Data[Data.Length - 1]);
+            if (CurrentToken.Type != expected)
+                throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
+        }
+
+        private void NextToken(TokenType expected)
+        {
+            NextToken();
+            if (CurrentToken.Type != expected)
+                throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
+        }
+
+        private Symbol GetNextSymbol(TokenType expected)
+        {
+            NextToken(expected);
+            return new Symbol(CurrentToken);
+        }
     }
 }

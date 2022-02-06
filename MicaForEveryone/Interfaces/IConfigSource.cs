@@ -8,6 +8,7 @@ namespace MicaForEveryone.Interfaces
     {
         IEnumerable<IRule> GetRules();
         void SetRule(IRule rule);
+        void RemoveRule(IRule rule);
         void OpenInEditor();
         Task LoadAsync();
         Task SaveAsync();

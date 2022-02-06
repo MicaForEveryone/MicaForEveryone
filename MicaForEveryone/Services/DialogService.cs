@@ -10,8 +10,11 @@ namespace MicaForEveryone.Services
         {
             dialog.Parent = parent.Handle;
             dialog.Activate();
-            dialog.CenterToDesktop();
-            dialog.UpdatePosition();
+            dialog.Destroy += (sender, args) =>
+            {
+                parent.SetEnable(true);
+            };
+            parent.SetEnable(false);
             dialog.Show();
             dialog.SetForegroundWindow();
         }
@@ -23,8 +26,6 @@ namespace MicaForEveryone.Services
                 Program.CurrentApp.Exit();
             };
             dialog.Activate();
-            dialog.CenterToDesktop();
-            dialog.UpdatePosition();
             dialog.Show();
             Program.CurrentApp.Run(dialog);
         }
@@ -35,13 +36,16 @@ namespace MicaForEveryone.Services
             {
                 Width = width,
                 Height = height,
+                ViewModel =
+                {
+                    Title = title,
+                    Content = content,
+                }
             };
             dialog.Destroy += (sender, args) =>
             {
                 dialog.Dispose();
             };
-            dialog.SetTitle(title);
-            dialog.SetContent(content);
             ShowDialog(parent, dialog);
         }
 
@@ -51,9 +55,12 @@ namespace MicaForEveryone.Services
             {
                 Width = width,
                 Height = height,
+                ViewModel =
+                {
+                    Title = title,
+                    Content = content,
+                }
             };
-            dialog.SetTitle(title);
-            dialog.SetContent(content);
             RunDialog(dialog);
         }
     }

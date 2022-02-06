@@ -36,6 +36,13 @@ namespace MicaForEveryone.Win32
             switch ((WindowMessage)umsg)
             {
                 case WindowMessage.WM_CREATE:
+                    var parent = Parent == IntPtr.Zero ?
+                        GetDesktopWindow() :
+                        FromHandle(Parent);
+                    CenterToWindowScaled(parent);
+                    Handle = hwnd;
+                    UpdatePosition();
+
                     OnCreate(hwnd);
                     break;
 
