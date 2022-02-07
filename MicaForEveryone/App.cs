@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
@@ -60,13 +61,13 @@ namespace MicaForEveryone
             {
                 return args[1];
             }
-            
+
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             var configPath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
 
             if (!File.Exists(configPath))
             {
-                var appFolder = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
                 var defaultConfigPath = Path.Join(appFolder, "MicaForEveryone.conf");
                 if (File.Exists(defaultConfigPath))
                 {
@@ -89,6 +90,14 @@ namespace MicaForEveryone
             services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<IViewService, ViewService>();
+            if (GetCurrentPackageName() == null)
+            {
+                services.AddSingleton<IStartupService, Win32StartupService>();
+            }
+            else
+            {
+                services.AddSingleton<IStartupService, UwpStartupService>();
+            }
 
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
@@ -120,7 +129,7 @@ namespace MicaForEveryone
         private void UwpApp_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
-            
+
             var resources = ResourceLoader.GetForCurrentView();
             var header = resources.GetString("UnhandledUIException/Header");
             dialogService.RunErrorDialog(header, args.Message, 576, 400);

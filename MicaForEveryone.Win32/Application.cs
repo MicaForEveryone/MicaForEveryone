@@ -1,14 +1,30 @@
 ﻿using System;
+using System.Text;
 
 using MicaForEveryone.Win32.PInvoke;
-using static MicaForEveryone.Win32.PInvoke.NativeMethods;
 
 namespace MicaForEveryone.Win32
 {
     public class Application
     {
+        private const uint APPMODEL_ERROR_NO_PACKAGE = 15700;
+
+        public static string GetCurrentPackageName()
+        {
+            var length = 0u;
+            NativeMethods.GetCurrentPackageFullName(ref length);
+
+            var result = new StringBuilder((int)length);
+            var error = NativeMethods.GetCurrentPackageFullName(ref length, result);
+
+            if (error == APPMODEL_ERROR_NO_PACKAGE)
+                return null;
+
+            return result.ToString();
+        }
+
         private Window _mainWindow;
-        
+
         /// <summary>
         /// Run main loop with given main window
         /// </summary>
@@ -20,13 +36,13 @@ namespace MicaForEveryone.Win32
 
             _mainWindow.Destroy += Window_OnDestroy;
 
-            while (GetMessageW(out var msg, IntPtr.Zero, 0, 0))
+            while (NativeMethods.GetMessageW(out var msg, IntPtr.Zero, 0, 0))
             {
                 var processed = false;
                 BeforeTranslateMessage?.Invoke(window, ref msg, ref processed);
                 if (processed) continue;
-                TranslateMessage(msg);
-                DispatchMessageW(msg);
+                NativeMethods.TranslateMessage(msg);
+                NativeMethods.DispatchMessageW(msg);
             }
 
             _mainWindow.Destroy -= Window_OnDestroy;
@@ -39,7 +55,7 @@ namespace MicaForEveryone.Win32
         /// </summary>
         public void Exit()
         {
-            PostQuitMessage(0);
+            NativeMethods.PostQuitMessage(0);
         }
 
         private void Window_OnDestroy(object sender, EventArgs e)

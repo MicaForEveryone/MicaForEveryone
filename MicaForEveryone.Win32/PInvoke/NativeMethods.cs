@@ -208,6 +208,9 @@ namespace MicaForEveryone.Win32.PInvoke
 
         [DllImport("uxtheme.dll", SetLastError = false, ExactSpelling = true)]
         public static extern int SetWindowThemeAttribute(IntPtr hwnd, WINDOWTHEMEATTRIBUTETYPE eAttribute, in WTA_OPTIONS pvAttribute, uint cbAttribute);
+
+        [DllImport("kernel32.dll", SetLastError = false, ExactSpelling = true, CharSet = CharSet.Unicode)]
+        public static extern int GetCurrentPackageFullName(ref uint packageFullNameLength, [Optional] StringBuilder packageFullName);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
