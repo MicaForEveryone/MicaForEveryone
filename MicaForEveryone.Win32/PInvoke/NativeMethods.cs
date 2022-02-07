@@ -124,9 +124,6 @@ namespace MicaForEveryone.Win32.PInvoke
         public static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 
         [DllImport("user32.dll", SetLastError = true, ExactSpelling = true)]
-        public static extern int GetSystemMetrics(SystemMetric nIndex);
-
-        [DllImport("user32.dll", SetLastError = true, ExactSpelling = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool AdjustWindowRectEx(ref RECT lpRect, WindowStyles dwStyle, [MarshalAs(UnmanagedType.Bool)] bool bMenu, WindowStylesEx dwExStyle);
 

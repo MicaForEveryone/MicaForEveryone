@@ -311,7 +311,7 @@
                                         <TextBlock
                                             x:Uid="GeneralPaneItem"
                                             Margin="12,0,0,0"
-                                            VerticalAlignment="Center" />
+                                            VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.General>
@@ -394,7 +394,7 @@
                                 <Run x:Uid="VersionLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
                             </TextBlock>
-                            <HyperlinkButton x:Uid="GithubButton" />
+                            <HyperlinkButton x:Uid="GitHubButton" />
                             <HyperlinkButton x:Uid="TelegramButton" />
                             <HyperlinkButton x:Uid="TwitterButton" />
                         </StackPanel>
