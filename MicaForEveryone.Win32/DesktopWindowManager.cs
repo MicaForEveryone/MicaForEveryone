@@ -51,7 +51,8 @@ namespace MicaForEveryone.Win32
         // only supported on Windows 11 build 22523+
         public static void SetBackdropType(IntPtr target, DWM_SYSTEMBACKDROP_TYPE backdropType)
         {
-            var value = GCHandle.Alloc(backdropType, GCHandleType.Pinned);
+            uint converted = (uint)backdropType;
+            var value = GCHandle.Alloc(converted, GCHandleType.Pinned);
             var result = DwmSetWindowAttribute(target, DWMWA_SYSTEMBACKDROP_TYPE, value.AddrOfPinnedObject(), sizeof(DWM_SYSTEMBACKDROP_TYPE));
             value.Free();
             if (result != 0)
