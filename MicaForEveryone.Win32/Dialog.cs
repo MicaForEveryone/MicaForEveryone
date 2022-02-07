@@ -25,6 +25,9 @@ namespace MicaForEveryone.Win32
             Close(MB_RESULT.IDOK);
         }
 
+        /// <summary>
+        /// Close dialog with given result
+        /// </summary>
         public void Close(MB_RESULT result)
         {
             EndDialog(Handle, (IntPtr)result);

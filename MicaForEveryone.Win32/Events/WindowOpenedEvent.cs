@@ -4,6 +4,9 @@ using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Win32.Events
 {
+    /// <summary>
+    /// Event for new window opened
+    /// </summary>
     public class WindowOpenedEvent : WinEvent
     {
         public WindowOpenedEvent() : base(WinEventType.ObjectShown)

@@ -8,7 +8,10 @@ namespace MicaForEveryone.Win32
     public class Application
     {
         private Window _mainWindow;
-
+        
+        /// <summary>
+        /// Run main loop with given main window
+        /// </summary>
         public void Run(Window window)
         {
             _mainWindow = window;
@@ -31,6 +34,9 @@ namespace MicaForEveryone.Win32
             BeforeExit?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Post WM_QUIT to stop main loop
+        /// </summary>
         public void Exit()
         {
             PostQuitMessage(0);
@@ -38,6 +44,7 @@ namespace MicaForEveryone.Win32
 
         private void Window_OnDestroy(object sender, EventArgs e)
         {
+            // stop main loop when window destroyed
             Exit();
         }
 

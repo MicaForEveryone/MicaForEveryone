@@ -2,6 +2,9 @@
 
 namespace MicaForEveryone.Config
 {
+    /// <summary>
+    /// Token is a string with a position from config file
+    /// </summary>
     public interface IToken
     {
         int Line { get; }
@@ -9,6 +12,9 @@ namespace MicaForEveryone.Config
         string Data { get; }
     }
 
+    /// <summary>
+    /// Types of Tokenizer tokens
+    /// </summary>
     internal enum TokenType
     {
         SectionType,
@@ -24,6 +30,9 @@ namespace MicaForEveryone.Config
         NewLine,
     }
 
+    /// <summary>
+    /// Types of Lexer tokens
+    /// </summary>
     internal enum LexicalTokenType
     {
         Identifier,
@@ -69,6 +78,7 @@ namespace MicaForEveryone.Config
         }
 
         public LexicalTokenType LexialType { get; }
+
         public TokenType Type { get; }
         public string Data { get; set; }
         public int Line { get; }

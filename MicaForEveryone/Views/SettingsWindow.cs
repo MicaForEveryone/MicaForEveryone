@@ -56,7 +56,7 @@ namespace MicaForEveryone.Views
 
             ((Grid)((SettingsView)View).Content).Background = _backgroundBrush;
 
-            Show();
+            ShowWindow();
             SetForegroundWindow();
         }
 

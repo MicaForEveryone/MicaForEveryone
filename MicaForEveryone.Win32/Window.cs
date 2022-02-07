@@ -23,6 +23,9 @@ namespace MicaForEveryone.Win32
             }
         }
 
+        /// <summary>
+        /// Get a Window object for given window handle.
+        /// </summary>
         public static Window FromHandle(IntPtr hWnd)
         {
             var result = new Window
@@ -34,6 +37,10 @@ namespace MicaForEveryone.Win32
             return result;
         }
 
+        /// <summary>
+        /// Get a Window object if given window handle is a valid UI Automation window pattern.
+        /// </summary>
+        /// <returns>Null if handle is not valid, window object if valid.</returns>
         public static Window GetWindowIfWindowPatternValid(IntPtr hWnd)
         {
             if (hWnd == IntPtr.Zero)
@@ -53,12 +60,17 @@ namespace MicaForEveryone.Win32
             return window;
         }
 
+        /// <summary>
+        /// Get a Window object for Desktop window
+        /// </summary>
         public static Window GetDesktopWindow()
         {
             return FromHandle(NativeMethods.GetDesktopWindow());
         }
 
         #region Window Enumerator
+
+        // used for calling EnumChildWindows in ForEachChildWindow method
 
         private class WindowEnumeratorEventArgs : EventArgs
         {
@@ -79,22 +91,46 @@ namespace MicaForEveryone.Win32
 
         private bool _isDisposing = false;
 
+        /// <summary>
+        /// set window title for calling <see cref="Activate"/> method
+        /// </summary>
         public string Title { get; set; }
 
         public IntPtr Handle { get; protected set; }
 
+        /// <summary>
+        /// Handle of parent window
+        /// </summary>
         public IntPtr Parent { get; set; } = IntPtr.Zero;
 
+        /// <summary>
+        /// Handle of window owner module
+        /// </summary>
         public IntPtr Module { get; private set; } = NativeMethods.InstanceHandle;
 
+        /// <summary>
+        /// window location for calling <see cref="Activate"/> and <see cref="SetWindowPos"/>
+        /// </summary>
         public int X { get; set; } = CW_USEDEFAULT;
 
+        /// <summary>
+        /// window location for calling <see cref="Activate"/> and <see cref="SetWindowPos"/>
+        /// </summary>
         public int Y { get; set; } = CW_USEDEFAULT;
 
+        /// <summary>
+        /// window size for calling <see cref="Activate"/> and <see cref="SetWindowPos"/>
+        /// </summary>
         public int Width { get; set; } = CW_USEDEFAULT;
 
+        /// <summary>
+        /// window size for calling <see cref="Activate"/> and <see cref="SetWindowPos"/>
+        /// </summary>
         public int Height { get; set; } = CW_USEDEFAULT;
 
+        /// <summary>
+        /// scale factor to multiply window size by it
+        /// </summary>
         public float ScaleFactor { get; private set; } = 1;
 
         public float ScaledWidth => Width * ScaleFactor;
@@ -107,11 +143,20 @@ namespace MicaForEveryone.Win32
 
         public WindowClass Class { get; protected set; }
 
+        /// <summary>
+        /// Load an icon for window and return its handle. Icon will be destroyed when window is disposing.
+        /// </summary>
         protected virtual IntPtr LoadIcon()
         {
             return LoadIcon(Module, $"#{Macros.IDI_APPLICATION_ICON}");
         }
 
+        /// <summary>
+        /// Load an Icon from a module
+        /// </summary>
+        /// <param name="module">Module handle</param>
+        /// <param name="resourceId">Icon resource ID</param>
+        /// <returns>Icon handle</returns>
         protected virtual IntPtr LoadIcon(IntPtr module, string resourceId)
         {
             var result = NativeMethods.LoadIconW(module, resourceId);
@@ -122,6 +167,9 @@ namespace MicaForEveryone.Win32
             return result;
         }
 
+        /// <summary>
+        /// Load and Get a handle to specified module.
+        /// </summary>
         protected IntPtr GetModule(string moduleName)
         {
             var module = NativeMethods.GetModuleHandleW(moduleName);
@@ -144,12 +192,18 @@ namespace MicaForEveryone.Win32
             return module;
         }
 
+        /// <summary>
+        /// Register window class and store it in <see cref="Class"/>
+        /// </summary>
         protected virtual void RegisterClass()
         {
             var icon = LoadIcon();
             Class = new WindowClass(Module, $"{GetType().Name}+{Guid.NewGuid()}", WndProc, icon);
         }
 
+        /// <summary>
+        /// Create window and it store its handle in <see cref="Handle"/>
+        /// </summary>
         protected virtual void CreateWindow()
         {
             Handle = NativeMethods.CreateWindowExW(
@@ -168,6 +222,9 @@ namespace MicaForEveryone.Win32
             }
         }
 
+        /// <summary>
+        /// register class and create window then scale it
+        /// </summary>
         public virtual void Activate()
         {
             if (Handle != IntPtr.Zero) return;
@@ -185,16 +242,19 @@ namespace MicaForEveryone.Win32
             UpdateSize();
         }
 
-        public void Show()
+        public void ShowWindow()
         {
-            Show(ShowWindowCommand.SW_SHOW);
+            ShowWindow(ShowWindowCommand.SW_SHOW);
         }
 
-        public virtual void Show(ShowWindowCommand command)
+        public virtual void ShowWindow(ShowWindowCommand command)
         {
             NativeMethods.ShowWindow(Handle, command);
         }
 
+        /// <summary>
+        /// send WM_CLOSE message to window
+        /// </summary>
         public virtual void Close()
         {
             if (!NativeMethods.PostMessageW(Handle, (uint)WindowMessage.WM_CLOSE, IntPtr.Zero, IntPtr.Zero))
@@ -203,6 +263,9 @@ namespace MicaForEveryone.Win32
             }
         }
 
+        /// <summary>
+        /// Destroy window and icon object, and unregister class
+        /// </summary>
         public virtual void Dispose()
         {
             if (_isDisposing) return;
@@ -213,16 +276,25 @@ namespace MicaForEveryone.Win32
             _ = NativeMethods.DestroyIcon(Class.Icon);
         }
 
+        /// <summary>
+        /// Update value of <see cref="ScaleFactor"/>, call in WM_DPICHANGED
+        /// </summary>
         public void UpdateScaleFactor()
         {
             ScaleFactor = ((float)NativeMethods.GetDpiForWindow(Handle)) / USER_DEFAULT_SCREEN_DPI;
         }
 
+        /// <summary>
+        /// Update actual size of window, call after changing <see cref="Width"/> or <see cref="Height"/>, or after <see cref="UpdateScaleFactor"/>.
+        /// </summary>
         public void UpdateSize()
         {
             SetWindowPosScaled(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE | SetWindowPosFlags.SWP_NOMOVE);
         }
 
+        /// <summary>
+        /// Update actual position of window, call after changing <see cref="X"/> or <see cref="Y"/>.
+        /// </summary>
         public void UpdatePosition()
         {
             SetWindowPosScaled(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE | SetWindowPosFlags.SWP_NOSIZE);
@@ -267,6 +339,9 @@ namespace MicaForEveryone.Win32
             return lpRect;
         }
 
+        /// <summary>
+        /// Center window to given parent window.
+        /// </summary>
         public void CenterToWindow(Window parent)
         {
             var parentRect = parent.GetWindowRect();
@@ -274,6 +349,10 @@ namespace MicaForEveryone.Win32
             Y = parentRect.Y + (parentRect.Height - Height) / 2;
         }
 
+        /// <summary>
+        /// Same as <see cref="CenterToWindow(Window)"/> but using <see cref="ScaledWidth"/> and <see cref="ScaledHeight"/>.
+        /// </summary>
+        /// <param name="parent"></param>
         public void CenterToWindowScaled(Window parent)
         {
             var parentRect = parent.GetWindowRect();
@@ -312,6 +391,9 @@ namespace MicaForEveryone.Win32
             return (WindowStylesEx)unchecked((uint)style.ToInt64());
         }
 
+        /// <summary>
+        /// Enumerate children of window
+        /// </summary>
         public void ForEachChild(Action<Window> callback)
         {
             void ForEachChild(object sender, WindowEnumeratorEventArgs args)
@@ -330,6 +412,10 @@ namespace MicaForEveryone.Win32
             EnumerateItem -= ForEachChild;
         }
 
+        /// <summary>
+        /// Check if current window is a valid UI Automation Window Pattern
+        /// Check https://github.com/dotnet/wpf/blob/8db5256603b0fbd3abd588a7eb2c33371d9bd1f1/src/Microsoft.DotNet.Wpf/src/UIAutomation/UIAutomationClient/MS/Internal/Automation/HwndProxyElementProvider.cs#L1028
+        /// </summary>
         public bool IsWindowPatternValid()
         {
             StyleEx = GetWindowExStyle();
@@ -368,6 +454,9 @@ namespace MicaForEveryone.Win32
             return NativeMethods.IsWindowVisible(Handle);
         }
 
+        /// <summary>
+        /// Enable or Disable window
+        /// </summary>
         public void SetEnable(bool enabled)
         {
             NativeMethods.EnableWindow(Handle, enabled);

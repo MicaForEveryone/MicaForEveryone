@@ -13,6 +13,9 @@ namespace MicaForEveryone.Win32
         private const int GCW_ATOM = -32;
         private const int GCL_HMODULE = -16;
 
+        /// <summary>
+        /// Get window class of given window
+        /// </summary>
         public static WindowClass GetClassOfWindow(IntPtr hWnd)
         {
             var atom = Macros.MAKEINTATOM(GetClassWord(hWnd, GCW_ATOM));
@@ -24,15 +27,27 @@ namespace MicaForEveryone.Win32
                 hInstance = module,
                 lpszClassName = className,
             };
+
+            // FIXME: these don't work, idk why
+            //
             //if (!GetClassInfoExW(module, className, ref classData))
             //{
             //    throw new Win32Exception(Marshal.GetLastWin32Error());
             //}
+            //
+            //if (!GetClassInfoExW(module, atom, ref classData))
+            //{
+            //    throw new Win32Exception(Marshal.GetLastWin32Error());
+            //}
+
             return new WindowClass(atom, classData);
         }
 
         private readonly WNDCLASSEX _classData;
         
+        /// <summary>
+        /// Create and register a window class
+        /// </summary>
         public WindowClass(IntPtr module, string name, WndProc wndProc, IntPtr icon, WindowClassStyles styles = 0, int wndExtra = 0)
         {
             _classData = new WNDCLASSEX
@@ -72,6 +87,9 @@ namespace MicaForEveryone.Win32
 
         public IntPtr Atom { get; private set; }
 
+        /// <summary>
+        /// Unregister window class
+        /// </summary>
         public void Dispose()
         {
             if (!UnregisterClassW(Name, InstanceHandle))

@@ -15,7 +15,7 @@ namespace MicaForEveryone.Services
                 parent.SetEnable(true);
             };
             parent.SetEnable(false);
-            dialog.Show();
+            dialog.ShowWindow();
             dialog.SetForegroundWindow();
         }
 
@@ -26,7 +26,7 @@ namespace MicaForEveryone.Services
                 Program.CurrentApp.Exit();
             };
             dialog.Activate();
-            dialog.Show();
+            dialog.ShowWindow();
             Program.CurrentApp.Run(dialog);
         }
 

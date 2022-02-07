@@ -7,6 +7,9 @@ namespace MicaForEveryone.Win32.PInvoke
         public const uint WM_APP = 0x8000;
         public const uint WM_USER = 0x0400;
 
+        /// <summary>
+        /// Resource ID for default application icon
+        /// </summary>
         public const int IDI_APPLICATION_ICON = 32512;
 
         public const int MAX_PATH = 260;

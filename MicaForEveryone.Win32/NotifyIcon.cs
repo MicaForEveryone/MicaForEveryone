@@ -15,6 +15,7 @@ namespace MicaForEveryone.Win32
 
         private NOTIFYICONDATA _notifyIconData;
         private uint _taskbarCreatedMessage;
+        private bool _shown;
 
         public NotifyIcon()
         {
@@ -34,8 +35,6 @@ namespace MicaForEveryone.Win32
         }
 
         public IntPtr Icon { get; set; }
-
-        public bool IsVisible { get; private set; }
 
         public void ShowNotifyIcon()
         {
@@ -59,13 +58,13 @@ namespace MicaForEveryone.Win32
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }
 
-            IsVisible = true;
+            _shown = true;
         }
 
         public void HideNotifyIcon()
         {
             Shell_NotifyIconW(NIM.NIM_DELETE, _notifyIconData);
-            IsVisible = false;
+            _shown = false;
         }
 
         public RECT GetRect()
@@ -96,9 +95,9 @@ namespace MicaForEveryone.Win32
                     throw new Win32Exception(Marshal.GetLastWin32Error());
                 }
             }
-            else if (umsg == _taskbarCreatedMessage && IsVisible)
+            else if (umsg == _taskbarCreatedMessage && _shown)
             {
-                Show();
+                ShowWindow();
             }
             else if (umsg == CallbackMessage)
             {

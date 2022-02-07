@@ -16,31 +16,47 @@ namespace MicaForEveryone.Win32
         private const uint DWMWA_CAPTION_COLOR = 35;
         private const uint DWMWA_TEXT_COLOR = 36;
 
+        /// <summary>
+        /// Check whether Windows build is 19041 or higher, that supports <see cref="SetImmersiveDarkMode(IntPtr, bool)"/>.
+        /// </summary>
         public static bool IsImmersiveDarkModeSupported { get; } =
             Environment.OSVersion.Version.Build >= 19041;
 
+        /// <summary>
+        /// Check whether Windows build is 22000 or higher, that supports <see cref="SetMica(IntPtr, bool)"/>.
+        /// </summary>
         public static bool IsUndocumentedMicaSupported { get; } =
             Environment.OSVersion.Version.Build >= 22000;
 
+        /// <summary>
+        /// Check wether Windows Windows build is 22523 or higher, that supports <see cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/>
+        /// </summary>
         public static bool IsBackdropTypeSupported { get; } =
             Environment.OSVersion.Version.Build >= 22523;
 
-        public static void EnableMicaIfSupported(IntPtr target)
+        /// <summary>
+        /// Enable Mica on target window with <see cref="SetMica(IntPtr, bool)"/> or <see cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/> if supported.
+        /// </summary>
+        public static void EnableMicaIfSupported(IntPtr hWnd)
         {
-            if (Environment.OSVersion.Version.Build >= 22523)
+            if (IsBackdropTypeSupported)
             {
-                SetBackdropType(target, BackdropType.Mica);
+                SetBackdropType(hWnd, BackdropType.Mica);
             }
-            else if (Environment.OSVersion.Version.Build >= 22000)
+            else if (IsUndocumentedMicaSupported)
             {
-                SetMica(target, true);
+                SetMica(hWnd, true);
             }
         }
 
-        public static void SetMica(IntPtr target, bool state)
+        /// <summary>
+        /// Enable or Disable Mica on target window
+        /// Supported on Windows builds from 22000 to 22523. It doesn't work on 22523, use <see cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/> instead.
+        /// </summary>
+        public static void SetMica(IntPtr hWnd, bool state)
         {
             var value = GCHandle.Alloc(state ? 1 : 0, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(target, DWMWA_MICA, value.AddrOfPinnedObject(), sizeof(int));
+            var result = DwmSetWindowAttribute(hWnd, DWMWA_MICA, value.AddrOfPinnedObject(), sizeof(int));
             value.Free();
             if (result != 0)
             {
@@ -48,12 +64,14 @@ namespace MicaForEveryone.Win32
             }
         }
 
-        // only supported on Windows 11 build 22523+
-        public static void SetBackdropType(IntPtr target, DWM_SYSTEMBACKDROP_TYPE backdropType)
+        /// <summary>
+        /// Set backdrop type on target window
+        /// Requires Windows build 22523 or higher.
+        /// </summary>
+        public static void SetBackdropType(IntPtr hWnd, DWM_SYSTEMBACKDROP_TYPE backdropType)
         {
-            uint converted = (uint)backdropType;
-            var value = GCHandle.Alloc(converted, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(target, DWMWA_SYSTEMBACKDROP_TYPE, value.AddrOfPinnedObject(), sizeof(DWM_SYSTEMBACKDROP_TYPE));
+            var value = GCHandle.Alloc((uint)backdropType, GCHandleType.Pinned);
+            var result = DwmSetWindowAttribute(hWnd, DWMWA_SYSTEMBACKDROP_TYPE, value.AddrOfPinnedObject(), sizeof(uint));
             value.Free();
             if (result != 0)
             {
@@ -67,6 +85,10 @@ namespace MicaForEveryone.Win32
             SetBackdropType(target, (DWM_SYSTEMBACKDROP_TYPE)backdropType);
         }
 
+        /// <summary>
+        /// Enable or disable immersive dark mode.
+        /// Requires Windows build 19041 or higher.
+        /// </summary>
         public static void SetImmersiveDarkMode(IntPtr target, bool state)
         {
             var value = GCHandle.Alloc(state ? 1 : 0, GCHandleType.Pinned);
@@ -88,10 +110,14 @@ namespace MicaForEveryone.Win32
             }
         }
 
-        public static void SetCaptionColor(IntPtr target, COLORREF color)
+        /// <summary>
+        /// Change background color of titlebar.
+        /// Requires Windows build 22000 or higher.
+        /// </summary>
+        public static void SetCaptionColor(IntPtr hWnd, COLORREF color)
         {
             var value = GCHandle.Alloc(color, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(target, DWMWA_CAPTION_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
+            var result = DwmSetWindowAttribute(hWnd, DWMWA_CAPTION_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
             value.Free();
             if (result != 0)
             {
@@ -99,10 +125,14 @@ namespace MicaForEveryone.Win32
             }
         }
 
-        public static void SetCaptionTextColor(IntPtr target, COLORREF color)
+        /// <summary>
+        /// Change text color of titlebar.
+        /// Requires Windows build 22000 or higher.
+        /// </summary>
+        public static void SetCaptionTextColor(IntPtr hWnd, COLORREF color)
         {
             var value = GCHandle.Alloc(color, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(target, DWMWA_TEXT_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
+            var result = DwmSetWindowAttribute(hWnd, DWMWA_TEXT_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
             value.Free();
             if (result != 0)
             {
