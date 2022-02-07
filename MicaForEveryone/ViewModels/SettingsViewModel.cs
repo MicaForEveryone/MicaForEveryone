@@ -11,12 +11,12 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 
+using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.Config;
 
 #if !DEBUG
 using MicaForEveryone.Win32;

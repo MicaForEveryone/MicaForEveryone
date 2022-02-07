@@ -8,6 +8,8 @@ namespace MicaForEveryone.ViewModels
         private readonly IConfigService _configService;
         private readonly IStartupService _startupService;
 
+        private bool _runOnStartup;
+
         public GeneralSettingsViewModel(IConfigService configService, IStartupService startupService)
         {
             _configService = configService;
@@ -29,8 +31,20 @@ namespace MicaForEveryone.ViewModels
 
         public bool RunOnStartup
         {
-            get => _startupService.GetEnabled();
-            set => _startupService.SetEnabled(value);
+            get => _runOnStartup;
+            set => SetRunOnStartup(value);
+        }
+
+        public async void Initialize()
+        {
+            var state = await _startupService.GetEnabledAsync();
+            SetProperty(ref _runOnStartup, state, nameof(RunOnStartup));
+        }
+
+        public async void SetRunOnStartup(bool value)
+        {
+            var state = await _startupService.SetEnabledAsync(value);
+            SetProperty(ref _runOnStartup, state, nameof(RunOnStartup));
         }
     }
 }

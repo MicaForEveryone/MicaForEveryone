@@ -7,6 +7,7 @@ namespace MicaForEveryone.UI.Models
         public GeneralPaneItem(IGeneralSettingsViewModel viewModel)
         {
             ViewModel = viewModel;
+            ViewModel.Initialize();
         }
 
         public PaneItemType ItemType { get; } = PaneItemType.General;

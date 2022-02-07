@@ -6,3 +6,5 @@ obj/
 packages/
 *.pubxml.user
 MicaForEveryone.UI/AppPackages/
+MicaForEveryone.Package/AppPackages/
+MicaForEveryone.Package/BundleArtifacts/

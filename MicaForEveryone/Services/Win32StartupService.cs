@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Microsoft.Win32;
 
 using MicaForEveryone.Interfaces;
+using System.Threading.Tasks;
 
 namespace MicaForEveryone.Services
 {
@@ -13,26 +14,34 @@ namespace MicaForEveryone.Services
 
         private readonly string ExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
 
-        public bool GetEnabled()
+        public Task<bool> GetEnabledAsync()
         {
-            var autorunPath = Registry.CurrentUser.OpenSubKey(StartupRegistryKey).GetValue(MicaForEveryoneStartupName) as string;
+            return Task.Run(() =>
+            {
+                var autorunPath = Registry.CurrentUser.OpenSubKey(StartupRegistryKey).GetValue(MicaForEveryoneStartupName) as string;
 #if DEBUG
-            Debug.WriteLine("Autorun Path Get: " + autorunPath);
+                Debug.WriteLine("Autorun Path Get: " + autorunPath);
 #endif
-            return autorunPath == ExecutablePath;
+                return autorunPath == ExecutablePath;
+            });
         }
 
-        public void SetEnabled(bool state)
+        public Task<bool> SetEnabledAsync(bool state)
         {
-            if (state == true)
+            return Task.Run(() =>
             {
-                Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).SetValue(MicaForEveryoneStartupName, ExecutablePath);
+                if (state == true)
+                {
+                    Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).SetValue(MicaForEveryoneStartupName, ExecutablePath);
 #if DEBUG
-                Debug.WriteLine("Autorun Path Set: " + ExecutablePath);
+                    Debug.WriteLine("Autorun Path Set: " + ExecutablePath);
 #endif
-                return;
-            }
-            Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).DeleteValue(MicaForEveryoneStartupName);
+                    return true;
+                }
+
+                Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).DeleteValue(MicaForEveryoneStartupName);
+                return false;
+            });
         }
     }
 }
