@@ -52,7 +52,7 @@ namespace MicaForEveryone.Views
 
             ((Grid)((SettingsView)View).Content).Background = _backgroundBrush;
 
-            EnableWindowThemeAttribute(WTNCA.WTNCA_NODRAWCAPTION | WTNCA.WTNCA_NODRAWICON);
+            EnableWindowThemeAttribute(WTNCA.WTNCA_NODRAWCAPTION | WTNCA.WTNCA_NODRAWICON | WTNCA.WTNCA_NOSYSMENU);
 
             ShowWindow();
 
