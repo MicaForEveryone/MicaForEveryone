@@ -1,0 +1,3 @@
+msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /p:Configuration=Release /p:Platform=x64 /p:ErrorOnDuplicatePublishOutputFiles=false /p:AppxBundle=Never /t:Restore
+msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /p:Configuration=Release /p:Platform=x64 /p:ErrorOnDuplicatePublishOutputFiles=false /p:AppxBundle=Never /t:Build
+signtool sign /fd sha256 /a /f %1 /p %2 MicaForEveryone.Package\AppPackages\MicaForEveryone.Package_0.1.0.0_x64_Test\MicaForEveryone.Package_0.1.0.0_x64.msix
