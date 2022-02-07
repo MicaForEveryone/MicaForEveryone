@@ -9,6 +9,8 @@ namespace MicaForEveryone.Win32
     {
         private const uint APPMODEL_ERROR_NO_PACKAGE = 15700;
 
+        public static IntPtr InstanceHandle { get; } = NativeMethods.GetCurrentModule();
+
         public static string GetCurrentPackageName()
         {
             var length = 0u;

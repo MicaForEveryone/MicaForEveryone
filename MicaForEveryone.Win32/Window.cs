@@ -33,7 +33,7 @@ namespace MicaForEveryone.Win32
                 Handle = hWnd,
                 Class = WindowClass.GetClassOfWindow(hWnd),
             };
-            result.Module = result.Class.Module;
+            result.InstanceHandle = result.Class.Module;
             return result;
         }
 
@@ -104,9 +104,9 @@ namespace MicaForEveryone.Win32
         public IntPtr Parent { get; set; } = IntPtr.Zero;
 
         /// <summary>
-        /// Handle of window owner module
+        /// Handle of window handle owner instance
         /// </summary>
-        public IntPtr Module { get; private set; } = NativeMethods.InstanceHandle;
+        public IntPtr InstanceHandle { get; private set; } = Application.InstanceHandle;
 
         /// <summary>
         /// window location for calling <see cref="Activate"/> and <see cref="SetWindowPos"/>
@@ -148,7 +148,7 @@ namespace MicaForEveryone.Win32
         /// </summary>
         protected virtual IntPtr LoadIcon()
         {
-            return LoadIcon(Module, $"#{Macros.IDI_APPLICATION_ICON}");
+            return LoadIcon(InstanceHandle, $"#{Macros.IDI_APPLICATION_ICON}");
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace MicaForEveryone.Win32
         protected virtual void RegisterClass()
         {
             var icon = LoadIcon();
-            Class = new WindowClass(Module, $"{GetType().Name}+{Guid.NewGuid()}", WndProc, icon);
+            Class = new WindowClass(InstanceHandle, $"{GetType().Name}+{Guid.NewGuid()}", WndProc, icon);
         }
 
         /// <summary>
@@ -214,7 +214,7 @@ namespace MicaForEveryone.Win32
                 X, Y, Width, Height,
                 Parent,
                 IntPtr.Zero,
-                Module);
+                InstanceHandle);
 
             if (Handle == IntPtr.Zero)
             {

@@ -13,8 +13,6 @@ namespace MicaForEveryone.Services
     {
         public void ApplyRuleToWindow(TargetWindow target, IRule rule)
         {
-            if (target.ProcessId == System.Diagnostics.Process.GetCurrentProcess().Id)
-                return;
 #if DEBUG
             System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{target.Title}` ({target.ClassName}, {target.ProcessName})");
 #endif
@@ -89,6 +87,9 @@ namespace MicaForEveryone.Services
                 if (!window.IsWindowPatternValid())
                     return;
 
+                if (window.InstanceHandle == Application.InstanceHandle)
+                    return; // ignore windows of current instance
+
                 MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
             });
         }
@@ -110,8 +111,10 @@ namespace MicaForEveryone.Services
         {
             await Task.Run(() =>
             {
-                var window = Window.FromHandle(e.WindowHandle);
-                var target = TargetWindow.FromWindow(window);
+                if (e.Window.InstanceHandle == Application.InstanceHandle)
+                    return; // ignore windows of current instance
+
+                var target = TargetWindow.FromWindow(e.Window);
                 MatchAndApplyRuleToWindow(target);
             });
         }

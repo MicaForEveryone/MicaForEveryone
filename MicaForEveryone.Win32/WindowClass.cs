@@ -4,8 +4,6 @@ using System.Runtime.InteropServices;
 
 using MicaForEveryone.Win32.PInvoke;
 
-using static MicaForEveryone.Win32.PInvoke.NativeMethods;
-
 namespace MicaForEveryone.Win32
 {
     public class WindowClass : IDisposable
@@ -18,9 +16,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         public static WindowClass GetClassOfWindow(IntPtr hWnd)
         {
-            var atom = Macros.MAKEINTATOM(GetClassWord(hWnd, GCW_ATOM));
-            var module = GetClassLongPtrW(hWnd, GCL_HMODULE);
-            var className = GetClassName(hWnd);
+            var atom = Macros.MAKEINTATOM(NativeMethods.GetClassWord(hWnd, GCW_ATOM));
+            var module = NativeMethods.GetClassLongPtrW(hWnd, GCL_HMODULE);
+            var className = NativeMethods.GetClassName(hWnd);
             var classData = new WNDCLASSEX
             {
                 cbSize = (uint)Marshal.SizeOf(typeof(WNDCLASSEX)),
@@ -65,7 +63,7 @@ namespace MicaForEveryone.Win32
                 cbClsExtra = 0,
                 cbWndExtra = wndExtra,
             };
-            Atom = Macros.MAKEINTATOM(RegisterClassExW(_classData));
+            Atom = Macros.MAKEINTATOM(NativeMethods.RegisterClassExW(_classData));
             if (Atom == IntPtr.Zero)
             {
                 var error = Marshal.GetLastWin32Error();
@@ -92,7 +90,7 @@ namespace MicaForEveryone.Win32
         /// </summary>
         public void Dispose()
         {
-            if (!UnregisterClassW(Name, InstanceHandle))
+            if (!NativeMethods.UnregisterClassW(Name, Application.InstanceHandle))
             {
                 throw new Win32Exception(Marshal.GetLastWin32Error());
             }

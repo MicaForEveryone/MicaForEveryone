@@ -10,17 +10,6 @@ namespace MicaForEveryone.Win32.PInvoke
     {
         public const int NINF_KEY = 0x1;
 
-        public static IntPtr InstanceHandle { get; }
-
-        static NativeMethods()
-        {
-            InstanceHandle = GetModuleHandleW();
-            if (InstanceHandle == IntPtr.Zero)
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-        }
-
         [SecurityCritical]
         [DllImport("dwmapi.dll", SetLastError = false, ExactSpelling = true)]
         public static extern int DwmSetWindowAttribute(IntPtr hwnd, uint dwAttribute, [In] IntPtr pvAttribute, int cbAttribute);
@@ -66,6 +55,16 @@ namespace MicaForEveryone.Win32.PInvoke
 
         [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr GetModuleHandleW([Optional] string lpModuleName);
+
+        public static IntPtr GetCurrentModule()
+        {
+            var result = GetModuleHandleW();
+            if (result == IntPtr.Zero)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            return result;
+        }
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         [return: MarshalAs(UnmanagedType.Bool)]

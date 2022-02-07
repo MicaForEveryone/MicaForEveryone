@@ -25,7 +25,6 @@ namespace MicaForEveryone.Models
                 WindowHandle = window.Handle,
                 Title = window.GetText(),
                 ClassName = window.Class.Name,
-                ProcessId = window.GetProcessId(),
                 ProcessName = Process.GetProcessById((int)window.GetProcessId()).ProcessName,
             };
         }
@@ -36,7 +35,6 @@ namespace MicaForEveryone.Models
         public string Title { get; private set; }
         public string ClassName { get; private set; }
         public string ProcessName { get; private set; }
-        public uint ProcessId { get; private set; }
 
         public void ApplyBackdropRule(BackdropType type)
         {
