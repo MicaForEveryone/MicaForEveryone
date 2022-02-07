@@ -2,25 +2,24 @@
 
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="533584ee-ace8-4310-adb6-d59b701b7236"
+    Name="2895719e-4160-42a7-ba22-7c9a04c443c5"
     Publisher="CN=minusium"
-    Version="0.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="533584ee-ace8-4310-adb6-d59b701b7236" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+    Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>MicaForEveryone.UI</DisplayName>
+    <DisplayName>ms-resource:AppName</DisplayName>
     <PublisherDisplayName>minusium</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.22000.0" MaxVersionTested="10.0.22523.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.22523.0" />
   </Dependencies>
 
   <Resources>
@@ -30,18 +29,18 @@
   <Applications>
     <Application Id="App"
       Executable="$targetnametoken$.exe"
-      EntryPoint="MicaForEveryone.UI.App">
+      EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="MicaForEveryone.UI"
-        Description="MicaForEveryone.UI"
+        DisplayName="ms-resource:AppName"
+        Description="Add backdrop to window frame of win32 apps"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
-        <uap:DefaultTile/>
       </uap:VisualElements>
     </Application>
   </Applications>
 
   <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
   </Capabilities>
 </Package>

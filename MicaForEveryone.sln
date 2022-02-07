@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UI", "MicaF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Config", "MicaForEveryone.Config\MicaForEveryone.Config.csproj", "{307044B9-01A3-499F-8EE7-9DD184577E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Config", "MicaForEveryone.Config\MicaForEveryone.Config.csproj", "{307044B9-01A3-499F-8EE7-9DD184577E56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Win32", "MicaForEveryone.Win32\MicaForEveryone.Win32.csproj", "{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Win32", "MicaForEveryone.Win32\MicaForEveryone.Win32.csproj", "{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}"
+EndProject
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "MicaForEveryone.Package", "MicaForEveryone.Package\MicaForEveryone.Package.wapproj", "{66D80001-3FDA-4483-A4FF-A69A409425B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,18 @@ Global
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|ARM64.Build.0 = Release|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|x64.ActiveCfg = Release|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|x64.Build.0 = Release|Any CPU
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Debug|ARM64.Build.0 = Debug|ARM64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Debug|x64.ActiveCfg = Debug|x64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Debug|x64.Build.0 = Debug|x64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Debug|x64.Deploy.0 = Debug|x64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Release|ARM64.ActiveCfg = Release|ARM64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Release|ARM64.Build.0 = Release|ARM64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Release|ARM64.Deploy.0 = Release|ARM64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Release|x64.ActiveCfg = Release|x64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Release|x64.Build.0 = Release|x64
+		{66D80001-3FDA-4483-A4FF-A69A409425B3}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

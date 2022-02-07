@@ -1,0 +1,3 @@
+MainPackage=D:\projects\MicaForEveryone\MicaForEveryone.UI\bin\x64\Debug\MicaForEveryone.UI_0.0.0.0_x64_Debug.msix
+SymbolPackage=D:\projects\MicaForEveryone\MicaForEveryone.UI\obj\x64\Debug\Symbols\MicaForEveryone.UI_0.0.0.0_x64_Debug.appxsym
+ResourcePack=D:\projects\MicaForEveryone\MicaForEveryone.UI\bin\x64\Debug\MicaForEveryone.UI_0.0.0.0_scale-100.msix

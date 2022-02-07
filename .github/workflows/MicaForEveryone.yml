@@ -2,9 +2,9 @@ name: MicaForEveryone
 
 on:
   push:
-    branches: [ master ]
+    branches: [ msix ]
   pull_request:
-    branches: [ master ]
+    branches: [ msix ]
 
 jobs:
 
@@ -36,13 +36,13 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild MicaForEveryone.sln /t:Restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /t:Restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
     
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /t:Build /p:Configuration=$env:Configuration /p:Platform=$env:Platform
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /t:Build /p:Configuration=$env:Configuration /p:Platform=$env:Platform
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
@@ -50,5 +50,5 @@ jobs:
     - name: Upload build artifacts 
       uses: actions/upload-artifact@v1
       with:
-        name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}
-        path: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
+        name: MicaForEveryone-MSIX-${{ matrix.platform }}-${{ matrix.configuration }}
+        path: MicaForEveryone.Package\AppPackages\

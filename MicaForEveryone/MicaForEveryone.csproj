@@ -10,7 +10,7 @@
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ApplicationIcon>Resources\MicaForEveryone.ico</ApplicationIcon>
         <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
-        <RuntimeIdentifiers>win10-x64;win10-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Platform)'=='x64'">
@@ -49,19 +49,4 @@
         </None>
         <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
     </ItemGroup>
-
-    <Target Name="CleanUnusedFiles" AfterTargets="Build">
-        <Message Text="Removing unnecessary files..." />
-        <RemoveDir Directories="$(OutDir)Assets;$(OutDir)fr;$(OutDir)Microsoft.UI.Xaml;$(OutDir)Properties;$(OutDir)runtimes\unix;$(OutDir)runtimes\win10-arm;$(OutDir)runtimes\win10-x86" />
-    </Target>
-
-    <Target Name="CleanArm64Binaries" AfterTargets="CleanUnusedFiles" Condition="'$(Platform)'=='x64'">
-        <Message Text="Removing arm64 binary files..." />
-        <RemoveDir Directories="$(OutDir)runtimes\win10-arm64" />
-    </Target>
-
-    <Target Name="CleanX64Binaries" AfterTargets="CleanUnusedFiles" Condition="'$(Platform)'=='arm64'">
-        <Message Text="Removing x64 binary files..." />
-        <RemoveDir Directories="$(OutDir)runtimes\win10-x64" />
-    </Target>
 </Project>

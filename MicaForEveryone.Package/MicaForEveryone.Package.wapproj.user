@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ShowAllFiles>false</ShowAllFiles>
+    <Source>C:\Users\minusium\Downloads\mfe.png</Source>
+    <SmallTileSource>C:\Users\minusium\Downloads\mfe.png</SmallTileSource>
+    <AppIconSource>C:\Users\minusium\Downloads\mfe.png</AppIconSource>
+    <SplashScreenSource>C:\Users\minusium\Downloads\mfe.png</SplashScreenSource>
+    <MediumTileSource>C:\Users\minusium\Downloads\mfe.png</MediumTileSource>
+    <LargeTileSource>C:\Users\minusium\Downloads\mfe.png</LargeTileSource>
+    <PackageLogoSource>C:\Users\minusium\Downloads\mfe.png</PackageLogoSource>
+  </PropertyGroup>
+</Project>
