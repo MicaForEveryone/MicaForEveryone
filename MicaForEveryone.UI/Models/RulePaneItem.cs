@@ -25,5 +25,10 @@ namespace MicaForEveryone.UI.Models
             }
             return false;
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
