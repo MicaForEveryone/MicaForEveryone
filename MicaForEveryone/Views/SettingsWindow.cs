@@ -74,16 +74,6 @@ namespace MicaForEveryone.Views
             SetForegroundWindow();
         }
 
-        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
-        {
-            if (umsg == (uint)WindowMessage.WM_SETTINGCHANGE)
-            {
-                SystemMetrics.Refresh();
-            }
-
-            return base.WndProc(hwnd, umsg, wParam, lParam);
-        }
-
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.Initialize(sender);
