@@ -13,6 +13,8 @@ namespace MicaForEveryone.Services
     {
         public void ApplyRuleToWindow(TargetWindow target, IRule rule)
         {
+            if (target.ProcessId == System.Diagnostics.Process.GetCurrentProcess().Id)
+                return;
 #if DEBUG
             System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{target.Title}` ({target.ClassName}, {target.ProcessName})");
 #endif
