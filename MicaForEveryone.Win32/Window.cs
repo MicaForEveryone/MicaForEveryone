@@ -454,6 +454,16 @@ namespace MicaForEveryone.Win32
             return NativeMethods.IsWindowVisible(Handle);
         }
 
+        public void EnableWindowThemeAttribute(WTNCA attributes)
+        {
+            var wtaOptions = new WTA_OPTIONS
+            {
+                Flags = attributes,
+                Mask = (uint)attributes,
+            };
+            NativeMethods.SetWindowThemeAttribute(Handle, WINDOWTHEMEATTRIBUTETYPE.WTA_NONCLIENT, wtaOptions, (uint)Marshal.SizeOf(wtaOptions));
+        }
+
         /// <summary>
         /// Enable or Disable window
         /// </summary>

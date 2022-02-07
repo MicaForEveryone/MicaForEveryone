@@ -18,16 +18,6 @@ namespace MicaForEveryone.Views
 {
     internal class SettingsWindow : XamlWindow
     {
-        [StructLayout(LayoutKind.Sequential)]
-        private struct WTA_OPTIONS
-        {
-            public uint Flags;
-            public uint Mask;
-        }
-
-        [DllImport("uxtheme.dll", PreserveSig = false)]
-        private static extern void SetWindowThemeAttribute([In] IntPtr hwnd, [In] uint eAttribute, [In] ref WTA_OPTIONS pvAttribute, [In] int cbAttribute);
-
         private readonly XamlMicaBrush _backgroundBrush;
 
         public SettingsWindow() : this(new())
@@ -62,10 +52,7 @@ namespace MicaForEveryone.Views
 
             ((Grid)((SettingsView)View).Content).Background = _backgroundBrush;
 
-            WTA_OPTIONS options = new WTA_OPTIONS();
-            options.Flags = 1 | 2 | 4 | 8;
-            options.Mask = 1 | 2 | 4 | 8;
-            SetWindowThemeAttribute(Handle, 1, ref options, Marshal.SizeOf<WTA_OPTIONS>());
+            EnableWindowThemeAttribute(WTNCA.WTNCA_NODRAWCAPTION | WTNCA.WTNCA_NODRAWICON);
 
             ShowWindow();
 

@@ -205,6 +205,9 @@ namespace MicaForEveryone.Win32.PInvoke
         [DllImport("user32.dll", SetLastError = false, ExactSpelling = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnableWindow(IntPtr hWnd, [MarshalAs(UnmanagedType.Bool)] bool bEnable);
+
+        [DllImport("uxtheme.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern int SetWindowThemeAttribute(IntPtr hwnd, WINDOWTHEMEATTRIBUTETYPE eAttribute, in WTA_OPTIONS pvAttribute, uint cbAttribute);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
