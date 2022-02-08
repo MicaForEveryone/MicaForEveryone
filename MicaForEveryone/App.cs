@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
@@ -19,7 +20,14 @@ namespace MicaForEveryone
     {
         private readonly UI.App _uwpApp = new();
 
+        private Mutex _siMutex = new(true, "Mica For Everyone");
+
         public IServiceProvider Container { get; private set; }
+
+        public bool IsItFirstInstance()
+        {
+            return _siMutex.WaitOne(0, true);
+        }
 
         public void Run()
         {
