@@ -124,10 +124,8 @@ namespace MicaForEveryone.Config
         private void AddStringLiteral()
         {
             _column++;
-            while (_column < Line.Length)
+            while (_column < Line.Length && Line[_column] != '"')
             {
-                if (Line[_column] == '"')
-                    break;
                 _column++;
             }
             var data = Line.Substring(_start + 1, _column - _start - 1);

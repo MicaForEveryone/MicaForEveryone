@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
+using Windows.ApplicationModel.Resources;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.Services;
-using MicaForEveryone.Xaml;
 using MicaForEveryone.Config;
-using MicaForEveryone.ViewModels;
-using MicaForEveryone.Views;
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using MicaForEveryone.Services;
+using MicaForEveryone.ViewModels;
+using MicaForEveryone.UI.ViewModels;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone
 {
@@ -29,7 +31,7 @@ namespace MicaForEveryone
             {
                 var dialogService = Container.GetService<IDialogService>();
 
-                var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+                var resources = ResourceLoader.GetForCurrentView();
                 var header = resources.GetString("UnsupportedError/Header");
                 var message = resources.GetString("UnsupportedError/Message");
                 dialogService.RunErrorDialog(header, message, 400, 275);
@@ -59,13 +61,13 @@ namespace MicaForEveryone
             {
                 return args[1];
             }
-            
+
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             var configPath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
 
             if (!File.Exists(configPath))
             {
-                var appFolder = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+                var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
                 var defaultConfigPath = Path.Join(appFolder, "MicaForEveryone.conf");
                 if (File.Exists(defaultConfigPath))
                 {
@@ -85,16 +87,25 @@ namespace MicaForEveryone
             var configService = new ConfigService(configSource);
             services.AddSingleton<IConfigService>(configService);
 
-            services.AddSingleton<IEventHookService, EventHookService>();
-            services.AddSingleton<IRuleService, RuleHandler>();
+            services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<IViewService, ViewService>();
+            if (GetCurrentPackageName() == null)
+            {
+                services.AddSingleton<IStartupService, Win32StartupService>();
+            }
+            else
+            {
+                services.AddSingleton<IStartupService, UwpStartupService>();
+            }
 
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
             services.AddTransient<IGeneralSettingsViewModel, GeneralSettingsViewModel>();
             services.AddTransient<IRuleSettingsViewModel, RuleSettingsViewModel>();
+            services.AddTransient<IAddProcessRuleViewModel, AddProcessRuleViewModel>();
+            services.AddTransient<IAddClassRuleViewModel, AddClassRuleViewModel>();
 
             return services.BuildServiceProvider();
         }
@@ -102,7 +113,7 @@ namespace MicaForEveryone
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+            var resources = ResourceLoader.GetForCurrentView();
             if (args.ExceptionObject is ParserError error)
             {
                 var header = resources.GetString("ConfigFileError/Header");
@@ -118,8 +129,8 @@ namespace MicaForEveryone
         private void UwpApp_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs args)
         {
             var dialogService = Container.GetService<IDialogService>();
-            
-            var resources = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView();
+
+            var resources = ResourceLoader.GetForCurrentView();
             var header = resources.GetString("UnhandledUIException/Header");
             dialogService.RunErrorDialog(header, args.Message, 576, 400);
         }

@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-
-using MicaForEveryone.Interfaces;
+﻿using MicaForEveryone.Interfaces;
+using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.ViewModels
 {
     internal class GeneralSettingsViewModel : BaseViewModel, IGeneralSettingsViewModel
     {
         private readonly IConfigService _configService;
+        private readonly IStartupService _startupService;
 
-        public GeneralSettingsViewModel(IConfigService configService)
+        public GeneralSettingsViewModel(IConfigService configService, IStartupService startupService)
         {
             _configService = configService;
+            _startupService = startupService;
         }
 
         public bool ReloadOnChange
@@ -31,8 +29,8 @@ namespace MicaForEveryone.ViewModels
 
         public bool RunOnStartup
         {
-            get => false;
-            set { }
+            get => _startupService.GetEnabled();
+            set => _startupService.SetEnabled(value);
         }
     }
 }

@@ -81,7 +81,7 @@ namespace MicaForEveryone.Config
 
         private void AddToken(TokenType type)
         {
-            _tokens.Add(new Token(type, CurrentToken.Data, CurrentToken.Line, CurrentToken.Column));
+            _tokens.Add(new Token(CurrentToken.Type, type, CurrentToken.Data, CurrentToken.Line, CurrentToken.Column));
         }
 
         private void ParseSection()

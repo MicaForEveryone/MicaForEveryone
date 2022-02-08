@@ -1,22 +1,20 @@
-﻿using Microsoft.Toolkit.Win32.UI.XamlHost;
+﻿using System;
+using Microsoft.Toolkit.Win32.UI.XamlHost;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
-using Vanara.PInvoke;
-
-using static Vanara.PInvoke.User32;
 
 using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Xaml
 {
-    public class XamlDialog : Win32.Dialog
+    public class XamlDialog : Dialog
     {
         private readonly DesktopWindowXamlSource _xamlSource = new();
         
         public XamlDialog(FrameworkElement view)
         {
             _xamlSource.Content = view;
-            SizeChanged += XamlDialog_SizeChanged;
         }
 
         public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
@@ -35,15 +33,23 @@ namespace MicaForEveryone.Xaml
             Interop = _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
             Interop.AttachToWindow(Handle);
             UpdateXamlSourcePosition();
+
+            SizeChanged += XamlDialog_SizeChanged;
         }
 
-        public void UpdateXamlSourcePosition()
+        protected virtual void UpdateXamlSourcePosition()
         {
-            GetClientRect(Handle, out var clientArea);
-            Interop?.WindowHandle.SetWindowPos(HWND.NULL, clientArea, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
+            if (Interop == null) return;
+            var clientArea = GetClientRect();
+            var xamlWindow = FromHandle(Interop.WindowHandle);
+            xamlWindow.X = clientArea.X;
+            xamlWindow.Y = clientArea.Y;
+            xamlWindow.Width = clientArea.Width;
+            xamlWindow.Height = clientArea.Height;
+            xamlWindow.SetWindowPosScaled(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlDialog_SizeChanged(object sender, Win32EventArgs e)
+        private void XamlDialog_SizeChanged(object sender, WndProcEventArgs e)
         {
             UpdateXamlSourcePosition();
         }

@@ -1,11 +1,12 @@
 ﻿using System;
-using Vanara.PInvoke;
 
-using static Vanara.PInvoke.User32;
+using MicaForEveryone.Win32.PInvoke;
+
+using static MicaForEveryone.Win32.PInvoke.NativeMethods;
 
 namespace MicaForEveryone.Win32
 {
-    public class Dialog : NativeWindow
+    public class Dialog : Window
     {
         private const int DLGWINDOWEXTRA = 30;
 
@@ -14,61 +15,9 @@ namespace MicaForEveryone.Win32
             Style = WindowStyles.WS_DLGFRAME;
         }
 
-        public override void Activate()
+        protected override void RegisterClass()
         {
-            WindowClass = new WNDCLASS
-            {
-                hInstance = Instance,
-                lpszClassName = ClassName,
-                hIcon = Icon,
-                lpfnWndProc = WndProc,
-                cbWndExtra = DLGWINDOWEXTRA,
-            };
-            if (RegisterClass(WindowClass) == 0)
-            {
-                var error = Kernel32.GetLastError();
-                if (error != Win32Error.ERROR_CLASS_ALREADY_EXISTS)
-                {
-                    error.ThrowIfFailed();
-                }
-            }
-
-            SafeHandle = CreateWindowEx(
-                StyleEx,
-                ClassName,
-                Title,
-                Style,
-                X, Y, Width, Height,
-                Parent,
-                HMENU.NULL,
-                Instance);
-
-            GetWindowRect(Handle, out var winRect);
-            X = winRect.X;
-            Y = winRect.Y;
-            Width = winRect.Width;
-            Height = winRect.Height;
-
-            UpdateScaleFactor();
-            UpdateSize();
-
-            if (Handle.IsNull)
-            {
-                Kernel32.GetLastError().ThrowIfFailed();
-            }
-        }
-
-        public void CenterToDesktop()
-        {
-            var desktopWindow = GetDesktopWindow();
-            GetWindowRect(desktopWindow, out var desktopWindowRect);
-            X = (desktopWindowRect.Width - Width) / 2;
-            Y = (desktopWindowRect.Height - Height) / 2;
-        }
-
-        public void Show()
-        {
-            ShowWindow(Handle, ShowWindowCommand.SW_SHOW);
+            Class = new WindowClass(Module, $"{GetType().Name}+{Guid.NewGuid()}", WndProc, IntPtr.Zero, 0, DLGWINDOWEXTRA);
         }
 
         public override void Close()
@@ -76,17 +25,27 @@ namespace MicaForEveryone.Win32
             Close(MB_RESULT.IDOK);
         }
 
+        /// <summary>
+        /// Close dialog with given result
+        /// </summary>
         public void Close(MB_RESULT result)
         {
             EndDialog(Handle, (IntPtr)result);
             DestroyWindow(Handle);
         }
 
-        protected override IntPtr WndProc(HWND hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
             switch ((WindowMessage)umsg)
             {
                 case WindowMessage.WM_CREATE:
+                    var parent = Parent == IntPtr.Zero ?
+                        GetDesktopWindow() :
+                        FromHandle(Parent);
+                    CenterToWindowScaled(parent);
+                    Handle = hwnd;
+                    UpdatePosition();
+
                     OnCreate(hwnd);
                     break;
 
@@ -102,7 +61,7 @@ namespace MicaForEveryone.Win32
                     OnDpiChanged(hwnd);
                     break;
             }
-            return DefDlgProc(hwnd, umsg, wParam, lParam);
+            return DefDlgProcW(hwnd, umsg, wParam, lParam);
         }
     }
 }

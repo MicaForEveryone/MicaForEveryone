@@ -1,41 +1,66 @@
 ﻿using System;
-using Vanara.PInvoke;
+using System.Text;
 
-using static Vanara.PInvoke.User32;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Win32
 {
     public class Application
     {
-        private NativeWindow _mainWindow;
+        private const uint APPMODEL_ERROR_NO_PACKAGE = 15700;
 
-        public void Run(NativeWindow window)
+        public static string GetCurrentPackageName()
+        {
+            var length = 0u;
+            NativeMethods.GetCurrentPackageFullName(ref length);
+
+            var result = new StringBuilder((int)length);
+            var error = NativeMethods.GetCurrentPackageFullName(ref length, result);
+
+            if (error == APPMODEL_ERROR_NO_PACKAGE)
+                return null;
+
+            return result.ToString();
+        }
+
+        private Window _mainWindow;
+
+        /// <summary>
+        /// Run main loop with given main window
+        /// </summary>
+        public void Run(Window window)
         {
             _mainWindow = window;
 
             BeforeRun?.Invoke(this, EventArgs.Empty);
 
-            window.Destroy += Window_OnDestroy;
+            _mainWindow.Destroy += Window_OnDestroy;
 
-            while (GetMessage(out var msg, HWND.NULL, 0, 0))
+            while (NativeMethods.GetMessageW(out var msg, IntPtr.Zero, 0, 0))
             {
                 var processed = false;
                 BeforeTranslateMessage?.Invoke(window, ref msg, ref processed);
                 if (processed) continue;
-                TranslateMessage(msg);
-                DispatchMessage(msg);
+                NativeMethods.TranslateMessage(msg);
+                NativeMethods.DispatchMessageW(msg);
             }
+
+            _mainWindow.Destroy -= Window_OnDestroy;
 
             BeforeExit?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Post WM_QUIT to stop main loop
+        /// </summary>
         public void Exit()
         {
-            PostQuitMessage();
+            NativeMethods.PostQuitMessage(0);
         }
 
         private void Window_OnDestroy(object sender, EventArgs e)
         {
+            // stop main loop when window destroyed
             Exit();
         }
 
@@ -44,5 +69,5 @@ namespace MicaForEveryone.Win32
         public event EventHandler BeforeExit;
     }
 
-    public delegate void MessageLoopHandler(NativeWindow window, ref MSG message, ref bool processed);
+    public delegate void MessageLoopHandler(Window window, ref MSG message, ref bool processed);
 }

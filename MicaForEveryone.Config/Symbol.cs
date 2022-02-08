@@ -3,6 +3,9 @@ using System.Diagnostics;
 
 namespace MicaForEveryone.Config
 {
+    /// <summary>
+    /// possible types of section
+    /// </summary>
     public enum SectionType
     {
         Global,
@@ -10,6 +13,9 @@ namespace MicaForEveryone.Config
         Class,
     }
 
+    /// <summary>
+    /// possible key names
+    /// </summary>
     public enum KeyName
     {
         TitleBarColor,
@@ -17,6 +23,9 @@ namespace MicaForEveryone.Config
         ExtendFrameToClientArea,
     }
 
+    /// <summary>
+    /// Symbol represents an identifier in config file
+    /// </summary>
     [DebuggerDisplay("{Name} ({Line}:{Column})")]
     public class Symbol
     {
@@ -25,6 +34,9 @@ namespace MicaForEveryone.Config
             Token = token;
         }
 
+        /// <summary>
+        /// name of symbol as string
+        /// </summary>
         public string Name
         {
             get => Token.Data;
@@ -38,6 +50,9 @@ namespace MicaForEveryone.Config
         internal Token Token { get; }
     }
 
+    /// <summary>
+    /// EvaluatedSymbol represents <see cref="Symbol"/> that its value is evaluated from <see cref="string"/> to <see cref="TValue"/>.
+    /// </summary>
     public class EvaluatedSymbol<TValue> : Symbol
     {
         private TValue _value;
@@ -83,6 +98,9 @@ namespace MicaForEveryone.Config
             _value = value;
         }
 
+        /// <summary>
+        /// evaluated value of symbol
+        /// </summary>
         public TValue Value
         {
             get => _value;

@@ -43,13 +43,13 @@ namespace MicaForEveryone.Services
             _ => TitlebarColorMode.Default,
         };
 
-        private void MainWindow_Destroy(object sender, Win32.Win32EventArgs e)
+        private void MainWindow_Destroy(object sender, Win32.WndProcEventArgs e)
         {
             MainWindow.Dispose();
             MainWindow = null;
         }
 
-        private void SettingsWindow_Destroy(object sender, Win32.Win32EventArgs e)
+        private void SettingsWindow_Destroy(object sender, Win32.WndProcEventArgs e)
         {
             SettingsWindow.Dispose();
             SettingsWindow = null;

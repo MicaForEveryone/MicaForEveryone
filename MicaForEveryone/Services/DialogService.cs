@@ -1,6 +1,4 @@
-﻿using static Vanara.PInvoke.User32;
-
-using MicaForEveryone.Interfaces;
+﻿using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Views;
 
@@ -8,14 +6,17 @@ namespace MicaForEveryone.Services
 {
     internal class DialogService : IDialogService
     {
-        public void ShowDialog(NativeWindow parent, Dialog dialog)
+        public void ShowDialog(Window parent, Dialog dialog)
         {
             dialog.Parent = parent.Handle;
             dialog.Activate();
-            dialog.CenterToDesktop();
-            dialog.UpdatePosition();
-            dialog.Show();
-            SetForegroundWindow(dialog.Handle);
+            dialog.Destroy += (sender, args) =>
+            {
+                parent.SetEnable(true);
+            };
+            parent.SetEnable(false);
+            dialog.ShowWindow();
+            dialog.SetForegroundWindow();
         }
 
         public void RunDialog(Dialog dialog)
@@ -25,25 +26,26 @@ namespace MicaForEveryone.Services
                 Program.CurrentApp.Exit();
             };
             dialog.Activate();
-            dialog.CenterToDesktop();
-            dialog.UpdatePosition();
-            dialog.Show();
+            dialog.ShowWindow();
             Program.CurrentApp.Run(dialog);
         }
 
-        public void ShowErrorDialog(NativeWindow parent, object title, object content, int width, int height)
+        public void ShowErrorDialog(Window parent, object title, object content, int width, int height)
         {
             var dialog = new ErrorDialog
             {
                 Width = width,
                 Height = height,
+                ViewModel =
+                {
+                    Title = title,
+                    Content = content,
+                }
             };
             dialog.Destroy += (sender, args) =>
             {
                 dialog.Dispose();
             };
-            dialog.SetTitle(title);
-            dialog.SetContent(content);
             ShowDialog(parent, dialog);
         }
 
@@ -53,9 +55,12 @@ namespace MicaForEveryone.Services
             {
                 Width = width,
                 Height = height,
+                ViewModel =
+                {
+                    Title = title,
+                    Content = content,
+                }
             };
-            dialog.SetTitle(title);
-            dialog.SetContent(content);
             RunDialog(dialog);
         }
     }

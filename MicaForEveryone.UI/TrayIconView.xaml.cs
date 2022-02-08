@@ -1,4 +1,4 @@
-﻿using MicaForEveryone.ViewModels;
+﻿using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.UI
 {

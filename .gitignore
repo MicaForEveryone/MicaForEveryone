@@ -4,3 +4,5 @@ obj/
 *.csproj.user
 *.DotSettings.user
 packages/
+*.pubxml.user
+MicaForEveryone.UI/AppPackages/

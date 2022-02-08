@@ -22,6 +22,20 @@ namespace MicaForEveryone.Services
         {
             await ConfigSource.LoadAsync();
 
+            PopulateRules();
+        }
+
+        public async Task SaveAsync()
+        {
+            foreach (var rule in Rules)
+            {
+                ConfigSource.SetRule(rule);
+            }
+            await ConfigSource.SaveAsync();
+        }
+
+        public void PopulateRules()
+        {
             var rules = ConfigSource.GetRules().ToList();
 
             // add an empty global rule when no global rule provided
@@ -41,15 +55,6 @@ namespace MicaForEveryone.Services
 
             Rules = rules.ToArray();
             RaiseChanged();
-        }
-
-        public async Task SaveAsync()
-        {
-            foreach (var rule in Rules)
-            {
-                ConfigSource.SetRule(rule);
-            }
-            await ConfigSource.SaveAsync();
         }
 
         public void RaiseChanged()

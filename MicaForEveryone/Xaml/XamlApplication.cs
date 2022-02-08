@@ -1,8 +1,8 @@
 ﻿using System;
 using Windows.UI.Xaml.Hosting;
-using Vanara.PInvoke;
 
 using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Xaml
 {
@@ -21,7 +21,7 @@ namespace MicaForEveryone.Xaml
             _xamlManager.Dispose();
         }
 
-        private void XamlApplication_BeforeTranslateMessage(NativeWindow window, ref MSG message, ref bool processed)
+        private void XamlApplication_BeforeTranslateMessage(Window window, ref MSG message, ref bool processed)
         {
             if (window is XamlWindow xamlWindow)
             {

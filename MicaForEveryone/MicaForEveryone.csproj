@@ -1,39 +1,67 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
-    <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
-    <Platforms>x64;ARM64</Platforms>
-    <LangVersion>9.0</LangVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <ApplicationIcon />
-    <StartupObject />
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
+        <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
+        <Platforms>x64;ARM64</Platforms>
+        <LangVersion>9.0</LangVersion>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <ApplicationIcon>Resources\MicaForEveryone.ico</ApplicationIcon>
+        <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
+        <RuntimeIdentifiers>win10-x64;win10-arm64</RuntimeIdentifiers>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
-  </ItemGroup>
+    <PropertyGroup Condition="'$(Platform)'=='x64'">
+        <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)'=='arm64'">
+        <PlatformTarget>arm64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+        <VCRTForwarders-IncludeDebugCRT>true</VCRTForwarders-IncludeDebugCRT>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)'=='Release'">
+        <VCRTForwarders-IncludeDebugCRT>false</VCRTForwarders-IncludeDebugCRT>
+    </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MicaForEveryone.Config\MicaForEveryone.Config.csproj" />
-      <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
-      <ProjectReference Include="..\MicaForEveryone.UI\MicaForEveryone.UI.csproj" />
-      <ProjectReference Include="..\MicaForEveryone.Win32\MicaForEveryone.Win32.csproj" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
+        <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
+        <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="MicaForEveryone.conf">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
+        <ProjectReference Include="..\MicaForEveryone.Config\MicaForEveryone.Config.csproj" />
+        <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
+        <ProjectReference Include="..\MicaForEveryone.UI\MicaForEveryone.UI.csproj" />
+        <ProjectReference Include="..\MicaForEveryone.Win32\MicaForEveryone.Win32.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Update="Microsoft.VCRTForwarders.140" Version="1.0.7" />
+        <None Include="Resources\MicaForEveryone.conf" Link="MicaForEveryone.conf">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
     </ItemGroup>
 
+    <Target Name="CleanUnusedFiles" AfterTargets="Build">
+        <Message Text="Removing unnecessary files..." />
+        <RemoveDir Directories="$(OutDir)Assets;$(OutDir)fr;$(OutDir)Microsoft.UI.Xaml;$(OutDir)Properties;$(OutDir)runtimes\unix;$(OutDir)runtimes\win10-arm;$(OutDir)runtimes\win10-x86" />
+    </Target>
+
+    <Target Name="CleanArm64Binaries" AfterTargets="CleanUnusedFiles" Condition="'$(Platform)'=='x64'">
+        <Message Text="Removing arm64 binary files..." />
+        <RemoveDir Directories="$(OutDir)runtimes\win10-arm64" />
+    </Target>
+
+    <Target Name="CleanX64Binaries" AfterTargets="CleanUnusedFiles" Condition="'$(Platform)'=='arm64'">
+        <Message Text="Removing x64 binary files..." />
+        <RemoveDir Directories="$(OutDir)runtimes\win10-x64" />
+    </Target>
 </Project>

@@ -1,5 +1,7 @@
 ﻿using System.Windows.Input;
 
+using MicaForEveryone.UI.ViewModels;
+
 namespace MicaForEveryone.ViewModels
 {
     internal class ContentDialogViewModel : BaseViewModel, IContentDialogViewModel

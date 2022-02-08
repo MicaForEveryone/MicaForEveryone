@@ -7,15 +7,14 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Extensions.DependencyInjection;
-using Vanara.PInvoke;
 
-using static Vanara.PInvoke.User32;
-
+using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Views;
-using MicaForEveryone.Config;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.ViewModels
 {
@@ -48,9 +47,9 @@ namespace MicaForEveryone.ViewModels
             _configService.Updated -= ConfigService_Changed;
         }
 
-        public bool SystemBackdropIsSupported { get; } =
+        public bool SystemBackdropIsSupported =>
 #if !DEBUG
-            SystemBackdrop.IsSupported;
+            DesktopWindowManager.IsBackdropTypeSupported;
 #else
             true;
 #endif
@@ -89,6 +88,7 @@ namespace MicaForEveryone.ViewModels
         {
             _window = (MainWindow)sender;
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
+            _window.Destroy += Window_Destroy;
 
             var configService = Program.CurrentApp.Container.GetService<IConfigService>();
             await configService.LoadAsync();
@@ -97,11 +97,10 @@ namespace MicaForEveryone.ViewModels
             {
                 var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
                 var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-                var eventHookService = Program.CurrentApp.Container.GetService<IEventHookService>();
 
                 ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
-                eventHookService.Start();
                 ruleService.MatchAndApplyRuleToAllWindows();
+                ruleService.StartService();
             });
         }
 
@@ -133,15 +132,18 @@ namespace MicaForEveryone.ViewModels
 
                 _window.SetForegroundWindow();
 
-                _window.Handle.SetWindowPos(
-                    HWND.NULL,
-                    notifyIconRect,
-                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
+                _window.X = notifyIconRect.X;
+                _window.Y = notifyIconRect.Y;
+                _window.Width = notifyIconRect.Width;
+                _window.Height = notifyIconRect.Height;
+                _window.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-                _window.Interop.WindowHandle.SetWindowPos(
-                    HWND.NULL,
-                    new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
-                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
+                //var xamlWindow = Win32.Window.FromHandle(_window.Interop.WindowHandle);
+                //xamlWindow.X = 0;
+                //xamlWindow.Y = 0;
+                //xamlWindow.Width = notifyIconRect.Width;
+                //xamlWindow.Height = notifyIconRect.Height;
+                //xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
                 menu.ShowAt(_window.View,
                     new Windows.Foundation.Point(
@@ -152,15 +154,18 @@ namespace MicaForEveryone.ViewModels
 
         public void ShowTooltipPopup(Rectangle notifyIconRect)
         {
-            _window.Handle.SetWindowPos(
-                    HWND.NULL,
-                    notifyIconRect,
-                    SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
+            _window.X = notifyIconRect.X;
+            _window.Y = notifyIconRect.Y;
+            _window.Width = notifyIconRect.Width;
+            _window.Height = notifyIconRect.Height;
+            _window.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-            _window.Interop.WindowHandle.SetWindowPos(
-                HWND.NULL,
-                new RECT(0, 0, notifyIconRect.Width, notifyIconRect.Height),
-                SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
+            //var xamlWindow = Win32.Window.FromHandle(_window.Interop.WindowHandle);
+            //xamlWindow.X = 0;
+            //xamlWindow.Y = 0;
+            //xamlWindow.Width = notifyIconRect.Width;
+            //xamlWindow.Height = notifyIconRect.Height;
+            //xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
             var tooltip = (ToolTip)ToolTipService.GetToolTip(_window.View);
             tooltip.IsOpen = true;
@@ -208,6 +213,12 @@ namespace MicaForEveryone.ViewModels
         private async void ConfigService_Changed(object sender, EventArgs e)
         {
             await UpdateDataAsync();
+        }
+
+        private void Window_Destroy(object sender, WndProcEventArgs e)
+        {
+            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
+            ruleService.StopService();
         }
 
         // commands

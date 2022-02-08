@@ -1,5 +1,8 @@
-﻿namespace MicaForEveryone.Models
+﻿using System.Runtime.InteropServices;
+
+namespace MicaForEveryone.Models
 {
+    [ComVisible(true)]
     public enum BackdropType
     {
         Default = 0,
