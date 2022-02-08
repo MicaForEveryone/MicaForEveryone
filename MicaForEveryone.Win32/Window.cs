@@ -15,6 +15,8 @@ namespace MicaForEveryone.Win32
         private const int GWL_STYLE = -16;
         private const int GWL_EXSTYLE = -20;
 
+        private static readonly IntPtr HWND_BROADCAST = new IntPtr(0xFFFF);
+
         public static void AdjustWindowRectEx(ref RECT lpRect, WindowStyles dwStyle, WindowStylesEx dwExStyle)
         {
             if (!NativeMethods.AdjustWindowRectEx(ref lpRect, dwStyle, false, dwExStyle))
@@ -66,6 +68,16 @@ namespace MicaForEveryone.Win32
         public static Window GetDesktopWindow()
         {
             return FromHandle(NativeMethods.GetDesktopWindow());
+        }
+
+        public static void Broadcast(uint message)
+        {
+            NativeMethods.PostMessageW(HWND_BROADCAST, message, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        public static uint RegisterWindowMessage(string message)
+        {
+            return NativeMethods.RegisterWindowMessageW(message);
         }
 
         #region Window Enumerator

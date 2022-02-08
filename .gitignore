@@ -2,7 +2,10 @@
 bin/
 obj/
 *.csproj.user
+*.wapproj.user
 *.DotSettings.user
 packages/
 *.pubxml.user
-MicaForEveryone.UI/AppPackages/
+AppPackages/
+BundleArtifacts/
+Release/

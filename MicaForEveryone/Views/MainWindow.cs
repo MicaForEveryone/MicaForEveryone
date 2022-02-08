@@ -13,9 +13,12 @@ namespace MicaForEveryone.Views
 {
     internal class MainWindow : XamlWindow
     {
+        public const string OpenSettingsMessage = "MicaForEveryone_OpenSettings";
+
         private const uint WM_APP_NOTIFYICON = Macros.WM_APP + 1;
 
         private readonly NotifyIcon _notifyIcon;
+        private uint _openSettingsMessage;
 
         public MainWindow() : this(new())
         {
@@ -53,6 +56,9 @@ namespace MicaForEveryone.Views
         public override void Activate()
         {
             base.Activate();
+
+            _openSettingsMessage = RegisterWindowMessage(OpenSettingsMessage);
+
             _notifyIcon.Parent = Handle;
             _notifyIcon.Activate();
             _notifyIcon.ShowNotifyIcon();
@@ -90,6 +96,16 @@ namespace MicaForEveryone.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.Initialize(this);
+        }
+
+        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        {
+            if (umsg == _openSettingsMessage)
+            {
+                ViewModel.OpenSettingsCommand.Execute(null);
+                return IntPtr.Zero;
+            }
+            return base.WndProc(hwnd, umsg, wParam, lParam);
         }
     }
 }

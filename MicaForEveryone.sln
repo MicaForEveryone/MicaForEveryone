@@ -9,9 +9,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UI", "MicaF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Config", "MicaForEveryone.Config\MicaForEveryone.Config.csproj", "{307044B9-01A3-499F-8EE7-9DD184577E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Config", "MicaForEveryone.Config\MicaForEveryone.Config.csproj", "{307044B9-01A3-499F-8EE7-9DD184577E56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Win32", "MicaForEveryone.Win32\MicaForEveryone.Win32.csproj", "{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Win32", "MicaForEveryone.Win32\MicaForEveryone.Win32.csproj", "{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8704F1B-DF09-46DD-80AC-B7C6C442BE1D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D5E7CCF7-CA52-4B9F-9D85-747B72904A42}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{9EF51D86-285E-419C-AE09-14EBB7DE9EE9}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\MicaForEveryone.yml = .github\workflows\MicaForEveryone.yml
+	EndProjectSection
+EndProject
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "MicaForEveryone.Package", "MicaForEveryone.Package\MicaForEveryone.Package.wapproj", "{12503582-6D75-4DDE-97C7-B35BADE8D123}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,9 +77,24 @@ Global
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|ARM64.Build.0 = Release|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|x64.ActiveCfg = Release|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Release|x64.Build.0 = Release|Any CPU
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Debug|ARM64.ActiveCfg = Debug|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Debug|ARM64.Build.0 = Debug|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Debug|ARM64.Deploy.0 = Debug|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Debug|x64.ActiveCfg = Debug|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Debug|x64.Build.0 = Debug|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Debug|x64.Deploy.0 = Debug|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Release|ARM64.ActiveCfg = Release|ARM64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Release|ARM64.Build.0 = Release|ARM64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Release|ARM64.Deploy.0 = Release|ARM64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Release|x64.ActiveCfg = Release|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Release|x64.Build.0 = Release|x64
+		{12503582-6D75-4DDE-97C7-B35BADE8D123}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9EF51D86-285E-419C-AE09-14EBB7DE9EE9} = {D5E7CCF7-CA52-4B9F-9D85-747B72904A42}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB70A2FE-2621-4A29-B851-60431404AD36}

@@ -15,6 +15,13 @@ namespace MicaForEveryone
                 return;
             }
 
+            if (!CurrentApp.IsItFirstInstance())
+            {
+                var msg = Win32.Window.RegisterWindowMessage(Views.MainWindow.OpenSettingsMessage);
+                Win32.Window.Broadcast(msg);
+                return;
+            }
+
             CurrentApp.Run();
             CurrentApp.Dispose();
         }
