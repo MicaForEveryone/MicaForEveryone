@@ -207,7 +207,7 @@
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>General</value>
   </data>
-  <data name="GithubButton.Content" xml:space="preserve">
+  <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GitHubButton.NavigateUri" xml:space="preserve">

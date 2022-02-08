@@ -123,7 +123,7 @@
   <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Configuración</value>
   </data>
-  <data name="GithubButton.Content" xml:space="preserve">
+  <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="AboutTitle.Text" xml:space="preserve">
@@ -176,9 +176,6 @@
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Cerrar</value>
-  </data>
-  <data name="GithubButton.NavigateUri" xml:space="preserve">
-    <value>https://github.com/minusium/MicaForEveryone</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
     <value>Volver a cargar</value>
@@ -240,9 +237,6 @@
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
     <value>Regla global</value>
   </data>
-  <data name="AddRuleButton.Content" xml:space="preserve">
-    <value>Agregar regla</value>
-  </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
     <value>Agregar regla de proceso</value>
   </data>
@@ -282,9 +276,6 @@
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
     <value>Acrylic obliga a todas las aplicaciones a usar el efecto de fondo de desenfoque al estilo de Windows 10.</value>
   </data>
-  <data name="RemoveRuleButton.Content" xml:space="preserve">
-    <value>Quitar regla</value>
-  </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
     <value>Mica obliga a todas las aplicaciones a usar el efecto de fondo de pantalla tintado al estilo de Windows 11.</value>
   </data>
@@ -299,5 +290,47 @@
   </data>
   <data name="ReloadConfigDescription.Text" xml:space="preserve">
     <value>Vuelve a cargar la configuración automáticamente cuando cambie.</value>
+  </data>
+  <data name="GitHubButton.NavigateUri" xml:space="preserve">
+    <value>https://github.com/minusium/MicaForEveryone</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Quitar regla</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Agregar regla</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Nueva regla de proceso</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Nueva regla de clase</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Agregar regla</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Nombre de clase:</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Nombre de proceso:</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Escriba el nombre de clase de ventana</value>
+  </data>
+  <data name="OpenInEditorAppBarButton.Label" xml:space="preserve">
+    <value>Abrir configuración en el editor de texto</value>
+  </data>
+  <data name="ReloadAppBarButton.Label" xml:space="preserve">
+    <value>Volver a cargar el archivo de configuración</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Escriba el nombre del archivo ejecutable sin su extensión (.exe)</value>
   </data>
 </root>
