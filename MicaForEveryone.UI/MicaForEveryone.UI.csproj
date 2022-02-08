@@ -106,14 +106,34 @@
     <Compile Include="ViewModel\ITrayIconViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\MicaForEveryone.Package\Assets\LargeTile.scale-100.png">
+      <Link>Assets\LargeTile.scale-100.png</Link>
+    </Content>
+    <Content Include="..\MicaForEveryone.Package\Assets\Square150x150Logo.png">
+      <Link>Assets\Square150x150Logo.png</Link>
+    </Content>
+    <Content Include="..\MicaForEveryone.Package\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+      <Link>Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png</Link>
+    </Content>
+    <Content Include="..\MicaForEveryone.Package\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+      <Link>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</Link>
+    </Content>
+    <Content Include="..\MicaForEveryone.Package\Assets\Square44x44Logo.scale-100.png">
+      <Link>Assets\Square44x44Logo.scale-100.png</Link>
+    </Content>
+    <Content Include="..\MicaForEveryone.Package\Assets\Square44x44Logo.targetsize-16.png">
+      <Link>Assets\Square44x44Logo.targetsize-16.png</Link>
+    </Content>
+    <Content Include="..\MicaForEveryone.Package\Assets\StoreLogo.png">
+      <Link>Assets\StoreLogo.png</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Square150x150Logo.png" />
-    <Content Include="Assets\Square44x44Logo.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>

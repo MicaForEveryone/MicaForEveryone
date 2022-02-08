@@ -15,6 +15,7 @@ jobs:
         configuration: [Debug, Release]
         platform: [x64, arm64]
       zipFile: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.zip
+      msixFile: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.msixbundle
       releaseDir: ${{ github.workflow }}
 
     runs-on: windows-latest  # For a list of available runner types, refer to
@@ -42,11 +43,23 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
-        ReleaseDirectory:
+        ReleaseDir: ${{ releaseDir }}
         ZipFile: ${{ zipFile }}
-        ReleaseDirectory: ${{ releaseDir }}
 
-    - name: Upload build artifacts 
+    - name: Upload Release
       uses: actions/upload-artifact@v2
       with:
         path: ${{ releaseDir }}\${{ zipFile }}
+
+    - name: Package as MSIX
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundle=Always /p:AppxBundlePlatforms=$env:Platform /p:AppxSigningEnabled=false /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=$env:ReleaseDir /p:MsixFile:$env:MsixFile /t:ReleaseMsix
+      env:
+        Configuration: ${{ matrix.configuration }}
+        Platform: ${{ matrix.platform }}
+        ReleaseDir: ${{ releaseDir }}
+        MsixFile: ${{ msixFile }}
+
+    - name: Upload MSIX
+      uses: actions/upload-artifact@v2
+      with:
+        path: ${{ releaseDir }}\${{ msixFile }}

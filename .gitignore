@@ -2,6 +2,7 @@
 bin/
 obj/
 *.csproj.user
+*.wapproj.user
 *.DotSettings.user
 packages/
 *.pubxml.user

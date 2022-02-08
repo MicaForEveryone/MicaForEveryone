@@ -1,17 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <LangVersion>9.0</LangVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <LangVersion>9.0</LangVersion>
+        <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
+    </ItemGroup>
 
 </Project>
