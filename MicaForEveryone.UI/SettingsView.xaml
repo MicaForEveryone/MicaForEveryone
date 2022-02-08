@@ -35,7 +35,8 @@
                     x:Uid="RunOnStartupCheckBox"
                     Margin="6"
                     HorizontalAlignment="Stretch"
-                    IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
+                    IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}"
+                    IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable}" />
                 <TextBlock
                     x:Uid="RunOnStartupDescription"
                     Margin="0,0,24,6"
@@ -311,7 +312,7 @@
                                         <TextBlock
                                             x:Uid="GeneralPaneItem"
                                             Margin="12,0,0,0"
-                                            VerticalAlignment="Center"/>
+                                            VerticalAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.General>

@@ -11,6 +11,8 @@ namespace MicaForEveryone.Win32
 
         public static IntPtr InstanceHandle { get; } = NativeMethods.GetCurrentModule();
 
+        public static bool IsPackaged { get; } = GetCurrentPackageName() != null;
+
         public static string GetCurrentPackageName()
         {
             var length = 0u;

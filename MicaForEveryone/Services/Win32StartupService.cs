@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.Win32;
 
 using MicaForEveryone.Interfaces;
@@ -13,26 +14,40 @@ namespace MicaForEveryone.Services
 
         private readonly string ExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
 
-        public bool GetEnabled()
+        public void Initialize()
         {
-            var autorunPath = Registry.CurrentUser.OpenSubKey(StartupRegistryKey).GetValue(MicaForEveryoneStartupName) as string;
-#if DEBUG
-            Debug.WriteLine("Autorun Path Get: " + autorunPath);
-#endif
-            return autorunPath == ExecutablePath;
         }
 
-        public void SetEnabled(bool state)
+        public bool IsAvailable => true;
+
+        public bool IsEnabled
         {
-            if (state == true)
+            get
             {
-                Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).SetValue(MicaForEveryoneStartupName, ExecutablePath);
+                var autorunPath = Registry.CurrentUser.OpenSubKey(StartupRegistryKey).GetValue(MicaForEveryoneStartupName) as string;
 #if DEBUG
-                Debug.WriteLine("Autorun Path Set: " + ExecutablePath);
+                Debug.WriteLine("Autorun Path Get: " + autorunPath);
 #endif
-                return;
+                return autorunPath == ExecutablePath;
             }
-            Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).DeleteValue(MicaForEveryoneStartupName);
+        }
+
+        public Task<bool> SetStateAsync(bool state)
+        {
+            return Task.Run(() =>
+            {
+                if (state == true)
+                {
+                    Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).SetValue(MicaForEveryoneStartupName, ExecutablePath);
+#if DEBUG
+                    Debug.WriteLine("Autorun Path Set: " + ExecutablePath);
+#endif
+                    return true;
+                }
+
+                Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).DeleteValue(MicaForEveryoneStartupName);
+                return false;
+            });
         }
     }
 }

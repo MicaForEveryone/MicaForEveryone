@@ -90,14 +90,12 @@ namespace MicaForEveryone
             services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<IViewService, ViewService>();
-            if (GetCurrentPackageName() == null)
-            {
-                services.AddSingleton<IStartupService, Win32StartupService>();
-            }
-            else
-            {
-                services.AddSingleton<IStartupService, UwpStartupService>();
-            }
+
+            IStartupService startupService = IsPackaged ?
+                new UwpStartupService() :
+                new Win32StartupService();
+            startupService.Initialize();
+            services.AddSingleton(startupService);
 
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
