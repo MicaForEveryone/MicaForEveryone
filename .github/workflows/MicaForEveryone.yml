@@ -2,9 +2,11 @@ name: MicaForEveryone
 
 on:
   push:
-    branches: [ master ]
+    branches-ignore:
+      - gh-pages
   pull_request:
-    branches: [ master ]
+    branches-ignore:
+      - gh-pages
 
 jobs:
 
@@ -21,7 +23,7 @@ jobs:
     env:
       ZIP_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.zip
       MSIX_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.msixbundle
-      RELEASE_DIR: ${{ github.workflow }}
+      RELEASE_DIR: Release
 
     steps:
     - name: Checkout
@@ -41,7 +43,7 @@ jobs:
         Platform: ${{ matrix.platform }}
     
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ReleaseDirectory=$env:RELEASE_DIR /p:ZipName=$env:ZIP_FILE /t:ReleaseZip
+      run: msbuild MicaForEveryone\MicaForEveryone.csproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:ZipName=$env:ZIP_FILE /t:ReleaseZip
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
@@ -49,10 +51,15 @@ jobs:
     - name: Upload Release
       uses: actions/upload-artifact@v2
       with:
+        name: ${{ env.ZIP_FILE }}
         path: ${{ env.RELEASE_DIR }}\${{ env.ZIP_FILE }}
+        if-no-files-found: error
+
+    - name: Clean MicaForEveryone.UI
+      run: msbuild MicaForEveryone.UI\MicaForEveryone.UI.csproj /t:Clean
 
     - name: Package as MSIX
-      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundle=Always /p:AppxBundlePlatforms=$env:Platform /p:AppxSigningEnabled=false /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=$env:RELEASE_DIR /p:MsixFile=$env:MSIX_FILE /t:ReleaseMsix
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundle=Always /p:AppxBundlePlatforms=$env:Platform /p:AppxSigningEnabled=false /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:MsixName=$env:MSIX_FILE /t:ReleaseMsix
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
@@ -60,4 +67,6 @@ jobs:
     - name: Upload MSIX
       uses: actions/upload-artifact@v2
       with:
+        name: ${{ env.MSIX_FILE }}
         path: ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}
+        if-no-files-found: error
