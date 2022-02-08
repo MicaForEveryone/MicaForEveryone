@@ -14,6 +14,8 @@ jobs:
       matrix:
         configuration: [Debug, Release]
         platform: [x64, arm64]
+      zipFile: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.zip
+      releaseDir: ${{ github.workflow }}
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
@@ -24,31 +26,27 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.x
-
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild MicaForEveryone.sln /t:Restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform
+      run: msbuild MicaForEveryone.sln /p:Configuration=$env:Configuration /p:Platform=$env:Platform /t:Restore
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
     
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /t:Build /p:Configuration=$env:Configuration /p:Platform=$env:Platform
+      run: msbuild MicaForEveryone\MicaForEveryone.csproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ReleaseDirectory=$env:ReleaseDir /p:ZipName=$env:ZipFile /t:ReleaseZip
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
-        
+        ReleaseDirectory:
+        ZipFile: ${{ zipFile }}
+        ReleaseDirectory: ${{ releaseDir }}
+
     - name: Upload build artifacts 
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
-        name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}
-        path: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
+        path: ${{ releaseDir }}\${{ zipFile }}

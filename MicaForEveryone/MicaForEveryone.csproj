@@ -50,7 +50,16 @@
         <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
     </ItemGroup>
 
-    <Target Name="CleanUnusedFiles" AfterTargets="Build">
+    <Target Name="ReleaseZip" DependsOnTargets="CleanUnusedFiles">
+        <PropertyGroup>
+            <ReleaseDirectory Condition="'$(ReleaseDirectory)'==''">..\Release</ReleaseDirectory>
+            <ZipName Condition="'$(ZipName)'==''">$(MSBuildProjectName)-$(Platform)-$(Configuration).zip</ZipName>
+        </PropertyGroup>
+        <MakeDir Directories="$(ReleaseDirectory)" />
+        <ZipDirectory SourceDirectory="$(OutDir)" DestinationFile="$(ReleaseDirectory)\$(ZipName)" Overwrite="true" />
+    </Target>
+
+    <Target Name="CleanUnusedFiles" DependsOnTargets="Build">
         <Message Text="Removing unnecessary files..." />
         <RemoveDir Directories="$(OutDir)Assets;$(OutDir)fr;$(OutDir)Microsoft.UI.Xaml;$(OutDir)Properties;$(OutDir)runtimes\unix;$(OutDir)runtimes\win10-arm;$(OutDir)runtimes\win10-x86" />
     </Target>
