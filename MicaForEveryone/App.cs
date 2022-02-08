@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
@@ -63,6 +64,11 @@ namespace MicaForEveryone
             }
 
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            if (IsPackaged)
+            {
+                appData = ApplicationData.Current.LocalFolder.Path;
+            }
+
             var configPath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
 
             if (!File.Exists(configPath))
