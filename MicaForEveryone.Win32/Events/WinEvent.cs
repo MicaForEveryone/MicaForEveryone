@@ -56,7 +56,7 @@ namespace MicaForEveryone.Win32.Events
                 var args = _callbacksWaitList.Dequeue();
                 try
                 {
-                    if (args.ObjectId > 0 && NativeMethods.UiaHasServerSideProvider(args.WindowHandle))
+                    if (args.ObjectId > 0 /*&& NativeMethods.UiaHasServerSideProvider(args.WindowHandle)*/)
                     {
                         // Ignore events from the UIA->MSAA bridge
                         // Check MS.Internal.Automation.WinEventWrap in https://github.com/dotnet/wpf
