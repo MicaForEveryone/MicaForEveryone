@@ -180,6 +180,12 @@
   <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Error in config file</value>
   </data>
+  <data name="ConfigFilePathDescription.Text" xml:space="preserve">
+    <value>File to be used for saving and loading rules</value>
+  </data>
+  <data name="ConfigFilePathTextBox.Header" xml:space="preserve">
+    <value>Config file path:</value>
+  </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dark</value>
   </data>

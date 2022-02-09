@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
-using System.IO;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
-using Windows.Storage;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 using MicaForEveryone.Services;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.UI.ViewModels;
@@ -51,47 +47,9 @@ namespace MicaForEveryone
             base.Dispose();
         }
 
-        private string GetConfigFilePath()
-        {
-            var args = Environment.GetCommandLineArgs();
-            if (args.Length > 1)
-            {
-                return args[1];
-            }
-
-            var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            if (IsPackaged)
-            {
-                appData = ApplicationData.Current.LocalFolder.Path;
-            }
-
-            var configPath = Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
-
-            if (!File.Exists(configPath))
-            {
-                var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-                var defaultConfigPath = Path.Join(appFolder, "MicaForEveryone.conf");
-                if (File.Exists(defaultConfigPath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(configPath));
-                    File.Copy(defaultConfigPath, configPath);
-                }
-            }
-
-            return configPath;
-        }
-
         private IServiceProvider RegisterServices()
         {
             var services = new ServiceCollection();
-
-            var configSource = new ConfigFile(GetConfigFilePath());
-            var configService = new ConfigService(configSource);
-            services.AddSingleton<IConfigService>(configService);
-
-            services.AddSingleton<IRuleService, RuleService>();
-            services.AddSingleton<IDialogService, DialogService>();
-            services.AddSingleton<IViewService, ViewService>();
 
             IStartupService startupService = IsPackaged ?
                 new UwpStartupService() :
@@ -99,6 +57,8 @@ namespace MicaForEveryone
             startupService.Initialize();
             services.AddSingleton(startupService);
 
+            services.AddTransient<IConfigParser, XclParser>();
+            services.AddTransient<IConfigFile, ConfigFileService>();
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
@@ -106,6 +66,11 @@ namespace MicaForEveryone
             services.AddTransient<IRuleSettingsViewModel, RuleSettingsViewModel>();
             services.AddTransient<IAddProcessRuleViewModel, AddProcessRuleViewModel>();
             services.AddTransient<IAddClassRuleViewModel, AddClassRuleViewModel>();
+
+            services.AddSingleton<ISettingsService, SettingsService>();
+            services.AddSingleton<IRuleService, RuleService>();
+            services.AddSingleton<IDialogService, DialogService>();
+            services.AddSingleton<IViewService, ViewService>();
 
             return services.BuildServiceProvider();
         }

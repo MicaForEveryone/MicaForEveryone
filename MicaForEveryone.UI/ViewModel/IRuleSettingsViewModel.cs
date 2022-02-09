@@ -13,8 +13,6 @@ namespace MicaForEveryone.UI.ViewModels
 
         ISettingsViewModel ParentViewModel { get; set; }
 
-        ICommand SaveCommand { get; }
-
         void InitializeData(object data);
         object Rule { get; }
     }

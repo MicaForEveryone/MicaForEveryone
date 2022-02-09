@@ -7,15 +7,18 @@ using MicaForEveryone.Interfaces;
 
 namespace MicaForEveryone.Services
 {
-    internal class Win32StartupService : IStartupService
+    internal class Win32StartupService : IStartupService, IDisposable
     {
         private const string StartupRegistryKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
         private const string MicaForEveryoneStartupName = "Mica For Everyone";
 
         private readonly string ExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
 
+        private RegistryKey _key;
+
         public void Initialize()
         {
+            _key = Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true);
         }
 
         public bool IsAvailable => true;
@@ -24,10 +27,7 @@ namespace MicaForEveryone.Services
         {
             get
             {
-                var autorunPath = Registry.CurrentUser.OpenSubKey(StartupRegistryKey).GetValue(MicaForEveryoneStartupName) as string;
-#if DEBUG
-                Debug.WriteLine("Autorun Path Get: " + autorunPath);
-#endif
+                var autorunPath = _key.GetValue(MicaForEveryoneStartupName) as string;
                 return autorunPath == ExecutablePath;
             }
         }
@@ -38,16 +38,20 @@ namespace MicaForEveryone.Services
             {
                 if (state == true)
                 {
-                    Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).SetValue(MicaForEveryoneStartupName, ExecutablePath);
-#if DEBUG
-                    Debug.WriteLine("Autorun Path Set: " + ExecutablePath);
-#endif
+                    _key.SetValue(MicaForEveryoneStartupName, ExecutablePath);
+                    _key.Flush();
                     return true;
                 }
 
-                Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true).DeleteValue(MicaForEveryoneStartupName);
+                _key.DeleteValue(MicaForEveryoneStartupName);
+                _key.Flush();
                 return false;
             });
+        }
+
+        public void Dispose()
+        {
+            _key.Dispose();
         }
     }
 }

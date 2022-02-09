@@ -29,8 +29,7 @@
                 <TextBlock
                     x:Uid="ReloadConfigDescription"
                     Margin="0,0,24,6"
-                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                    Style="{ThemeResource CaptionTextBlockStyle}" />
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
                 <CheckBox
                     x:Uid="RunOnStartupCheckBox"
                     Margin="6"
@@ -40,8 +39,15 @@
                 <TextBlock
                     x:Uid="RunOnStartupDescription"
                     Margin="0,0,24,6"
-                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                    Style="{ThemeResource CaptionTextBlockStyle}" />
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+                <TextBox
+                    x:Uid="ConfigFilePathTextBox"
+                    Margin="6"
+                    Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                <TextBlock
+                    x:Uid="ConfigFilePathDescription"
+                    Margin="0,0,24,6"
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>
 
@@ -53,7 +59,6 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -282,15 +287,6 @@
                     Margin="0,0,24,6"
                     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                     Style="{ThemeResource CaptionTextBlockStyle}" />
-
-                <Button
-                    x:Uid="SaveButton"
-                    Grid.Row="9"
-                    Grid.Column="1"
-                    Margin="8"
-                    HorizontalAlignment="Right"
-                    Command="{x:Bind ViewModel.SaveCommand}"
-                    Style="{ThemeResource AccentButtonStyle}" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
