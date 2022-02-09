@@ -49,7 +49,7 @@ namespace MicaForEveryone.Views
             ViewModel.Content = element;
 
             ViewModel.IsPrimaryButtonEnabled = true;
-            ViewModel.PrimaryButtonContent = resources.GetString("AddRuleButton/Content");
+            ViewModel.PrimaryButtonContent = resources.GetString("AddButton/Content");
             ViewModel.PrimaryCommandParameter = this;
             
             ViewModel.IsSecondaryButtonEnabled = true;

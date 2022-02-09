@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:MicaForEveryone.UI"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:triggers="using:MicaForEveryone.UI.Triggers"
     d:DesignHeight="200"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -69,7 +70,7 @@
                         <ContentPresenter
                             Grid.Row="1"
                             Margin="{StaticResource ContentDialogContentMargin}"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Stretch"
                             d:Content="Message Dialog Content"
                             Content="{x:Bind ViewModel.Content}"
                             FontFamily="{StaticResource ContentControlThemeFontFamily}"
@@ -87,14 +88,15 @@
                     Background="{ThemeResource ContentDialogBackground}"
                     XYFocusKeyboardNavigation="Enabled">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition x:Name="AdditionalSpace" Width="Auto" />
                         <ColumnDefinition />
                         <ColumnDefinition Width="{ThemeResource ContentDialogButtonSpacing}" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
                     <Button
-                        Grid.Column="3"
+                        x:Name="PrimaryButton"
+                        Grid.Column="1"
                         Margin="{StaticResource ContentDialogButton1HostMargin}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -106,7 +108,8 @@
                         Visibility="{x:Bind ViewModel.IsPrimaryButtonEnabled, Converter={StaticResource VisibilityConverter}}" />
 
                     <Button
-                        Grid.Column="1"
+                        x:Name="SecondaryButton"
+                        Grid.Column="3"
                         Margin="{StaticResource ContentDialogButton2HostMargin}"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -118,5 +121,18 @@
                 </Grid>
             </Grid>
         </Border>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <triggers:VisibilityTrigger ActiveOn="Collapsed" Target="{x:Bind SecondaryButton}" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="AdditionalSpace.Width" Value="*" />
+                        <Setter Target="PrimaryButton.(Grid.Column)" Value="3" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>

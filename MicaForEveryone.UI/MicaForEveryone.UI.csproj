@@ -99,6 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Triggers\GeneralPaneTrigger.cs" />
     <Compile Include="Triggers\RulePaneTrigger.cs" />
+    <Compile Include="Triggers\VisibilityTrigger.cs" />
     <Compile Include="ViewModel\IContentDialogViewModel.cs" />
     <Compile Include="ViewModel\IGeneralSettingsViewModel.cs" />
     <Compile Include="ViewModel\IRuleSettingsViewModel.cs" />
