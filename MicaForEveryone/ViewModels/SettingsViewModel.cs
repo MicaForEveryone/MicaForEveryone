@@ -11,16 +11,13 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 
+using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.Config;
-
-#if !DEBUG
 using MicaForEveryone.Win32;
-#endif
 
 namespace MicaForEveryone.ViewModels
 {
@@ -49,12 +46,14 @@ namespace MicaForEveryone.ViewModels
             _configService.Updated -= ConfigService_Changed;
         }
 
-        public bool SystemBackdropIsSupported =>
-#if !DEBUG
+        public bool IsBackdropSupported =>
             DesktopWindowManager.IsBackdropTypeSupported;
-#else
-            true;
-#endif
+
+        public bool IsMicaSupported =>
+            DesktopWindowManager.IsUndocumentedMicaSupported || DesktopWindowManager.IsBackdropTypeSupported;
+
+        public bool IsImmersiveDarkModeSupported =>
+            DesktopWindowManager.IsImmersiveDarkModeSupported;
 
         public Version Version { get; } = typeof(Program).Assembly.GetName().Version;
 
@@ -89,9 +88,12 @@ namespace MicaForEveryone.ViewModels
             if (BackdropTypes.Count <= 0)
             {
                 BackdropTypes.Add(BackdropType.Default);
-                BackdropTypes.Add(BackdropType.None);
-                BackdropTypes.Add(BackdropType.Mica);
-                if (SystemBackdropIsSupported)
+                if (IsMicaSupported)
+                {
+                    BackdropTypes.Add(BackdropType.None);
+                    BackdropTypes.Add(BackdropType.Mica);
+                }
+                if (IsBackdropSupported)
                 {
                     BackdropTypes.Add(BackdropType.Acrylic);
                     BackdropTypes.Add(BackdropType.Tabbed);
@@ -101,9 +103,12 @@ namespace MicaForEveryone.ViewModels
             if (TitlebarColorModes.Count <= 0)
             {
                 TitlebarColorModes.Add(TitlebarColorMode.Default);
-                TitlebarColorModes.Add(TitlebarColorMode.System);
-                TitlebarColorModes.Add(TitlebarColorMode.Light);
-                TitlebarColorModes.Add(TitlebarColorMode.Dark);
+                if (IsImmersiveDarkModeSupported)
+                {
+                    TitlebarColorModes.Add(TitlebarColorMode.System);
+                    TitlebarColorModes.Add(TitlebarColorMode.Light);
+                    TitlebarColorModes.Add(TitlebarColorMode.Dark);
+                }
             }
 
             PopulatePanes();
@@ -156,7 +161,7 @@ namespace MicaForEveryone.ViewModels
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            
+
             var dialog = new Views.AddProcessRuleDialog();
             dialog.Destroy += (sender, args) =>
             {
@@ -177,7 +182,7 @@ namespace MicaForEveryone.ViewModels
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            
+
             var dialog = new Views.AddClassRuleDialog();
             dialog.Destroy += (sender, args) =>
             {

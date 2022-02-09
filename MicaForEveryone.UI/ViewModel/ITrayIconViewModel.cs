@@ -8,7 +8,10 @@ namespace MicaForEveryone.UI.ViewModels
 {
     public interface ITrayIconViewModel : INotifyPropertyChanged
     {
-        bool SystemBackdropIsSupported { get; }
+        bool IsBackdropSupported { get; }
+        bool IsMicaSupported { get; }
+        bool IsImmersiveDarkModeSupported { get; }
+
         BackdropType BackdropType { get; set; }
         TitlebarColorMode TitlebarColor { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }

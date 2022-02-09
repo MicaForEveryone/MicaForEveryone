@@ -36,18 +36,6 @@ namespace MicaForEveryone
             Container = RegisterServices();
             _uwpApp.Container = Container;
 
-            if (Environment.OSVersion.Version.Build < 22000)
-            {
-                var dialogService = Container.GetService<IDialogService>();
-
-                var resources = ResourceLoader.GetForCurrentView();
-                var header = resources.GetString("UnsupportedError/Header");
-                var message = resources.GetString("UnsupportedError/Message");
-                dialogService.RunErrorDialog(header, message, 400, 275);
-
-                return;
-            }
-
             _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             var viewService = Container.GetService<IViewService>();

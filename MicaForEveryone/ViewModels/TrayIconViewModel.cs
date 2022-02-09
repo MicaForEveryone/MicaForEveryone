@@ -47,12 +47,14 @@ namespace MicaForEveryone.ViewModels
             _configService.Updated -= ConfigService_Changed;
         }
 
-        public bool SystemBackdropIsSupported =>
-#if !DEBUG
+        public bool IsBackdropSupported =>
             DesktopWindowManager.IsBackdropTypeSupported;
-#else
-            true;
-#endif
+
+        public bool IsMicaSupported =>
+            DesktopWindowManager.IsUndocumentedMicaSupported || DesktopWindowManager.IsBackdropTypeSupported;
+
+        public bool IsImmersiveDarkModeSupported =>
+            DesktopWindowManager.IsImmersiveDarkModeSupported;
 
         public BackdropType BackdropType
         {

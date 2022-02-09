@@ -322,13 +322,13 @@
     <value>Unhandled Exception in UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic and Tabbed backdrop effects require at least Windows build 22523</value>
+    <value>Acrylic and Tabbed backdrop effects require at least Windows build 22523.</value>
   </data>
-  <data name="UnsupportedError.Header" xml:space="preserve">
-    <value>Unsupported Windows Version</value>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Immersive Dark Mode requires at least Windows build 19041.</value>
   </data>
-  <data name="UnsupportedError.Message" xml:space="preserve">
-    <value>This app requires at least Windows 11 (10.0.22000.0) to work.</value>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Mica effect requires at least Windows build 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version</value>
