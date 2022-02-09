@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.ViewModels;
@@ -26,9 +23,12 @@ namespace MicaForEveryone.ViewModels
             get => _settingsService.ConfigFile.IsFileWatcherEnabled;
             set
             {
-                _settingsService.ConfigFile.IsFileWatcherEnabled = value;
-                _settingsService.RaiseChanged(SettingsChangeType.ConfigFileWatcherStateChanged, null);
-                OnPropertyChanged();
+                if (_settingsService.ConfigFile.IsFileWatcherEnabled != value)
+                {
+                    _settingsService.ConfigFile.IsFileWatcherEnabled = value;
+                    _settingsService.RaiseChanged(SettingsChangeType.ConfigFileWatcherStateChanged, null);
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -37,14 +37,17 @@ namespace MicaForEveryone.ViewModels
             get => _startupService.IsEnabled;
             set
             {
-                _startupService.SetStateAsync(value).ContinueWith(async result =>
+                if (_startupService.IsEnabled != value)
                 {
-                    var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-                    await viewService.SettingsWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                    _startupService.SetStateAsync(value).ContinueWith(async result =>
                     {
-                        OnPropertyChanged(nameof(RunOnStartup));
+                        var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+                        await viewService.SettingsWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                        {
+                            OnPropertyChanged(nameof(RunOnStartup));
+                        });
                     });
-                });
+                }
             }
         }
 
@@ -58,9 +61,12 @@ namespace MicaForEveryone.ViewModels
             get => _settingsService.ConfigFile.FilePath;
             set
             {
-                _settingsService.ConfigFile.FilePath = value;
-                _settingsService.RaiseChanged(SettingsChangeType.ConfigFilePathChanged, null);
-                OnPropertyChanged();
+                if (_settingsService.ConfigFile.FilePath != value)
+                {
+                    _settingsService.ConfigFile.FilePath = value;
+                    _settingsService.RaiseChanged(SettingsChangeType.ConfigFilePathChanged, null);
+                    OnPropertyChanged();
+                }
             }
         }
     }

@@ -20,7 +20,7 @@
         </Style>
 
         <DataTemplate x:Key="GeneralTemplate" x:DataType="models:GeneralPaneItem">
-            <StackPanel HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
                 <CheckBox
                     x:Uid="ReloadConfigCheckBox"
                     Margin="6"
@@ -30,6 +30,7 @@
                     x:Uid="ReloadConfigDescription"
                     Margin="0,0,24,6"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+
                 <CheckBox
                     x:Uid="RunOnStartupCheckBox"
                     Margin="6"
@@ -40,6 +41,7 @@
                     x:Uid="RunOnStartupDescription"
                     Margin="0,0,24,6"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+
                 <TextBox
                     x:Uid="ConfigFilePathTextBox"
                     Margin="6"
@@ -52,7 +54,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="RulesTemplate" x:DataType="models:RulePaneItem">
-            <Grid HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" MinWidth="125" />
@@ -291,7 +293,10 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        TabFocusNavigation="Cycle"
+        XYFocusKeyboardNavigation="Enabled">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -311,7 +316,13 @@
             OpenPaneLength="250"
             PaneBackground="Transparent">
             <SplitView.Pane>
-                <ListView ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}">
+                <ListView
+                    IsTabStop="True"
+                    ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}"
+                    Loaded="ListView_Loaded"
+                    SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}"
+                    TabIndex="0"
+                    XYFocusKeyboardNavigation="Enabled">
                     <ListView.ItemTemplateSelector>
                         <selectors:PaneItemTypeSelector>
                             <selectors:PaneItemTypeSelector.General>
@@ -390,14 +401,17 @@
                         <ContentControl
                             x:Name="PaneDetails"
                             HorizontalContentAlignment="Stretch"
-                            Content="{Binding SelectedPane}" />
+                            Content="{Binding SelectedPane}"
+                            IsTabStop="False"
+                            TabIndex="1" />
 
                         <StackPanel
                             x:Name="AboutSection"
                             Grid.Row="1"
                             Margin="0,24,0,0"
                             Orientation="Vertical"
-                            Spacing="8">
+                            Spacing="8"
+                            XYFocusKeyboardNavigation="Enabled">
                             <TextBlock
                                 x:Uid="AboutTitle"
                                 FontSize="14"
@@ -407,7 +421,7 @@
                                 <Run x:Uid="VersionLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
                             </TextBlock>
-                            <HyperlinkButton x:Uid="GitHubButton" />
+                            <HyperlinkButton x:Uid="GitHubButton" TabIndex="3" />
                             <HyperlinkButton x:Uid="TelegramButton" />
                             <HyperlinkButton x:Uid="TwitterButton" />
                         </StackPanel>
@@ -423,10 +437,14 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <CommandBar DefaultLabelPosition="Right">
+            <CommandBar
+                Grid.Column="0"
+                DefaultLabelPosition="Right"
+                IsTabStop="True"
+                TabIndex="2"
+                XYFocusKeyboardNavigation="Enabled">
                 <AppBarButton
                     x:Uid="AddRuleAppBarButton"
-                    Grid.Column="0"
                     Margin="2"
                     Icon="Add">
                     <Button.Flyout>
@@ -461,12 +479,15 @@
                         Icon="Refresh" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
+
             <Button
                 x:Uid="CloseButton"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="2"
                 Command="{x:Bind ViewModel.CloseCommand}"
-                Style="{ThemeResource AccentButtonStyle}" />
+                IsTabStop="True"
+                Style="{ThemeResource AccentButtonStyle}"
+                TabIndex="4" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
