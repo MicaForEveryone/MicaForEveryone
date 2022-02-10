@@ -2,18 +2,18 @@
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MicaForEveryone.Config
+namespace MicaForEveryone.Config.Lexer
 {
     internal class Lexer
     {
         private readonly TextReader _source;
-        private readonly List<LexicalToken> _result = new();
+        private readonly List<Token> _result = new();
 
         private string _lineData;
         private int _line;
         private int _column;
         private int _start;
-        private LexicalTokenType _type;
+        private TokenType _type;
 
         public Lexer(TextReader data)
         {
@@ -22,7 +22,7 @@ namespace MicaForEveryone.Config
 
         private string Line => _lineData;
 
-        public async Task<LexicalToken[]> ParseAsync()
+        public async Task<Token[]> ParseAsync()
         {
             if (_result.Count > 0)
                 return _result.ToArray();
@@ -54,13 +54,13 @@ namespace MicaForEveryone.Config
 
                         case ' ':
                         case '\t':
-                            if (_start != _column && _type != LexicalTokenType.Space)
+                            if (_start != _column && _type != TokenType.Space)
                             {
                                 AddToken();
                             }
                             if (_start == _column)
                             {
-                                _type = LexicalTokenType.Space;
+                                _type = TokenType.Space;
                             }
                             _column++;
                             break;
@@ -69,25 +69,25 @@ namespace MicaForEveryone.Config
                         case '}':
                         case '=':
                         case ':':
-                            if (_start != _column && _type != LexicalTokenType.Operator)
+                            if (_start != _column && _type != TokenType.Operator)
                             {
                                 AddToken();
                             }
                             if (_start == _column)
                             {
-                                _type = LexicalTokenType.Operator;
+                                _type = TokenType.Operator;
                             }
                             _column++;
                             break;
 
                         default:
-                            if (_start != _column && _type != LexicalTokenType.Identifier)
+                            if (_start != _column && _type != TokenType.Identifier)
                             {
                                 AddToken();
                             }
                             if (_start == _column)
                             {
-                                _type = LexicalTokenType.Identifier;
+                                _type = TokenType.Identifier;
                             }
                             _column++;
                             break;
@@ -107,7 +107,7 @@ namespace MicaForEveryone.Config
 
         private void AddLine()
         {
-            _result.Add(new LexicalToken(LexicalTokenType.NewLine, "", _line, _column));
+            _result.Add(new Token(TokenType.NewLine, "", _line, _column));
             _line++;
             _lineData = _source.ReadLine();
             _column = 0;
@@ -116,7 +116,7 @@ namespace MicaForEveryone.Config
 
         private void AddComment()
         {
-            _result.Add(new LexicalToken(LexicalTokenType.Comment, Line.Substring(_column), _line, _start));
+            _result.Add(new Token(TokenType.Comment, Line.Substring(_column), _line, _start));
             _column = Line.Length;
             _start = _column;
         }
@@ -129,7 +129,7 @@ namespace MicaForEveryone.Config
                 _column++;
             }
             var data = Line.Substring(_start + 1, _column - _start - 1);
-            var token = new LexicalToken(LexicalTokenType.StringLiteral, data, _line, _column);
+            var token = new Token(TokenType.StringLiteral, data, _line, _column);
             if (Line[_column] != '"')
                 throw new ParserError(token, "String Literal not closed");
             _result.Add(token);
@@ -140,7 +140,7 @@ namespace MicaForEveryone.Config
         private void AddToken()
         {
             var data = Line.Substring(_start, _column - _start);
-            _result.Add(new LexicalToken(_type, data, _line, _start));
+            _result.Add(new Token(_type, data, _line, _start));
             _start = _column;
         }
     }

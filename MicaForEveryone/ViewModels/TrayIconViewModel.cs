@@ -173,7 +173,7 @@ namespace MicaForEveryone.ViewModels
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 BackdropType = _globalRule.BackdropPreference;
-                TitlebarColor = _globalRule.TitlebarColor;
+                TitlebarColor = _globalRule.TitleBarColor;
                 ExtendFrameIntoClientArea = _globalRule.ExtendFrameIntoClientArea;
             });
         }
@@ -181,7 +181,7 @@ namespace MicaForEveryone.ViewModels
         private void UpdateRule()
         {
             _globalRule.BackdropPreference = BackdropType;
-            _globalRule.TitlebarColor = TitlebarColor;
+            _globalRule.TitleBarColor = TitlebarColor;
             _globalRule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
 
             _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _globalRule);

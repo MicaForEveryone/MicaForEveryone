@@ -31,12 +31,12 @@ namespace MicaForEveryone.ViewModels
 
         public TitlebarColorMode TitlebarColor
         {
-            get => _rule.TitlebarColor;
+            get => _rule.TitleBarColor;
             set
             {
-                if (_rule.TitlebarColor != value)
+                if (_rule.TitleBarColor != value)
                 {
-                    _rule.TitlebarColor = value;
+                    _rule.TitleBarColor = value;
                     OnPropertyChanged();
                     _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
                 }

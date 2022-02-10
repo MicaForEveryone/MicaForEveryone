@@ -10,7 +10,7 @@ namespace MicaForEveryone.Interfaces
         
         bool IsApplicable(TargetWindow target);
 
-        TitlebarColorMode TitlebarColor { get; set; }
+        TitlebarColorMode TitleBarColor { get; set; }
         BackdropType BackdropPreference { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
 

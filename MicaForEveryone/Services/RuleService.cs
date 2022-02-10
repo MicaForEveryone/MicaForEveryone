@@ -19,7 +19,7 @@ namespace MicaForEveryone.Services
             if (rule.ExtendFrameIntoClientArea)
                 DesktopWindowManager.ExtendFrameIntoClientArea(target.WindowHandle);
 
-            target.ApplyTitlebarColorRule(rule.TitlebarColor, SystemTitlebarColorMode);
+            target.ApplyTitlebarColorRule(rule.TitleBarColor, SystemTitlebarColorMode);
             target.ApplyBackdropRule(rule.BackdropPreference);
         }
 

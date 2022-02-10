@@ -28,11 +28,10 @@ namespace MicaForEveryone
         public void Run()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             Container = RegisterServices();
             _uwpApp.Container = Container;
-
-            _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             var viewService = Container.GetService<IViewService>();
             viewService.Run();

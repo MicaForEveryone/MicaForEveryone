@@ -92,7 +92,9 @@ namespace MicaForEveryone.Services
             // add an empty global rule when no global rule provided
             if (rules.All(rule => rule is not GlobalRule))
             {
-                rules.Add(new GlobalRule());
+                var globalRule = new GlobalRule();
+                rules.Add(globalRule);
+                ConfigFile.Parser.AddRule(globalRule);
             }
 
             // Check for duplicates
@@ -115,11 +117,13 @@ namespace MicaForEveryone.Services
                 {
                     case SettingsChangeType.RuleAdded:
                         ConfigFile.Parser.AddRule(rule);
+                        Rules = ConfigFile.Parser.Rules;
                         await ConfigFile.SaveAsync();
                         break;
 
                     case SettingsChangeType.RuleRemoved:
                         ConfigFile.Parser.RemoveRule(rule);
+                        Rules = ConfigFile.Parser.Rules;
                         await ConfigFile.SaveAsync();
                         break;
 

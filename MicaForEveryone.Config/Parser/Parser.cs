@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using MicaForEveryone.Models;
+using MicaForEveryone.Config.Tokenizer;
 
-namespace MicaForEveryone.Config
+namespace MicaForEveryone.Config.Parser
 {
     internal class Parser
     {
@@ -18,16 +18,16 @@ namespace MicaForEveryone.Config
         private Token[] Data { get; }
         private Token CurrentToken => Data[_position];
 
-        public Document ParseDocument()
+        public XclDocument ParseDocument()
         {
-            var result = new Document();
+            var result = new XclDocument();
 
             int start = _position;
-            Section section = null;
+            XclInstance section = null;
 
             while (_position < Data.Length)
             {
-                ExpectToken(TokenType.SectionType);
+                ExpectToken(TokenType.TypeName);
 
                 var preTokens = new Token[_position - start];
                 if (_position > start)
@@ -35,9 +35,9 @@ namespace MicaForEveryone.Config
                     Array.Copy(Data, start, preTokens, 0, preTokens.Length);
                 }
 
-                section = ParseSection();
+                section = ParseSection(result);
                 section.PreTokens = preTokens;
-                result.Sections.Add(section);
+                result.Instances.Add(section);
 
                 start = ++_position;
                 SkipSpace();
@@ -52,32 +52,30 @@ namespace MicaForEveryone.Config
             return result;
         }
 
-        public Section ParseSection()
+        public XclInstance ParseSection(XclDocument document)
         {
             var start = _position;
 
-            ExpectToken(TokenType.SectionType);
-            var type = new EvaluatedSymbol<SectionType>(CurrentToken);
+            ExpectToken(TokenType.TypeName);
+            var type = document.GetXclClass(CurrentToken.Data);
 
-            if (type.Value == SectionType.Global)
+            if (type.ParameterType == null)
             {
                 NextToken(TokenType.SectionStart);
             }
             else
             {
-                NextToken(TokenType.SectionParameterStart);
+                NextToken(TokenType.ParameterStart);
+                NextToken(TokenType.Value);
             }
 
-            var parameter = CurrentToken.Type switch
-            {
-                TokenType.SectionParameterStart => GetNextSymbol(TokenType.SectionParameter),
-                TokenType.SectionStart => null,
-                _ => throw new UnexpectedTokenError(CurrentToken, $"Expected Section Parameter or Section Start, found `{CurrentToken.Data}`"),
-            };
+            var parameter = CurrentToken.Type == TokenType.Value && type.ParameterType != null ? 
+                type.ParameterType.SymbolToValue(new Symbol(CurrentToken)) :
+                null;
 
-            var section = new Section(type, parameter);
+            var section = new XclInstance(null, type, parameter);
 
-            if (CurrentToken.Type == TokenType.SectionParameter)
+            if (CurrentToken.Type == TokenType.Value)
                 NextToken(TokenType.SectionStart);
 
             while (_position < Data.Length)
@@ -86,21 +84,15 @@ namespace MicaForEveryone.Config
                 if (CurrentToken.Type == TokenType.SectionEnd)
                     break;
 
-                ExpectToken(TokenType.KeyName);
-                var name = new EvaluatedSymbol<KeyName>(CurrentToken);
+                ExpectToken(TokenType.FieldName);
+                var field = type.GetField(CurrentToken.Data);
 
-                NextToken(TokenType.KeySet);
+                NextToken(TokenType.SetOperator);
 
-                NextToken(TokenType.KeyValue);
-                Symbol value = name.Value switch
-                {
-                    KeyName.TitleBarColor => new EvaluatedSymbol<TitlebarColorMode>(CurrentToken),
-                    KeyName.BackdropPreference => new EvaluatedSymbol<BackdropType>(CurrentToken),
-                    KeyName.ExtendFrameToClientArea => new EvaluatedSymbol<bool>(CurrentToken),
-                    _ => throw new ArgumentOutOfRangeException(),
-                };
+                NextToken(TokenType.Value);
+                var value = field.Type.SymbolToValue(new Symbol(CurrentToken));
 
-                section.Pairs.Add(name, value);
+                section.SetValue(field, value);
             }
 
             section.Tokens = new Token[_position - start + 1];
@@ -113,7 +105,7 @@ namespace MicaForEveryone.Config
         {
             while (_position < Data.Length)
             {
-                if (CurrentToken.Type is not (TokenType.Space or TokenType.Comment or TokenType.NewLine))
+                if (CurrentToken.Type != TokenType.Meaningless)
                     break;
                 _position++;
             }
@@ -141,12 +133,6 @@ namespace MicaForEveryone.Config
             NextToken();
             if (CurrentToken.Type != expected)
                 throw new UnexpectedTokenError(CurrentToken, $"Expected token of type {expected}, found {CurrentToken.Type}");
-        }
-
-        private Symbol GetNextSymbol(TokenType expected)
-        {
-            NextToken(expected);
-            return new Symbol(CurrentToken);
         }
     }
 }

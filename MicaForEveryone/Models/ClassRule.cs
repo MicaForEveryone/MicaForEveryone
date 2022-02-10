@@ -1,13 +1,17 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using MicaForEveryone.Config.Primitives;
+using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.Models
 {
+    [XclType(TypeName = "Class")]
     public class ClassRule : IRule
     {
+        [XclConstructor]
         public ClassRule(string className)
         {
             ClassName = className;
@@ -15,12 +19,16 @@ namespace MicaForEveryone.Models
 
         public string Name => $"Class({ClassName})";
 
+        [XclParameter]
         public string ClassName { get; }
 
-        public TitlebarColorMode TitlebarColor { get; set; }
+        [XclField]
+        public TitlebarColorMode TitleBarColor { get; set; }
 
+        [XclField]
         public BackdropType BackdropPreference { get; set; }
 
+        [XclField]
         public bool ExtendFrameIntoClientArea { get; set; }
 
         public bool IsApplicable(TargetWindow target) =>
