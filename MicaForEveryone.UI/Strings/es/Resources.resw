@@ -145,7 +145,7 @@
     <value>Volver a cargar el archivo de configuración cuando se produzcan cambios</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Mica for Everyone</value>
+    <value>Mica For Everyone</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
     <value>Tipo de efecto de fondo</value>
@@ -200,12 +200,6 @@
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
     <value>Excepción no controlada en la IU</value>
-  </data>
-  <data name="UnsupportedError.Header" xml:space="preserve">
-    <value>Versión de Windows no compatible</value>
-  </data>
-  <data name="UnsupportedError.Message" xml:space="preserve">
-    <value>Esta aplicación requiere al menos Windows 11 (10.0.22000.0) para funcionar.</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>Archivo de configuración</value>
@@ -271,7 +265,7 @@
     <value>Tabbed obliga a todas las aplicaciones a usar el efecto de fondo de pantalla borroso.</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Los efectos de fondo Acrylic y Tabbed requieren al menos la compilación 22523 de Windows</value>
+    <value>Los efectos de fondo Acrylic y Tabbed requieren al menos la compilación 22523 de Windows.</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
     <value>Acrylic obliga a todas las aplicaciones a usar el efecto de fondo de desenfoque al estilo de Windows 10.</value>
@@ -332,5 +326,17 @@
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
     <value>Escriba el nombre del archivo ejecutable sin su extensión (.exe)</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>El efecto de fondo Mica requiere al menos la compilación 22000 de Windows.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>El modo oscuro inmersivo requiere al menos la compilación 19041 de Windows.</value>
+  </data>
+  <data name="ConfigFilePathTextBox.Header" xml:space="preserve">
+    <value>Ruta del archivo de configuración:</value>
+  </data>
+  <data name="ConfigFilePathDescription.Text" xml:space="preserve">
+    <value>Archivo que se usará para guardar y cargar las reglas</value>
   </data>
 </root>
