@@ -10,7 +10,9 @@ namespace MicaForEveryone.UI.ViewModels
 {
     public interface ISettingsViewModel : INotifyPropertyChanged
     {
-        bool SystemBackdropIsSupported { get; }
+        bool IsBackdropSupported { get; }
+        bool IsMicaSupported { get; }
+        bool IsImmersiveDarkModeSupported { get; }
 
         Version Version { get; }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace MicaForEveryone.ViewModels
 {
     internal class TrayIconViewModel : BaseViewModel, ITrayIconViewModel
     {
-        private readonly IConfigService _configService;
+        private readonly ISettingsService _settingsService;
 
         private BackdropType _backdropType;
         private TitlebarColorMode _titlebarColor;
@@ -28,9 +29,9 @@ namespace MicaForEveryone.ViewModels
         private MainWindow _window;
         private IRule _globalRule;
 
-        public TrayIconViewModel(IConfigService configService)
+        public TrayIconViewModel(ISettingsService settingsService)
         {
-            _configService = configService;
+            _settingsService = settingsService;
 
             ReloadConfigCommand = new RelyCommand(ReloadConfig);
             ChangeTitlebarColorModeCommand = new RelyCommand(ChangeTitlebarColorMode);
@@ -39,20 +40,22 @@ namespace MicaForEveryone.ViewModels
             EditConfigCommand = new RelyCommand(OpenConfigInEditor);
             OpenSettingsCommand = new RelyCommand(OpenSettings);
 
-            _configService.Updated += ConfigService_Changed;
+            _settingsService.Changed += SettingsService_Changed;
         }
 
         ~TrayIconViewModel()
         {
-            _configService.Updated -= ConfigService_Changed;
+            _settingsService.Changed -= SettingsService_Changed;
         }
 
-        public bool SystemBackdropIsSupported =>
-#if !DEBUG
+        public bool IsBackdropSupported =>
             DesktopWindowManager.IsBackdropTypeSupported;
-#else
-            true;
-#endif
+
+        public bool IsMicaSupported =>
+            DesktopWindowManager.IsUndocumentedMicaSupported || DesktopWindowManager.IsBackdropTypeSupported;
+
+        public bool IsImmersiveDarkModeSupported =>
+            DesktopWindowManager.IsImmersiveDarkModeSupported;
 
         public BackdropType BackdropType
         {
@@ -90,8 +93,8 @@ namespace MicaForEveryone.ViewModels
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
             _window.Destroy += Window_Destroy;
 
-            var configService = Program.CurrentApp.Container.GetService<IConfigService>();
-            await configService.LoadAsync();
+            _settingsService.Load();
+            await _settingsService.LoadRulesAsync();
 
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -108,7 +111,7 @@ namespace MicaForEveryone.ViewModels
         {
             try
             {
-                await _configService.LoadAsync();
+                await _settingsService.LoadRulesAsync();
             }
             catch (ParserError error)
             {
@@ -138,13 +141,6 @@ namespace MicaForEveryone.ViewModels
                 _window.Height = notifyIconRect.Height;
                 _window.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-                //var xamlWindow = Win32.Window.FromHandle(_window.Interop.WindowHandle);
-                //xamlWindow.X = 0;
-                //xamlWindow.Y = 0;
-                //xamlWindow.Width = notifyIconRect.Width;
-                //xamlWindow.Height = notifyIconRect.Height;
-                //xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
                 menu.ShowAt(_window.View,
                     new Windows.Foundation.Point(
                         (offset.X - notifyIconRect.X) / _window.ScaleFactor,
@@ -160,13 +156,6 @@ namespace MicaForEveryone.ViewModels
             _window.Height = notifyIconRect.Height;
             _window.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
-            //var xamlWindow = Win32.Window.FromHandle(_window.Interop.WindowHandle);
-            //xamlWindow.X = 0;
-            //xamlWindow.Y = 0;
-            //xamlWindow.Width = notifyIconRect.Width;
-            //xamlWindow.Height = notifyIconRect.Height;
-            //xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
             var tooltip = (ToolTip)ToolTipService.GetToolTip(_window.View);
             tooltip.IsOpen = true;
         }
@@ -177,9 +166,9 @@ namespace MicaForEveryone.ViewModels
             tooltip.IsOpen = false;
         }
 
-        private async Task UpdateDataAsync()
+        private async void UpdateData()
         {
-            _globalRule = _configService.Rules.First(rule => rule is GlobalRule);
+            _globalRule = _settingsService.Rules.First(rule => rule is GlobalRule);
 
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -189,14 +178,13 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        private async Task UpdateRuleAsync()
+        private void UpdateRule()
         {
             _globalRule.BackdropPreference = BackdropType;
             _globalRule.TitlebarColor = TitlebarColor;
             _globalRule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
 
-            _configService.RaiseChanged();
-            await _configService.SaveAsync();
+            _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _globalRule);
         }
 
         private async void View_ActualThemeChanged(FrameworkElement sender, object args)
@@ -210,9 +198,13 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        private async void ConfigService_Changed(object sender, EventArgs e)
+        private async void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
         {
-            await UpdateDataAsync();
+            if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule) 
+                || args.Type == SettingsChangeType.ConfigFileReloaded)
+            {
+                UpdateData();
+            }
         }
 
         private void Window_Destroy(object sender, WndProcEventArgs e)
@@ -238,7 +230,7 @@ namespace MicaForEveryone.ViewModels
                 "Dark" => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            await UpdateRuleAsync();
+            await Task.Run(() => UpdateRule());
         }
 
         private async void ChangeBackdropType(object parameter)
@@ -252,7 +244,7 @@ namespace MicaForEveryone.ViewModels
                 "Tabbed" => BackdropType.Tabbed,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            await UpdateRuleAsync();
+            await Task.Run(() => UpdateRule());
         }
 
         private void Exit(object obj)
@@ -260,12 +252,17 @@ namespace MicaForEveryone.ViewModels
             _window.Close();
         }
 
-        private async void OpenConfigInEditor(object obj)
+        private void OpenConfigInEditor(object obj)
         {
-            await Task.Run(() =>
+            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
             {
-                _configService.ConfigSource.OpenInEditor();
-            });
+                UseShellExecute = true
+            };
+            if (startInfo.Verbs.Contains("edit"))
+            {
+                startInfo.Verb = "edit";
+            }
+            Process.Start(startInfo);
         }
 
         private void OpenSettings(object obj)

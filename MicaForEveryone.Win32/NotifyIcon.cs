@@ -97,7 +97,7 @@ namespace MicaForEveryone.Win32
             }
             else if (umsg == _taskbarCreatedMessage && _shown)
             {
-                ShowWindow();
+                ShowNotifyIcon();
             }
             else if (umsg == CallbackMessage)
             {

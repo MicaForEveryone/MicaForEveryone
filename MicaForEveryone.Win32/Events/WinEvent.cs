@@ -23,7 +23,7 @@ namespace MicaForEveryone.Win32.Events
 
         internal void StartListening()
         {
-            _handle = NativeMethods.SetWinEventHook((uint)EventType, (uint)EventType, NativeMethods.InstanceHandle, _callback, 0, 0, WINEVENT.WINEVENT_OUTOFCONTEXT);
+            _handle = NativeMethods.SetWinEventHook((uint)EventType, (uint)EventType, Application.InstanceHandle, _callback, 0, 0, WINEVENT.WINEVENT_OUTOFCONTEXT);
         }
 
         internal void StopListening()
@@ -56,7 +56,7 @@ namespace MicaForEveryone.Win32.Events
                 var args = _callbacksWaitList.Dequeue();
                 try
                 {
-                    if (args.ObjectId > 0 && NativeMethods.UiaHasServerSideProvider(args.WindowHandle))
+                    if (args.ObjectId > 0 /*&& NativeMethods.UiaHasServerSideProvider(args.WindowHandle)*/)
                     {
                         // Ignore events from the UIA->MSAA bridge
                         // Check MS.Internal.Automation.WinEventWrap in https://github.com/dotnet/wpf

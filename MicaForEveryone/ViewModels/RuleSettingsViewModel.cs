@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-
-using MicaForEveryone.Interfaces;
+﻿using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI.ViewModels;
 
@@ -8,49 +6,54 @@ namespace MicaForEveryone.ViewModels
 {
     internal class RuleSettingsViewModel : BaseViewModel, IRuleSettingsViewModel
     {
-        private readonly IConfigService _configService;
+        private readonly ISettingsService _settingsService;
 
-        private readonly RelyCommand _saveCommand;
-
-        private BackdropType _backdropType;
-        private TitlebarColorMode _titlebarColorMode;
-        private bool _extendFrameIntoClientArea;
         private IRule _rule;
 
-        public RuleSettingsViewModel(IConfigService configService)
+        public RuleSettingsViewModel(ISettingsService settingsService)
         {
-            _configService = configService;
-
-            _saveCommand = new RelyCommand(Save, CanSave);
+            _settingsService = settingsService;
         }
 
         public BackdropType BackdropType
         {
-            get => _backdropType;
+            get => _rule.BackdropPreference;
             set
             {
-                SetProperty(ref _backdropType, value);
-                _saveCommand.RaiseCanExecuteChanged();
+                if (_rule.BackdropPreference != value)
+                {
+                    _rule.BackdropPreference = value;
+                    OnPropertyChanged();
+                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                }
             }
         }
 
         public TitlebarColorMode TitlebarColor
         {
-            get => _titlebarColorMode;
+            get => _rule.TitlebarColor;
             set
             {
-                SetProperty(ref _titlebarColorMode, value);
-                _saveCommand.RaiseCanExecuteChanged();
+                if (_rule.TitlebarColor != value)
+                {
+                    _rule.TitlebarColor = value;
+                    OnPropertyChanged();
+                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                }
             }
         }
 
         public bool ExtendFrameIntoClientArea
         {
-            get => _extendFrameIntoClientArea;
+            get => _rule.ExtendFrameIntoClientArea;
             set
             {
-                SetProperty(ref _extendFrameIntoClientArea, value);
-                _saveCommand.RaiseCanExecuteChanged();
+                if (_rule.ExtendFrameIntoClientArea != value)
+                {
+                    _rule.ExtendFrameIntoClientArea = value;
+                    OnPropertyChanged();
+                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                }
             }
         }
 
@@ -58,34 +61,12 @@ namespace MicaForEveryone.ViewModels
 
         public object Rule => _rule;
 
-        public ICommand SaveCommand => _saveCommand;
-
         public void InitializeData(object data)
         {
             if (data is IRule rule)
             {
                 _rule = rule;
-                BackdropType = _rule.BackdropPreference;
-                TitlebarColor = _rule.TitlebarColor;
-                ExtendFrameIntoClientArea = _rule.ExtendFrameIntoClientArea;
             }
-        }
-
-        private async void Save(object parameter)
-        {
-            _rule.BackdropPreference = BackdropType;
-            _rule.TitlebarColor = TitlebarColor;
-            _rule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
-
-            _configService.RaiseChanged();
-            await _configService.SaveAsync();
-        }
-
-        private bool CanSave(object parameter)
-        {
-            return BackdropType != _rule.BackdropPreference ||
-                TitlebarColor != _rule.TitlebarColor ||
-                ExtendFrameIntoClientArea != _rule.ExtendFrameIntoClientArea;
         }
     }
 }

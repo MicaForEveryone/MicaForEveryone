@@ -25,7 +25,6 @@ namespace MicaForEveryone.Models
                 WindowHandle = window.Handle,
                 Title = window.GetText(),
                 ClassName = window.Class.Name,
-                ProcessId = window.GetProcessId(),
                 ProcessName = Process.GetProcessById((int)window.GetProcessId()).ProcessName,
             };
         }
@@ -36,7 +35,6 @@ namespace MicaForEveryone.Models
         public string Title { get; private set; }
         public string ClassName { get; private set; }
         public string ProcessName { get; private set; }
-        public uint ProcessId { get; private set; }
 
         public void ApplyBackdropRule(BackdropType type)
         {
@@ -47,57 +45,33 @@ namespace MicaForEveryone.Models
 
                 DesktopWindowManager.SetBackdropType(WindowHandle, type);
             }
-            else if (DesktopWindowManager.IsUndocumentedMicaSupported)
+            else if (DesktopWindowManager.IsUndocumentedMicaSupported &&
+                type < BackdropType.Acrylic &&
+                type != BackdropType.Default)
             {
-                switch (type)
-                {
-                    case BackdropType.Default:
-                        return;
-                    case BackdropType.None:
-                        DesktopWindowManager.SetMica(WindowHandle, false);
-                        return;
-                    case BackdropType.Mica:
-                        DesktopWindowManager.SetMica(WindowHandle, true);
-                        return;
-                    case BackdropType.Acrylic:
-                        throw new PlatformNotSupportedException("Acrylic backdrop requires at least Windows build 22523 or higher.");
-                    case BackdropType.Tabbed:
-                        throw new PlatformNotSupportedException("Tabbed backdrop requires at least Windows build 22523 or higher.");
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-            else if (type != BackdropType.Default)
-            {
-                throw new PlatformNotSupportedException("Customizing backdrop requires at least Windows build 22000 or higher.");
+                DesktopWindowManager.SetMica(WindowHandle, type == BackdropType.Mica);
             }
         }
 
         public void ApplyTitlebarColorRule(TitlebarColorMode targetMode, TitlebarColorMode systemMode)
         {
-            if (DesktopWindowManager.IsImmersiveDarkModeSupported)
+            if (!DesktopWindowManager.IsImmersiveDarkModeSupported) return;
+            switch (targetMode)
             {
-                switch (targetMode)
-                {
-                    case TitlebarColorMode.Default:
-                        break;
-                    case TitlebarColorMode.System:
-                        if (systemMode == TitlebarColorMode.System) break;
-                        ApplyTitlebarColorRule(systemMode, TitlebarColorMode.Default);
-                        break;
-                    case TitlebarColorMode.Light:
-                        DesktopWindowManager.SetImmersiveDarkMode(WindowHandle, false);
-                        break;
-                    case TitlebarColorMode.Dark:
-                        DesktopWindowManager.SetImmersiveDarkMode(WindowHandle, true);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-            else if (targetMode != TitlebarColorMode.Default)
-            {
-                throw new PlatformNotSupportedException("Customizing Titlebar color requires at least Windows build 19041.");
+                case TitlebarColorMode.Default:
+                    return;
+                case TitlebarColorMode.System:
+                    if (systemMode == TitlebarColorMode.System) return;
+                    ApplyTitlebarColorRule(systemMode, TitlebarColorMode.Default);
+                    return;
+                case TitlebarColorMode.Light:
+                    DesktopWindowManager.SetImmersiveDarkMode(WindowHandle, false);
+                    return;
+                case TitlebarColorMode.Dark:
+                    DesktopWindowManager.SetImmersiveDarkMode(WindowHandle, true);
+                    return;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

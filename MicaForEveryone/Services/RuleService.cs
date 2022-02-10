@@ -13,8 +13,6 @@ namespace MicaForEveryone.Services
     {
         public void ApplyRuleToWindow(TargetWindow target, IRule rule)
         {
-            if (target.ProcessId == System.Diagnostics.Process.GetCurrentProcess().Id)
-                return;
 #if DEBUG
             System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{target.Title}` ({target.ClassName}, {target.ProcessName})");
 #endif
@@ -25,18 +23,17 @@ namespace MicaForEveryone.Services
             target.ApplyBackdropRule(rule.BackdropPreference);
         }
 
-        private readonly IConfigService _configService;
+        private readonly ISettingsService _settingsService;
 
-        public RuleService(IConfigService configService)
+        public RuleService(ISettingsService settingsService)
         {
-            _configService = configService;
-            _configService.ConfigSource.Changed += ConfigSource_Changed;
-            _configService.Updated += ConfigService_Updated;
+            _settingsService = settingsService;
+            _settingsService.Changed += SettingsService_Changed;
         }
 
         ~RuleService()
         {
-            _configService.ConfigSource.Changed -= ConfigSource_Changed;
+            _settingsService.Changed -= SettingsService_Changed;
         }
 
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
@@ -57,7 +54,7 @@ namespace MicaForEveryone.Services
         {
             try
             {
-                var applicableRules = _configService.Rules.Where(rule => rule.IsApplicable(target));
+                var applicableRules = _settingsService.Rules.Where(rule => rule.IsApplicable(target));
                 var rule = applicableRules.FirstOrDefault(rule => rule is not GlobalRule) ??
                     applicableRules.FirstOrDefault();
 
@@ -89,18 +86,19 @@ namespace MicaForEveryone.Services
                 if (!window.IsWindowPatternValid())
                     return;
 
+                if (window.InstanceHandle == Application.InstanceHandle)
+                    return; // ignore windows of current instance
+
                 MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
             });
         }
 
-        private async void ConfigSource_Changed(object sender, EventArgs e)
+        private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
         {
-            await _configService.LoadAsync();
-        }
-
-        private async void ConfigService_Updated(object sender, EventArgs e)
-        {
-            await Task.Run(() =>
+            if (args.Type is SettingsChangeType.ConfigFileWatcherStateChanged
+                or SettingsChangeType.ConfigFilePathChanged)
+                return;
+            Task.Run(() =>
             {
                 MatchAndApplyRuleToAllWindows();
             });
@@ -110,8 +108,10 @@ namespace MicaForEveryone.Services
         {
             await Task.Run(() =>
             {
-                var window = Window.FromHandle(e.WindowHandle);
-                var target = TargetWindow.FromWindow(window);
+                if (e.Window.InstanceHandle == Application.InstanceHandle)
+                    return; // ignore windows of current instance
+
+                var target = TargetWindow.FromWindow(e.Window);
                 MatchAndApplyRuleToWindow(target);
             });
         }

@@ -6,5 +6,7 @@ namespace MicaForEveryone.UI.ViewModels
     {
         bool ReloadOnChange { get; set; }
         bool RunOnStartup { get; set; }
+        bool RunOnStartupAvailable { get; }
+        string ConfigFilePath { get; set; }
     }
 }

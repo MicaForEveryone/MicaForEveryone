@@ -29,7 +29,7 @@ namespace MicaForEveryone.Views
             ViewModel = viewModel;
             ViewModel.Title = resources.GetString("AddProcessRuleContentDialog/Title");
 
-            var element = (AutoSuggestBox)XamlReader.Load(@"
+            var autoSuggestBox = (AutoSuggestBox)XamlReader.Load(@"
 <AutoSuggestBox xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
                 xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
                 x:Uid='ProcessNameSuggestBox'
@@ -37,19 +37,23 @@ namespace MicaForEveryone.Views
                 ItemsSource='{Binding Suggestions}' 
                 Text='{Binding ProcessName, Mode=TwoWay}' />
 "); 
-            element.DataContext = ViewModel;
-            element.QuerySubmitted += (sender, args) =>
+            autoSuggestBox.DataContext = ViewModel;
+            autoSuggestBox.QuerySubmitted += (sender, args) =>
             {
                 ViewModel.PrimaryCommand.Execute(this);
             };
-            element.SuggestionChosen += (sender, args) =>
+            autoSuggestBox.SuggestionChosen += (sender, args) =>
             {
                 ViewModel.ProcessName = args.SelectedItem.ToString();
             };
-            ViewModel.Content = element;
+            autoSuggestBox.Loaded += (sender, args) =>
+            {
+                autoSuggestBox.Focus(FocusState.Programmatic);
+            };
+            ViewModel.Content = autoSuggestBox;
 
             ViewModel.IsPrimaryButtonEnabled = true;
-            ViewModel.PrimaryButtonContent = resources.GetString("AddRuleButton/Content");
+            ViewModel.PrimaryButtonContent = resources.GetString("AddButton/Content");
             ViewModel.PrimaryCommandParameter = this;
             
             ViewModel.IsSecondaryButtonEnabled = true;

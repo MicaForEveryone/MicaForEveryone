@@ -1,40 +1,38 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
 
+using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
-using MicaForEveryone.UI;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.Config;
-
-#if !DEBUG
 using MicaForEveryone.Win32;
-#endif
+using MicaForEveryone.Views;
+
+#nullable enable
 
 namespace MicaForEveryone.ViewModels
 {
     internal class SettingsViewModel : BaseViewModel, ISettingsViewModel
     {
-        private readonly IConfigService _configService;
+        private readonly ISettingsService _settingsService;
 
-        private CoreDispatcher _dispatcher;
-        private IPaneItem _selectedPane;
+        private CoreDispatcher? _dispatcher;
+        private IPaneItem? _selectedPane;
+        private GeneralPaneItem _generalPane;
+        private IRule? _newRule;
 
-        public SettingsViewModel(IConfigService configService)
+        public SettingsViewModel(ISettingsService settingsService)
         {
-            _configService = configService;
-            _configService.Updated += ConfigService_Changed;
+            _settingsService = settingsService;
+            _settingsService.Changed += SettingsService_Changed;
+            _generalPane = new GeneralPaneItem(Program.CurrentApp.Container.GetService<IGeneralSettingsViewModel>());
 
             CloseCommand = new RelyCommand(Close);
             AddProcessRuleCommand = new RelyCommand(AddProcessRule);
@@ -46,20 +44,23 @@ namespace MicaForEveryone.ViewModels
 
         ~SettingsViewModel()
         {
-            _configService.Updated -= ConfigService_Changed;
+            _settingsService.Changed -= SettingsService_Changed;
         }
 
-        public bool SystemBackdropIsSupported =>
-#if !DEBUG
+        public bool IsBackdropSupported =>
             DesktopWindowManager.IsBackdropTypeSupported;
-#else
-            true;
-#endif
 
-        public Version Version { get; } = typeof(Program).Assembly.GetName().Version;
+        public bool IsMicaSupported =>
+            DesktopWindowManager.IsUndocumentedMicaSupported || DesktopWindowManager.IsBackdropTypeSupported;
+
+        public bool IsImmersiveDarkModeSupported =>
+            DesktopWindowManager.IsImmersiveDarkModeSupported;
+
+        public Version Version { get; } = typeof(Program).Assembly.GetName().Version!;
 
         public ObservableCollection<IPaneItem> PaneItems { get; set; } = new();
-        public IPaneItem SelectedPane
+
+        public IPaneItem? SelectedPane
         {
             get => _selectedPane;
             set
@@ -89,9 +90,12 @@ namespace MicaForEveryone.ViewModels
             if (BackdropTypes.Count <= 0)
             {
                 BackdropTypes.Add(BackdropType.Default);
-                BackdropTypes.Add(BackdropType.None);
-                BackdropTypes.Add(BackdropType.Mica);
-                if (SystemBackdropIsSupported)
+                if (IsMicaSupported)
+                {
+                    BackdropTypes.Add(BackdropType.None);
+                    BackdropTypes.Add(BackdropType.Mica);
+                }
+                if (IsBackdropSupported)
                 {
                     BackdropTypes.Add(BackdropType.Acrylic);
                     BackdropTypes.Add(BackdropType.Tabbed);
@@ -101,9 +105,12 @@ namespace MicaForEveryone.ViewModels
             if (TitlebarColorModes.Count <= 0)
             {
                 TitlebarColorModes.Add(TitlebarColorMode.Default);
-                TitlebarColorModes.Add(TitlebarColorMode.System);
-                TitlebarColorModes.Add(TitlebarColorMode.Light);
-                TitlebarColorModes.Add(TitlebarColorMode.Dark);
+                if (IsImmersiveDarkModeSupported)
+                {
+                    TitlebarColorModes.Add(TitlebarColorMode.System);
+                    TitlebarColorModes.Add(TitlebarColorMode.Light);
+                    TitlebarColorModes.Add(TitlebarColorMode.Dark);
+                }
             }
 
             PopulatePanes();
@@ -111,12 +118,10 @@ namespace MicaForEveryone.ViewModels
 
         private void PopulatePanes()
         {
-            var generalPane = new GeneralPaneItem(
-                Program.CurrentApp.Container.GetService<IGeneralSettingsViewModel>());
-            PaneItems.Add(generalPane);
-            SelectedPane = generalPane;
+            PaneItems.Add(_generalPane);
+            SelectedPane = _generalPane;
 
-            foreach (var rule in _configService.Rules)
+            foreach (var rule in _settingsService.Rules)
             {
                 var item = rule.GetPaneItem(this);
                 item.ViewModel.ParentViewModel = this;
@@ -124,24 +129,53 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        private async void ConfigService_Changed(object sender, EventArgs e)
+        private void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
         {
-            await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            _dispatcher!.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                // save current pane
+                var pane = args.Rule?.GetPaneItem(this);
                 var lastPane = SelectedPane;
 
-                SelectedPane = null;
-                PaneItems.Clear();
-                PopulatePanes();
-
-                // return to last pane if it's still there
-                lastPane = PaneItems.FirstOrDefault(item => item.Equals(lastPane));
-                if (lastPane != null)
+                switch (args.Type)
                 {
-                    SelectedPane = lastPane;
+                    case SettingsChangeType.RuleAdded:
+                        PaneItems.Add(pane!);
+                        if (args.Rule == _newRule)
+                        {
+                            SelectedPane = pane;
+                            _newRule = null;
+                        }
+                        break;
+
+                    case SettingsChangeType.RuleRemoved:
+                        PaneItems.Remove(pane!);
+                        if (args.Rule == _newRule)
+                        {
+                            SelectedPane = pane;
+                            _newRule = null;
+                        }
+                        break;
+
+                    case SettingsChangeType.RuleChanged:
+                        var index = PaneItems.IndexOf(pane!);
+                        PaneItems.Insert(index, pane!);
+                        PaneItems.RemoveAt(index+1);
+                        if (lastPane?.Equals(pane) ?? false)
+                            SelectedPane = pane;
+                        break;
+
+                    case SettingsChangeType.ConfigFileReloaded:
+                        SelectedPane = null;
+                        PaneItems.Clear();
+                        PopulatePanes();
+
+                        // return to last pane if it's still there
+                        lastPane = PaneItems.FirstOrDefault(item => item.Equals(lastPane));
+                        if (lastPane != null)
+                            SelectedPane = lastPane;
+                        break;
                 }
-            });
+            }).AsTask().Start();
         }
 
         // commands
@@ -149,60 +183,55 @@ namespace MicaForEveryone.ViewModels
         private void Close(object obj)
         {
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            viewService.SettingsWindow?.Close();
+            viewService?.SettingsWindow?.Close();
         }
 
         private void AddProcessRule(object obj)
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            
-            var dialog = new Views.AddProcessRuleDialog();
+
+            AddProcessRuleDialog dialog = new();
             dialog.Destroy += (sender, args) =>
             {
                 dialog.Dispose();
             };
-            dialog.ViewModel.Submit += async (sender, args) =>
+            dialog.ViewModel.Submit += (sender, args) =>
             {
-                var rule = new ProcessRule(dialog.ViewModel.ProcessName);
-                _configService.ConfigSource.SetRule(rule);
-                await _configService.ConfigSource.SaveAsync();
-                _configService.PopulateRules();
+                _newRule = new ProcessRule(dialog.ViewModel.ProcessName);
+                _settingsService.RaiseChanged(SettingsChangeType.RuleAdded, _newRule);
             };
 
-            dialogService.ShowDialog(viewService.SettingsWindow, dialog);
+            dialogService?.ShowDialog(viewService?.SettingsWindow, dialog);
         }
 
         private void AddClassRule(object obj)
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            
-            var dialog = new Views.AddClassRuleDialog();
+
+            AddClassRuleDialog dialog = new();
             dialog.Destroy += (sender, args) =>
             {
                 dialog.Dispose();
             };
-            dialog.ViewModel.Submit += async (sender, args) =>
+            dialog.ViewModel.Submit += (sender, args) =>
             {
-                var rule = new ClassRule(dialog.ViewModel.ClassName);
-                _configService.ConfigSource.SetRule(rule);
-                await _configService.ConfigSource.SaveAsync();
-                _configService.PopulateRules();
+                _newRule = new ClassRule(dialog.ViewModel.ClassName);
+                _settingsService.RaiseChanged(SettingsChangeType.RuleAdded, _newRule);
             };
 
-            dialogService.ShowDialog(viewService.SettingsWindow, dialog);
+            dialogService?.ShowDialog(viewService?.SettingsWindow, dialog);
         }
 
-        private async void RemoveRule(object obj)
+        private void RemoveRule(object obj)
         {
             if (SelectedPane is RulePaneItem rulePane)
             {
                 if (rulePane.ViewModel.Rule is IRule rule)
                 {
-                    _configService.ConfigSource.RemoveRule(rule);
-                    await _configService.ConfigSource.SaveAsync();
-                    _configService.PopulateRules();
+                    _settingsService.RaiseChanged(SettingsChangeType.RuleRemoved, rule);
+                    SelectedPane = _generalPane;
                 }
             }
         }
@@ -214,25 +243,30 @@ namespace MicaForEveryone.ViewModels
         {
             try
             {
-                await _configService.LoadAsync();
+                await _settingsService.LoadRulesAsync();
             }
             catch (ParserError error)
             {
-                var window = Program.CurrentApp.Container.GetService<IViewService>().SettingsWindow;
-                await window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                var window = Program.CurrentApp.Container.GetService<IViewService>()?.SettingsWindow;
+                await window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-                    dialogService.ShowErrorDialog(window, error.Message, error.ToString(), 576, 400);
+                    dialogService?.ShowErrorDialog(window, error.Message, error.ToString(), 576, 400);
                 });
             }
         }
 
-        private async void OpenConfigInEditor(object obj)
+        private void OpenConfigInEditor(object obj)
         {
-            await Task.Run(() =>
+            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
             {
-                _configService.ConfigSource.OpenInEditor();
-            });
+                UseShellExecute = true
+            };
+            if (startInfo.Verbs.Contains("edit"))
+            {
+                startInfo.Verb = "edit";
+            }
+            Process.Start(startInfo);
         }
     }
 }

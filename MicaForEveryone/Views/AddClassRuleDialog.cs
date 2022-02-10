@@ -6,8 +6,6 @@ using Windows.UI.Xaml.Markup;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI;
-using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Views
 {
@@ -29,7 +27,7 @@ namespace MicaForEveryone.Views
             ViewModel = viewModel;
             ViewModel.Title = resources.GetString("AddClassRuleContentDialog/Title");
 
-            var element = (AutoSuggestBox)XamlReader.Load(@"
+            var autoSuggestBox = (AutoSuggestBox)XamlReader.Load(@"
 <AutoSuggestBox xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'
                 xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml'
                 x:Uid='ClassNameSuggestBox'
@@ -37,19 +35,23 @@ namespace MicaForEveryone.Views
                 ItemsSource='{Binding Suggestions}'
                 Text='{Binding ClassName, Mode=TwoWay}' />
 "); 
-            element.DataContext = ViewModel;
-            element.QuerySubmitted += (sender, args) =>
+            autoSuggestBox.DataContext = ViewModel;
+            autoSuggestBox.QuerySubmitted += (sender, args) =>
             {
                 ViewModel.PrimaryCommand.Execute(this);
             };
-            element.SuggestionChosen += (sender, args) =>
+            autoSuggestBox.SuggestionChosen += (sender, args) =>
             {
                 ViewModel.ClassName = args.SelectedItem.ToString();
             };
-            ViewModel.Content = element;
+            autoSuggestBox.Loaded += (sender, args) =>
+            {
+                autoSuggestBox.Focus(FocusState.Programmatic);
+            };
+            ViewModel.Content = autoSuggestBox;
 
             ViewModel.IsPrimaryButtonEnabled = true;
-            ViewModel.PrimaryButtonContent = resources.GetString("AddRuleButton/Content");
+            ViewModel.PrimaryButtonContent = resources.GetString("AddButton/Content");
             ViewModel.PrimaryCommandParameter = this;
 
             ViewModel.IsSecondaryButtonEnabled = true;

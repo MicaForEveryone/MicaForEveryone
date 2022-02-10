@@ -20,7 +20,7 @@
         </Style>
 
         <DataTemplate x:Key="GeneralTemplate" x:DataType="models:GeneralPaneItem">
-            <StackPanel HorizontalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
                 <CheckBox
                     x:Uid="ReloadConfigCheckBox"
                     Margin="6"
@@ -29,29 +29,39 @@
                 <TextBlock
                     x:Uid="ReloadConfigDescription"
                     Margin="0,0,24,6"
-                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                    Style="{ThemeResource CaptionTextBlockStyle}" />
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+
                 <CheckBox
                     x:Uid="RunOnStartupCheckBox"
                     Margin="6"
                     HorizontalAlignment="Stretch"
-                    IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
+                    IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}"
+                    IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable}" />
                 <TextBlock
                     x:Uid="RunOnStartupDescription"
                     Margin="0,0,24,6"
-                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                    Style="{ThemeResource CaptionTextBlockStyle}" />
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+
+                <TextBox
+                    x:Uid="ConfigFilePathTextBox"
+                    Margin="6"
+                    Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                <TextBlock
+                    x:Uid="ConfigFilePathDescription"
+                    Margin="0,0,24,6"
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
             </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="RulesTemplate" x:DataType="models:RulePaneItem">
-            <Grid HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" MinWidth="125" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -145,16 +155,23 @@
                         </selectors:TitlebarColorSelector>
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
+                <TextBlock
+                    x:Uid="UnsupportedImmersiveDarkModeDescription"
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}"
+                    Visibility="{x:Bind ViewModel.ParentViewModel.IsImmersiveDarkModeSupported, Converter={StaticResource VisibilityConverter}}" />
 
                 <TextBlock
                     x:Uid="BackdropTypeLabel"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="0"
                     Margin="6"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center" />
                 <ComboBox
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Grid.Column="1"
                     Margin="6"
                     HorizontalAlignment="Stretch"
@@ -192,7 +209,7 @@
                     </ComboBox.ItemTemplateSelector>
                 </ComboBox>
                 <ContentControl
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}"
@@ -243,42 +260,43 @@
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
                 <TextBlock
-                    x:Uid="UnsupportedBackdropDescription"
-                    Grid.Row="4"
+                    x:Uid="UnsupportedMicaDescription"
+                    Grid.Row="5"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}"
-                    Visibility="{x:Bind ViewModel.ParentViewModel.SystemBackdropIsSupported, Converter={StaticResource VisibilityConverter}}" />
+                    Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
+                <TextBlock
+                    x:Uid="UnsupportedBackdropDescription"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}"
+                    Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
 
                 <CheckBox
                     x:Uid="ExtendFrameIntoClientAreaCheckBox"
-                    Grid.Row="5"
+                    Grid.Row="7"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="6"
                     IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
                 <TextBlock
                     x:Uid="ExtendFrameIntoClientAreaDescription"
-                    Grid.Row="6"
+                    Grid.Row="8"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="0,0,24,6"
                     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                     Style="{ThemeResource CaptionTextBlockStyle}" />
-
-                <Button
-                    x:Uid="SaveButton"
-                    Grid.Row="7"
-                    Grid.Column="1"
-                    Margin="8"
-                    HorizontalAlignment="Right"
-                    Command="{x:Bind ViewModel.SaveCommand}"
-                    Style="{ThemeResource AccentButtonStyle}" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid
+        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+        TabFocusNavigation="Cycle"
+        XYFocusKeyboardNavigation="Enabled">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -298,7 +316,13 @@
             OpenPaneLength="250"
             PaneBackground="Transparent">
             <SplitView.Pane>
-                <ListView ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}" SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}">
+                <ListView
+                    IsTabStop="True"
+                    ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}"
+                    Loaded="ListView_Loaded"
+                    SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}"
+                    TabIndex="0"
+                    XYFocusKeyboardNavigation="Enabled">
                     <ListView.ItemTemplateSelector>
                         <selectors:PaneItemTypeSelector>
                             <selectors:PaneItemTypeSelector.General>
@@ -311,7 +335,7 @@
                                         <TextBlock
                                             x:Uid="GeneralPaneItem"
                                             Margin="12,0,0,0"
-                                            VerticalAlignment="Center"/>
+                                            VerticalAlignment="Center" />
                                     </StackPanel>
                                 </DataTemplate>
                             </selectors:PaneItemTypeSelector.General>
@@ -377,14 +401,17 @@
                         <ContentControl
                             x:Name="PaneDetails"
                             HorizontalContentAlignment="Stretch"
-                            Content="{Binding SelectedPane}" />
+                            Content="{Binding SelectedPane}"
+                            IsTabStop="False"
+                            TabIndex="1" />
 
                         <StackPanel
                             x:Name="AboutSection"
                             Grid.Row="1"
                             Margin="0,24,0,0"
                             Orientation="Vertical"
-                            Spacing="8">
+                            Spacing="8"
+                            XYFocusKeyboardNavigation="Enabled">
                             <TextBlock
                                 x:Uid="AboutTitle"
                                 FontSize="14"
@@ -394,7 +421,7 @@
                                 <Run x:Uid="VersionLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
                             </TextBlock>
-                            <HyperlinkButton x:Uid="GitHubButton" />
+                            <HyperlinkButton x:Uid="GitHubButton" TabIndex="3" />
                             <HyperlinkButton x:Uid="TelegramButton" />
                             <HyperlinkButton x:Uid="TwitterButton" />
                         </StackPanel>
@@ -410,10 +437,14 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <CommandBar DefaultLabelPosition="Right">
+            <CommandBar
+                Grid.Column="0"
+                DefaultLabelPosition="Right"
+                IsTabStop="True"
+                TabIndex="2"
+                XYFocusKeyboardNavigation="Enabled">
                 <AppBarButton
                     x:Uid="AddRuleAppBarButton"
-                    Grid.Column="0"
                     Margin="2"
                     Icon="Add">
                     <Button.Flyout>
@@ -448,12 +479,15 @@
                         Icon="Refresh" />
                 </CommandBar.SecondaryCommands>
             </CommandBar>
+
             <Button
                 x:Uid="CloseButton"
-                Grid.Column="3"
+                Grid.Column="2"
                 Margin="2"
                 Command="{x:Bind ViewModel.CloseCommand}"
-                Style="{ThemeResource AccentButtonStyle}" />
+                IsTabStop="True"
+                Style="{ThemeResource AccentButtonStyle}"
+                TabIndex="4" />
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
