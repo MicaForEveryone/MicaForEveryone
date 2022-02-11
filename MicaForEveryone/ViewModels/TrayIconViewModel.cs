@@ -202,7 +202,7 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        private async void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
+        private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
         {
             if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule) 
                 || args.Type == SettingsChangeType.ConfigFileReloaded)

@@ -4,15 +4,19 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Search;
 
 using MicaForEveryone.Interfaces;
+
+#nullable enable
 
 namespace MicaForEveryone.Services
 {
     internal class UwpConfigFile : IConfigFile
     {
-        private StorageFile _file;
-        
+        private StorageFile? _file;
+        private StorageFileQueryResult? _query;
+
         public UwpConfigFile(IConfigParser parser)
         {
             Parser = parser;
@@ -20,7 +24,7 @@ namespace MicaForEveryone.Services
 
         public IConfigParser Parser { get; }
 
-        public string FilePath { get; set; }
+        public string? FilePath { get; set; }
 
         public bool IsFileWatcherEnabled { get; set; }
 
@@ -28,6 +32,11 @@ namespace MicaForEveryone.Services
         {
             if (_file != null && _file.Path == FilePath)
                 return;
+
+            if (_query != null)
+                _query.ContentsChanged -= Query_ContentsChanged;
+
+            var parent = ApplicationData.Current.LocalFolder;
 
             if (FilePath == null)
             {
@@ -42,7 +51,12 @@ namespace MicaForEveryone.Services
             else
             {
                 _file = await StorageFile.GetFileFromPathAsync(FilePath);
+                parent = await _file.GetParentAsync();
             }
+
+            _query = parent.CreateFileQuery();
+            _query.ContentsChanged += Query_ContentsChanged;
+            await _query.GetFilesAsync(); // needs to be called to ContentsChanged get fired
         }
 
         public async Task<IRule[]> LoadAsync()
@@ -64,6 +78,22 @@ namespace MicaForEveryone.Services
         {
         }
 
-        public event EventHandler FileChanged;
+        private void Query_ContentsChanged(IStorageQueryResultBase sender, object args)
+        {
+            if (IsFileWatcherEnabled)
+            {
+                try
+                {
+                    IsFileWatcherEnabled = false;
+                    FileChanged?.Invoke(this, EventArgs.Empty);
+                }
+                finally
+                {
+                    IsFileWatcherEnabled = true;
+                }
+            }
+        }
+
+        public event EventHandler? FileChanged;
     }
 }
