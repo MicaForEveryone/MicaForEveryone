@@ -78,9 +78,11 @@ namespace MicaForEveryone.Views
             captionBackground.A = 0;
 
             var foreground = GetResourceColor(resources, "ContentDialogForeground");
+            var captionTextColor = captionBackground.Blend(foreground);
+            captionTextColor.A = 0;
 
             DesktopWindowManager.SetCaptionColor(Handle, captionBackground);
-            DesktopWindowManager.SetCaptionTextColor(Handle, foreground);
+            DesktopWindowManager.SetCaptionTextColor(Handle, captionTextColor);
         }
     }
 }
