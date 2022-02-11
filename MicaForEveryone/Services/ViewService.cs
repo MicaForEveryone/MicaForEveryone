@@ -36,13 +36,6 @@ namespace MicaForEveryone.Services
             }
         }
 
-        public TitlebarColorMode SystemColorMode => Application.Current.RequestedTheme switch
-        {
-            ApplicationTheme.Light => TitlebarColorMode.Light,
-            ApplicationTheme.Dark => TitlebarColorMode.Dark,
-            _ => TitlebarColorMode.Default,
-        };
-
         private void MainWindow_Destroy(object sender, Win32.WndProcEventArgs e)
         {
             MainWindow.Dispose();

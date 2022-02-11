@@ -25,25 +25,25 @@
                 <MenuFlyoutSubItem.Items>
                     <ToggleMenuFlyoutItem
                         x:Uid="DefaultMenuItem"
-                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}"
+                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeAsyncCommand}"
                         CommandParameter="Default"
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="SystemMenuItem"
-                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}"
+                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeAsyncCommand}"
                         CommandParameter="System"
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=System, Mode=OneWay}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="LightMenuItem"
-                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}"
+                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeAsyncCommand}"
                         CommandParameter="Light"
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Light, Mode=OneWay}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="DarkMenuItem"
-                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeCommand}"
+                        Command="{x:Bind ViewModel.ChangeTitlebarColorModeAsyncCommand}"
                         CommandParameter="Dark"
                         IsChecked="{x:Bind ViewModel.TitlebarColor, Converter={StaticResource IsEqualConverter}, ConverterParameter=Dark, Mode=OneWay}" />
                 </MenuFlyoutSubItem.Items>
@@ -56,32 +56,32 @@
                 <MenuFlyoutSubItem.Items>
                     <ToggleMenuFlyoutItem
                         x:Uid="DefaultMenuItem"
-                        Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}"
+                        Command="{x:Bind ViewModel.ChangeBackdropTypeAsyncCommand}"
                         CommandParameter="Default"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="NoneMenuItem"
-                        Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}"
+                        Command="{x:Bind ViewModel.ChangeBackdropTypeAsyncCommand}"
                         CommandParameter="None"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=None, Mode=OneWay}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="MicaMenuItem"
-                        Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}"
+                        Command="{x:Bind ViewModel.ChangeBackdropTypeAsyncCommand}"
                         CommandParameter="Mica"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Mica, Mode=OneWay}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="AcrylicMenuItem"
-                        Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}"
+                        Command="{x:Bind ViewModel.ChangeBackdropTypeAsyncCommand}"
                         CommandParameter="Acrylic"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Acrylic, Mode=OneWay}"
                         Visibility="{x:Bind ViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
 
                     <ToggleMenuFlyoutItem
                         x:Uid="TabbedMenuItem"
-                        Command="{x:Bind ViewModel.ChangeBackdropTypeCommand}"
+                        Command="{x:Bind ViewModel.ChangeBackdropTypeAsyncCommand}"
                         CommandParameter="Tabbed"
                         IsChecked="{x:Bind ViewModel.BackdropType, Converter={StaticResource IsEqualConverter}, ConverterParameter=Tabbed, Mode=OneWay}"
                         Visibility="{x:Bind ViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
@@ -106,7 +106,7 @@
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE104;" />
                         </MenuFlyoutItem.Icon>
                     </MenuFlyoutItem>
-                    <MenuFlyoutItem x:Uid="ReloadMenuItem" Command="{x:Bind ViewModel.ReloadConfigCommand}">
+                    <MenuFlyoutItem x:Uid="ReloadMenuItem" Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}">
                         <MenuFlyoutItem.Icon>
                             <SymbolIcon Symbol="Refresh" />
                         </MenuFlyoutItem.Icon>

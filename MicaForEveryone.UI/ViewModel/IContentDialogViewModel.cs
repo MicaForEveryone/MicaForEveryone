@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MicaForEveryone.UI.ViewModels
 {
@@ -17,11 +18,11 @@ namespace MicaForEveryone.UI.ViewModels
 
         object SecondaryButtonContent { get; set; }
 
-        ICommand PrimaryCommand { get; set; }
+        IRelayCommand PrimaryCommand { get; set; }
 
         object PrimaryCommandParameter { get; set; }
 
-        ICommand SecondaryCommand { get; set; }
+        IRelayCommand SecondaryCommand { get; set; }
 
         object SecondaryCommandParameter { get; set; }
     }

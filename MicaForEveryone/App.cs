@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Threading;
-using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Services;
 using MicaForEveryone.ViewModels;
-using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Xaml;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MicaForEveryone
 {
@@ -57,7 +56,7 @@ namespace MicaForEveryone
                 IsPackaged ? new UwpConfigFile(container.GetService<IConfigParser>())
                 : new Win32ConfigFile(container.GetService<IConfigParser>()));
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
-            services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
+            services.AddTransient<UI.ViewModels.IContentDialogViewModel, ContentDialogViewModel>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
             services.AddTransient<IGeneralSettingsViewModel, GeneralSettingsViewModel>();
             services.AddTransient<IRuleSettingsViewModel, RuleSettingsViewModel>();

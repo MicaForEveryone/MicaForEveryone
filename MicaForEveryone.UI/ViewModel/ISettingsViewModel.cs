@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Models;
 using MicaForEveryone.UI.Models;
@@ -14,22 +15,22 @@ namespace MicaForEveryone.UI.ViewModels
         bool IsMicaSupported { get; }
         bool IsImmersiveDarkModeSupported { get; }
 
-        Version Version { get; }
+        string Version { get; }
 
-        ObservableCollection<BackdropType> BackdropTypes { get; }
-        ObservableCollection<TitlebarColorMode> TitlebarColorModes { get; }
+        IList<BackdropType> BackdropTypes { get; }
+        IList<TitlebarColorMode> TitlebarColorModes { get; }
 
-        ObservableCollection<IPaneItem> PaneItems { get; set; }
+        IList<IPaneItem> PaneItems { get; set; }
         IPaneItem SelectedPane { get; set; }
 
         ICommand CloseCommand { get; }
+
         ICommand AddProcessRuleCommand { get; }
         ICommand AddClassRuleCommand { get; }
-        ICommand RemoveRuleCommand { get; }
-        ICommand EditConfigCommand { get; }
-        ICommand ReloadConfigCommand { get; }
-        ICommand ResetConfigCommand { get; }
+        IAsyncRelayCommand RemoveRuleAsyncCommand { get; }
 
-        void Initialize(object sender);
+        ICommand EditConfigCommand { get; }
+        IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
+        IAsyncRelayCommand ResetConfigAsyncCommand { get; }
     }
 }

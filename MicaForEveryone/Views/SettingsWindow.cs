@@ -9,7 +9,6 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Brushes;
-using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
 using MicaForEveryone.Xaml;
@@ -54,7 +53,7 @@ namespace MicaForEveryone.Views
 
             EnableWindowThemeAttribute(WTNCA.WTNCA_NODRAWCAPTION | WTNCA.WTNCA_NODRAWICON | WTNCA.WTNCA_NOSYSMENU);
 
-            DesktopWindowManager.SetImmersiveDarkMode(Handle, Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode == TitlebarColorMode.Dark);
+            DesktopWindowManager.SetImmersiveDarkMode(Handle, View.ActualTheme == ElementTheme.Dark);
             DesktopWindowManager.EnableMicaIfSupported(Handle);
         }
 
@@ -67,7 +66,7 @@ namespace MicaForEveryone.Views
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)
         {
-            DesktopWindowManager.SetImmersiveDarkMode(Handle, Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode == TitlebarColorMode.Dark);
+            DesktopWindowManager.SetImmersiveDarkMode(Handle, sender.ActualTheme == ElementTheme.Dark);
         }
     }
 }

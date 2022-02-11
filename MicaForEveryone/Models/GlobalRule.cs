@@ -3,7 +3,6 @@
 using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
-using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.Models
 {
@@ -28,11 +27,11 @@ namespace MicaForEveryone.Models
 
         public override string ToString() => Name;
 
-        public RulePaneItem GetPaneItem(ISettingsViewModel parent)
+        public RulePaneItem GetPaneItem(UI.ViewModels.ISettingsViewModel parent)
         {
             var viewModel = Program.CurrentApp.Container.GetService<IRuleSettingsViewModel>();
             viewModel.ParentViewModel = parent;
-            viewModel.InitializeData(this);
+            viewModel.Rule = this;
             return new RulePaneItem("", PaneItemType.Global, viewModel);
         }
     }

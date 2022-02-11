@@ -76,7 +76,7 @@
                     Grid.Column="1"
                     Margin="6,32,6,6"
                     HorizontalAlignment="Stretch"
-                    Command="{x:Bind ViewModel.BrowseCommand}" />
+                    Command="{x:Bind ViewModel.BrowseAsyncCommand}" />
                 <TextBlock
                     x:Uid="ConfigFilePathDescription"
                     Grid.Row="5"
@@ -502,7 +502,7 @@
                     x:Uid="RemoveRuleAppBarButton"
                     Grid.Column="1"
                     Margin="2"
-                    Command="{x:Bind ViewModel.RemoveRuleCommand}"
+                    Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
                     Icon="Remove" />
                 <CommandBar.SecondaryCommands>
                     <AppBarButton
@@ -511,9 +511,9 @@
                         Icon="Edit" />
                     <AppBarButton
                         x:Uid="ReloadAppBarButton"
-                        Command="{x:Bind ViewModel.ReloadConfigCommand}"
+                        Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}"
                         Icon="Refresh" />
-                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigCommand}">
+                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigAsyncCommand}">
                         <AppBarButton.Icon>
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE10E;" />
                         </AppBarButton.Icon>

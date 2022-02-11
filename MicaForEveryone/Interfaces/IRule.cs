@@ -15,6 +15,6 @@ namespace MicaForEveryone.Interfaces
         bool ExtendFrameIntoClientArea { get; set; }
         bool EnableBlurBehind { get; set; }
 
-        RulePaneItem GetPaneItem(ISettingsViewModel parent);
+        RulePaneItem GetPaneItem(UI.ViewModels.ISettingsViewModel parent);
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
-using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Models;
 
@@ -13,20 +12,16 @@ namespace MicaForEveryone.UI.ViewModels
         bool IsMicaSupported { get; }
         bool IsImmersiveDarkModeSupported { get; }
 
-        BackdropType BackdropType { get; set; }
-        TitlebarColorMode TitlebarColor { get; set; }
-        bool ExtendFrameIntoClientArea { get; set; }
+        BackdropType BackdropType { get; }
+        TitlebarColorMode TitlebarColor { get; }
 
-        ICommand ExitCommand { get; }
-        ICommand ReloadConfigCommand { get; }
-        ICommand ChangeTitlebarColorModeCommand { get; }
-        ICommand ChangeBackdropTypeCommand { get; }
+        IAsyncRelayCommand ChangeTitlebarColorModeAsyncCommand { get; }
+        IAsyncRelayCommand ChangeBackdropTypeAsyncCommand { get; }
+        
+        IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         ICommand EditConfigCommand { get; }
-        ICommand OpenSettingsCommand { get; }
 
-        Task InitializeAsync(object sender);
-        void ShowContextMenu(Point offset, Rectangle notifyIconRect);
-        void ShowTooltipPopup(Rectangle notifyIconRect);
-        void HideTooltipPopup();
+        ICommand OpenSettingsCommand { get; }
+        ICommand ExitCommand { get; }
     }
 }

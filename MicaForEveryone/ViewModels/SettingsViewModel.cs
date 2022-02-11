@@ -1,46 +1,60 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Extensions.DependencyInjection;
+using Windows.ApplicationModel;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI.Models;
-using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.Win32;
 using MicaForEveryone.Views;
+using MicaForEveryone.Win32;
 
 #nullable enable
 
 namespace MicaForEveryone.ViewModels
 {
-    internal class SettingsViewModel : BaseViewModel, ISettingsViewModel
+    internal class SettingsViewModel : ObservableObject, ISettingsViewModel
     {
         private readonly ISettingsService _settingsService;
+        private readonly GeneralPaneItem _generalPane;
 
         private SettingsWindow? _window;
         private IPaneItem? _selectedPane;
-        private GeneralPaneItem _generalPane;
         private IRule? _newRule;
 
         public SettingsViewModel(ISettingsService settingsService)
         {
             _settingsService = settingsService;
             _settingsService.Changed += SettingsService_Changed;
-            _generalPane = new GeneralPaneItem(Program.CurrentApp.Container.GetService<IGeneralSettingsViewModel>());
 
-            CloseCommand = new RelyCommand(Close);
-            AddProcessRuleCommand = new RelyCommand(AddProcessRule);
-            AddClassRuleCommand = new RelyCommand(AddClassRule);
-            RemoveRuleCommand = new RelyCommand(RemoveRule, CanRemoveRule);
-            ReloadConfigCommand = new RelyCommand(ReloadConfig);
-            EditConfigCommand = new RelyCommand(OpenConfigInEditor);
-            ResetConfigCommand = new RelyCommand(ResetConfig);
+            var vmGeneralPane = Program.CurrentApp.Container.GetService<IGeneralSettingsViewModel>();
+            _generalPane = new GeneralPaneItem(vmGeneralPane);
+
+            CloseCommand = new RelayCommand(DoClose);
+            AddProcessRuleCommand = new RelayCommand(DoAddProcessRule);
+            AddClassRuleCommand = new RelayCommand(DoAddClassRule);
+            RemoveRuleAsyncCommand = new AsyncRelayCommand(DoRemoveRuleAsync, CanRemoveRule);
+            ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
+            EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
+            ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
+
+            if (Application.IsPackaged)
+            {
+                Version = Package.Current.Id.Version.ToString() ?? "<unknown>";
+            }
+            else
+            {
+                Version = typeof(Program).Assembly.GetName().Version?.ToString() ?? "<unknown>";
+            }
         }
 
         ~SettingsViewModel()
@@ -48,18 +62,18 @@ namespace MicaForEveryone.ViewModels
             _settingsService.Changed -= SettingsService_Changed;
         }
 
-        public bool IsBackdropSupported =>
-            DesktopWindowManager.IsBackdropTypeSupported;
+        // properties
 
-        public bool IsMicaSupported =>
-            DesktopWindowManager.IsUndocumentedMicaSupported || DesktopWindowManager.IsBackdropTypeSupported;
+        public bool IsBackdropSupported => DesktopWindowManager.IsBackdropTypeSupported;
+        public bool IsMicaSupported => DesktopWindowManager.IsUndocumentedMicaSupported;
+        public bool IsImmersiveDarkModeSupported => DesktopWindowManager.IsImmersiveDarkModeSupported;
 
-        public bool IsImmersiveDarkModeSupported =>
-            DesktopWindowManager.IsImmersiveDarkModeSupported;
+        public string Version { get; }
 
-        public Version Version { get; } = typeof(Program).Assembly.GetName().Version!;
+        public IList<BackdropType> BackdropTypes { get; } = new List<BackdropType>();
+        public IList<TitlebarColorMode> TitlebarColorModes { get; } = new List<TitlebarColorMode>();
 
-        public ObservableCollection<IPaneItem> PaneItems { get; set; } = new();
+        public IList<IPaneItem> PaneItems { get; set; } = new ObservableCollection<IPaneItem>();
 
         public IPaneItem? SelectedPane
         {
@@ -67,25 +81,26 @@ namespace MicaForEveryone.ViewModels
             set
             {
                 SetProperty(ref _selectedPane, value);
-                ((RelyCommand)RemoveRuleCommand).RaiseCanExecuteChanged();
+                RemoveRuleAsyncCommand.NotifyCanExecuteChanged();
             }
         }
-
-        public ObservableCollection<BackdropType> BackdropTypes { get; } = new();
-        public ObservableCollection<TitlebarColorMode> TitlebarColorModes { get; } = new();
 
         public ICommand CloseCommand { get; }
         public ICommand AddProcessRuleCommand { get; }
         public ICommand AddClassRuleCommand { get; }
-        public ICommand RemoveRuleCommand { get; }
+        public IAsyncRelayCommand RemoveRuleAsyncCommand { get; }
         public ICommand EditConfigCommand { get; }
-        public ICommand ReloadConfigCommand { get; }
-        public ICommand ResetConfigCommand { get; }
+        public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
+        public IAsyncRelayCommand ResetConfigAsyncCommand { get; }
 
-        public void Initialize(object sender)
+        // public methods
+
+        public void Initialize(SettingsWindow sender)
         {
-            _window = sender as SettingsWindow;
-            _generalPane.ViewModel.Initialize(_window);
+            _window = sender;
+
+            if (_generalPane.ViewModel is IGeneralSettingsViewModel vmGeneralPane)
+                vmGeneralPane.Initialize(sender);
 
             if (BackdropTypes.Count <= 0)
             {
@@ -116,6 +131,8 @@ namespace MicaForEveryone.ViewModels
             PopulatePanes();
         }
 
+        // helper
+
         private void PopulatePanes()
         {
             PaneItems.Add(_generalPane);
@@ -128,6 +145,8 @@ namespace MicaForEveryone.ViewModels
                 PaneItems.Add(item);
             }
         }
+
+        // event handlers
 
         private async void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
         {
@@ -178,17 +197,17 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        // commands
+        // commands 
 
-        private void Close(object obj)
+        private void DoClose()
         {
             _window?.Close();
         }
 
-        private void AddProcessRule(object obj)
+        private void DoAddProcessRule()
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-            
+
             AddProcessRuleDialog dialog = new();
             dialog.Destroy += (sender, args) =>
             {
@@ -203,10 +222,10 @@ namespace MicaForEveryone.ViewModels
             dialogService?.ShowDialog(_window, dialog);
         }
 
-        private void AddClassRule(object obj)
+        private void DoAddClassRule()
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-            
+
             AddClassRuleDialog dialog = new();
             dialog.Destroy += (sender, args) =>
             {
@@ -221,22 +240,20 @@ namespace MicaForEveryone.ViewModels
             dialogService?.ShowDialog(_window, dialog);
         }
 
-        private async void RemoveRule(object obj)
+        private async Task DoRemoveRuleAsync()
         {
-            if (SelectedPane is RulePaneItem rulePane)
+            if (SelectedPane is RulePaneItem rulePane &&
+                    rulePane.ViewModel is IRuleSettingsViewModel viewModel)
             {
-                if (rulePane.ViewModel.Rule is IRule rule)
-                {
-                    SelectedPane = _generalPane;
-                    await _settingsService.CommitChangesAsync(SettingsChangeType.RuleRemoved, rule);
-                }
+                SelectedPane = _generalPane;
+                await _settingsService.CommitChangesAsync(SettingsChangeType.RuleRemoved, viewModel.Rule);
             }
         }
 
-        private bool CanRemoveRule(object obj) => SelectedPane != null &&
+        private bool CanRemoveRule() => SelectedPane != null &&
             SelectedPane.ItemType is not (PaneItemType.General or PaneItemType.Global);
 
-        private async void ReloadConfig(object parameter)
+        private async Task DoReloadConfigAsync()
         {
             try
             {
@@ -246,13 +263,13 @@ namespace MicaForEveryone.ViewModels
             {
                 await _window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-                    dialogService?.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
+                    var dialogService = Program.CurrentApp.Container.GetRequiredService<IDialogService>();
+                    dialogService.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
                 });
             }
         }
 
-        private void OpenConfigInEditor(object obj)
+        private void DoOpenConfigInEditor()
         {
             var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
             {
@@ -265,7 +282,7 @@ namespace MicaForEveryone.ViewModels
             Process.Start(startInfo);
         }
 
-        private async void ResetConfig(object parameter)
+        private async Task DoResetConfigAsync()
         {
             await _settingsService.ConfigFile.ResetAsync();
             await _settingsService.LoadRulesAsync();

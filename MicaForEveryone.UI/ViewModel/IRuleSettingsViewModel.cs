@@ -12,8 +12,5 @@ namespace MicaForEveryone.UI.ViewModels
         bool ExtendFrameIntoClientArea { get; set; }
 
         ISettingsViewModel ParentViewModel { get; set; }
-
-        void InitializeData(object data);
-        object Rule { get; }
     }
 }

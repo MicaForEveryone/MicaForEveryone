@@ -7,8 +7,6 @@ namespace MicaForEveryone.Interfaces
 {
     internal interface IViewService : IDisposable
     {
-        TitlebarColorMode SystemColorMode { get; }
-
         MainWindow MainWindow { get; }
         SettingsWindow SettingsWindow { get; }
 

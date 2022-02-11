@@ -1,12 +1,12 @@
 ﻿using System.Windows.Input;
-using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Microsoft.Extensions.DependencyInjection;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Xaml;
 using MicaForEveryone.Win32.PInvoke;
@@ -15,8 +15,8 @@ namespace MicaForEveryone.Views
 {
     public class ContentDialog : XamlDialog
     {
-        protected static ICommand CloseDialogCommand { get; } =
-            new RelyCommand(dialog => ((Dialog)dialog).Close());
+        protected static RelayCommand<Dialog> CloseDialogCommand { get; } =
+            new RelayCommand<Dialog>(dialog => dialog.Close());
 
         private static COLORREF GetResourceColor(ResourceDictionary resources, string name)
         {
