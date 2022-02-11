@@ -19,7 +19,7 @@ namespace MicaForEveryone.Interfaces
 
         Task LoadRulesAsync();
 
-        void RaiseChanged(SettingsChangeType type, IRule? rule);
+        Task CommitChangesAsync(SettingsChangeType type, IRule? rule);
 
         event EventHandler<SettingsChangedEventArgs> Changed;
     }

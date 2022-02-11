@@ -54,16 +54,15 @@ namespace MicaForEveryone.Views
 
             EnableWindowThemeAttribute(WTNCA.WTNCA_NODRAWCAPTION | WTNCA.WTNCA_NODRAWICON | WTNCA.WTNCA_NOSYSMENU);
 
-            ShowWindow();
-
             DesktopWindowManager.SetImmersiveDarkMode(Handle, Program.CurrentApp.Container.GetService<IViewService>().SystemColorMode == TitlebarColorMode.Dark);
             DesktopWindowManager.EnableMicaIfSupported(Handle);
-            SetForegroundWindow();
         }
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             ViewModel.Initialize(this);
+            ShowWindow();
+            SetForegroundWindow();
         }
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)

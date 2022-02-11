@@ -99,6 +99,7 @@ namespace MicaForEveryone.Services
         {
             return Task.Run(() =>
             {
+                _fileSystemWatcher.EnableRaisingEvents = false;
                 var bundledConfigFilePath = GetBundledConfigFilePath();
                 if (File.Exists(bundledConfigFilePath))
                 {
@@ -108,22 +109,31 @@ namespace MicaForEveryone.Services
                 {
                     File.Delete(FilePath);
                 }
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
             });
         }
 
         public async Task<IRule[]> LoadAsync()
         {
-            using var stream = await TryOpenFile(FilePath, FileMode.Open, FileAccess.Read);
-            using var reader = new StreamReader(stream);
-            await Parser.LoadAsync(reader);
-            return Parser.Rules;
+            _fileSystemWatcher.EnableRaisingEvents = false;
+            try
+            {
+                using var stream = await TryOpenFile(FilePath, FileMode.Open, FileAccess.Read);
+                using var reader = new StreamReader(stream);
+                await Parser.LoadAsync(reader);
+                return Parser.Rules;
+            }
+            finally
+            {
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
+            }
         }
 
         public async Task SaveAsync()
         {
+            _fileSystemWatcher.EnableRaisingEvents = false;
             try
             {
-                _fileSystemWatcher.EnableRaisingEvents = false;
                 using var stream = await TryOpenFile(FilePath, FileMode.Create, FileAccess.Write);
                 using var writer = new StreamWriter(stream);
                 await Parser.SaveAsync(writer);

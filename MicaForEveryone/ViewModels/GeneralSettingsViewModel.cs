@@ -38,7 +38,7 @@ namespace MicaForEveryone.ViewModels
                 if (_settingsService.ConfigFile.IsFileWatcherEnabled != value)
                 {
                     _settingsService.ConfigFile.IsFileWatcherEnabled = value;
-                    _settingsService.RaiseChanged(SettingsChangeType.ConfigFileWatcherStateChanged, null);
+                    _settingsService.CommitChangesAsync(SettingsChangeType.ConfigFileWatcherStateChanged, null);
                     OnPropertyChanged();
                 }
             }
@@ -70,7 +70,7 @@ namespace MicaForEveryone.ViewModels
                 if (_settingsService.ConfigFile.FilePath != value)
                 {
                     _settingsService.ConfigFile.FilePath = value;
-                    _settingsService.RaiseChanged(SettingsChangeType.ConfigFilePathChanged, null);
+                    _settingsService.CommitChangesAsync(SettingsChangeType.ConfigFilePathChanged, null);
                     OnPropertyChanged();
                 }
             }
@@ -95,7 +95,7 @@ namespace MicaForEveryone.ViewModels
             if (file != null)
             {
                 _settingsService.ConfigFile.FilePath = file.Path;
-                _settingsService.RaiseChanged(SettingsChangeType.ConfigFilePathChanged, null);
+                await _settingsService.CommitChangesAsync(SettingsChangeType.ConfigFilePathChanged, null);
             }
         }
     }

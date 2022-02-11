@@ -8,7 +8,5 @@ namespace MicaForEveryone.UI
         {
             Initialize();
         }
-
-        public IServiceProvider Container { get; set; }
     }
 }

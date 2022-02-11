@@ -116,7 +116,7 @@ namespace MicaForEveryone.Views
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    var title = ResourceLoader.GetForCurrentView().GetString("AppInitializationError.Title");
+                    var title = ResourceLoader.GetForCurrentView().GetString("AppInitializationError/Title");
                     var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
                     dialogService.ShowErrorDialog(null, title, ex, 500, 320).Destroy += (sender, args) =>
                     {

@@ -73,48 +73,45 @@ namespace MicaForEveryone.Services
             }
 
             Rules = rules.ToArray();
-            RaiseChanged(SettingsChangeType.ConfigFileReloaded, null);
+            await CommitChangesAsync(SettingsChangeType.ConfigFileReloaded, null);
         }
 
-        public void RaiseChanged(SettingsChangeType type, IRule? rule)
+        public async Task CommitChangesAsync(SettingsChangeType type, IRule? rule)
         {
-            Task.Run(async () =>
+            switch (type)
             {
-                switch (type)
-                {
-                    case SettingsChangeType.RuleAdded:
-                        ConfigFile.Parser.AddRule(rule);
-                        Rules = ConfigFile.Parser.Rules;
-                        await ConfigFile.SaveAsync();
-                        break;
+                case SettingsChangeType.RuleAdded:
+                    ConfigFile.Parser.AddRule(rule);
+                    Rules = ConfigFile.Parser.Rules;
+                    await ConfigFile.SaveAsync();
+                    break;
 
-                    case SettingsChangeType.RuleRemoved:
-                        ConfigFile.Parser.RemoveRule(rule);
-                        Rules = ConfigFile.Parser.Rules;
-                        await ConfigFile.SaveAsync();
-                        break;
+                case SettingsChangeType.RuleRemoved:
+                    ConfigFile.Parser.RemoveRule(rule);
+                    Rules = ConfigFile.Parser.Rules;
+                    await ConfigFile.SaveAsync();
+                    break;
 
-                    case SettingsChangeType.RuleChanged:
-                        ConfigFile.Parser.SetRule(rule);
-                        await ConfigFile.SaveAsync();
-                        break;
+                case SettingsChangeType.RuleChanged:
+                    ConfigFile.Parser.SetRule(rule);
+                    await ConfigFile.SaveAsync();
+                    break;
 
-                    case SettingsChangeType.ConfigFilePathChanged:
-                        await ConfigFile.InitializeAsync();
-                        await LoadRulesAsync();
-                        Save();
-                        break;
+                case SettingsChangeType.ConfigFilePathChanged:
+                    await ConfigFile.InitializeAsync();
+                    await LoadRulesAsync();
+                    Save();
+                    break;
 
-                    case SettingsChangeType.ConfigFileWatcherStateChanged:
-                        Save();
-                        break;
+                case SettingsChangeType.ConfigFileWatcherStateChanged:
+                    Save();
+                    break;
 
-                    case SettingsChangeType.ConfigFileReloaded:
-                        break;
-                }
+                case SettingsChangeType.ConfigFileReloaded:
+                    break;
+            }
 
-                Changed?.Invoke(this, new SettingsChangedEventArgs(type, rule));
-            });
+            Changed?.Invoke(this, new SettingsChangedEventArgs(type, rule));
         }
 
         public void Dispose()

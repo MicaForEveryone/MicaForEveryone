@@ -24,7 +24,7 @@ namespace MicaForEveryone.ViewModels
                 {
                     _rule.BackdropPreference = value;
                     OnPropertyChanged();
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, _rule);
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace MicaForEveryone.ViewModels
                 {
                     _rule.TitleBarColor = value;
                     OnPropertyChanged();
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, _rule);
                 }
             }
         }
@@ -52,7 +52,7 @@ namespace MicaForEveryone.ViewModels
                 {
                     _rule.ExtendFrameIntoClientArea = value;
                     OnPropertyChanged();
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, _rule);
                 }
             }
         }

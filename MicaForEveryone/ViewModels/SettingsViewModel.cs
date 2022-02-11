@@ -23,7 +23,7 @@ namespace MicaForEveryone.ViewModels
     {
         private readonly ISettingsService _settingsService;
 
-        private CoreDispatcher? _dispatcher;
+        private SettingsWindow? _window;
         private IPaneItem? _selectedPane;
         private GeneralPaneItem _generalPane;
         private IRule? _newRule;
@@ -84,9 +84,8 @@ namespace MicaForEveryone.ViewModels
 
         public void Initialize(object sender)
         {
-            var window = (SettingsWindow)sender;
-            _dispatcher = window.Dispatcher;
-            _generalPane.ViewModel.Initialize(window);
+            _window = sender as SettingsWindow;
+            _generalPane.ViewModel.Initialize(_window);
 
             if (BackdropTypes.Count <= 0)
             {
@@ -130,9 +129,9 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        private void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
+        private async void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
         {
-            _dispatcher!.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await _window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 var pane = args.Rule?.GetPaneItem(this);
                 var lastPane = SelectedPane;
@@ -176,63 +175,60 @@ namespace MicaForEveryone.ViewModels
                             SelectedPane = lastPane;
                         break;
                 }
-            }).AsTask().Start();
+            });
         }
 
         // commands
 
         private void Close(object obj)
         {
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            viewService?.SettingsWindow?.Close();
+            _window?.Close();
         }
 
         private void AddProcessRule(object obj)
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-
+            
             AddProcessRuleDialog dialog = new();
             dialog.Destroy += (sender, args) =>
             {
                 dialog.Dispose();
             };
-            dialog.ViewModel.Submit += (sender, args) =>
+            dialog.ViewModel.Submit += async (sender, args) =>
             {
                 _newRule = new ProcessRule(dialog.ViewModel.ProcessName);
-                _settingsService.RaiseChanged(SettingsChangeType.RuleAdded, _newRule);
+                await _settingsService.CommitChangesAsync(SettingsChangeType.RuleAdded, _newRule);
             };
 
-            dialogService?.ShowDialog(viewService?.SettingsWindow, dialog);
+            dialogService?.ShowDialog(_window, dialog);
         }
 
         private void AddClassRule(object obj)
         {
             var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-
+            
             AddClassRuleDialog dialog = new();
             dialog.Destroy += (sender, args) =>
             {
                 dialog.Dispose();
             };
-            dialog.ViewModel.Submit += (sender, args) =>
+            dialog.ViewModel.Submit += async (sender, args) =>
             {
                 _newRule = new ClassRule(dialog.ViewModel.ClassName);
-                _settingsService.RaiseChanged(SettingsChangeType.RuleAdded, _newRule);
+                await _settingsService.CommitChangesAsync(SettingsChangeType.RuleAdded, _newRule);
             };
 
-            dialogService?.ShowDialog(viewService?.SettingsWindow, dialog);
+            dialogService?.ShowDialog(_window, dialog);
         }
 
-        private void RemoveRule(object obj)
+        private async void RemoveRule(object obj)
         {
             if (SelectedPane is RulePaneItem rulePane)
             {
                 if (rulePane.ViewModel.Rule is IRule rule)
                 {
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleRemoved, rule);
                     SelectedPane = _generalPane;
+                    await _settingsService.CommitChangesAsync(SettingsChangeType.RuleRemoved, rule);
                 }
             }
         }
@@ -248,11 +244,10 @@ namespace MicaForEveryone.ViewModels
             }
             catch (ParserError error)
             {
-                var window = Program.CurrentApp.Container.GetService<IViewService>()?.SettingsWindow;
-                await window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await _window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-                    dialogService?.ShowErrorDialog(window, error.Message, error.ToString(), 576, 400);
+                    dialogService?.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
                 });
             }
         }

@@ -2,18 +2,20 @@
 using MicaForEveryone.Win32;
 using MicaForEveryone.Views;
 
+#nullable enable
+
 namespace MicaForEveryone.Services
 {
     internal class DialogService : IDialogService
     {
-        public void ShowDialog(Window parent, Dialog dialog)
+        public void ShowDialog(Window? parent, Dialog dialog)
         {
             if (parent != null)
                 dialog.Parent = parent.Handle;
             dialog.Activate();
             dialog.Destroy += (sender, args) =>
             {
-                parent.SetEnable(true);
+                parent?.SetEnable(true);
             };
             parent?.SetEnable(false);
             dialog.ShowWindow();

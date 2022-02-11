@@ -182,13 +182,13 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        private void UpdateRule()
+        private async Task UpdateRuleAsync()
         {
             _globalRule.BackdropPreference = BackdropType;
             _globalRule.TitleBarColor = TitlebarColor;
             _globalRule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
 
-            _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _globalRule);
+            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, _globalRule);
         }
 
         private async void View_ActualThemeChanged(FrameworkElement sender, object args)
@@ -234,7 +234,7 @@ namespace MicaForEveryone.ViewModels
                 "Dark" => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            await Task.Run(() => UpdateRule());
+            await UpdateRuleAsync();
         }
 
         private async void ChangeBackdropType(object parameter)
@@ -248,7 +248,7 @@ namespace MicaForEveryone.ViewModels
                 "Tabbed" => BackdropType.Tabbed,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            await Task.Run(() => UpdateRule());
+            await UpdateRuleAsync();
         }
 
         private void Exit(object obj)
