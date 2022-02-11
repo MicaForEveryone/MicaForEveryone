@@ -40,6 +40,7 @@ namespace MicaForEveryone.ViewModels
             RemoveRuleCommand = new RelyCommand(RemoveRule, CanRemoveRule);
             ReloadConfigCommand = new RelyCommand(ReloadConfig);
             EditConfigCommand = new RelyCommand(OpenConfigInEditor);
+            ResetConfigCommand = new RelyCommand(ResetConfig);
         }
 
         ~SettingsViewModel()
@@ -79,6 +80,7 @@ namespace MicaForEveryone.ViewModels
         public ICommand RemoveRuleCommand { get; }
         public ICommand EditConfigCommand { get; }
         public ICommand ReloadConfigCommand { get; }
+        public ICommand ResetConfigCommand { get; }
 
         public void Initialize(object sender)
         {
@@ -266,6 +268,12 @@ namespace MicaForEveryone.ViewModels
                 startInfo.Verb = "edit";
             }
             Process.Start(startInfo);
+        }
+
+        private async void ResetConfig(object parameter)
+        {
+            await _settingsService.ConfigFile.ResetAsync();
+            await _settingsService.LoadRulesAsync();
         }
     }
 }

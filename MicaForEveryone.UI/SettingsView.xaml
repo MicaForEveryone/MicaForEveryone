@@ -513,6 +513,11 @@
                         x:Uid="ReloadAppBarButton"
                         Command="{x:Bind ViewModel.ReloadConfigCommand}"
                         Icon="Refresh" />
+                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE10E;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                 </CommandBar.SecondaryCommands>
             </CommandBar>
 

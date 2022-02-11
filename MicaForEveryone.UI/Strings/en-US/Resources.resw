@@ -276,6 +276,9 @@
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Remove Rule</value>
   </data>
+  <data name="ResetAppBarButton.Label" xml:space="preserve">
+    <value>Reset config to default</value>
+  </data>
   <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
     <value>Run on Startup</value>
   </data>

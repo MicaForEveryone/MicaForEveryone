@@ -95,6 +95,22 @@ namespace MicaForEveryone.Services
             });
         }
 
+        public Task ResetAsync()
+        {
+            return Task.Run(() =>
+            {
+                var bundledConfigFilePath = GetBundledConfigFilePath();
+                if (File.Exists(bundledConfigFilePath))
+                {
+                    File.Copy(bundledConfigFilePath, FilePath, true);
+                }
+                else
+                {
+                    File.Delete(FilePath);
+                }
+            });
+        }
+
         public async Task<IRule[]> LoadAsync()
         {
             using var stream = await TryOpenFile(FilePath, FileMode.Open, FileAccess.Read);

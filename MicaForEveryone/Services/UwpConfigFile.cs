@@ -59,6 +59,12 @@ namespace MicaForEveryone.Services
             await _query.GetFilesAsync(); // needs to be called to ContentsChanged get fired
         }
 
+        public async Task ResetAsync()
+        {
+            var bundled = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///MicaForEveryone/MicaForEveryone.conf"));
+            await bundled.CopyAndReplaceAsync(_file);
+        }
+
         public async Task<IRule[]> LoadAsync()
         {
             using var stream = await _file.OpenStreamForReadAsync();

@@ -11,6 +11,8 @@ namespace MicaForEveryone.Interfaces
         bool IsFileWatcherEnabled { get; set; }
 
         Task InitializeAsync();
+        Task ResetAsync();
+
         Task<IRule[]> LoadAsync();
         Task SaveAsync();
 
