@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 
 namespace MicaForEveryone.UI.ViewModels
 {
@@ -8,5 +9,9 @@ namespace MicaForEveryone.UI.ViewModels
         bool RunOnStartup { get; set; }
         bool RunOnStartupAvailable { get; }
         string ConfigFilePath { get; set; }
+
+        ICommand BrowseCommand { get; }
+
+        void Initialize(object sender);
     }
 }

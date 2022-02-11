@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Models
@@ -38,16 +38,14 @@ namespace MicaForEveryone.Models
 
         public void ApplyBackdropRule(BackdropType type)
         {
-            if (DesktopWindowManager.IsBackdropTypeSupported)
-            {
-                if (type == BackdropType.Default)
+            if (type == BackdropType.Default)
                     return;
 
+            if (DesktopWindowManager.IsBackdropTypeSupported)
+            {
                 DesktopWindowManager.SetBackdropType(WindowHandle, type);
             }
-            else if (DesktopWindowManager.IsUndocumentedMicaSupported &&
-                type < BackdropType.Acrylic &&
-                type != BackdropType.Default)
+            else if (DesktopWindowManager.IsUndocumentedMicaSupported && type < BackdropType.Acrylic)
             {
                 DesktopWindowManager.SetMica(WindowHandle, type == BackdropType.Mica);
             }
@@ -73,6 +71,21 @@ namespace MicaForEveryone.Models
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
+        {
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{Title}` ({ClassName}, {ProcessName})");
+#endif
+            ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
+            ApplyBackdropRule(rule.BackdropPreference);
+
+            if (rule.ExtendFrameIntoClientArea)
+                DesktopWindowManager.ExtendFrameIntoClientArea(WindowHandle);
+
+            if (rule.EnableBlurBehind)
+                DesktopWindowManager.EnableBlurBehind(WindowHandle);
         }
     }
 }

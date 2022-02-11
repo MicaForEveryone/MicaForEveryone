@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Microsoft.Win32;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
@@ -16,33 +13,18 @@ using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Services
 {
-    internal class SettingsService : ISettingsService, IDisposable
+    internal class SettingsService : ISettingsService
     {
-        private const string SettingsRegistryKey = @"Software\MicaForEveryone";
         private const string ConfigFilePathKey = "config file path";
         private const string FileWatcherKey = "file watcher state";
 
-        private static string UwpGetDefaultConfigFilePath()
-        {
-            var appData = ApplicationData.Current.LocalFolder.Path;
-            return Path.Join(appData, "MicaForEveryone.conf");
-        }
+        private readonly ISettingsContainer _container;
 
-        private static string Win32GetDefaultConfigFilePath()
+        public SettingsService(IConfigFile configFile, ISettingsContainer container)
         {
-            var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            return Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
-        }
-
-        private readonly RegistryKey _key;
-
-        public SettingsService(IConfigFile configFile)
-        {
+            _container = container;
             ConfigFile = configFile;
             ConfigFile.FileChanged += ConfigFile_FileChanged;
-
-            _key = Registry.CurrentUser.OpenSubKey(SettingsRegistryKey, true) ??
-                Registry.CurrentUser.CreateSubKey(SettingsRegistryKey, true);
         }
 
         public IConfigFile ConfigFile { get; }
@@ -51,38 +33,23 @@ namespace MicaForEveryone.Services
 
         public void Load()
         {
-            var configPath = _key.GetValue(ConfigFilePathKey) as string;
+            ConfigFile.FilePath = _container.GetValue(ConfigFilePathKey) as string;
 
-            if (configPath == null)
+            if (bool.TryParse(_container.GetValue(FileWatcherKey)?.ToString(), out var watcherState))
             {
-                configPath = Application.IsPackaged ?
-                    UwpGetDefaultConfigFilePath() :
-                    Win32GetDefaultConfigFilePath();
+                ConfigFile.IsFileWatcherEnabled = watcherState;
             }
-
-            if (!File.Exists(configPath))
+            else
             {
-                var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
-                var defaultConfigPath = Path.Join(appFolder, "MicaForEveryone.conf");
-                if (File.Exists(defaultConfigPath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(configPath));
-                    File.Copy(defaultConfigPath, configPath);
-                }
+                ConfigFile.IsFileWatcherEnabled = true;
             }
-
-            ConfigFile.FilePath = configPath;
-
-            var watcherState = true;
-            bool.TryParse(_key.GetValue(FileWatcherKey)?.ToString(), out watcherState);
-            ConfigFile.IsFileWatcherEnabled = watcherState;
         }
 
         public void Save()
         {
-            _key.SetValue(ConfigFilePathKey, ConfigFile.FilePath);
-            _key.SetValue(FileWatcherKey, ConfigFile.IsFileWatcherEnabled);
-            _key.Flush();
+            _container.SetValue(ConfigFilePathKey, ConfigFile.FilePath);
+            _container.SetValue(FileWatcherKey, ConfigFile.IsFileWatcherEnabled);
+            _container.Flush();
         }
 
         public async Task LoadRulesAsync()
@@ -92,7 +59,9 @@ namespace MicaForEveryone.Services
             // add an empty global rule when no global rule provided
             if (rules.All(rule => rule is not GlobalRule))
             {
-                rules.Add(new GlobalRule());
+                var globalRule = new GlobalRule();
+                rules.Add(globalRule);
+                ConfigFile.Parser.AddRule(globalRule);
             }
 
             // Check for duplicates
@@ -115,11 +84,13 @@ namespace MicaForEveryone.Services
                 {
                     case SettingsChangeType.RuleAdded:
                         ConfigFile.Parser.AddRule(rule);
+                        Rules = ConfigFile.Parser.Rules;
                         await ConfigFile.SaveAsync();
                         break;
 
                     case SettingsChangeType.RuleRemoved:
                         ConfigFile.Parser.RemoveRule(rule);
+                        Rules = ConfigFile.Parser.Rules;
                         await ConfigFile.SaveAsync();
                         break;
 
@@ -129,12 +100,16 @@ namespace MicaForEveryone.Services
                         break;
 
                     case SettingsChangeType.ConfigFilePathChanged:
+                        await ConfigFile.InitializeAsync();
                         await LoadRulesAsync();
+                        Save();
                         break;
 
                     case SettingsChangeType.ConfigFileWatcherStateChanged:
-                    case SettingsChangeType.ConfigFileReloaded:
                         Save();
+                        break;
+
+                    case SettingsChangeType.ConfigFileReloaded:
                         break;
                 }
 
@@ -144,7 +119,7 @@ namespace MicaForEveryone.Services
 
         public void Dispose()
         {
-            _key.Dispose();
+            _container.Dispose();
         }
 
         private async void ConfigFile_FileChanged(object? sender, EventArgs e)

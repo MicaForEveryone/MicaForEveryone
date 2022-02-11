@@ -87,13 +87,17 @@ namespace MicaForEveryone.ViewModels
 
         public ICommand OpenSettingsCommand { get; }
 
-        public async void Initialize(object sender)
+        public async Task InitializeAsync(object sender)
         {
             _window = (MainWindow)sender;
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
             _window.Destroy += Window_Destroy;
 
+            var startupService = Program.CurrentApp.Container.GetService<IStartupService>();
+            await startupService.InitializeAsync();
+
             _settingsService.Load();
+            await _settingsService.ConfigFile.InitializeAsync();
             await _settingsService.LoadRulesAsync();
 
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -173,7 +177,7 @@ namespace MicaForEveryone.ViewModels
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 BackdropType = _globalRule.BackdropPreference;
-                TitlebarColor = _globalRule.TitlebarColor;
+                TitlebarColor = _globalRule.TitleBarColor;
                 ExtendFrameIntoClientArea = _globalRule.ExtendFrameIntoClientArea;
             });
         }
@@ -181,7 +185,7 @@ namespace MicaForEveryone.ViewModels
         private void UpdateRule()
         {
             _globalRule.BackdropPreference = BackdropType;
-            _globalRule.TitlebarColor = TitlebarColor;
+            _globalRule.TitleBarColor = TitlebarColor;
             _globalRule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
 
             _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _globalRule);
@@ -198,7 +202,7 @@ namespace MicaForEveryone.ViewModels
             });
         }
 
-        private async void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
+        private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
         {
             if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule) 
                 || args.Type == SettingsChangeType.ConfigFileReloaded)

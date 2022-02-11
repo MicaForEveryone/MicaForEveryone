@@ -1,11 +1,15 @@
 ﻿using System;
 
+using MicaForEveryone.Config.Parser;
+
 namespace MicaForEveryone.Config
 {
     public class ParserError : Exception
     {
         public ParserError(IToken token, string message) : 
-            base($"Error in token `{token.Data}` at line {token.Line + 1}, column {token.Column + 1}:\n{message}")
+            base(token == null ? 
+                message :
+                $"Error in token `{token.Data}` at line {token.Line + 1}, column {token.Column + 1}:\n{message}")
         {
             Token = token;
         }
@@ -33,6 +37,13 @@ namespace MicaForEveryone.Config
     public class UnexpectedEndOfFile : ParserError
     {
         internal UnexpectedEndOfFile(IToken token) : base(token, "Unexpected End of File")
+        {
+        }
+    }
+
+    public class RuntimeError : ParserError
+    {
+        internal RuntimeError(IToken token, string message) : base(token, message)
         {
         }
     }

@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace MicaForEveryone.Interfaces
 {
-    public interface IStartupService
+    public interface IStartupService : IDisposable
     {
-        void Initialize();
-
+        Task InitializeAsync();
         Task<bool> SetStateAsync(bool state);
 
         bool IsEnabled { get; }

@@ -5,7 +5,7 @@ using MicaForEveryone.Models;
 
 namespace MicaForEveryone.UI.Selectors
 {
-    public class TitlebarColorSelector : DataTemplateSelector
+    internal class TitlebarColorSelector : DataTemplateSelector
     {
         public DataTemplate Default { get; set; }
         public DataTemplate System { get; set; }

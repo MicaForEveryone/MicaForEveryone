@@ -40,6 +40,7 @@ namespace MicaForEveryone.ViewModels
             RemoveRuleCommand = new RelyCommand(RemoveRule, CanRemoveRule);
             ReloadConfigCommand = new RelyCommand(ReloadConfig);
             EditConfigCommand = new RelyCommand(OpenConfigInEditor);
+            ResetConfigCommand = new RelyCommand(ResetConfig);
         }
 
         ~SettingsViewModel()
@@ -79,13 +80,13 @@ namespace MicaForEveryone.ViewModels
         public ICommand RemoveRuleCommand { get; }
         public ICommand EditConfigCommand { get; }
         public ICommand ReloadConfigCommand { get; }
+        public ICommand ResetConfigCommand { get; }
 
         public void Initialize(object sender)
         {
-            if (sender is FrameworkElement element)
-            {
-                _dispatcher = element.Dispatcher;
-            }
+            var window = (SettingsWindow)sender;
+            _dispatcher = window.Dispatcher;
+            _generalPane.ViewModel.Initialize(window);
 
             if (BackdropTypes.Count <= 0)
             {
@@ -159,7 +160,7 @@ namespace MicaForEveryone.ViewModels
                     case SettingsChangeType.RuleChanged:
                         var index = PaneItems.IndexOf(pane!);
                         PaneItems.Insert(index, pane!);
-                        PaneItems.RemoveAt(index+1);
+                        PaneItems.RemoveAt(index + 1);
                         if (lastPane?.Equals(pane) ?? false)
                             SelectedPane = pane;
                         break;
@@ -267,6 +268,12 @@ namespace MicaForEveryone.ViewModels
                 startInfo.Verb = "edit";
             }
             Process.Start(startInfo);
+        }
+
+        private async void ResetConfig(object parameter)
+        {
+            await _settingsService.ConfigFile.ResetAsync();
+            await _settingsService.LoadRulesAsync();
         }
     }
 }

@@ -150,6 +150,9 @@
   <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>Config file</value>
   </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Error in Initializing application</value>
+  </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="BackdropTypeLabel.Text" xml:space="preserve">
     <value>Backdrop Type:</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Browse</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
     <value>Cancel</value>
@@ -269,6 +275,9 @@
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Remove Rule</value>
+  </data>
+  <data name="ResetAppBarButton.Label" xml:space="preserve">
+    <value>Reset config to default</value>
   </data>
   <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
     <value>Run on Startup</value>

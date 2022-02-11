@@ -11,18 +11,6 @@ namespace MicaForEveryone.Services
 {
     internal class RuleService : IRuleService
     {
-        public void ApplyRuleToWindow(TargetWindow target, IRule rule)
-        {
-#if DEBUG
-            System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{target.Title}` ({target.ClassName}, {target.ProcessName})");
-#endif
-            if (rule.ExtendFrameIntoClientArea)
-                DesktopWindowManager.ExtendFrameIntoClientArea(target.WindowHandle);
-
-            target.ApplyTitlebarColorRule(rule.TitlebarColor, SystemTitlebarColorMode);
-            target.ApplyBackdropRule(rule.BackdropPreference);
-        }
-
         private readonly ISettingsService _settingsService;
 
         public RuleService(ISettingsService settingsService)
@@ -61,7 +49,7 @@ namespace MicaForEveryone.Services
                 if (rule == null)
                     return;
 
-                ApplyRuleToWindow(target, rule);
+                target.ApplyRule(rule, SystemTitlebarColorMode);
             }
 #if DEBUG
             catch (Exception ex)

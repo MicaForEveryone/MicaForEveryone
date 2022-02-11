@@ -28,6 +28,7 @@ namespace MicaForEveryone.UI.ViewModels
         ICommand RemoveRuleCommand { get; }
         ICommand EditConfigCommand { get; }
         ICommand ReloadConfigCommand { get; }
+        ICommand ResetConfigCommand { get; }
 
         void Initialize(object sender);
     }

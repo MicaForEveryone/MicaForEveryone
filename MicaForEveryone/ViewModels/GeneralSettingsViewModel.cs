@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Windows.Input;
+using Windows.Storage.Pickers;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Models;
+using MicaForEveryone.Win32;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.ViewModels
 {
@@ -12,10 +16,18 @@ namespace MicaForEveryone.ViewModels
         private readonly ISettingsService _settingsService;
         private readonly IStartupService _startupService;
 
+        private XamlWindow _window;
+
         public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService)
         {
             _settingsService = settingsService;
             _startupService = startupService;
+            BrowseCommand = new RelyCommand(Browse);
+        }
+
+        public void Initialize(object sender)
+        {
+            _window = sender as XamlWindow;
         }
 
         public bool ReloadOnChange
@@ -39,14 +51,8 @@ namespace MicaForEveryone.ViewModels
             {
                 if (_startupService.IsEnabled != value)
                 {
-                    _startupService.SetStateAsync(value).ContinueWith(async result =>
-                    {
-                        var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-                        await viewService.SettingsWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                        {
-                            OnPropertyChanged(nameof(RunOnStartup));
-                        });
-                    });
+                    _startupService.SetStateAsync(value).Wait();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -67,6 +73,29 @@ namespace MicaForEveryone.ViewModels
                     _settingsService.RaiseChanged(SettingsChangeType.ConfigFilePathChanged, null);
                     OnPropertyChanged();
                 }
+            }
+        }
+
+        public ICommand BrowseCommand { get; }
+
+        public async void Browse(object parameter)
+        {
+            var picker = new FileOpenPicker
+            {
+                ViewMode = PickerViewMode.List,
+                SuggestedStartLocation = PickerLocationId.ComputerFolder,
+                FileTypeFilter =
+                {
+                    ".conf",
+                    ".xcl",
+                },
+            };
+            ((IInitializeWithWindow)(object)picker).Initialize(_window.Interop.WindowHandle);
+            var file = await picker.PickSingleFileAsync();
+            if (file != null)
+            {
+                _settingsService.ConfigFile.FilePath = file.Path;
+                _settingsService.RaiseChanged(SettingsChangeType.ConfigFilePathChanged, null);
             }
         }
     }

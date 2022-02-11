@@ -20,37 +20,70 @@
         </Style>
 
         <DataTemplate x:Key="GeneralTemplate" x:DataType="models:GeneralPaneItem">
-            <StackPanel HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
+            <Grid HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" MinWidth="75" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
                 <CheckBox
                     x:Uid="ReloadConfigCheckBox"
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
                     Margin="6"
                     HorizontalAlignment="Stretch"
                     IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
                 <TextBlock
                     x:Uid="ReloadConfigDescription"
-                    Margin="0,0,24,6"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
 
                 <CheckBox
                     x:Uid="RunOnStartupCheckBox"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
                     Margin="6"
                     HorizontalAlignment="Stretch"
                     IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}"
                     IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable}" />
                 <TextBlock
                     x:Uid="RunOnStartupDescription"
-                    Margin="0,0,24,6"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
 
                 <TextBox
                     x:Uid="ConfigFilePathTextBox"
+                    Grid.Row="4"
+                    Grid.Column="0"
                     Margin="6"
                     Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                <Button
+                    x:Uid="BrowseButton"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Margin="6,32,6,6"
+                    HorizontalAlignment="Stretch"
+                    Command="{x:Bind ViewModel.BrowseCommand}" />
                 <TextBlock
                     x:Uid="ConfigFilePathDescription"
-                    Margin="0,0,24,6"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
-            </StackPanel>
+            </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="RulesTemplate" x:DataType="models:RulePaneItem">
@@ -61,7 +94,6 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -116,6 +148,7 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
                     Content="{Binding TitlebarColor}"
                     DataContext="{x:Bind ViewModel, Mode=OneWay}">
                     <ContentControl.ContentTemplateSelector>
@@ -160,6 +193,7 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}"
                     Visibility="{x:Bind ViewModel.ParentViewModel.IsImmersiveDarkModeSupported, Converter={StaticResource VisibilityConverter}}" />
 
@@ -212,6 +246,7 @@
                     Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
                     Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}"
                     DataContext="{x:Bind ViewModel.BackdropType}">
                     <ContentControl.ContentTemplateSelector>
@@ -259,34 +294,35 @@
                         </selectors:BackdropTypeSelector>
                     </ContentControl.ContentTemplateSelector>
                 </ContentControl>
-                <TextBlock
-                    x:Uid="UnsupportedMicaDescription"
+                <StackPanel
                     Grid.Row="5"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Style="{ThemeResource OptionSummaryTextBlockStyle}"
-                    Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
-                <TextBlock
-                    x:Uid="UnsupportedBackdropDescription"
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Style="{ThemeResource OptionSummaryTextBlockStyle}"
-                    Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
+                    Margin="0,0,6,12"
+                    Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}">
+                    <TextBlock
+                        x:Uid="UnsupportedMicaDescription"
+                        Style="{ThemeResource OptionSummaryTextBlockStyle}"
+                        Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
+                    <TextBlock
+                        x:Uid="UnsupportedBackdropDescription"
+                        Style="{ThemeResource OptionSummaryTextBlockStyle}"
+                        Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
+                </StackPanel>
 
                 <CheckBox
                     x:Uid="ExtendFrameIntoClientAreaCheckBox"
-                    Grid.Row="7"
+                    Grid.Row="6"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="6"
                     IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
                 <TextBlock
                     x:Uid="ExtendFrameIntoClientAreaDescription"
-                    Grid.Row="8"
+                    Grid.Row="7"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Margin="0,0,24,6"
+                    Margin="0,0,6,12"
                     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                     Style="{ThemeResource CaptionTextBlockStyle}" />
             </Grid>
@@ -477,6 +513,11 @@
                         x:Uid="ReloadAppBarButton"
                         Command="{x:Bind ViewModel.ReloadConfigCommand}"
                         Icon="Refresh" />
+                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE10E;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                 </CommandBar.SecondaryCommands>
             </CommandBar>
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MicaForEveryone.Config
+namespace MicaForEveryone.Config.Tokenizer
 {
     internal class Tokenizer
     {
@@ -9,13 +9,13 @@ namespace MicaForEveryone.Config
 
         private int _position;
 
-        public Tokenizer(LexicalToken[] data)
+        public Tokenizer(Lexer.Token[] data)
         {
             Data = data;
         }
 
-        private LexicalToken[] Data { get; }
-        private LexicalToken CurrentToken => Data[_position];
+        public Lexer.Token[] Data { get; }
+        public Lexer.Token CurrentToken => Data[_position];
 
         public Token[] Parse()
         {
@@ -26,24 +26,18 @@ namespace MicaForEveryone.Config
             {
                 switch (CurrentToken.Type)
                 {
-                    case LexicalTokenType.Identifier:
+                    case Lexer.TokenType.Identifier:
                         ParseSection();
                         break;
 
-                    case LexicalTokenType.StringLiteral:
-                    case LexicalTokenType.Operator:
+                    case Lexer.TokenType.StringLiteral:
+                    case Lexer.TokenType.Operator:
                         throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Name, found `{CurrentToken.Data}`");
 
-                    case LexicalTokenType.NewLine:
-                        AddToken(TokenType.NewLine);
-                        break;
-
-                    case LexicalTokenType.Space:
-                        AddToken(TokenType.Space);
-                        break;
-
-                    case LexicalTokenType.Comment:
-                        AddToken(TokenType.Comment);
+                    case Lexer.TokenType.NewLine:
+                    case Lexer.TokenType.Space:
+                    case Lexer.TokenType.Comment:
+                        AddToken(TokenType.Meaningless);
                         break;
 
                     default:
@@ -59,17 +53,11 @@ namespace MicaForEveryone.Config
         {
             while (_position < Data.Length)
             {
-                if (CurrentToken.Type == LexicalTokenType.Space)
+                if (CurrentToken.Type is Lexer.TokenType.Space
+                    or Lexer.TokenType.Comment
+                    or Lexer.TokenType.NewLine)
                 {
-                    AddToken(TokenType.Space);
-                }
-                else if (CurrentToken.Type == LexicalTokenType.Comment)
-                {
-                    AddToken(TokenType.Comment);
-                }
-                else if (CurrentToken.Type == LexicalTokenType.NewLine)
-                {
-                    AddToken(TokenType.NewLine);
+                    AddToken(TokenType.Meaningless);
                 }
                 else
                 {
@@ -81,33 +69,33 @@ namespace MicaForEveryone.Config
 
         private void AddToken(TokenType type)
         {
-            _tokens.Add(new Token(CurrentToken.Type, type, CurrentToken.Data, CurrentToken.Line, CurrentToken.Column));
+            _tokens.Add(new Token(type, CurrentToken));
         }
 
         private void ParseSection()
         {
-            if (CurrentToken.Type != LexicalTokenType.Identifier)
+            if (CurrentToken.Type != Lexer.TokenType.Identifier)
                 throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Name, found `{CurrentToken.Data}`");
-            AddToken(TokenType.SectionType);
+            AddToken(TokenType.TypeName);
             _position++;
             SkipSpace();
 
-            if (CurrentToken.Type == LexicalTokenType.Operator && CurrentToken.Data == ":")
+            if (CurrentToken.Type == Lexer.TokenType.Operator && CurrentToken.Data == ":")
             {
-                AddToken(TokenType.SectionParameterStart);
+                AddToken(TokenType.ParameterStart);
                 _position++;
 
                 SkipSpace();
 
-                if (CurrentToken.Type is not (LexicalTokenType.Identifier or LexicalTokenType.StringLiteral))
+                if (CurrentToken.Type is not (Lexer.TokenType.Identifier or Lexer.TokenType.StringLiteral))
                     throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Section Parameter, found `{CurrentToken.Data}`");
-                AddToken(TokenType.SectionParameter);
+                AddToken(TokenType.Value);
                 _position++;
 
                 SkipSpace();
             }
             
-            if (CurrentToken.Type == LexicalTokenType.Operator && CurrentToken.Data == "{")
+            if (CurrentToken.Type == Lexer.TokenType.Operator && CurrentToken.Data == "{")
             {
                 AddToken(TokenType.SectionStart);
                 _position++;
@@ -120,11 +108,11 @@ namespace MicaForEveryone.Config
             while (_position < Data.Length)
             {
                 SkipSpace();
-                if (CurrentToken.Type == LexicalTokenType.Identifier)
+                if (CurrentToken.Type == Lexer.TokenType.Identifier)
                 {
                     ParsePair();
                 }
-                else if (CurrentToken.Type == LexicalTokenType.Operator && CurrentToken.Data == "}")
+                else if (CurrentToken.Type == Lexer.TokenType.Operator && CurrentToken.Data == "}")
                 {
                     AddToken(TokenType.SectionEnd);
                     break;
@@ -138,23 +126,23 @@ namespace MicaForEveryone.Config
 
         private void ParsePair()
         {
-            if (CurrentToken.Type != LexicalTokenType.Identifier)
+            if (CurrentToken.Type != Lexer.TokenType.Identifier)
                 throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Key Name, found `{CurrentToken.Data}`");
-            AddToken(TokenType.KeyName);
+            AddToken(TokenType.FieldName);
             _position++;
 
             SkipSpace();
 
-            if (CurrentToken.Type != LexicalTokenType.Operator || CurrentToken.Data != "=")
+            if (CurrentToken.Type != Lexer.TokenType.Operator || CurrentToken.Data != "=")
                 throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected `=`, found `{CurrentToken.Data}`");
-            AddToken(TokenType.KeySet);
+            AddToken(TokenType.SetOperator);
             _position++;
 
             SkipSpace();
 
-            if (CurrentToken.Type is not (LexicalTokenType.Identifier or LexicalTokenType.StringLiteral))
+            if (CurrentToken.Type is not (Lexer.TokenType.Identifier or Lexer.TokenType.StringLiteral))
                 throw new UnexpectedTokenError(CurrentToken, $"Syntax Error:\nExpected Value, found `{CurrentToken.Data}`");
-            AddToken(TokenType.KeyValue);
+            AddToken(TokenType.Value);
             _position++;
         }
     }

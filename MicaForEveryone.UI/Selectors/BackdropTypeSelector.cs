@@ -5,7 +5,7 @@ using MicaForEveryone.Models;
 
 namespace MicaForEveryone.UI.Selectors
 {
-    public class BackdropTypeSelector : DataTemplateSelector
+    internal class BackdropTypeSelector : DataTemplateSelector
     {
         public DataTemplate Default { get; set; }
         public DataTemplate None { get; set; }

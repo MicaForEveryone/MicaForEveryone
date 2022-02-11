@@ -1,13 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.Models
 {
+    [XclType(TypeName = "Process")]
     public class ProcessRule : IRule
     {
+        [XclConstructor]
         public ProcessRule(string processName)
         {
             ProcessName = processName;
@@ -15,13 +18,20 @@ namespace MicaForEveryone.Models
 
         public string Name => $"Process({ProcessName})";
 
+        [XclParameter]
         public string ProcessName { get; }
 
-        public TitlebarColorMode TitlebarColor { get; set; }
+        [XclField]
+        public TitlebarColorMode TitleBarColor { get; set; }
 
+        [XclField]
         public BackdropType BackdropPreference { get; set; }
 
+        [XclField]
         public bool ExtendFrameIntoClientArea { get; set; }
+
+        [XclField]
+        public bool EnableBlurBehind { get; set; }
 
         public bool IsApplicable(TargetWindow target) =>
             target.ProcessName == ProcessName;

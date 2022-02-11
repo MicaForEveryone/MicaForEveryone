@@ -5,7 +5,7 @@ using MicaForEveryone.UI.Models;
 
 namespace MicaForEveryone.UI.Selectors
 {
-    public class PaneItemTypeSelector : DataTemplateSelector
+    internal class PaneItemTypeSelector : DataTemplateSelector
     {
         public DataTemplate General { get; set; }
         public DataTemplate Global { get; set; }

@@ -5,20 +5,26 @@ using Microsoft.Win32;
 
 using MicaForEveryone.Interfaces;
 
+#nullable enable
+
 namespace MicaForEveryone.Services
 {
-    internal class Win32StartupService : IStartupService, IDisposable
+    internal class Win32StartupService : IStartupService
     {
         private const string StartupRegistryKey = @"Software\Microsoft\Windows\CurrentVersion\Run";
         private const string MicaForEveryoneStartupName = "Mica For Everyone";
 
         private readonly string ExecutablePath = Process.GetCurrentProcess().MainModule.FileName;
 
-        private RegistryKey _key;
+        private RegistryKey? _key;
 
-        public void Initialize()
+        public Task InitializeAsync()
         {
-            _key = Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true);
+            return Task.Run(() =>
+            {
+                _key = Registry.CurrentUser.OpenSubKey(StartupRegistryKey, true) ??
+                    Registry.CurrentUser.CreateSubKey(StartupRegistryKey, true);
+            });
         }
 
         public bool IsAvailable => true;
@@ -27,7 +33,7 @@ namespace MicaForEveryone.Services
         {
             get
             {
-                var autorunPath = _key.GetValue(MicaForEveryoneStartupName) as string;
+                var autorunPath = _key!.GetValue(MicaForEveryoneStartupName) as string;
                 return autorunPath == ExecutablePath;
             }
         }
@@ -38,12 +44,12 @@ namespace MicaForEveryone.Services
             {
                 if (state == true)
                 {
-                    _key.SetValue(MicaForEveryoneStartupName, ExecutablePath);
+                    _key!.SetValue(MicaForEveryoneStartupName, ExecutablePath);
                     _key.Flush();
                     return true;
                 }
 
-                _key.DeleteValue(MicaForEveryoneStartupName);
+                _key!.DeleteValue(MicaForEveryoneStartupName);
                 _key.Flush();
                 return false;
             });
@@ -51,7 +57,7 @@ namespace MicaForEveryone.Services
 
         public void Dispose()
         {
-            _key.Dispose();
+            _key?.Dispose();
         }
     }
 }

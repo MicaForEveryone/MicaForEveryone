@@ -1,20 +1,28 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
+using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.Models
 {
+    [XclType(TypeName = "Global")]
     public class GlobalRule : IRule
     {
         public string Name => "Global";
 
-        public TitlebarColorMode TitlebarColor { get; set; }
+        [XclField]
+        public TitlebarColorMode TitleBarColor { get; set; }
 
+        [XclField]
         public BackdropType BackdropPreference { get; set; }
 
+        [XclField]
         public bool ExtendFrameIntoClientArea { get; set; }
+
+        [XclField]
+        public bool EnableBlurBehind { get; set; }
 
         public bool IsApplicable(TargetWindow target) => true;
 

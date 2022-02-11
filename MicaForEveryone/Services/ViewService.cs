@@ -7,7 +7,7 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Services
 {
-    internal class ViewService : IViewService, IDisposable
+    internal class ViewService : IViewService
     {
         public MainWindow MainWindow { get; private set; }
         public SettingsWindow SettingsWindow { get; private set; }

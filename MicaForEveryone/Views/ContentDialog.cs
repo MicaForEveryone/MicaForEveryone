@@ -36,7 +36,7 @@ namespace MicaForEveryone.Views
         {
         }
 
-        protected ContentDialog(ContentDialogView view) : 
+        protected ContentDialog(ContentDialogView view) :
             this(view, Program.CurrentApp.Container.GetService<IContentDialogViewModel>())
         {
             ViewModel.IsPrimaryButtonEnabled = true;
@@ -75,12 +75,15 @@ namespace MicaForEveryone.Views
             var background = GetResourceColor(resources, "ContentDialogBackground");
             var topOverlay = GetResourceColor(resources, "ContentDialogTopOverlay");
             var captionBackground = background.Blend(topOverlay);
-            captionBackground.A = 0;
 
             var foreground = GetResourceColor(resources, "ContentDialogForeground");
+            var captionTextColor = captionBackground.Blend(foreground);
+
+            captionBackground.A = 0;
+            captionTextColor.A = 0;
 
             DesktopWindowManager.SetCaptionColor(Handle, captionBackground);
-            DesktopWindowManager.SetCaptionTextColor(Handle, foreground);
+            DesktopWindowManager.SetCaptionTextColor(Handle, captionTextColor);
         }
     }
 }

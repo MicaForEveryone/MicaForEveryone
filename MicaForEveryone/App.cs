@@ -28,11 +28,10 @@ namespace MicaForEveryone
         public void Run()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             Container = RegisterServices();
             _uwpApp.Container = Container;
-
-            _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             var viewService = Container.GetService<IViewService>();
             viewService.Run();
@@ -51,14 +50,13 @@ namespace MicaForEveryone
         {
             var services = new ServiceCollection();
 
-            IStartupService startupService = IsPackaged ?
-                new UwpStartupService() :
-                new Win32StartupService();
-            startupService.Initialize();
-            services.AddSingleton(startupService);
-
+            services.AddTransient<ISettingsContainer>(container => 
+                IsPackaged ? new UwpSettingsContainer()
+                : new RegistrySettingsContainer());
             services.AddTransient<IConfigParser, XclParser>();
-            services.AddTransient<IConfigFile, ConfigFileService>();
+            services.AddTransient<IConfigFile>(container =>
+                IsPackaged ? new UwpConfigFile(container.GetService<IConfigParser>())
+                : new Win32ConfigFile(container.GetService<IConfigParser>()));
             services.AddTransient<ITrayIconViewModel, TrayIconViewModel>();
             services.AddTransient<IContentDialogViewModel, ContentDialogViewModel>();
             services.AddTransient<ISettingsViewModel, SettingsViewModel>();
@@ -67,6 +65,9 @@ namespace MicaForEveryone
             services.AddTransient<IAddProcessRuleViewModel, AddProcessRuleViewModel>();
             services.AddTransient<IAddClassRuleViewModel, AddClassRuleViewModel>();
 
+            services.AddSingleton<IStartupService>(container =>
+                IsPackaged ? new UwpStartupService() 
+                : new Win32StartupService());
             services.AddSingleton<ISettingsService, SettingsService>();
             services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
