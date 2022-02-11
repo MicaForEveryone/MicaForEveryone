@@ -18,15 +18,13 @@ namespace MicaForEveryone.Config
 
         internal Parser.Parser Parser { get; }
 
-        internal Tokenizer.Tokenizer Tokenizer { get; } = new();
-
         public async Task<XclDocument> ParseDocumentAsync(TextReader input)
         {
-            Tokenizer.ResetPosition();
             Parser.ResetPosition();
             var lexer = new Lexer.Lexer(input);
-            Tokenizer.Data = await lexer.ParseAsync();
-            Parser.Data = Tokenizer.Parse();
+            var lexerTokens = await lexer.ParseAsync();
+            var tokenizer = new Tokenizer.Tokenizer(lexerTokens);
+            Parser.Data = tokenizer.Parse();
             return Parser.ParseDocument();
         }
     }

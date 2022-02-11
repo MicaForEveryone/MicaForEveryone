@@ -38,16 +38,14 @@ namespace MicaForEveryone.Models
 
         public void ApplyBackdropRule(BackdropType type)
         {
-            if (DesktopWindowManager.IsBackdropTypeSupported)
-            {
-                if (type == BackdropType.Default)
+            if (type == BackdropType.Default)
                     return;
 
+            if (DesktopWindowManager.IsBackdropTypeSupported)
+            {
                 DesktopWindowManager.SetBackdropType(WindowHandle, type);
             }
-            else if (DesktopWindowManager.IsUndocumentedMicaSupported &&
-                type < BackdropType.Acrylic &&
-                type != BackdropType.Default)
+            else if (DesktopWindowManager.IsUndocumentedMicaSupported && type < BackdropType.Acrylic)
             {
                 DesktopWindowManager.SetMica(WindowHandle, type == BackdropType.Mica);
             }

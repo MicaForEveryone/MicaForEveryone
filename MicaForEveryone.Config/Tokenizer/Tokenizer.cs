@@ -9,13 +9,13 @@ namespace MicaForEveryone.Config.Tokenizer
 
         private int _position;
 
-        public Lexer.Token[] Data { get; set; }
-        public Lexer.Token CurrentToken => Data[_position];
-
-        public void ResetPosition()
+        public Tokenizer(Lexer.Token[] data)
         {
-            _position = 0;
+            Data = data;
         }
+
+        public Lexer.Token[] Data { get; }
+        public Lexer.Token CurrentToken => Data[_position];
 
         public Token[] Parse()
         {
