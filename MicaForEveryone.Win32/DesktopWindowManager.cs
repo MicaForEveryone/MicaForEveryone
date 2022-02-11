@@ -148,6 +148,23 @@ namespace MicaForEveryone.Win32
             {
                 throw Marshal.GetExceptionForHR(result);
             }
+
+            var accentPolicy = new AccentPolicy
+            {
+                AccentState = AccentState.ACCENT_ENABLE_BLURBEHIND | AccentState.ACCENT_ENABLE_GRADIENT,
+                GradientColor = (152 << 24) | (0x2B2B2B & 0xFFFFFF),
+            };
+            var accentSize = Marshal.SizeOf(accentPolicy);
+            var accentPolicyPtr = Marshal.AllocHGlobal(accentSize);
+            Marshal.StructureToPtr(accentPolicy, accentPolicyPtr, false);
+            var compositionAttributeData = new WindowCompositionAttributeData
+            {
+                Attribute = WindowCompositionAttribute.WCA_ACCENT_POLICY,
+                Data = accentPolicyPtr,
+            };
+            compositionAttributeData.SizeOfData = Marshal.SizeOf(compositionAttributeData);
+            SetWindowCompositionAttribute(target, ref compositionAttributeData);
+            Marshal.FreeHGlobal(accentPolicyPtr);
         }
     }
 }

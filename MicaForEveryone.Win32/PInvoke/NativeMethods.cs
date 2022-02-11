@@ -210,6 +210,9 @@ namespace MicaForEveryone.Win32.PInvoke
 
         [DllImport("kernel32.dll", SetLastError = false, ExactSpelling = true, CharSet = CharSet.Unicode)]
         public static extern int GetCurrentPackageFullName(ref uint packageFullNameLength, [Optional] StringBuilder packageFullName);
+
+        [DllImport("user32.dll")]
+        public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
