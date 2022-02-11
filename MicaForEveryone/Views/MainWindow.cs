@@ -43,7 +43,7 @@ namespace MicaForEveryone.Views
                 Title = Title,
             };
 
-            _notifyIcon.Click += NotifyIcon_ContextMenu;
+            _notifyIcon.Click += NotifyIcon_Click;
             _notifyIcon.ContextMenu += NotifyIcon_ContextMenu;
             _notifyIcon.OpenPopup += NotifyIcon_OpenPopup;
             _notifyIcon.ClosePopup += NotifyIcon_ClosePopup;
@@ -76,6 +76,11 @@ namespace MicaForEveryone.Views
         private void MainWindow_Destroy(object sender, WndProcEventArgs e)
         {
             _notifyIcon.HideNotifyIcon();
+        }
+
+        private void NotifyIcon_Click(object sender, TrayIconClickEventArgs e)
+        {
+            ViewModel.OpenSettingsCommand.Execute(null);
         }
 
         private void NotifyIcon_ContextMenu(object sender, TrayIconClickEventArgs e)
