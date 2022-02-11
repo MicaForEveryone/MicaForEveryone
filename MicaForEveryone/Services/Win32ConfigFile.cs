@@ -44,6 +44,7 @@ namespace MicaForEveryone.Services
 
         private readonly FileSystemWatcher _fileSystemWatcher = new();
 
+        private bool _isFileWatcherEnabled;
         private string _fileName;
 
         public Win32ConfigFile(IConfigParser parser)
@@ -58,8 +59,15 @@ namespace MicaForEveryone.Services
 
         public bool IsFileWatcherEnabled
         {
-            get => _fileSystemWatcher.EnableRaisingEvents;
-            set => _fileSystemWatcher.EnableRaisingEvents = value;
+            get => _isFileWatcherEnabled;
+            set
+            {
+                _isFileWatcherEnabled = value;
+                if (_fileName != null)
+                {
+                    _fileSystemWatcher.EnableRaisingEvents = value;
+                }
+            }
         }
 
         public Task InitializeAsync()
@@ -83,6 +91,7 @@ namespace MicaForEveryone.Services
                     }
                 }
                 _fileSystemWatcher.Path = directoryPath;
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
             });
         }
 
@@ -96,23 +105,22 @@ namespace MicaForEveryone.Services
 
         public async Task SaveAsync()
         {
-            var lastWatcherState = IsFileWatcherEnabled;
             try
             {
-                IsFileWatcherEnabled = false;
+                _fileSystemWatcher.EnableRaisingEvents = false;
                 using var stream = await TryOpenFile(FilePath, FileMode.Create, FileAccess.Write);
                 using var writer = new StreamWriter(stream);
                 await Parser.SaveAsync(writer);
             }
             finally
             {
-                IsFileWatcherEnabled = lastWatcherState;
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
             }
         }
 
-        private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs e)
+        private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs args)
         {
-            if (e.Name == _fileName)
+            if (IsFileWatcherEnabled && args.Name == _fileName)
                 FileChanged?.Invoke(this, EventArgs.Empty);
         }
 

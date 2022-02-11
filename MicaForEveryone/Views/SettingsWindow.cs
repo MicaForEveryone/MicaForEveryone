@@ -63,7 +63,7 @@ namespace MicaForEveryone.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.Initialize(sender);
+            ViewModel.Initialize(this);
         }
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)

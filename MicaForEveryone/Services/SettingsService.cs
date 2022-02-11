@@ -100,12 +100,16 @@ namespace MicaForEveryone.Services
                         break;
 
                     case SettingsChangeType.ConfigFilePathChanged:
+                        await ConfigFile.InitializeAsync();
                         await LoadRulesAsync();
+                        Save();
                         break;
 
                     case SettingsChangeType.ConfigFileWatcherStateChanged:
-                    case SettingsChangeType.ConfigFileReloaded:
                         Save();
+                        break;
+
+                    case SettingsChangeType.ConfigFileReloaded:
                         break;
                 }
 
