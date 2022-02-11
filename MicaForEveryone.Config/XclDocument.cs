@@ -9,18 +9,9 @@ namespace MicaForEveryone.Config
 {
     public class XclDocument
     {
-        public static async Task<XclDocument> ParseAsync(TextReader source)
+        internal XclDocument(Context context)
         {
-            var lexTokens = await new Lexer.Lexer(source).ParseAsync();
-            var tokens = new Tokenizer.Tokenizer(lexTokens).Parse();
-            return new Parser.Parser(tokens).ParseDocument();
-        }
-
-        public static XclDocument Empty => new();
-
-        internal XclDocument()
-        {
-            Types = new Dictionary<string, XclType>(TypeMap.Instance.XclTypes);
+            Types = new Dictionary<string, XclType>(context.TypeMap.XclTypes);
         }
 
         internal Dictionary<string, XclType> Types { get; }

@@ -8,19 +8,26 @@ namespace MicaForEveryone.Config.Parser
 {
     internal class Parser
     {
+        private readonly Context _context;
+
         private int _position;
 
-        public Parser(Token[] data)
+        public Parser(Context context)
         {
-            Data = data;
+            _context = context;
         }
 
-        private Token[] Data { get; }
-        private Token CurrentToken => Data[_position];
+        public Token[] Data { get; set; }
+        public Token CurrentToken => Data[_position];
+
+        public void ResetPosition()
+        {
+            _position = 0;
+        }
 
         public XclDocument ParseDocument()
         {
-            var result = new XclDocument();
+            var result = new XclDocument(_context);
 
             int start = _position;
             XclInstance section = null;

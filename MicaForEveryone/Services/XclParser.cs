@@ -13,20 +13,21 @@ namespace MicaForEveryone.Services
 {
     internal class XclParser : IConfigParser
     {
+        private Context _xclContext = new();
         private XclDocument _configDocument;
 
         public IRule[] Rules { get; private set; }
 
         public XclParser()
         {
-            TypeMap.Instance.RegisterEnum(typeof(TitlebarColorMode));
-            TypeMap.Instance.RegisterEnum(typeof(BackdropType));
-            TypeMap.Instance.Initialize();
+            _xclContext.TypeMap.RegisterEnum(typeof(TitlebarColorMode));
+            _xclContext.TypeMap.RegisterEnum(typeof(BackdropType));
+            _xclContext.TypeMap.RegisterByAttribute();
         }
 
         public async Task LoadAsync(StreamReader reader)
         {
-            _configDocument = await XclDocument.ParseAsync(reader);
+            _configDocument = await _xclContext.ParseDocumentAsync(reader);
             Rules = _configDocument.Instances.Select(instance => (IRule)instance.Value).ToArray();
         }
 
@@ -43,7 +44,7 @@ namespace MicaForEveryone.Services
             if (_configDocument.Instances.Any(section => section.Name == rule.Name))
                 throw new Exception("Rule already exists.");
 
-            var xclClass = TypeMap.Instance.GetXclType(rule.GetType()) as XclClass;
+            var xclClass = _xclContext.TypeMap.GetXclType(rule.GetType()) as XclClass;
             var instance = xclClass.ToXclInstance(rule);
 
             _configDocument.Instances.Add(instance);

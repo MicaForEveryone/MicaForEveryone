@@ -11,6 +11,8 @@ namespace MicaForEveryone.Config.Reflection
         {
         }
 
+        public Context Context { get; internal set; }
+
         public virtual XclValue ToXclValue(object value)
         {
             return new XclValue(this, value);

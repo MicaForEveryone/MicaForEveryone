@@ -34,14 +34,15 @@ namespace MicaForEveryone.Config.Reflection
             _fields = fields.ToDictionary(field => field.Name, field => field);
         }
 
-        internal XclClass(string name, Type type) : base(name)
+        internal XclClass(Context context, string name, Type type) : base(name)
         {
-            _type = type;
             _fields = new();
             _fieldsMap = new();
+            _type = type;
+            Context = context;
 
             _parameterField = type.GetMembers().FirstOrDefault(member => member.IsDefined(typeof(XclParameterAttribute)));
-            ParameterType = _parameterField == null ? null : TypeMap.Instance.GetXclType(GetFieldOrPropertyType(_parameterField));
+            ParameterType = _parameterField == null ? null : Context.TypeMap.GetXclType(GetFieldOrPropertyType(_parameterField));
 
             _constructor = type.GetConstructors().FirstOrDefault(ctor => ctor.IsDefined(typeof(XclConstructorAttribute), false));
             var parameters = _constructor?.GetParameters();
@@ -54,7 +55,7 @@ namespace MicaForEveryone.Config.Reflection
                 member => member.IsDefined(typeof(XclFieldAttribute), false)))
             {
                 var fieldName = member.GetCustomAttribute<XclFieldAttribute>().Name ?? member.Name;
-                var fieldType = TypeMap.Instance.GetXclType(GetFieldOrPropertyType(member));
+                var fieldType = Context.TypeMap.GetXclType(GetFieldOrPropertyType(member));
                 var field = new XclField(fieldName, fieldType);
                 _fields.Add(fieldName, field);
                 _fieldsMap.Add(field, member);

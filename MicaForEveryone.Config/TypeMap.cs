@@ -10,17 +10,18 @@ namespace MicaForEveryone.Config
 {
     public sealed class TypeMap
     {
-        public static TypeMap Instance { get; } = new();
+        private readonly Context _context;
 
         private Dictionary<Type, XclType> _typeMap = new();
 
-        public TypeMap()
+        public TypeMap(Context context)
         {
+            _context = context;
             RegisterType(typeof(string), XclStringType.Instance);
             RegisterType(typeof(bool), XclBooleanType.Instance);
         }
 
-        public void Initialize()
+        public void RegisterByAttribute()
         {
             var types = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
@@ -44,6 +45,8 @@ namespace MicaForEveryone.Config
         {
             if (XclTypes.ContainsKey(xclType.Name))
                 throw new RuntimeError(xclType, "The type is already registered.");
+            if (xclType.Context == null)
+                xclType.Context = _context;
             XclTypes.Add(xclType.Name, xclType);
             _typeMap.Add(type, xclType);
         }
@@ -53,7 +56,7 @@ namespace MicaForEveryone.Config
             if (!type.IsClass)
                 throw new RuntimeError(null, "Given type is not a class.");
             var className = (type.GetCustomAttributes(typeof(XclTypeAttribute), false).FirstOrDefault() as XclTypeAttribute)?.TypeName ?? type.Name;
-            var xclClass = new XclClass(className, type);
+            var xclClass = new XclClass(_context, className, type);
             RegisterType(type, xclClass);
         }
 
