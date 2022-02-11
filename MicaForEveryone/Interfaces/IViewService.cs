@@ -1,9 +1,11 @@
-﻿using MicaForEveryone.Models;
+﻿using System;
+
+using MicaForEveryone.Models;
 using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Interfaces
 {
-    internal interface IViewService
+    internal interface IViewService : IDisposable
     {
         TitlebarColorMode SystemColorMode { get; }
 

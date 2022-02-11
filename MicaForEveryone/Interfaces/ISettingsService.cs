@@ -9,7 +9,7 @@ using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Interfaces
 {
-    public interface ISettingsService
+    public interface ISettingsService : IDisposable
     {
         IConfigFile ConfigFile { get; }
         IRule[] Rules { get; }

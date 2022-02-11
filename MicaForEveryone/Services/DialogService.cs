@@ -8,13 +8,14 @@ namespace MicaForEveryone.Services
     {
         public void ShowDialog(Window parent, Dialog dialog)
         {
-            dialog.Parent = parent.Handle;
+            if (parent != null)
+                dialog.Parent = parent.Handle;
             dialog.Activate();
             dialog.Destroy += (sender, args) =>
             {
                 parent.SetEnable(true);
             };
-            parent.SetEnable(false);
+            parent?.SetEnable(false);
             dialog.ShowWindow();
             dialog.SetForegroundWindow();
         }
@@ -30,7 +31,7 @@ namespace MicaForEveryone.Services
             Program.CurrentApp.Run(dialog);
         }
 
-        public void ShowErrorDialog(Window parent, object title, object content, int width, int height)
+        public Dialog ShowErrorDialog(Window parent, object title, object content, int width, int height)
         {
             var dialog = new ErrorDialog
             {
@@ -47,6 +48,7 @@ namespace MicaForEveryone.Services
                 dialog.Dispose();
             };
             ShowDialog(parent, dialog);
+            return dialog;
         }
 
         public void RunErrorDialog(object title, object content, int width, int height)

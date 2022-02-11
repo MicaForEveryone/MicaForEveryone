@@ -87,13 +87,17 @@ namespace MicaForEveryone.ViewModels
 
         public ICommand OpenSettingsCommand { get; }
 
-        public async void Initialize(object sender)
+        public async Task InitializeAsync(object sender)
         {
             _window = (MainWindow)sender;
             _window.View.ActualThemeChanged += View_ActualThemeChanged;
             _window.Destroy += Window_Destroy;
 
+            var startupService = Program.CurrentApp.Container.GetService<IStartupService>();
+            await startupService.InitializeAsync();
+
             _settingsService.Load();
+            await _settingsService.ConfigFile.InitializeAsync();
             await _settingsService.LoadRulesAsync();
 
             await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

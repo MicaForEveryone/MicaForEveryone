@@ -7,7 +7,7 @@ using MicaForEveryone.Interfaces;
 
 namespace MicaForEveryone.Services
 {
-    internal class ConfigFileService : IConfigFile, IDisposable
+    internal class Win32ConfigFile : IConfigFile
     {
         private static async Task<FileStream> TryOpenFile(string filePath, FileMode mode, FileAccess access, int timeout = 1000)
         {
@@ -30,39 +30,60 @@ namespace MicaForEveryone.Services
             });
         }
 
+        private static string GetDefaultConfigFilePath()
+        {
+            var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
+        }
+
+        public static string GetBundledConfigFilePath()
+        {
+            var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+            return Path.Join(appFolder, "MicaForEveryone.conf");
+        }
+
         private readonly FileSystemWatcher _fileSystemWatcher = new();
 
-        private string _filePath;
         private string _fileName;
 
-        public ConfigFileService(IConfigParser parser)
+        public Win32ConfigFile(IConfigParser parser)
         {
             Parser = parser;
+            _fileSystemWatcher.Changed += FileSystemWatcher_Changed;
         }
 
         public IConfigParser Parser { get; }
 
-        public string FilePath
-        {
-            get => _filePath;
-            set
-            {
-                _filePath = value;
-                _fileName = Path.GetFileName(value);
-                var directoryPath = Directory.GetParent(value).FullName;
-                if (!Directory.Exists(directoryPath))
-                {
-                    Directory.CreateDirectory(directoryPath);
-                }
-                _fileSystemWatcher.Path = directoryPath;
-                _fileSystemWatcher.Changed += FileSystemWatcher_Changed;
-            }
-        }
+        public string FilePath { get; set; }
 
         public bool IsFileWatcherEnabled
         {
             get => _fileSystemWatcher.EnableRaisingEvents;
             set => _fileSystemWatcher.EnableRaisingEvents = value;
+        }
+
+        public Task InitializeAsync()
+        {
+            return Task.Run(() =>
+            {
+                if (FilePath == null)
+                    FilePath = GetDefaultConfigFilePath();
+                _fileName = Path.GetFileName(FilePath);
+                var directoryPath = Directory.GetParent(FilePath).FullName;
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+                if (!File.Exists(FilePath))
+                {
+                    var bundledConfigFilePath = GetBundledConfigFilePath();
+                    if (File.Exists(bundledConfigFilePath))
+                    {
+                        File.Copy(bundledConfigFilePath, FilePath);
+                    }
+                }
+                _fileSystemWatcher.Path = directoryPath;
+            });
         }
 
         public async Task<IRule[]> LoadAsync()

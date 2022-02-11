@@ -1,13 +1,15 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-using MicaForEveryone.Win32;
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.Xaml;
+using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
+using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
@@ -93,9 +95,31 @@ namespace MicaForEveryone.Views
             ViewModel.HideTooltipPopup();
         }
 
-        private void View_Loaded(object sender, RoutedEventArgs e)
+        private async void View_Loaded(object sender, RoutedEventArgs e)
         {
-            ViewModel.Initialize(this);
+            try
+            {
+                await ViewModel.InitializeAsync(this);
+            }
+#if DEBUG
+            catch 
+            {
+                throw;
+            }
+#else
+            catch (Exception ex)
+            {
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
+                    dialogService.ShowErrorDialog(null, "Error in initializing", ex, 500, 320).Destroy += (sender, args) =>
+                    {
+                        Program.CurrentApp.Exit();
+                    };
+                    
+                });
+            }
+#endif
         }
 
         protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)

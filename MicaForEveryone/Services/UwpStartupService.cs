@@ -14,7 +14,7 @@ namespace MicaForEveryone.Services
 
         private StartupTask _task;
 
-        public async void Initialize()
+        public async Task InitializeAsync()
         {
             _task = await StartupTask.GetAsync(TaskName);
         }
@@ -55,6 +55,10 @@ namespace MicaForEveryone.Services
 
             _task.Disable();
             return false;
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

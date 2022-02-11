@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
 using MicaForEveryone.Models;
@@ -23,7 +24,7 @@ namespace MicaForEveryone.UI.ViewModels
         ICommand EditConfigCommand { get; }
         ICommand OpenSettingsCommand { get; }
 
-        void Initialize(object sender);
+        Task InitializeAsync(object sender);
         void ShowContextMenu(Point offset, Rectangle notifyIconRect);
         void ShowTooltipPopup(Rectangle notifyIconRect);
         void HideTooltipPopup();
