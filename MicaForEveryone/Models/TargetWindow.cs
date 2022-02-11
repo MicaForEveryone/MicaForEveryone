@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
 
 namespace MicaForEveryone.Models
@@ -73,6 +73,21 @@ namespace MicaForEveryone.Models
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
+        {
+#if DEBUG
+            System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{Title}` ({ClassName}, {ProcessName})");
+#endif
+            ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
+            ApplyBackdropRule(rule.BackdropPreference);
+
+            if (rule.ExtendFrameIntoClientArea)
+                DesktopWindowManager.ExtendFrameIntoClientArea(WindowHandle);
+
+            if (rule.EnableBlurBehind)
+                DesktopWindowManager.EnableBlurBehind(WindowHandle);
         }
     }
 }

@@ -30,6 +30,9 @@ namespace MicaForEveryone.Models
         [XclField]
         public bool ExtendFrameIntoClientArea { get; set; }
 
+        [XclField]
+        public bool EnableBlurBehind { get; set; }
+
         public bool IsApplicable(TargetWindow target) =>
             target.ProcessName == ProcessName;
 
