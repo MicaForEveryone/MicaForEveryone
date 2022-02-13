@@ -122,7 +122,7 @@ namespace MicaForEveryone.ViewModels
             if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
                 || args.Type == SettingsChangeType.ConfigFileReloaded)
             {
-                await _mainWindow?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                Program.CurrentApp.Dispatcher.Enqueue(() =>
                 {
                     if (GlobalRule == args.Rule)
                     {
@@ -163,7 +163,7 @@ namespace MicaForEveryone.ViewModels
             }
             catch (ParserError error)
             {
-                await _mainWindow?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                Program.CurrentApp.Dispatcher.Enqueue(() =>
                 {
                     var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
                     dialogService?.ShowErrorDialog(_mainWindow, error.Message, error.ToString(), 576, 400);

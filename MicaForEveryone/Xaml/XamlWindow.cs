@@ -23,8 +23,6 @@ namespace MicaForEveryone.Xaml
 
         public IDesktopWindowXamlSourceNative2 Interop { get; private set; }
 
-        public CoreDispatcher Dispatcher { get; private set; }
-
         public override void Dispose()
         {
             _xamlSource.Dispose();
@@ -37,7 +35,6 @@ namespace MicaForEveryone.Xaml
             Interop = _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
             Interop.AttachToWindow(Handle);
             UpdateXamlSourcePosition();
-            Dispatcher = View.Dispatcher;
 
             SizeChanged += XamlWindow_SizeChanged;
         }

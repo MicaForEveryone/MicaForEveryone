@@ -148,9 +148,9 @@ namespace MicaForEveryone.ViewModels
 
         // event handlers
 
-        private async void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
+        private void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
         {
-            await _window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
                 var pane = args.Rule?.GetPaneItem(this);
                 var lastPane = SelectedPane;
@@ -261,7 +261,7 @@ namespace MicaForEveryone.ViewModels
             }
             catch (ParserError error)
             {
-                await _window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                Program.CurrentApp.Dispatcher.Enqueue(() =>
                 {
                     var dialogService = Program.CurrentApp.Container.GetRequiredService<IDialogService>();
                     dialogService.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);

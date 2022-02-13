@@ -87,9 +87,9 @@ namespace MicaForEveryone.ViewModels
 
         // event handlers
 
-        private async void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
+        private void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
         {
-            await _window?.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
                 switch (args.Type)
                 {

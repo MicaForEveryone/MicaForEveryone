@@ -98,7 +98,7 @@ namespace MicaForEveryone.Views
 #else
             catch (Exception ex)
             {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                Program.CurrentApp.Dispatcher.Enqueue(() =>
                 {
                     var title = ResourceLoader.GetForCurrentView().GetString("AppInitializationError/Title");
                     var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
