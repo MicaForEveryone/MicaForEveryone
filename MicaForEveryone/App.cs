@@ -31,8 +31,12 @@ namespace MicaForEveryone
 
             Container = RegisterServices();
 
-            var viewService = Container.GetService<IViewService>();
-            viewService.Run();
+            // load settings before using view service
+            var srvSettings = Container.GetService<ISettingsService>();
+            srvSettings.Load();
+
+            var srvView = Container.GetService<IViewService>();
+            srvView.Run();
 
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
             _uwpApp.UnhandledException -= UwpApp_UnhandledException;

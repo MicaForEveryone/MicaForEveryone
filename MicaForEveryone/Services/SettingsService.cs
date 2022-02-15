@@ -21,13 +21,17 @@ namespace MicaForEveryone.Services
     {
         private const string ConfigFilePathKey = "config file path";
         private const string FileWatcherKey = "file watcher state";
+        private const string LanguageKey = "language";
 
         private readonly ISettingsContainer _container;
+        private readonly ILanguageService _languageService;
 
-        public SettingsService(IConfigFile configFile, ISettingsContainer container)
+        public SettingsService(IConfigFile configFile, ISettingsContainer container, ILanguageService languageService)
         {
-            _container = container;
             ConfigFile = configFile;
+            _container = container;
+            _languageService = languageService;
+
             ConfigFile.FileChanged += ConfigFile_FileChanged;
         }
 
@@ -37,6 +41,14 @@ namespace MicaForEveryone.Services
 
         public void Load()
         {
+            var languageTag = _container.GetValue(LanguageKey) as string;
+            var language = _languageService.SupportedLanguages.FirstOrDefault(
+                                language => language.LanguageTag == languageTag);
+            if (language != null)
+            {
+                _languageService.SetLanguage(language);
+            }
+
             ConfigFile.FilePath = _container.GetValue(ConfigFilePathKey) as string;
 
             if (bool.TryParse(_container.GetValue(FileWatcherKey)?.ToString(), out var watcherState))
@@ -51,6 +63,7 @@ namespace MicaForEveryone.Services
 
         public void Save()
         {
+            _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
             _container.SetValue(ConfigFilePathKey, ConfigFile.FilePath);
             _container.SetValue(FileWatcherKey, ConfigFile.IsFileWatcherEnabled);
             _container.Flush();

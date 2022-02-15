@@ -9,6 +9,8 @@ namespace MicaForEveryone.Interfaces
     {
         Language[] SupportedLanguages { get; }
 
+        Language CurrentLanguage { get; }
+
         void SetLanguage(Language language);
     }
 }

@@ -234,6 +234,12 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
     <value>Global Rule</value>
   </data>
+  <data name="LanguageDescription.Text" xml:space="preserve">
+    <value>Set your prefered language for UI. Application needs a restart to take effect.</value>
+  </data>
+  <data name="LanguageLabel.Text" xml:space="preserve">
+    <value>Language:</value>
+  </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
     <value>Light</value>
   </data>

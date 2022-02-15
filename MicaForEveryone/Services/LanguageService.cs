@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Windows.Globalization;
@@ -16,9 +17,15 @@ namespace MicaForEveryone.Services
         public LanguageService()
         {
             SupportedLanguages = GetSupportedLanguages().ToArray();
+
+            var currentLanguage = ResourceManager.Current.DefaultContext.Languages[0];
+            CurrentLanguage = SupportedLanguages.First(
+                language => language.LanguageTag == currentLanguage);
         }
 
         public Language[] SupportedLanguages { get; }
+
+        public Language CurrentLanguage { get; private set; }
 
         private IEnumerable<Language> GetSupportedLanguages()
         {
@@ -31,6 +38,9 @@ namespace MicaForEveryone.Services
 
         public void SetLanguage(Language language)
         {
+            CurrentLanguage = language;
+            CultureInfo.CurrentCulture = new CultureInfo(language.LanguageTag);
+
             ResourceContext.SetGlobalQualifierValue("language", language.LanguageTag);
             ResourceContext.SetGlobalQualifierValue("layoutdirection", language.LayoutDirection switch
             {

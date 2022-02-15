@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Windows.UI.Core;
+using Windows.Globalization;
 using Windows.Storage.Pickers;
+using Windows.UI.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -17,13 +19,19 @@ namespace MicaForEveryone.ViewModels
     {
         private readonly ISettingsService _settingsService;
         private readonly IStartupService _startupService;
+        private readonly ILanguageService _languageService;
 
         private XamlWindow? _window;
+        private Language _currentLanguage;
 
-        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService)
+        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService)
         {
             _settingsService = settingsService;
             _startupService = startupService;
+            _languageService = languageService;
+
+            _currentLanguage = _languageService.CurrentLanguage;
+            Languages = _languageService.SupportedLanguages;
             BrowseAsyncCommand = new AsyncRelayCommand(DoBrowseAsync);
 
             _settingsService.Changed += SettingsService_Changed;
@@ -79,6 +87,23 @@ namespace MicaForEveryone.ViewModels
                 {
                     _settingsService.ConfigFile.FilePath = value;
                     _settingsService.CommitChangesAsync(SettingsChangeType.ConfigFilePathChanged, null);
+                }
+            }
+        }
+
+        public IList<object> Languages { get; }
+
+        public object SelectedLanguage
+        {
+            get => _currentLanguage;
+            set
+            {
+                var language = (Language)value;
+                if (_currentLanguage.LanguageTag != language.LanguageTag)
+                {
+                    _languageService.SetLanguage(language);
+                    _settingsService.Save();
+                    SetProperty(ref _currentLanguage, language);
                 }
             }
         }

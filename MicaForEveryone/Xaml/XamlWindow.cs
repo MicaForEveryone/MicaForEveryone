@@ -1,8 +1,11 @@
 ﻿using System;
+using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
@@ -33,6 +36,15 @@ namespace MicaForEveryone.Xaml
 
         public override void Activate()
         {
+            // set direction to rtl if a rtl language is choosen
+            var svcLanguage = Program.CurrentApp.Container.GetService<ILanguageService>();
+            if (svcLanguage?.CurrentLanguage.LayoutDirection is LanguageLayoutDirection.Rtl
+                or LanguageLayoutDirection.TtbRtl)
+            {
+                View.FlowDirection = FlowDirection.RightToLeft;
+                StyleEx |= WindowStylesEx.WS_EX_LAYOUTRTL;
+            }
+
             base.Activate();
 
             // attach xaml islands to win32 window

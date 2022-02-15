@@ -100,7 +100,6 @@ namespace MicaForEveryone.ViewModels
             };
 
             // initialize and load config file
-            _settingsService.Load();
             await _settingsService.ConfigFile.InitializeAsync();
             await _settingsService.LoadRulesAsync();
 
