@@ -15,7 +15,6 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
-using Windows.ApplicationModel.Resources;
 
 #nullable enable
 
