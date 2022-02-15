@@ -183,6 +183,12 @@
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Error in config file:
+{0}
+
+Fix errors then use "Reload config file" option to reload it.</value>
+  </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Error in config file</value>
   </data>

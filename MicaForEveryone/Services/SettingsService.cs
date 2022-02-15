@@ -1,13 +1,17 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
+using Microsoft.Extensions.DependencyInjection;
 
+using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Win32;
 using MicaForEveryone.Models;
+using MicaForEveryone.Win32;
 
 #nullable enable
 
@@ -54,7 +58,34 @@ namespace MicaForEveryone.Services
 
         public async Task LoadRulesAsync()
         {
-            var rules = (await ConfigFile.LoadAsync()).ToList();
+            var rules = new List<IRule>();
+
+            try
+            {
+                rules.AddRange(await ConfigFile.LoadAsync());
+            }
+            catch (ParserError error)
+            {
+                Program.CurrentApp.Dispatcher.Enqueue(() =>
+                {
+                    var ctx = Program.CurrentApp.Container;
+                    var dialogService = ctx.GetService<IDialogService>();
+                    var resources = ResourceLoader.GetForCurrentView();
+                    var title = resources.GetString("ConfigFileError/Header");
+                    var body = string.Format(resources.GetString("ConfigFileError/Content"), error.Message);
+                    var dialog = dialogService?.ShowErrorDialog(null, title, body, 475, 320);
+                    if (dialog != null)
+                    {
+                        dialog.Destroy += (sender, args) =>
+                        {
+                            var viewService = ctx.GetService<IViewService>();
+                            viewService?.MainWindow.ViewModel.EditConfigCommand.Execute(null);
+                        };
+                    }
+                });
+
+                return;
+            }
 
             // add an empty global rule when no global rule provided
             if (rules.All(rule => rule is not GlobalRule))
@@ -98,9 +129,9 @@ namespace MicaForEveryone.Services
                     break;
 
                 case SettingsChangeType.ConfigFilePathChanged:
+                    Save();
                     await ConfigFile.InitializeAsync();
                     await LoadRulesAsync();
-                    Save();
                     break;
 
                 case SettingsChangeType.ConfigFileWatcherStateChanged:

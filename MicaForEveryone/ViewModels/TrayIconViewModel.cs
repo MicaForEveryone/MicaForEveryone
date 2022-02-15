@@ -15,6 +15,7 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
+using Windows.ApplicationModel.Resources;
 
 #nullable enable
 
@@ -99,25 +100,23 @@ namespace MicaForEveryone.ViewModels
                 _ => throw new ArgumentOutOfRangeException(),
             };
 
-            // initialize other services
-            var ctx = Program.CurrentApp.Container;
-
-            var svcStartup = ctx.GetService<IStartupService>()!;
-            var initStartup = svcStartup.InitializeAsync();
-
+            // initialize and load config file
             _settingsService.Load();
             await _settingsService.ConfigFile.InitializeAsync();
-            var initRules = _settingsService.LoadRulesAsync();
+            await _settingsService.LoadRulesAsync();
 
-            // start rule service when everything is ready
-            await Task.WhenAll(initStartup, initRules);
+            // initialize startup service
+            var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
+            await startupService.InitializeAsync();
+
+            // start rule service
             _ruleService.MatchAndApplyRuleToAllWindows();
             _ruleService.StartService();
         }
 
         // event handlers
 
-        private async void Settings_Changed(object? sender, SettingsChangedEventArgs args)
+        private void Settings_Changed(object? sender, SettingsChangedEventArgs args)
         {
             if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
                 || args.Type == SettingsChangeType.ConfigFileReloaded)
@@ -157,18 +156,7 @@ namespace MicaForEveryone.ViewModels
 
         private async Task DoReloadConfigAsync()
         {
-            try
-            {
-                await _settingsService.LoadRulesAsync();
-            }
-            catch (ParserError error)
-            {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
-                {
-                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-                    dialogService?.ShowErrorDialog(_mainWindow, error.Message, error.ToString(), 576, 400);
-                });
-            }
+            await _settingsService.LoadRulesAsync();
         }
 
         private async Task DoChangeTitlebarColorModeAsync(string? parameter)

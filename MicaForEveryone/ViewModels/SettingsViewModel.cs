@@ -255,18 +255,7 @@ namespace MicaForEveryone.ViewModels
 
         private async Task DoReloadConfigAsync()
         {
-            try
-            {
-                await _settingsService.LoadRulesAsync();
-            }
-            catch (ParserError error)
-            {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
-                {
-                    var dialogService = Program.CurrentApp.Container.GetRequiredService<IDialogService>();
-                    dialogService.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
-                });
-            }
+            await _settingsService.LoadRulesAsync();
         }
 
         private void DoOpenConfigInEditor()
