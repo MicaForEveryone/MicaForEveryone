@@ -36,7 +36,6 @@ namespace MicaForEveryone.Views
 
             view.ViewModel = ViewModel;
             view.ActualThemeChanged += View_ActualThemeChanged;
-            view.Loaded += View_Loaded;
         }
 
         private ISettingsViewModel ViewModel { get; } =
@@ -55,10 +54,7 @@ namespace MicaForEveryone.Views
 
             DesktopWindowManager.SetImmersiveDarkMode(Handle, View.ActualTheme == ElementTheme.Dark);
             DesktopWindowManager.EnableMicaIfSupported(Handle);
-        }
 
-        private void View_Loaded(object sender, RoutedEventArgs e)
-        {
             ViewModel.Initialize(this);
             ShowWindow();
             SetForegroundWindow();

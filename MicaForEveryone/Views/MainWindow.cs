@@ -49,13 +49,12 @@ namespace MicaForEveryone.Views
             _notifyIcon.ClosePopup += NotifyIcon_ClosePopup;
 
             view.ViewModel = ViewModel;
-            view.Loaded += View_Loaded;
         }
 
         public ITrayIconViewModel ViewModel { get; } =
             Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
 
-        public override void Activate()
+        public async override void Activate()
         {
             base.Activate();
 
@@ -64,28 +63,7 @@ namespace MicaForEveryone.Views
             _notifyIcon.Parent = Handle;
             _notifyIcon.Activate();
             _notifyIcon.ShowNotifyIcon();
-        }
 
-        public override void Dispose()
-        {
-            _notifyIcon.Dispose();
-            base.Dispose();
-        }
-
-        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
-        {
-            if (umsg == _openSettingsMessage)
-            {
-                ViewModel.OpenSettingsCommand.Execute(null);
-                return IntPtr.Zero;
-            }
-            return base.WndProc(hwnd, umsg, wParam, lParam);
-        }
-
-        // event handlers
-
-        private async void View_Loaded(object sender, RoutedEventArgs e)
-        {
             try
             {
                 await ViewModel.InitializeAsync(this);
@@ -110,6 +88,24 @@ namespace MicaForEveryone.Views
             }
 #endif
         }
+
+        public override void Dispose()
+        {
+            _notifyIcon.Dispose();
+            base.Dispose();
+        }
+
+        protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
+        {
+            if (umsg == _openSettingsMessage)
+            {
+                ViewModel.OpenSettingsCommand.Execute(null);
+                return IntPtr.Zero;
+            }
+            return base.WndProc(hwnd, umsg, wParam, lParam);
+        }
+
+        // event handlers
 
         private void MainWindow_Destroy(object sender, WndProcEventArgs e)
         {
