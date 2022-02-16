@@ -168,6 +168,12 @@
   <data name="BackdropTypeLabel.Text" xml:space="preserve">
     <value>Backdrop Type:</value>
   </data>
+  <data name="BlurBehindCheckBox.Content" xml:space="preserve">
+    <value>Enable Blur Behind</value>
+  </data>
+  <data name="BlurBehindDescription.Text" xml:space="preserve">
+    <value>Make windows translucent and blurred. Disabling this option requires you to close and reopen affected windows.</value>
+  </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>Browse</value>
   </data>
@@ -220,7 +226,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Extend Frame Into Client Area</value>
   </data>
   <data name="ExtendFrameIntoClientAreaDescription.Text" xml:space="preserve">
-    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, don't enable this unless you know what you are doing.</value>
+    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>General</value>

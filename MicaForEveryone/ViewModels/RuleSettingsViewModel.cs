@@ -55,6 +55,19 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
+        public bool EnableBlurBehind
+        {
+            get => Rule?.EnableBlurBehind ?? default;
+            set
+            {
+                if (Rule != null && Rule.EnableBlurBehind != value)
+                {
+                    Rule.EnableBlurBehind = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                }
+            }
+        }
+
         public UI.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
 
         public IRule? Rule { get; set; }

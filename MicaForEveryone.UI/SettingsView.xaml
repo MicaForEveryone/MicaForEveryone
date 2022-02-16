@@ -139,6 +139,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock
@@ -356,6 +357,22 @@
                     IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
                 <TextBlock
                     x:Uid="ExtendFrameIntoClientAreaDescription"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
+                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                <CheckBox
+                    x:Uid="BlurBehindCheckBox"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="6"
+                    IsChecked="{x:Bind ViewModel.EnableBlurBehind, Mode=TwoWay}" />
+                <TextBlock
+                    x:Uid="BlurBehindDescription"
                     Grid.Row="7"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
