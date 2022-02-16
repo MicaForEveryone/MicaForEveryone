@@ -262,7 +262,7 @@
     <value>Sistema usa su tema de preferencia.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Tabbed obliga a todas las aplicaciones a usar el efecto de fondo de pantalla borroso.</value>
+    <value>Tabbed obliga a todas las aplicaciones a usar el efecto de fondo de pantalla con desenfoque.</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
     <value>Los efectos de fondo Acrylic y Tabbed requieren al menos la compilación 22523 de Windows.</value>
@@ -338,5 +338,32 @@
   </data>
   <data name="ConfigFilePathDescription.Text" xml:space="preserve">
     <value>Archivo que se usará para guardar y cargar las reglas</value>
+  </data>
+  <data name="LanguageLabel.Text" xml:space="preserve">
+    <value>Idioma:</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Error en la inicialización de la aplicación</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <data name="LanguageDescription.Text" xml:space="preserve">
+    <value>Establezca su idioma preferido para la interfaz de usuario. La aplicación necesita un reinicio para que surta efecto.</value>
+  </data>
+  <data name="ResetAppBarButton.Label" xml:space="preserve">
+    <value>Restablecer a la configuración predeterminada</value>
+  </data>
+  <data name="BlurBehindCheckBox.Content" xml:space="preserve">
+    <value>Habilitar el desenfoque por detrás</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Error en el archivo de configuración:
+{0}
+
+Corrija los errores y luego use la opción «Volver a cargar el archivo de configuración» para volver a cargarlo.</value>
+  </data>
+  <data name="BlurBehindDescription.Text" xml:space="preserve">
+    <value>Haga que las ventanas sean translúcidas y desenfocadas. Desactivar esta opción requiere cerrar y volver a abrir las ventanas afectadas.</value>
   </data>
 </root>
