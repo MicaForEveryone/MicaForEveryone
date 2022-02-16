@@ -1,17 +1,21 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MicaForEveryone.UI.ViewModels
 {
     public interface IGeneralSettingsViewModel : INotifyPropertyChanged
     {
+        IList<object> Languages { get; }
+        object SelectedLanguage { get; set; }
+
         bool ReloadOnChange { get; set; }
         bool RunOnStartup { get; set; }
         bool RunOnStartupAvailable { get; }
         string ConfigFilePath { get; set; }
 
-        ICommand BrowseCommand { get; }
-
-        void Initialize(object sender);
+        IAsyncRelayCommand BrowseAsyncCommand { get; }
     }
 }

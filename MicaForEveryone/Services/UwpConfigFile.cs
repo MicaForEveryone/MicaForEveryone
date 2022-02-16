@@ -14,27 +14,38 @@ namespace MicaForEveryone.Services
 {
     internal class UwpConfigFile : IConfigFile
     {
+        private readonly FileSystemWatcher _fileSystemWatcher = new();
+
         private StorageFile? _file;
-        private StorageFileQueryResult? _query;
+        private bool _isFileWatcherEnabled;
 
         public UwpConfigFile(IConfigParser parser)
         {
             Parser = parser;
+            _fileSystemWatcher.Changed += FileSystemWatcher_Changed;
         }
 
         public IConfigParser Parser { get; }
 
         public string? FilePath { get; set; }
 
-        public bool IsFileWatcherEnabled { get; set; }
+        public bool IsFileWatcherEnabled
+        {
+            get => _isFileWatcherEnabled;
+            set
+            {
+                _isFileWatcherEnabled = value;
+                if (_fileSystemWatcher.Path is not (null or ""))
+                {
+                    _fileSystemWatcher.EnableRaisingEvents = value;
+                }
+            }
+        }
 
         public async Task InitializeAsync()
         {
             if (_file != null && _file.Path == FilePath)
                 return;
-
-            if (_query != null)
-                _query.ContentsChanged -= Query_ContentsChanged;
 
             var parent = ApplicationData.Current.LocalFolder;
 
@@ -54,50 +65,64 @@ namespace MicaForEveryone.Services
                 parent = await _file.GetParentAsync();
             }
 
-            _query = parent.CreateFileQuery();
-            _query.ContentsChanged += Query_ContentsChanged;
-            await _query.GetFilesAsync(); // needs to be called to ContentsChanged get fired
+            _fileSystemWatcher.Path = parent.Path;
+            _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
         }
 
         public async Task ResetAsync()
         {
-            var bundled = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///MicaForEveryone/MicaForEveryone.conf"));
-            await bundled.CopyAndReplaceAsync(_file);
+            _fileSystemWatcher.EnableRaisingEvents = false;
+            try
+            {
+                var bundled = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///MicaForEveryone/MicaForEveryone.conf"));
+                await bundled.CopyAndReplaceAsync(_file);
+            }
+            finally
+            {
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
+            }
         }
 
         public async Task<IRule[]> LoadAsync()
         {
-            using var stream = await _file.OpenStreamForReadAsync();
-            using var streamReader = new StreamReader(stream);
-            await Parser.LoadAsync(streamReader);
-            return Parser.Rules;
+            _fileSystemWatcher.EnableRaisingEvents = false;
+            try
+            {
+                using var stream = await _file.OpenStreamForReadAsync();
+                using var streamReader = new StreamReader(stream);
+                await Parser.LoadAsync(streamReader);
+                return Parser.Rules;
+            }
+            finally
+            {
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
+            }
         }
 
         public async Task SaveAsync()
         {
-            using var stream = await _file.OpenStreamForWriteAsync();
-            using var streamWriter = new StreamWriter(stream);
-            await Parser.SaveAsync(streamWriter);
+            _fileSystemWatcher.EnableRaisingEvents = false;
+            try
+            {
+                using var stream = await _file.OpenStreamForWriteAsync();
+                stream.SetLength(0);
+                using var streamWriter = new StreamWriter(stream);
+                await Parser.SaveAsync(streamWriter);
+            }
+            finally
+            {
+                _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
+            }
         }
 
         public void Dispose()
         {
         }
 
-        private void Query_ContentsChanged(IStorageQueryResultBase sender, object args)
+        private void FileSystemWatcher_Changed(object sender, FileSystemEventArgs args)
         {
-            if (IsFileWatcherEnabled)
-            {
-                try
-                {
-                    IsFileWatcherEnabled = false;
-                    FileChanged?.Invoke(this, EventArgs.Empty);
-                }
-                finally
-                {
-                    IsFileWatcherEnabled = true;
-                }
-            }
+            if (IsFileWatcherEnabled && args.Name == _file?.Name)
+                FileChanged?.Invoke(this, EventArgs.Empty);
         }
 
         public event EventHandler? FileChanged;

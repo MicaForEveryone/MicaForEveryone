@@ -6,227 +6,166 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
-using MicaForEveryone.UI.ViewModels;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
-using MicaForEveryone.Win32.PInvoke;
+
+#nullable enable
 
 namespace MicaForEveryone.ViewModels
 {
-    internal class TrayIconViewModel : BaseViewModel, ITrayIconViewModel
+    internal class TrayIconViewModel : ObservableObject, ITrayIconViewModel
     {
         private readonly ISettingsService _settingsService;
+        private readonly IRuleService _ruleService;
 
-        private BackdropType _backdropType;
-        private TitlebarColorMode _titlebarColor;
-        private bool _extendFrameIntoClientArea;
-        private MainWindow _window;
-        private IRule _globalRule;
+        private MainWindow? _mainWindow;
+        private GlobalRule? _globalRule;
 
-        public TrayIconViewModel(ISettingsService settingsService)
+        public TrayIconViewModel(ISettingsService settingsService, IRuleService ruleService)
         {
             _settingsService = settingsService;
+            _ruleService = ruleService;
 
-            ReloadConfigCommand = new RelyCommand(ReloadConfig);
-            ChangeTitlebarColorModeCommand = new RelyCommand(ChangeTitlebarColorMode);
-            ChangeBackdropTypeCommand = new RelyCommand(ChangeBackdropType);
-            ExitCommand = new RelyCommand(Exit);
-            EditConfigCommand = new RelyCommand(OpenConfigInEditor);
-            OpenSettingsCommand = new RelyCommand(OpenSettings);
+            _settingsService.Changed += Settings_Changed;
 
-            _settingsService.Changed += SettingsService_Changed;
+            ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
+            ChangeTitlebarColorModeAsyncCommand = new AsyncRelayCommand<string>(DoChangeTitlebarColorModeAsync);
+            ChangeBackdropTypeAsyncCommand = new AsyncRelayCommand<string>(DoChangeBackdropTypeAsync);
+            ExitCommand = new RelayCommand(DoExit);
+            EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
+            OpenSettingsCommand = new RelayCommand(DoOpenSettings);
         }
 
         ~TrayIconViewModel()
         {
-            _settingsService.Changed -= SettingsService_Changed;
+            _settingsService.Changed -= Settings_Changed;
         }
 
-        public bool IsBackdropSupported =>
-            DesktopWindowManager.IsBackdropTypeSupported;
+        // properties
 
-        public bool IsMicaSupported =>
-            DesktopWindowManager.IsUndocumentedMicaSupported || DesktopWindowManager.IsBackdropTypeSupported;
+        public bool IsBackdropSupported => DesktopWindowManager.IsBackdropTypeSupported;
+        public bool IsMicaSupported => DesktopWindowManager.IsUndocumentedMicaSupported;
+        public bool IsImmersiveDarkModeSupported => DesktopWindowManager.IsImmersiveDarkModeSupported;
 
-        public bool IsImmersiveDarkModeSupported =>
-            DesktopWindowManager.IsImmersiveDarkModeSupported;
+        public BackdropType BackdropType => GlobalRule?.BackdropPreference ?? default;
+        public TitlebarColorMode TitlebarColor => GlobalRule?.TitleBarColor ?? default;
 
-        public BackdropType BackdropType
+        private GlobalRule? GlobalRule
         {
-            get => _backdropType;
-            set => SetProperty(ref _backdropType, value);
-        }
-
-        public TitlebarColorMode TitlebarColor
-        {
-            get => _titlebarColor;
-            set => SetProperty(ref _titlebarColor, value);
-        }
-
-        public bool ExtendFrameIntoClientArea
-        {
-            get => _extendFrameIntoClientArea;
-            set => SetProperty(ref _extendFrameIntoClientArea, value);
-        }
-
-        public ICommand ExitCommand { get; }
-
-        public ICommand ReloadConfigCommand { get; }
-
-        public ICommand ChangeTitlebarColorModeCommand { get; }
-
-        public ICommand ChangeBackdropTypeCommand { get; }
-
-        public ICommand EditConfigCommand { get; }
-
-        public ICommand OpenSettingsCommand { get; }
-
-        public async Task InitializeAsync(object sender)
-        {
-            _window = (MainWindow)sender;
-            _window.View.ActualThemeChanged += View_ActualThemeChanged;
-            _window.Destroy += Window_Destroy;
-
-            var startupService = Program.CurrentApp.Container.GetService<IStartupService>();
-            await startupService.InitializeAsync();
-
-            _settingsService.Load();
-            await _settingsService.ConfigFile.InitializeAsync();
-            await _settingsService.LoadRulesAsync();
-
-            await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            get => _globalRule;
+            set
             {
-                var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
-                var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-
-                ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
-                ruleService.MatchAndApplyRuleToAllWindows();
-                ruleService.StartService();
-            });
-        }
-
-        public async Task ReloadConfig()
-        {
-            try
-            {
-                await _settingsService.LoadRulesAsync();
-            }
-            catch (ParserError error)
-            {
-                await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                if (_globalRule != value)
                 {
-                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-                    dialogService.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
-                });
-            }
-        }
-
-        public void ShowContextMenu(Point offset, Rectangle notifyIconRect)
-        {
-            if (_window.View.ContextFlyout is MenuFlyout menu)
-            {
-                if (menu.IsOpen)
-                {
-                    menu.Hide();
-                    return;
+                    _globalRule = value;
+                    OnPropertyChanged(nameof(BackdropType));
+                    OnPropertyChanged(nameof(TitlebarColor));
                 }
-
-                _window.SetForegroundWindow();
-
-                _window.X = notifyIconRect.X;
-                _window.Y = notifyIconRect.Y;
-                _window.Width = notifyIconRect.Width;
-                _window.Height = notifyIconRect.Height;
-                _window.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
-                menu.ShowAt(_window.View,
-                    new Windows.Foundation.Point(
-                        (offset.X - notifyIconRect.X) / _window.ScaleFactor,
-                        (offset.Y - notifyIconRect.Y) / _window.ScaleFactor));
             }
-        }
-
-        public void ShowTooltipPopup(Rectangle notifyIconRect)
-        {
-            _window.X = notifyIconRect.X;
-            _window.Y = notifyIconRect.Y;
-            _window.Width = notifyIconRect.Width;
-            _window.Height = notifyIconRect.Height;
-            _window.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
-
-            var tooltip = (ToolTip)ToolTipService.GetToolTip(_window.View);
-            tooltip.IsOpen = true;
-        }
-
-        public void HideTooltipPopup()
-        {
-            var tooltip = (ToolTip)ToolTipService.GetToolTip(_window.View);
-            tooltip.IsOpen = false;
-        }
-
-        private async void UpdateData()
-        {
-            _globalRule = _settingsService.Rules.First(rule => rule is GlobalRule);
-
-            await _window.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                BackdropType = _globalRule.BackdropPreference;
-                TitlebarColor = _globalRule.TitleBarColor;
-                ExtendFrameIntoClientArea = _globalRule.ExtendFrameIntoClientArea;
-            });
-        }
-
-        private void UpdateRule()
-        {
-            _globalRule.BackdropPreference = BackdropType;
-            _globalRule.TitleBarColor = TitlebarColor;
-            _globalRule.ExtendFrameIntoClientArea = ExtendFrameIntoClientArea;
-
-            _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _globalRule);
-        }
-
-        private async void View_ActualThemeChanged(FrameworkElement sender, object args)
-        {
-            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            ruleService.SystemTitlebarColorMode = viewService.SystemColorMode;
-            await Task.Run(() =>
-            {
-                ruleService.MatchAndApplyRuleToAllWindows();
-            });
-        }
-
-        private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
-        {
-            if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule) 
-                || args.Type == SettingsChangeType.ConfigFileReloaded)
-            {
-                UpdateData();
-            }
-        }
-
-        private void Window_Destroy(object sender, WndProcEventArgs e)
-        {
-            var ruleService = Program.CurrentApp.Container.GetService<IRuleService>();
-            ruleService.StopService();
         }
 
         // commands
 
-        private async void ReloadConfig(object parameter)
+        public IAsyncRelayCommand ChangeTitlebarColorModeAsyncCommand { get; }
+        public IAsyncRelayCommand ChangeBackdropTypeAsyncCommand { get; }
+
+        public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
+        public ICommand EditConfigCommand { get; }
+
+        public ICommand OpenSettingsCommand { get; }
+        public ICommand ExitCommand { get; }
+
+        // public methods
+
+        public async Task InitializeAsync(MainWindow sender)
         {
-            await ReloadConfig();
+            // initialize view model
+            _mainWindow = sender;
+            _mainWindow.Destroy += MainWindow_Destroy;
+
+            // initialize rule service
+            _mainWindow.View.ActualThemeChanged += View_ActualThemeChanged;
+            _ruleService.SystemTitlebarColorMode = _mainWindow.View.ActualTheme switch
+            {
+                ElementTheme.Light => TitlebarColorMode.Light,
+                ElementTheme.Dark => TitlebarColorMode.Dark,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+
+            // initialize and load config file
+            await _settingsService.ConfigFile.InitializeAsync();
+            await _settingsService.LoadRulesAsync();
+
+            // initialize startup service
+            var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
+            _ = startupService.InitializeAsync();
+
+            // start rule service
+            await _ruleService.MatchAndApplyRuleToAllWindowsAsync();
+
+            // need to be started on UI thread
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            {
+                _ruleService.StartService();
+            });
         }
 
-        private async void ChangeTitlebarColorMode(object parameter)
+        // event handlers
+
+        private void Settings_Changed(object? sender, SettingsChangedEventArgs args)
         {
-            TitlebarColor = parameter.ToString() switch
+            if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
+                || args.Type == SettingsChangeType.ConfigFileReloaded)
+            {
+                Program.CurrentApp.Dispatcher.Enqueue(() =>
+                {
+                    if (GlobalRule == args.Rule)
+                    {
+                        OnPropertyChanged(nameof(BackdropType));
+                        OnPropertyChanged(nameof(TitlebarColor));
+                    }
+                    else
+                    {
+                        GlobalRule = args.Rule as GlobalRule;
+                    }
+                });
+            }
+        }
+
+        private void View_ActualThemeChanged(FrameworkElement sender, object args)
+        {
+            _ruleService.SystemTitlebarColorMode = sender.ActualTheme switch
+            {
+                ElementTheme.Light => TitlebarColorMode.Light,
+                ElementTheme.Dark => TitlebarColorMode.Dark,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+
+            _ = _ruleService.MatchAndApplyRuleToAllWindowsAsync();
+        }
+
+        private void MainWindow_Destroy(object? sender, WndProcEventArgs args)
+        {
+            _ruleService.StopService();
+        }
+
+        // commands
+
+        private async Task DoReloadConfigAsync()
+        {
+            await _settingsService.LoadRulesAsync();
+        }
+
+        private async Task DoChangeTitlebarColorModeAsync(string? parameter)
+        {
+            var value = parameter switch
             {
                 "Default" => TitlebarColorMode.Default,
                 "System" => TitlebarColorMode.System,
@@ -234,12 +173,15 @@ namespace MicaForEveryone.ViewModels
                 "Dark" => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            await Task.Run(() => UpdateRule());
+
+            if (GlobalRule == null) return;
+            GlobalRule.TitleBarColor = value;
+            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
         }
 
-        private async void ChangeBackdropType(object parameter)
+        private async Task DoChangeBackdropTypeAsync(string? parameter)
         {
-            BackdropType = parameter.ToString() switch
+            var value = parameter switch
             {
                 "Default" => BackdropType.Default,
                 "None" => BackdropType.None,
@@ -248,15 +190,17 @@ namespace MicaForEveryone.ViewModels
                 "Tabbed" => BackdropType.Tabbed,
                 _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
             };
-            await Task.Run(() => UpdateRule());
+            if (GlobalRule == null) return;
+            GlobalRule.BackdropPreference = value;
+            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
         }
 
-        private void Exit(object obj)
+        private void DoExit()
         {
-            _window.Close();
+            _mainWindow?.Close();
         }
 
-        private void OpenConfigInEditor(object obj)
+        private void DoOpenConfigInEditor()
         {
             var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
             {
@@ -269,10 +213,10 @@ namespace MicaForEveryone.ViewModels
             Process.Start(startInfo);
         }
 
-        private void OpenSettings(object obj)
+        private void DoOpenSettings()
         {
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
-            viewService.ShowSettingsWindow();
+            viewService?.ShowSettingsWindow();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
@@ -13,8 +14,7 @@ namespace MicaForEveryone.ViewModels
 
         public AddClassRuleViewModel()
         {
-            SubmitCommand = new RelyCommand(DoSubmit, CanSubmit);
-            PrimaryCommand = SubmitCommand;
+            PrimaryCommand = new RelayCommand<Dialog>(DoSubmit, CanSubmit);
 
             var classes = new List<string>();
             Window.GetDesktopWindow().ForEachChild(window =>
@@ -35,19 +35,17 @@ namespace MicaForEveryone.ViewModels
             {
                 SetProperty(ref _className, value);
                 OnPropertyChanged(nameof(Suggestions));
-                SubmitCommand.RaiseCanExecuteChanged();
+                PrimaryCommand.NotifyCanExecuteChanged();
             }
         }
 
-        public RelyCommand SubmitCommand { get; }
-
-        private void DoSubmit(object parameter)
+        private void DoSubmit(Dialog dialog)
         {
             Submit?.Invoke(this, EventArgs.Empty);
-            ((Dialog)parameter).Close();
+            dialog.Close();
         }
 
-        private bool CanSubmit(object parameter)
+        private bool CanSubmit(Dialog _)
         {
             return !string.IsNullOrWhiteSpace(ClassName);
         }

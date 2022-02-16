@@ -1,10 +1,12 @@
 ﻿using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.UI.ViewModels;
 
 namespace MicaForEveryone.ViewModels
 {
-    internal class ContentDialogViewModel : BaseViewModel, IContentDialogViewModel
+    internal class ContentDialogViewModel : ObservableObject, IContentDialogViewModel
     {
         private object _title;
         private object _content;
@@ -49,11 +51,11 @@ namespace MicaForEveryone.ViewModels
             set => SetProperty(ref _secondaryButtonContent, value);
         }
 
-        public ICommand PrimaryCommand { get; set; }
+        public IRelayCommand PrimaryCommand { get; set; }
 
         public object PrimaryCommandParameter { get; set; }
 
-        public ICommand SecondaryCommand { get; set; }
+        public IRelayCommand SecondaryCommand { get; set; }
 
         public object SecondaryCommandParameter { get; set; }
     }

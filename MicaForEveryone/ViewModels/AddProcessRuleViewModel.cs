@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
@@ -14,8 +15,7 @@ namespace MicaForEveryone.ViewModels
 
         public AddProcessRuleViewModel()
         {
-            SubmitCommand = new RelyCommand(DoSubmit, CanSubmit);
-            PrimaryCommand = SubmitCommand;
+            PrimaryCommand = new RelayCommand<Dialog>(DoSubmit, CanSubmit);
 
             Processes = Process.GetProcesses().Select(process => process.ProcessName)
                 .Distinct().ToArray();
@@ -32,19 +32,17 @@ namespace MicaForEveryone.ViewModels
             {
                 SetProperty(ref _processName, value);
                 OnPropertyChanged(nameof(Suggestions));
-                SubmitCommand.RaiseCanExecuteChanged();
+                PrimaryCommand.NotifyCanExecuteChanged();
             }
         }
 
-        public RelyCommand SubmitCommand { get; }
-
-        private void DoSubmit(object parameter)
+        private void DoSubmit(Dialog dialog)
         {
             Submit?.Invoke(this, EventArgs.Empty);
-            ((Dialog)parameter).Close();
+            dialog.Close();
         }
 
-        private bool CanSubmit(object parameter)
+        private bool CanSubmit(Dialog _)
         {
             return !string.IsNullOrWhiteSpace(ProcessName);
         }

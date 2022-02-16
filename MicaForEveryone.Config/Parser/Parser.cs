@@ -94,6 +94,11 @@ namespace MicaForEveryone.Config.Parser
                 ExpectToken(TokenType.FieldName);
                 var field = type.GetField(CurrentToken.Data);
 
+                if (field == null)
+                {
+                    throw new ParserError(CurrentToken, "Field not found.");
+                }
+
                 NextToken(TokenType.SetOperator);
 
                 NextToken(TokenType.Value);

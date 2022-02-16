@@ -5,6 +5,8 @@ using System.Text;
 using MicaForEveryone.Config.Parser;
 using MicaForEveryone.Config.Reflection;
 
+#nullable enable
+
 namespace MicaForEveryone.Config.Primitives
 {
     public class XclBooleanType : XclType
@@ -17,7 +19,14 @@ namespace MicaForEveryone.Config.Primitives
 
         internal override XclValue SymbolToValue(Symbol symbol)
         {
-            return new XclValue(symbol.Token, this, bool.Parse(symbol.Name));
+            try
+            {
+                return new XclValue(symbol.Token, this, bool.Parse(symbol.Name));
+            }
+            catch (FormatException)
+            {
+                throw new ParserError(symbol, $"Can't parse string `{symbol.Name}` to type boolean.");
+            }
         }
 
         internal override Symbol ValueToSymbol(XclValue value)

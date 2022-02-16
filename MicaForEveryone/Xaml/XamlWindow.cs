@@ -1,12 +1,16 @@
 ﻿using System;
+using Windows.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Hosting;
-using Windows.UI.Core;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
+
+#nullable enable
 
 namespace MicaForEveryone.Xaml
 {
@@ -17,13 +21,12 @@ namespace MicaForEveryone.Xaml
         public XamlWindow(FrameworkElement view)
         {
             _xamlSource.Content = view;
+            Interop = _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
         }
 
         public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
 
         public IDesktopWindowXamlSourceNative2 Interop { get; private set; }
-
-        public CoreDispatcher Dispatcher { get; private set; }
 
         public override void Dispose()
         {
@@ -33,13 +36,30 @@ namespace MicaForEveryone.Xaml
 
         public override void Activate()
         {
-            base.Activate();
-            Interop = _xamlSource.GetInterop<IDesktopWindowXamlSourceNative2>();
-            Interop.AttachToWindow(Handle);
-            UpdateXamlSourcePosition();
-            Dispatcher = View.Dispatcher;
+            // set direction to rtl if a rtl language is choosen
+            var svcLanguage = Program.CurrentApp.Container.GetService<ILanguageService>();
+            if (svcLanguage?.CurrentLanguage.LayoutDirection is LanguageLayoutDirection.Rtl
+                or LanguageLayoutDirection.TtbRtl)
+            {
+                View.FlowDirection = FlowDirection.RightToLeft;
+                StyleEx |= WindowStylesEx.WS_EX_LAYOUTRTL;
+            }
 
+            base.Activate();
+
+            // attach xaml islands to win32 window
+            Interop.AttachToWindow(Handle);
+
+            // update position of xaml content in the win32 window
+            UpdateXamlSourcePosition();
+
+            // update xaml content position when win32 window size is changed
             SizeChanged += XamlWindow_SizeChanged;
+
+            // set focus to xaml content on activation
+            _ = _xamlSource.NavigateFocus(
+                new XamlSourceFocusNavigationRequest(
+                    XamlSourceFocusNavigationReason.Programmatic));
         }
 
         protected virtual void UpdateXamlSourcePosition()
@@ -54,13 +74,14 @@ namespace MicaForEveryone.Xaml
             xamlWindow.SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_SHOWWINDOW);
         }
 
-        private void XamlWindow_SizeChanged(object sender, WndProcEventArgs e)
+        private void XamlWindow_SizeChanged(object? sender, WndProcEventArgs e)
         {
             UpdateXamlSourcePosition();
         }
 
         protected override IntPtr WndProc(IntPtr hwnd, uint umsg, IntPtr wParam, IntPtr lParam)
         {
+            // notify when window got or lost focus
             if (umsg == (uint)WindowMessage.WM_ACTIVATE)
             {
                 if (Macros.LOWORD(wParam) == 0) // WA_INACTIVE = 0
@@ -75,7 +96,7 @@ namespace MicaForEveryone.Xaml
             return base.WndProc(hwnd, umsg, wParam, lParam);
         }
 
-        public event EventHandler GotFocus;
-        public event EventHandler LostFocus;
+        public event EventHandler? GotFocus;
+        public event EventHandler? LostFocus;
     }
 }

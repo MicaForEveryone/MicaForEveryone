@@ -29,6 +29,8 @@ namespace MicaForEveryone.Win32
 
         private Window _mainWindow;
 
+        public Dispatcher Dispatcher { get; } = new();
+
         /// <summary>
         /// Run main loop with given main window
         /// </summary>
@@ -47,6 +49,7 @@ namespace MicaForEveryone.Win32
                 if (processed) continue;
                 NativeMethods.TranslateMessage(msg);
                 NativeMethods.DispatchMessageW(msg);
+                Dispatcher.Invoke();
             }
 
             _mainWindow.Destroy -= Window_OnDestroy;

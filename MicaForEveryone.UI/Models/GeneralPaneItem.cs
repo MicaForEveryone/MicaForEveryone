@@ -9,7 +9,7 @@ namespace MicaForEveryone.UI.Models
             ViewModel = viewModel;
         }
 
-        public PaneItemType ItemType { get; } = PaneItemType.General;
+        public PaneItemType ItemType => PaneItemType.General;
         public IGeneralSettingsViewModel ViewModel { get; }
     }
 }

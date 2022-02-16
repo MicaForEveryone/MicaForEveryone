@@ -168,6 +168,12 @@
   <data name="BackdropTypeLabel.Text" xml:space="preserve">
     <value>Backdrop Type:</value>
   </data>
+  <data name="BlurBehindCheckBox.Content" xml:space="preserve">
+    <value>Enable Blur Behind</value>
+  </data>
+  <data name="BlurBehindDescription.Text" xml:space="preserve">
+    <value>Make windows translucent and blurred. Disabling this option requires you to close and reopen affected windows.</value>
+  </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>Browse</value>
   </data>
@@ -182,6 +188,12 @@
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Error in config file:
+{0}
+
+Fix errors then use "Reload config file" option to reload it.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Error in config file</value>
@@ -214,7 +226,7 @@
     <value>Extend Frame Into Client Area</value>
   </data>
   <data name="ExtendFrameIntoClientAreaDescription.Text" xml:space="preserve">
-    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, don't enable this unless you know what you are doing.</value>
+    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>General</value>
@@ -227,6 +239,12 @@
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
     <value>Global Rule</value>
+  </data>
+  <data name="LanguageDescription.Text" xml:space="preserve">
+    <value>Set your prefered language for UI. Application needs a restart to take effect.</value>
+  </data>
+  <data name="LanguageLabel.Text" xml:space="preserve">
+    <value>Language:</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
     <value>Light</value>

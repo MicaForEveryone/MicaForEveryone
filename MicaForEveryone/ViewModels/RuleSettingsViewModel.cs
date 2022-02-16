@@ -1,14 +1,15 @@
-﻿using MicaForEveryone.Interfaces;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
-using MicaForEveryone.UI.ViewModels;
+
+#nullable enable
 
 namespace MicaForEveryone.ViewModels
 {
-    internal class RuleSettingsViewModel : BaseViewModel, IRuleSettingsViewModel
+    internal class RuleSettingsViewModel : ObservableObject, IRuleSettingsViewModel
     {
         private readonly ISettingsService _settingsService;
-
-        private IRule _rule;
 
         public RuleSettingsViewModel(ISettingsService settingsService)
         {
@@ -17,56 +18,58 @@ namespace MicaForEveryone.ViewModels
 
         public BackdropType BackdropType
         {
-            get => _rule.BackdropPreference;
+            get => Rule?.BackdropPreference ?? default;
             set
             {
-                if (_rule.BackdropPreference != value)
+                if (Rule != null && Rule.BackdropPreference != value)
                 {
-                    _rule.BackdropPreference = value;
-                    OnPropertyChanged();
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                    Rule.BackdropPreference = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
                 }
             }
         }
 
         public TitlebarColorMode TitlebarColor
         {
-            get => _rule.TitleBarColor;
+            get => Rule?.TitleBarColor ?? default;
             set
             {
-                if (_rule.TitleBarColor != value)
+                if (Rule != null && Rule.TitleBarColor != value)
                 {
-                    _rule.TitleBarColor = value;
-                    OnPropertyChanged();
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                    Rule.TitleBarColor = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
                 }
             }
         }
 
         public bool ExtendFrameIntoClientArea
         {
-            get => _rule.ExtendFrameIntoClientArea;
+            get => Rule?.ExtendFrameIntoClientArea ?? default;
             set
             {
-                if (_rule.ExtendFrameIntoClientArea != value)
+                if (Rule != null && Rule.ExtendFrameIntoClientArea != value)
                 {
-                    _rule.ExtendFrameIntoClientArea = value;
-                    OnPropertyChanged();
-                    _settingsService.RaiseChanged(SettingsChangeType.RuleChanged, _rule);
+                    Rule.ExtendFrameIntoClientArea = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
                 }
             }
         }
 
-        public ISettingsViewModel ParentViewModel { get; set; }
-
-        public object Rule => _rule;
-
-        public void InitializeData(object data)
+        public bool EnableBlurBehind
         {
-            if (data is IRule rule)
+            get => Rule?.EnableBlurBehind ?? default;
+            set
             {
-                _rule = rule;
+                if (Rule != null && Rule.EnableBlurBehind != value)
+                {
+                    Rule.EnableBlurBehind = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                }
             }
         }
+
+        public UI.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
+
+        public IRule? Rule { get; set; }
     }
 }

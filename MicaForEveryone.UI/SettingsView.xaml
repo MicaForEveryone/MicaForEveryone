@@ -23,7 +23,7 @@
             <Grid HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" MinWidth="75" />
+                    <ColumnDefinition Width="Auto" MinWidth="90" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -33,25 +33,62 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
+
+                <Grid
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" MinWidth="120" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        x:Uid="LanguageLabel"
+                        Grid.Column="0"
+                        VerticalAlignment="Center" />
+                    <ComboBox
+                        Grid.Column="1"
+                        Margin="6,0,0,0"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        ItemsSource="{x:Bind ViewModel.Languages}"
+                        SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate xmlns:globalization="using:Windows.Globalization" x:DataType="globalization:Language">
+                                <TextBlock Text="{x:Bind NativeName}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+
+                <TextBlock
+                    x:Uid="LanguageDescription"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Margin="0,0,6,12"
+                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
 
                 <CheckBox
                     x:Uid="ReloadConfigCheckBox"
-                    Grid.Row="0"
+                    Grid.Row="2"
                     Grid.ColumnSpan="2"
                     Margin="6"
                     HorizontalAlignment="Stretch"
                     IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
                 <TextBlock
                     x:Uid="ReloadConfigDescription"
-                    Grid.Row="1"
+                    Grid.Row="3"
                     Grid.ColumnSpan="2"
                     Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
 
                 <CheckBox
                     x:Uid="RunOnStartupCheckBox"
-                    Grid.Row="2"
+                    Grid.Row="4"
                     Grid.ColumnSpan="2"
                     Margin="6"
                     HorizontalAlignment="Stretch"
@@ -59,27 +96,27 @@
                     IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable}" />
                 <TextBlock
                     x:Uid="RunOnStartupDescription"
-                    Grid.Row="3"
+                    Grid.Row="5"
                     Grid.ColumnSpan="2"
                     Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
 
                 <TextBox
                     x:Uid="ConfigFilePathTextBox"
-                    Grid.Row="4"
+                    Grid.Row="6"
                     Grid.Column="0"
                     Margin="6"
                     Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
                 <Button
                     x:Uid="BrowseButton"
-                    Grid.Row="4"
+                    Grid.Row="6"
                     Grid.Column="1"
                     Margin="6,32,6,6"
                     HorizontalAlignment="Stretch"
-                    Command="{x:Bind ViewModel.BrowseCommand}" />
+                    Command="{x:Bind ViewModel.BrowseAsyncCommand}" />
                 <TextBlock
                     x:Uid="ConfigFilePathDescription"
-                    Grid.Row="5"
+                    Grid.Row="7"
                     Grid.ColumnSpan="2"
                     Margin="0,0,6,12"
                     Style="{ThemeResource OptionSummaryTextBlockStyle}" />
@@ -94,6 +131,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -325,6 +363,22 @@
                     Margin="0,0,6,12"
                     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                     Style="{ThemeResource CaptionTextBlockStyle}" />
+
+                <CheckBox
+                    x:Uid="BlurBehindCheckBox"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="6"
+                    IsChecked="{x:Bind ViewModel.EnableBlurBehind, Mode=TwoWay}" />
+                <TextBlock
+                    x:Uid="BlurBehindDescription"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,0,6,12"
+                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                    Style="{ThemeResource CaptionTextBlockStyle}" />
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
@@ -502,7 +556,7 @@
                     x:Uid="RemoveRuleAppBarButton"
                     Grid.Column="1"
                     Margin="2"
-                    Command="{x:Bind ViewModel.RemoveRuleCommand}"
+                    Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
                     Icon="Remove" />
                 <CommandBar.SecondaryCommands>
                     <AppBarButton
@@ -511,9 +565,9 @@
                         Icon="Edit" />
                     <AppBarButton
                         x:Uid="ReloadAppBarButton"
-                        Command="{x:Bind ViewModel.ReloadConfigCommand}"
+                        Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}"
                         Icon="Refresh" />
-                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigCommand}">
+                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigAsyncCommand}">
                         <AppBarButton.Icon>
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE10E;" />
                         </AppBarButton.Icon>
