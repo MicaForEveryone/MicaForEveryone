@@ -38,6 +38,8 @@ namespace MicaForEveryone.Win32
 
         public void ShowNotifyIcon()
         {
+            _shown = true;
+
             _notifyIconData.uFlags = NIF.NIF_ICON | NIF.NIF_MESSAGE;
             _notifyIconData.hwnd = Handle;
             _notifyIconData.hIcon = Icon;
@@ -48,23 +50,17 @@ namespace MicaForEveryone.Win32
             }
             _notifyIconData.hIcon = Class.Icon;
             if (!Shell_NotifyIconW(NIM.NIM_ADD, _notifyIconData))
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
+                return;
 
             _notifyIconData.uTimeoutOrVersion = NOTIFYICON_VERSION_4;
             if (!Shell_NotifyIconW(NIM.NIM_SETVERSION, _notifyIconData))
-            {
-                throw new Win32Exception(Marshal.GetLastWin32Error());
-            }
-
-            _shown = true;
+                return;
         }
 
         public void HideNotifyIcon()
         {
-            Shell_NotifyIconW(NIM.NIM_DELETE, _notifyIconData);
             _shown = false;
+            _ = Shell_NotifyIconW(NIM.NIM_DELETE, _notifyIconData);
         }
 
         public RECT GetRect()
