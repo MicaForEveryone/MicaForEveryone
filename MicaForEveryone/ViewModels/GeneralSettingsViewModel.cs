@@ -98,8 +98,8 @@ namespace MicaForEveryone.ViewModels
             get => _currentLanguage;
             set
             {
-                var language = (Language)value;
-                if (_currentLanguage.LanguageTag != language.LanguageTag)
+                var language = value as Language;
+                if (language != null && _currentLanguage.LanguageTag != language.LanguageTag)
                 {
                     _languageService.SetLanguage(language);
                     _settingsService.Save();

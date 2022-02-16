@@ -26,7 +26,7 @@ namespace MicaForEveryone.Views
         private SettingsWindow(SettingsView view) : base(view)
         {
             Style = WindowStyles.WS_OVERLAPPEDWINDOW & ~WindowStyles.WS_MAXIMIZEBOX;
-            Width = 820;
+            Width = 900;
             Height = 560;
 
             _backgroundBrush = new XamlMicaBrush(View, this);
