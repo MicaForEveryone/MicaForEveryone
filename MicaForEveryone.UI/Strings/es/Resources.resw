@@ -129,19 +129,19 @@
   <data name="AboutTitle.Text" xml:space="preserve">
     <value>Acerca de esta aplicación</value>
   </data>
-  <data name="TitlebarColorLabel.Text" xml:space="preserve">
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
     <value>Color de la barra de título:</value>
   </data>
-  <data name="ExtendFrameIntoClientAreaCheckBox.Content" xml:space="preserve">
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Extender el marco al área de cliente</value>
   </data>
-  <data name="BackdropTypeLabel.Text" xml:space="preserve">
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
     <value>Tipo de efecto de fondo:</value>
   </data>
-  <data name="RunOnStartupCheckBox.Content" xml:space="preserve">
+  <data name="StartupSetting.Header" xml:space="preserve">
     <value>Ejecutar al inicio</value>
   </data>
-  <data name="ReloadConfigCheckBox.Content" xml:space="preserve">
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
     <value>Volver a cargar el archivo de configuración cuando se produzcan cambios</value>
   </data>
   <data name="AppName" xml:space="preserve">
@@ -246,7 +246,7 @@
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
     <value>Claro usa el tema claro.</value>
   </data>
-  <data name="BackdropDescription.Text" xml:space="preserve">
+  <data name="BackdropSetting.Description" xml:space="preserve">
     <value>Establezca el tipo de efecto de fondo,</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
@@ -276,13 +276,13 @@
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
     <value>Ninguno deshabilita el efecto de fondo, incluso en aplicaciones que ya lo tienen.</value>
   </data>
-  <data name="ExtendFrameIntoClientAreaDescription.Text" xml:space="preserve">
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
     <value>Extiende el marco de la ventana al área de cliente para agregar un efecto de fondo en algunas aplicaciones. No funciona en todas las aplicaciones y puede romperlas, no habilite esto a menos que sepa lo que está haciendo.</value>
   </data>
-  <data name="RunOnStartupDescription.Text" xml:space="preserve">
+  <data name="StartupSetting.Description" xml:space="preserve">
     <value>Ejecuta esta aplicación automáticamente al inicio.</value>
   </data>
-  <data name="ReloadConfigDescription.Text" xml:space="preserve">
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
     <value>Vuelve a cargar la configuración automáticamente cuando cambie.</value>
   </data>
   <data name="GitHubButton.NavigateUri" xml:space="preserve">
@@ -333,14 +333,14 @@
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
     <value>El modo oscuro inmersivo requiere al menos la compilación 19041 de Windows.</value>
   </data>
-  <data name="ConfigFilePathTextBox.Header" xml:space="preserve">
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
     <value>Ruta del archivo de configuración:</value>
   </data>
-  <data name="ConfigFilePathDescription.Text" xml:space="preserve">
+  <data name="ConfigFileSetting.Description" xml:space="preserve">
     <value>Archivo que se usará para guardar y cargar las reglas</value>
   </data>
-  <data name="LanguageLabel.Text" xml:space="preserve">
-    <value>Idioma:</value>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Idioma</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
     <value>Error en la inicialización de la aplicación</value>
@@ -348,13 +348,13 @@
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>Examinar</value>
   </data>
-  <data name="LanguageDescription.Text" xml:space="preserve">
+  <data name="LanguageSetting.Description" xml:space="preserve">
     <value>Establezca su idioma preferido para la interfaz de usuario. La aplicación necesita un reinicio para que surta efecto.</value>
   </data>
   <data name="ResetAppBarButton.Label" xml:space="preserve">
     <value>Restablecer a la configuración predeterminada</value>
   </data>
-  <data name="BlurBehindCheckBox.Content" xml:space="preserve">
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
     <value>Habilitar el desenfoque por detrás</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
@@ -363,7 +363,10 @@
 
 Corrija los errores y luego use la opción «Volver a cargar el archivo de configuración» para volver a cargarlo.</value>
   </data>
-  <data name="BlurBehindDescription.Text" xml:space="preserve">
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
     <value>Haga que las ventanas sean translúcidas y desenfocadas. Desactivar esta opción requiere cerrar y volver a abrir las ventanas afectadas.</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>General</value>
   </data>
 </root>
