@@ -217,16 +217,16 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Default</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Default doesn't do anything to keep app's default theme.</value>
+    <value>The "Default" option keeps app's default theme.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
-  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
-  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Extend Frame Into Client Area</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, so don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>General</value>
@@ -244,7 +244,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Global Rule</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Set your prefered language for UI. Application needs a restart to take effect.</value>
+    <value>Set your preferred language for UI. Application needs a restart to take effect.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Language</value>
@@ -262,7 +262,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>None disables backdrop, even on apps that already have.</value>
+    <value>None disables backdrops, even on apps that already have them enabled.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
     <value>None</value>
@@ -289,7 +289,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Reload</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Reload config automatically when it got changed.</value>
+    <value>Reloads config automatically when the config file gets changed.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
     <value>Reload Config File on changes</value>
@@ -358,7 +358,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Unhandled Exception in UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic and Tabbed backdrop effects require at least Windows build 22523.</value>
+    <value>Acrylic and Tabbed backdrops effects require at least Windows build 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
     <value>Immersive Dark Mode requires at least Windows build 19041.</value>
