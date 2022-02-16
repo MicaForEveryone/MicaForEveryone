@@ -367,7 +367,7 @@
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
-                <ScrollViewer Padding="8,0,8,0">
+                <ScrollViewer Margin="4" Padding="8,0,8,0">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -480,7 +480,7 @@
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="750" />
+                        <AdaptiveTrigger MinWindowWidth="950" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="AboutSection.(Grid.Row)" Value="0" />
