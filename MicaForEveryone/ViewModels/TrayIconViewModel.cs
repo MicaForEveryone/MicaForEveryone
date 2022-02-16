@@ -105,11 +105,16 @@ namespace MicaForEveryone.ViewModels
 
             // initialize startup service
             var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
-            await startupService.InitializeAsync();
+            _ = startupService.InitializeAsync();
 
             // start rule service
-            _ruleService.MatchAndApplyRuleToAllWindows();
-            _ruleService.StartService();
+            await _ruleService.MatchAndApplyRuleToAllWindowsAsync();
+
+            // need to be started on UI thread
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            {
+                _ruleService.StartService();
+            });
         }
 
         // event handlers
@@ -134,7 +139,7 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        private async void View_ActualThemeChanged(FrameworkElement sender, object args)
+        private void View_ActualThemeChanged(FrameworkElement sender, object args)
         {
             _ruleService.SystemTitlebarColorMode = sender.ActualTheme switch
             {
@@ -142,7 +147,8 @@ namespace MicaForEveryone.ViewModels
                 ElementTheme.Dark => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(),
             };
-            await Task.Run(() => _ruleService.MatchAndApplyRuleToAllWindows());
+
+            _ = _ruleService.MatchAndApplyRuleToAllWindowsAsync();
         }
 
         private void MainWindow_Destroy(object? sender, WndProcEventArgs args)
