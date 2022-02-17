@@ -118,121 +118,121 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>About this app</value>
+    <value>درباره این برنامه</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic forces all apps to use Windows 10-style blur backdrop effect.</value>
+    <value>گزینه «Acrylic» تمام پنجره‌ها را مجبور می‌کند تا از یک جلوه بلور به سبک Windows 10 استفاده کنند.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>Add</value>
+    <value>افزودن</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>New Class Rule</value>
+    <value>نمایه کلاس جدید</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>Add Class Rule</value>
+    <value>افزودن نمایه کلاس</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>New Process Rule</value>
+    <value>نمایه پروسه جدید</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Add Process Rule</value>
+    <value>افزودن نمایه پروسه</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Add Rule</value>
+    <value>افزودن نمایه</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Add Rule</value>
+    <value>افزودن نمایه</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Config file</value>
+    <value>فایل پیکربندی</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>Error in Initializing application</value>
+    <value>خطا در راه‌اندازی برنامه</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Mica برای همه</value>
   </data>
   <data name="AppNameLabel.Text" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Mica برای همه</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Set backdrop type,</value>
+    <value>تنظیم نوع پس‌زمینه،</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Backdrop Type</value>
+    <value>نوع پس‌زمینه</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Backdrop Type</value>
+    <value>نوع پس‌زمینه</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Make windows translucent and blurred. Disabling this option requires you to close and reopen affected windows.</value>
+    <value>پنجره‌ها را شفاف و بلوری می‌کند. بعد از غیرفعال کردن این گزینه باید پنجره‌های باز را ببندید و دوباره باز کنید.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Blur Behind</value>
+    <value>بلور پس‌زمینه</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>Browse</value>
+    <value>مرور</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>لغو</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Enter window class name</value>
+    <value>نام کلاس پنجره را وارد کنید.</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Class Name:</value>
+    <value>نام کلاس:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Close</value>
+    <value>بستن</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>Error in config file:
+    <value>خطا در فایل پیکربندی:
 {0}
 
-Fix errors then use "Reload config file" option to reload it.</value>
+خطا را رفع کنید سپس با استفاده از گزینه «بارگزاری مجدد» فایل پیکربندی را مجددا بارگزاری کنید.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>Error in config file</value>
+    <value>خطا در فایل پیکربندی</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>File to be used for saving and loading rules.</value>
+    <value>فایلی که برای ذخیره و بارگذاری نمایه‌ها استفاده می‌شود.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>File Path</value>
+    <value>مکان فایل</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Dark</value>
+    <value>تیره</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Dark uses dark theme.</value>
+    <value>تیره از تم تاریک استفاده می‌‌کند.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>Default doesn't do anything to keep app's default backdrop.</value>
+    <value>گزینه «پیشفرض» تغییری ایجاد نمی‌کند تا از پس‌زمینه ترجیحی برنامه استفاده شود.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>Default</value>
+    <value>پیشفرض</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>The "Default" option keeps app's default theme.</value>
+    <value>گزینه «پیشفرض» طرح پیشفرض برنامه را نگه می‌دارد.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>Exit</value>
+    <value>خروج</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Extend Frame Into Client Area</value>
+    <value>گسترش قاب پنجره به Client Area</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, so don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
+    <value>قاب پنجره را گسترش می‌دهد تا طرح پس‌زمینه روی پس‌زمینه پنجره هم نمایان شود. این گزینه روی تمام برنامه‌ها کار نمی‌کند و ممکن است عملکرد برنامه‌ها را دچار اختلال کند، تنها درصورتی از آن استفاده کنید که می‌دانید چه می‌کنید. غیرفعال کردن این گزینه نیاز دارد تا پنجره‌های باز را ببندید و دوباره باز کنید.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>General</value>
+    <value>عمومی</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>General</value>
+    <value>عمومی</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
@@ -241,76 +241,76 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>https://github.com/minusium/MicaForEveryone</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Global Rule</value>
+    <value>نمایه پیشفرض</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Set your preferred language for UI. Application needs a restart to take effect.</value>
+    <value>زبان ترجیحی برای رابط کاربری برنامه را انتخاب کنید. لازم است برنامه را مجدد راه‌اندازی کنید.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>Language</value>
+    <value>زبان</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Light</value>
+    <value>روشن</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Light uses light theme.</value>
+    <value>روشن از تم روشن استفاده می‌کند.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Mica forces all apps to use Windows 11-style tinted wallpaper backdrop effect.</value>
+    <value>گزینه «Mica» تمام پنجره‌ها را مجبور می‌کند تا از جلوه رنگی طرح Windows 11 استفاده کنند.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>None disables backdrops, even on apps that already have them enabled.</value>
+    <value>جلوه پس‌زمینه را غیرفعال می‌کند، حتی روی برنامه‌هایی که از آن پشتیبانی می‌کنند.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>None</value>
+    <value>هیچکدام</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>تایید</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>Open in text editor</value>
+    <value>بازکردن در ویرایشگر متنی</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>Enter executable file name without its extension (.exe)</value>
+    <value>نام فایل اجرایی را بدون پسوندش (.exe) وارد کنید.</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>Process Name:</value>
+    <value>نام پروسه:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>Reload</value>
+    <value>بارگذاری مجدد</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Reloads config automatically when the config file gets changed.</value>
+    <value>بارگذاری مجدد فایل پیکربندی بصورت خودکار وقتی تغییر کرد.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Reload on change</value>
+    <value>بارگذاری مجدد هنگام تغییر</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>Remove Rule</value>
+    <value>حذف نمایه</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>تنظیمات</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>تنظیمات</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Run this app automatically on startup.</value>
+    <value>اجرای خودکار برنامه هنگام شروع سیستم.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Run on Startup</value>
+    <value>اجرا هنگام شروع سیستم</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>System</value>
+    <value>سیستم</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>System uses your theme preference.</value>
+    <value>گزینه «سیستم» از طرح انتخابی شما در تنظیمات سیستم استفاده می‌کند.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Tabbed forces all apps to use blurred wallpaper backdrop effect.</value>
+    <value>گزینه «Tabbed» از یک طرح بلور تصویر زمینه استفاده میکند.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -322,16 +322,16 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>https://t.me/minusium</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>Set color theme of titlebars,</value>
+    <value>انتخاب طرح رنگ نوار عنوان،</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>Titlebar Color</value>
+    <value>رنگ نوار عنوان</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Titlebar Color</value>
+    <value>رنگ نوار عنوان</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Mica برای همه</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
     <value>Twitter</value>
@@ -340,48 +340,48 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>https://twitter.com/minusium</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>Unhandled Exception</value>
+    <value>خطای غیرمنتظره</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Unhandled Exception in UI</value>
+    <value>خطای غیرمنتظره در رابط کاربری</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic and Tabbed backdrops effects require at least Windows build 22523.</value>
+    <value>گزینه‌های «Acrylic» و «Tabbed» حداقل Windows نسخه ۲۲۵۲۳ نیاز دارند.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Immersive Dark Mode requires at least Windows build 19041.</value>
+    <value>نوار عنوان تیره حداقل Windows نسخه ۱۹۰۴۱ نیاز دارد.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Mica effect requires at least Windows build 22000.</value>
+    <value>جلوه Mica حداقل Windows نسخه ۲۲۰۰۰ نیاز دارد.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Version</value>
+    <value>نسخه</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>Advanced</value>
+    <value>پیشرفته</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Config File</value>
+    <value>فایل پیکربندی</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>Style</value>
+    <value>طرح</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>Open config file in your default text editor.</value>
+    <value>باز کردن فایل پیکربندی در ویرایشگر متنی پیشفرضتان</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Edit in Text Editor</value>
+    <value>ویرایش در ویرایشگر متن</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>Reload rules from config file then apply them to all open windows.</value>
+    <value>بارگذاری مجدد نمایه‌ها از فایل پیکربندی و اعمال آن‌ها روی پنجره‌ها.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>Reload</value>
+    <value>بارگذاری مجدد</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>Restore default rules and delete all changes.</value>
+    <value>بازگردانی نمایه‌های پیشفرض و حذف تمام تغییرات.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>Reset</value>
+    <value>بازنشانی</value>
   </data>
 </root>

@@ -200,6 +200,11 @@
     </PRIResource>
     <PRIResource Include="Strings\es\Resources.resw" />
   </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="Strings\fa\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

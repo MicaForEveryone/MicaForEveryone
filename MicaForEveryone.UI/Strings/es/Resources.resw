@@ -255,9 +255,6 @@
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
     <value>Predeterminado no hace nada para así mantener el tema predeterminado de la aplicación.</value>
   </data>
-  <data name="SaveButton.Content" xml:space="preserve">
-    <value>Guardar</value>
-  </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
     <value>Sistema usa su tema de preferencia.</value>
   </data>
