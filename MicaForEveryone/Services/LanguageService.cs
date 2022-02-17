@@ -20,7 +20,7 @@ namespace MicaForEveryone.Services
 
             var currentLanguage = ResourceManager.Current.DefaultContext.Languages[0];
             CurrentLanguage = SupportedLanguages.First(
-                language => language.LanguageTag == currentLanguage);
+                language => currentLanguage.StartsWith(language.LanguageTag));
         }
 
         public Language[] SupportedLanguages { get; }
