@@ -333,10 +333,10 @@
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
     <value>El modo oscuro inmersivo requiere al menos la compilación 19041 de Windows.</value>
   </data>
-  <data name="ConfigFileSetting.Header" xml:space="preserve">
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
     <value>Ruta del archivo de configuración:</value>
   </data>
-  <data name="ConfigFileSetting.Description" xml:space="preserve">
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
     <value>Archivo que se usará para guardar y cargar las reglas</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
@@ -368,5 +368,14 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
     <value>General</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>avanzada</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>archivo de configuración</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>estilo</value>
   </data>
 </root>

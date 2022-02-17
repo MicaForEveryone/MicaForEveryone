@@ -13,264 +13,274 @@
         <converters:VisibleIfFalse x:Key="VisibilityConverter" />
 
         <DataTemplate x:Key="GeneralTemplate" x:DataType="models:GeneralPaneItem">
-            <controls:SettingsGroup x:Uid="GeneralSetting" Margin="0,-32,0,0">
-                <controls:Setting x:Uid="LanguageSetting">
-                    <controls:Setting.ActionContent>
-                        <ComboBox
-                            MinWidth="{StaticResource SettingActionControlMinWidth}"
-                            ItemsSource="{x:Bind ViewModel.Languages}"
-                            SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate xmlns:globalization="using:Windows.Globalization" x:DataType="globalization:Language">
-                                    <TextBlock Text="{x:Bind NativeName}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </controls:Setting.ActionContent>
-                    <controls:Setting.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF2B7;" />
-                    </controls:Setting.Icon>
-                </controls:Setting>
+            <StackPanel>
+                <controls:SettingsGroup x:Uid="GeneralSetting" Margin="0,-32,0,0">
+                    <controls:Setting x:Uid="LanguageSetting">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                ItemsSource="{x:Bind ViewModel.Languages}"
+                                SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate xmlns:globalization="using:Windows.Globalization" x:DataType="globalization:Language">
+                                        <TextBlock Text="{x:Bind NativeName}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF2B7;" />
+                        </controls:Setting.Icon>
+                    </controls:Setting>
 
-                <controls:Setting x:Uid="ReloadOnChangeSetting">
-                    <controls:Setting.ActionContent>
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
-                    </controls:Setting.ActionContent>
-                    <controls:Setting.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE149;" />
-                    </controls:Setting.Icon>
-                </controls:Setting>
+                    <controls:Setting x:Uid="StartupSetting" IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable, Mode=OneWay}">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
 
-                <controls:Setting x:Uid="StartupSetting" IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable, Mode=OneWay}">
-                    <controls:Setting.ActionContent>
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
-                    </controls:Setting.ActionContent>
-                </controls:Setting>
+                </controls:SettingsGroup>
 
-                <mux:Expander
-                    HorizontalAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch"
-                    IsExpanded="True">
-                    <mux:Expander.Header>
-                        <controls:Setting
-                            x:Uid="ConfigFileSetting"
-                            Icon="&#xE130;"
-                            Style="{StaticResource ExpanderHeaderSettingStyle}" />
-                    </mux:Expander.Header>
-                    <mux:Expander.Content>
-                        <Grid Margin="6">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" MinWidth="90" />
-                            </Grid.ColumnDefinitions>
-                            <TextBox
-                                Grid.Column="0"
-                                Margin="6"
-                                VerticalAlignment="Center"
-                                Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-                            <Button
-                                x:Uid="BrowseButton"
-                                Grid.Column="1"
-                                Margin="6"
-                                HorizontalAlignment="Stretch"
-                                Command="{x:Bind ViewModel.BrowseAsyncCommand}" />
-                        </Grid>
-                    </mux:Expander.Content>
-                </mux:Expander>
-            </controls:SettingsGroup>
+                <controls:SettingsGroup x:Uid="ConfigFileSetting">
+                    <controls:Setting x:Uid="ReloadOnChangeSetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE149;" />
+                        </controls:Setting.Icon>
+                    </controls:Setting>
+
+                    <mux:Expander
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        IsExpanded="True">
+                        <mux:Expander.Header>
+                            <controls:Setting
+                                x:Uid="ConfigFilePathSetting"
+                                Icon="&#xE130;"
+                                Style="{StaticResource ExpanderHeaderSettingStyle}" />
+                        </mux:Expander.Header>
+                        <mux:Expander.Content>
+                            <Grid Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" MinWidth="90" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox
+                                    Grid.Column="0"
+                                    Margin="6"
+                                    VerticalAlignment="Center"
+                                    Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                                <Button
+                                    x:Uid="BrowseButton"
+                                    Grid.Column="1"
+                                    Margin="6"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{x:Bind ViewModel.BrowseAsyncCommand}" />
+                            </Grid>
+                        </mux:Expander.Content>
+                    </mux:Expander>
+                </controls:SettingsGroup>
+            </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="RulesTemplate" x:DataType="models:RulePaneItem">
-            <controls:SettingsGroup Margin="0,0,0,0">
-                <controls:Setting x:Uid="TitleBarColorSetting" Icon="&#xE790;">
-                    <controls:Setting.ActionContent>
-                        <ComboBox
-                            MinWidth="110"
-                            ItemsSource="{x:Bind ViewModel.ParentViewModel.TitlebarColorModes}"
-                            SelectedItem="{x:Bind ViewModel.TitlebarColor, Mode=TwoWay}">
-                            <ComboBox.ItemTemplateSelector>
-                                <selectors:TitlebarColorSelector>
-                                    <selectors:TitlebarColorSelector.Default>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="DefaultMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:TitlebarColorSelector.Default>
-                                    <selectors:TitlebarColorSelector.System>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="SystemMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:TitlebarColorSelector.System>
-                                    <selectors:TitlebarColorSelector.Light>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="LightMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:TitlebarColorSelector.Light>
-                                    <selectors:TitlebarColorSelector.Dark>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="DarkMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:TitlebarColorSelector.Dark>
-                                </selectors:TitlebarColorSelector>
-                            </ComboBox.ItemTemplateSelector>
-                        </ComboBox>
-                    </controls:Setting.ActionContent>
-                    <controls:Setting.Description>
-                        <StackPanel>
-                            <ContentControl Content="{Binding TitlebarColor}" DataContext="{x:Bind ViewModel, Mode=OneWay}">
-                                <ContentControl.ContentTemplateSelector>
+            <StackPanel>
+                <controls:SettingsGroup x:Uid="StyleSetting" Margin="0,-32,0,0">
+                    <controls:Setting x:Uid="TitleBarColorSetting" Icon="&#xE790;">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="110"
+                                ItemsSource="{x:Bind ViewModel.ParentViewModel.TitlebarColorModes}"
+                                SelectedItem="{x:Bind ViewModel.TitlebarColor, Mode=TwoWay}">
+                                <ComboBox.ItemTemplateSelector>
                                     <selectors:TitlebarColorSelector>
                                         <selectors:TitlebarColorSelector.Default>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="TitlebarColorDescription" />
-                                                    <Run x:Uid="DefaultTitlebarColorDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="DefaultMenuItem" />
                                             </DataTemplate>
                                         </selectors:TitlebarColorSelector.Default>
                                         <selectors:TitlebarColorSelector.System>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="TitlebarColorDescription" />
-                                                    <Run x:Uid="SystemTitlebarColorDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="SystemMenuItem" />
                                             </DataTemplate>
                                         </selectors:TitlebarColorSelector.System>
                                         <selectors:TitlebarColorSelector.Light>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="TitlebarColorDescription" />
-                                                    <Run x:Uid="LightTitlebarColorDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="LightMenuItem" />
                                             </DataTemplate>
                                         </selectors:TitlebarColorSelector.Light>
                                         <selectors:TitlebarColorSelector.Dark>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="TitlebarColorDescription" />
-                                                    <Run x:Uid="DarkTitlebarColorDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="DarkMenuItem" />
                                             </DataTemplate>
                                         </selectors:TitlebarColorSelector.Dark>
                                     </selectors:TitlebarColorSelector>
-                                </ContentControl.ContentTemplateSelector>
-                            </ContentControl>
-                            <TextBlock
-                                x:Uid="UnsupportedImmersiveDarkModeDescription"
-                                TextWrapping="WrapWholeWords"
-                                Visibility="{x:Bind ViewModel.ParentViewModel.IsImmersiveDarkModeSupported, Converter={StaticResource VisibilityConverter}}" />
-                        </StackPanel>
-                    </controls:Setting.Description>
-                </controls:Setting>
+                                </ComboBox.ItemTemplateSelector>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Description>
+                            <StackPanel>
+                                <ContentControl Content="{Binding TitlebarColor}" DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <selectors:TitlebarColorSelector>
+                                            <selectors:TitlebarColorSelector.Default>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="DefaultTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.Default>
+                                            <selectors:TitlebarColorSelector.System>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="SystemTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.System>
+                                            <selectors:TitlebarColorSelector.Light>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="LightTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.Light>
+                                            <selectors:TitlebarColorSelector.Dark>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="DarkTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.Dark>
+                                        </selectors:TitlebarColorSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                                <TextBlock
+                                    x:Uid="UnsupportedImmersiveDarkModeDescription"
+                                    TextWrapping="WrapWholeWords"
+                                    Visibility="{x:Bind ViewModel.ParentViewModel.IsImmersiveDarkModeSupported, Converter={StaticResource VisibilityConverter}}" />
+                            </StackPanel>
+                        </controls:Setting.Description>
+                    </controls:Setting>
 
-                <controls:Setting x:Uid="BackdropTypeSetting" Icon="&#xF5EF;">
-                    <controls:Setting.ActionContent>
-                        <ComboBox
-                            MinWidth="110"
-                            ItemsSource="{x:Bind ViewModel.ParentViewModel.BackdropTypes}"
-                            SelectedItem="{x:Bind ViewModel.BackdropType, Mode=TwoWay}">
-                            <ComboBox.ItemTemplateSelector>
-                                <selectors:BackdropTypeSelector>
-                                    <selectors:BackdropTypeSelector.Default>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="DefaultMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:BackdropTypeSelector.Default>
-                                    <selectors:BackdropTypeSelector.None>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="NoneMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:BackdropTypeSelector.None>
-                                    <selectors:BackdropTypeSelector.Mica>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="MicaMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:BackdropTypeSelector.Mica>
-                                    <selectors:BackdropTypeSelector.Acrylic>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="AcrylicMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:BackdropTypeSelector.Acrylic>
-                                    <selectors:BackdropTypeSelector.Tabbed>
-                                        <DataTemplate>
-                                            <TextBlock x:Uid="TabbedMenuItem" />
-                                        </DataTemplate>
-                                    </selectors:BackdropTypeSelector.Tabbed>
-                                </selectors:BackdropTypeSelector>
-                            </ComboBox.ItemTemplateSelector>
-                        </ComboBox>
-                    </controls:Setting.ActionContent>
-                    <controls:Setting.Description>
-                        <StackPanel>
-                            <ContentControl Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}" DataContext="{x:Bind ViewModel.BackdropType}">
-                                <ContentControl.ContentTemplateSelector>
+                    <controls:Setting x:Uid="BackdropTypeSetting" Icon="&#xF5EF;">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="110"
+                                ItemsSource="{x:Bind ViewModel.ParentViewModel.BackdropTypes}"
+                                SelectedItem="{x:Bind ViewModel.BackdropType, Mode=TwoWay}">
+                                <ComboBox.ItemTemplateSelector>
                                     <selectors:BackdropTypeSelector>
                                         <selectors:BackdropTypeSelector.Default>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="BackdropDescription" />
-                                                    <Run x:Uid="DefaultBackdropDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="DefaultMenuItem" />
                                             </DataTemplate>
                                         </selectors:BackdropTypeSelector.Default>
                                         <selectors:BackdropTypeSelector.None>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="BackdropDescription" />
-                                                    <Run x:Uid="NoneBackdropDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="NoneMenuItem" />
                                             </DataTemplate>
                                         </selectors:BackdropTypeSelector.None>
                                         <selectors:BackdropTypeSelector.Mica>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="BackdropDescription" />
-                                                    <Run x:Uid="MicaBackdropDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="MicaMenuItem" />
                                             </DataTemplate>
                                         </selectors:BackdropTypeSelector.Mica>
                                         <selectors:BackdropTypeSelector.Acrylic>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="BackdropDescription" />
-                                                    <Run x:Uid="AcrylicBackdropDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="AcrylicMenuItem" />
                                             </DataTemplate>
                                         </selectors:BackdropTypeSelector.Acrylic>
                                         <selectors:BackdropTypeSelector.Tabbed>
                                             <DataTemplate>
-                                                <TextBlock TextWrapping="WrapWholeWords">
-                                                    <Run x:Uid="BackdropDescription" />
-                                                    <Run x:Uid="TabbedBackdropDescription" />
-                                                </TextBlock>
+                                                <TextBlock x:Uid="TabbedMenuItem" />
                                             </DataTemplate>
                                         </selectors:BackdropTypeSelector.Tabbed>
                                     </selectors:BackdropTypeSelector>
-                                </ContentControl.ContentTemplateSelector>
-                            </ContentControl>
-                            <TextBlock
-                                x:Uid="UnsupportedMicaDescription"
-                                TextWrapping="WrapWholeWords"
-                                Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
-                            <TextBlock
-                                x:Uid="UnsupportedBackdropDescription"
-                                TextWrapping="WrapWholeWords"
-                                Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
-                        </StackPanel>
-                    </controls:Setting.Description>
-                </controls:Setting>
+                                </ComboBox.ItemTemplateSelector>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Description>
+                            <StackPanel>
+                                <ContentControl Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}" DataContext="{x:Bind ViewModel.BackdropType}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <selectors:BackdropTypeSelector>
+                                            <selectors:BackdropTypeSelector.Default>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="DefaultBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Default>
+                                            <selectors:BackdropTypeSelector.None>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="NoneBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.None>
+                                            <selectors:BackdropTypeSelector.Mica>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="MicaBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Mica>
+                                            <selectors:BackdropTypeSelector.Acrylic>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="AcrylicBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Acrylic>
+                                            <selectors:BackdropTypeSelector.Tabbed>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="TabbedBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Tabbed>
+                                        </selectors:BackdropTypeSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                                <TextBlock
+                                    x:Uid="UnsupportedMicaDescription"
+                                    TextWrapping="WrapWholeWords"
+                                    Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
+                                <TextBlock
+                                    x:Uid="UnsupportedBackdropDescription"
+                                    TextWrapping="WrapWholeWords"
+                                    Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
+                            </StackPanel>
+                        </controls:Setting.Description>
+                    </controls:Setting>
+                </controls:SettingsGroup>
 
-                <controls:Setting x:Uid="ExtendFrameIntoClientAreaSetting">
-                    <controls:Setting.ActionContent>
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
-                    </controls:Setting.ActionContent>
-                </controls:Setting>
+                <controls:SettingsGroup x:Uid="AdvancedSetting">
+                    <controls:Setting x:Uid="ExtendFrameIntoClientAreaSetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
 
-                <controls:Setting x:Uid="BlurBehindSetting">
-                    <controls:Setting.ActionContent>
-                        <ToggleSwitch IsOn="{x:Bind ViewModel.EnableBlurBehind, Mode=TwoWay}" />
-                    </controls:Setting.ActionContent>
-                </controls:Setting>
-            </controls:SettingsGroup>
+                    <controls:Setting x:Uid="BlurBehindSetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.EnableBlurBehind, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
+
+            </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
 

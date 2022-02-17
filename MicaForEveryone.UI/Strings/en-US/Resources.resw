@@ -172,7 +172,7 @@
     <value>Make windows translucent and blurred. Disabling this option requires you to close and reopen affected windows.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Enable Blur Behind</value>
+    <value>Blur Behind</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>Browse</value>
@@ -198,11 +198,11 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Error in config file</value>
   </data>
-  <data name="ConfigFileSetting.Description" xml:space="preserve">
-    <value>File to be used for saving and loading rules</value>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>File to be used for saving and loading rules.</value>
   </data>
-  <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Config file path</value>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>File Path</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dark</value>
@@ -292,7 +292,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Reloads config automatically when the config file gets changed.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Reload Config File on changes</value>
+    <value>Reload on change</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Remove Rule</value>
@@ -368,5 +368,14 @@ Fix errors then use "Reload config file" option to reload it.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Config File</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Style</value>
   </data>
 </root>
