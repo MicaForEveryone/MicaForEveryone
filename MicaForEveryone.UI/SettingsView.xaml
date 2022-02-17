@@ -454,22 +454,36 @@
                         <StackPanel
                             x:Name="AboutSection"
                             Grid.Row="1"
-                            Margin="0,24,0,0"
+                            Margin="0,32,0,0"
                             Orientation="Vertical"
-                            Spacing="8"
+                            Spacing="4"
                             XYFocusKeyboardNavigation="Enabled">
                             <TextBlock
                                 x:Uid="AboutTitle"
                                 FontSize="14"
                                 FontWeight="Bold" />
-                            <TextBlock x:Uid="AppNameLabel" />
-                            <TextBlock>
-                                <Run x:Uid="VersionLabel" />
+                            <TextBlock Margin="0,4,0,12">
+                                <Run x:Uid="AppNameLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
+                                <LineBreak />
+                                <Run Text="By Minusium" />
                             </TextBlock>
                             <HyperlinkButton x:Uid="GitHubButton" TabIndex="3" />
                             <HyperlinkButton x:Uid="TelegramButton" />
-                            <HyperlinkButton x:Uid="TwitterButton" />
+                            <HyperlinkButton x:Uid="TwitterButton" Margin="0,0,0,12" />
+                            <TextBlock>
+                                <Run Text="Icon by" />
+                                <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
+                                    <Run Text="Dongle the Gadget" />
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBlock Margin="0,4,0,0">
+                                <Run Text="Translators: " />
+                                <LineBreak />
+                                <Hyperlink NavigateUri="https://github.com/xoascf">
+                                    <Run Text="Amaro Martínez" />
+                                </Hyperlink>
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
