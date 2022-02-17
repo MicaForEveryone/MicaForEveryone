@@ -43,9 +43,6 @@ namespace MicaForEveryone.ViewModels
             AddProcessRuleCommand = new RelayCommand(DoAddProcessRule);
             AddClassRuleCommand = new RelayCommand(DoAddClassRule);
             RemoveRuleAsyncCommand = new AsyncRelayCommand(DoRemoveRuleAsync, CanRemoveRule);
-            ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
-            EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
-            ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
 
             if (Application.IsPackaged)
             {
@@ -89,9 +86,6 @@ namespace MicaForEveryone.ViewModels
         public ICommand AddProcessRuleCommand { get; }
         public ICommand AddClassRuleCommand { get; }
         public IAsyncRelayCommand RemoveRuleAsyncCommand { get; }
-        public ICommand EditConfigCommand { get; }
-        public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
-        public IAsyncRelayCommand ResetConfigAsyncCommand { get; }
 
         // public methods
 
@@ -252,29 +246,5 @@ namespace MicaForEveryone.ViewModels
 
         private bool CanRemoveRule() => SelectedPane != null &&
             SelectedPane.ItemType is not (PaneItemType.General or PaneItemType.Global);
-
-        private async Task DoReloadConfigAsync()
-        {
-            await _settingsService.LoadRulesAsync();
-        }
-
-        private void DoOpenConfigInEditor()
-        {
-            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
-            {
-                UseShellExecute = true
-            };
-            if (startInfo.Verbs.Contains("edit"))
-            {
-                startInfo.Verb = "edit";
-            }
-            Process.Start(startInfo);
-        }
-
-        private async Task DoResetConfigAsync()
-        {
-            await _settingsService.ConfigFile.ResetAsync();
-            await _settingsService.LoadRulesAsync();
-        }
     }
 }

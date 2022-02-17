@@ -270,9 +270,6 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="OkButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-  <data name="OpenInEditorAppBarButton.Label" xml:space="preserve">
-    <value>Open config in text editor</value>
-  </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
     <value>Open in text editor</value>
   </data>
@@ -281,9 +278,6 @@ Fix errors then use "Reload config file" option to reload it.</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
     <value>Process Name:</value>
-  </data>
-  <data name="ReloadAppBarButton.Label" xml:space="preserve">
-    <value>Reload config file</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
     <value>Reload</value>
@@ -296,9 +290,6 @@ Fix errors then use "Reload config file" option to reload it.</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Remove Rule</value>
-  </data>
-  <data name="ResetAppBarButton.Label" xml:space="preserve">
-    <value>Reset config to default</value>
   </data>
   <data name="SaveButton.Content" xml:space="preserve">
     <value>Save</value>
@@ -377,5 +368,26 @@ Fix errors then use "Reload config file" option to reload it.</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
     <value>Style</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Open config file in your default text editor.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Edit in Text Editor</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Reload rules from config file then apply them to all open windows.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Restore default rules and delete all changes.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="RulesAppBarButton.Label" xml:space="preserve">
+    <value>Rules</value>
   </data>
 </root>

@@ -130,13 +130,13 @@
     <value>Acerca de esta aplicación</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Color de la barra de título:</value>
+    <value>Color de la barra de título</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Extender el marco al área de cliente</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Tipo de efecto de fondo:</value>
+    <value>Tipo de efecto de fondo</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
     <value>Ejecutar al inicio</value>
@@ -318,10 +318,10 @@
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
     <value>Escriba el nombre de clase de ventana</value>
   </data>
-  <data name="OpenInEditorAppBarButton.Label" xml:space="preserve">
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
     <value>Abrir configuración en el editor de texto</value>
   </data>
-  <data name="ReloadAppBarButton.Label" xml:space="preserve">
+  <data name="ReloadSetting.Header" xml:space="preserve">
     <value>Volver a cargar el archivo de configuración</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
@@ -334,7 +334,7 @@
     <value>El modo oscuro inmersivo requiere al menos la compilación 19041 de Windows.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>Ruta del archivo de configuración:</value>
+    <value>Ruta del archivo de configuración</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
     <value>Archivo que se usará para guardar y cargar las reglas</value>
@@ -351,7 +351,7 @@
   <data name="LanguageSetting.Description" xml:space="preserve">
     <value>Establezca su idioma preferido para la interfaz de usuario. La aplicación necesita un reinicio para que surta efecto.</value>
   </data>
-  <data name="ResetAppBarButton.Label" xml:space="preserve">
+  <data name="ResetSetting.Header" xml:space="preserve">
     <value>Restablecer a la configuración predeterminada</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">

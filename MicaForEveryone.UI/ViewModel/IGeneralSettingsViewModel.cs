@@ -17,5 +17,9 @@ namespace MicaForEveryone.UI.ViewModels
         string ConfigFilePath { get; set; }
 
         IAsyncRelayCommand BrowseAsyncCommand { get; }
+
+        ICommand EditConfigCommand { get; }
+        IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
+        IAsyncRelayCommand ResetConfigAsyncCommand { get; }
     }
 }

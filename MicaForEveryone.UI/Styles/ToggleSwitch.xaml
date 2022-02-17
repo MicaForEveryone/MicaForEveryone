@@ -30,8 +30,7 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                        <ContentPresenter
-                            x:Name="HeaderContentPresenter"
+                        <ContentPresenter x:Name="HeaderContentPresenter"
                             Grid.Row="0"
                             Margin="{ThemeResource ToggleSwitchTopHeaderMargin}"
                             VerticalAlignment="Top"
@@ -59,8 +58,7 @@
                                 <ColumnDefinition Width="12" MaxWidth="12" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid
-                                x:Name="SwitchAreaGrid"
+                            <Grid x:Name="SwitchAreaGrid"
                                 Grid.RowSpan="3"
                                 Grid.ColumnSpan="3"
                                 Margin="0,5"
@@ -68,8 +66,7 @@
                                 contract7Present:CornerRadius="{TemplateBinding CornerRadius}"
                                 Background="{ThemeResource ToggleSwitchContainerBackground}"
                                 Control.IsTemplateFocusTarget="True" />
-                            <ContentPresenter
-                                x:Name="OffContentPresenter"
+                            <ContentPresenter x:Name="OffContentPresenter"
                                 Grid.RowSpan="3"
                                 Grid.Column="0"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -80,8 +77,7 @@
                                 Foreground="{TemplateBinding Foreground}"
                                 IsHitTestVisible="False"
                                 Opacity="0" />
-                            <ContentPresenter
-                                x:Name="OnContentPresenter"
+                            <ContentPresenter x:Name="OnContentPresenter"
                                 Grid.RowSpan="3"
                                 Grid.Column="0"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -92,8 +88,7 @@
                                 Foreground="{TemplateBinding Foreground}"
                                 IsHitTestVisible="False"
                                 Opacity="0" />
-                            <Rectangle
-                                x:Name="OuterBorder"
+                            <Rectangle x:Name="OuterBorder"
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Width="40"
@@ -103,8 +98,7 @@
                                 RadiusY="10"
                                 Stroke="{ThemeResource ToggleSwitchStrokeOff}"
                                 StrokeThickness="{ThemeResource ToggleSwitchOuterBorderStrokeThickness}" />
-                            <Rectangle
-                                x:Name="SwitchKnobBounds"
+                            <Rectangle x:Name="SwitchKnobBounds"
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Width="40"
@@ -115,15 +109,13 @@
                                 RadiusY="10"
                                 Stroke="{ThemeResource ToggleSwitchStrokeOn}"
                                 StrokeThickness="{ThemeResource ToggleSwitchOnStrokeThickness}" />
-                            <Grid
-                                x:Name="SwitchKnob"
+                            <Grid x:Name="SwitchKnob"
                                 Grid.Row="1"
                                 Grid.Column="2"
                                 Width="20"
                                 Height="20"
                                 HorizontalAlignment="Left">
-                                <Border
-                                    x:Name="SwitchKnobOn"
+                                <Border x:Name="SwitchKnobOn"
                                     Grid.Column="2"
                                     Width="12"
                                     Height="12"
@@ -139,8 +131,7 @@
                                         <CompositeTransform />
                                     </Border.RenderTransform>
                                 </Border>
-                                <Rectangle
-                                    x:Name="SwitchKnobOff"
+                                <Rectangle x:Name="SwitchKnobOff"
                                     Grid.Column="2"
                                     Width="12"
                                     Height="12"
@@ -158,8 +149,7 @@
                                     <TranslateTransform x:Name="KnobTranslateTransform" />
                                 </Grid.RenderTransform>
                             </Grid>
-                            <Thumb
-                                x:Name="SwitchThumb"
+                            <Thumb x:Name="SwitchThumb"
                                 Grid.RowSpan="3"
                                 Grid.ColumnSpan="3"
                                 AutomationProperties.AccessibilityView="Raw">
@@ -440,8 +430,7 @@
                             <VisualStateGroup x:Name="ToggleStates">
 
                                 <VisualStateGroup.Transitions>
-                                    <VisualTransition
-                                        x:Name="DraggingToOnTransition"
+                                    <VisualTransition x:Name="DraggingToOnTransition"
                                         GeneratedDuration="0"
                                         From="Dragging"
                                         To="On">
@@ -462,8 +451,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition
-                                        x:Name="OnToDraggingTransition"
+                                    <VisualTransition x:Name="OnToDraggingTransition"
                                         GeneratedDuration="0"
                                         From="On"
                                         To="Dragging">
@@ -479,8 +467,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition
-                                        x:Name="DraggingToOffTransition"
+                                    <VisualTransition x:Name="DraggingToOffTransition"
                                         GeneratedDuration="0"
                                         From="Dragging"
                                         To="Off">
@@ -498,8 +485,7 @@
                                             </DoubleAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition
-                                        x:Name="OnToOffTransition"
+                                    <VisualTransition x:Name="OnToOffTransition"
                                         GeneratedDuration="0"
                                         From="On"
                                         To="Off">
@@ -508,8 +494,7 @@
                                             <RepositionThemeAnimation FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" TargetName="SwitchKnob" />
                                         </Storyboard>
                                     </VisualTransition>
-                                    <VisualTransition
-                                        x:Name="OffToOnTransition"
+                                    <VisualTransition x:Name="OffToOnTransition"
                                         GeneratedDuration="0"
                                         From="Off"
                                         To="On">

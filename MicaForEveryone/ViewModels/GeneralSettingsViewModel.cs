@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.Globalization;
 using Windows.Storage.Pickers;
 using Windows.UI.Core;
@@ -33,6 +36,10 @@ namespace MicaForEveryone.ViewModels
             _currentLanguage = _languageService.CurrentLanguage;
             Languages = _languageService.SupportedLanguages;
             BrowseAsyncCommand = new AsyncRelayCommand(DoBrowseAsync);
+
+            ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
+            EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
+            ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
 
             _settingsService.Changed += SettingsService_Changed;
         }
@@ -110,6 +117,10 @@ namespace MicaForEveryone.ViewModels
 
         public IAsyncRelayCommand BrowseAsyncCommand { get; }
 
+        public ICommand EditConfigCommand { get; }
+        public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
+        public IAsyncRelayCommand ResetConfigAsyncCommand { get; }
+
         // event handlers
 
         private void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
@@ -163,6 +174,30 @@ namespace MicaForEveryone.ViewModels
                 _settingsService.ConfigFile.FilePath = file.Path;
                 await _settingsService.CommitChangesAsync(SettingsChangeType.ConfigFilePathChanged, null);
             }
+        }
+
+        private async Task DoReloadConfigAsync()
+        {
+            await _settingsService.LoadRulesAsync();
+        }
+
+        private void DoOpenConfigInEditor()
+        {
+            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
+            {
+                UseShellExecute = true
+            };
+            if (startInfo.Verbs.Contains("edit"))
+            {
+                startInfo.Verb = "edit";
+            }
+            Process.Start(startInfo);
+        }
+
+        private async Task DoResetConfigAsync()
+        {
+            await _settingsService.ConfigFile.ResetAsync();
+            await _settingsService.LoadRulesAsync();
         }
     }
 }

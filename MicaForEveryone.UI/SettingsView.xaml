@@ -2,6 +2,7 @@
     x:Class="MicaForEveryone.UI.SettingsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:controls="using:MicaForEveryone.UI.Controls"
     xmlns:converters="using:MicaForEveryone.UI.Converters"
     xmlns:models="using:MicaForEveryone.UI.Models"
@@ -81,6 +82,40 @@
                             </Grid>
                         </mux:Expander.Content>
                     </mux:Expander>
+
+                    <Button Command="{x:Bind ViewModel.EditConfigCommand}" Style="{ThemeResource SettingButtonStyle}">
+                        <controls:Setting
+                            x:Uid="OpenInEditorSetting"
+                            Icon="&#xE104;"
+                            Style="{StaticResource ExpanderHeaderSettingStyle}">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
+
+                    <Button Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}" Style="{ThemeResource SettingButtonStyle}">
+                        <controls:Setting
+                            x:Uid="ReloadSetting"
+                            Icon="&#xE149;"
+                            Style="{StaticResource ExpanderHeaderSettingStyle}">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
+
+                    <Button Command="{x:Bind ViewModel.ResetConfigAsyncCommand}" Style="{ThemeResource SettingButtonStyle}">
+                        <controls:Setting
+                            x:Uid="ResetSetting"
+                            Icon="&#xE10E;"
+                            Style="{StaticResource ExpanderHeaderSettingStyle}">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
+
                 </controls:SettingsGroup>
             </StackPanel>
         </DataTemplate>
@@ -285,6 +320,7 @@
     </UserControl.Resources>
 
     <Grid
+        x:Name="RootElement"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         TabFocusNavigation="Cycle"
         XYFocusKeyboardNavigation="Enabled">
@@ -294,18 +330,37 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock
-            x:Uid="SettingsTitle"
-            Grid.Row="0"
-            Margin="24,12,12,12"
-            Style="{ThemeResource TitleTextBlockStyle}" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <AppBarButton
+                x:Name="RulesAppBarButton"
+                Grid.Column="0"
+                Width="48"
+                Margin="16,10,4,8"
+                Click="AppBarButton_Click"
+                LabelPosition="Collapsed">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE700;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <TextBlock
+                x:Name="SettingsTitle"
+                x:Uid="SettingsTitle"
+                Grid.Column="1"
+                Margin="8,8,4,8"
+                VerticalAlignment="Center"
+                Style="{ThemeResource TitleTextBlockStyle}" />
+        </Grid>
 
         <SplitView
+            x:Name="MainSplitView"
             Grid.Row="1"
-            DisplayMode="Inline"
-            IsPaneOpen="True"
-            OpenPaneLength="250"
-            PaneBackground="Transparent">
+            PaneBackground="{x:Bind RootElement.Background}">
             <SplitView.Pane>
                 <ListView
                     IsTabStop="True"
@@ -377,7 +432,7 @@
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
-                <ScrollViewer Margin="4" Padding="8,0,8,0">
+                <ScrollViewer Padding="16,4,16,4">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -423,15 +478,16 @@
 
         <Grid Grid.Row="2" Margin="8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <CommandBar
                 Grid.Column="0"
+                HorizontalAlignment="Left"
                 DefaultLabelPosition="Right"
                 IsTabStop="True"
+                OverflowButtonVisibility="Collapsed"
                 TabIndex="2"
                 XYFocusKeyboardNavigation="Enabled">
                 <AppBarButton
@@ -455,30 +511,14 @@
                 </AppBarButton>
                 <AppBarButton
                     x:Uid="RemoveRuleAppBarButton"
-                    Grid.Column="1"
                     Margin="2"
                     Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
                     Icon="Remove" />
-                <CommandBar.SecondaryCommands>
-                    <AppBarButton
-                        x:Uid="OpenInEditorAppBarButton"
-                        Command="{x:Bind ViewModel.EditConfigCommand}"
-                        Icon="Edit" />
-                    <AppBarButton
-                        x:Uid="ReloadAppBarButton"
-                        Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}"
-                        Icon="Refresh" />
-                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigAsyncCommand}">
-                        <AppBarButton.Icon>
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE10E;" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </CommandBar.SecondaryCommands>
             </CommandBar>
 
             <Button
                 x:Uid="CloseButton"
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="2"
                 Command="{x:Bind ViewModel.CloseCommand}"
                 IsTabStop="True"
@@ -495,7 +535,27 @@
                     <VisualState.Setters>
                         <Setter Target="AboutSection.(Grid.Row)" Value="0" />
                         <Setter Target="AboutSection.(Grid.Column)" Value="1" />
-                        <Setter Target="AboutSection.Margin" Value="24,0,24,0" />
+                        <Setter Target="AboutSection.Margin" Value="48,0,32,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="650" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainSplitView.PaneBackground" Value="Transparent" />
+                        <Setter Target="MainSplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="MainSplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="MainSplitView.OpenPaneLength" Value="250" />
+                        <Setter Target="RulesAppBarButton.Visibility" Value="Collapsed" />
+                        <Setter Target="SettingsTitle.Margin" Value="24,12,12,12" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>
