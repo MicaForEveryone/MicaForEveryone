@@ -384,4 +384,13 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="ResetSetting.Header" xml:space="preserve">
     <value>Reset</value>
   </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Icon by:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Translations by:</value>
+  </data>
 </root>

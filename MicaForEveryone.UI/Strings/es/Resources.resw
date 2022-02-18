@@ -246,6 +246,9 @@
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
     <value>Claro usa el tema claro.</value>
   </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Establezca el tipo de efecto de fondo,</value>
+  </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
     <value>Predeterminado no hace nada para así mantener el efecto de fondo predeterminado de la aplicación.</value>
   </data>
@@ -372,9 +375,6 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
   <data name="StyleSetting.Header" xml:space="preserve">
     <value>Estilo</value>
   </data>
-  <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Establezca el tipo de efecto de fondo,</value>
-  </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
     <value>Abre el archivo de configuración en su editor de texto predeterminado.</value>
   </data>
@@ -383,5 +383,14 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
     <value>Vuelve a cargar las reglas desde el archivo de configuración y las aplica a todas las ventanas abiertas.</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Por</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Icono por:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Traducido por:</value>
   </data>
 </root>

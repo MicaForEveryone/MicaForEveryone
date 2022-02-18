@@ -384,4 +384,13 @@
   <data name="ResetSetting.Header" xml:space="preserve">
     <value>بازنشانی</value>
   </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>ارائه شده توسط</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>نماد برنامه توسط:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>ترجمه توسط:</value>
+  </data>
 </root>

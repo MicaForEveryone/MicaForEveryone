@@ -466,19 +466,20 @@
                                 <Run x:Uid="AppNameLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
                                 <LineBreak />
-                                <Run Text="By Minusium" />
+                                <Run x:Uid="Credit" />
+                                <Run Text="Minusium" />
                             </TextBlock>
                             <HyperlinkButton x:Uid="GitHubButton" TabIndex="3" />
                             <HyperlinkButton x:Uid="TelegramButton" />
                             <HyperlinkButton x:Uid="TwitterButton" Margin="0,0,0,12" />
                             <TextBlock>
-                                <Run Text="Icon by" />
+                                <Run x:Uid="IconCredit" />
                                 <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
                                     <Run Text="Dongle the Gadget" />
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Margin="0,4,0,0">
-                                <Run Text="Translators: " />
+                                <Run x:Uid="TranslatorsCredit" />
                                 <LineBreak />
                                 <Hyperlink NavigateUri="https://github.com/xoascf">
                                     <Run Text="Amaro Martínez" />
