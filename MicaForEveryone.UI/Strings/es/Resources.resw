@@ -246,7 +246,7 @@
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
     <value>Claro usa el tema claro.</value>
   </data>
-  <data name="BackdropSetting.Description" xml:space="preserve">
+  <data name="BackdropDescription.Text" xml:space="preserve">
     <value>Establezca el tipo de efecto de fondo,</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
@@ -374,5 +374,14 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
     <value>estilo</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Por</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Icono por:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Traducido por:</value>
   </data>
 </root>
