@@ -1,99 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0'">
-    <VisualStudioVersion>15.0</VisualStudioVersion>
-  </PropertyGroup>
-  <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug|x64">
-      <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|ARM64">
-      <Configuration>Debug</Configuration>
-      <Platform>ARM64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|ARM64">
-      <Configuration>Release</Configuration>
-      <Platform>ARM64</Platform>
-    </ProjectConfiguration>
-  </ItemGroup>
-  <PropertyGroup>
-    <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetPlatformVersion>10.0.22000.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.22000.0</TargetPlatformMinVersion>
-    <DefaultLanguage>en-US</DefaultLanguage>
-    <AppxPackageSigningEnabled>false</AppxPackageSigningEnabled>
-    <EntryPointProjectUniqueName>..\MicaForEveryone\MicaForEveryone.csproj</EntryPointProjectUniqueName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(CertificateThumbprint)'==''">
-    <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
-  </PropertyGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
-    </AppxManifest>
-  </ItemGroup>
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
-  <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.19041.8" PrivateAssets="all" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\LargeTile.scale-100.png" />
-    <Content Include="Assets\LargeTile.scale-200.png" />
-    <Content Include="Assets\SmallTile.scale-100.png" />
-    <Content Include="Assets\SmallTile.scale-125.png" />
-    <Content Include="Assets\SmallTile.scale-150.png" />
-    <Content Include="Assets\SmallTile.scale-200.png" />
-    <Content Include="Assets\SmallTile.scale-400.png" />
-    <Content Include="Assets\Square150x150Logo.scale-100.png" />
-    <Content Include="Assets\Square150x150Logo.scale-125.png" />
-    <Content Include="Assets\Square150x150Logo.scale-150.png" />
-    <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square150x150Logo.scale-400.png" />
-    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
-    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
-    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
-    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
-    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
-    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
-    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
-    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
-    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
-    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
-    <Content Include="Assets\Square44x44Logo.scale-100.png" />
-    <Content Include="Assets\Square44x44Logo.scale-125.png" />
-    <Content Include="Assets\Square44x44Logo.scale-150.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-400.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
-    <Content Include="Assets\StoreLogo.scale-100.png" />
-    <Content Include="Assets\StoreLogo.scale-125.png" />
-    <Content Include="Assets\StoreLogo.scale-150.png" />
-    <Content Include="Assets\StoreLogo.scale-200.png" />
-    <Content Include="Assets\StoreLogo.scale-400.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MicaForEveryone\MicaForEveryone.csproj">
-      <PublishProfile>Properties\PublishProfiles\msix.pubxml</PublishProfile>
-    </ProjectReference>
-  </ItemGroup>
-  <Target Name="ReleaseMsix" DependsOnTargets="Build">
-    <PropertyGroup>
-      <ReleaseDirectory Condition="'$(ReleaseDirectory)'==''">..\Release</ReleaseDirectory>
-      <MsixName Condition="'$(MsixName)'==''">$(MSBuildProjectName)-$(Platform)-$(Configuration).msixbundle</MsixName>
+    <PropertyGroup Condition="'$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '15.0'">
+        <VisualStudioVersion>15.0</VisualStudioVersion>
     </PropertyGroup>
-    <MakeDir Directories="$(ReleaseDirectory)" />
-    <Copy SourceFiles="$(AppxBundleOutput)" DestinationFiles="$(ReleaseDirectory)\$(MsixName)" />
-  </Target>
+    <ItemGroup Label="ProjectConfigurations">
+        <ProjectConfiguration Include="Debug|ARM64">
+            <Configuration>Debug</Configuration>
+            <Platform>ARM64</Platform>
+            <MfeProperties>RuntimeIdentifier=win-arm64;SelfContained=false</MfeProperties>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+            <MfeProperties>RuntimeIdentifier=win-x64;SelfContained=false</MfeProperties>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|ARM64">
+            <Configuration>Release</Configuration>
+            <Platform>ARM64</Platform>
+            <MfeProperties>RuntimeIdentifier=win-arm64;SelfContained=false</MfeProperties>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+            <MfeProperties>RuntimeIdentifier=win-x64;SelfContained=false</MfeProperties>
+        </ProjectConfiguration>
+    </ItemGroup>
+    <PropertyGroup>
+        <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
+        <TargetPlatformVersion>10.0.22000.0</TargetPlatformVersion>
+        <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+        <DefaultLanguage>en</DefaultLanguage>
+        <EntryPointProjectUniqueName>..\MicaForEveryone\MicaForEveryone.csproj</EntryPointProjectUniqueName>
+        <DebuggerType>CoreClr</DebuggerType>
+        <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+        <GenerateTestArtifacts>True</GenerateTestArtifacts>
+        <AppxBundlePlatforms>x64|arm64</AppxBundlePlatforms>
+        <AppxBundle>Always</AppxBundle>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(CertificateThumbprint)'==''">
+        <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
+    </PropertyGroup>
+    <ItemGroup>
+        <AppxManifest Include="Package.appxmanifest">
+            <SubType>Designer</SubType>
+        </AppxManifest>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference 
+            Include="..\MicaForEveryone\MicaForEveryone.csproj" 
+            SkipGetTargetFrameworkProperties="true" 
+            Properties="$(MfeProperties)" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="Assets\LargeTile.scale-100.png" />
+        <Content Include="Assets\LargeTile.scale-200.png" />
+        <Content Include="Assets\SmallTile.scale-100.png" />
+        <Content Include="Assets\SmallTile.scale-125.png" />
+        <Content Include="Assets\SmallTile.scale-150.png" />
+        <Content Include="Assets\SmallTile.scale-200.png" />
+        <Content Include="Assets\SmallTile.scale-400.png" />
+        <Content Include="Assets\Square150x150Logo.scale-100.png" />
+        <Content Include="Assets\Square150x150Logo.scale-125.png" />
+        <Content Include="Assets\Square150x150Logo.scale-150.png" />
+        <Content Include="Assets\Square150x150Logo.scale-200.png" />
+        <Content Include="Assets\Square150x150Logo.scale-400.png" />
+        <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+        <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+        <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+        <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+        <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+        <Content Include="Assets\Square44x44Logo.scale-100.png" />
+        <Content Include="Assets\Square44x44Logo.scale-125.png" />
+        <Content Include="Assets\Square44x44Logo.scale-150.png" />
+        <Content Include="Assets\Square44x44Logo.scale-200.png" />
+        <Content Include="Assets\Square44x44Logo.scale-400.png" />
+        <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+        <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+        <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+        <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+        <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+        <Content Include="Assets\StoreLogo.scale-100.png" />
+        <Content Include="Assets\StoreLogo.scale-125.png" />
+        <Content Include="Assets\StoreLogo.scale-150.png" />
+        <Content Include="Assets\StoreLogo.scale-200.png" />
+        <Content Include="Assets\StoreLogo.scale-400.png" />
+    </ItemGroup>
+    <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.props" />
+    <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
+    <Target Name="ReleaseMsix" DependsOnTargets="Build">
+        <PropertyGroup>
+            <ReleaseDirectory Condition="'$(ReleaseDirectory)'==''">..\Release</ReleaseDirectory>
+            <MsixName Condition="'$(MsixName)'==''">$(MSBuildProjectName)-$(Platform)-$(Configuration).msixbundle</MsixName>
+        </PropertyGroup>
+        <MakeDir Directories="$(ReleaseDirectory)" />
+        <Copy SourceFiles="$(AppxBundleOutput)" DestinationFiles="$(ReleaseDirectory)\$(MsixName)" />
+    </Target>
+    <!-- Additions for .NET Core 3 target -->
+    <PropertyGroup>
+        <PackageOutputGroups>@(PackageOutputGroups);__GetPublishItems</PackageOutputGroups>
+    </PropertyGroup>
+    <Target Name="_ValidateAppReferenceItems" />
+    <Target Name="_FixEntryPoint" AfterTargets="_ConvertItems">
+        <PropertyGroup>
+            <EntryPointExe>MicaForEveryone\MicaForEveryone.exe</EntryPointExe>
+        </PropertyGroup>
+    </Target>
+    <Target Name="PublishReferences" BeforeTargets="ExpandProjectReferences">
+        <MSBuild Projects="@(ProjectReference->'%(FullPath)')" BuildInParallel="$(BuildInParallel)" Targets="Publish" />
+    </Target>
 </Project>

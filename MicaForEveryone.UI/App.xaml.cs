@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.ApplicationModel.Activation;
 
 namespace MicaForEveryone.UI
 {

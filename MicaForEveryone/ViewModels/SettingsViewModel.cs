@@ -8,8 +8,8 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using Windows.UI.Core;
 using Microsoft.Extensions.DependencyInjection;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
