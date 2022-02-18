@@ -46,7 +46,8 @@ namespace MicaForEveryone.ViewModels
 
             if (Application.IsPackaged)
             {
-                Version = Package.Current.Id.Version.ToString() ?? "<unknown>";
+                var version = Package.Current.Id.Version;
+                Version = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
             }
             else
             {
