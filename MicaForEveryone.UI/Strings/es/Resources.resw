@@ -334,7 +334,7 @@
     <value>Ruta del archivo de configuración</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>Archivo que se usará para guardar y cargar las reglas</value>
+    <value>Archivo que se usará para guardar y cargar las reglas.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Idioma</value>
@@ -367,13 +367,22 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
     <value>General</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>avanzada</value>
+    <value>Avanzada</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>archivo de configuración</value>
+    <value>Archivo de configuración</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>estilo</value>
+    <value>Estilo</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Abre el archivo de configuración en su editor de texto predeterminado.</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Restaura las reglas predeterminadas y elimina todos los cambios.</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Vuelve a cargar las reglas desde el archivo de configuración y las aplica a todas las ventanas abiertas.</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
     <value>Por</value>
