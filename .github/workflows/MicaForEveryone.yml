@@ -55,7 +55,7 @@ jobs:
         Platform: ${{ matrix.platform }}
 
     - name: Package as MSIX
-      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:MsixName=$env:MSIX_FILE /t:ReleaseMsix
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundlePlatforms=$env:Platform /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:MsixName=$env:MSIX_FILE /t:ReleaseMsix
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
