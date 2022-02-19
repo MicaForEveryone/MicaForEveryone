@@ -17,11 +17,24 @@ namespace MicaForEveryone.Services
         public LanguageService()
         {
             SupportedLanguages = GetSupportedLanguages().ToArray();
-
-            var currentLanguage = ResourceManager.Current.DefaultContext.Languages[0];
-            CurrentLanguage = SupportedLanguages.First(
-                language => currentLanguage.StartsWith(language.LanguageTag));
+            foreach (var lstLanguage in Windows.System.UserProfile.GlobalizationPreferences.Languages)
+            {
+                var userLanuage = new Windows.Globalization.Language(lstLanguage);
+                var selLanguage = SupportedLanguages.FirstOrDefault(
+                language => userLanuage.LanguageTag == language.LanguageTag
+                );
+                if (selLanguage != null)
+                {
+                    CurrentLanguage = selLanguage;
+                    break;
+                }
+            }
+            if (CurrentLanguage == null)
+            {
+                CurrentLanguage = SupportedLanguages[0];
+            }
         }
+
 
         public Language[] SupportedLanguages { get; }
 
