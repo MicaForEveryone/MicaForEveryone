@@ -14,4 +14,4 @@ For more information check our [wiki page](https://github.com/minusium/MicaForEv
 ![Screenshot 3](Assets/3.png)
 
 ## Frequency Asked Questions
-Check issues, or [wiki page](https://github.com/minusium/MicaForEveryone/wiki/FAQ).
+Check [wiki page](https://github.com/minusium/MicaForEveryone/wiki/FAQ) or [issues](https://github.com/minusium/MicaForEveryone/issues).
