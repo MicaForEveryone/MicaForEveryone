@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Windows.Globalization;
 using Windows.ApplicationModel.Resources.Core;
+using Windows.System.UserProfile;
 
 using MicaForEveryone.Interfaces;
 
@@ -18,9 +19,19 @@ namespace MicaForEveryone.Services
         {
             SupportedLanguages = GetSupportedLanguages().ToArray();
 
-            var currentLanguage = ResourceManager.Current.DefaultContext.Languages[0];
-            CurrentLanguage = SupportedLanguages.First(
-                language => currentLanguage.StartsWith(language.LanguageTag));
+            var preferredLanguageTag = GlobalizationPreferences.Languages.FirstOrDefault(
+                l => SupportedLanguages.Any(
+                    sl => l.StartsWith(sl.LanguageTag, StringComparison.OrdinalIgnoreCase)));
+
+            if (preferredLanguageTag == null)
+            {
+                CurrentLanguage = SupportedLanguages[0];
+            }
+            else
+            {
+                CurrentLanguage = SupportedLanguages.First(
+                    l => preferredLanguageTag.StartsWith(l.LanguageTag, StringComparison.OrdinalIgnoreCase));
+            }
         }
 
         public Language[] SupportedLanguages { get; }
