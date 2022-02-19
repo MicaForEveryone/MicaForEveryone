@@ -284,8 +284,11 @@ namespace MicaForEveryone.Win32
             _isDisposing = true;
             _ = NativeMethods.DestroyWindow(Handle);
             Handle = IntPtr.Zero;
-            Class.Dispose();
-            _ = NativeMethods.DestroyIcon(Class.Icon);
+            if (Class != null)
+            {
+                Class.Dispose();
+                _ = NativeMethods.DestroyIcon(Class.Icon);
+            }
         }
 
         /// <summary>
