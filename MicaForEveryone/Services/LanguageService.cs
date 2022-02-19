@@ -21,7 +21,7 @@ namespace MicaForEveryone.Services
 
             var preferredLanguageTag = GlobalizationPreferences.Languages.FirstOrDefault(
                 l => SupportedLanguages.Any(
-                    sl => l.ToLower().StartsWith(sl.LanguageTag.ToLower())));
+                    sl => l.StartsWith(sl.LanguageTag, StringComparison.OrdinalIgnoreCase)));
 
             if (preferredLanguageTag == null)
             {
@@ -30,7 +30,7 @@ namespace MicaForEveryone.Services
             else
             {
                 CurrentLanguage = SupportedLanguages.First(
-                    l => preferredLanguageTag.ToLower().StartsWith(l.LanguageTag.ToLower()));
+                    l => preferredLanguageTag.StartsWith(l.LanguageTag, StringComparison.OrdinalIgnoreCase));
             }
         }
 
