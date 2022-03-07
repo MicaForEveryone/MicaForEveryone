@@ -484,6 +484,10 @@
                                 <Hyperlink NavigateUri="https://github.com/xoascf">
                                     <Run Text="Amaro Martínez" />
                                 </Hyperlink>
+								<LineBreak />
+                                <Hyperlink NavigateUri="https://github.com/Danik2343">
+                                    <Run Text="@Danik2343" />
+                                </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                     </Grid>
