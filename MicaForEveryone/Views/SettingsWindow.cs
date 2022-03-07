@@ -26,8 +26,8 @@ namespace MicaForEveryone.Views
         private SettingsWindow(SettingsView view) : base(view)
         {
             Style = WindowStyles.WS_OVERLAPPEDWINDOW & ~WindowStyles.WS_MAXIMIZEBOX;
-            Width = 820;
-            Height = 560;
+            Width = 1000;
+            Height = 700;
 
             _backgroundBrush = new XamlMicaBrush(View, this);
 
@@ -36,7 +36,6 @@ namespace MicaForEveryone.Views
 
             view.ViewModel = ViewModel;
             view.ActualThemeChanged += View_ActualThemeChanged;
-            view.Loaded += View_Loaded;
         }
 
         private ISettingsViewModel ViewModel { get; } =
@@ -55,10 +54,7 @@ namespace MicaForEveryone.Views
 
             DesktopWindowManager.SetImmersiveDarkMode(Handle, View.ActualTheme == ElementTheme.Dark);
             DesktopWindowManager.EnableMicaIfSupported(Handle);
-        }
 
-        private void View_Loaded(object sender, RoutedEventArgs e)
-        {
             ViewModel.Initialize(this);
             ShowWindow();
             SetForegroundWindow();

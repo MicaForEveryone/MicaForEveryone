@@ -8,8 +8,8 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using Windows.UI.Core;
 using Microsoft.Extensions.DependencyInjection;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
@@ -43,13 +43,11 @@ namespace MicaForEveryone.ViewModels
             AddProcessRuleCommand = new RelayCommand(DoAddProcessRule);
             AddClassRuleCommand = new RelayCommand(DoAddClassRule);
             RemoveRuleAsyncCommand = new AsyncRelayCommand(DoRemoveRuleAsync, CanRemoveRule);
-            ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
-            EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
-            ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
 
             if (Application.IsPackaged)
             {
-                Version = Package.Current.Id.Version.ToString() ?? "<unknown>";
+                var version = Package.Current.Id.Version;
+                Version = $"{version.Major}.{version.Minor}.{version.Build}.{version.Revision}";
             }
             else
             {
@@ -89,9 +87,6 @@ namespace MicaForEveryone.ViewModels
         public ICommand AddProcessRuleCommand { get; }
         public ICommand AddClassRuleCommand { get; }
         public IAsyncRelayCommand RemoveRuleAsyncCommand { get; }
-        public ICommand EditConfigCommand { get; }
-        public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
-        public IAsyncRelayCommand ResetConfigAsyncCommand { get; }
 
         // public methods
 
@@ -252,40 +247,5 @@ namespace MicaForEveryone.ViewModels
 
         private bool CanRemoveRule() => SelectedPane != null &&
             SelectedPane.ItemType is not (PaneItemType.General or PaneItemType.Global);
-
-        private async Task DoReloadConfigAsync()
-        {
-            try
-            {
-                await _settingsService.LoadRulesAsync();
-            }
-            catch (ParserError error)
-            {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
-                {
-                    var dialogService = Program.CurrentApp.Container.GetRequiredService<IDialogService>();
-                    dialogService.ShowErrorDialog(_window, error.Message, error.ToString(), 576, 400);
-                });
-            }
-        }
-
-        private void DoOpenConfigInEditor()
-        {
-            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
-            {
-                UseShellExecute = true
-            };
-            if (startInfo.Verbs.Contains("edit"))
-            {
-                startInfo.Verb = "edit";
-            }
-            Process.Start(startInfo);
-        }
-
-        private async Task DoResetConfigAsync()
-        {
-            await _settingsService.ConfigFile.ResetAsync();
-            await _settingsService.LoadRulesAsync();
-        }
     }
 }

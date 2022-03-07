@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
@@ -50,6 +50,19 @@ namespace MicaForEveryone.ViewModels
                 if (Rule != null && Rule.ExtendFrameIntoClientArea != value)
                 {
                     Rule.ExtendFrameIntoClientArea = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                }
+            }
+        }
+
+        public bool EnableBlurBehind
+        {
+            get => Rule?.EnableBlurBehind ?? default;
+            set
+            {
+                if (Rule != null && Rule.EnableBlurBehind != value)
+                {
+                    Rule.EnableBlurBehind = value;
                     _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
                 }
             }

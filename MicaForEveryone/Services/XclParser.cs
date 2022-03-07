@@ -22,7 +22,10 @@ namespace MicaForEveryone.Services
         {
             _xclContext.TypeMap.RegisterEnum(typeof(TitlebarColorMode));
             _xclContext.TypeMap.RegisterEnum(typeof(BackdropType));
-            _xclContext.TypeMap.RegisterByAttribute();
+            //_xclContext.TypeMap.RegisterByAttribute();
+            _xclContext.TypeMap.RegisterClass(typeof(GlobalRule));
+            _xclContext.TypeMap.RegisterClass(typeof(ProcessRule));
+            _xclContext.TypeMap.RegisterClass(typeof(ClassRule));
         }
 
         public async Task LoadAsync(StreamReader reader)

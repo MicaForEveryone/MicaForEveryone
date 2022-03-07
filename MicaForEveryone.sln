@@ -29,6 +29,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{9E
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "MicaForEveryone.Package", "MicaForEveryone.Package\MicaForEveryone.Package.wapproj", "{12503582-6D75-4DDE-97C7-B35BADE8D123}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{5D35A1AE-7CE4-48CF-BB91-62B22761BC24}"
+	ProjectSection(SolutionItems) = preProject
+		Assets\1.png = Assets\1.png
+		Assets\2.png = Assets\2.png
+		Assets\3.png = Assets\3.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM64 = Debug|ARM64
@@ -95,6 +102,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9EF51D86-285E-419C-AE09-14EBB7DE9EE9} = {D5E7CCF7-CA52-4B9F-9D85-747B72904A42}
+		{5D35A1AE-7CE4-48CF-BB91-62B22761BC24} = {A8704F1B-DF09-46DD-80AC-B7C6C442BE1D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB70A2FE-2621-4A29-B851-60431404AD36}

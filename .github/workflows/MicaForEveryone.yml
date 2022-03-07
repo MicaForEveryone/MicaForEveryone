@@ -35,15 +35,8 @@ jobs:
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild MicaForEveryone.sln /p:Configuration=$env:Configuration /p:Platform=$env:Platform /t:Restore
-      env:
-        Configuration: ${{ matrix.configuration }}
-        Platform: ${{ matrix.platform }}
-    
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:ZipName=$env:ZIP_FILE /t:ReleaseZip
+      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:ZipName=$env:ZIP_FILE /t:ReleaseZip
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
@@ -56,10 +49,13 @@ jobs:
         if-no-files-found: error
 
     - name: Clean MicaForEveryone.UI
-      run: msbuild MicaForEveryone.UI\MicaForEveryone.UI.csproj /t:Clean
+      run: msbuild MicaForEveryone.sln /p:Configuration=$env:Configuration /p:Platform=$env:Platform /t:Clean
+      env:
+        Configuration: ${{ matrix.configuration }}
+        Platform: ${{ matrix.platform }}
 
     - name: Package as MSIX
-      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundle=Always /p:AppxBundlePlatforms=$env:Platform /p:AppxSigningEnabled=false /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:MsixName=$env:MSIX_FILE /t:ReleaseMsix
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundlePlatforms=$env:Platform /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:MsixName=$env:MSIX_FILE /t:ReleaseMsix
       env:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}

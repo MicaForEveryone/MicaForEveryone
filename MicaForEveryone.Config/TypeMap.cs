@@ -21,23 +21,23 @@ namespace MicaForEveryone.Config
             RegisterType(typeof(bool), XclBooleanType.Instance);
         }
 
-        public void RegisterByAttribute()
-        {
-            var types = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(assembly => assembly.GetTypes())
-                .Where(type => type.IsDefined(typeof(XclTypeAttribute), true));
-            foreach (var type in types)
-            {
-                if (type.IsEnum)
-                {
-                    RegisterEnum(type);
-                }
-                else
-                {
-                    RegisterClass(type);
-                }
-            }
-        }
+        //public void RegisterByAttribute()
+        //{
+        //    var types = AppDomain.CurrentDomain.GetAssemblies()
+        //        .SelectMany(assembly => assembly.GetTypes())
+        //        .Where(type => type.IsDefined(typeof(XclTypeAttribute), true));
+        //    foreach (var type in types)
+        //    {
+        //        if (type.IsEnum)
+        //        {
+        //            RegisterEnum(type);
+        //        }
+        //        else
+        //        {
+        //            RegisterClass(type);
+        //        }
+        //    }
+        //}
 
         internal Dictionary<string, XclType> XclTypes { get; } = new();
 

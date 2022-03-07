@@ -1,4 +1,6 @@
-﻿using MicaForEveryone.Models;
+﻿using System.Threading.Tasks;
+
+using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Interfaces
 {
@@ -6,7 +8,7 @@ namespace MicaForEveryone.Interfaces
     {
         void StartService();
         void StopService();
-        void MatchAndApplyRuleToAllWindows();
+        Task MatchAndApplyRuleToAllWindowsAsync();
         void MatchAndApplyRuleToWindow(TargetWindow target);
 
         TitlebarColorMode SystemTitlebarColorMode { get; set; }

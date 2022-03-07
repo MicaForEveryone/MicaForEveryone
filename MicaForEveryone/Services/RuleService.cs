@@ -64,20 +64,23 @@ namespace MicaForEveryone.Services
 #endif
         }
 
-        public void MatchAndApplyRuleToAllWindows()
+        public Task MatchAndApplyRuleToAllWindowsAsync()
         {
-            Window.GetDesktopWindow().ForEachChild(window =>
+            return Task.Run(() =>
             {
-                if (!window.IsVisible())
-                    return;
+                Window.GetDesktopWindow().ForEachChild(window =>
+                {
+                    if (!window.IsVisible())
+                        return;
 
-                if (!window.IsWindowPatternValid())
-                    return;
+                    if (!window.IsWindowPatternValid())
+                        return;
 
-                if (window.InstanceHandle == Application.InstanceHandle)
-                    return; // ignore windows of current instance
+                    if (window.InstanceHandle == Application.InstanceHandle)
+                        return; // ignore windows of current instance
 
-                MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
+                    MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
+                });
             });
         }
 
@@ -86,10 +89,8 @@ namespace MicaForEveryone.Services
             if (args.Type is SettingsChangeType.ConfigFileWatcherStateChanged
                 or SettingsChangeType.ConfigFilePathChanged)
                 return;
-            Task.Run(() =>
-            {
-                MatchAndApplyRuleToAllWindows();
-            });
+
+            _ = MatchAndApplyRuleToAllWindowsAsync();
         }
 
         private async void WinEvent_Handler(object sender, WinEventArgs e)

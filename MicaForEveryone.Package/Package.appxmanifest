@@ -10,7 +10,7 @@
     <Identity
         Name="MicaForEveryone"
         Publisher="CN=Minusium"
-        Version="0.1.0.1" />
+        Version="0.1.0.4" />
 
     <Properties>
         <DisplayName>ms-resource:AppName</DisplayName>

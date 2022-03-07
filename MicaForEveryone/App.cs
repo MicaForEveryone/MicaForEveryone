@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading;
 using Windows.ApplicationModel.Resources;
+using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Services;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Xaml;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace MicaForEveryone
 {
@@ -31,8 +31,12 @@ namespace MicaForEveryone
 
             Container = RegisterServices();
 
-            var viewService = Container.GetService<IViewService>();
-            viewService.Run();
+            // load settings before using view service
+            var srvSettings = Container.GetService<ISettingsService>();
+            srvSettings.Load();
+
+            var srvView = Container.GetService<IViewService>();
+            srvView.Run();
 
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;
             _uwpApp.UnhandledException -= UwpApp_UnhandledException;
@@ -48,7 +52,7 @@ namespace MicaForEveryone
         {
             var services = new ServiceCollection();
 
-            services.AddTransient<ISettingsContainer>(container => 
+            services.AddTransient<ISettingsContainer>(container =>
                 IsPackaged ? new UwpSettingsContainer()
                 : new RegistrySettingsContainer());
             services.AddTransient<IConfigParser, XclParser>();
@@ -64,12 +68,13 @@ namespace MicaForEveryone
             services.AddTransient<IAddClassRuleViewModel, AddClassRuleViewModel>();
 
             services.AddSingleton<IStartupService>(container =>
-                IsPackaged ? new UwpStartupService() 
+                IsPackaged ? new UwpStartupService()
                 : new Win32StartupService());
             services.AddSingleton<ISettingsService, SettingsService>();
             services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<IViewService, ViewService>();
+            services.AddSingleton<ILanguageService, LanguageService>();
 
             return services.BuildServiceProvider();
         }

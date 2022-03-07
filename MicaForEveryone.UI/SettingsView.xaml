@@ -2,334 +2,325 @@
     x:Class="MicaForEveryone.UI.SettingsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+    xmlns:controls="using:MicaForEveryone.UI.Controls"
     xmlns:converters="using:MicaForEveryone.UI.Converters"
     xmlns:models="using:MicaForEveryone.UI.Models"
+    xmlns:mux="using:Microsoft.UI.Xaml.Controls"
     xmlns:selectors="using:MicaForEveryone.UI.Selectors"
     xmlns:triggers="using:MicaForEveryone.UI.Triggers"
     DataContext="{x:Bind ViewModel}">
     <UserControl.Resources>
         <converters:VisibleIfFalse x:Key="VisibilityConverter" />
 
-        <Style
-            x:Key="OptionSummaryTextBlockStyle"
-            BasedOn="{StaticResource CaptionTextBlockStyle}"
-            TargetType="TextBlock">
-            <Setter Property="Margin" Value="0,0,24,6" />
-            <Setter Property="Foreground" Value="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
-            <Setter Property="TextWrapping" Value="WrapWholeWords" />
-        </Style>
-
         <DataTemplate x:Key="GeneralTemplate" x:DataType="models:GeneralPaneItem">
-            <Grid HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" MinWidth="75" />
-                </Grid.ColumnDefinitions>
+            <StackPanel>
+                <controls:SettingsGroup x:Uid="GeneralSetting" Margin="0,-32,0,0">
+                    <controls:Setting x:Uid="LanguageSetting">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="{StaticResource SettingActionControlMinWidth}"
+                                ItemsSource="{x:Bind ViewModel.Languages}"
+                                SelectedItem="{x:Bind ViewModel.SelectedLanguage, Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate xmlns:globalization="using:Windows.Globalization" x:DataType="globalization:Language">
+                                        <TextBlock Text="{x:Bind NativeName}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF2B7;" />
+                        </controls:Setting.Icon>
+                    </controls:Setting>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <controls:Setting x:Uid="StartupSetting" IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable, Mode=OneWay}">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
 
-                <CheckBox
-                    x:Uid="ReloadConfigCheckBox"
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2"
-                    Margin="6"
-                    HorizontalAlignment="Stretch"
-                    IsChecked="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
-                <TextBlock
-                    x:Uid="ReloadConfigDescription"
-                    Grid.Row="1"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+                </controls:SettingsGroup>
 
-                <CheckBox
-                    x:Uid="RunOnStartupCheckBox"
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    Margin="6"
-                    HorizontalAlignment="Stretch"
-                    IsChecked="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}"
-                    IsEnabled="{x:Bind ViewModel.RunOnStartupAvailable}" />
-                <TextBlock
-                    x:Uid="RunOnStartupDescription"
-                    Grid.Row="3"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
+                <controls:SettingsGroup x:Uid="ConfigFileSetting">
+                    <controls:Setting x:Uid="ReloadOnChangeSetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.ReloadOnChange, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE149;" />
+                        </controls:Setting.Icon>
+                    </controls:Setting>
 
-                <TextBox
-                    x:Uid="ConfigFilePathTextBox"
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Margin="6"
-                    Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
-                <Button
-                    x:Uid="BrowseButton"
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Margin="6,32,6,6"
-                    HorizontalAlignment="Stretch"
-                    Command="{x:Bind ViewModel.BrowseAsyncCommand}" />
-                <TextBlock
-                    x:Uid="ConfigFilePathDescription"
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Style="{ThemeResource OptionSummaryTextBlockStyle}" />
-            </Grid>
+                    <mux:Expander
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Stretch"
+                        IsExpanded="True">
+                        <mux:Expander.Header>
+                            <controls:Setting
+                                x:Uid="ConfigFilePathSetting"
+                                Icon="&#xE130;"
+                                Style="{StaticResource ExpanderHeaderSettingStyle}" />
+                        </mux:Expander.Header>
+                        <mux:Expander.Content>
+                            <Grid Margin="6">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" MinWidth="90" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox
+                                    Grid.Column="0"
+                                    Margin="6"
+                                    VerticalAlignment="Center"
+                                    Text="{x:Bind ViewModel.ConfigFilePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+                                <Button
+                                    x:Uid="BrowseButton"
+                                    Grid.Column="1"
+                                    Margin="6"
+                                    HorizontalAlignment="Stretch"
+                                    Command="{x:Bind ViewModel.BrowseAsyncCommand}" />
+                            </Grid>
+                        </mux:Expander.Content>
+                    </mux:Expander>
+
+                    <Button Command="{x:Bind ViewModel.EditConfigCommand}" Style="{ThemeResource SettingButtonStyle}">
+                        <controls:Setting
+                            x:Uid="OpenInEditorSetting"
+                            Icon="&#xE104;"
+                            Style="{StaticResource ExpanderHeaderSettingStyle}">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
+
+                    <Button Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}" Style="{ThemeResource SettingButtonStyle}">
+                        <controls:Setting
+                            x:Uid="ReloadSetting"
+                            Icon="&#xE149;"
+                            Style="{StaticResource ExpanderHeaderSettingStyle}">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
+
+                    <Button Command="{x:Bind ViewModel.ResetConfigAsyncCommand}" Style="{ThemeResource SettingButtonStyle}">
+                        <controls:Setting
+                            x:Uid="ResetSetting"
+                            Icon="&#xE10E;"
+                            Style="{StaticResource ExpanderHeaderSettingStyle}">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
+
+                </controls:SettingsGroup>
+            </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="RulesTemplate" x:DataType="models:RulePaneItem">
-            <Grid HorizontalAlignment="Stretch" XYFocusKeyboardNavigation="Enabled">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" MinWidth="125" />
-                </Grid.ColumnDefinitions>
+            <StackPanel>
+                <controls:SettingsGroup x:Uid="StyleSetting" Margin="0,-32,0,0">
+                    <controls:Setting x:Uid="TitleBarColorSetting" Icon="&#xE790;">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="110"
+                                ItemsSource="{x:Bind ViewModel.ParentViewModel.TitlebarColorModes}"
+                                SelectedItem="{x:Bind ViewModel.TitlebarColor, Mode=TwoWay}">
+                                <ComboBox.ItemTemplateSelector>
+                                    <selectors:TitlebarColorSelector>
+                                        <selectors:TitlebarColorSelector.Default>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="DefaultMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:TitlebarColorSelector.Default>
+                                        <selectors:TitlebarColorSelector.System>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="SystemMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:TitlebarColorSelector.System>
+                                        <selectors:TitlebarColorSelector.Light>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="LightMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:TitlebarColorSelector.Light>
+                                        <selectors:TitlebarColorSelector.Dark>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="DarkMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:TitlebarColorSelector.Dark>
+                                    </selectors:TitlebarColorSelector>
+                                </ComboBox.ItemTemplateSelector>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Description>
+                            <StackPanel>
+                                <ContentControl Content="{Binding TitlebarColor}" DataContext="{x:Bind ViewModel, Mode=OneWay}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <selectors:TitlebarColorSelector>
+                                            <selectors:TitlebarColorSelector.Default>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="DefaultTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.Default>
+                                            <selectors:TitlebarColorSelector.System>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="SystemTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.System>
+                                            <selectors:TitlebarColorSelector.Light>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="LightTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.Light>
+                                            <selectors:TitlebarColorSelector.Dark>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="TitlebarColorDescription" />
+                                                        <Run x:Uid="DarkTitlebarColorDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:TitlebarColorSelector.Dark>
+                                        </selectors:TitlebarColorSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                                <TextBlock
+                                    x:Uid="UnsupportedImmersiveDarkModeDescription"
+                                    TextWrapping="WrapWholeWords"
+                                    Visibility="{x:Bind ViewModel.ParentViewModel.IsImmersiveDarkModeSupported, Converter={StaticResource VisibilityConverter}}" />
+                            </StackPanel>
+                        </controls:Setting.Description>
+                    </controls:Setting>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <controls:Setting x:Uid="BackdropTypeSetting" Icon="&#xF5EF;">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="110"
+                                ItemsSource="{x:Bind ViewModel.ParentViewModel.BackdropTypes}"
+                                SelectedItem="{x:Bind ViewModel.BackdropType, Mode=TwoWay}">
+                                <ComboBox.ItemTemplateSelector>
+                                    <selectors:BackdropTypeSelector>
+                                        <selectors:BackdropTypeSelector.Default>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="DefaultMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:BackdropTypeSelector.Default>
+                                        <selectors:BackdropTypeSelector.None>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="NoneMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:BackdropTypeSelector.None>
+                                        <selectors:BackdropTypeSelector.Mica>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="MicaMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:BackdropTypeSelector.Mica>
+                                        <selectors:BackdropTypeSelector.Acrylic>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="AcrylicMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:BackdropTypeSelector.Acrylic>
+                                        <selectors:BackdropTypeSelector.Tabbed>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="TabbedMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:BackdropTypeSelector.Tabbed>
+                                    </selectors:BackdropTypeSelector>
+                                </ComboBox.ItemTemplateSelector>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Description>
+                            <StackPanel>
+                                <ContentControl Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}" DataContext="{x:Bind ViewModel.BackdropType}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <selectors:BackdropTypeSelector>
+                                            <selectors:BackdropTypeSelector.Default>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="DefaultBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Default>
+                                            <selectors:BackdropTypeSelector.None>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="NoneBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.None>
+                                            <selectors:BackdropTypeSelector.Mica>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="MicaBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Mica>
+                                            <selectors:BackdropTypeSelector.Acrylic>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="AcrylicBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Acrylic>
+                                            <selectors:BackdropTypeSelector.Tabbed>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="BackdropDescription" />
+                                                        <Run x:Uid="TabbedBackdropDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:BackdropTypeSelector.Tabbed>
+                                        </selectors:BackdropTypeSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                                <TextBlock
+                                    x:Uid="UnsupportedMicaDescription"
+                                    TextWrapping="WrapWholeWords"
+                                    Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
+                                <TextBlock
+                                    x:Uid="UnsupportedBackdropDescription"
+                                    TextWrapping="WrapWholeWords"
+                                    Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
+                            </StackPanel>
+                        </controls:Setting.Description>
+                    </controls:Setting>
+                </controls:SettingsGroup>
 
-                <TextBlock
-                    x:Uid="TitleBarColorLabel"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="6"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center" />
-                <ComboBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="6"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    ItemsSource="{x:Bind ViewModel.ParentViewModel.TitlebarColorModes}"
-                    SelectedItem="{x:Bind ViewModel.TitlebarColor, Mode=TwoWay}">
-                    <ComboBox.ItemTemplateSelector>
-                        <selectors:TitlebarColorSelector>
-                            <selectors:TitlebarColorSelector.Default>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="DefaultMenuItem" />
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.Default>
-                            <selectors:TitlebarColorSelector.System>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="SystemMenuItem" />
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.System>
-                            <selectors:TitlebarColorSelector.Light>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="LightMenuItem" />
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.Light>
-                            <selectors:TitlebarColorSelector.Dark>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="DarkMenuItem" />
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.Dark>
-                        </selectors:TitlebarColorSelector>
-                    </ComboBox.ItemTemplateSelector>
-                </ComboBox>
-                <ContentControl
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Content="{Binding TitlebarColor}"
-                    DataContext="{x:Bind ViewModel, Mode=OneWay}">
-                    <ContentControl.ContentTemplateSelector>
-                        <selectors:TitlebarColorSelector>
-                            <selectors:TitlebarColorSelector.Default>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="TitlebarColorDescription" />
-                                        <Run x:Uid="DefaultTitlebarColorDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.Default>
-                            <selectors:TitlebarColorSelector.System>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="TitlebarColorDescription" />
-                                        <Run x:Uid="SystemTitlebarColorDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.System>
-                            <selectors:TitlebarColorSelector.Light>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="TitlebarColorDescription" />
-                                        <Run x:Uid="LightTitlebarColorDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.Light>
-                            <selectors:TitlebarColorSelector.Dark>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="TitlebarColorDescription" />
-                                        <Run x:Uid="DarkTitlebarColorDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:TitlebarColorSelector.Dark>
-                        </selectors:TitlebarColorSelector>
-                    </ContentControl.ContentTemplateSelector>
-                </ContentControl>
-                <TextBlock
-                    x:Uid="UnsupportedImmersiveDarkModeDescription"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Style="{ThemeResource OptionSummaryTextBlockStyle}"
-                    Visibility="{x:Bind ViewModel.ParentViewModel.IsImmersiveDarkModeSupported, Converter={StaticResource VisibilityConverter}}" />
+                <controls:SettingsGroup x:Uid="AdvancedSetting">
+                    <controls:Setting x:Uid="ExtendFrameIntoClientAreaSetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
 
-                <TextBlock
-                    x:Uid="BackdropTypeLabel"
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Margin="6"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center" />
-                <ComboBox
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    Margin="6"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Center"
-                    ItemsSource="{x:Bind ViewModel.ParentViewModel.BackdropTypes}"
-                    SelectedItem="{x:Bind ViewModel.BackdropType, Mode=TwoWay}">
-                    <ComboBox.ItemTemplateSelector>
-                        <selectors:BackdropTypeSelector>
-                            <selectors:BackdropTypeSelector.Default>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="DefaultMenuItem" />
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Default>
-                            <selectors:BackdropTypeSelector.None>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="NoneMenuItem" />
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.None>
-                            <selectors:BackdropTypeSelector.Mica>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="MicaMenuItem" />
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Mica>
-                            <selectors:BackdropTypeSelector.Acrylic>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="AcrylicMenuItem" />
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Acrylic>
-                            <selectors:BackdropTypeSelector.Tabbed>
-                                <DataTemplate>
-                                    <TextBlock x:Uid="TabbedMenuItem" />
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Tabbed>
-                        </selectors:BackdropTypeSelector>
-                    </ComboBox.ItemTemplateSelector>
-                </ComboBox>
-                <ContentControl
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Content="{x:Bind ViewModel.BackdropType, Mode=OneWay}"
-                    DataContext="{x:Bind ViewModel.BackdropType}">
-                    <ContentControl.ContentTemplateSelector>
-                        <selectors:BackdropTypeSelector>
-                            <selectors:BackdropTypeSelector.Default>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="BackdropDescription" />
-                                        <Run x:Uid="DefaultBackdropDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Default>
-                            <selectors:BackdropTypeSelector.None>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="BackdropDescription" />
-                                        <Run x:Uid="NoneBackdropDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.None>
-                            <selectors:BackdropTypeSelector.Mica>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="BackdropDescription" />
-                                        <Run x:Uid="MicaBackdropDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Mica>
-                            <selectors:BackdropTypeSelector.Acrylic>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="BackdropDescription" />
-                                        <Run x:Uid="AcrylicBackdropDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Acrylic>
-                            <selectors:BackdropTypeSelector.Tabbed>
-                                <DataTemplate>
-                                    <TextBlock Style="{ThemeResource OptionSummaryTextBlockStyle}">
-                                        <Run x:Uid="BackdropDescription" />
-                                        <Run x:Uid="TabbedBackdropDescription" />
-                                    </TextBlock>
-                                </DataTemplate>
-                            </selectors:BackdropTypeSelector.Tabbed>
-                        </selectors:BackdropTypeSelector>
-                    </ContentControl.ContentTemplateSelector>
-                </ContentControl>
-                <StackPanel
-                    Grid.Row="5"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}">
-                    <TextBlock
-                        x:Uid="UnsupportedMicaDescription"
-                        Style="{ThemeResource OptionSummaryTextBlockStyle}"
-                        Visibility="{x:Bind ViewModel.ParentViewModel.IsMicaSupported, Converter={StaticResource VisibilityConverter}}" />
-                    <TextBlock
-                        x:Uid="UnsupportedBackdropDescription"
-                        Style="{ThemeResource OptionSummaryTextBlockStyle}"
-                        Visibility="{x:Bind ViewModel.ParentViewModel.IsBackdropSupported, Converter={StaticResource VisibilityConverter}}" />
-                </StackPanel>
+                    <controls:Setting x:Uid="BlurBehindSetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.EnableBlurBehind, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+                </controls:SettingsGroup>
 
-                <CheckBox
-                    x:Uid="ExtendFrameIntoClientAreaCheckBox"
-                    Grid.Row="6"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="6"
-                    IsChecked="{x:Bind ViewModel.ExtendFrameIntoClientArea, Mode=TwoWay}" />
-                <TextBlock
-                    x:Uid="ExtendFrameIntoClientAreaDescription"
-                    Grid.Row="7"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Margin="0,0,6,12"
-                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                    Style="{ThemeResource CaptionTextBlockStyle}" />
-            </Grid>
+            </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
 
     <Grid
+        x:Name="RootElement"
         Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         TabFocusNavigation="Cycle"
         XYFocusKeyboardNavigation="Enabled">
@@ -339,18 +330,37 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock
-            x:Uid="SettingsTitle"
-            Grid.Row="0"
-            Margin="24,12,12,12"
-            Style="{ThemeResource TitleTextBlockStyle}" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <AppBarButton
+                x:Name="RulesAppBarButton"
+                Grid.Column="0"
+                Width="48"
+                Margin="16,10,4,8"
+                Click="AppBarButton_Click"
+                LabelPosition="Collapsed">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE700;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+
+            <TextBlock
+                x:Name="SettingsTitle"
+                x:Uid="SettingsTitle"
+                Grid.Column="1"
+                Margin="8,8,4,8"
+                VerticalAlignment="Center"
+                Style="{ThemeResource TitleTextBlockStyle}" />
+        </Grid>
 
         <SplitView
+            x:Name="MainSplitView"
             Grid.Row="1"
-            DisplayMode="Inline"
-            IsPaneOpen="True"
-            OpenPaneLength="250"
-            PaneBackground="Transparent">
+            PaneBackground="{x:Bind RootElement.Background}">
             <SplitView.Pane>
                 <ListView
                     IsTabStop="True"
@@ -422,7 +432,7 @@
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
-                <ScrollViewer Padding="8,0,8,0">
+                <ScrollViewer Padding="16,4,16,4">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -444,22 +454,37 @@
                         <StackPanel
                             x:Name="AboutSection"
                             Grid.Row="1"
-                            Margin="0,24,0,0"
+                            Margin="0,32,0,0"
                             Orientation="Vertical"
-                            Spacing="8"
+                            Spacing="4"
                             XYFocusKeyboardNavigation="Enabled">
                             <TextBlock
                                 x:Uid="AboutTitle"
                                 FontSize="14"
                                 FontWeight="Bold" />
-                            <TextBlock x:Uid="AppNameLabel" />
-                            <TextBlock>
-                                <Run x:Uid="VersionLabel" />
+                            <TextBlock Margin="0,4,0,12">
+                                <Run x:Uid="AppNameLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
+                                <LineBreak />
+                                <Run x:Uid="Credit" />
+                                <Run Text="Minusium" />
                             </TextBlock>
                             <HyperlinkButton x:Uid="GitHubButton" TabIndex="3" />
                             <HyperlinkButton x:Uid="TelegramButton" />
-                            <HyperlinkButton x:Uid="TwitterButton" />
+                            <HyperlinkButton x:Uid="TwitterButton" Margin="0,0,0,12" />
+                            <TextBlock>
+                                <Run x:Uid="IconCredit" />
+                                <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
+                                    <Run Text="Dongle the Gadget" />
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBlock Margin="0,4,0,0">
+                                <Run x:Uid="TranslatorsCredit" />
+                                <LineBreak />
+                                <Hyperlink NavigateUri="https://github.com/xoascf">
+                                    <Run Text="Amaro Martínez" />
+                                </Hyperlink>
+                            </TextBlock>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
@@ -468,15 +493,16 @@
 
         <Grid Grid.Row="2" Margin="8">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <CommandBar
                 Grid.Column="0"
+                HorizontalAlignment="Left"
                 DefaultLabelPosition="Right"
                 IsTabStop="True"
+                OverflowButtonVisibility="Collapsed"
                 TabIndex="2"
                 XYFocusKeyboardNavigation="Enabled">
                 <AppBarButton
@@ -500,30 +526,14 @@
                 </AppBarButton>
                 <AppBarButton
                     x:Uid="RemoveRuleAppBarButton"
-                    Grid.Column="1"
                     Margin="2"
                     Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
                     Icon="Remove" />
-                <CommandBar.SecondaryCommands>
-                    <AppBarButton
-                        x:Uid="OpenInEditorAppBarButton"
-                        Command="{x:Bind ViewModel.EditConfigCommand}"
-                        Icon="Edit" />
-                    <AppBarButton
-                        x:Uid="ReloadAppBarButton"
-                        Command="{x:Bind ViewModel.ReloadConfigAsyncCommand}"
-                        Icon="Refresh" />
-                    <AppBarButton x:Uid="ResetAppBarButton" Command="{x:Bind ViewModel.ResetConfigAsyncCommand}">
-                        <AppBarButton.Icon>
-                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE10E;" />
-                        </AppBarButton.Icon>
-                    </AppBarButton>
-                </CommandBar.SecondaryCommands>
             </CommandBar>
 
             <Button
                 x:Uid="CloseButton"
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="2"
                 Command="{x:Bind ViewModel.CloseCommand}"
                 IsTabStop="True"
@@ -535,12 +545,32 @@
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="750" />
+                        <AdaptiveTrigger MinWindowWidth="950" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="AboutSection.(Grid.Row)" Value="0" />
                         <Setter Target="AboutSection.(Grid.Column)" Value="1" />
-                        <Setter Target="AboutSection.Margin" Value="24,0,24,0" />
+                        <Setter Target="AboutSection.Margin" Value="48,0,32,0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="650" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainSplitView.PaneBackground" Value="Transparent" />
+                        <Setter Target="MainSplitView.DisplayMode" Value="Inline" />
+                        <Setter Target="MainSplitView.IsPaneOpen" Value="True" />
+                        <Setter Target="MainSplitView.OpenPaneLength" Value="250" />
+                        <Setter Target="RulesAppBarButton.Visibility" Value="Collapsed" />
+                        <Setter Target="SettingsTitle.Margin" Value="24,12,12,12" />
                     </VisualState.Setters>
                 </VisualState>
                 <VisualState>

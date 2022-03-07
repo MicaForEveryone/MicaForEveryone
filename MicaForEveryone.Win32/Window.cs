@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using MicaForEveryone.Win32.PInvoke;
 
+#nullable enable
+
 namespace MicaForEveryone.Win32
 {
     public class Window : IDisposable
@@ -43,7 +45,7 @@ namespace MicaForEveryone.Win32
         /// Get a Window object if given window handle is a valid UI Automation window pattern.
         /// </summary>
         /// <returns>Null if handle is not valid, window object if valid.</returns>
-        public static Window GetWindowIfWindowPatternValid(IntPtr hWnd)
+        public static Window? GetWindowIfWindowPatternValid(IntPtr hWnd)
         {
             if (hWnd == IntPtr.Zero)
                 return null;
@@ -91,7 +93,7 @@ namespace MicaForEveryone.Win32
 
         private static EnumWindowsProc _windowEnumerator = new(WindowEnumeratorCallback);
 
-        private static event EventHandler<WindowEnumeratorEventArgs> EnumerateItem;
+        private static event EventHandler<WindowEnumeratorEventArgs>? EnumerateItem;
 
         private static bool WindowEnumeratorCallback([In] IntPtr hwnd, [In] IntPtr lParam)
         {
@@ -106,9 +108,9 @@ namespace MicaForEveryone.Win32
         /// <summary>
         /// set window title for calling <see cref="Activate"/> method
         /// </summary>
-        public string Title { get; set; }
+        public string Title { get; set; } = "";
 
-        public IntPtr Handle { get; protected set; }
+        public IntPtr Handle { get; protected set; } = IntPtr.Zero;
 
         /// <summary>
         /// Handle of parent window
@@ -153,7 +155,7 @@ namespace MicaForEveryone.Win32
 
         public WindowStylesEx StyleEx { get; set; } = 0;
 
-        public WindowClass Class { get; protected set; }
+        public WindowClass? Class { get; protected set; }
 
         /// <summary>
         /// Load an icon for window and return its handle. Icon will be destroyed when window is disposing.
@@ -220,7 +222,7 @@ namespace MicaForEveryone.Win32
         {
             Handle = NativeMethods.CreateWindowExW(
                 StyleEx,
-                Class.Atom,
+                Class!.Atom,
                 Title,
                 Style,
                 X, Y, Width, Height,
@@ -280,7 +282,7 @@ namespace MicaForEveryone.Win32
         /// </summary>
         public virtual void Dispose()
         {
-            if (_isDisposing) return;
+            if (_isDisposing || Class == null) return;
             _isDisposing = true;
             _ = NativeMethods.DestroyWindow(Handle);
             Handle = IntPtr.Zero;
@@ -530,9 +532,9 @@ namespace MicaForEveryone.Win32
             DpiChanged?.Invoke(this, new WndProcEventArgs(hwnd));
         }
 
-        public event EventHandler<WndProcEventArgs> Create;
-        public event EventHandler<WndProcEventArgs> Destroy;
-        public event EventHandler<WndProcEventArgs> SizeChanged;
-        public event EventHandler<WndProcEventArgs> DpiChanged;
+        public event EventHandler<WndProcEventArgs>? Create;
+        public event EventHandler<WndProcEventArgs>? Destroy;
+        public event EventHandler<WndProcEventArgs>? SizeChanged;
+        public event EventHandler<WndProcEventArgs>? DpiChanged;
     }
 }

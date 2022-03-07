@@ -10,6 +10,7 @@ namespace MicaForEveryone.UI.ViewModels
         BackdropType BackdropType { get; set; }
         TitlebarColorMode TitlebarColor { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
+        bool EnableBlurBehind { get; set; }
 
         ISettingsViewModel ParentViewModel { get; set; }
     }

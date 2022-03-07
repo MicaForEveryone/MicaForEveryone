@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Config;
@@ -99,25 +99,27 @@ namespace MicaForEveryone.ViewModels
                 _ => throw new ArgumentOutOfRangeException(),
             };
 
-            // initialize other services
-            var ctx = Program.CurrentApp.Container;
-
-            var svcStartup = ctx.GetService<IStartupService>()!;
-            var initStartup = svcStartup.InitializeAsync();
-
-            _settingsService.Load();
+            // initialize and load config file
             await _settingsService.ConfigFile.InitializeAsync();
-            var initRules = _settingsService.LoadRulesAsync();
+            await _settingsService.LoadRulesAsync();
 
-            // start rule service when everything is ready
-            await Task.WhenAll(initStartup, initRules);
-            _ruleService.MatchAndApplyRuleToAllWindows();
-            _ruleService.StartService();
+            // initialize startup service
+            var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
+            _ = startupService.InitializeAsync();
+
+            // start rule service
+            await _ruleService.MatchAndApplyRuleToAllWindowsAsync();
+
+            // need to be started on UI thread
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            {
+                _ruleService.StartService();
+            });
         }
 
         // event handlers
 
-        private async void Settings_Changed(object? sender, SettingsChangedEventArgs args)
+        private void Settings_Changed(object? sender, SettingsChangedEventArgs args)
         {
             if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
                 || args.Type == SettingsChangeType.ConfigFileReloaded)
@@ -137,7 +139,7 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        private async void View_ActualThemeChanged(FrameworkElement sender, object args)
+        private void View_ActualThemeChanged(FrameworkElement sender, object args)
         {
             _ruleService.SystemTitlebarColorMode = sender.ActualTheme switch
             {
@@ -145,7 +147,8 @@ namespace MicaForEveryone.ViewModels
                 ElementTheme.Dark => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(),
             };
-            await Task.Run(() => _ruleService.MatchAndApplyRuleToAllWindows());
+
+            _ = _ruleService.MatchAndApplyRuleToAllWindowsAsync();
         }
 
         private void MainWindow_Destroy(object? sender, WndProcEventArgs args)
@@ -157,18 +160,7 @@ namespace MicaForEveryone.ViewModels
 
         private async Task DoReloadConfigAsync()
         {
-            try
-            {
-                await _settingsService.LoadRulesAsync();
-            }
-            catch (ParserError error)
-            {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
-                {
-                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
-                    dialogService?.ShowErrorDialog(_mainWindow, error.Message, error.ToString(), 576, 400);
-                });
-            }
+            await _settingsService.LoadRulesAsync();
         }
 
         private async Task DoChangeTitlebarColorModeAsync(string? parameter)

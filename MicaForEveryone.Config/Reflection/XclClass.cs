@@ -66,7 +66,11 @@ namespace MicaForEveryone.Config.Reflection
 
         public XclField GetField(string name)
         {
-            return _fields[name];
+            if (_fields.TryGetValue(name, out var field))
+            {
+                return field;
+            }
+            return null;
         }
 
         public XclInstance CreateXclInstance(XclValue parameter)
