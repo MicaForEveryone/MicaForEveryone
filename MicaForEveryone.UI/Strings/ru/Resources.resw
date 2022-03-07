@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>О приложении</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Acrylic заставляет все приложения использовать эффект размытия фона в стиле Windows 10.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Новое правило для класса</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Добавить правило для класса</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Новое правило для процесса</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Добавить правило для класса</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Добавить правило</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Добавить правила</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Конфигурационный файл</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Расширенные</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Ошибка при инициализации приложения</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Установить тип фона,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Тип фона</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Тип фона</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Сделать окна полупрозрачными и размытыми. Отключение этого параметра требует, чтобы вы закрыли и снова открыли затронутые окна.</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Перевод от:</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Размытие позади</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Обзор</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Введите имя класса окна</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Имя класса:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Ошибка в конфигурационном файле:
+{0}
+
+Исправьте ошибки, затем используйте опцию «Обновить файл конфигурации», чтобы перезагрузить его.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Ошибка в конфигурационном файле</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>Файл, который будет использоваться для сохранения и загрузки правил.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Путь к файлу</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Конфигурационный файл</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Тёмная тема</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Используется тёмная тема.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Ничего не делается, чтобы сохранить фон приложения по умолчанию.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Умолчание</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Опция «По умолчанию» сохраняет тему приложения по умолчанию.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Расширяет рамку окна в свою клиентскую область, чтобы добавить фон на фоне некоторых приложений. Он работает не во всех приложениях и может их сломать, поэтому не включайте его, если не знаете, что делаете. Отключение этого параметра требует, чтобы вы закрыли и снова открыли затронутые окна.</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Расширить кадр в клиентской области</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Общие</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Общие</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GitHubButton.NavigateUri" xml:space="preserve">
+    <value>https://github.com/minusium/MicaForEveryone</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Глобальное правило</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Иконки от:</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Установите предпочтительный язык для пользовательского интерфейса. Приложение требует перезагрузки, чтобы оно вступило в силу.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Светлая тема</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Используется светлая тема.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica forces all apps to use Windows 11-style tinted wallpaper backdrop effect.</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>Отключаются фоны фоны даже в приложениях, в которых они уже включены.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Выключить</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Открыть текстовый редактор</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Открыть файл конфигурации в текстовом редакторе по умолчанию.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Редактировать в текстовом редакторе</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Введите имя исполняемого файла без расширения (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Имя процесса:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Автоматически перезагружает конфигурацию при изменении файла конфигурации.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Перезагружать при изменении</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Перезагрузить правила из файла конфигурации, затем примените их ко всем открытым окнам.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Удалить правило</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Восстановление правила по умолчанию и удаление всех изменений.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Запускать это приложение автоматически при запуске.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Выполняться при запуске</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Стиль</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Система использует ваши настройки темы.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Tabbed заставляет все приложения использовать эффект размытого фона обоев.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TelegramButton.NavigateUri" xml:space="preserve">
+    <value>https://t.me/minusium</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Установить цветовую тему заголовков,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Цвет заголовка</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Цвет заголовка</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="TwitterButton.NavigateUri" xml:space="preserve">
+    <value>https://twitter.com/minusium</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Необработанное исключение</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Необработанное исключение</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Для эффектов Acrylic и Tabbed backdrops требуется как минимум сборка Windows 22523.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Для иммерсивного темного режима требуется как минимум сборка Windows 19041.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Эффект Mica требует по крайней мере сборки Windows 22000.</value>
+  </data>
+</root>
