@@ -488,6 +488,10 @@
                                 <Hyperlink NavigateUri="https://github.com/Danik2343">
                                     <Run Text="@Danik2343" />
                                 </Hyperlink>
+				    				<LineBreak />
+                                <Hyperlink NavigateUri="https://github.com/uDEV2019">
+                                    <Run Text="u!^DEV" />
+                                </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                     </Grid>
