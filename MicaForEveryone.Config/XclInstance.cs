@@ -11,6 +11,7 @@ namespace MicaForEveryone.Config
     [DebuggerDisplay("{Type} {Parameter}")]
     public class XclInstance : XclValue
     {
+        private List<XclField> _dirtyFields = new();
         private Dictionary<XclField, XclValue> _pairs = new();
 
         internal XclInstance(Token token, XclClass type, XclValue parameter) :
@@ -41,6 +42,7 @@ namespace MicaForEveryone.Config
 
         public void SetValue(XclField field, XclValue value)
         {
+            _dirtyFields.Add(field);
             if (Type is XclClass xclClass)
                 xclClass.SetFieldValue(this, field, value);
             _pairs[field] = value;
@@ -54,21 +56,50 @@ namespace MicaForEveryone.Config
             var type = (XclClass)Type;
             foreach (var pair in _pairs)
             {
-                pair.Value.Value = type.GetFieldValue(this, pair.Key);
+                var fieldType = pair.Key.Type;
+                var fieldValue = fieldType.ToXclValue(type.GetFieldValue(this, pair.Key));
+                if (pair.Value.Name == null)
+                {
+                    static T GetDefault<T>() => default(T);
+                    var defaultValue = ((Func<object>)GetDefault<object>).Method
+                        .GetGenericMethodDefinition()
+                        .MakeGenericMethod(pair.Value.Value.GetType())
+                        .Invoke(null, null);
+                    if (!fieldValue.Value.Equals(defaultValue))
+                    {
+                        _dirtyFields.Add(pair.Key);
+                    }
+                    _pairs[pair.Key].Value = fieldValue.Value;
+                }
+                else if (fieldType.GetTokenData(fieldValue) != pair.Value.Name)
+                {
+                    _dirtyFields.Add(pair.Key);
+                    _pairs[pair.Key].Value = fieldValue.Value;
+                }
             }
         }
 
         internal IEnumerable<Token> GenerateTokens()
         {
-            if (Tokens != null)
+            // use parsed tokens if all dirty fields are present in it
+            if (Tokens != null && _dirtyFields.All(
+                field => Tokens.Any(
+                    token => token.Type == TokenType.FieldName && token.Data == field.Name)))
+            {
+                _dirtyFields.Clear();
                 return Tokens;
+            }
+
+            // generate tokens when this is a new rule or a dirty field is not present
 
             // result container
-            var tokens = new List<Token>
+            var tokens = new List<Token>();
+
+            if (Tokens == null)
             {
-                new Token(Lexer.TokenType.NewLine, TokenType.Meaningless, ""),
-                new Token(Lexer.TokenType.NewLine, TokenType.Meaningless, ""),
-            };
+                tokens.Add(new Token(Lexer.TokenType.NewLine, TokenType.Meaningless, ""));
+                tokens.Add(new Token(Lexer.TokenType.NewLine, TokenType.Meaningless, ""));
+            }
 
             // template: `type: "parameter" {`
             // a section starts with type
@@ -105,7 +136,10 @@ namespace MicaForEveryone.Config
             // add section end
             tokens.Add(new Token(Lexer.TokenType.Operator, TokenType.SectionEnd, "}"));
 
-            return tokens;
+            Tokens = tokens.ToArray();
+            _dirtyFields.Clear();
+
+            return Tokens;
         }
     }
 }
