@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>关于此应用</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序窗口背景使用实时模糊效果的亚克力材质(Acrylic)特效。</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>亚克力 (Acrylic)</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>新建窗口类规则</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>依据Win32窗口类类名添加规则</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>新建程序名规则</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>依据应用程序文件名添加规则</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>添加新规则</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>添加新规则</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>配置文件</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>应用程序无法启动</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>设置应用程序窗口背景模糊类型，</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>模糊类型</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>模糊类型</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>打开此选项，窗口将会半透明并且使用模糊特效。该选项不适用于所有应用程序，甚至会使他们崩溃，如果你不知道Win32GUI和DWM，那么请不要打开此选项。 关闭此选项需要重启已生效的窗口。</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>半透明模糊 (Blur Behind)</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>浏览</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>请输入Win32窗口类类名</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>类名：</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>关闭本窗口</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>配置文件中存在错误：
+{0}
+
+请先修正错误，然后点击“重新加载配置文件”按钮。</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>配置文件中存在错误</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>该文件将用于存储Mica For Everyone的设置。</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>文件路径</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>深色 (Dark)</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序标题栏使用深色模式。</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>现在将由应用程序自行决定使用何种模糊类型。</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>由应用程序决定</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>现在将由应用程序自行决定使用浅色或深色标题栏。</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>将窗口框架扩展到客户区</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>打开此选项，会将窗口标题栏特效扩展至整个窗口。该选项不适用于所有应用程序，甚至会使他们崩溃，如果你不知道Win32GUI和DWM，那么请不要打开此选项。 关闭此选项需要重启已生效的窗口。</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>常规设置</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>常规设置</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>默认规则</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>为Mica For Everyone设置您喜欢的语言，需要重启本应用才能生效。</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>浅色 (Light)</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序标题栏使用浅色模式。</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序窗口背景使用根据桌面壁纸背景色进行淡染的云母材质(Mica)特效。</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>云母 (Mica)</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序不使用任何特效而直接显示纯色。</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>纯色 (None)</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>在文本编辑器中打开</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>请输入可执行程序文件名，但不要包括“.exe”后缀。</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>程序文件名：</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>重新加载配置文件</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>修改设置时自动重新加载配置文件，您修改的规则将立即生效。</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>热重载</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>删除该规则</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>在计算机启动时自动启动Mica For Everyone。</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>开机自启</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序标题栏跟随系统深浅主题设置。</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序窗口背景使用根据桌面壁纸背景色进行模糊的Tabbed特效。</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>设置应用程序标题栏主题，</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>标题栏颜色</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>标题栏颜色</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>未处理的异常</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>用户界面中未处理的异常</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>亚克力材质(Acrylic)和Tabbed特效只支持Windows 11 Ni开发分支Dev/Beta预览版(Build 22523+)及更高版本操作系统。</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>沉浸式深色模式只支持Windows 10 20H1(Build 19041+)及更高版本操作系统。</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>云母材质(Mica)只支持Windows 11 21H2(Build 22000+)及更高版本操作系统。</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>配置文件</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>样式设置</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>使用默认文本编辑器中打开配置文件。</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>在文本编辑器中编辑</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>重新加载配置文件，并将您修改的规则立即生效。</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>重新加载配置文件</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>恢复默认规则并撤销所有修改。</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>重置配置文件</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>作者：</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>图标设计：感谢</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>界面语言翻译：感谢</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GitHubButton.NavigateUri" xml:space="preserve">
+    <value>https://github.com/minusium/MicaForEveryone</value>
+  </data>
+  <data name="TelegramButton.NavigateUri" xml:space="preserve">
+    <value>https://t.me/minusium</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.NavigateUri" xml:space="preserve">
+    <value>https://twitter.com/minusium</value>
+  </data>
+</root>

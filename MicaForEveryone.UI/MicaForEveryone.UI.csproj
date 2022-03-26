@@ -203,12 +203,15 @@
       <SubType>Designer</SubType>
     </PRIResource>
     <PRIResource Include="Strings\es\Resources.resw">
-		<SubType>Designer</SubType>
-	</PRIResource>
-	<PRIResource Include="Strings\fa\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
-	<PRIResource Include="Strings\ru\Resources.resw">
+    <PRIResource Include="Strings\fa\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\ru\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\zh-Hans\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
   </ItemGroup>

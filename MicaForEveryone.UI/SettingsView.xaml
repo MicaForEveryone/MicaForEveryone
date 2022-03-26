@@ -481,16 +481,24 @@
                             <TextBlock Margin="0,4,0,0">
                                 <Run x:Uid="TranslatorsCredit" />
                                 <LineBreak />
+
                                 <Hyperlink NavigateUri="https://github.com/xoascf">
                                     <Run Text="Amaro Martínez" />
                                 </Hyperlink>
-								<LineBreak />
+                                <LineBreak />
+
                                 <Hyperlink NavigateUri="https://github.com/Danik2343">
                                     <Run Text="@Danik2343" />
                                 </Hyperlink>
-				    				<LineBreak />
+                                <LineBreak />
+
                                 <Hyperlink NavigateUri="https://github.com/uDEV2019">
                                     <Run Text="u!^DEV" />
+                                </Hyperlink>
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/AndromedaMelody">
+                                    <Run Text="AndromedaMelody" />
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
