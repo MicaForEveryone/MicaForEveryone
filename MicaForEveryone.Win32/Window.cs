@@ -478,6 +478,11 @@ namespace MicaForEveryone.Win32
             NativeMethods.SetWindowThemeAttribute(Handle, WINDOWTHEMEATTRIBUTETYPE.WTA_NONCLIENT, wtaOptions, (uint)Marshal.SizeOf(wtaOptions));
         }
 
+        public void PostMessage(WindowMessage message)
+        {
+            NativeMethods.PostMessageW(Handle, (uint)message, IntPtr.Zero, IntPtr.Zero);
+        }
+
         /// <summary>
         /// Enable or Disable window
         /// </summary>

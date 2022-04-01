@@ -115,6 +115,9 @@ namespace MicaForEveryone.ViewModels
             {
                 _ruleService.StartService();
             });
+
+            // post a message to window to invoke dispatcher
+            sender.PostMessage(Win32.PInvoke.WindowMessage.WM_NULL);
         }
 
         // event handlers
@@ -126,7 +129,12 @@ namespace MicaForEveryone.ViewModels
             {
                 Program.CurrentApp.Dispatcher.Enqueue(() =>
                 {
-                    if (GlobalRule == args.Rule)
+                    if (args.Type == SettingsChangeType.ConfigFileReloaded)
+                    {
+                        GlobalRule = _settingsService.ConfigFile.Parser.Rules.First(
+                            rule => rule is GlobalRule) as GlobalRule;
+                    }
+                    else if (GlobalRule == args.Rule)
                     {
                         OnPropertyChanged(nameof(BackdropType));
                         OnPropertyChanged(nameof(TitlebarColor));
