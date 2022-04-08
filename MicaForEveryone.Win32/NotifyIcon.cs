@@ -66,10 +66,8 @@ namespace MicaForEveryone.Win32
         public RECT GetRect()
         {
             var id = new NOTIFYICONIDENTIFIER(Handle, Id);
-            var hr = Shell_NotifyIconGetRect(id, out var result);
-            if (hr != 0)
-                throw Marshal.GetExceptionForHR(hr);
-            return result;
+            Shell_NotifyIconGetRect(id, out var result);
+            return result;            
         }
 
         protected override IntPtr LoadIcon()
