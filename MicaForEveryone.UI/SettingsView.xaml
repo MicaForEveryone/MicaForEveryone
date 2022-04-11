@@ -492,6 +492,11 @@
                                 </Hyperlink>
                                 <LineBreak />
 
+                                <Hyperlink NavigateUri="https://github.com/maboroshin">
+                                    <Run Text="maboroshin" />
+                                </Hyperlink>
+                                <LineBreak />
+
                                 <Hyperlink NavigateUri="https://github.com/uDEV2019">
                                     <Run Text="u!^DEV" />
                                 </Hyperlink>
