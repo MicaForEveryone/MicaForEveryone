@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Graphics.Canvas.Effects;
 using Windows.System.Power;
@@ -18,6 +18,9 @@ namespace MicaForEveryone.UI.Brushes
     {
         private static CompositionBrush BuildMicaEffectBrush(Compositor compositor, Color tintColor, float tintOpacity, float luminosityOpacity)
         {
+            if (!Windows.Foundation.Metadata.ApiInformation.IsMethodPresent(typeof(Compositor).FullName, nameof(Compositor.TryCreateBlurredWallpaperBackdropBrush)))
+                return compositor.CreateColorBrush(tintColor);
+        
             // Tint Color.
             var tintColorEffect = new ColorSourceEffect
             {
