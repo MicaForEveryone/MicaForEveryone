@@ -71,6 +71,9 @@ namespace MicaForEveryone.Views
 
         private void SetTitlebarColor()
         {
+            if (Environment.OSVersion.Version.Build < 22000)
+                return;
+                
             var resources = Windows.UI.Xaml.Application.Current.Resources;
             var background = GetResourceColor(resources, "ContentDialogBackground");
             var topOverlay = GetResourceColor(resources, "ContentDialogTopOverlay");
