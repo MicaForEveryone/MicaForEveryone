@@ -116,6 +116,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         public static void SetCaptionColor(IntPtr hWnd, COLORREF color)
         {
+            if (Environment.OSVersion.Version.Build < 22000)
+                return;
+            
             var value = GCHandle.Alloc(color, GCHandleType.Pinned);
             var result = DwmSetWindowAttribute(hWnd, DWMWA_CAPTION_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
             value.Free();
@@ -131,6 +134,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         public static void SetCaptionTextColor(IntPtr hWnd, COLORREF color)
         {
+            if (Environment.OSVersion.Version.Build < 22000)
+                return;
+            
             var value = GCHandle.Alloc(color, GCHandleType.Pinned);
             var result = DwmSetWindowAttribute(hWnd, DWMWA_TEXT_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
             value.Free();
