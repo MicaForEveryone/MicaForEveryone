@@ -17,10 +17,7 @@ namespace MicaForEveryone.UI.Brushes
     public sealed class XamlMicaBrush : XamlCompositionBrushBase
     {
         private static CompositionBrush BuildMicaEffectBrush(Compositor compositor, Color tintColor, float tintOpacity, float luminosityOpacity)
-        {
-            if (!Windows.Foundation.Metadata.ApiInformation.IsMethodPresent(typeof(Compositor).FullName, nameof(Compositor.TryCreateBlurredWallpaperBackdropBrush)))
-                return compositor.CreateColorBrush(tintColor);
-        
+        {        
             // Tint Color.
             var tintColorEffect = new ColorSourceEffect
             {
@@ -186,6 +183,7 @@ namespace MicaForEveryone.UI.Brushes
             var compositor = Window.Current.Compositor;
 
             var useSolidColorFallback = 
+                !Windows.Foundation.Metadata.ApiInformation.IsMethodPresent(typeof(Compositor).FullName, nameof(Compositor.TryCreateBlurredWallpaperBackdropBrush)) ||
                 !_settings.AdvancedEffectsEnabled ||
                 !_windowActivated ||
                 _fastEffects == false ||
