@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone", "MicaForEveryone\MicaForEveryone.csproj", "{E6F45EE9-EA05-4119-8790-DAADDA796548}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.UI", "MicaForEveryone.UI\MicaForEveryone.UI.csproj", "{740EA99D-B3F6-445D-A357-962A61357006}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Shared", "MicaForEveryone.Shared\MicaForEveryone.Shared.csproj", "{198E1C79-B186-47ED-806D-9A02D78EC653}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Config", "MicaForEveryone.Config\MicaForEveryone.Config.csproj", "{307044B9-01A3-499F-8EE7-9DD184577E56}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.Win32", "MicaForEveryone.Win32\MicaForEveryone.Win32.csproj", "{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}"
 EndProject
@@ -68,14 +66,6 @@ Global
 		{198E1C79-B186-47ED-806D-9A02D78EC653}.Release|ARM64.Build.0 = Release|Any CPU
 		{198E1C79-B186-47ED-806D-9A02D78EC653}.Release|x64.ActiveCfg = Release|Any CPU
 		{198E1C79-B186-47ED-806D-9A02D78EC653}.Release|x64.Build.0 = Release|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|ARM64.ActiveCfg = Debug|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|ARM64.Build.0 = Debug|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Debug|x64.Build.0 = Debug|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|ARM64.ActiveCfg = Release|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|ARM64.Build.0 = Release|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|x64.ActiveCfg = Release|Any CPU
-		{307044B9-01A3-499F-8EE7-9DD184577E56}.Release|x64.Build.0 = Release|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|ARM64.Build.0 = Debug|Any CPU
 		{473FCFBE-B22A-4BFC-BAA0-769E29C4FD5D}.Debug|x64.ActiveCfg = Debug|Any CPU

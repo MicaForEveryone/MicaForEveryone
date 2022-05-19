@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using XclParser.Reflection;
 
-using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
 

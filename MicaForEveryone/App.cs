@@ -2,8 +2,8 @@
 using System.Threading;
 using Windows.ApplicationModel.Resources;
 using Microsoft.Extensions.DependencyInjection;
+using XclParser; 
 
-using MicaForEveryone.Config;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Services;
 using MicaForEveryone.ViewModels;
@@ -55,7 +55,7 @@ namespace MicaForEveryone
             services.AddTransient<ISettingsContainer>(container =>
                 IsPackaged ? new UwpSettingsContainer()
                 : new RegistrySettingsContainer());
-            services.AddTransient<IConfigParser, XclParser>();
+            services.AddTransient<IConfigParser, XclParserService>();
             services.AddTransient<IConfigFile>(container =>
                 IsPackaged ? new UwpConfigFile(container.GetService<IConfigParser>())
                 : new Win32ConfigFile(container.GetService<IConfigParser>()));

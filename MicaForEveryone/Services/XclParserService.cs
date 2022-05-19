@@ -1,24 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
+using XclParser;
+using XclParser.Reflection;
 
-using MicaForEveryone.Config;
-using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 
 namespace MicaForEveryone.Services
 {
-    internal class XclParser : IConfigParser
+    internal class XclParserService : IConfigParser
     {
         private Context _xclContext = new();
         private XclDocument _configDocument;
 
         public IRule[] Rules { get; private set; }
 
-        public XclParser()
+        public XclParserService()
         {
             _xclContext.TypeMap.RegisterEnum(typeof(TitlebarColorMode));
             _xclContext.TypeMap.RegisterEnum(typeof(BackdropType));

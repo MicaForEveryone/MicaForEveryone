@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using XclParser.Primitives;
+using XclParser.Reflection;
 
-using MicaForEveryone.Config.Primitives;
-using MicaForEveryone.Config.Reflection;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
 
