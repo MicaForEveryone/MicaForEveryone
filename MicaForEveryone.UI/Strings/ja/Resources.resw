@@ -237,9 +237,6 @@
 	<data name="GitHubButton.Content" xml:space="preserve">
 		<value>GitHub</value>
 	</data>
-	<data name="GitHubButton.NavigateUri" xml:space="preserve">
-		<value>https://github.com/minusium/MicaForEveryone</value>
-	</data>
 	<data name="GlobalRulePaneItem.Text" xml:space="preserve">
 		<value>Global Rule</value>
 	</data>
@@ -318,9 +315,6 @@
 	<data name="TelegramButton.Content" xml:space="preserve">
 		<value>Telegram</value>
 	</data>
-	<data name="TelegramButton.NavigateUri" xml:space="preserve">
-		<value>https://t.me/minusium</value>
-	</data>
 	<data name="TitlebarColorDescription.Text" xml:space="preserve">
 		<value>タイトルバーのカラーテーマを設定。</value>
 	</data>
@@ -335,9 +329,6 @@
 	</data>
 	<data name="TwitterButton.Content" xml:space="preserve">
 		<value>Twitter</value>
-	</data>
-	<data name="TwitterButton.NavigateUri" xml:space="preserve">
-		<value>https://twitter.com/minusium</value>
 	</data>
 	<data name="UnhandledException.Header" xml:space="preserve">
 		<value>未処理の例外</value>

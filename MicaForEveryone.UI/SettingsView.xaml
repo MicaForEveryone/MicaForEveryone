@@ -467,11 +467,16 @@
                                 <Run Text="{x:Bind ViewModel.Version}" />
                                 <LineBreak />
                                 <Run x:Uid="Credit" />
-                                <Run Text="Minusium" />
+                                <Run Text="xMine64" />
                             </TextBlock>
-                            <HyperlinkButton x:Uid="GitHubButton" TabIndex="3" />
-                            <HyperlinkButton x:Uid="TelegramButton" />
-                            <HyperlinkButton x:Uid="TwitterButton" Margin="0,0,0,12" />
+                            <HyperlinkButton x:Uid="GitHubButton"
+                                             NavigateUri="https://github.com/MicaForEveryone/MicaForEveryone" 
+                                             TabIndex="3" />
+                            <HyperlinkButton x:Uid="TelegramButton" 
+                                             NavigateUri="https://t.me/xMine64" />
+                            <HyperlinkButton x:Uid="TwitterButton" 
+                                             Margin="0,0,0,12" 
+                                             NavigateUri="https://twitter.com/xMine64" />
                             <TextBlock>
                                 <Run x:Uid="IconCredit" />
                                 <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
@@ -481,7 +486,7 @@
                             <TextBlock Margin="0,4,0,0">
                                 <Run x:Uid="TranslatorsCredit" />
                                 <LineBreak />
-
+                                
                                 <Hyperlink NavigateUri="https://github.com/xoascf">
                                     <Run Text="Amaro Martínez" />
                                 </Hyperlink>

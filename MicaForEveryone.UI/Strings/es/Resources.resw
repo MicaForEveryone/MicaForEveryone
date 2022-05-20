@@ -150,9 +150,6 @@
   <data name="BackdropMenu.Text" xml:space="preserve">
     <value>Tipo de efecto de fondo</value>
   </data>
-  <data name="TelegramButton.NavigateUri" xml:space="preserve">
-    <value>https://t.me/minusium</value>
-  </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Versión</value>
   </data>
@@ -167,9 +164,6 @@
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
-  </data>
-  <data name="TwitterButton.NavigateUri" xml:space="preserve">
-    <value>https://twitter.com/minusium</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>Configuración</value>
@@ -281,9 +275,6 @@
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
     <value>Vuelve a cargar la configuración automáticamente cuando cambie.</value>
-  </data>
-  <data name="GitHubButton.NavigateUri" xml:space="preserve">
-    <value>https://github.com/minusium/MicaForEveryone</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Quitar regla</value>

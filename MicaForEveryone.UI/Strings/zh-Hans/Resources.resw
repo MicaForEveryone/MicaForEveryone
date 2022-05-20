@@ -381,16 +381,7 @@
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
-  <data name="GitHubButton.NavigateUri" xml:space="preserve">
-    <value>https://github.com/minusium/MicaForEveryone</value>
-  </data>
-  <data name="TelegramButton.NavigateUri" xml:space="preserve">
-    <value>https://t.me/minusium</value>
-  </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
-  </data>
-  <data name="TwitterButton.NavigateUri" xml:space="preserve">
-    <value>https://twitter.com/minusium</value>
   </data>
 </root>
