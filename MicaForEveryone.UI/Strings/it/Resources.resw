@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>About this app</value>
+    <value>Informazioni</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic forces all apps to use Windows 10-style blur backdrop effect.</value>
+    <value>L'effetto Acrylic utilizza lo stile delle app di Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>Add</value>
+    <value>Aggiungi</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>New Class Rule</value>
+    <value>Nuova Regola di Classe</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>Add Class Rule</value>
+    <value>Aggiungi Regola di Classe</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>New Process Rule</value>
+    <value>Nuova Regola di Processo</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Add Process Rule</value>
+    <value>Aggiungi Regola di Processo</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Add Rule</value>
+    <value>Aggiungi Regola</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Add Rule</value>
+    <value>Aggiungi Regola</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Config file</value>
+    <value>File di Configurazione</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>Error in Initializing application</value>
+    <value>Errore nell'inizializzazione dell'app.</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -160,154 +160,154 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Set backdrop type,</value>
+    <value>Imposta il tipo di sfondo,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Backdrop Type</value>
+    <value>Tipo di Sfondo</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Backdrop Type</value>
+    <value>Tipo di Sfondo</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Make windows translucent and blurred. Disabling this option requires you to close and reopen affected windows.</value>
+    <value>Rendi le finestre sfocate e traslucide. Per disabilitare quest'opzione è necessare riavviare le app interessate.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Blur Behind</value>
+    <value>Sfocatura Dietro</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>Browse</value>
+    <value>Sfoglia</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancella</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Enter window class name</value>
+    <value>Inserisci il nome della classe della finestra</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Class Name:</value>
+    <value>Nome Classe:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Close</value>
+    <value>Chiudi</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>Error in config file:
+    <value>Errore nel File di Configurazion:
 {0}
 
-Fix errors then use "Reload config file" option to reload it.</value>
+Correggi gli errori e clicca sull'opzione "Ricarica File di Configurazione" per ricaricarlo.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>Error in config file</value>
+    <value>Errore nel File di Configurazione.</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>File to be used for saving and loading rules.</value>
+    <value>File usato per salvare e caricare regole.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>File Path</value>
+    <value>Percorso File</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Dark</value>
+    <value>Scuro</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Dark uses dark theme.</value>
+    <value>L'opzione "Scuro" utilizza il tema scuro.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>Default doesn't do anything to keep app's default backdrop.</value>
+    <value>L'opzione default non si attiva per mantenere lo sfondo predefinito di ogni app.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>Default</value>
+    <value>Predefinito</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>The "Default" option keeps app's default theme.</value>
+    <value>L'opzione "Predefinito" mantiene il tema predefinito.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>Exit</value>
+    <value>Esci</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Extend Frame Into Client Area</value>
+    <value>Estendi l'Area dello Sfondo</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, so don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
+    <value>Estendi l'area sulla quale applicare lo sfondo a tutta l'app. Non funziona in tutte le app e potrebbe danneggiarle; non attivare quest'opzione se non sai cosa stai facendo. Per disattivare quest'opzione è necessario riavviare le app interessate.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>General</value>
+    <value>Generali</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>General</value>
+    <value>Generali</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Global Rule</value>
+    <value>Regola Globale</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Set your preferred language for UI. Application needs a restart to take effect.</value>
+    <value>Seleziona la tua lingua per l'UI. Riavvio dell'app necessario per apportare le modifiche.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>Language</value>
+    <value>Lingua</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Light</value>
+    <value>Chiaro</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Light uses light theme.</value>
+    <value>L'opzione "Chiaro" utilizza il tema chiaro.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Mica forces all apps to use Windows 11-style tinted wallpaper backdrop effect.</value>
+    <value>L'effetto Mica consiste in una sfocatura dello sfondo del desktop nello stile di Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>None disables backdrops, even on apps that already have them enabled.</value>
+    <value>L'opzione "Nessuno" disattiva tutti gli sfondi, anche sulle app che lo hanno già.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>None</value>
+    <value>Nessuno</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>Open in text editor</value>
+    <value>Apri nell'Editor di Testo</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>Enter executable file name without its extension (.exe)</value>
+    <value>Digitare il nome del file eseguibile senza la sua estensione (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>Process Name:</value>
+    <value>Nome Processo:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>Reload</value>
+    <value>Ricarica</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Reloads config automatically when the config file gets changed.</value>
+    <value>Ricarica il file di configurazione automaticamente quando questo viene modificato.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Reload on change</value>
+    <value>Ricarica alla modifica</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>Remove Rule</value>
+    <value>Rimuovi Regola</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Impostazioni</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>Impostazioni</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Run this app automatically on startup.</value>
+    <value>Esegui l'app all'avvio automaticamente.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Run on Startup</value>
+    <value>Esegui all'avvio</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>System</value>
+    <value>Sistema</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>System uses your theme preference.</value>
+    <value>L'opzione "Sistema" indica il tema attualmente in uso.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Tabbed forces all apps to use blurred wallpaper backdrop effect.</value>
+    <value>L'effetto Tabbed consiste in una sfocatura dello sfondo del desktop.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -316,13 +316,13 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>Set color theme of titlebars,</value>
+    <value>Imposta il tema della Barra del Titolo,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>Titlebar Color</value>
+    <value>Colore Barra del Titolo</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Titlebar Color</value>
+    <value>Colore Barra del Titolo</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -331,57 +331,57 @@ Fix errors then use "Reload config file" option to reload it.</value>
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>Unhandled Exception</value>
+    <value>Eccezione non gestita</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Unhandled Exception in UI</value>
+    <value>Eccezione non gestita nell'UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic and Tabbed backdrops effects require at least Windows build 22523.</value>
+    <value>Gli sfondi con effetti Acrylic e Tabbed funzionano sulle build di Windows a partire dalla 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Immersive Dark Mode requires at least Windows build 19041.</value>
+    <value>La Modalità Scura Immersiva funziona sulle build di Windows a partire dalla 19041.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Mica effect requires at least Windows build 22000.</value>
+    <value>L'effetto Mica funziona sulle build di Windows a partire dalla 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Version</value>
+    <value>Versione</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>Advanced</value>
+    <value>Avanzate</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Config File</value>
+    <value>File di Configurazione</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>Style</value>
+    <value>Stile</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>Open config file in your default text editor.</value>
+    <value>Apri file di configurazione nell'Editor di Testo predefinito.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Edit in Text Editor</value>
+    <value>Apri nell'Editor di Testo</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>Reload rules from config file then apply them to all open windows.</value>
+    <value>Ricarica le regole da un file di configurazione e applicale a tutte le finistre attualmente aperte.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>Reload</value>
+    <value>Ricarica</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>Restore default rules and delete all changes.</value>
+    <value>Ripristina le regole predefinite e cancella tutte le modifiche.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>Reset</value>
+    <value>Ripristina</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>By</value>
+    <value>Di:</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>Icon by:</value>
+    <value>Icona di:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>Translations by:</value>
+    <value>Traduzioni di:</value>
   </data>
 </root>
