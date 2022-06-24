@@ -506,6 +506,11 @@
                                     <Run Text="u!^DEV" />
                                 </Hyperlink>
                                 <LineBreak />
+                                
+                                <Hyperlink NavigateUri="https://github.com/alessandrocaseti">
+                                    <Run Text="Alessandro" />
+                                </Hyperlink>
+                                <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/AndromedaMelody">
                                     <Run Text="AndromedaMelody" />
