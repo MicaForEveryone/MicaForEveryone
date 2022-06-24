@@ -515,6 +515,11 @@
                                 <Hyperlink NavigateUri="https://github.com/AndromedaMelody">
                                     <Run Text="AndromedaMelody" />
                                 </Hyperlink>
+                                <LineBreak />
+                                
+                                <Hyperlink NavigateUri="https://github.com/SaiyajinK">
+                                    <Run Text="SaiyajinK" />
+                                </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                     </Grid>
