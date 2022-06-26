@@ -42,6 +42,19 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
+        public CornerPreference CornerPreference
+        {
+            get => Rule?.CornerPreference ?? default;
+            set
+            {
+                if (Rule != null && Rule.CornerPreference != value)
+                {
+                    Rule.CornerPreference = value;
+                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                }
+            }
+        }
+
         public bool ExtendFrameIntoClientArea
         {
             get => Rule?.ExtendFrameIntoClientArea ?? default;

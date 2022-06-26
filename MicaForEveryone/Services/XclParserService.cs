@@ -21,6 +21,7 @@ namespace MicaForEveryone.Services
         {
             _xclContext.TypeMap.RegisterEnum(typeof(TitlebarColorMode));
             _xclContext.TypeMap.RegisterEnum(typeof(BackdropType));
+            _xclContext.TypeMap.RegisterEnum(typeof(CornerPreference));
             //_xclContext.TypeMap.RegisterByAttribute();
             _xclContext.TypeMap.RegisterClass(typeof(GlobalRule));
             _xclContext.TypeMap.RegisterClass(typeof(ProcessRule));

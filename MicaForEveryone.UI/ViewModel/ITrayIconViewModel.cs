@@ -11,12 +11,15 @@ namespace MicaForEveryone.UI.ViewModels
         bool IsBackdropSupported { get; }
         bool IsMicaSupported { get; }
         bool IsImmersiveDarkModeSupported { get; }
+        bool IsCornerPreferenceSupported { get; }
 
         BackdropType BackdropType { get; }
         TitlebarColorMode TitlebarColor { get; }
+        CornerPreference CornerPreference { get; }
 
         IAsyncRelayCommand ChangeTitlebarColorModeAsyncCommand { get; }
         IAsyncRelayCommand ChangeBackdropTypeAsyncCommand { get; }
+        IAsyncRelayCommand ChangeCornerPreferenceAsyncCommand { get; }
         
         IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         ICommand EditConfigCommand { get; }

@@ -384,4 +384,34 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>Translations by:</value>
   </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Corner Mode</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Corner Mode</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Square</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Rounded</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Slightly Rounded</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Set corner rounding mode,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Default doesn't do anything to keep app's preferred corner rounding mode.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Square mode disables corner rounding.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Rounded mode enables rounded corners by force.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Slightly rounded mode is in the middle between square and rounded corners.</value>
+  </data>
 </root>

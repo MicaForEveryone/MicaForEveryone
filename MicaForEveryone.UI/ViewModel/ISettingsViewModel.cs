@@ -19,6 +19,7 @@ namespace MicaForEveryone.UI.ViewModels
 
         IList<BackdropType> BackdropTypes { get; }
         IList<TitlebarColorMode> TitlebarColorModes { get; }
+        IList<CornerPreference> CornerPreferences { get; }
 
         IList<IPaneItem> PaneItems { get; set; }
         IPaneItem SelectedPane { get; set; }

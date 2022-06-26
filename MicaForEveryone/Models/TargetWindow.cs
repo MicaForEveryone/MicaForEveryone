@@ -73,6 +73,17 @@ namespace MicaForEveryone.Models
             }
         }
 
+        public void ApplyCornerPreferenceRule(CornerPreference cornerPreference)
+        {
+            if (cornerPreference == CornerPreference.Default)
+                return;
+
+            if (DesktopWindowManager.IsCornerPreferenceSupported)
+            {
+                DesktopWindowManager.SetCornerPreference(WindowHandle, cornerPreference);
+            }
+        }
+
         public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
         {
 #if DEBUG
@@ -80,6 +91,7 @@ namespace MicaForEveryone.Models
 #endif
             ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
             ApplyBackdropRule(rule.BackdropPreference);
+            ApplyCornerPreferenceRule(rule.CornerPreference);
 
             if (rule.ExtendFrameIntoClientArea)
                 DesktopWindowManager.ExtendFrameIntoClientArea(WindowHandle);

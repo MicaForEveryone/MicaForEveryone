@@ -9,6 +9,7 @@ namespace MicaForEveryone.UI.ViewModels
     {
         BackdropType BackdropType { get; set; }
         TitlebarColorMode TitlebarColor { get; set; }
+        CornerPreference CornerPreference { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
         bool EnableBlurBehind { get; set; }
 

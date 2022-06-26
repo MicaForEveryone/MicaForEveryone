@@ -35,6 +35,7 @@ namespace MicaForEveryone.ViewModels
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
             ChangeTitlebarColorModeAsyncCommand = new AsyncRelayCommand<string>(DoChangeTitlebarColorModeAsync);
             ChangeBackdropTypeAsyncCommand = new AsyncRelayCommand<string>(DoChangeBackdropTypeAsync);
+            ChangeCornerPreferenceAsyncCommand = new AsyncRelayCommand<string>(DoChangeCornerPreferenceAsync);
             ExitCommand = new RelayCommand(DoExit);
             EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
             OpenSettingsCommand = new RelayCommand(DoOpenSettings);
@@ -50,9 +51,11 @@ namespace MicaForEveryone.ViewModels
         public bool IsBackdropSupported => DesktopWindowManager.IsBackdropTypeSupported;
         public bool IsMicaSupported => DesktopWindowManager.IsUndocumentedMicaSupported;
         public bool IsImmersiveDarkModeSupported => DesktopWindowManager.IsImmersiveDarkModeSupported;
+        public bool IsCornerPreferenceSupported => DesktopWindowManager.IsCornerPreferenceSupported;
 
         public BackdropType BackdropType => GlobalRule?.BackdropPreference ?? default;
         public TitlebarColorMode TitlebarColor => GlobalRule?.TitleBarColor ?? default;
+        public CornerPreference CornerPreference => GlobalRule?.CornerPreference ?? default;
 
         private GlobalRule? GlobalRule
         {
@@ -72,6 +75,7 @@ namespace MicaForEveryone.ViewModels
 
         public IAsyncRelayCommand ChangeTitlebarColorModeAsyncCommand { get; }
         public IAsyncRelayCommand ChangeBackdropTypeAsyncCommand { get; }
+        public IAsyncRelayCommand ChangeCornerPreferenceAsyncCommand { get; }
 
         public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         public ICommand EditConfigCommand { get; }
@@ -197,6 +201,21 @@ namespace MicaForEveryone.ViewModels
             };
             if (GlobalRule == null) return;
             GlobalRule.BackdropPreference = value;
+            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+        }
+
+        private async Task DoChangeCornerPreferenceAsync(string? parameter)
+        {
+            var value = parameter switch
+            {
+                "Default" => CornerPreference.Default,
+                "Square" => CornerPreference.Square,
+                "Rounded" => CornerPreference.Rounded,
+                "RoundedSmall" => CornerPreference.RoundedSmall,
+                _ => throw new ArgumentOutOfRangeException(nameof(parameter)),
+            };
+            if (GlobalRule == null) return;
+            GlobalRule.CornerPreference = value;
             await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
         }
 

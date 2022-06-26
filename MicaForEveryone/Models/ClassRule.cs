@@ -28,6 +28,9 @@ namespace MicaForEveryone.Models
         public BackdropType BackdropPreference { get; set; }
 
         [XclField]
+        public CornerPreference CornerPreference { get; set; }
+
+        [XclField]
         public bool ExtendFrameIntoClientArea { get; set; }
 
         [XclField]
