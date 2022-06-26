@@ -117,14 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Версия</value>
-  </data>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>О приложении</value>
+    <value>О программе</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic заставляет все приложения использовать эффект размытия фона в стиле Windows 10.</value>
+    <value>Эффект Acrylic принуждает все приложения использовать эффект размытия в стиле Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
@@ -142,19 +139,16 @@
     <value>Новое правило для процесса</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Добавить правило для класса</value>
+    <value>Добавить правило для процесса</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
     <value>Добавить правило</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Добавить правила</value>
+    <value>Добавить правило</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Конфигурационный файл</value>
-  </data>
-  <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>Расширенные</value>
+    <value>Файл конфигурации</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
     <value>Ошибка при инициализации приложения</value>
@@ -166,25 +160,19 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Установить тип фона,</value>
+    <value>Устанавливает тип фона,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Тип фона</value>
+    <value>Фон</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Тип фона</value>
+    <value>Фон</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Сделать окна полупрозрачными и размытыми. Отключение этого параметра требует, чтобы вы закрыли и снова открыли затронутые окна.</value>
-  </data>
-  <data name="TrayIconTooltip.Content" xml:space="preserve">
-    <value>Mica For Everyone</value>
-  </data>
-  <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>Перевод от:</value>
+    <value>Делает окна полупрозрачными и размытыми. После отключения этой опции необходимо перезапустить затронутые окна.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Размытие позади</value>
+    <value>Размытие фона</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>Обзор</value>
@@ -193,64 +181,58 @@
     <value>Отмена</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Введите имя класса окна</value>
+    <value>Введите название класса окна</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Имя класса:</value>
+    <value>Название класса:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Закрыть</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>Ошибка в конфигурационном файле:
+    <value>Ошибка в файле конфигурации:
 {0}
 
-Исправьте ошибки, затем используйте опцию «Обновить файл конфигурации», чтобы перезагрузить его.</value>
+Исправьте ошибки и перезагрузите файл конфигурации.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>Ошибка в конфигурационном файле</value>
+    <value>Ошибка в файле конфигурации</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>Файл, который будет использоваться для сохранения и загрузки правил.</value>
+    <value>Файл, используемый для сохранения и загрузке правил</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
     <value>Путь к файлу</value>
   </data>
-  <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Конфигурационный файл</value>
-  </data>
-  <data name="Credit.Text" xml:space="preserve">
-    <value>От</value>
-  </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Тёмная тема</value>
+    <value>Темная</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Используется тёмная тема.</value>
+    <value>темный режим использует темную тему.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>Ничего не делается, чтобы сохранить фон приложения по умолчанию.</value>
+    <value>в режиме По умолчанию сохраняется фон, установленный приложением.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>Умолчание</value>
+    <value>По умолчанию</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Опция «По умолчанию» сохраняет тему приложения по умолчанию.</value>
+    <value>в режиме По умолчанию сохраняется тема, установленная приложением.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Выход</value>
   </data>
-  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Расширяет рамку окна в свою клиентскую область, чтобы добавить фон на фоне некоторых приложений. Он работает не во всех приложениях и может их сломать, поэтому не включайте его, если не знаете, что делаете. Отключение этого параметра требует, чтобы вы закрыли и снова открыли затронутые окна.</value>
-  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Расширить кадр в клиентской области</value>
+    <value>Расширить рамку окна в клиентскую область</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Расширяет рамку окна в клиентскую область для того, чтобы расширить область изменения фона для некоторых приложений. Совместимо не со всеми приложениями и может нарушить их работу, поэтому включать эту опцию не рекомендуется, если вы не уверены в том, что делаете. После отключения этой опции необходимо перезапустить затронутые окна.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>Общие</value>
+    <value>Основные</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>Общие</value>
+    <value>Основные</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
@@ -258,44 +240,35 @@
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
     <value>Глобальное правило</value>
   </data>
-  <data name="IconCredit.Text" xml:space="preserve">
-    <value>Иконки от:</value>
-  </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Установите предпочтительный язык для пользовательского интерфейса. Приложение требует перезагрузки, чтобы оно вступило в силу.</value>
+    <value>Устанавливает язык пользовательского интерфейса. Требуется перезапуск приложения.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Язык</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Светлая тема</value>
+    <value>Светлая</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Используется светлая тема.</value>
+    <value>светлый режим использует светлую тему.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Эффект Mica принуждает все приложения использовать эффект размытия обоев в стиле Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
-  <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Mica forces all apps to use Windows 11-style tinted wallpaper backdrop effect.</value>
-  </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>Отключаются фоны фоны даже в приложениях, в которых они уже включены.</value>
+    <value>Отключает эффекты размытия, даже в приложениях, в которых он включен по умолчанию.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>Выключить</value>
+    <value>Отключено</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
     <value>ОК</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>Открыть текстовый редактор</value>
-  </data>
-  <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>Открыть файл конфигурации в текстовом редакторе по умолчанию.</value>
-  </data>
-  <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Редактировать в текстовом редакторе</value>
+    <value>Редактировать файл</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
     <value>Введите имя исполняемого файла без расширения (.exe)</value>
@@ -307,25 +280,13 @@
     <value>Перезагрузить</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Автоматически перезагружает конфигурацию при изменении файла конфигурации.</value>
+    <value>Перезагружать конфигурацию автоматически после редактирования файла</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Перезагружать при изменении</value>
-  </data>
-  <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>Перезагрузить правила из файла конфигурации, затем примените их ко всем открытым окнам.</value>
-  </data>
-  <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>Перезагрузить</value>
+    <value>Перезагружать при редактировании</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Удалить правило</value>
-  </data>
-  <data name="ResetSetting.Description" xml:space="preserve">
-    <value>Восстановление правила по умолчанию и удаление всех изменений.</value>
-  </data>
-  <data name="ResetSetting.Header" xml:space="preserve">
-    <value>Сброс</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>Настройки</value>
@@ -334,22 +295,19 @@
     <value>Настройки</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Запускать это приложение автоматически при запуске.</value>
+    <value>Запускать приложение автоматически при загрузке</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Выполняться при запуске</value>
-  </data>
-  <data name="StyleSetting.Header" xml:space="preserve">
-    <value>Стиль</value>
+    <value>Автозагрузка</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>Система</value>
+    <value>Системная</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Система использует ваши настройки темы.</value>
+    <value>системный режим использует тему, установленную в системе.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Tabbed заставляет все приложения использовать эффект размытого фона обоев.</value>
+    <value>Эффект Tabbed принуждает все приложения использовать эффект размытия обоев в стиле Windows 11.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -358,13 +316,16 @@
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>Установить цветовую тему заголовков,</value>
+    <value>Устанавливает цвет заголовков окон,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>Цвет заголовка</value>
+    <value>Цвет заголовков окон</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Цвет заголовка</value>
+    <value>Цвет заголовков окон</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
     <value>Twitter</value>
@@ -373,15 +334,84 @@
     <value>Необработанное исключение</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Необработанное исключение</value>
+    <value>Необработанное исключение в пользовательском интерфейсе</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Для эффектов Acrylic и Tabbed backdrops требуется как минимум сборка Windows 22523.</value>
+    <value>Для эффектов Acrylic и Tabbed требуется сборка Windows 22523 и выше.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Для иммерсивного темного режима требуется как минимум сборка Windows 19041.</value>
+    <value>Для иммерсивной темной темы требуется сборка Windows 19041 и выше.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Эффект Mica требует по крайней мере сборки Windows 22000.</value>
+    <value>Для эффекта Mica требуется сборка Windows 22000 и выше.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Дополнительно</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Файл конфигурации</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Стиль</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Открыть файл конфигурации в текстовом редакторе по умолчанию</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Редактировать в текстовом редакторе</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Перезагружает правила из файла конфигурации и применяет их ко всем окнам</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Перезагрузить</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Восстановить правила по умолчанию и удалить все изменения</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Сброс</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>от</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Иконка от:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Перевод от:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Скругление рамок окон</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Скругление рамок окон</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Острые</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Скругленные рамки</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Слегка скругленные рамки</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Устанавливает режим скругления рамки окна,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>в режиме По умолчанию сохраняется режим скругления рамки, установленный приложением.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Режим острых рамок принудительно делает рамки всех окон острыми.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Режим скругленных рамок принудительно скругляет рамки для всех окон.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Режим слегка скругленных рамок принудительно применяет режим скругления между острыми и скругленными для всех окон.</value>
   </data>
 </root>
