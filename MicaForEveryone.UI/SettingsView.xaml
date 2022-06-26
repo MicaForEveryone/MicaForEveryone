@@ -300,7 +300,7 @@
                         </controls:Setting.Description>
                     </controls:Setting>
 
-                    <controls:Setting x:Uid="CornerPreferenceSetting" Icon="&#xF5EF;">
+                    <controls:Setting x:Uid="CornerPreferenceSetting" Icon="&#xE71A;">
                         <controls:Setting.ActionContent>
                             <ComboBox
                                 MinWidth="110"

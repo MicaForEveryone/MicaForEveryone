@@ -90,7 +90,7 @@
 
             <MenuFlyoutSubItem x:Uid="CornerMenu" Visibility="{x:Bind ViewModel.IsCornerPreferenceSupported, Converter={StaticResource VisibilityConverter}}">
                 <MenuFlyoutSubItem.Icon>
-                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xF5EF;" />
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE71A;" />
                 </MenuFlyoutSubItem.Icon>
                 <MenuFlyoutSubItem.Items>
                     <ToggleMenuFlyoutItem
