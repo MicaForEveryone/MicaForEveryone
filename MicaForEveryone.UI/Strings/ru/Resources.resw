@@ -121,7 +121,7 @@
     <value>О программе</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Эффект Acrylic принуждает все приложения использовать эффект размытия в стиле Windows 10.</value>
+    <value>эффект Acrylic принуждает все приложения использовать эффект размытия в стиле Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
@@ -253,13 +253,13 @@
     <value>светлый режим использует светлую тему.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Эффект Mica принуждает все приложения использовать эффект размытия обоев в стиле Windows 11.</value>
+    <value>эффект Mica принуждает все приложения использовать эффект размытия обоев в стиле Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>Отключает эффекты размытия, даже в приложениях, в которых он включен по умолчанию.</value>
+    <value>отключает эффекты размытия, даже в приложениях, в которых он включен по умолчанию.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
     <value>Отключено</value>
@@ -307,7 +307,7 @@
     <value>системный режим использует тему, установленную в системе.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Эффект Tabbed принуждает все приложения использовать эффект размытия обоев в стиле Windows 11.</value>
+    <value>эффект Tabbed принуждает все приложения использовать эффект размытия обоев в стиле Windows 11.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -406,12 +406,12 @@
     <value>в режиме По умолчанию сохраняется режим скругления рамки, установленный приложением.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>Режим острых рамок принудительно делает рамки всех окон острыми.</value>
+    <value>режим острых рамок принудительно делает рамки всех окон острыми.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>Режим скругленных рамок принудительно скругляет рамки для всех окон.</value>
+    <value>режим скругленных рамок принудительно скругляет рамки для всех окон.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>Режим слегка скругленных рамок принудительно применяет режим скругления между острыми и скругленными для всех окон.</value>
+    <value>режим слегка скругленных рамок принудительно применяет режим скругления между острыми и скругленными для всех окон.</value>
   </data>
 </root>
