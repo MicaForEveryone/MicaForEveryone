@@ -393,4 +393,34 @@
 	<data name="TranslatorsCredit.Text" xml:space="preserve">
 		<value>日本語翻訳:</value>
 	</data>
+	<data name="CornerMenu.Text" xml:space="preserve">
+		<value>角の形</value>
+	 </data>
+	<data name="CornerPreferenceSetting.Header" xml:space="preserve">
+		<value>角の形</value>
+	</data>
+	<data name="SquareMenuItem.Text" xml:space="preserve">
+		<value>四角</value>
+	</data>
+	<data name="RoundedMenuItem.Text" xml:space="preserve">
+		<value>丸</value>
+	</data>
+	<data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+		<value>少し丸く</value>
+	</data>
+	<data name="CornerDescription.Text" xml:space="preserve">
+		<value>角の丸みの形を設定</value>
+	</data>
+	<data name="DefaultCornerDescription.Text" xml:space="preserve">
+		<value>「標準」は何もせず、そのアプリが指定している角の形のままにします。</value>
+	</data>
+	<data name="SquareCornerDescription.Text" xml:space="preserve">
+		<value>「四角」は、角の丸め指定を無効化します。</value>
+	</data>
+	<data name="RoundedCornerDescription.Text" xml:space="preserve">
+		<value>「丸」は、強制的に角の丸めを有効化します。</value>
+	</data>
+	<data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+		<value>「少し丸く」は、「角」と「丸」の中間の形です。</value>
+	</data>
 </root>
