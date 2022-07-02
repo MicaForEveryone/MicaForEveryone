@@ -421,6 +421,6 @@
 		<value>「丸」は、強制的に角の丸めを有効化します。</value>
 	</data>
 	<data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-		<value>「少し丸く」は、「角」と「丸」の中間の形です。</value>
+		<value>「少し丸く」は、「四角」と「丸」の中間の形です。</value>
 	</data>
 </root>
