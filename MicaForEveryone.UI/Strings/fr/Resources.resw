@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -382,5 +383,35 @@ Corrigez les erreurs puis utilisez l'option "Recharger le fichier de configurati
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>Traductions par:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Personnalisation des coins</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Personnalisation des coins</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Carré</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Arrondi</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Légèrement arrondi</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Définir le mode arrondi des coins,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>"Défaut" ne conserve pas le mode arrondi des coins préféré dans l'application.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>"Carré" désactive l'arrondi des coins.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>"Arrondi" force l'activation des coins arrondis.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>"légèrement arrondi" active les coins semi-arrondis.</value>
   </data>
 </root>

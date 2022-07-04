@@ -299,6 +299,82 @@
                             </StackPanel>
                         </controls:Setting.Description>
                     </controls:Setting>
+
+                    <controls:Setting x:Uid="CornerPreferenceSetting" Icon="&#xE71A;">
+                        <controls:Setting.ActionContent>
+                            <ComboBox
+                                MinWidth="110"
+                                ItemsSource="{x:Bind ViewModel.ParentViewModel.CornerPreferences}"
+                                SelectedItem="{x:Bind ViewModel.CornerPreference, Mode=TwoWay}">
+                                <ComboBox.ItemTemplateSelector>
+                                    <selectors:CornerPreferenceSelector>
+                                        <selectors:CornerPreferenceSelector.Default>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="DefaultMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:CornerPreferenceSelector.Default>
+                                        <selectors:CornerPreferenceSelector.Square>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="SquareMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:CornerPreferenceSelector.Square>
+                                        <selectors:CornerPreferenceSelector.Rounded>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="RoundedMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:CornerPreferenceSelector.Rounded>
+                                        <selectors:CornerPreferenceSelector.RoundedSmall>
+                                            <DataTemplate>
+                                                <TextBlock x:Uid="RoundedSmallMenuItem" />
+                                            </DataTemplate>
+                                        </selectors:CornerPreferenceSelector.RoundedSmall>
+                                    </selectors:CornerPreferenceSelector>
+                                </ComboBox.ItemTemplateSelector>
+                            </ComboBox>
+                        </controls:Setting.ActionContent>
+                        <controls:Setting.Description>
+                            <StackPanel>
+                                <ContentControl Content="{x:Bind ViewModel.CornerPreference, Mode=OneWay}" DataContext="{x:Bind ViewModel.CornerPreference}">
+                                    <ContentControl.ContentTemplateSelector>
+                                        <selectors:CornerPreferenceSelector>
+                                            <selectors:CornerPreferenceSelector.Default>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="CornerDescription" />
+                                                        <Run x:Uid="DefaultCornerDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:CornerPreferenceSelector.Default>
+                                            <selectors:CornerPreferenceSelector.Square>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="CornerDescription" />
+                                                        <Run x:Uid="SquareCornerDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:CornerPreferenceSelector.Square>
+                                            <selectors:CornerPreferenceSelector.Rounded>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="CornerDescription" />
+                                                        <Run x:Uid="RoundedCornerDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:CornerPreferenceSelector.Rounded>
+                                            <selectors:CornerPreferenceSelector.RoundedSmall>
+                                                <DataTemplate>
+                                                    <TextBlock TextWrapping="WrapWholeWords">
+                                                        <Run x:Uid="CornerDescription" />
+                                                        <Run x:Uid="RoundedSmallCornerDescription" />
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </selectors:CornerPreferenceSelector.RoundedSmall>
+                                        </selectors:CornerPreferenceSelector>
+                                    </ContentControl.ContentTemplateSelector>
+                                </ContentControl>
+                            </StackPanel>
+                        </controls:Setting.Description>
+                    </controls:Setting>
                 </controls:SettingsGroup>
 
                 <controls:SettingsGroup x:Uid="AdvancedSetting">

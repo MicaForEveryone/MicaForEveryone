@@ -62,11 +62,13 @@ namespace MicaForEveryone.ViewModels
         public bool IsBackdropSupported => DesktopWindowManager.IsBackdropTypeSupported;
         public bool IsMicaSupported => DesktopWindowManager.IsUndocumentedMicaSupported;
         public bool IsImmersiveDarkModeSupported => DesktopWindowManager.IsImmersiveDarkModeSupported;
+        public bool IsCornerPreferenceSupported => DesktopWindowManager.IsCornerPreferenceSupported;
 
         public string Version { get; }
 
         public IList<BackdropType> BackdropTypes { get; } = new List<BackdropType>();
         public IList<TitlebarColorMode> TitlebarColorModes { get; } = new List<TitlebarColorMode>();
+        public IList<CornerPreference> CornerPreferences { get; } = new List<CornerPreference>();
 
         public IList<IPaneItem> PaneItems { get; set; } = new ObservableCollection<IPaneItem>();
 
@@ -117,6 +119,17 @@ namespace MicaForEveryone.ViewModels
                     TitlebarColorModes.Add(TitlebarColorMode.System);
                     TitlebarColorModes.Add(TitlebarColorMode.Light);
                     TitlebarColorModes.Add(TitlebarColorMode.Dark);
+                }
+            }
+
+            if (CornerPreferences.Count <= 0)
+            {
+                CornerPreferences.Add(CornerPreference.Default);
+                if (IsCornerPreferenceSupported)
+                {
+                    CornerPreferences.Add(CornerPreference.Square);
+                    CornerPreferences.Add(CornerPreference.Rounded);
+                    CornerPreferences.Add(CornerPreference.RoundedSmall);
                 }
             }
 

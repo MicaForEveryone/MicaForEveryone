@@ -384,4 +384,34 @@
   <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>ترجمه توسط:</value>
   </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>حالت گوشه</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>حالت گوشه</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>مستطیل</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>گرد</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>کمی گرد</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>تنظیم گرد بودن گوشه پنجره‌ها،</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>گزینه «پیشفرض» تغییری ایجاد نمیکند تا از حالت ترجیحی برنامه برنامه استفاده شود.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>حالت «مستطیل» گوشه پنجره‌ها را تیز می‌کند.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>حالت «گرد» گوشه پنجره‌ها را به اجبار گرد می‌کند.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>حالت «کمی گرد» گوشه پنجره‌ها را به اجبار کمی گرد می‌کند.</value>
+  </data>
 </root>

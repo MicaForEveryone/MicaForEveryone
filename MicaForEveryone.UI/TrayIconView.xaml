@@ -88,6 +88,37 @@
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
 
+            <MenuFlyoutSubItem x:Uid="CornerMenu" Visibility="{x:Bind ViewModel.IsCornerPreferenceSupported, Converter={StaticResource VisibilityConverter}}">
+                <MenuFlyoutSubItem.Icon>
+                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE71A;" />
+                </MenuFlyoutSubItem.Icon>
+                <MenuFlyoutSubItem.Items>
+                    <ToggleMenuFlyoutItem
+                        x:Uid="DefaultMenuItem"
+                        Command="{x:Bind ViewModel.ChangeCornerPreferenceAsyncCommand}"
+                        CommandParameter="Default"
+                        IsChecked="{x:Bind ViewModel.CornerPreference, Converter={StaticResource IsEqualConverter}, ConverterParameter=Default, Mode=OneWay}" />
+
+                    <ToggleMenuFlyoutItem
+                        x:Uid="SquareMenuItem"
+                        Command="{x:Bind ViewModel.ChangeCornerPreferenceAsyncCommand}"
+                        CommandParameter="Square"
+                        IsChecked="{x:Bind ViewModel.CornerPreference, Converter={StaticResource IsEqualConverter}, ConverterParameter=Square, Mode=OneWay}" />
+
+                    <ToggleMenuFlyoutItem
+                        x:Uid="RoundedMenuItem"
+                        Command="{x:Bind ViewModel.ChangeCornerPreferenceAsyncCommand}"
+                        CommandParameter="Rounded"
+                        IsChecked="{x:Bind ViewModel.CornerPreference, Converter={StaticResource IsEqualConverter}, ConverterParameter=Rounded, Mode=OneWay}" />
+
+                    <ToggleMenuFlyoutItem
+                        x:Uid="RoundedSmallMenuItem"
+                        Command="{x:Bind ViewModel.ChangeCornerPreferenceAsyncCommand}"
+                        CommandParameter="RoundedSmall"
+                        IsChecked="{x:Bind ViewModel.CornerPreference, Converter={StaticResource IsEqualConverter}, ConverterParameter=RoundedSmall, Mode=OneWay}" />
+                </MenuFlyoutSubItem.Items>
+            </MenuFlyoutSubItem>
+
             <MenuFlyoutSeparator />
 
             <MenuFlyoutItem x:Uid="SettingsMenuItem" Command="{x:Bind ViewModel.OpenSettingsCommand}">
