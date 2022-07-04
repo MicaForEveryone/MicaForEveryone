@@ -121,10 +121,10 @@
     <value>关于此应用</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序窗口背景使用实时模糊效果的亚克力材质(Acrylic)特效。</value>
+    <value>现在将强制应用程序窗口背景使用实时渲染模糊的亚克力材质特效。</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>亚克力 (Acrylic)</value>
+    <value>亚克力</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
     <value>添加</value>
@@ -133,13 +133,13 @@
     <value>新建窗口类规则</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>依据Win32窗口类类名添加规则</value>
+    <value>依据窗口类类名添加规则</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
     <value>新建程序名规则</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>依据应用程序文件名添加规则</value>
+    <value>依据程序文件名添加规则</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
     <value>添加新规则</value>
@@ -154,7 +154,7 @@
     <value>应用程序无法启动</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>设置应用程序窗口背景模糊类型，</value>
+    <value>该选项用于设置应用程序窗口背景模糊类型，</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
     <value>模糊类型</value>
@@ -163,10 +163,10 @@
     <value>模糊类型</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>打开此选项，窗口将会半透明并且使用模糊特效。该选项不适用于所有应用程序，甚至会使他们崩溃，如果你不知道Win32GUI和DWM，那么请不要打开此选项。 关闭此选项需要重启已生效的窗口。</value>
+    <value>打开此选项，窗口将会半透明并且使用模糊特效。该选项可能不适用于所有应用程序。 关闭此选项需要重启已生效的窗口。</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>半透明模糊 (Blur Behind)</value>
+    <value>Blur Behind</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>浏览</value>
@@ -175,7 +175,7 @@
     <value>取消</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>请输入Win32窗口类类名</value>
+    <value>请输入窗口类类名</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
     <value>类名：</value>
@@ -184,7 +184,7 @@
     <value>关闭本窗口</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>配置文件中存在错误：
+    <value>配置文件中存在以下错误：
 {0}
 
 请先修正错误，然后点击“重新加载配置文件”按钮。</value>
@@ -199,7 +199,7 @@
     <value>文件路径</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>深色 (Dark)</value>
+    <value>深色</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
     <value>现在将强制应用程序标题栏使用深色模式。</value>
@@ -220,7 +220,7 @@
     <value>将窗口框架扩展到客户区</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>打开此选项，会将窗口标题栏特效扩展至整个窗口。该选项不适用于所有应用程序，甚至会使他们崩溃，如果你不知道Win32GUI和DWM，那么请不要打开此选项。 关闭此选项需要重启已生效的窗口。</value>
+    <value>打开此选项，会将窗口标题栏特效扩展至整个窗口。该选项可能不适用于所有应用程序，甚至会使它们崩溃，请谨慎打开此选项。 关闭此选项需要重启已生效的窗口。</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>常规设置</value>
@@ -238,22 +238,22 @@
     <value>语言</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>浅色 (Light)</value>
+    <value>浅色</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
     <value>现在将强制应用程序标题栏使用浅色模式。</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序窗口背景使用根据桌面壁纸背景色进行淡染的云母材质(Mica)特效。</value>
+    <value>现在将强制应用程序窗口背景使用根据桌面壁纸背景色进行淡染的云母材质特效。</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>云母 (Mica)</value>
+    <value>云母</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
     <value>现在将强制应用程序不使用任何特效而直接显示纯色。</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>纯色 (None)</value>
+    <value>纯色</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
     <value>确定</value>
@@ -262,7 +262,7 @@
     <value>在文本编辑器中打开</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>请输入可执行程序文件名，但不要包括“.exe”后缀。</value>
+    <value>请输入可执行程序文件名，但不要包括“.exe”后缀名。</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
     <value>程序文件名：</value>
@@ -307,7 +307,7 @@
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>设置应用程序标题栏主题，</value>
+    <value>该选项用于设置应用程序标题栏主题，</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
     <value>标题栏颜色</value>
@@ -325,13 +325,13 @@
     <value>用户界面中未处理的异常</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>亚克力材质(Acrylic)和Tabbed特效只支持Windows 11 Ni开发分支Dev/Beta预览版(Build 22523+)及更高版本操作系统。</value>
+    <value>亚克力材质和Tabbed特效只支持Windows 11 22H2(Build 22523+)及更高版本操作系统。</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>沉浸式深色模式只支持Windows 10 20H1(Build 19041+)及更高版本操作系统。</value>
+    <value>标题栏深色模式只支持Windows 10 20H1(Build 19041+)及更高版本操作系统。</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>云母材质(Mica)只支持Windows 11 21H2(Build 22000+)及更高版本操作系统。</value>
+    <value>云母材质只支持Windows 11 21H2(Build 22000+)及更高版本操作系统。</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>版本</value>
@@ -383,5 +383,35 @@
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>窗口边角</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>窗口边角</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>直角</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>圆角</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>稍圆</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>该选项用于设置应用程序窗口边角半径，</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>现在将由应用程序自行决定使用直角或圆角窗口边框。</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序使用直角窗口边框。</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序使用圆角窗口边框。</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>现在将强制应用程序使用圆角半径稍小的窗口边框。</value>
   </data>
 </root>
