@@ -204,6 +204,36 @@ Bitte Fehler beheben und dann &quot;Konfigurationsdatei neu laden&quot; verwende
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
     <value>Dateipfad</value>
   </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Eckenrundungsmodus</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Eckenrundungsmodus</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Quadratisch</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Gerundet</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Leicht abgerundet</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Einstellen des Eckenrundungsmodus,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Standard tut nichts, außer den in der App bevorzugten Eckenrundungsmodus beizubehalten.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Der Modus "Quadratisch" deaktiviert das Runden von Ecken.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Der Modus "Gerundet" aktiviert abgerundete Ecken zwangsweise.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Der Modus "Leicht abgerundet" befindet sich in der Mitte zwischen eckigen und abgerundeten Ecken.</value>
+  </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dunkel</value>
   </data>
