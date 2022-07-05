@@ -384,4 +384,34 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
   <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>Traducido por:</value>
   </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Modo de esquina</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Modo de esquina</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Cuadrado</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Redondeado</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Ligeramente redondeado</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>El modo ligeramente redondeado tiene una forma entre cuadrada y redondeada.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>El modo redondeado permite redondear las esquinas forzosamente.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>El modo cuadrado desactiva el redondeo de esquinas.</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Establezca el modo de redondeo de las esquinas,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Predeterminado no hace nada para así mantener el redondeo de esquinas predeterminado de la aplicación.</value>
+  </data>
 </root>
