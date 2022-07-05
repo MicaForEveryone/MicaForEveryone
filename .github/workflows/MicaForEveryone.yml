@@ -60,6 +60,9 @@ jobs:
         Configuration: ${{ matrix.configuration }}
         Platform: ${{ matrix.platform }}
 
+    - name: Sign Package
+      run: SignTool sign /fd SHA256 /a /f ..\MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} ..\$env:RELEASE_DIR\$env:MSIX_FILE
+
     - name: Upload MSIX
       uses: actions/upload-artifact@v2
       with:

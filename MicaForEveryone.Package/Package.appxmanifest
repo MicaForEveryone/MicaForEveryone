@@ -9,7 +9,7 @@
 
     <Identity
         Name="MicaForEveryone"
-        Publisher="CN=Minusium"
+        Publisher="CN=MicaForEveryone"
         Version="1.0.6.3" />
 
     <Properties>
