@@ -48,6 +48,17 @@ jobs:
         path: ${{ env.RELEASE_DIR }}\${{ env.ZIP_FILE }}
         if-no-files-found: error
 
+    - name: Build Installer
+      uses: "${env:ProgramFiles(x86)}\Inno Setup 6\iscc.exe" "Installer.iss"
+      env:
+        Source: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
+
+    - name: Upload Installer
+      uses: actions/upload-artifact@v2
+      with:
+        path: Output\
+        if-no-files-found: error
+
     - name: Clean MicaForEveryone.UI
       run: msbuild MicaForEveryone.sln /p:Configuration=$env:Configuration /p:Platform=$env:Platform /t:Clean
       env:
@@ -61,7 +72,7 @@ jobs:
         Platform: ${{ matrix.platform }}
 
     - name: Sign Package
-      run: SignTool sign /fd SHA256 /a /f ..\MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} ..\$env:RELEASE_DIR\$env:MSIX_FILE
+      run: SignTool sign /fd SHA256 /a /f MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} $env:RELEASE_DIR\$env:MSIX_FILE
 
     - name: Upload MSIX
       uses: actions/upload-artifact@v2
