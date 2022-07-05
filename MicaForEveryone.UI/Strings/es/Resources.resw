@@ -400,13 +400,13 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
     <value>Ligeramente redondeado</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>El modo ligeramente redondeado tiene una forma entre cuadrada y redondeada.</value>
+    <value>el modo ligeramente redondeado tiene una forma entre cuadrada y redondeada.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>El modo redondeado permite redondear las esquinas forzosamente.</value>
+    <value>el modo redondeado permite redondear las esquinas forzosamente.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>El modo cuadrado desactiva el redondeo de esquinas.</value>
+    <value>el modo cuadrado desactiva el redondeo de esquinas.</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
     <value>Establezca el modo de redondeo de las esquinas,</value>
