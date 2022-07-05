@@ -40,7 +40,7 @@ jobs:
         path: ${{ env.RELEASE_DIR }}\${{ env.ZIP_FILE }}
         if-no-files-found: error
     - name: Build Installer
-      run: '"${env:ProgramFiles(x86)}\Inno Setup 6\iscc.exe" Installer.iss'
+      run: '& "${env:ProgramFiles(x86)}\Inno Setup 6\iscc.exe" .\Installer.iss'
       env:
         Source: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
     - name: Upload Installer
