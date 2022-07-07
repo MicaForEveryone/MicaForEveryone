@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Mica For Everyone"
-#define MyAppVersion "1.0.6.3"
+#define MyAppVersion "1.1.0.0"
 #define MyAppPublisher "Mica For Everyone"
 #define MyAppURL "https://github.com/MicaForEveryone/MicaForEveryone"
 #define MyAppExeName "MicaForEveryone.exe"
