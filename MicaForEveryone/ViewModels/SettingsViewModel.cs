@@ -14,6 +14,10 @@ using MicaForEveryone.Models;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using MicaForEveryone.Win32.PInvoke;
+using System;
 
 #nullable enable
 
@@ -22,16 +26,19 @@ namespace MicaForEveryone.ViewModels
     internal class SettingsViewModel : ObservableObject, ISettingsViewModel
     {
         private readonly ISettingsService _settingsService;
+        private readonly ISettingsContainer _settingsContainer;
         private readonly GeneralPaneItem _generalPane;
 
         private SettingsWindow? _window;
         private IPaneItem? _selectedPane;
         private IRule? _newRule;
 
-        public SettingsViewModel(ISettingsService settingsService)
+        public SettingsViewModel(ISettingsService settingsService, ISettingsContainer settingsContainer)
         {
             _settingsService = settingsService;
             _settingsService.Changed += SettingsService_Changed;
+
+            _settingsContainer = settingsContainer;
 
             var vmGeneralPane = Program.CurrentApp.Container.GetService<IGeneralSettingsViewModel>();
             _generalPane = new GeneralPaneItem(vmGeneralPane);
@@ -92,6 +99,18 @@ namespace MicaForEveryone.ViewModels
         public void Initialize(SettingsWindow sender)
         {
             _window = sender;
+
+            // restore saved WindowPlacement
+            var serialized = _settingsContainer.GetValue("WindowPlacement") as byte[];
+            if (serialized != null)
+            {
+                using var stream = new MemoryStream(serialized);
+                var serializer = new BinaryFormatter();
+                var placement = (WINDOWPLACEMENT)serializer.Deserialize(stream);
+                _window!.SetWindowPlacement(placement);
+            }
+
+            _window.Destroy += OnClose;
 
             if (_generalPane.ViewModel is IGeneralSettingsViewModel vmGeneralPane)
                 vmGeneralPane.Initialize(sender);
@@ -200,6 +219,18 @@ namespace MicaForEveryone.ViewModels
                         break;
                 }
             });
+        }
+
+        private void OnClose(object? sender, WndProcEventArgs args)
+        {
+            // save WindowPlacement when closing window
+            if (_window!.Handle == IntPtr.Zero) return;
+            var placement = _window.GetWindowPlacement();
+            var serializer = new BinaryFormatter();
+            using var stream = new MemoryStream();
+            serializer.Serialize(stream, placement);
+            var bytes = stream.ToArray();
+            _settingsContainer.SetValue("WindowPlacement", bytes);
         }
 
         // commands 

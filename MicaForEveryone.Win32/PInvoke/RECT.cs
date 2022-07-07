@@ -3,6 +3,7 @@ using System.Drawing;
 
 namespace MicaForEveryone.Win32.PInvoke
 {
+    [Serializable]
     public struct RECT : IEquatable<RECT>, IEquatable<Rectangle>
     {
         /// <summary>The x-coordinate of the upper-left corner of the rectangle.</summary>

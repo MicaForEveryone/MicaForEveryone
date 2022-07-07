@@ -483,6 +483,24 @@ namespace MicaForEveryone.Win32
             NativeMethods.PostMessageW(Handle, (uint)message, IntPtr.Zero, IntPtr.Zero);
         }
 
+        public WINDOWPLACEMENT GetWindowPlacement()
+        {
+            var result = WINDOWPLACEMENT.Default;
+            NativeMethods.GetWindowPlacement(Handle, ref result);
+            var error = Marshal.GetLastWin32Error();
+            if (error != 0)
+                throw new Win32Exception(error);
+            return result;
+        }
+
+        public void SetWindowPlacement(WINDOWPLACEMENT windowPlacement)
+        {
+            NativeMethods.SetWindowPlacement(Handle, ref windowPlacement);
+            var error = Marshal.GetLastWin32Error();
+            if (error != 0)
+                throw new Win32Exception(error);
+        }
+
         /// <summary>
         /// Enable or Disable window
         /// </summary>

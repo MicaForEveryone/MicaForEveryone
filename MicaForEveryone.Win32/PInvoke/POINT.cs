@@ -1,7 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace MicaForEveryone.Win32.PInvoke
 {
+    [Serializable]
     [StructLayout(LayoutKind.Sequential)]
     public struct POINT
     {
