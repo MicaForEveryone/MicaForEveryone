@@ -50,7 +50,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: ${{ INSTALLER_FILE_BASE_NAME }}
-        path: Output\${{ INSTALLER_FILE_BASE_NAME }}.exe
+        path: Output\${{ env.INSTALLER_FILE_BASE_NAME }}.exe
         if-no-files-found: error
 
     - name: Clean MicaForEveryone.UI

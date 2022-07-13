@@ -24,7 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D5E7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflow", "workflow", "{9EF51D86-285E-419C-AE09-14EBB7DE9EE9}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\MicaForEveryone.yml = .github\workflows\MicaForEveryone.yml
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
 	EndProjectSection
 EndProject
 Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "MicaForEveryone.Package", "MicaForEveryone.Package\MicaForEveryone.Package.wapproj", "{12503582-6D75-4DDE-97C7-B35BADE8D123}"
