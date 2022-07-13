@@ -2,11 +2,12 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Mica For Everyone"
-#define MyAppVersion "1.1.0.0"
+#define MyAppVersion GetEnv('VERSION')
 #define MyAppPublisher "Mica For Everyone"
 #define MyAppURL "https://github.com/MicaForEveryone/MicaForEveryone"
 #define MyAppExeName "MicaForEveryone.exe"
 #define MyAppSource GetEnv('Source')
+#define OutputBaseFileName GetEnv('INSTALLER_FILE_BASE_NAME')
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -24,7 +25,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 PrivilegesRequired=lowest
 ;PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=MicaForEveryone-{#MyAppVersion}-x64-Installer
+OutputBaseFilename={#OutputBaseFileName}
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

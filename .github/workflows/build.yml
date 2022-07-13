@@ -20,6 +20,8 @@ jobs:
       ZIP_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.zip
       MSIX_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.msixbundle
       RELEASE_DIR: Release
+      INSTALLER_FILE_BASE_NAME: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}-Installer
+      VERSION: '0.0.0.0'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -47,8 +49,8 @@ jobs:
     - name: Upload Installer
       uses: actions/upload-artifact@v2
       with:
-        name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}-Installer
-        path: Output\
+        name: ${{ INSTALLER_FILE_BASE_NAME }}
+        path: Output\${{ INSTALLER_FILE_BASE_NAME }}.exe
         if-no-files-found: error
 
     - name: Clean MicaForEveryone.UI
