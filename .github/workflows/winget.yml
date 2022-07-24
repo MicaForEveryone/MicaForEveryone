@@ -11,5 +11,5 @@ jobs:
       - uses: vedantmgoyal2009/winget-releaser@latest
         with:
           identifier: MicaForEveryone.MicaForEveryone
-          installers-regex: 'MicaForEveryone-x64-Release-Installer.exe$'
+          installers-regex: 'MicaForEveryone-*-Release-Installer.exe$'
           token: ${{ secrets.WINGET_TOKEN }}
