@@ -1,9 +1,14 @@
-name: Build and Release
+name: CI
 
 on:
   push:
     tags:
-        - 'v*'
+      - 'v*'
+    branches-ignore:
+      - gh-pages
+  pull_request:
+    branches-ignore:
+      - gh-pages
 
 jobs:
   build:
@@ -27,6 +32,7 @@ jobs:
     - name: Get Version
       id: get_version
       uses: battila7/get-version-action@v2
+      if: startsWith(github.ref, 'refs/tags/v')
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
 
@@ -42,15 +48,15 @@ jobs:
 
     # Installer
     - name: Build Installer
-      run: iscc Installer.iss /O ${{ env.RELEASE_DIR }}
+      run: iscc Installer.iss /O${{ env.RELEASE_DIR }}
       env:
         Source: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
-        VERSION: ${{ steps.get_version.outputs.version-without-v }}
+        VERSION:  ${{ startsWith(github.ref, 'refs/tags/v') && steps.get_version.outputs.version-without-v || '0.0.0.0'  }} # Use version tag if available, else use 0.0.0.0
     - name: Upload installer artifact
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.INSTALLER_FILE_BASE_NAME }}
-        path: Output\${{ env.INSTALLER_FILE_BASE_NAME }}
+        path: ${{ env.RELEASE_DIR }}\${{ env.INSTALLER_FILE_BASE_NAME }}.exe
         if-no-files-found: error
 
     # MSIX
@@ -59,7 +65,7 @@ jobs:
     - name: Package MSIX
       run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:AppxBundlePlatforms=${{ matrix.platform }} /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:MsixName=${{ env.MSIX_FILE }} /t:ReleaseMsix
     # - name: Sign Package
-    #   run: '& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe" sign /fd SHA256 /a /f MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}
+    #   run: '& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe" sign /fd SHA256 /a /f MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}'
     - name: Upload MSIX
       uses: actions/upload-artifact@v3
       with:
