@@ -1,9 +1,9 @@
-name: Build and Publish Release
+name: Build and Release
 
 on:
   push:
     tags:
-        - '*'
+        - 'v*'
 
 jobs:
   build:
@@ -16,96 +16,53 @@ jobs:
     env:
       ZIP_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.zip
       MSIX_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.msixbundle
-      RELEASE_DIR: Release
       INSTALLER_FILE_BASE_NAME: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}-Installer
+      RELEASE_DIR: Release
 
     steps:
-    # initialization
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
     - name: Get Version
-      id: version
-      run: |
-        $version=($env:ref).Split("/")[2].Substring(1)
-        echo "::set-output name=version::$version"
-      env:
-        ref: ${{ github.ref }}
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
-    #
-    # Build app
-    #
+      id: get_version
+      uses: battila7/get-version-action@v2
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
+    # ZIP
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:ZipName=$env:ZIP_FILE /t:ReleaseZip
-      env:
-        Configuration: ${{ matrix.configuration }}
-        Platform: ${{ matrix.platform }}
-    # Upload ZIP version
-    - name: Upload Release
-      uses: actions/upload-artifact@v2
+      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:ZipName=${{ env.ZIP_FILE }} /t:ReleaseZip
+    - name: Upload ZIP artifact
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.ZIP_FILE }}
         path: ${{ env.RELEASE_DIR }}\${{ env.ZIP_FILE }}
         if-no-files-found: error
-    - name: Upload ZIP file to Releases
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ env.RELEASE_DIR }}\${{ env.ZIP_FILE }}
-        asset_name: ${{ env.ZIP_FILE }}
-        tag: ${{ github.ref }}
 
-    # Build Installer
+    # Installer
     - name: Build Installer
-      run: '& "${env:ProgramFiles(x86)}\Inno Setup 6\iscc.exe" .\Installer.iss'
+      run: iscc Installer.iss /O ${{ env.RELEASE_DIR }}
       env:
         Source: MicaForEveryone\bin\${{ matrix.platform }}\${{ matrix.configuration }}\netcoreapp3.1
-        VERSION: ${{ steps.version.outputs.version }}
-    # Upload Installer
-    - name: Upload Installer
-      uses: actions/upload-artifact@v2
+        VERSION: ${{ steps.get_version.outputs.version-without-v }}
+    - name: Upload installer artifact
+      uses: actions/upload-artifact@v3
       with:
-        name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}-Installer
-        path: Output\${{ env.INSTALLER_FILE_BASE_NAME }}.exe
+        name: ${{ env.INSTALLER_FILE_BASE_NAME }}
+        path: Output\${{ env.INSTALLER_FILE_BASE_NAME }}
         if-no-files-found: error
-    - name: Upload Installer to Releases
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: Output\${{ env.INSTALLER_FILE_BASE_NAME }}.exe
-        asset_name: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}-Installer.exe
-        tag: ${{ github.ref }}
-    #
-    # Build MSIX
-    #
 
-    # start in a clean environment
-    - name: Clean MicaForEveryone.UI
-      run: msbuild MicaForEveryone.sln /p:Configuration=$env:Configuration /p:Platform=$env:Platform /t:Clean
-      env:
-        Configuration: ${{ matrix.configuration }}
-        Platform: ${{ matrix.platform }}
-    # build the package
-    - name: Package as MSIX
-      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=$env:Configuration /p:Platform=$env:Platform /p:AppxBundlePlatforms=$env:Platform /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\$env:RELEASE_DIR /p:MsixName=$env:MSIX_FILE /t:ReleaseMsix
-      env:
-        Configuration: ${{ matrix.configuration }}
-        Platform: ${{ matrix.platform }}
-    - name: Sign Package
-      run: '& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe" sign /fd SHA256 /a /f MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} $env:RELEASE_DIR\$env:MSIX_FILE'
-    # Upload MSIX
+    # MSIX
+    - name: Clean Solution
+      run: msbuild MicaForEveryone.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /t:Clean
+    - name: Package MSIX
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:AppxBundlePlatforms=${{ matrix.platform }} /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:MsixName=${{ env.MSIX_FILE }} /t:ReleaseMsix
+    # - name: Sign Package
+    #   run: '& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe" sign /fd SHA256 /a /f MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}
     - name: Upload MSIX
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.MSIX_FILE }}
         path: ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}
         if-no-files-found: error
-    - name: Upload MSIX to Releases
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}
-        asset_name: ${{ env.MSIX_FILE }}
-        tag: ${{ github.ref }}
