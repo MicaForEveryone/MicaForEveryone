@@ -37,60 +37,19 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppSource}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\concrt140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.conf"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.deps.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.runtimeconfig.dev.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.Shared.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.Shared.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.UI.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.UI.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.UI.xr.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.Win32.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\MicaForEveryone.Win32.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Extensions.DependencyInjection.Abstractions.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Extensions.DependencyInjection.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Graphics.Canvas.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Graphics.Canvas.winmd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Mvvm.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Mvvm.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Win32.UI.XamlHost.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Win32.UI.XamlHost.Managed.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Win32.UI.XamlHost.pri"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Win32.UI.XamlHost.winmd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Toolkit.Win32.UI.XamlHost.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.UI.Xaml.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.UI.Xaml.pri"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.UI.Xaml.winmd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Web.WebView2.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Web.WebView2.Core.winmd"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Web.WebView2.WinForms.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Web.WebView2.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\Microsoft.Win32.Registry.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\msvcp140_1_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\msvcp140_2_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\msvcp140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\NoiseAsset_256x256_PNG.png"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\resources.pri"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\System.ComponentModel.Annotations.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\System.Runtime.CompilerServices.Unsafe.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\System.Security.AccessControl.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\System.Security.Principal.Windows.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\vcamp140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\vccorlib140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\vcomp140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\vcruntime140_1_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\vcruntime140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\XclParser.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.pri"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.winmd"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\*.xbf"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\Controls\*.xbf"; DestDir: "{app}\Controls"; Flags: ignoreversion
+Source: "{#MyAppSource}\Styles\*.xbf"; DestDir: "{app}\Styles"; Flags: ignoreversion
+Source: "{#MyAppSource}\Themes\*.xbf"; DestDir: "{app}\Themes"; Flags: ignoreversion
 Source: "{#MyAppSource}\runtimes\*"; DestDir: "{app}\runtimes"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "{#MyAppSource}\MicaForEveryone.conf"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#MyAppSource}\NoiseAsset_256x256_PNG.png"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
