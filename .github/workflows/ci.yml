@@ -11,7 +11,7 @@ on:
       - gh-pages
 
 jobs:
-  build:
+  build_nonpackaged:
     strategy:
       matrix:
         configuration: [Debug, Release]
@@ -20,7 +20,6 @@ jobs:
 
     env:
       ZIP_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.zip
-      MSIX_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.msixbundle
       INSTALLER_FILE_BASE_NAME: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}-Installer
       RELEASE_DIR: Release
 
@@ -59,12 +58,35 @@ jobs:
         path: ${{ env.RELEASE_DIR }}\${{ env.INSTALLER_FILE_BASE_NAME }}.exe
         if-no-files-found: error
 
-    # MSIX
-    - name: Clean Solution
-      run: msbuild MicaForEveryone.sln /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /t:Clean
+  build_packaged:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+        platform: [x64]
+    runs-on: windows-latest
+
+    env:
+      MSIX_FILE: MicaForEveryone-${{ matrix.platform }}-${{ matrix.configuration }}.msixbundle
+      RELEASE_DIR: Release
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Get Version
+      id: get_version
+      uses: battila7/get-version-action@v2
+      if: startsWith(github.ref, 'refs/tags/v')
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+
     - name: Package MSIX
       run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:AppxBundlePlatforms=${{ matrix.platform }} /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:MsixName=${{ env.MSIX_FILE }} /t:ReleaseMsix
     - name: Sign Package
+      env:
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      if: "${{ env.KEY_PASSWORD != '' }}"
       run: '& "C:\Program Files (x86)\Windows Kits\10\bin\10.0.22000.0\x64\signtool.exe" sign /fd SHA256 /a /f MicaForEveryone.pfx /p ${{ secrets.KEY_PASSWORD }} ${{ env.RELEASE_DIR }}\${{ env.MSIX_FILE }}'
     - name: Upload MSIX
       uses: actions/upload-artifact@v3
@@ -74,7 +96,7 @@ jobs:
         if-no-files-found: error
 
   release:
-    needs: build
+    needs: [build_nonpackaged, build_packaged]
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
 
