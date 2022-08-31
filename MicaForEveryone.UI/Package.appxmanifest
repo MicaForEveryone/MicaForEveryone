@@ -9,7 +9,7 @@
     <Identity
         Name="MicaForEveryone"
         Publisher="CN=Minusium"
-        Version="0.1.0.0" />
+        Version="1.2.0.0" />
 
     <mp:PhoneIdentity PhoneProductId="533584ee-ace8-4310-adb6-d59b701b7236" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
