@@ -89,7 +89,7 @@ Source: "{#MyAppSource}\vcruntime140_1_app.dll"; DestDir: "{app}"; Flags: ignore
 Source: "{#MyAppSource}\vcruntime140_app.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppSource}\WebView2Loader.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#MyAppSource}\XclParser.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyAppSource}\runtimes\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyAppSource}\runtimes\*"; DestDir: "{app}\runtimes"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
