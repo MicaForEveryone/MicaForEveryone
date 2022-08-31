@@ -25,7 +25,7 @@
     <WapAlwaysBuildDependentProjects>true</WapAlwaysBuildDependentProjects>
     <WapProjPath Condition="'$(WapProjPath)'==''">$(MSBuildExtensionsPath)\Microsoft\DesktopBridge\</WapProjPath>
     <TargetPlatformVersion>10.0.22000.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <DefaultLanguage>en</DefaultLanguage>
     <EntryPointProjectUniqueName>..\MicaForEveryone\MicaForEveryone.csproj</EntryPointProjectUniqueName>
     <DebuggerType>CoreClr</DebuggerType>
