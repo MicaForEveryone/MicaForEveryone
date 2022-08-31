@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Globalization;
 using Windows.Storage.Pickers;
-using Windows.UI.Core;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
