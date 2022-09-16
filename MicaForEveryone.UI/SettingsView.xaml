@@ -596,6 +596,11 @@
                                 <Hyperlink NavigateUri="https://github.com/SaiyajinK">
                                     <Run Text="SaiyajinK" />
                                 </Hyperlink>
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/RTFTR">
+                                    <Run Text="RTFTR" />
+                                </Hyperlink>
                             </TextBlock>
                         </StackPanel>
                     </Grid>
