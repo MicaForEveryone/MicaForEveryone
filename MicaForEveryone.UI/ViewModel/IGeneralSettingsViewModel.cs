@@ -13,6 +13,8 @@ namespace MicaForEveryone.UI.ViewModels
         bool ReloadOnChange { get; set; }
         bool RunOnStartup { get; set; }
         bool RunOnStartupAvailable { get; }
+        bool RunOnStartupAsAdmin { get; set; }
+        bool RunOnStartupAsAdminAvailable { get; }
         string ConfigFilePath { get; set; }
 
         IAsyncRelayCommand BrowseAsyncCommand { get; }

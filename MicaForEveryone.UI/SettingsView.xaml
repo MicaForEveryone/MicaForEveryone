@@ -40,6 +40,12 @@
                         </controls:Setting.ActionContent>
                     </controls:Setting>
 
+                    <controls:Setting x:Uid="AdminStartupSetting" IsEnabled="{x:Bind ViewModel.RunOnStartupAsAdminAvailable}">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.RunOnStartupAsAdmin, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+
                 </controls:SettingsGroup>
 
                 <controls:SettingsGroup x:Uid="ConfigFileSetting">

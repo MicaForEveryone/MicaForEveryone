@@ -22,15 +22,17 @@ namespace MicaForEveryone.ViewModels
         private readonly ISettingsService _settingsService;
         private readonly IStartupService _startupService;
         private readonly ILanguageService _languageService;
+        private readonly ITaskSchedulerService _taskSchedulerService;
 
         private XamlWindow? _window;
         private Language _currentLanguage;
 
-        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService)
+        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService)
         {
             _settingsService = settingsService;
             _startupService = startupService;
             _languageService = languageService;
+            _taskSchedulerService = taskSchedulerService;
 
             _currentLanguage = _languageService.CurrentLanguage;
             Languages = _languageService.SupportedLanguages;
@@ -82,6 +84,30 @@ namespace MicaForEveryone.ViewModels
         public bool RunOnStartupAvailable
         {
             get => _startupService.IsAvailable;
+        }
+
+        public bool RunOnStartupAsAdmin
+        {
+            get => _taskSchedulerService.IsRunAsAdminTaskEnabled();
+            set
+            {
+                if (_taskSchedulerService.IsRunAsAdminTaskEnabled() != value)
+                {
+                    if (value)
+                    {
+                        _taskSchedulerService.CreateRunAsAdminTask();
+                    }
+                    else
+                    {
+                        _taskSchedulerService.RemoveRunAsAdminTask();
+                    }
+                }
+            }
+        }
+
+        public bool RunOnStartupAsAdminAvailable
+        {
+            get => _taskSchedulerService.IsAvailable();
         }
 
         public string ConfigFilePath

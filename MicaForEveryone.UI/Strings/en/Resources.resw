@@ -414,4 +414,10 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>Slightly rounded mode is in the middle between square and rounded corners.</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Run this app automatically as administrator on startup. You need to run app as Administrator to enable this option.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Run as Administrator on Startup</value>
+  </data>
 </root>

@@ -10,7 +10,7 @@ using MicaForEveryone.Win32.Events;
 
 namespace MicaForEveryone.Services
 {
-    internal class RuleService : IRuleService, IDisposable
+    internal class RuleService : IRuleService
     {
         private readonly ISettingsService _settingsService;
 
@@ -87,6 +87,7 @@ namespace MicaForEveryone.Services
                 });
                 _applyAllWindowsMutex.ReleaseMutex();
             });
+
         }
 
         private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)

@@ -6,7 +6,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
         <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
-        <Platforms>x64;ARM64</Platforms>
+        <Platforms>x64;ARM64;x86</Platforms>
         <LangVersion>9.0</LangVersion>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ApplicationIcon>Resources\MicaForEveryone.ico</ApplicationIcon>
@@ -17,6 +17,10 @@
 
     <PropertyGroup Condition="'$(Platform)'=='x64'">
         <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Platform)'=='x86'">
+      <PlatformTarget>x64</PlatformTarget>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Platform)'=='arm64'">
@@ -38,7 +42,8 @@
         <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
         <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
         <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
-        <PackageReference Include="XclParser" Version="1.0.6" />
+        <PackageReference Include="TaskScheduler" Version="2.10.1" />
+        <PackageReference Include="XclParser" Version="1.0.7" />
     </ItemGroup>
 
     <ItemGroup>
