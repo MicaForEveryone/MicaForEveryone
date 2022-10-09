@@ -239,6 +239,19 @@ namespace MicaForEveryone.Win32.PInvoke
 
         [DllImport("user32.dll")]
         public static extern int SetWindowCompositionAttribute(IntPtr hwnd, ref WindowCompositionAttributeData data);
+
+        [DllImport("kernelbase.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern int AddPackageDependency([MarshalAs(UnmanagedType.LPWStr)] string packageDependencyId, int rank,
+            AddPackageDependencyOptions options, out IntPtr packageDependencyContext, out IntPtr packageFullName);
+
+        [DllImport("kernelbase.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern int RemovePackageDependency([In] IntPtr packageDependencyContext);
+
+        [DllImport("kernelbase.dll", SetLastError = false, ExactSpelling = true)]
+        public static extern int TryCreatePackageDependency([In, Optional] IntPtr user, [MarshalAs(UnmanagedType.LPWStr)] string packageFamilyName,
+            PACKAGE_VERSION minVersion, PackageDependencyProcessorArchitectures packageDependencyProcessorArchitectures,
+            PackageDependencyLifetimeKind lifetimeKind, [MarshalAs(UnmanagedType.LPWStr)] string lifetimeArtifact,
+            CreatePackageDependencyOptions options, [MarshalAs(UnmanagedType.LPWStr)] out string packageDependencyId);
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
