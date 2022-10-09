@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using MicaForEveryone.Models;
@@ -9,9 +10,11 @@ using MicaForEveryone.Win32.Events;
 
 namespace MicaForEveryone.Services
 {
-    internal class RuleService : IRuleService
+    internal class RuleService : IRuleService, IDisposable
     {
         private readonly ISettingsService _settingsService;
+
+        private readonly Mutex _applyAllWindowsMutex = new();
 
         public RuleService(ISettingsService settingsService)
         {
@@ -21,7 +24,7 @@ namespace MicaForEveryone.Services
 
         ~RuleService()
         {
-            _settingsService.Changed -= SettingsService_Changed;
+            Dispose(false);
         }
 
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
@@ -68,6 +71,7 @@ namespace MicaForEveryone.Services
         {
             return Task.Run(() =>
             {
+                _applyAllWindowsMutex.WaitOne();
                 Window.GetDesktopWindow().ForEachChild(window =>
                 {
                     if (!window.IsVisible())
@@ -81,6 +85,7 @@ namespace MicaForEveryone.Services
 
                     MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
                 });
+                _applyAllWindowsMutex.ReleaseMutex();
             });
         }
 
@@ -103,6 +108,18 @@ namespace MicaForEveryone.Services
                 var target = TargetWindow.FromWindow(e.Window);
                 MatchAndApplyRuleToWindow(target);
             });
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+            _applyAllWindowsMutex?.Dispose();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
