@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Principal;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Win32;
@@ -12,7 +13,7 @@ namespace MicaForEveryone.Services
         {
             if (Application.IsPackaged)
             {
-                return "mfe.exe";
+                return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Microsoft\\WindowsApps\\mfe.exe";
             }
 
             return System.Reflection.Assembly.GetExecutingAssembly().Location;
