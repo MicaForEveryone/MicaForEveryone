@@ -414,4 +414,10 @@
 	<data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
 		<value>「少し丸く」は、「四角」と「丸」の中間の形です。</value>
 	</data>
+	<data name="AdminStartupSetting.Description" xml:space="preserve">
+		<value>システムの起動時に本アプリを管理者として実行します。管理者として実行したい場合に有効化してください。</value>
+	</data>
+	<data name="AdminStartupSetting.Header" xml:space="preserve">
+		<value>起動時に管理者として実行</value>
+	</data>
 </root>
