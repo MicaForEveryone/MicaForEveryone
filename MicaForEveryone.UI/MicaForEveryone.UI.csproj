@@ -227,7 +227,7 @@
     <PRIResource Include="Strings\ko\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
-    <PRIResource Include="Strings\zn-Hant\Resources.resw">
+    <PRIResource Include="Strings\zh-Hant\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
   </ItemGroup>
