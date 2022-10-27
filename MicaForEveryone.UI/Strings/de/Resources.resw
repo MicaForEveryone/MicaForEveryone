@@ -234,6 +234,12 @@ Bitte Fehler beheben und dann &quot;Konfigurationsdatei neu laden&quot; verwende
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>Der Modus "Leicht abgerundet" befindet sich in der Mitte zwischen eckigen und abgerundeten Ecken.</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Diese App beim Start automatisch als Administrator ausführen. Sie müssen die App als Administrator ausführen, um diese Option zu aktivieren.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Beim Start als Administrator ausführen</value>
+  </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dunkel</value>
   </data>
