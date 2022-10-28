@@ -32,6 +32,10 @@ namespace MicaForEveryone.Services
             task.Principal.RunLevel = TaskRunLevel.Highest;
             task.Triggers.Add(new LogonTrigger());
             task.Actions.Add(new ExecAction(GetExecutableLocation()));
+            // Allow the task to start on battery power and run for as long as it wants.
+            task.Settings.DisallowStartIfOnBatteries = false;
+            task.Settings.StopIfGoingOnBatteries = false;
+            task.Settings.ExecutionTimeLimit = TimeSpan.Zero;
             var registeredTask = taskService.RootFolder.RegisterTaskDefinition("MicaForEveryone_RunAsAdmin", task);
             registeredTask.Enabled = true;
         }
