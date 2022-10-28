@@ -259,7 +259,7 @@
 		<ErrorReport>prompt</ErrorReport>
 	</PropertyGroup>
 	<Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-	<Target Name="RemoveWebView2" BeforeTargets="ResolveAssemblyReferences" Condition="$(CIUnpackaged) != 'true'">
+	<Target Name="RemoveWebView2" BeforeTargets="ResolveAssemblyReferences" Condition="$(BuildingInCI) != 'true'">
 		<ItemGroup>
 			<_WebView2Reference Include="@(Reference)" Condition="'%(Filename)' == 'Microsoft.Web.WebView2.Core'" />
 			<Reference Remove="@(_WebView2Reference)" />

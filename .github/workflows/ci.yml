@@ -37,7 +37,7 @@ jobs:
 
     # Zip
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:CIUnpackaged=true /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:ZipName=${{ env.ZIP_FILE }} /t:ReleaseZip
+      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:BuildingInCI=true /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:ZipName=${{ env.ZIP_FILE }} /t:ReleaseZip
     - name: Upload ZIP artifact
       uses: actions/upload-artifact@v3
       with:
@@ -82,7 +82,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: Package MSIX
-      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:AppxBundlePlatforms=${{ matrix.platform }} /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:MsixName=${{ env.MSIX_FILE }} /t:ReleaseMsix
+      run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:BuildingInCI=true /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:AppxBundlePlatforms=${{ matrix.platform }} /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:MsixName=${{ env.MSIX_FILE }} /t:ReleaseMsix
     - name: Sign Package
       env:
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
