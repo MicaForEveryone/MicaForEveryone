@@ -37,7 +37,7 @@ jobs:
 
     # Zip
     - name: Build the application
-      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:ZipName=${{ env.ZIP_FILE }} /t:ReleaseZip
+      run: msbuild MicaForEveryone\MicaForEveryone.csproj /restore /p:CIUnpackaged=true /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:ZipName=${{ env.ZIP_FILE }} /t:ReleaseZip
     - name: Upload ZIP artifact
       uses: actions/upload-artifact@v3
       with:
