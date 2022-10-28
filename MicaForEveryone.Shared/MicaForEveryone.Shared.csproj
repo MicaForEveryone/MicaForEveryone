@@ -5,7 +5,7 @@
         <RootNamespace>MicaForEveryone</RootNamespace>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
-        <Platforms>AnyCPU;x86</Platforms>
+        <Platforms>AnyCPU;x86;x64</Platforms>
     </PropertyGroup>
 
     <ItemGroup>

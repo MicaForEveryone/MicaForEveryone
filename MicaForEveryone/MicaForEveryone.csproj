@@ -6,13 +6,13 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
         <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
-        <Platforms>x64;ARM64;x86</Platforms>
+        <Platforms>x64;arm64;x86</Platforms>
         <LangVersion>9.0</LangVersion>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ApplicationIcon>Resources\MicaForEveryone.ico</ApplicationIcon>
         <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
         <SelfContained>false</SelfContained>
-        <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
+        <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Platform)'=='x64'">
@@ -20,7 +20,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Platform)'=='x86'">
-      <PlatformTarget>x64</PlatformTarget>
+      <PlatformTarget>x86</PlatformTarget>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Platform)'=='arm64'">
