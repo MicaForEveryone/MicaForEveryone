@@ -420,6 +420,9 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
     <value>Run as Administrator on Startup</value>
   </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Contributors:</value>
+  </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
     <value>Show the app icon in the notification area</value>
   </data>

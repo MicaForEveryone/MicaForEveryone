@@ -2,7 +2,6 @@
     x:Class="MicaForEveryone.UI.SettingsView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:controls="using:MicaForEveryone.UI.Controls"
     xmlns:converters="using:MicaForEveryone.UI.Converters"
     xmlns:models="using:MicaForEveryone.UI.Models"
@@ -553,6 +552,7 @@
 
                         <StackPanel
                             x:Name="AboutSection"
+                            Grid.Column="0"
                             Grid.Row="1"
                             Margin="0,32,0,0"
                             Orientation="Vertical"
@@ -581,6 +581,24 @@
                                 <Run x:Uid="IconCredit" />
                                 <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
                                     <Run Text="Dongle the Gadget" />
+                                </Hyperlink>
+                            </TextBlock>
+                            <TextBlock Margin="0,4,0,0">
+                                <Run x:Uid="ContributorsLabel" />
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
+                                    <Run Text="Dongle the Gadget" />
+                                </Hyperlink>
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/sitiom">
+                                    <Run Text="sitiom" />
+                                </Hyperlink>
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/krlvm">
+                                    <Run Text="krlvm" />
                                 </Hyperlink>
                             </TextBlock>
                             <TextBlock Margin="0,4,0,0">
@@ -624,6 +642,11 @@
 
                                 <Hyperlink NavigateUri="https://github.com/RTFTR">
                                     <Run Text="RTFTR" />
+                                </Hyperlink>
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/krlvm">
+                                    <Run Text="krlvm" />
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
