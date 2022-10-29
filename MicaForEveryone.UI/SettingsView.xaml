@@ -38,18 +38,30 @@
                         <controls:Setting.ActionContent>
                             <ToggleSwitch IsOn="{x:Bind ViewModel.RunOnStartup, Mode=TwoWay}" />
                         </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                      Glyph="&#xE7B5;" />
+                        </controls:Setting.Icon>
                     </controls:Setting>
 
                     <controls:Setting x:Uid="AdminStartupSetting" IsEnabled="{x:Bind ViewModel.RunOnStartupAsAdminAvailable}">
                         <controls:Setting.ActionContent>
                             <ToggleSwitch IsOn="{x:Bind ViewModel.RunOnStartupAsAdmin, Mode=TwoWay}" />
                         </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                      Glyph="&#xE1A7;" />
+                        </controls:Setting.Icon>
                     </controls:Setting>
 
                     <controls:Setting x:Uid="TrayIconVisibilitySetting">
                         <controls:Setting.ActionContent>
                             <ToggleSwitch IsOn="{x:Bind ViewModel.TrayIconVisibility, Mode=TwoWay}" />
                         </controls:Setting.ActionContent>
+                        <controls:Setting.Icon>
+                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                      Glyph="&#xE147;" />
+                        </controls:Setting.Icon>
                     </controls:Setting>
 
                 </controls:SettingsGroup>
