@@ -240,6 +240,15 @@ Bitte Fehler beheben und dann &quot;Konfigurationsdatei neu laden&quot; verwende
   <data name="AdminStartupSetting.Header" xml:space="preserve">
     <value>Beim Start als Administrator ausführen</value>
   </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Unterstützer:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Das App-Symbol im Infobereich anzeigen</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Taskleistensymbol anzeigen</value>
+  </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dunkel</value>
   </data>
