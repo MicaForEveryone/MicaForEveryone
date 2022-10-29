@@ -49,12 +49,28 @@ namespace MicaForEveryone.Views
             _notifyIcon.ClosePopup += NotifyIcon_ClosePopup;
 
             view.ViewModel = ViewModel;
+            ViewModel.PropertyChanged += ViewModel_PropertyChanged;
+        }
+
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ITrayIconViewModel.TrayIconVisible))
+            {
+                if (ViewModel.TrayIconVisible)
+                {
+                    _notifyIcon.ShowNotifyIcon();
+                }
+                else
+                {
+                    _notifyIcon.HideNotifyIcon();
+                }
+            }
         }
 
         public ITrayIconViewModel ViewModel { get; } =
             Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
 
-        public async override void Activate()
+        public override async void Activate()
         {
             base.Activate();
 
@@ -62,7 +78,11 @@ namespace MicaForEveryone.Views
 
             _notifyIcon.Parent = Handle;
             _notifyIcon.Activate();
-            _notifyIcon.ShowNotifyIcon();
+
+            if (ViewModel.TrayIconVisible)
+            {
+                _notifyIcon.ShowNotifyIcon();
+            }
 
             try
             {

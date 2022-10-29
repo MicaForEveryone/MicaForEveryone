@@ -50,10 +50,8 @@ namespace MicaForEveryone.Services
 
         public void Dispose()
         {
-            if (MainWindow != null)
-                MainWindow.Dispose();
-            if (SettingsWindow != null)
-                SettingsWindow.Dispose();
+            MainWindow?.Dispose();
+            SettingsWindow?.Dispose();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace MicaForEveryone.UI.ViewModels
         bool RunOnStartupAsAdmin { get; set; }
         bool RunOnStartupAsAdminAvailable { get; }
         string ConfigFilePath { get; set; }
+        bool TrayIconVisibility { get; set; }
 
         IAsyncRelayCommand BrowseAsyncCommand { get; }
 

@@ -20,6 +20,7 @@ namespace MicaForEveryone.ViewModels
     internal class GeneralSettingsViewModel : ObservableObject, IGeneralSettingsViewModel
     {
         private readonly ISettingsService _settingsService;
+        private readonly ISettingsContainer _settingsContainer;
         private readonly IStartupService _startupService;
         private readonly ILanguageService _languageService;
         private readonly ITaskSchedulerService _taskSchedulerService;
@@ -27,9 +28,10 @@ namespace MicaForEveryone.ViewModels
         private XamlWindow? _window;
         private Language _currentLanguage;
 
-        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService)
+        public GeneralSettingsViewModel(ISettingsService settingsService, ISettingsContainer settingsContainer, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService)
         {
             _settingsService = settingsService;
+            _settingsContainer = settingsContainer;
             _startupService = startupService;
             _languageService = languageService;
             _taskSchedulerService = taskSchedulerService;
@@ -110,6 +112,18 @@ namespace MicaForEveryone.ViewModels
             get => _taskSchedulerService.IsAvailable();
         }
 
+        public bool TrayIconVisibility
+        {
+            get => _settingsService.TrayIconVisibility;
+            set
+            {
+                if (_settingsService.TrayIconVisibility != value)
+                {
+                    _settingsService.TrayIconVisibility = value;
+                }
+            }
+        }
+
         public string ConfigFilePath
         {
             get => _settingsService.ConfigFile.FilePath;
@@ -122,6 +136,8 @@ namespace MicaForEveryone.ViewModels
                 }
             }
         }
+
+        
 
         public IList<object> Languages { get; }
 

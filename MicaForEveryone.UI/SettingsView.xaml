@@ -46,6 +46,12 @@
                         </controls:Setting.ActionContent>
                     </controls:Setting>
 
+                    <controls:Setting x:Uid="TrayIconVisibilitySetting">
+                        <controls:Setting.ActionContent>
+                            <ToggleSwitch IsOn="{x:Bind ViewModel.TrayIconVisibility, Mode=TwoWay}" />
+                        </controls:Setting.ActionContent>
+                    </controls:Setting>
+
                 </controls:SettingsGroup>
 
                 <controls:SettingsGroup x:Uid="ConfigFileSetting">

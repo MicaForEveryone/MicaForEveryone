@@ -12,6 +12,7 @@ namespace MicaForEveryone.Models
         ConfigFilePathChanged,
         ConfigFileWatcherStateChanged,
         ConfigFileReloaded,
+        TrayIconVisibilityChanged,
     }
 
     public class SettingsChangedEventArgs

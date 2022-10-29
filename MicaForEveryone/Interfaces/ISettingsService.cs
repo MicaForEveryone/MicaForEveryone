@@ -13,6 +13,7 @@ namespace MicaForEveryone.Interfaces
     {
         IConfigFile ConfigFile { get; }
         IRule[] Rules { get; }
+        bool TrayIconVisibility { get; set; }
 
         void Load();
         void Save();
