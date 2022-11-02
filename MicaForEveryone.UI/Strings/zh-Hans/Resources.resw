@@ -414,4 +414,19 @@
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>现在将强制应用程序使用圆角半径稍小的窗口边框。</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>开机时自动以管理员身份运行。您需要以管理员身份运行此应用来启用此选项。</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>开机时以管理员身份运行</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>贡献者：</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>在通知区域显示应用图标</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>显示通知图标</value>
+  </data>
 </root>
