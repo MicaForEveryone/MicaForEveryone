@@ -606,47 +606,52 @@
                                 <LineBreak />
                                 
                                 <Hyperlink NavigateUri="https://github.com/xoascf">
-                                    <Run Text="Amaro Martínez" />
+                                    <Run Text="Amaro Martínez (Spanish)" />
                                 </Hyperlink>
                                 <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/Danik2343">
-                                    <Run Text="@Danik2343" />
+                                    <Run Text="Danik2343 (Russian)" />
                                 </Hyperlink>
                                 <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/maboroshin">
-                                    <Run Text="maboroshin" />
+                                    <Run Text="maboroshin (Japenese)" />
                                 </Hyperlink>
                                 <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/uDEV2019">
-                                    <Run Text="u!^DEV" />
+                                    <Run Text="uDEV2019 (German)" />
                                 </Hyperlink>
                                 <LineBreak />
                                 
                                 <Hyperlink NavigateUri="https://github.com/alessandrocaseti">
-                                    <Run Text="Alessandro" />
+                                    <Run Text="Alessandro (Italian)" />
                                 </Hyperlink>
                                 <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/AndromedaMelody">
-                                    <Run Text="AndromedaMelody" />
+                                    <Run Text="AndromedaMelody (Simplified Chinese)" />
                                 </Hyperlink>
                                 <LineBreak />
                                 
                                 <Hyperlink NavigateUri="https://github.com/SaiyajinK">
-                                    <Run Text="SaiyajinK" />
+                                    <Run Text="SaiyajinK (French)" />
                                 </Hyperlink>
                                 <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/RTFTR">
-                                    <Run Text="RTFTR" />
+                                    <Run Text="RTFTR (Korean)" />
                                 </Hyperlink>
                                 <LineBreak />
 
                                 <Hyperlink NavigateUri="https://github.com/krlvm">
-                                    <Run Text="krlvm" />
+                                    <Run Text="krlvm (Russian)" />
+                                </Hyperlink>
+                                <LineBreak />
+
+                                <Hyperlink NavigateUri="https://github.com/FrzMtrsprt">
+                                    <Run Text="FrzMtrsprt (Simplified Chinese)" />
                                 </Hyperlink>
                             </TextBlock>
                         </StackPanel>
