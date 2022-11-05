@@ -12,8 +12,32 @@ Jadi Mirmirani, an Iranian open-source activist and Mohsen Tahmasbi, an Iranian 
 Mica For Everyone is a tool to customize system backdrop on win32 apps using [DwmSetWindowAttribute](https://docs.microsoft.com/en-us/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute) and other methods.
 It can apply Mica (or any other backdrop material) on non-client area (window frame) or background of supported apps and its behavior is customizable through a GUI and a config file.
 
+**NOTE**: Mica For Everyone is not responsible for rendering the effects you set, it just asks Windows to do that for you. If there's any problem with the effects it's a third-party issue. Try creating a rule for the affected apps and try different settings before opening an issue for it.
+
 ## Config File
-For more information check our [wiki page](https://github.com/minusium/MicaForEveryone/wiki/Config-File) and [default config file](MicaForEveryone/Resources/MicaForEveryone.conf).
+For more information check our [wiki page](https://github.com/MicaForEveryone/MicaForEveryone/wiki/Config-File) and [default config file](MicaForEveryone/Resources/MicaForEveryone.conf).
+
+## Contributing
+PRs are welcome. Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for commit messages. Try to follow the code style of the project.
+Also add your name to [MicaForEveryone.UI/SettingsView.xaml.cs#L18](MicaForEveryone.UI/SettingsView.xaml.cs#L18) to get in the list of contributors.
+
+## Translating 
+* Fork the repository.
+
+* Translate [this](MicaForEveryone.UI/Strings/en/Resources.resw) file to your language.
+
+* Create a folder with your language code as its name in the [Strings](MicaForEveryone.UI/Strings/) folder and put the translated file in it.
+
+* Add your name to the list of translators in [MicaForEveryone.UI/SettingsView.xaml.cs#L18](MicaForEveryone.UI/SettingsView.xaml.cs#L18) like this:
+```cs
+internal Contributor[] Translators { get; } = 
+{
+    ...
+    new Contributor("Your Name", "Your GitHub Profile Link", "Your Language Code"),
+}
+```
+
+* Open a PR. 
 
 ## Screenshots
 
@@ -24,4 +48,4 @@ For more information check our [wiki page](https://github.com/minusium/MicaForEv
 ![Screenshot 3](Assets/3.png)
 
 ## Frequency Asked Questions
-Check [wiki page](https://github.com/minusium/MicaForEveryone/wiki/FAQ) or [issues](https://github.com/minusium/MicaForEveryone/issues).
+Check [wiki page](https://github.com/MicaForEveryone/MicaForEveryone/wiki/FAQ) or [issues](https://github.com/MicaForEveryone/MicaForEveryone/issues).
