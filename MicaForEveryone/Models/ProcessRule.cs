@@ -17,6 +17,8 @@ namespace MicaForEveryone.Models
 
         public string Name => $"Process({ProcessName})";
 
+        public int Priority => 1;
+
         [XclParameter]
         public string ProcessName { get; }
 

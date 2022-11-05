@@ -11,6 +11,8 @@ namespace MicaForEveryone.Models
     {
         public string Name => "Global";
 
+        public int Priority => 2;
+
         [XclField]
         public TitlebarColorMode TitleBarColor { get; set; }
 

@@ -45,9 +45,8 @@ namespace MicaForEveryone.Services
         {
             try
             {
-                var applicableRules = _settingsService.Rules.Where(rule => rule.IsApplicable(target));
-                var rule = applicableRules.FirstOrDefault(rule => rule is not GlobalRule) ??
-                    applicableRules.FirstOrDefault();
+                var applicableRules = _settingsService.Rules.Where(rule => rule.IsApplicable(target)).OrderBy(rule => rule.Priority);
+                var rule = applicableRules.FirstOrDefault();
 
                 if (rule == null)
                     return;

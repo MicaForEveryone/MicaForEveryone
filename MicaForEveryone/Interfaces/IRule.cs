@@ -7,6 +7,8 @@ namespace MicaForEveryone.Interfaces
     public interface IRule
     {
         string Name { get; }
+
+        int Priority { get; }
         
         bool IsApplicable(TargetWindow target);
 
