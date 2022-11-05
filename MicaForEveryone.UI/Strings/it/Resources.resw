@@ -222,6 +222,9 @@ Correggi gli errori e clicca sull'opzione "Ricarica File di Configurazione" per 
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Esci</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Esci</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Estendi l'Area dello Sfondo</value>
   </data>

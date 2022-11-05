@@ -159,6 +159,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Salir</value>
+  </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
     <value>Color de la barra de título</value>
   </data>

@@ -216,6 +216,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>退出</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>退出</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>将窗口框架扩展到客户区</value>
   </data>

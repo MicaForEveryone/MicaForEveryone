@@ -267,6 +267,9 @@ Bitte Fehler beheben und dann &quot;Konfigurationsdatei neu laden&quot; verwende
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Beenden</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Erweitern des Rahmens in den Clientbereich</value>
   </data>

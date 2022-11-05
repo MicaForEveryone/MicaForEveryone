@@ -222,6 +222,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>خروج</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>گسترش قاب پنجره به Client Area</value>
   </data>

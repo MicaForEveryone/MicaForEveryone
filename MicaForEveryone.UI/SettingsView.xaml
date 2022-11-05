@@ -67,6 +67,17 @@
                         </controls:Setting.Icon>
                     </controls:Setting>
 
+                    <Button Style="{ThemeResource SettingButtonStyle}"
+                            Command="{x:Bind ViewModel.ExitCommand}">
+                        <controls:Setting x:Uid="ExitSetting"
+                                          Style="{StaticResource ExpanderHeaderSettingStyle}"
+                                          Icon="&#xE7E8;">
+                            <controls:Setting.ActionContent>
+                                <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                          Glyph="&#xE8A7;" />
+                            </controls:Setting.ActionContent>
+                        </controls:Setting>
+                    </Button>
                 </controls:SettingsGroup>
 
                 <controls:SettingsGroup x:Uid="ConfigFileSetting">

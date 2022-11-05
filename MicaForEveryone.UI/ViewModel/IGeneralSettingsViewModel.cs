@@ -23,5 +23,6 @@ namespace MicaForEveryone.UI.ViewModels
         ICommand EditConfigCommand { get; }
         IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         IAsyncRelayCommand ResetConfigAsyncCommand { get; }
+        ICommand ExitCommand { get; }
     }
 }

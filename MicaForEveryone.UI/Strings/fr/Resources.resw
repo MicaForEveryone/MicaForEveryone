@@ -222,6 +222,9 @@ Corrigez les erreurs puis utilisez l'option "Recharger le fichier de configurati
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Quitter</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Quitter</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Étendre l'arrière-plan sur l'intégralité de la fenêtre</value>
   </data>

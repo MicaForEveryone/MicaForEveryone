@@ -429,4 +429,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
     <value>Show tray icon</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Exit</value>
+  </data>
 </root>

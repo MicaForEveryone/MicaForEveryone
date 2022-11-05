@@ -20,21 +20,22 @@ namespace MicaForEveryone.ViewModels
     internal class GeneralSettingsViewModel : ObservableObject, IGeneralSettingsViewModel
     {
         private readonly ISettingsService _settingsService;
-        private readonly ISettingsContainer _settingsContainer;
         private readonly IStartupService _startupService;
         private readonly ILanguageService _languageService;
         private readonly ITaskSchedulerService _taskSchedulerService;
 
         private XamlWindow? _window;
+        private Win32.Window? _mainWindow;
         private Language _currentLanguage;
 
-        public GeneralSettingsViewModel(ISettingsService settingsService, ISettingsContainer settingsContainer, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService)
+        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService, IViewService viewService)
         {
             _settingsService = settingsService;
-            _settingsContainer = settingsContainer;
             _startupService = startupService;
             _languageService = languageService;
             _taskSchedulerService = taskSchedulerService;
+
+            _mainWindow = viewService.MainWindow;
 
             _currentLanguage = _languageService.CurrentLanguage;
             Languages = _languageService.SupportedLanguages;
@@ -43,6 +44,7 @@ namespace MicaForEveryone.ViewModels
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
             EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
             ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
+            ExitCommand = new RelayCommand(DoExit);
 
             _settingsService.Changed += SettingsService_Changed;
         }
@@ -161,6 +163,7 @@ namespace MicaForEveryone.ViewModels
         public ICommand EditConfigCommand { get; }
         public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         public IAsyncRelayCommand ResetConfigAsyncCommand { get; }
+        public ICommand ExitCommand { get; }
 
         // event handlers
 
@@ -239,6 +242,12 @@ namespace MicaForEveryone.ViewModels
         {
             await _settingsService.ConfigFile.ResetAsync();
             await _settingsService.LoadRulesAsync();
+        }
+
+        private void DoExit()
+        {
+            _window?.Close();
+            _mainWindow?.Close();
         }
     }
 }
