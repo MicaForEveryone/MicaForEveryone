@@ -432,7 +432,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -465,213 +464,220 @@
                    Grid.Row="1"
                    PaneBackground="{x:Bind RootElement.Background}">
             <SplitView.Pane>
-                <ListView IsTabStop="True"
-                          ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}"
-                          Loaded="ListView_Loaded"
-                          SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}"
-                          TabIndex="0"
-                          XYFocusKeyboardNavigation="Enabled">
-                    <ListView.ItemTemplateSelector>
-                        <selectors:PaneItemTypeSelector>
-                            <selectors:PaneItemTypeSelector.General>
-                                <DataTemplate x:DataType="models:GeneralPaneItem">
-                                    <StackPanel Margin="7,12,0,12"
-                                                Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  FontSize="16"
-                                                  Glyph="&#xE115;" />
-                                        <TextBlock x:Uid="GeneralPaneItem"
-                                                   Margin="12,0,0,0"
-                                                   VerticalAlignment="Center" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </selectors:PaneItemTypeSelector.General>
-                            <selectors:PaneItemTypeSelector.Global>
-                                <DataTemplate x:DataType="models:RulePaneItem">
-                                    <StackPanel Margin="7,12,0,12"
-                                                Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  FontSize="16"
-                                                  Glyph="&#xEE40;" />
-                                        <TextBlock x:Uid="GlobalRulePaneItem"
-                                                   Margin="12,0,0,0"
-                                                   VerticalAlignment="Center" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </selectors:PaneItemTypeSelector.Global>
-                            <selectors:PaneItemTypeSelector.Process>
-                                <DataTemplate x:DataType="models:RulePaneItem">
-                                    <StackPanel Margin="7,12,0,12"
-                                                Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  FontSize="16"
-                                                  Glyph="&#xECAA;" />
-                                        <TextBlock Margin="12,0,0,0"
-                                                   VerticalAlignment="Center"
-                                                   Text="{x:Bind Title}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </selectors:PaneItemTypeSelector.Process>
-                            <selectors:PaneItemTypeSelector.Class>
-                                <DataTemplate x:DataType="models:RulePaneItem">
-                                    <StackPanel Margin="7,12,0,12"
-                                                Orientation="Horizontal">
-                                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                                  FontSize="16"
-                                                  Glyph="&#xE737;" />
-                                        <TextBlock Margin="12,0,0,0"
-                                                   VerticalAlignment="Center"
-                                                   Text="{x:Bind Title}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </selectors:PaneItemTypeSelector.Class>
-                        </selectors:PaneItemTypeSelector>
-                    </ListView.ItemTemplateSelector>
-                </ListView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0"
+                              IsTabStop="True"
+                              ItemsSource="{x:Bind ViewModel.PaneItems, Mode=OneWay}"
+                              Loaded="ListView_Loaded"
+                              SelectedItem="{x:Bind ViewModel.SelectedPane, Mode=TwoWay}"
+                              TabIndex="0"
+                              XYFocusKeyboardNavigation="Enabled">
+                        <ListView.ItemTemplateSelector>
+                            <selectors:PaneItemTypeSelector>
+                                <selectors:PaneItemTypeSelector.General>
+                                    <DataTemplate x:DataType="models:GeneralPaneItem">
+                                        <StackPanel Margin="7,12,0,12"
+                                                    Orientation="Horizontal">
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      FontSize="16"
+                                                      Glyph="&#xE115;" />
+                                            <TextBlock x:Uid="GeneralPaneItem"
+                                                       Margin="12,0,0,0"
+                                                       VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </selectors:PaneItemTypeSelector.General>
+                                <selectors:PaneItemTypeSelector.Global>
+                                    <DataTemplate x:DataType="models:RulePaneItem">
+                                        <StackPanel Margin="7,12,0,12"
+                                                    Orientation="Horizontal">
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      FontSize="16"
+                                                      Glyph="&#xEE40;" />
+                                            <TextBlock x:Uid="GlobalRulePaneItem"
+                                                       Margin="12,0,0,0"
+                                                       VerticalAlignment="Center" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </selectors:PaneItemTypeSelector.Global>
+                                <selectors:PaneItemTypeSelector.Process>
+                                    <DataTemplate x:DataType="models:RulePaneItem">
+                                        <StackPanel Margin="7,12,0,12"
+                                                    Orientation="Horizontal">
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      FontSize="16"
+                                                      Glyph="&#xECAA;" />
+                                            <TextBlock Margin="12,0,0,0"
+                                                       VerticalAlignment="Center"
+                                                       Text="{x:Bind Title}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </selectors:PaneItemTypeSelector.Process>
+                                <selectors:PaneItemTypeSelector.Class>
+                                    <DataTemplate x:DataType="models:RulePaneItem">
+                                        <StackPanel Margin="7,12,0,12"
+                                                    Orientation="Horizontal">
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      FontSize="16"
+                                                      Glyph="&#xE737;" />
+                                            <TextBlock Margin="12,0,0,0"
+                                                       VerticalAlignment="Center"
+                                                       Text="{x:Bind Title}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </selectors:PaneItemTypeSelector.Class>
+                            </selectors:PaneItemTypeSelector>
+                        </ListView.ItemTemplateSelector>
+                    </ListView>
+
+                    <CommandBar Grid.Row="1"
+                                Margin="0, 8, 0, 8"
+                                HorizontalAlignment="Left"
+                                DefaultLabelPosition="Right"
+                                IsTabStop="True"
+                                OverflowButtonVisibility="Collapsed"
+                                TabIndex="2"
+                                XYFocusKeyboardNavigation="Enabled">
+                        <AppBarButton x:Uid="AddRuleAppBarButton"
+                                      Margin="2"
+                                      Icon="Add">
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem"
+                                                    Command="{x:Bind ViewModel.AddProcessRuleCommand}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      Glyph="&#xECAA;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                    <MenuFlyoutItem x:Uid="AddClassRuleMenuItem"
+                                                    Command="{x:Bind ViewModel.AddClassRuleCommand}">
+                                        <MenuFlyoutItem.Icon>
+                                            <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                                      Glyph="&#xE737;" />
+                                        </MenuFlyoutItem.Icon>
+                                    </MenuFlyoutItem>
+                                </MenuFlyout>
+                            </Button.Flyout>
+                        </AppBarButton>
+                        <AppBarButton x:Uid="RemoveRuleAppBarButton"
+                                      Margin="2"
+                                      Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
+                                      Icon="Remove" />
+                    </CommandBar>
+                </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <ScrollViewer Padding="16,4,16,4">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ScrollViewer Grid.Row="0" Padding="16,4,16,4">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <ContentControl x:Name="PaneDetails"
-                                        HorizontalContentAlignment="Stretch"
-                                        Content="{Binding SelectedPane}"
-                                        IsTabStop="False"
-                                        TabIndex="1" />
+                            <ContentControl x:Name="PaneDetails"
+                                            HorizontalContentAlignment="Stretch"
+                                            Content="{Binding SelectedPane}"
+                                            IsTabStop="False"
+                                            TabIndex="1" />
 
-                        <StackPanel x:Name="AboutSection"
-                                    Grid.Column="0"
-                                    Grid.Row="1"
-                                    Margin="0,32,0,0"
-                                    Orientation="Vertical"
-                                    Spacing="4"
-                                    XYFocusKeyboardNavigation="Enabled">
-                            <TextBlock x:Uid="AboutTitle"
-                                       FontSize="14"
-                                       FontWeight="Bold" />
-                            <TextBlock Margin="0,4,0,12">
+                            <StackPanel x:Name="AboutSection"
+                                        Grid.Column="0"
+                                        Grid.Row="1"
+                                        Margin="0,32,0,0"
+                                        Orientation="Vertical"
+                                        Spacing="4"
+                                        XYFocusKeyboardNavigation="Enabled">
+                                <TextBlock x:Uid="AboutTitle"
+                                           FontSize="14"
+                                           FontWeight="Bold" />
+                                <TextBlock Margin="0,4,0,12">
                                 <Run x:Uid="AppNameLabel" />
                                 <Run Text="{x:Bind ViewModel.Version}" />
                                 <LineBreak />
                                 <Run x:Uid="Credit" />
                                 <Run Text="xMine64" />
-                            </TextBlock>
-                            <HyperlinkButton x:Uid="GitHubButton"
-                                             NavigateUri="https://github.com/MicaForEveryone/MicaForEveryone"
-                                             TabIndex="3" />
-                            <HyperlinkButton x:Uid="TelegramButton"
-                                             NavigateUri="https://t.me/xMine64" />
-                            <HyperlinkButton x:Uid="TwitterButton"
-                                             Margin="0,0,0,12"
-                                             NavigateUri="https://twitter.com/xMine64" />
-                            <TextBlock>
+                                </TextBlock>
+                                <HyperlinkButton x:Uid="GitHubButton"
+                                                 NavigateUri="https://github.com/MicaForEveryone/MicaForEveryone"
+                                                 TabIndex="3" />
+                                <HyperlinkButton x:Uid="TelegramButton"
+                                                 NavigateUri="https://t.me/xMine64" />
+                                <HyperlinkButton x:Uid="TwitterButton"
+                                                 Margin="0,0,0,12"
+                                                 NavigateUri="https://twitter.com/xMine64" />
+                                <TextBlock>
                                 <Run x:Uid="IconCredit" />
                                 <Hyperlink NavigateUri="https://github.com/dongle-the-gadget">
                                     <Run Text="Dongle the Gadget" />
                                 </Hyperlink>
-                            </TextBlock>
+                                </TextBlock>
 
-                            <TextBlock Margin="0,6,0,0"
-                                       FontSize="14"
-                                       FontWeight="Bold">
+                                <TextBlock Margin="0,6,0,0"
+                                           FontSize="14"
+                                           FontWeight="Bold">
                                 <Run x:Uid="ContributorsLabel" />
-                            </TextBlock>
-                            <ItemsControl ItemsSource="{x:Bind Contributors}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate x:DataType="models:Contributor">
-                                        <TextBlock>
+                                </TextBlock>
+                                <ItemsControl ItemsSource="{x:Bind Contributors}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Contributor">
+                                            <TextBlock>
                                             <Hyperlink NavigateUri="{x:Bind GitHubUrl}">
                                                 <Run Text="{x:Bind Name}" />
                                             </Hyperlink>
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
-                            <TextBlock Margin="0, 6,0,0"
-                                       FontSize="14"
-                                       FontWeight="Bold">
+                                <TextBlock Margin="0, 6,0,0"
+                                           FontSize="14"
+                                           FontWeight="Bold">
                                 <Run x:Uid="TranslatorsCredit" />
-                            </TextBlock>
-                            <ItemsControl ItemsSource="{x:Bind Translators}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate x:DataType="models:Contributor">
-                                        <TextBlock>
+                                </TextBlock>
+                                <ItemsControl ItemsSource="{x:Bind Translators}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate x:DataType="models:Contributor">
+                                            <TextBlock>
                                             <Hyperlink NavigateUri="{x:Bind GitHubUrl}">
                                                 <Run Text="{x:Bind Name}" />
                                             </Hyperlink>
                                             <Run Text=" – " />
                                             <Run Text="{x:Bind Language.DisplayName}" />
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
-                        </StackPanel>
-                    </Grid>
-                </ScrollViewer>
+                            </StackPanel>
+                        </Grid>
+                    </ScrollViewer>
+
+                    <Button x:Uid="CloseButton"
+                            Grid.Row="1"
+                            HorizontalAlignment="Right"
+                            Margin="12"
+                            Command="{x:Bind ViewModel.CloseCommand}"
+                            IsTabStop="True"
+                            Style="{ThemeResource AccentButtonStyle}"
+                            TabIndex="4" />
+                </Grid>
             </SplitView.Content>
         </SplitView>
-
-        <Grid Grid.Row="2"
-              Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <CommandBar Grid.Column="0"
-                        HorizontalAlignment="Left"
-                        DefaultLabelPosition="Right"
-                        IsTabStop="True"
-                        OverflowButtonVisibility="Collapsed"
-                        TabIndex="2"
-                        XYFocusKeyboardNavigation="Enabled">
-                <AppBarButton x:Uid="AddRuleAppBarButton"
-                              Margin="2"
-                              Icon="Add">
-                    <Button.Flyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem"
-                                            Command="{x:Bind ViewModel.AddProcessRuleCommand}">
-                                <MenuFlyoutItem.Icon>
-                                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                              Glyph="&#xECAA;" />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                            <MenuFlyoutItem x:Uid="AddClassRuleMenuItem"
-                                            Command="{x:Bind ViewModel.AddClassRuleCommand}">
-                                <MenuFlyoutItem.Icon>
-                                    <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
-                                              Glyph="&#xE737;" />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </AppBarButton>
-                <AppBarButton x:Uid="RemoveRuleAppBarButton"
-                              Margin="2"
-                              Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
-                              Icon="Remove" />
-            </CommandBar>
-
-            <Button x:Uid="CloseButton"
-                    Grid.Column="1"
-                    Margin="2"
-                    Command="{x:Bind ViewModel.CloseCommand}"
-                    IsTabStop="True"
-                    Style="{ThemeResource AccentButtonStyle}"
-                    TabIndex="4" />
-        </Grid>
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
