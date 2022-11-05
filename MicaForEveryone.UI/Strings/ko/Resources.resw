@@ -121,10 +121,10 @@
     <value>앱 정보</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic은 모든 앱에 윈도우 10 스타일 이펙트를 적용합니다.</value>
+    <value>아크릭은 모든 앱에 윈도우 10 스타일 이펙트를 적용합니다.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>Acrylic</value>
+    <value>아크릭</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
     <value>추가하기</value>
@@ -142,10 +142,10 @@
     <value>프로세스 추가</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>규칙 추가</value>
+    <value>변수 추가</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>규칙 추가</value>
+    <value>변수 추가</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>구성 파일</value>
@@ -172,7 +172,7 @@
     <value>창들을 투명화시키고 흐리게 합니다. 이 효과를 없애려면 이 모드를 꺼주시고 창들을 다시 껏다 켜주세요.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>뒤 흐림</value>
+    <value>윈도우 배경 흐릿함 효과</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
     <value>탐색하기</value>
@@ -199,16 +199,16 @@
     <value>구성 파일에 오류가 있습니다:</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>규칙들을 저장하고 불러올때 사용되는 파일</value>
+    <value>프로세스 변수를 저장하고 불러올때 사용되는 파일</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
     <value>파일 경로:</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Dark</value>
+    <value>다크 모드.</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Dark는 다크 테마를 사용합니다.</value>
+    <value>이 항목을 선택 시 다크 모드를 사용합니다.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
     <value>기본은 앱 배경에 아무런 영향을 주지 않습니다. </value>
@@ -247,10 +247,10 @@
     <value>언어</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Light</value>
+    <value>라이트 모드</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Light는 라이트 테마를 사용합니다.</value>
+    <value>이 항목을 선택 시 라이트 모드를 사용합니다.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
     <value>Mica 효과는 모든 앱에 옆은 배경화면 색으로 배경 효과를 입힙니다.</value>
@@ -271,7 +271,7 @@
     <value>텍스트 편집기로 열기</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>확장 항목(.exe) 없이 프로세스 이름을 적으세요.</value>
+    <value>.exe 확장 없이 프로세스 이름을 적으세요.</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
     <value>프로세스 이름:</value>
@@ -286,7 +286,7 @@
     <value>변경 시 리로드</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>규칙 삭제</value>
+    <value>변수 삭제</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>설정</value>
@@ -307,16 +307,16 @@
     <value>시스템은 설정되어 있는 색을 사용합니다.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Tabbed는 흐린 배경화면 배경 효과를 앱에다가 입힙니다.</value>
+    <value>Mica Alt(Tabbed)는 흐린 배경화면 배경 효과를 앱에다가 입힙니다.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>Tabbed</value>
+    <value>Mica Alt(Tabbed)</value>
   </data>
   <data name="TelegramButton.Content" xml:space="preserve">
     <value>텔레그램</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>표시줄들의 테마를 설정하세요.</value>
+    <value>윈도우 표시줄의 색 및 효과를 설정하세요.</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
     <value>표시줄 색</value>
@@ -331,16 +331,16 @@
     <value>트위터</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>Unhandled Exception</value>
+    <value>예외 발생</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Unhandled Exception in UI</value>
+    <value>UI 예외 발생</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic과 Tabbed 효과는 최소 윈도우 11 22523부터 실행이 가능합니다..</value>
+    <value>아크릭 효과와 Mica Alt(Tabbed) 효과는 최소 윈도우 11 22523부터 실행이 가능합니다..</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>애워싸는 다크모드는 최소한 윈도우 10 19401부터 사용 가능합니다.</value>
+    <value>이 다크모드는 최소한 윈도우 10 19401부터 사용 가능합니다.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
     <value>Mica 효과는 윈도우 11 22000부터 사용 가능합니다.</value>
@@ -370,7 +370,7 @@
     <value>리로드</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>기본 규칙으로 복구하고 있던 항목들을 제거합니다.</value>
+    <value>기본값으로 복구하고 있던 모든 항목들을 제거합니다.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
     <value>초기화</value>
@@ -379,7 +379,7 @@
     <value>제작자</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>아이콤 제작자:</value>
+    <value>아이콘 제작자:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>번역가들:</value>
