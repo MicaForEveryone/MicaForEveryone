@@ -414,4 +414,19 @@
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>약간 둥글게 모드는 창 모서리를 살짝 둥글게 합니다.</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>컴퓨터 시작 후에 이 앱을 관리자 권한으로 자동 실행하기 (이 설정을 활성화 시키려면 이 앱을 관리자 권한으로 실행하셔야 합니다.)</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>컴퓨터 시작 후에 이 앱을 관리자 권한으로 자동 실행하기</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>이 앱에 기여자들:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>알림 구역에 이 앱 아이콘 표시하기</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>시스템 트레이에 이 앱 아이콘 표시하기</value>
+  </data>
 </root>
