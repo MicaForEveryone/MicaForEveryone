@@ -22,7 +22,7 @@ namespace MicaForEveryone.Services
 
         private readonly ISettingsContainer _container;
         private readonly ILanguageService _languageService;
-        private bool _trayIconVisibility;
+        private bool _trayIconVisibility = true;
 
         public SettingsService(IConfigFile configFile, ISettingsContainer container, ILanguageService languageService)
         {
@@ -42,6 +42,8 @@ namespace MicaForEveryone.Services
             get => _trayIconVisibility;
             set
             {
+                if (EqualityComparer<bool>.Default.Equals(_trayIconVisibility, value))
+                    return;
                 _trayIconVisibility = value;
                 Save();
                 Changed?.Invoke(this, new SettingsChangedEventArgs(SettingsChangeType.TrayIconVisibilityChanged, null));
