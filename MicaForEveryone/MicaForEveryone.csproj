@@ -37,7 +37,7 @@
 
     <ItemGroup>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.0" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
         <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
         <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
