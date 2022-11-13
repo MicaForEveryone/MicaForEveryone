@@ -173,8 +173,8 @@ namespace MicaForEveryone.Views
                 SetWindowPos(IntPtr.Zero, SetWindowPosFlags.SWP_NOZORDER | SetWindowPosFlags.SWP_NOACTIVATE);
 
                 var position = new Windows.Foundation.Point(
-                        (offset.X - notifyIconRect.X) * ScaleFactor,
-                        (offset.Y - notifyIconRect.Y) * ScaleFactor);
+                        (offset.X - notifyIconRect.X) / ScaleFactor,
+                        (offset.Y - notifyIconRect.Y) / ScaleFactor);
                 menu.ShowAt(View, position);
             }
         }
