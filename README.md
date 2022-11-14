@@ -25,5 +25,8 @@ For more information check our [wiki page](https://github.com/MicaForEveryone/Mi
 
 ![Screenshot 3](Assets/3.png)
 
+## Contributing
+If you're interested in contributing or translating Mica For Everyone, check our [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
 ## Frequency Asked Questions
 Check [wiki page](https://github.com/MicaForEveryone/MicaForEveryone/wiki/FAQ) or [issues](https://github.com/MicaForEveryone/MicaForEveryone/issues).
