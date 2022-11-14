@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
-        platform: [x64]
+        platform: [x64, arm64]
     runs-on: windows-latest
 
     env:
@@ -62,7 +62,7 @@ jobs:
     strategy:
       matrix:
         configuration: [Debug, Release]
-        platform: [x64]
+        platform: [x64, arm64]
     runs-on: windows-latest
 
     env:
