@@ -42,9 +42,6 @@ For more information check our [wiki page](https://github.com/MicaForEveryone/Mi
 
 ![Screenshot 3](Assets/3.png)
 
-## 👋🏻 Samples
-* <a target="_blank" href="https://github.com/witalihirsch/qBitTorrent-fluent-theme"><b>qBitTorrent Fluent Theme by witalihirsch,</b> using MicaForEveryone</a>
-
 ## 🌍 Internationalization
 Translations into versions for other languages are welcome! Please read the [translation guide](./CONTRIBUTING.md#translating) before starting translations.
 
