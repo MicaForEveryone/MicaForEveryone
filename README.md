@@ -42,7 +42,7 @@ For more information check our [wiki page](https://github.com/MicaForEveryone/Mi
 
 ![Screenshot 3](Assets/3.png)
 
-## 🌍 Internationalization
+## 🌍 Globalization
 Translations into versions for other languages are welcome! Please read the [translation guide](./CONTRIBUTING.md#translating) before starting translations.
 
 | Key     | Name                 | Translator                                                                                         |
