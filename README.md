@@ -1,11 +1,11 @@
 > # Be Iranian's voice!
 > 
 > Right now as you read this, the government is killing hundreds of protestors in Iran.
-> People are seeking freedom while they have highly restricted access to Internet and only gevornment-based media are allowed to operate.
+> People are seeking freedom while they have highly restricted access to Internet and only state-owned media is allowed to operate.
 > 
 > * In July 1999 they attacked students nightly in dorm because they protested for freedom of newspapers.
 > * In December 2019 - January 2020 people were protesting for increase of prices and then the government killed more than 1500 of them. We experienced full Internet shutdown during that time.
-> * In September 2022 the <!--morality--> police killed an innocent girl and caused <!--rise--> a wave of unhappy people, and since then people are fighting. In these days we hear a lot about the arrest of innocent people and protestors, and even <!--the--> people who did nothing.
+> * In September 2022 the <!--morality--> police killed an innocent girl and created <!--rise--> a wave of unhappy people, and since then people are fighting. In these days we hear a lot about the arrest of innocent people and protestors, and even <!--the--> people who did nothing.
 > 
 > Jadi Mirmirani, an Iranian open-source activist and Mohsen Tahmasbi, an Iranian security researcher are among the arrested people in October 2022.
 
