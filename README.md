@@ -57,5 +57,8 @@ Translations into versions for other languages are welcome! Please read the [tra
 | ko      | Korean               | [RTFTR](https://github.com/RTFTR)                                                                  |
 | pl      | Polish               | [Piteriuz](https://github.com/Piteriuz)                                                            |
 
+## 🖊️ Contributing
+If you're interested in contributing or translating Mica For Everyone, check our [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
 ## ☑️ Frequency Asked Questions
 Check [wiki page](https://github.com/MicaForEveryone/MicaForEveryone/wiki/FAQ) or [issues](https://github.com/MicaForEveryone/MicaForEveryone/issues).
