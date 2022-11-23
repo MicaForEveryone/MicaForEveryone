@@ -427,7 +427,7 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
     <value>Ejecutar como administrador al inicio</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>Muestra el icono de la aplicación en el área de notificación</value>
+    <value>Muestra el icono de la aplicación en el área de notificación.</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
     <value>Mostrar icono de bandeja</value>
