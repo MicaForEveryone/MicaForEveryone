@@ -159,6 +159,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Salir</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Salir</value>
+  </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
     <value>Color de la barra de título</value>
   </data>
@@ -202,7 +205,7 @@
     <value>Error en el archivo de configuración</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>Tabbed</value>
+    <value>Mica Alt</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
     <value>Abrir en el editor de texto</value>
@@ -253,10 +256,10 @@
     <value>Sistema usa su tema de preferencia.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Tabbed obliga a todas las aplicaciones a usar el efecto de fondo de pantalla con desenfoque.</value>
+    <value>Mica Alt obliga a todas las aplicaciones a usar el efecto de fondo de pantalla con desenfoque.</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Los efectos de fondo Acrylic y Tabbed requieren al menos la compilación 22523 de Windows.</value>
+    <value>Los efectos de fondo Acrylic y Mica Alt requieren al menos la compilación 22523 de Windows.</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
     <value>Acrylic obliga a todas las aplicaciones a usar el efecto de fondo de desenfoque al estilo de Windows 10.</value>
@@ -413,5 +416,20 @@ Corrija los errores y luego use la opción «Volver a cargar el archivo de confi
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
     <value>Predeterminado no hace nada para así mantener el redondeo de esquinas predeterminado de la aplicación.</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Colaboradores:</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Ejecuta esta aplicación automáticamente como administrador al inicio. Debe ejecutar la aplicación como administrador para habilitar esta opción.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Ejecutar como administrador al inicio</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Muestra el icono de la aplicación en el área de notificación.</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Mostrar icono de bandeja</value>
   </data>
 </root>

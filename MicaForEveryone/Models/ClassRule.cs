@@ -18,6 +18,8 @@ namespace MicaForEveryone.Models
 
         public string Name => $"Class({ClassName})";
 
+        public int Priority => 0;
+
         [XclParameter]
         public string ClassName { get; }
 

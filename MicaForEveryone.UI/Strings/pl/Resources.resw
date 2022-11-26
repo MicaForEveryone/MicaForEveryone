@@ -118,190 +118,196 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>关于此应用</value>
+    <value>O aplikacji</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序窗口背景使用实时渲染模糊的亚克力材质特效。</value>
+    <value>Powoduje efekt rozmycia tła w stylu Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>亚克力</value>
+    <value>Akryl</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>添加</value>
+    <value>Utwórz</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>新建窗口类规则</value>
+    <value>Utwórz Regułę dla Klasy</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>依据窗口类类名添加规则</value>
+    <value>Utwórz Regułę dla Klasy</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>新建程序名规则</value>
+    <value>Utwórz Regułę dla Procesu</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>依据程序文件名添加规则</value>
+    <value>Utwórz Regułę dla Procesu</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>添加新规则</value>
+    <value>Utwórz regułę</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>添加新规则</value>
+    <value>Utwórz regułę</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>配置文件</value>
+    <value>Tekstowy plik konfiguracji</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>应用程序无法启动</value>
+    <value>Błąd podczas inicjalizacji aplikacji</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>该选项用于设置应用程序窗口背景模糊类型，</value>
+    <value>Ustaw rodzaj tła,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>模糊类型</value>
+    <value>Rodzaj tła</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>模糊类型</value>
+    <value>Rodzaj tła</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>打开此选项，窗口将会半透明并且使用模糊特效。该选项可能不适用于所有应用程序。 关闭此选项需要重启已生效的窗口。</value>
+    <value>Spraw, aby okna były półprzezroczyste i rozmyte. Wyłączenie tej opcji wymaga ponownego uruchomienia okien, które mają się zmienić.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Blur Behind</value>
+    <value>Rozmycie</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>浏览</value>
+    <value>Przeglądaj</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>取消</value>
+    <value>Anuluj</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>请输入窗口类类名</value>
+    <value>Wprowadź nazwę klasy</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>类名：</value>
+    <value>Klasa:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>关闭本窗口</value>
+    <value>Zamknij</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>配置文件中存在以下错误：
+    <value>Błąd w pliku konfiguracyjnym:
 {0}
 
-请先修正错误，然后点击“重新加载配置文件”按钮。</value>
+Napraw powyższe błędy, a następnie wybierz "Przeładuj plik konfiguracyjny", aby go zrestartować.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>配置文件中存在错误</value>
+    <value>Błąd w pliku konfiguracyjnym</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>该文件将用于存储Mica For Everyone的设置。</value>
+    <value>Plik, który będzie odpowiadał za przechowywanie reguł.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>文件路径</value>
+    <value>Ścieżka</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>深色</value>
+    <value>Ciemny</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序标题栏使用深色模式。</value>
+    <value>Użyj ciemnego motywu okien.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>现在将由应用程序自行决定使用何种模糊类型。</value>
+    <value>Domyślne zachowanie tła aplikacji.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>由应用程序决定</value>
+    <value>Domyślny</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>现在将由应用程序自行决定使用浅色或深色标题栏。</value>
+    <value>Opcja pozwala zachować domyślny motyw dla aplikacji.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>退出</value>
-  </data>
-  <data name="ExitSetting.Header" xml:space="preserve">
-    <value>退出</value>
+    <value>Wyjdź</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>将窗口框架扩展到客户区</value>
+    <value>Rozszerzenie okna do obszaru aplikacji</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>打开此选项，会将窗口标题栏特效扩展至整个窗口。该选项可能不适用于所有应用程序，甚至会使它们崩溃，请谨慎打开此选项。 关闭此选项需要重启已生效的窗口。</value>
+    <value>Rozciąga krawędzie okna do obszaru aplikacji, w niektórych aplikacjach powoduje dodanie tła. Funkcja nie działa poprawnie we wszystkich aplikacjach i może je uszkodzić. Nie włączaj tej opcji, jeśli nie masz pewności jak zadziała. Wyłączenie tej opcji wymaga ponownego uruchomienia okien, które mają się zmienić.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>常规设置</value>
+    <value>Ogólne</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>常规设置</value>
+    <value>Ogólne</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>默认规则</value>
+    <value>Globalna Reguła</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>为Mica For Everyone设置您喜欢的语言，需要重启本应用才能生效。</value>
+    <value>Ustaw język w aplikacji. Aplikacja będzie wymagała ponownego uruchomienia.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>语言</value>
+    <value>Język</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>浅色</value>
+    <value>Jasny</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序标题栏使用浅色模式。</value>
+    <value>Użyj jasnego motywu okien.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序窗口背景使用根据桌面壁纸背景色进行淡染的云母材质特效。</value>
+    <value>Mica wymusza w innych aplikacjach korzystanie z efektu przygaszonego tła w stylu Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>云母</value>
+    <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序不使用任何特效而直接显示纯色。</value>
+    <value>Braku efektu tła wyłącza tło nawet w aplikacjach, w których działa już jakiś efekt.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>纯色</value>
+    <value>Brak efektu</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>确定</value>
+    <value>OK</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>在文本编辑器中打开</value>
+    <value>Otwórz w edytorze tekstowym</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>请输入可执行程序文件名，但不要包括“.exe”后缀名。</value>
+    <value>Wprowadź nazwę pliku wykonywalnego ale bez roszerzenia (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>程序文件名：</value>
+    <value>Proces:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>重新加载配置文件</value>
+    <value>Przeładuj</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>修改设置时自动重新加载配置文件，您修改的规则将立即生效。</value>
+    <value>Reloads config automatically when the config file gets changed.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>热重载</value>
+    <value>Przeładuj po zmianie</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>删除该规则</value>
+    <value>Usueń Regułę</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>设置</value>
+    <value>Ustawienia</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>设置</value>
+    <value>Ustawienia</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>在计算机启动时自动启动Mica For Everyone。</value>
+    <value>Uruchamiaj aplikację ze startem systemu.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>开机自启</value>
+    <value>Uruchamiaj ze startem</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>跟随系统</value>
+    <value>System</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序标题栏跟随系统深浅主题设置。</value>
+    <value>System wybiera motyw według systemu.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序窗口背景使用根据桌面壁纸背景色进行模糊的Tabbed特效。</value>
+    <value>Tabbed zmusza aplikacje do używania najmniej przepuszczalnego efektu rozmytego tła.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -310,126 +316,120 @@
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>该选项用于设置应用程序标题栏主题，</value>
+    <value>Ustaw kolor pasku tytułowego,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>标题栏颜色</value>
+    <value>Kolor pasku tytułowego</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>标题栏颜色</value>
+    <value>Kolor pasku tytułowego</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>未处理的异常</value>
+    <value>Nieobsługiwane Wyjątki</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>用户界面中未处理的异常</value>
+    <value>Nieobsługiwane Wyjątki w UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>亚克力材质和Tabbed特效只支持Windows 11 22H2(Build 22523+)及更高版本操作系统。</value>
+    <value>Efekty Akrylowy i Tabbed wymaga co najmniej kompilacji systemu Windows 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>标题栏深色模式只支持Windows 10 20H1(Build 19041+)及更高版本操作系统。</value>
+    <value>Tryb ciemny wymaga co najmniej kompilacji systemu Windows 19041.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>云母材质只支持Windows 11 21H2(Build 22000+)及更高版本操作系统。</value>
+    <value>Mica effect wymaga co najmniej kompilacji systemu Windows 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>版本</value>
+    <value>Wersja</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>高级设置</value>
+    <value>Zaawansowane</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>配置文件</value>
+    <value>Plik konfiguracyjny</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>样式设置</value>
+    <value>Styl</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>使用默认文本编辑器中打开配置文件。</value>
+    <value>Otwórz plik konfiguracyjny w domyślnym edytorze tekstu.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>在文本编辑器中编辑</value>
+    <value>Edytuj w Edyorze tekstowym</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>重新加载配置文件，并将您修改的规则立即生效。</value>
+    <value>Przeładuj reguły dodane z poziomu pliku konfiguracyjnego i zastosuj je do okien.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>重新加载配置文件</value>
+    <value>Przeładuj</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>恢复默认规则并撤销所有修改。</value>
+    <value>Przywróć domyślne reguły i usuń wszystkie wprowadzone zmiany.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>重置配置文件</value>
+    <value>Resetuj</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>作者：</value>
+    <value>Stworzona przez</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>图标设计：感谢</value>
+    <value>Ikony stworzone przez:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>界面语言翻译：感谢</value>
-  </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Mica For Everyone</value>
-  </data>
-  <data name="AppNameLabel.Text" xml:space="preserve">
-    <value>Mica For Everyone</value>
-  </data>
-  <data name="GitHubButton.Content" xml:space="preserve">
-    <value>GitHub</value>
-  </data>
-  <data name="TrayIconTooltip.Content" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Tłumacze aplikacji:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>窗口边角</value>
+    <value>Krawędzie</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>窗口边角</value>
+    <value>Krawędzie</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>直角</value>
+    <value>Kwadratowe</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>圆角</value>
+    <value>Zaokrąglone</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>稍圆</value>
+    <value>Lekko zaokrąglone</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>该选项用于设置应用程序窗口边角半径，</value>
+    <value>Ustaw typ krawędzi,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>现在将由应用程序自行决定使用直角或圆角窗口边框。</value>
+    <value>Domyślne, preferowane przez aplikacje.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序使用直角窗口边框。</value>
+    <value>Kwadratowe, które wyłączają zaorkąglenie.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序使用圆角窗口边框。</value>
+    <value>Zaokrąglone, wymusza zaoblenie krawędzi.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>现在将强制应用程序使用圆角半径稍小的窗口边框。</value>
+    <value>Lekko zokrąglone, wymusza krawędź mniej zaobloną niż normalnie.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>开机时自动以管理员身份运行。您需要以管理员身份运行此应用来启用此选项。</value>
+    <value>Uruchamiaj tą aplikację jako Administrator, automatycznie ze startem systemu. Żeby włączyć, musisz ponownie uruchomić tą aplikację jako Administrator.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>开机时以管理员身份运行</value>
+    <value>Uruchamiaj jako Administrator ze startem</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>贡献者：</value>
+    <value>Współtwórcy:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>在通知区域显示应用图标</value>
+    <value>Pokazuj ikonę aplikacji w polu powiadomień</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>显示通知图标</value>
+    <value>Pokazuj ikonę w zasobniku</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Wyjdź</value>
   </data>
 </root>

@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Xaml;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Interfaces;
@@ -24,12 +24,14 @@ namespace MicaForEveryone.ViewModels
 
         private MainWindow? _mainWindow;
         private GlobalRule? _globalRule;
+        private bool _trayIconVisible;
 
         public TrayIconViewModel(ISettingsService settingsService, IRuleService ruleService)
         {
             _settingsService = settingsService;
             _ruleService = ruleService;
 
+            _trayIconVisible = _settingsService.TrayIconVisibility;
             _settingsService.Changed += Settings_Changed;
 
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
@@ -69,6 +71,12 @@ namespace MicaForEveryone.ViewModels
                     OnPropertyChanged(nameof(TitlebarColor));
                 }
             }
+        }
+
+        public bool TrayIconVisible
+        {
+            get => _trayIconVisible;
+            set => SetProperty(ref _trayIconVisible, value);
         }
 
         // commands
@@ -125,6 +133,11 @@ namespace MicaForEveryone.ViewModels
 
         private void Settings_Changed(object? sender, SettingsChangedEventArgs args)
         {
+            if (args.Type == SettingsChangeType.TrayIconVisibilityChanged)
+            {
+                TrayIconVisible = _settingsService.TrayIconVisibility;
+            }
+
             if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
                 || args.Type == SettingsChangeType.ConfigFileReloaded)
             {

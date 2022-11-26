@@ -222,6 +222,9 @@
 	<data name="ExitMenuItem.Text" xml:space="preserve">
 		<value>終了</value>
 	</data>
+    <data name="ExitSetting.Header" xml:space="preserve">
+		<value>終了</value>
+	</data>
 	<data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
 		<value>クライアント領域までフレームを拡張</value>
 	</data>
@@ -414,4 +417,19 @@
 	<data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
 		<value>「少し丸く」は、「四角」と「丸」の中間の形です。</value>
 	</data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>起動時に自動的に管理者として実行します。有効にするには、管理者として本アプリを実行する必要があります。</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>起動時に管理者権限で実行</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>貢献者:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>通知領域に本アプリのアイコンを表示します。</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>システムトレイにアイコンを表示</value>
+  </data>
 </root>

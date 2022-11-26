@@ -18,9 +18,11 @@ namespace MicaForEveryone.Services
         private const string ConfigFilePathKey = "config file path";
         private const string FileWatcherKey = "file watcher state";
         private const string LanguageKey = "language";
+        private const string TrayIconVisibilityKey = "tray icon visibility";
 
         private readonly ISettingsContainer _container;
         private readonly ILanguageService _languageService;
+        private bool _trayIconVisibility = true;
 
         public SettingsService(IConfigFile configFile, ISettingsContainer container, ILanguageService languageService)
         {
@@ -35,6 +37,19 @@ namespace MicaForEveryone.Services
 
         public IRule[] Rules { get; private set; } = new IRule[0];
 
+        public bool TrayIconVisibility
+        {
+            get => _trayIconVisibility;
+            set
+            {
+                if (EqualityComparer<bool>.Default.Equals(_trayIconVisibility, value))
+                    return;
+                _trayIconVisibility = value;
+                Save();
+                Changed?.Invoke(this, new SettingsChangedEventArgs(SettingsChangeType.TrayIconVisibilityChanged, null));
+            }
+        }
+
         public void Load()
         {
             var languageTag = _container.GetValue(LanguageKey) as string;
@@ -47,14 +62,8 @@ namespace MicaForEveryone.Services
 
             ConfigFile.FilePath = _container.GetValue(ConfigFilePathKey) as string;
 
-            if (bool.TryParse(_container.GetValue(FileWatcherKey)?.ToString(), out var watcherState))
-            {
-                ConfigFile.IsFileWatcherEnabled = watcherState;
-            }
-            else
-            {
-                ConfigFile.IsFileWatcherEnabled = true;
-            }
+            ConfigFile.IsFileWatcherEnabled = !bool.TryParse(_container.GetValue(FileWatcherKey)?.ToString(), out var watcherState) || watcherState;
+            TrayIconVisibility = !bool.TryParse(_container.GetValue(TrayIconVisibilityKey)?.ToString(), out var trayIconVisibility) || trayIconVisibility;
         }
 
         public void Save()
@@ -62,6 +71,7 @@ namespace MicaForEveryone.Services
             _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
             _container.SetValue(ConfigFilePathKey, ConfigFile.FilePath);
             _container.SetValue(FileWatcherKey, ConfigFile.IsFileWatcherEnabled);
+            _container.SetValue(TrayIconVisibilityKey, TrayIconVisibility);
             _container.Flush();
         }
 
@@ -148,6 +158,10 @@ namespace MicaForEveryone.Services
                     break;
 
                 case SettingsChangeType.ConfigFileReloaded:
+                    break;
+
+                case SettingsChangeType.TrayIconVisibilityChanged:
+                    Save();
                     break;
             }
 

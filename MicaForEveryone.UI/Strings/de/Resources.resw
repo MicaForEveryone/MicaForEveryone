@@ -234,6 +234,21 @@ Bitte Fehler beheben und dann &quot;Konfigurationsdatei neu laden&quot; verwende
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>Der Modus "Leicht abgerundet" befindet sich in der Mitte zwischen eckigen und abgerundeten Ecken.</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Diese App beim Start automatisch als Administrator ausführen. Sie müssen die App als Administrator ausführen, um diese Option zu aktivieren.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Beim Start als Administrator ausführen</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Unterstützer:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Das App-Symbol im Infobereich anzeigen</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Taskleistensymbol anzeigen</value>
+  </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Dunkel</value>
   </data>
@@ -250,6 +265,9 @@ Bitte Fehler beheben und dann &quot;Konfigurationsdatei neu laden&quot; verwende
     <value>Die &quot;Standard&quot;-Option behält das Standarddesign der App.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
     <value>Beenden</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MicaForEveryone.UI.ViewModels
 {

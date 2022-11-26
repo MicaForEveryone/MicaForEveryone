@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using MicaForEveryone.Models;
@@ -13,6 +14,8 @@ namespace MicaForEveryone.Services
     {
         private readonly ISettingsService _settingsService;
 
+        private readonly Mutex _applyAllWindowsMutex = new();
+
         public RuleService(ISettingsService settingsService)
         {
             _settingsService = settingsService;
@@ -21,7 +24,7 @@ namespace MicaForEveryone.Services
 
         ~RuleService()
         {
-            _settingsService.Changed -= SettingsService_Changed;
+            Dispose(false);
         }
 
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
@@ -42,9 +45,8 @@ namespace MicaForEveryone.Services
         {
             try
             {
-                var applicableRules = _settingsService.Rules.Where(rule => rule.IsApplicable(target));
-                var rule = applicableRules.FirstOrDefault(rule => rule is not GlobalRule) ??
-                    applicableRules.FirstOrDefault();
+                var applicableRules = _settingsService.Rules.Where(rule => rule.IsApplicable(target)).OrderBy(rule => rule.Priority);
+                var rule = applicableRules.FirstOrDefault();
 
                 if (rule == null)
                     return;
@@ -68,6 +70,7 @@ namespace MicaForEveryone.Services
         {
             return Task.Run(() =>
             {
+                _applyAllWindowsMutex.WaitOne();
                 Window.GetDesktopWindow().ForEachChild(window =>
                 {
                     if (!window.IsVisible())
@@ -81,7 +84,9 @@ namespace MicaForEveryone.Services
 
                     MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
                 });
+                _applyAllWindowsMutex.ReleaseMutex();
             });
+
         }
 
         private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
@@ -103,6 +108,18 @@ namespace MicaForEveryone.Services
                 var target = TargetWindow.FromWindow(e.Window);
                 MatchAndApplyRuleToWindow(target);
             });
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposing) return;
+            _applyAllWindowsMutex?.Dispose();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

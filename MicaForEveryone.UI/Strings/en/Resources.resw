@@ -414,4 +414,22 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>Slightly rounded mode is in the middle between square and rounded corners.</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Run this app automatically as administrator on startup. You need to run app as Administrator to enable this option.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Run as Administrator on Startup</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Contributors:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Show the app icon in the notification area</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Show tray icon</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Exit</value>
+  </data>
 </root>

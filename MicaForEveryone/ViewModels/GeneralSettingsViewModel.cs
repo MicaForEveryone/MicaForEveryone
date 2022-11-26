@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Globalization;
 using Windows.Storage.Pickers;
-using Windows.UI.Core;
-using Microsoft.Toolkit.Mvvm.ComponentModel;
-using Microsoft.Toolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
@@ -23,15 +22,20 @@ namespace MicaForEveryone.ViewModels
         private readonly ISettingsService _settingsService;
         private readonly IStartupService _startupService;
         private readonly ILanguageService _languageService;
+        private readonly ITaskSchedulerService _taskSchedulerService;
 
         private XamlWindow? _window;
+        private Win32.Window? _mainWindow;
         private Language _currentLanguage;
 
-        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService)
+        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService, IViewService viewService)
         {
             _settingsService = settingsService;
             _startupService = startupService;
             _languageService = languageService;
+            _taskSchedulerService = taskSchedulerService;
+
+            _mainWindow = viewService.MainWindow;
 
             _currentLanguage = _languageService.CurrentLanguage;
             Languages = _languageService.SupportedLanguages;
@@ -40,6 +44,7 @@ namespace MicaForEveryone.ViewModels
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
             EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
             ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
+            ExitCommand = new RelayCommand(DoExit);
 
             _settingsService.Changed += SettingsService_Changed;
         }
@@ -85,6 +90,42 @@ namespace MicaForEveryone.ViewModels
             get => _startupService.IsAvailable;
         }
 
+        public bool RunOnStartupAsAdmin
+        {
+            get => _taskSchedulerService.IsRunAsAdminTaskEnabled();
+            set
+            {
+                if (_taskSchedulerService.IsRunAsAdminTaskEnabled() != value)
+                {
+                    if (value)
+                    {
+                        _taskSchedulerService.CreateRunAsAdminTask();
+                    }
+                    else
+                    {
+                        _taskSchedulerService.RemoveRunAsAdminTask();
+                    }
+                }
+            }
+        }
+
+        public bool RunOnStartupAsAdminAvailable
+        {
+            get => _taskSchedulerService.IsAvailable();
+        }
+
+        public bool TrayIconVisibility
+        {
+            get => _settingsService.TrayIconVisibility;
+            set
+            {
+                if (_settingsService.TrayIconVisibility != value)
+                {
+                    _settingsService.TrayIconVisibility = value;
+                }
+            }
+        }
+
         public string ConfigFilePath
         {
             get => _settingsService.ConfigFile.FilePath;
@@ -97,6 +138,8 @@ namespace MicaForEveryone.ViewModels
                 }
             }
         }
+
+        
 
         public IList<object> Languages { get; }
 
@@ -120,6 +163,7 @@ namespace MicaForEveryone.ViewModels
         public ICommand EditConfigCommand { get; }
         public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         public IAsyncRelayCommand ResetConfigAsyncCommand { get; }
+        public ICommand ExitCommand { get; }
 
         // event handlers
 
@@ -198,6 +242,12 @@ namespace MicaForEveryone.ViewModels
         {
             await _settingsService.ConfigFile.ResetAsync();
             await _settingsService.LoadRulesAsync();
+        }
+
+        private void DoExit()
+        {
+            _window?.Close();
+            _mainWindow?.Close();
         }
     }
 }

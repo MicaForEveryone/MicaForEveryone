@@ -222,6 +222,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Выход</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Выход</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Расширить рамку окна в клиентскую область</value>
   </data>
@@ -403,15 +406,30 @@
     <value>Устанавливает режим скругления рамки окна,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>в режиме По умолчанию сохраняется режим скругления рамки, установленный приложением.</value>
+    <value>В режиме По умолчанию сохраняется режим скругления рамки, установленный приложением.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>режим острых рамок принудительно делает рамки всех окон острыми.</value>
+    <value>Режим острых рамок принудительно делает рамки всех окон острыми.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>режим скругленных рамок принудительно скругляет рамки для всех окон.</value>
+    <value>Режим скругленных рамок принудительно скругляет рамки для всех окон.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>режим слегка скругленных рамок принудительно применяет режим скругления между острыми и скругленными для всех окон.</value>
+    <value>Режим слегка скругленных рамок принудительно применяет режим скругления между острыми и скругленными для всех окон.</value>
+  </data>
+   <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Запускать приложение при запуске системы, требуются права администратора</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Запускать программу при запуске системы от имени администратора</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Участники:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Отображать значок приложения в области уведомлений</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Отображать значок в трее</value>
   </data>
 </root>

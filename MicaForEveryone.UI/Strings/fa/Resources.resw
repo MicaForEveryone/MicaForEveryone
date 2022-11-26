@@ -222,6 +222,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>خروج</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>گسترش قاب پنجره به Client Area</value>
   </data>
@@ -413,5 +416,20 @@
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>حالت «کمی گرد» گوشه پنجره‌ها را به اجبار کمی گرد می‌کند.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>اجرای این برنامه به عنوان مدیر به هنگام راه‌اندازی. برای فعالسازی این گزینه باید برنامه را به عنوان مدیر اجرا کنید.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>اجرا به عنوان مدیر هنگام راه‌اندازی</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>مشارکت کنندگان:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>نمایش نماد برنامه در ناحیه اعلان‌ها در نوار وظیفه.</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>نمایش نماد برنامه در ناحیه اعلان‌ها</value>
   </data>
 </root>

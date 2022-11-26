@@ -222,6 +222,9 @@
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>나가기</value>
   </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>나가기</value>
+  </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>효과를 전체 앱에다가 적용시키기</value>
   </data>
