@@ -33,7 +33,7 @@ jobs:
       uses: battila7/get-version-action@v2
       if: startsWith(github.ref, 'refs/tags/v')
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v1.2
 
     # Zip
     - name: Build the application
@@ -79,7 +79,7 @@ jobs:
       uses: battila7/get-version-action@v2
       if: startsWith(github.ref, 'refs/tags/v')
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v1.2
 
     - name: Package MSIX
       run: msbuild MicaForEveryone.Package\MicaForEveryone.Package.wapproj /restore /p:BuildingInCI=true /p:Configuration=${{ matrix.configuration }} /p:Platform=${{ matrix.platform }} /p:AppxBundlePlatforms=${{ matrix.platform }} /p:ErrorOnDuplicatePublishOutputFiles=false /p:ReleaseDirectory=..\${{ env.RELEASE_DIR }} /p:MsixName=${{ env.MSIX_FILE }} /t:ReleaseMsix
