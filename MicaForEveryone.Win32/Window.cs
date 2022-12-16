@@ -433,6 +433,10 @@ namespace MicaForEveryone.Win32
         public bool IsWindowPatternValid()
         {
             StyleEx = GetWindowExStyle();
+
+            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE) || StyleEx.HasFlag(WindowStylesEx.WS_EX_LAYERED))
+                return false;
+
             if (StyleEx.HasFlag(WindowStylesEx.WS_EX_APPWINDOW))
                 return true;
 
