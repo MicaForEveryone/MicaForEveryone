@@ -33,13 +33,21 @@ namespace MicaForEveryone.Services
         private static string GetDefaultConfigFilePath()
         {
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+#if NETFRAMEWORK
+            return Path.Combine(appData, "Mica For Everyone", "MicaForEveryone.conf");
+#else
             return Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
+#endif
         }
 
         public static string GetBundledConfigFilePath()
         {
             var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+#if NETFRAMEWORK
+            return Path.Combine(appFolder, "MicaForEveryone.conf");
+#else
             return Path.Join(appFolder, "MicaForEveryone.conf");
+#endif
         }
 
         private readonly FileSystemWatcher _fileSystemWatcher = new();
