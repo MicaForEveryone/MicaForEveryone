@@ -100,7 +100,7 @@
       <MsixName Condition="'$(MsixName)'==''">$(MSBuildProjectName)-$(Platform)-$(Configuration).msixbundle</MsixName>
     </PropertyGroup>
     <MakeDir Directories="$(ReleaseDirectory)" />
-    <Copy SourceFiles="$(AppxBundleOutput)" DestinationFiles="$(ReleaseDirectory)\$(MsixName)" />
+    <Copy SourceFiles="$(AppxPackageOutput)" DestinationFiles="$(ReleaseDirectory)\$(MsixName)" />
   </Target>
   <!-- Additions for .NET Core 3 target -->
   <PropertyGroup>
