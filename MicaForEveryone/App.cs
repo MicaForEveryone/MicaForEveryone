@@ -19,6 +19,11 @@ namespace MicaForEveryone
 
         public IServiceProvider Container { get; private set; }
 
+        public App()
+        {
+            Container = RegisterServices();
+        }
+
         public bool IsItFirstInstance()
         {
             return _siMutex.WaitOne(0, true);
@@ -28,8 +33,6 @@ namespace MicaForEveryone
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             _uwpApp.UnhandledException += UwpApp_UnhandledException;
-
-            Container = RegisterServices();
 
             // load settings before using view service
             var srvSettings = Container.GetService<ISettingsService>();

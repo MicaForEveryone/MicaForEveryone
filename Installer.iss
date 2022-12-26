@@ -63,4 +63,4 @@ Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChang
 Root: HKCU; Subkey: "Software\MicaForEveryone"; Flags: uninsdeletekey
 
 [UninstallRun]
-Filename: "schtasks"; Parameters: "/Delete /TN ""MicaForEveryone_RunAsAdmin"" /F"; Flags: runhidden
+Filename: "{app}\{#MyAppExeName}"; Parameters: "--uninstall"; StatusMsg: "Removing Task Scheduler Entry..."; Flags: waituntilterminated

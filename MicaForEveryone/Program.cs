@@ -15,6 +15,12 @@ namespace MicaForEveryone
                 return;
             }
 
+            if (args.Length > 0 && args[0] == "--uninstall")
+            {
+                Services.UninstallService.Run();
+                return;
+            }
+            
             if (!CurrentApp.IsItFirstInstance())
             {
                 var msg = Win32.Window.RegisterWindowMessage(Views.MainWindow.OpenSettingsMessage);

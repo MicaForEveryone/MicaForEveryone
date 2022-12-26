@@ -11,6 +11,8 @@ namespace MicaForEveryone.Interfaces
         
         void RemoveRunAsAdminTask();
 
+        bool IsRunAsAdminTaskCreated();
+
         bool IsRunAsAdminTaskEnabled();
 
         bool IsAvailable();
