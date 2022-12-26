@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 using MicaForEveryone.Interfaces;
 
+#nullable enable
+
 namespace MicaForEveryone.Services
 {
     internal class Win32ConfigFile : IConfigFile
@@ -53,7 +55,7 @@ namespace MicaForEveryone.Services
         private readonly FileSystemWatcher _fileSystemWatcher = new();
 
         private bool _isFileWatcherEnabled;
-        private string _fileName;
+        private string _fileName = "MicaForEveryone.conf";
 
         public Win32ConfigFile(IConfigParser parser)
         {
@@ -63,7 +65,7 @@ namespace MicaForEveryone.Services
 
         public IConfigParser Parser { get; }
 
-        public string FilePath { get; set; }
+        public string? FilePath { get; set; }
 
         public bool IsFileWatcherEnabled
         {
@@ -82,8 +84,7 @@ namespace MicaForEveryone.Services
         {
             return Task.Run(() =>
             {
-                if (FilePath == null)
-                    FilePath = GetDefaultConfigFilePath();
+                FilePath ??= GetDefaultConfigFilePath();
                 _fileName = Path.GetFileName(FilePath);
                 var directoryPath = Directory.GetParent(FilePath).FullName;
                 if (!Directory.Exists(directoryPath))
@@ -163,6 +164,6 @@ namespace MicaForEveryone.Services
             _fileSystemWatcher.Dispose();
         }
 
-        public event EventHandler FileChanged;
+        public event EventHandler? FileChanged;
     }
 }

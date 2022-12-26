@@ -42,7 +42,7 @@ namespace MicaForEveryone.Services
             get => _trayIconVisibility;
             set
             {
-                if (EqualityComparer<bool>.Default.Equals(_trayIconVisibility, value))
+                if (_trayIconVisibility == value)
                     return;
                 _trayIconVisibility = value;
                 Save();
