@@ -63,7 +63,7 @@ namespace MicaForEveryone.Services
             ConfigFile.FilePath = _container.GetValue(ConfigFilePathKey) as string;
 
             ConfigFile.IsFileWatcherEnabled = !bool.TryParse(_container.GetValue(FileWatcherKey)?.ToString(), out var watcherState) || watcherState;
-            TrayIconVisibility = !bool.TryParse(_container.GetValue(TrayIconVisibilityKey)?.ToString(), out var trayIconVisibility) || trayIconVisibility;
+            _trayIconVisibility = !bool.TryParse(_container.GetValue(TrayIconVisibilityKey)?.ToString(), out var trayIconVisibility) || trayIconVisibility;
         }
 
         public void Save()
