@@ -32,7 +32,9 @@ namespace MicaForEveryone.ViewModels
             _ruleService = ruleService;
 
             _trayIconVisible = _settingsService.TrayIconVisibility;
-            _settingsService.Changed += Settings_Changed;
+            _settingsService.TrayIconVisibilityChanged += SettingsService_TrayIconVisibilityChanged;
+            _settingsService.RuleChanged += SettingsService_ConfigFileReloaded;
+            _settingsService.ConfigFileReloaded += SettingsService_ConfigFileReloaded;
 
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
             ChangeTitlebarColorModeAsyncCommand = new AsyncRelayCommand<string>(DoChangeTitlebarColorModeAsync);
@@ -45,7 +47,9 @@ namespace MicaForEveryone.ViewModels
 
         ~TrayIconViewModel()
         {
-            _settingsService.Changed -= Settings_Changed;
+            _settingsService.TrayIconVisibilityChanged -= SettingsService_TrayIconVisibilityChanged;
+            _settingsService.RuleChanged -= SettingsService_ConfigFileReloaded;
+            _settingsService.ConfigFileReloaded -= SettingsService_ConfigFileReloaded;
         }
 
         // properties
@@ -109,8 +113,7 @@ namespace MicaForEveryone.ViewModels
             };
 
             // initialize and load config file
-            await _settingsService.ConfigFile.InitializeAsync();
-            await _settingsService.LoadRulesAsync();
+            //await _settingsService.InitializeAsync();
 
             // initialize startup service
             var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
@@ -130,35 +133,33 @@ namespace MicaForEveryone.ViewModels
         }
 
         // event handlers
-
-        private void Settings_Changed(object? sender, SettingsChangedEventArgs args)
+        
+        private void SettingsService_TrayIconVisibilityChanged(object? sender, EventArgs e)
         {
-            if (args.Type == SettingsChangeType.TrayIconVisibilityChanged)
-            {
-                TrayIconVisible = _settingsService.TrayIconVisibility;
-            }
+            TrayIconVisible = _settingsService.TrayIconVisibility;
+        }
 
-            if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
-                || args.Type == SettingsChangeType.ConfigFileReloaded)
+        private void SettingsService_ConfigFileReloaded(object? sender, EventArgs args)
+        {
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
+                if (args is RulesChangeEventArgs ruleChangeArgs)
                 {
-                    if (args.Type == SettingsChangeType.ConfigFileReloaded)
-                    {
-                        GlobalRule = _settingsService.ConfigFile.Parser.Rules.First(
-                            rule => rule is GlobalRule) as GlobalRule;
-                    }
-                    else if (GlobalRule == args.Rule)
+                    if (GlobalRule == ruleChangeArgs.Rule)
                     {
                         OnPropertyChanged(nameof(BackdropType));
                         OnPropertyChanged(nameof(TitlebarColor));
                     }
-                    else
+                    else if (ruleChangeArgs.Rule is GlobalRule globalRule)
                     {
-                        GlobalRule = args.Rule as GlobalRule;
+                        GlobalRule = globalRule;
                     }
-                });
-            }
+                }
+                else
+                {
+                    GlobalRule = (GlobalRule)_settingsService.Rules.First(rule => rule is GlobalRule);
+                }
+            });
         }
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)
@@ -198,7 +199,7 @@ namespace MicaForEveryone.ViewModels
 
             if (GlobalRule == null) return;
             GlobalRule.TitleBarColor = value;
-            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+            await _settingsService.UpdateRuleAsync(GlobalRule);
         }
 
         private async Task DoChangeBackdropTypeAsync(string? parameter)
@@ -214,7 +215,7 @@ namespace MicaForEveryone.ViewModels
             };
             if (GlobalRule == null) return;
             GlobalRule.BackdropPreference = value;
-            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+            await _settingsService.UpdateRuleAsync(GlobalRule);
         }
 
         private async Task DoChangeCornerPreferenceAsync(string? parameter)
@@ -229,7 +230,7 @@ namespace MicaForEveryone.ViewModels
             };
             if (GlobalRule == null) return;
             GlobalRule.CornerPreference = value;
-            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+            await _settingsService.UpdateRuleAsync(GlobalRule);
         }
 
         private void DoExit()
@@ -239,7 +240,7 @@ namespace MicaForEveryone.ViewModels
 
         private void DoOpenConfigInEditor()
         {
-            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
+            var startInfo = new ProcessStartInfo(_settingsService.ConfigFilePath)
             {
                 UseShellExecute = true
             };

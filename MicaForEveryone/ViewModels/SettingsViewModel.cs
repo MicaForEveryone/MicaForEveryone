@@ -1,23 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.ApplicationModel;
 using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using XclParser;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
 using MicaForEveryone.Win32.PInvoke;
-using System;
 
 #nullable enable
 
@@ -36,7 +35,10 @@ namespace MicaForEveryone.ViewModels
         public SettingsViewModel(ISettingsService settingsService, ISettingsContainer settingsContainer)
         {
             _settingsService = settingsService;
-            _settingsService.Changed += SettingsService_Changed;
+            _settingsService.RuleAdded += SettingsService_RuleAdded;
+            _settingsService.RuleRemoved += SettingsService_RuleRemoved;
+            _settingsService.RuleChanged += SettingsService_RuleChanged;
+            _settingsService.ConfigFileReloaded += SettingsService_ConfigReloaded;
 
             _settingsContainer = settingsContainer;
 
@@ -61,7 +63,10 @@ namespace MicaForEveryone.ViewModels
 
         ~SettingsViewModel()
         {
-            _settingsService.Changed -= SettingsService_Changed;
+            _settingsService.RuleAdded -= SettingsService_RuleAdded;
+            _settingsService.RuleRemoved -= SettingsService_RuleRemoved;
+            _settingsService.RuleChanged -= SettingsService_RuleChanged;
+            _settingsService.ConfigFileReloaded -= SettingsService_ConfigReloaded;
         }
 
         // properties
@@ -172,52 +177,67 @@ namespace MicaForEveryone.ViewModels
 
         // event handlers
 
-        private void SettingsService_Changed(object? sender, SettingsChangedEventArgs args)
+        private void SettingsService_RuleAdded(object? sender, RulesChangeEventArgs args)
         {
             Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
-                var pane = args.Rule?.GetPaneItem(this);
+                var pane = args.Rule.GetPaneItem(this);
                 var lastPane = SelectedPane;
 
-                switch (args.Type)
+                PaneItems.Add(pane!);
+                if (args.Rule == _newRule)
                 {
-                    case SettingsChangeType.RuleAdded:
-                        PaneItems.Add(pane!);
-                        if (args.Rule == _newRule)
-                        {
-                            SelectedPane = pane;
-                            _newRule = null;
-                        }
-                        break;
-
-                    case SettingsChangeType.RuleRemoved:
-                        PaneItems.Remove(pane!);
-                        if (args.Rule == _newRule)
-                        {
-                            SelectedPane = pane;
-                            _newRule = null;
-                        }
-                        break;
-
-                    case SettingsChangeType.RuleChanged:
-                        var index = PaneItems.IndexOf(pane!);
-                        PaneItems.Insert(index, pane!);
-                        PaneItems.RemoveAt(index + 1);
-                        if (lastPane?.Equals(pane) ?? false)
-                            SelectedPane = pane;
-                        break;
-
-                    case SettingsChangeType.ConfigFileReloaded:
-                        SelectedPane = null;
-                        PaneItems.Clear();
-                        PopulatePanes();
-
-                        // return to last pane if it's still there
-                        lastPane = PaneItems.FirstOrDefault(item => item.Equals(lastPane));
-                        if (lastPane != null)
-                            SelectedPane = lastPane;
-                        break;
+                    SelectedPane = pane;
+                    _newRule = null;
                 }
+            });
+        }
+
+        private void SettingsService_RuleRemoved(object? sender, RulesChangeEventArgs args)
+        {
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            {
+                var pane = args.Rule.GetPaneItem(this);
+                var lastPane = SelectedPane;
+
+                PaneItems.Remove(pane!);
+                if (args.Rule == _newRule)
+                {
+                    SelectedPane = pane;
+                    _newRule = null;
+                }
+            });
+        }
+
+        private void SettingsService_RuleChanged(object? sender, RulesChangeEventArgs args)
+        {
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            {
+                var pane = args.Rule.GetPaneItem(this);
+                var lastPane = SelectedPane;
+
+                var index = PaneItems.IndexOf(pane!);
+                PaneItems.Insert(index, pane!);
+                PaneItems.RemoveAt(index + 1);
+                if (lastPane?.Equals(pane) ?? false)
+                    SelectedPane = pane;
+            });
+        }
+
+        private void SettingsService_ConfigReloaded(object? sender, EventArgs e)
+        {
+            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            {
+                var lastPane = SelectedPane;
+
+                SelectedPane = null;
+                PaneItems.Clear();
+                PopulatePanes();
+
+                // return to last pane if it's still there
+                lastPane = PaneItems.FirstOrDefault(item => item.Equals(lastPane));
+                if (lastPane != null)
+                    SelectedPane = lastPane;
             });
         }
 
@@ -252,7 +272,7 @@ namespace MicaForEveryone.ViewModels
             dialog.ViewModel.Submit += async (sender, args) =>
             {
                 _newRule = new ProcessRule(dialog.ViewModel.ProcessName);
-                await _settingsService.CommitChangesAsync(SettingsChangeType.RuleAdded, _newRule);
+                await _settingsService.AddRuleAsync(_newRule);
             };
 
             dialogService?.ShowDialog(_window, dialog);
@@ -270,7 +290,7 @@ namespace MicaForEveryone.ViewModels
             dialog.ViewModel.Submit += async (sender, args) =>
             {
                 _newRule = new ClassRule(dialog.ViewModel.ClassName);
-                await _settingsService.CommitChangesAsync(SettingsChangeType.RuleAdded, _newRule);
+                await _settingsService.AddRuleAsync(_newRule);
             };
 
             dialogService?.ShowDialog(_window, dialog);
@@ -279,10 +299,11 @@ namespace MicaForEveryone.ViewModels
         private async Task DoRemoveRuleAsync()
         {
             if (SelectedPane is RulePaneItem rulePane &&
-                    rulePane.ViewModel is IRuleSettingsViewModel viewModel)
+                    rulePane.ViewModel is IRuleSettingsViewModel viewModel &&
+                    viewModel.Rule != null)
             {
                 SelectedPane = _generalPane;
-                await _settingsService.CommitChangesAsync(SettingsChangeType.RuleRemoved, viewModel.Rule);
+                await _settingsService.RemoveRuleAsync(viewModel.Rule);
             }
         }
 
