@@ -16,7 +16,7 @@ namespace MicaForEveryone.Services
                 return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Microsoft\\WindowsApps\\mfe.exe";
             }
 
-            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+            return System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
         }
 
         public void CreateRunAsAdminTask()
