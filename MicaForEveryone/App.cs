@@ -36,7 +36,7 @@ namespace MicaForEveryone
 
             // load settings before using view service
             var srvSettings = Container.GetService<ISettingsService>();
-            srvSettings.Load();
+            srvSettings.InitializeAsync().Wait();
 
             var srvView = Container.GetService<IViewService>();
             srvView.Run();

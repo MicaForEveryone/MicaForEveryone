@@ -8,6 +8,7 @@ using XclParser;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Models;
+using Windows.Globalization;
 
 #nullable enable
 
@@ -30,8 +31,11 @@ namespace MicaForEveryone.Services
             _container = container;
             _languageService = languageService;
 
+            ConfigFilePathChanged += SettingsService_ConfigFilePathChanged;
             ConfigFile.FileChanged += ConfigFile_FileChanged;
         }
+
+        // properties
 
         public IConfigFile ConfigFile { get; }
 
@@ -44,11 +48,59 @@ namespace MicaForEveryone.Services
             {
                 if (_trayIconVisibility == value)
                     return;
+
                 _trayIconVisibility = value;
-                Save();
-                Changed?.Invoke(this, new SettingsChangedEventArgs(SettingsChangeType.TrayIconVisibilityChanged, null));
+                _container.SetValue(TrayIconVisibilityKey, TrayIconVisibility);
+
+                TrayIconVisibilityChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        public string? ConfigFilePath
+        {
+            get => ConfigFile.FilePath;
+            set
+            {
+                if (ConfigFile.FilePath == value)
+                    return;
+
+                ConfigFile.FilePath = value;
+                _container.SetValue(ConfigFilePathKey, ConfigFile.FilePath);
+
+                ConfigFilePathChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public bool IsFileWatcherEnabled
+        {
+            get => ConfigFile.IsFileWatcherEnabled;
+            set
+            {
+                if (ConfigFile.IsFileWatcherEnabled == value)
+                    return;
+
+                ConfigFile.IsFileWatcherEnabled = value;
+                _container.SetValue(FileWatcherKey, ConfigFile.IsFileWatcherEnabled);
+
+                ConfigFileWatcherStateChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        public Language Language
+        {
+            get => _languageService.CurrentLanguage;
+            set
+            {
+                if (_languageService.CurrentLanguage == value)
+                    return;
+
+                _languageService.SetLanguage(value);
+                _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
+
+                LanguageChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        // initializer
 
         public void Load()
         {
@@ -63,16 +115,45 @@ namespace MicaForEveryone.Services
             ConfigFile.FilePath = _container.GetValue(ConfigFilePathKey) as string;
 
             ConfigFile.IsFileWatcherEnabled = !bool.TryParse(_container.GetValue(FileWatcherKey)?.ToString(), out var watcherState) || watcherState;
-            TrayIconVisibility = !bool.TryParse(_container.GetValue(TrayIconVisibilityKey)?.ToString(), out var trayIconVisibility) || trayIconVisibility;
+            _trayIconVisibility = !bool.TryParse(_container.GetValue(TrayIconVisibilityKey)?.ToString(), out var trayIconVisibility) || trayIconVisibility;
         }
 
-        public void Save()
+        public async Task InitializeAsync()
         {
-            _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
-            _container.SetValue(ConfigFilePathKey, ConfigFile.FilePath);
-            _container.SetValue(FileWatcherKey, ConfigFile.IsFileWatcherEnabled);
-            _container.SetValue(TrayIconVisibilityKey, TrayIconVisibility);
-            _container.Flush();
+            Load();
+            await ConfigFile.InitializeAsync();
+            await LoadRulesAsync();
+        }
+
+        // rules
+
+        public async Task AddRuleAsync(IRule rule)
+        {
+            ConfigFile.Parser.AddRule(rule);
+            Rules = ConfigFile.Parser.Rules;
+            await ConfigFile.SaveAsync();
+            RuleAdded?.Invoke(this, new RulesChangeEventArgs(rule));
+        }
+
+        public async Task RemoveRuleAsync(IRule rule)
+        {
+            ConfigFile.Parser.RemoveRule(rule);
+            Rules = ConfigFile.Parser.Rules;
+            await ConfigFile.SaveAsync();
+            RuleRemoved?.Invoke(this, new RulesChangeEventArgs(rule));
+        }
+
+        public async Task UpdateRuleAsync(IRule rule)
+        {
+            ConfigFile.Parser.SetRule(rule);
+            await ConfigFile.SaveAsync();
+            RuleChanged?.Invoke(this, new RulesChangeEventArgs(rule));
+        }
+
+        public async Task ResetRulesAsync()
+        {
+            await ConfigFile.ResetAsync();
+            await LoadRulesAsync();
         }
 
         public async Task LoadRulesAsync()
@@ -123,61 +204,36 @@ namespace MicaForEveryone.Services
             }
 
             Rules = rules.ToArray();
-            await CommitChangesAsync(SettingsChangeType.ConfigFileReloaded, null);
+            ConfigFileReloaded?.Invoke(this, EventArgs.Empty);
         }
 
-        public async Task CommitChangesAsync(SettingsChangeType type, IRule? rule)
-        {
-            switch (type)
-            {
-                case SettingsChangeType.RuleAdded:
-                    ConfigFile.Parser.AddRule(rule);
-                    Rules = ConfigFile.Parser.Rules;
-                    await ConfigFile.SaveAsync();
-                    break;
-
-                case SettingsChangeType.RuleRemoved:
-                    ConfigFile.Parser.RemoveRule(rule);
-                    Rules = ConfigFile.Parser.Rules;
-                    await ConfigFile.SaveAsync();
-                    break;
-
-                case SettingsChangeType.RuleChanged:
-                    ConfigFile.Parser.SetRule(rule);
-                    await ConfigFile.SaveAsync();
-                    break;
-
-                case SettingsChangeType.ConfigFilePathChanged:
-                    Save();
-                    await ConfigFile.InitializeAsync();
-                    await LoadRulesAsync();
-                    break;
-
-                case SettingsChangeType.ConfigFileWatcherStateChanged:
-                    Save();
-                    break;
-
-                case SettingsChangeType.ConfigFileReloaded:
-                    break;
-
-                case SettingsChangeType.TrayIconVisibilityChanged:
-                    Save();
-                    break;
-            }
-
-            Changed?.Invoke(this, new SettingsChangedEventArgs(type, rule));
-        }
+        // IDisposable
 
         public void Dispose()
         {
             _container.Dispose();
         }
 
+        // event handlers
+
         private async void ConfigFile_FileChanged(object? sender, EventArgs e)
         {
             await LoadRulesAsync();
         }
 
-        public event EventHandler<SettingsChangedEventArgs>? Changed;
+        private async void SettingsService_ConfigFilePathChanged(object? sender, EventArgs e)
+        {
+            await ConfigFile.InitializeAsync();
+            await LoadRulesAsync();
+        }
+
+        public event EventHandler<RulesChangeEventArgs>? RuleAdded;
+        public event EventHandler<RulesChangeEventArgs>? RuleRemoved;
+        public event EventHandler<RulesChangeEventArgs>? RuleChanged;
+        public event EventHandler? ConfigFilePathChanged;
+        public event EventHandler? ConfigFileWatcherStateChanged;
+        public event EventHandler? ConfigFileReloaded;
+        public event EventHandler? TrayIconVisibilityChanged;
+        public event EventHandler? LanguageChanged;
     }
 }

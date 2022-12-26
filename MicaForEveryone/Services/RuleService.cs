@@ -19,11 +19,20 @@ namespace MicaForEveryone.Services
         public RuleService(ISettingsService settingsService)
         {
             _settingsService = settingsService;
-            _settingsService.Changed += SettingsService_Changed;
+            _settingsService.RuleAdded += SettingsService_Changed;
+            _settingsService.RuleRemoved += SettingsService_Changed;
+            _settingsService.RuleChanged += SettingsService_Changed;
+            _settingsService.ConfigFileReloaded += SettingsService_Changed;
+            _settingsService.ConfigFilePathChanged += SettingsService_Changed;
         }
 
         ~RuleService()
         {
+            _settingsService.RuleAdded -= SettingsService_Changed;
+            _settingsService.RuleRemoved -= SettingsService_Changed;
+            _settingsService.RuleChanged -= SettingsService_Changed;
+            _settingsService.ConfigFileReloaded -= SettingsService_Changed;
+            _settingsService.ConfigFilePathChanged -= SettingsService_Changed;
             Dispose(false);
         }
 
@@ -89,12 +98,8 @@ namespace MicaForEveryone.Services
 
         }
 
-        private void SettingsService_Changed(object sender, SettingsChangedEventArgs args)
+        private void SettingsService_Changed(object sender, EventArgs args)
         {
-            if (args.Type is SettingsChangeType.ConfigFileWatcherStateChanged
-                or SettingsChangeType.ConfigFilePathChanged)
-                return;
-
             _ = MatchAndApplyRuleToAllWindowsAsync();
         }
 

@@ -1,29 +1,18 @@
-﻿using MicaForEveryone.Interfaces;
+﻿using System;
+
+using MicaForEveryone.Interfaces;
 
 #nullable enable
 
 namespace MicaForEveryone.Models
 {
-    public enum SettingsChangeType
+    public class RulesChangeEventArgs : EventArgs
     {
-        RuleAdded,
-        RuleRemoved,
-        RuleChanged,
-        ConfigFilePathChanged,
-        ConfigFileWatcherStateChanged,
-        ConfigFileReloaded,
-        TrayIconVisibilityChanged,
-    }
-
-    public class SettingsChangedEventArgs
-    {
-        public SettingsChangedEventArgs(SettingsChangeType type, IRule? rule)
+        public RulesChangeEventArgs(IRule rule)
         {
-            Type = type;
             Rule = rule;
         }
 
-        public IRule? Rule { get; }
-        public SettingsChangeType Type { get; }
+        public IRule Rule { get; }
     }
 }
