@@ -59,7 +59,8 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Registry]
-Root: HKCU; Subkey: "Software\Mica For Everyone"; Flags: uninsdeletekey
+; HKCU is intended here.
+Root: HKCU; Subkey: "Software\MicaForEveryone"; Flags: uninsdeletekey
 
 [UninstallRun]
 Filename: "schtasks"; Parameters: "/Delete /TN ""MicaForEveryone_RunAsAdmin"" /F"; Flags: runhidden
