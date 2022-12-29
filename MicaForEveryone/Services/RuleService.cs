@@ -107,21 +107,11 @@ namespace MicaForEveryone.Services
 
         private void WinEvent_Handler(object sender, WindowOpenedEventArgs args)
         {
-			try
-			{
-				if (_applyAllWindowsMutex.WaitOne(0) == false)
-					return;
+			if (args.Window.InstanceHandle == Application.InstanceHandle)
+				return; // ignore windows of current instance
 
-				if (args.Window.InstanceHandle == Application.InstanceHandle)
-					return; // ignore windows of current instance
-
-				var target = TargetWindow.FromWindow(args.Window);
-				MatchAndApplyRuleToWindow(target);
-			}
-			finally
-			{
-				_applyAllWindowsMutex.ReleaseMutex();
-			}
+			var target = TargetWindow.FromWindow(args.Window);
+			MatchAndApplyRuleToWindow(target);
 		}
 
         private void Dispose(bool disposing)

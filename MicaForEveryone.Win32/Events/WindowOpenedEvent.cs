@@ -20,19 +20,13 @@ namespace MicaForEveryone.Win32.Events
                 return;
 
             var window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
-            
-            // Wait for a while, it may get a valid window
-            var count = 0;
-			while (count < 10 && window == null)
-			{
+            if (window == null)
+            {
+                // wait a little then try again, it may get a valid window later
                 Thread.Sleep(10);
-
 				window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
-
-				count++;
+                if (window == null) return;
 			}
-
-            if (window == null) return;
 
 			Handler?.Invoke(this, new WindowOpenedEventArgs(window));
         }
