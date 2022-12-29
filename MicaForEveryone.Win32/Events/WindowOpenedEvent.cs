@@ -17,10 +17,10 @@ namespace MicaForEveryone.Win32.Events
         {
             if (args.ObjectId != ObjectIdentifiers.OBJID_WINDOW)
                 return;
+            
+            //args.Window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
 
-            args.Window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
-
-            if (args.Window == null)
+            if (args.Window.IsWindowPatternValid() == false)
                 return;
 
             Handler?.Invoke(this, args);

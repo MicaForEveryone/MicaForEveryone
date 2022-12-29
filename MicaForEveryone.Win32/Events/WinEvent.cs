@@ -45,6 +45,7 @@ namespace MicaForEveryone.Win32.Events
                 ObjectId = idObject,
                 ChildId = idChild,
                 EventTime = dwmsEventTime,
+                Window = Window.FromHandle(hwnd),
             });
 
             if (_busy) return;
