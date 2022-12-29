@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 using MicaForEveryone.Win32.PInvoke;
 
@@ -19,11 +20,21 @@ namespace MicaForEveryone.Win32.Events
                 return;
 
             var window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
+            
+            // Wait for a while, it may get a valid window
+            var count = 0;
+			while (count < 10 && window == null)
+			{
+                Thread.Sleep(10);
 
-            if (window == null)
-                return;
+				window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
 
-            Handler?.Invoke(this, new WindowOpenedEventArgs(window));
+				count++;
+			}
+
+            if (window == null) return;
+
+			Handler?.Invoke(this, new WindowOpenedEventArgs(window));
         }
 
         public event EventHandler<WindowOpenedEventArgs> Handler;

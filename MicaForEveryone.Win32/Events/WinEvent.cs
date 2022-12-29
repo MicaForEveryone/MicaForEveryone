@@ -8,7 +8,6 @@ namespace MicaForEveryone.Win32.Events
 	public abstract class WinEvent
 	{
 		private readonly WinEventProc _callback;
-		private readonly Mutex _mutex = new();
 
 		private IntPtr _handle = IntPtr.Zero;
 
@@ -41,8 +40,6 @@ namespace MicaForEveryone.Win32.Events
 			
 			try
 			{
-				_mutex.WaitOne();
-				
 				var args = new WinEventArgs
 				{
 					EventId = (WinEventType)winEvent,
@@ -59,10 +56,11 @@ namespace MicaForEveryone.Win32.Events
 					return;
 				}
 
-				if (args.EventTime == 0)
-				{
-					args.EventTime = 1;
-				}
+				// Why is this even needed?
+				//if (args.EventTime == 0)
+				//{
+				//	args.EventTime = 1;
+				//}
 
 				EventCallback(args);
 			}
@@ -78,10 +76,6 @@ namespace MicaForEveryone.Win32.Events
                 // ignore
             }
 #endif
-			finally
-			{
-				_mutex.ReleaseMutex();
-			}
 		}
 	}
 }
