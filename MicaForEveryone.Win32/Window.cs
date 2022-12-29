@@ -35,7 +35,7 @@ namespace MicaForEveryone.Win32
             var result = new Window
             {
                 Handle = hWnd,
-                Class = hWnd == IntPtr.Zero ? null : WindowClass.GetClassOfWindow(hWnd),
+                Class = WindowClass.GetClassOfWindow(hWnd),
             };
             result.InstanceHandle = result.Class?.Module ?? IntPtr.Zero;
             return result;

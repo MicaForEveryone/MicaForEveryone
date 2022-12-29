@@ -56,7 +56,8 @@ namespace MicaForEveryone.Services
 #if DEBUG
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex);
+				System.Diagnostics.Debug.WriteLine(ex);
+				System.Diagnostics.Debugger.Break();
             }
 #else
             catch
@@ -70,21 +71,27 @@ namespace MicaForEveryone.Services
         {
             return Task.Run(() =>
             {
-                _applyAllWindowsMutex.WaitOne();
-                Window.GetDesktopWindow().ForEachChild(window =>
+                try
                 {
-                    if (!window.IsVisible())
-                        return;
+                    _applyAllWindowsMutex.WaitOne();
+                    Window.GetDesktopWindow().ForEachChild(window =>
+                    {
+                        if (!window.IsVisible())
+                            return;
 
-                    if (!window.IsWindowPatternValid())
-                        return;
+                        if (!window.IsWindowPatternValid())
+                            return;
 
-                    if (window.InstanceHandle == Application.InstanceHandle)
-                        return; // ignore windows of current instance
+                        if (window.InstanceHandle == Application.InstanceHandle)
+                            return; // ignore windows of current instance
 
-                    MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
-                });
-                _applyAllWindowsMutex.ReleaseMutex();
+                        MatchAndApplyRuleToWindow(TargetWindow.FromWindow(window));
+                    });
+                }
+                finally
+                {
+                    _applyAllWindowsMutex.ReleaseMutex();
+                }
             });
 
         }
@@ -98,15 +105,25 @@ namespace MicaForEveryone.Services
             _ = MatchAndApplyRuleToAllWindowsAsync();
         }
 
-        private async void WinEvent_Handler(object sender, WinEventArgs e)
+        private void WinEvent_Handler(object sender, WindowOpenedEventArgs args)
         {
-            await Task.Run(() =>
+            Task.Run(() =>
             {
-                if (e.Window.InstanceHandle == Application.InstanceHandle)
-                    return; // ignore windows of current instance
+                try
+                {
+                    if (_applyAllWindowsMutex.WaitOne(0) == false)
+                        return;
 
-                var target = TargetWindow.FromWindow(e.Window);
-                MatchAndApplyRuleToWindow(target);
+                    if (args.Window.InstanceHandle == Application.InstanceHandle)
+                        return; // ignore windows of current instance
+
+                    var target = TargetWindow.FromWindow(args.Window);
+                    MatchAndApplyRuleToWindow(target);
+                }
+                finally
+                {
+                    _applyAllWindowsMutex.ReleaseMutex();
+                }
             });
         }
 
