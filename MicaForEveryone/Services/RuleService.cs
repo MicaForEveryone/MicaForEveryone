@@ -13,16 +13,18 @@ namespace MicaForEveryone.Services
     internal class RuleService : IRuleService
     {
         private readonly ISettingsService _settingsService;
+        private readonly ILogger _loggerService;
 
         private readonly Mutex _applyAllWindowsMutex = new();
 
-        public RuleService(ISettingsService settingsService)
-        {
-            _settingsService = settingsService;
-            _settingsService.Changed += SettingsService_Changed;
-        }
+        public RuleService(ISettingsService settingsService, ILogger loggerService)
+		{
+			_settingsService = settingsService;
+			_settingsService.Changed += SettingsService_Changed;
+			_loggerService = loggerService;
+		}
 
-        ~RuleService()
+		~RuleService()
         {
             Dispose(false);
         }
@@ -52,22 +54,26 @@ namespace MicaForEveryone.Services
                     return;
 
                 target.ApplyRule(rule, SystemTitlebarColorMode);
+
+                _loggerService.Add(new LogEntry(true, target.Title, target.ClassName, target.ProcessName));
             }
 #if DEBUG
             catch (Exception ex)
             {
+				_loggerService.Add(new LogEntry(false, target.Title, target.ClassName, target.ProcessName));
 				System.Diagnostics.Debug.WriteLine(ex);
 				System.Diagnostics.Debugger.Break();
             }
 #else
             catch
             {
+                _loggerService.Add(new LogEntry(false, target.Title, target.ClassName, target.ProcessName));
                 // ignore
             }
 #endif
-        }
+		}
 
-        public Task MatchAndApplyRuleToAllWindowsAsync()
+		public Task MatchAndApplyRuleToAllWindowsAsync()
         {
             return Task.Run(() =>
             {

@@ -11,6 +11,7 @@ namespace MicaForEveryone.Services
     {
         public MainWindow MainWindow { get; private set; }
         public SettingsWindow SettingsWindow { get; private set; }
+        public LogsWindow LogsWindow { get; private set; }
 
         public void Run()
         {
@@ -36,6 +37,21 @@ namespace MicaForEveryone.Services
             }
         }
 
+        public void ShowLogsWindow()
+        {
+			if (LogsWindow == null)
+			{
+				LogsWindow = new LogsWindow();
+				LogsWindow.Destroy += LogsWindow_Destroy;
+
+				LogsWindow.Activate();
+			}
+			else
+			{
+				LogsWindow.SetForegroundWindow();
+			}
+		}
+
         private void MainWindow_Destroy(object sender, Win32.WndProcEventArgs e)
         {
             MainWindow.Dispose();
@@ -48,7 +64,13 @@ namespace MicaForEveryone.Services
             SettingsWindow = null;
         }
 
-        public void Dispose()
+		private void LogsWindow_Destroy(object sender, Win32.WndProcEventArgs e)
+		{
+			LogsWindow.Dispose();
+			LogsWindow = null;
+		}
+
+		public void Dispose()
         {
             MainWindow?.Dispose();
             SettingsWindow?.Dispose();

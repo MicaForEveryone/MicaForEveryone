@@ -79,6 +79,8 @@ namespace MicaForEveryone
             services.AddSingleton<IViewService, ViewService>();
             services.AddSingleton<ILanguageService, LanguageService>();
             services.AddSingleton<ITaskSchedulerService, TaskSchedulerService>();
+            services.AddSingleton<ILogger, Logger>();
+            services.AddTransient<ILogsViewModel, LogsViewModel>();
 
             return services.BuildServiceProvider();
         }

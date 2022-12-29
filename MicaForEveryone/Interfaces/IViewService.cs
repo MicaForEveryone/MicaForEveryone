@@ -9,8 +9,10 @@ namespace MicaForEveryone.Interfaces
     {
         MainWindow MainWindow { get; }
         SettingsWindow SettingsWindow { get; }
+        LogsWindow LogsWindow { get; }
 
         void Run();
         void ShowSettingsWindow();
+        void ShowLogsWindow();
     }
 }

@@ -41,6 +41,7 @@ namespace MicaForEveryone.ViewModels
             ExitCommand = new RelayCommand(DoExit);
             EditConfigCommand = new RelayCommand(DoOpenConfigInEditor);
             OpenSettingsCommand = new RelayCommand(DoOpenSettings);
+            OpenLogsCommand = new RelayCommand(DoOpenLogs);
         }
 
         ~TrayIconViewModel()
@@ -88,6 +89,7 @@ namespace MicaForEveryone.ViewModels
         public IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         public ICommand EditConfigCommand { get; }
 
+        public ICommand OpenLogsCommand { get; }
         public ICommand OpenSettingsCommand { get; }
         public ICommand ExitCommand { get; }
 
@@ -255,5 +257,11 @@ namespace MicaForEveryone.ViewModels
             var viewService = Program.CurrentApp.Container.GetService<IViewService>();
             viewService?.ShowSettingsWindow();
         }
+
+        private void DoOpenLogs()
+        {
+			var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+			viewService?.ShowLogsWindow();
+		}
     }
 }

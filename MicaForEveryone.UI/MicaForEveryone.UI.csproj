@@ -83,6 +83,9 @@
     <Compile Include="Converters\IsEqualConverter.cs" />
     <Compile Include="Converters\VisibleIfFlase.cs" />
     <Compile Include="Converters\VisibleIfTrue.cs" />
+    <Compile Include="LogsView.xaml.cs">
+      <DependentUpon>LogsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Contributor.cs" />
     <Compile Include="Models\GeneralPaneItem.cs" />
     <Compile Include="Models\IPaneItem.cs" />
@@ -107,6 +110,7 @@
     <Compile Include="Triggers\VisibilityTrigger.cs" />
     <Compile Include="ViewModels\IContentDialogViewModel.cs" />
     <Compile Include="ViewModels\IGeneralSettingsViewModel.cs" />
+    <Compile Include="ViewModels\ILogsViewModel.cs" />
     <Compile Include="ViewModels\IRuleSettingsViewModel.cs" />
     <Compile Include="ViewModels\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\ITrayIconViewModel.cs" />
@@ -161,6 +165,10 @@
     <Page Include="Controls\SettingsGroup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LogsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsView.xaml">
       <SubType>Designer</SubType>
