@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Sobre esse app</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>O acrílico força todos os aplicativos a usarem o efeito de pano de fundo de desfoque no estilo do Windows 10.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acrílico</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Adicionar</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Nova Regra da Classe</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Nova Regra da Classe</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Nova Regra do Processo</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Nova Regra do Processo</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Nova Regra</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Nova Regra</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Arquivo de Configuração</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Erro ao inicializar o aplicativo</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Definir tipo de pano de fundo,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Tipo de pano de fundo</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Tipo de pano de fundo</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Torna as janelas translúcidas e desfocadas. Desativar esta opção exige que você feche e reabra as janelas afetadas.</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Borrão atrás</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Navegar</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Insira o nome da classe da janela</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Nome da Classe:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Fechar</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Erro no arquivo de configuração:
+{0}
+
+Conserte os erros e use a opção "Recarregar arquivo de configuração" para recarregá-lo.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Erro no arquivo de configuração</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>Arquivo a ser usado para salvar e carregar regras.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Caminho do Arquivo</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Escuro</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Escuro usa tema escuro.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>O padrão não faz nada para manter o pano de fundo padrão do aplicativo.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Padrão</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>A opção "Padrão" mantém o tema padrão do aplicativo.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Estender o quadro para a área do cliente</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Estende a moldura da janela em sua área de cliente para adicionar pano de fundo no fundo de alguns aplicativos. Ele não funciona em todos os aplicativos e pode quebrá-los, então não habilite isso a menos que você saiba o que está fazendo. Desativar esta opção exige que você feche e reabra as janelas afetadas.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Geral</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Regra Global</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Defina seu idioma preferido para interface do usuário. O aplicativo precisa ser reiniciado para entrar em vigor.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Claro usa tema claro.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica força todos os aplicativos a usarem o efeito de pano de fundo de papel de parede colorido estilo Windows 11.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>Nenhum desativa os cenários, mesmo em aplicativos que já os possuem ativados.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Abrir no Editor de Texto</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Digite o nome do arquivo executável sem sua extensão (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Nome do Processo:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Recarregar</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Recarrega a configuração automaticamente quando o arquivo de configuração é alterado.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Recarregar na mudança</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Remover regra</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Configurações</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Execute este aplicativo automaticamente na inicialização.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Executar ao Inicializar</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>O sistema usa sua preferência de tema.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Com guias força todos os aplicativos a usar o efeito de pano de fundo de papel de parede desfocado.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Com guias</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Definir tema de cores das barras de título,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Cor da Barra de Título</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Cor da Barra de Título</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Exceção não tratada</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Exceção não tratada na interface do usuário</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Os efeitos de fundo em acrílico e com abas requerem pelo menos a versão 22523 do Windows.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Modo Escuro Imersivo requer pelo menos o Windows build 19041.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>O efeito Mica requer pelo menos o Windows build 22000.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Versão</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Avançado</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Arquivo de Configuração</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Estilo</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Abre o arquivo de configuração em seu editor de texto padrão.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Editar em um Editor de Texto</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Recarrega as regras do arquivo de configuração e aplica a todas as janelas abertas.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Recarregar</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Restaura as regras padrões e exclui todas as alterações.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Resetar</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Por</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Icone por:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Traduções por:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Modo de Canto</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Modo de Canto</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Quadrado</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Arredondado</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Ligeiramente Arredondado</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Definir modo de arredondamento de canto,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>O padrão não faz nada para manter o modo de arredondamento de canto preferido do aplicativo.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>O modo quadrado desativa o arredondamento de canto.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>O modo arredondado permite cantos arredondados à força.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>O modo ligeiramente arredondado está no meio entre os cantos quadrados e arredondados.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Execute este aplicativo automaticamente como administrador na inicialização. Você precisa executar o aplicativo como Administrador para habilitar esta opção.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Executar como administrador na inicialização</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Contribuidores:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Mostra o ícone do aplicativo na área de notificação</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Mostrar ícone da bandeja</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Sair</value>
+  </data>
+</root>
