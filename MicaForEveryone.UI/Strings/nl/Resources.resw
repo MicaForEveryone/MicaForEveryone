@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Over deze app</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>De optie "Acryl" forceert alle apps om het Windows 10-blur stijl achtergrondeffect te gebruiken.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acryl</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Nieuwe Classregel</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Classregel Toevoegen</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Nieuwe Procesregel</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Procesregel Toevoegen</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Regel Toevoegen</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Regel Toevoegen</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Configuratiebestand</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Fout bij het initialiseren van de app</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Achtergrondeffect instellen,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Achtergrondeffect</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Achtergrondeffect</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Maakt vensters doorzichtig en geblurd. Als je deze optie uitschakelt, moet je de betreffende vensters sluiten en opnieuw openen.</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Blur Erachter</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Bladeren</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Voer de naam van de venster class in</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Class Naam:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Sluiten</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Fout in configuratiebestand:
+{0}
+
+Herstel fouten en gebruik de "Herlaad configuratiebestand" optie om het opnieuw te laden.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Fout in configuratiebestand</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>Bestand voor het opslaan en laden van regels.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Bestandspad</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Donker</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>De optie "Donker" gebruikt het donkere thema.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>De optie "Standaard" doet niets om de standaard achtergrond van de app te behouden.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Standaard</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>De optie "Standaard" behoudt het standaardthema van de app.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Afsluiten</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Frame uitbreiden tot in het clientgebied</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Breidt vensterkader uit naar het clientgebied om achtergrondeffect toe te voegen op de achtergrond van sommige apps. Het werkt niet op elke app en kan voor problemen zorgen, dus schakel dit niet in tenzij je weet wat je doet. Als je deze optie uitschakelt, moet je de betreffende vensters sluiten en opnieuw openen.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Algemeen</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Globale Regel</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Stel je voorkeurstaal in voor de UI. De app moet opnieuw worden opgestart om de wijziging door te voeren.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Licht</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>De optie "Licht" gebruikt het lichte thema.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>De optie "Mica" forceert alle apps om het Windows 11-stijl achtergrondeffect te gebruiken.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>De optie "Geen" schakelt achtergrondeffecten uit, zelfs bij apps die ze al hebben ingeschakeld.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Geen</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>Oké</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Openen in een tekstverwerker</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Voer de naam van het uitvoerbare bestand in zonder de extensie (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Procesnaam:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Herladen</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Laadt de configuratie automatisch opnieuw wanneer het configuratiebestand wordt gewijzigd.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Herladen bij wijziging</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Regel Verwijderen</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Voer deze app automatisch uit bij het opstarten.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Uitvoeren bij opstarten</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Systeem</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>De optie "Systeem" gebruikt je systeem themavoorkeuren.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>De optie "Tabbed" forceert alle apps om een geblurd achtergrondeffect te gebruiken.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Kleurenthema van titelbalken instellen,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Titelbalk Kleur</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Titelbalk Kleur</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Unhandled Exception in UI</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Acryl- en tabbladachtergrondeffecten vereisen ten minste Windows build 22523.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Immersieve Donkere Modus vereist ten minste Windows build 19041.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Mica-effect vereist tenminste Windows build 22000.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Versie</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Geavanceerd</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Configuratiebestand</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Stijl</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Open het configuratiebestand in je standaard tekstverwerker.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Bewerken in teksteditor</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Herlaad regels uit configuratiebestand en pas ze toe op alle geopende vensters.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Herladen</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Herstel de standaardregels en verwijder alle wijzigingen.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Resetten</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Door</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Icoon door:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Vertalingen door:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Hoekafrondingsmodus</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Hoekafrondingsmodus</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Vierkant</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Afgerond</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Licht afgerond</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Hoekafrondingsmodus instellen,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>De optie "Standaard" doet niets om de voorkeursmodus voor hoekafronding van de app te behouden.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>De optie "Vierkant" schakelt hoekafronding uit.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>De optie "Afgeronde" maakt afgeronde hoeken geforceerd mogelijk.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>De optie "Licht afgerond" staat tussenin de vierkante en afgeronde hoeken.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Voer deze app automatisch uit als Administrator bij het opstarten. Je moet de app uitvoeren als Administrator om deze optie in te schakelen.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Uitvoeren als Administrator bij het opstarten</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Bijdragers:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Toon het app-pictogram in het systeemvak</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Toon systeemvakpictogram</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Afsluiten</value>
+  </data>
+</root>
