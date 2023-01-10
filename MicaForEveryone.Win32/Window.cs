@@ -437,7 +437,7 @@ namespace MicaForEveryone.Win32
             if (StyleEx.HasFlag(WindowStylesEx.WS_EX_APPWINDOW))
                 return true;
 
-            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE) || StyleEx.HasFlag(WindowStylesEx.WS_EX_LAYERED))
+            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE))
                 return false;
 
             Style = GetWindowStyle();
