@@ -387,4 +387,49 @@ Correggi gli errori e clicca sull'opzione "Ricarica File di Configurazione" per 
   <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>Traduzioni di:</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Esegui questa applicazione automaticamente come amministratore all'avvio. Per abilitare questa opzione è necessario eseguire l'app come amministratore.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Esegui come amministratore all'avvio</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Collaboratori:</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Imposta la modalità di arrotondamento degli angoli,</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Modalità Angolo</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Modalità Angolo</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>L'impostazione predefinita non fa nulla per mantenere la modalità di arrotondamento degli angoli preferita dall'applicazione.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>La modalità arrotondata abilita gli angoli arrotondati in modo forzato.</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Arrotondato</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>La modalità leggermente arrotondata è una via di mezzo tra gli angoli quadrati e quelli arrotondati.</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Leggermente arrotondato</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>La modalità quadrata disabilita l'arrotondamento degli angoli.</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Quadrato</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Mostra l'icona dell'app nell'area di notifica</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Mostra l'icona della barra delle applicazioni</value>
+  </data>
 </root>
