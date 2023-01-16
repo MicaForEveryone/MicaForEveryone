@@ -35,10 +35,20 @@ namespace MicaForEveryone
             _uwpApp.UnhandledException += UwpApp_UnhandledException;
 
             // load settings before using view service
-            var srvSettings = Container.GetService<ISettingsService>();
+            var srvSettings = Container.GetRequiredService<ISettingsService>();
             srvSettings.InitializeAsync().Wait();
 
-            var srvView = Container.GetService<IViewService>();
+            // initialize startup service
+            var srvStartup = Container.GetRequiredService<IStartupService>();
+            _ = srvStartup.InitializeAsync();
+
+            // start rule service
+            var srvRule = Container.GetRequiredService<IRuleService>();
+            _ = srvRule.MatchAndApplyRuleToAllWindowsAsync();
+            srvRule.StartService();
+
+            // start view service and run the app
+            var srvView = Container.GetRequiredService<IViewService>();
             srvView.Run();
 
             AppDomain.CurrentDomain.UnhandledException -= CurrentDomain_UnhandledException;

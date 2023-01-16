@@ -97,13 +97,12 @@ namespace MicaForEveryone.ViewModels
 
         // public methods
 
-        public async Task InitializeAsync(MainWindow sender)
+        public void Initialize(MainWindow sender)
         {
             // initialize view model
             _mainWindow = sender;
             _mainWindow.Destroy += MainWindow_Destroy;
-
-            // initialize rule service
+            
             _mainWindow.View.ActualThemeChanged += View_ActualThemeChanged;
             _ruleService.SystemTitlebarColorMode = _mainWindow.View.ActualTheme switch
             {
@@ -111,25 +110,6 @@ namespace MicaForEveryone.ViewModels
                 ElementTheme.Dark => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(),
             };
-
-            // initialize and load config file
-            //await _settingsService.InitializeAsync();
-
-            // initialize startup service
-            var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
-            _ = startupService.InitializeAsync();
-
-            // start rule service
-            await _ruleService.MatchAndApplyRuleToAllWindowsAsync();
-
-            // need to be started on UI thread
-            Program.CurrentApp.Dispatcher.Enqueue(() =>
-            {
-                _ruleService.StartService();
-            });
-
-            // post a message to window to invoke dispatcher
-            sender.PostMessage(Win32.PInvoke.WindowMessage.WM_NULL);
         }
 
         // event handlers

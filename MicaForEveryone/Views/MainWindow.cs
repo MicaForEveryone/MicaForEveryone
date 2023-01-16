@@ -70,7 +70,7 @@ namespace MicaForEveryone.Views
         public ITrayIconViewModel ViewModel { get; } =
             Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
 
-        public override async void Activate()
+        public override void Activate()
         {
             base.Activate();
 
@@ -86,7 +86,7 @@ namespace MicaForEveryone.Views
 
             try
             {
-                await ViewModel.InitializeAsync(this);
+                ViewModel.Initialize(this);
             }
 #if DEBUG
             catch
