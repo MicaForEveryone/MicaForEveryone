@@ -38,6 +38,7 @@ namespace MicaForEveryone.UI
             new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
             new Contributor("toineenzo", "https://github.com/toineenzo", "nl"),
             new Contributor("A-Loot", "https://github.com/A-Loot", "it"),
+            new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
         };
 
         private void ListView_Loaded(object sender, RoutedEventArgs args)
