@@ -10,7 +10,7 @@ namespace MicaForEveryone.Interfaces
 {
     internal interface ITrayIconViewModel : UI.ViewModels.ITrayIconViewModel
     {
-        Task InitializeAsync(MainWindow sender);
+        void Initialize(MainWindow sender);
 
         bool TrayIconVisible { get; set; }
     }
