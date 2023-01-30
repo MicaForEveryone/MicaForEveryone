@@ -27,7 +27,12 @@ namespace MicaForEveryone.Services
             using var app = new App();
             dialog.Activate();
             dialog.ShowWindow();
-            app.Run(dialog);
+            app.AddWindow(dialog);
+            dialog.Destroy += (_, _) =>
+            {
+                app.Exit();
+            };
+            app.Run();
         }
 
         public Dialog ShowErrorDialog(Window? parent, object title, object content, int width, int height)

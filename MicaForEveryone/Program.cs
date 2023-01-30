@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+
 using MicaForEveryone.Core.Interfaces;
 using MicaForEveryone.Core.Services;
 using MicaForEveryone.Core.Ui.ViewModels;
@@ -7,7 +9,6 @@ using MicaForEveryone.Interfaces;
 using MicaForEveryone.Services;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Win32;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace MicaForEveryone
 {
@@ -31,7 +32,7 @@ namespace MicaForEveryone
             }
 
             var srvLifetime = Container.GetRequiredService<IAppLifeTimeService>();
-            
+
             if (!srvLifetime.IsFirstInstance())
             {
                 srvLifetime.OpenSettingsWindow();
@@ -39,11 +40,13 @@ namespace MicaForEveryone
             }
 
             await srvLifetime.InitializeRuleServiceAsync();
+            
             await srvLifetime.RunViewServiceAsync();
+            
             srvLifetime.ShutdownViewService();
             srvLifetime.ShutdownRuleService();
         }
-
+        
         private static IServiceProvider RegisterServices()
         {
             var services = new ServiceCollection();

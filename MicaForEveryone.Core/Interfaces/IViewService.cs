@@ -3,9 +3,12 @@
 public interface IAppLifeTimeService
 {
     bool IsFirstInstance();
-    void OpenSettingsWindow();
+    
     Task InitializeRuleServiceAsync();
-    Task RunViewServiceAsync();
     void ShutdownRuleService();
+    
+    Task RunViewServiceAsync();
     void ShutdownViewService();
+
+    void OpenSettingsWindow();
 }

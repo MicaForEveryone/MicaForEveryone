@@ -17,12 +17,12 @@ namespace MicaForEveryone.Services
         private readonly ISettingsService _settingsService;
         private readonly IUiSettingsService _uiSettingsService;
         private readonly IRuleService _ruleService;
-        private readonly Interfaces.IViewService _viewService;
-
+        private readonly IViewService _viewService;
+        
         private App? _app;
         private Task? _uiThread;
-
-        public AppLifeTimeService(IStartupService startupService, ISettingsService settingsService, IUiSettingsService uiSettingsService, IRuleService ruleService, Interfaces.IViewService viewService)
+        
+        public AppLifeTimeService(IStartupService startupService, ISettingsService settingsService, IUiSettingsService uiSettingsService, IRuleService ruleService, IViewService viewService)
         {
             _startupService = startupService;
             _settingsService = settingsService;
@@ -30,7 +30,7 @@ namespace MicaForEveryone.Services
             _ruleService = ruleService;
             _viewService = viewService;
         }
-        
+
         public bool IsFirstInstance()
         {
             return _singleInstanceMutex.WaitOne(0, true);
@@ -62,21 +62,25 @@ namespace MicaForEveryone.Services
                 await _uiThread;
                 return;
             }
-            
+
             _uiThread = Task.Run(() =>
             {
-                if (_app != null) return;
-
-                _app = new App();
+                _app ??= new App();
+                
                 _uiSettingsService.Load();
-                _app.RegisterExceptionHandlers();
+                
                 _viewService.Initialize(_app);
-                _app.Run(_viewService.MainWindow);
+                _app.RegisterExceptionHandlers();
+                
+                _app.Run();
+                
                 _app.UnregisterExceptionHandlers();
                 _viewService.Unload();
             });
 
             await _uiThread;
+            
+            _uiThread = null;
         }
 
         public void ShutdownRuleService()
@@ -87,14 +91,15 @@ namespace MicaForEveryone.Services
         public void ShutdownViewService()
         {
             if (_app == null || _uiThread == null) return;
+            if (Task.CurrentId == _uiThread.Id) throw new InvalidOperationException();
             
-            _app.Exit();
             _uiThread.Wait();
             _uiThread.Dispose();
             _app.Dispose();
             _app = null;
+            _uiThread = null;
         }
-
+        
         public void Dispose()
         {
             if (_uiThread?.Status == TaskStatus.Running)
