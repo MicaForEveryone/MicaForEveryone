@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
 
 #nullable enable
 

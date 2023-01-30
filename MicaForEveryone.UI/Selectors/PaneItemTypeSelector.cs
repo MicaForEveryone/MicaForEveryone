@@ -1,7 +1,8 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
 using MicaForEveryone.UI.Models;
+using MicaForEveryone.Core.Ui.Interfaces;
+using MicaForEveryone.Core.Ui.Models;
 
 namespace MicaForEveryone.UI.Selectors
 {

@@ -1,11 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using XclParser.Primitives;
-using XclParser.Reflection;
+﻿using XclParser.Reflection;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.UI.Models;
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Ui.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
 
-namespace MicaForEveryone.Models
+namespace MicaForEveryone.Core.Models
 {
     [XclType(TypeName = "Class")]
     public class ClassRule : IRule
@@ -43,9 +42,8 @@ namespace MicaForEveryone.Models
 
         public override string ToString() => Name;
 
-        public RulePaneItem GetPaneItem(UI.ViewModels.ISettingsViewModel parent)
+        public RulePaneItem GetPaneItem(ISettingsViewModel parent, IRuleSettingsViewModel viewModel)
         {
-            var viewModel = Program.CurrentApp.Container.GetService<IRuleSettingsViewModel>();
             viewModel.ParentViewModel = parent;
             viewModel.Rule = this;
             return new RulePaneItem(ClassName, PaneItemType.Class, viewModel);

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 
-namespace MicaForEveryone.UI.ViewModels
+namespace MicaForEveryone.Core.Ui.ViewModels
 {
     public interface IGeneralSettingsViewModel : INotifyPropertyChanged
     {
@@ -15,7 +15,7 @@ namespace MicaForEveryone.UI.ViewModels
         bool RunOnStartupAvailable { get; }
         bool RunOnStartupAsAdmin { get; set; }
         bool RunOnStartupAsAdminAvailable { get; }
-        string ConfigFilePath { get; set; }
+        string? ConfigFilePath { get; set; }
         bool TrayIconVisibility { get; set; }
 
         IAsyncRelayCommand BrowseAsyncCommand { get; }

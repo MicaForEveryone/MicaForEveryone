@@ -5,8 +5,8 @@ using Windows.UI.Xaml.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 
+using MicaForEveryone.Core.Ui.Interfaces;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
 

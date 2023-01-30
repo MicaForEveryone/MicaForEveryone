@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using MicaForEveryone.Core.Models;
 
-using MicaForEveryone.Models;
-
-namespace MicaForEveryone.Interfaces
+namespace MicaForEveryone.Core.Interfaces
 {
     public interface IRuleService : IDisposable
     {

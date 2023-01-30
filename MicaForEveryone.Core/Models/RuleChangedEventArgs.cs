@@ -1,10 +1,6 @@
-﻿using System;
+﻿using MicaForEveryone.Core.Interfaces;
 
-using MicaForEveryone.Interfaces;
-
-#nullable enable
-
-namespace MicaForEveryone.Models
+namespace MicaForEveryone.Core.Models
 {
     public class RulesChangeEventArgs : EventArgs
     {

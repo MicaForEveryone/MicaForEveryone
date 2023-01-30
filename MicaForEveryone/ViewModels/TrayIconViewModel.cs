@@ -8,8 +8,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
 

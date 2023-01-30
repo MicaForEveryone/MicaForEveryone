@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using MicaForEveryone.Interfaces;
+﻿using System.Diagnostics;
+using MicaForEveryone.Core.Interfaces;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Win32.PInvoke;
 
-namespace MicaForEveryone.Models
+namespace MicaForEveryone.Core.Models
 {
     public class TargetWindow
     {
@@ -20,30 +20,34 @@ namespace MicaForEveryone.Models
 
         public static TargetWindow FromWindow(Window window)
         {
-            return new TargetWindow
-            {
-                WindowHandle = window.Handle,
-                Title = window.GetText(),
-                ClassName = window.Class.Name,
-                ProcessName = Process.GetProcessById((int)window.GetProcessId()).ProcessName,
-            };
+            return new TargetWindow(
+                window.Handle,
+                window.GetText(),
+                window.Class!.Name,
+                Process.GetProcessById((int)window.GetProcessId()).ProcessName);
         }
 
-        private TargetWindow() { }
+        private TargetWindow(nint windowHandle, string title, string className, string processName)
+        {
+            WindowHandle = windowHandle;
+            Title = title;
+            ClassName = className;
+            ProcessName = processName;
+        }
 
-        public IntPtr WindowHandle { get; private set; }
-        public string Title { get; private set; }
-        public string ClassName { get; private set; }
-        public string ProcessName { get; private set; }
+        public nint WindowHandle { get; }
+        public string Title { get; }
+        public string ClassName { get; }
+        public string ProcessName { get; }
 
         public void ApplyBackdropRule(BackdropType type)
         {
             if (type == BackdropType.Default)
-                    return;
+                return;
 
             if (DesktopWindowManager.IsBackdropTypeSupported)
             {
-                DesktopWindowManager.SetBackdropType(WindowHandle, type);
+                DesktopWindowManager.SetBackdropType(WindowHandle, (DWM_SYSTEMBACKDROP_TYPE)type);
             }
             else if (DesktopWindowManager.IsUndocumentedMicaSupported && type < BackdropType.Acrylic)
             {
@@ -80,14 +84,14 @@ namespace MicaForEveryone.Models
 
             if (DesktopWindowManager.IsCornerPreferenceSupported)
             {
-                DesktopWindowManager.SetCornerPreference(WindowHandle, cornerPreference);
+                DesktopWindowManager.SetCornerPreference(WindowHandle, (DWM_WINDOW_CORNER_PREFERENCE)cornerPreference);
             }
         }
 
         public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
         {
 #if DEBUG
-            System.Diagnostics.Debug.WriteLine($"Applying rule `{rule}` to `{Title}` ({ClassName}, {ProcessName})");
+            Debug.WriteLine($"Applying rule `{rule}` to `{Title}` ({ClassName}, {ProcessName})");
 #endif
             ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
             ApplyBackdropRule(rule.BackdropPreference);

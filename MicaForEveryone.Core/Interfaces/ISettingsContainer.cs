@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿#nullable enable
 
-#nullable enable
-
-namespace MicaForEveryone.Interfaces
+namespace MicaForEveryone.Core.Interfaces
 {
     public interface ISettingsContainer : IDisposable
     {

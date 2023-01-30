@@ -4,10 +4,16 @@ using Windows.ApplicationModel.Resources;
 using Microsoft.Extensions.DependencyInjection;
 using XclParser; 
 
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Services;
+using MicaForEveryone.Core.Ui.ViewModels;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Services;
 using MicaForEveryone.ViewModels;
 using MicaForEveryone.Xaml;
+using IGeneralSettingsViewModel = MicaForEveryone.Interfaces.IGeneralSettingsViewModel;
+using ISettingsViewModel = MicaForEveryone.Interfaces.ISettingsViewModel;
+using ITrayIconViewModel = MicaForEveryone.Interfaces.ITrayIconViewModel;
 
 namespace MicaForEveryone
 {
@@ -84,6 +90,7 @@ namespace MicaForEveryone
                 IsPackaged ? new UwpStartupService()
                 : new Win32StartupService());
             services.AddSingleton<ISettingsService, SettingsService>();
+            services.AddSingleton<IUiSettingsService, UiSettingsServiceService>();
             services.AddSingleton<IRuleService, RuleService>();
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<IViewService, ViewService>();

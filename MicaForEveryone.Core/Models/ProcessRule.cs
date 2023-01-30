@@ -1,10 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Ui.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
 using XclParser.Reflection;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.UI.Models;
-
-namespace MicaForEveryone.Models
+namespace MicaForEveryone.Core.Models
 {
     [XclType(TypeName = "Process")]
     public class ProcessRule : IRule
@@ -42,9 +41,8 @@ namespace MicaForEveryone.Models
 
         public override string ToString() => Name;
 
-        public RulePaneItem GetPaneItem(UI.ViewModels.ISettingsViewModel parent)
+        public RulePaneItem GetPaneItem(ISettingsViewModel parent, IRuleSettingsViewModel viewModel)
         {
-            var viewModel = Program.CurrentApp.Container.GetService<IRuleSettingsViewModel>();
             viewModel.ParentViewModel = parent;
             viewModel.Rule = this;
             return new RulePaneItem(ProcessName, PaneItemType.Process, viewModel);

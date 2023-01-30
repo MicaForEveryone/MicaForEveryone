@@ -8,7 +8,7 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Interfaces
 {
-    internal interface ITrayIconViewModel : UI.ViewModels.ITrayIconViewModel
+    internal interface ITrayIconViewModel : Core.Ui.ViewModels.ITrayIconViewModel
     {
         void Initialize(MainWindow sender);
 

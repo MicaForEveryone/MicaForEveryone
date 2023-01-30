@@ -2,7 +2,7 @@
 
 namespace MicaForEveryone.Interfaces
 {
-    internal interface IGeneralSettingsViewModel : UI.ViewModels.IGeneralSettingsViewModel
+    internal interface IGeneralSettingsViewModel : Core.Ui.ViewModels.IGeneralSettingsViewModel
     {
         void Initialize(XamlWindow sender);
     }

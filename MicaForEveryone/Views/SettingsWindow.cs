@@ -6,7 +6,6 @@ using Windows.UI.Xaml.Controls;
 using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Brushes;
 using MicaForEveryone.Win32;

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿#nullable enable
 
-#nullable enable
-
-namespace MicaForEveryone.Interfaces
+namespace MicaForEveryone.Core.Interfaces
 {
     public interface IConfigFile : IDisposable
     {
