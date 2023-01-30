@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Windows.Globalization;
 
 namespace MicaForEveryone.Interfaces
 {
     public interface ILanguageService
     {
-        Language[] SupportedLanguages { get; }
+        IReadOnlyList<Language> SupportedLanguages { get; }
 
         Language CurrentLanguage { get; }
 

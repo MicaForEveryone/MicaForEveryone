@@ -33,8 +33,12 @@ namespace MicaForEveryone.Core.Services
 
         public TitlebarColorMode SystemTitlebarColorMode { get; set; }
 
+        public bool IsRunning { get; private set; }
+
         public void StartService()
         {
+            if (IsRunning) return;
+            IsRunning = true;
             var winEvent = new WindowOpenedEvent();
             winEvent.Handler += WinEvent_Handler;
             WinEventManager.AddEventHandler(winEvent);
@@ -43,6 +47,7 @@ namespace MicaForEveryone.Core.Services
         public void StopService()
         {
             WinEventManager.RemoveAll();
+            IsRunning = false;
         }
 
         public void MatchAndApplyRuleToWindow(TargetWindow target)

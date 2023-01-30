@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+
 using MicaForEveryone.Core.Models;
 using MicaForEveryone.Core.Ui.Interfaces;
+using MicaForEveryone.Core.Ui.Views;
 
 namespace MicaForEveryone.Core.Ui.ViewModels
 {
@@ -27,5 +28,7 @@ namespace MicaForEveryone.Core.Ui.ViewModels
         ICommand AddProcessRuleCommand { get; }
         ICommand AddClassRuleCommand { get; }
         IAsyncRelayCommand RemoveRuleAsyncCommand { get; }
+
+        void Attach(ISettingsView view);
     }
 }

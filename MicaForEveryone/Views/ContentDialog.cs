@@ -37,7 +37,7 @@ namespace MicaForEveryone.Views
         }
 
         protected ContentDialog(ContentDialogView view) :
-            this(view, Program.CurrentApp.Container.GetService<IContentDialogViewModel>())
+            this(view, Program.Container.GetService<IContentDialogViewModel>())
         {
             ViewModel.IsPrimaryButtonEnabled = true;
             ViewModel.PrimaryCommand = CloseDialogCommand;

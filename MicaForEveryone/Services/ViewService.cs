@@ -1,20 +1,35 @@
-﻿using MicaForEveryone.Interfaces;
+﻿using System;
+
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Views;
+using MicaForEveryone.Win32;
+
+#nullable enable
 
 namespace MicaForEveryone.Services
 {
     internal class ViewService : IViewService
     {
-        public MainWindow MainWindow { get; private set; }
-        public SettingsWindow SettingsWindow { get; private set; }
+        private Application? _app;
 
-        public void Run()
+        public MainWindow? MainWindow { get; private set; }
+        public SettingsWindow? SettingsWindow { get; private set; }
+        
+        public void Initialize(Application app)
         {
+            _app = app;
             if (MainWindow != null) return;
             MainWindow = new MainWindow();
             MainWindow.Destroy += MainWindow_Destroy;
             MainWindow.Activate();
-            Program.CurrentApp.Run(MainWindow);
+        }
+
+        public void Unload()
+        {
+            MainWindow?.Close();
+            MainWindow?.Dispose();
+            MainWindow = null;
+            _app = null;
         }
 
         public void ShowSettingsWindow()
@@ -32,15 +47,20 @@ namespace MicaForEveryone.Services
             }
         }
 
-        private void MainWindow_Destroy(object sender, Win32.WndProcEventArgs e)
+        public void DispatcherEnqueue(Action action)
         {
-            MainWindow.Dispose();
+            _app!.Dispatcher.Enqueue(action);
+        }
+
+        private void MainWindow_Destroy(object? sender, Win32.WndProcEventArgs e)
+        {
+            MainWindow?.Dispose();
             MainWindow = null;
         }
 
-        private void SettingsWindow_Destroy(object sender, Win32.WndProcEventArgs e)
+        private void SettingsWindow_Destroy(object? sender, Win32.WndProcEventArgs e)
         {
-            SettingsWindow.Dispose();
+            SettingsWindow?.Dispose();
             SettingsWindow = null;
         }
 
