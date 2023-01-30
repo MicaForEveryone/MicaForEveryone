@@ -14,12 +14,8 @@ namespace MicaForEveryone.Services
 {
     internal class LanguageService : ILanguageService
     {
-        private readonly IViewService _viewService;
-
-        public LanguageService(IViewService viewService)
+        public LanguageService()
         {
-            _viewService = viewService;
-
             SupportedLanguages = GetSupportedLanguages().ToArray();
 
             var preferredLanguageTag = GlobalizationPreferences.Languages.FirstOrDefault(

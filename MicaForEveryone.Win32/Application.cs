@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 using MicaForEveryone.Win32.PInvoke;
@@ -26,34 +27,41 @@ namespace MicaForEveryone.Win32
 
             return result.ToString();
         }
-
-        private Window _mainWindow;
-
+        
+        private readonly List<Window> _windows = new();
+        
         public Dispatcher Dispatcher { get; } = new();
 
-        /// <summary>
-        /// Run main loop with given main window
-        /// </summary>
-        public void Run(Window window)
+        public void AddWindow(Window window)
         {
-            _mainWindow = window;
-
+            _windows.Add(window);
+            window.Destroy += (_, _) =>
+            {
+                _windows.Remove(window);
+            };
+        }
+        
+        /// <summary>
+        /// Run main loop
+        /// </summary>
+        public void Run()
+        {
             BeforeRun?.Invoke(this, EventArgs.Empty);
-
-            _mainWindow.Destroy += Window_OnDestroy;
-
+            
             while (NativeMethods.GetMessageW(out var msg, IntPtr.Zero, 0, 0))
             {
                 var processed = false;
-                BeforeTranslateMessage?.Invoke(window, ref msg, ref processed);
+                foreach (var window in _windows)
+                {
+                    BeforeTranslateMessage?.Invoke(window, ref msg, ref processed);
+                    if (processed) break;
+                }
                 if (processed) continue;
                 NativeMethods.TranslateMessage(msg);
                 NativeMethods.DispatchMessageW(msg);
                 Dispatcher.Invoke();
             }
-
-            _mainWindow.Destroy -= Window_OnDestroy;
-
+            
             BeforeExit?.Invoke(this, EventArgs.Empty);
         }
 
@@ -64,13 +72,7 @@ namespace MicaForEveryone.Win32
         {
             NativeMethods.PostQuitMessage(0);
         }
-
-        private void Window_OnDestroy(object sender, EventArgs e)
-        {
-            // stop main loop when window destroyed
-            Exit();
-        }
-
+        
         public event EventHandler BeforeRun;
         public event MessageLoopHandler BeforeTranslateMessage;
         public event EventHandler BeforeExit;
