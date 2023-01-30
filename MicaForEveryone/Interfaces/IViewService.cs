@@ -1,6 +1,5 @@
 ﻿using System;
 
-using MicaForEveryone.Models;
 using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Interfaces

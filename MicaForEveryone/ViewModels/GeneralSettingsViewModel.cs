@@ -9,8 +9,8 @@ using Windows.Storage.Pickers;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using MicaForEveryone.Core.Interfaces;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 using MicaForEveryone.Xaml;
 
 #nullable enable
@@ -20,15 +20,17 @@ namespace MicaForEveryone.ViewModels
     internal class GeneralSettingsViewModel : ObservableObject, IGeneralSettingsViewModel
     {
         private readonly ISettingsService _settingsService;
+        private readonly IUiSettingsService _uiSettingsService;
         private readonly IStartupService _startupService;
         private readonly ITaskSchedulerService _taskSchedulerService;
 
         private XamlWindow? _window;
         private readonly Win32.Window? _mainWindow;
 
-        public GeneralSettingsViewModel(ISettingsService settingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService, IViewService viewService)
+        public GeneralSettingsViewModel(ISettingsService settingsService, IUiSettingsService uiSettingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService, IViewService viewService)
         {
             _settingsService = settingsService;
+            _uiSettingsService = uiSettingsService;
             _startupService = startupService;
             _taskSchedulerService = taskSchedulerService;
 
@@ -100,10 +102,7 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        public bool RunOnStartupAsAdminAvailable
-        {
-            get => _taskSchedulerService.IsAvailable();
-        }
+        public bool RunOnStartupAsAdminAvailable => _taskSchedulerService.IsAvailable();
 
         public bool TrayIconVisibility
         {
@@ -121,19 +120,18 @@ namespace MicaForEveryone.ViewModels
         {
             get => _settingsService.ConfigFilePath;
             set => _settingsService.ConfigFilePath = value;
-
         }
 
         public IList<object> Languages { get; }
 
         public object SelectedLanguage
         {
-            get => _settingsService.Language;
+            get => _uiSettingsService.Language;
             set
             {
                 if (value is Language language)
                 {
-                    _settingsService.Language = language;
+                    _uiSettingsService.Language = language;
                 }
             }
         }

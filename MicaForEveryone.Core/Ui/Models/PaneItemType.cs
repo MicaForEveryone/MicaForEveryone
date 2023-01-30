@@ -1,4 +1,4 @@
-﻿namespace MicaForEveryone.UI.Models
+﻿namespace MicaForEveryone.Core.Ui.Models
 {
     public enum PaneItemType
     {

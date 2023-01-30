@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
 
-using MicaForEveryone.Models;
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
 
-namespace MicaForEveryone.UI.ViewModels
+namespace MicaForEveryone.Core.Ui.ViewModels
 {
     public interface IRuleSettingsViewModel : INotifyPropertyChanged
     {
@@ -14,5 +14,6 @@ namespace MicaForEveryone.UI.ViewModels
         bool EnableBlurBehind { get; set; }
 
         ISettingsViewModel ParentViewModel { get; set; }
+        IRule? Rule { get; set; }
     }
 }

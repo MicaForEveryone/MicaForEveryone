@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Globalization;
+﻿using MicaForEveryone.Core.Models;
 
-using MicaForEveryone.Models;
-
-#nullable enable
-
-namespace MicaForEveryone.Interfaces
+namespace MicaForEveryone.Core.Interfaces
 {
     public interface ISettingsService : IDisposable
     {
@@ -16,7 +8,7 @@ namespace MicaForEveryone.Interfaces
         bool TrayIconVisibility { get; set; }
         string? ConfigFilePath { get; set; }
         bool IsFileWatcherEnabled { get; set; }
-        Language Language { get; set; }
+        //Language Language { get; set; }
 
         Task InitializeAsync();
         Task AddRuleAsync(IRule rule);
@@ -32,6 +24,6 @@ namespace MicaForEveryone.Interfaces
         event EventHandler ConfigFileWatcherStateChanged;
         event EventHandler ConfigFileReloaded;
         event EventHandler TrayIconVisibilityChanged;
-        event EventHandler LanguageChanged;
+        //event EventHandler LanguageChanged;
     }
 }

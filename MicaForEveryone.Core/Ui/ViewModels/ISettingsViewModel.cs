@@ -2,11 +2,10 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.Interfaces;
 
-using MicaForEveryone.Models;
-using MicaForEveryone.UI.Models;
-
-namespace MicaForEveryone.UI.ViewModels
+namespace MicaForEveryone.Core.Ui.ViewModels
 {
     public interface ISettingsViewModel : INotifyPropertyChanged
     {

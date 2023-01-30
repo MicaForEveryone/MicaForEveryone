@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 
 #nullable enable
 
@@ -81,7 +83,7 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        public UI.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
+        public Core.Ui.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
 
         public IRule? Rule { get; set; }
     }

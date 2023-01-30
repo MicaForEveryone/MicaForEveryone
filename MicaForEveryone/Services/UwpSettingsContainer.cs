@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.Storage;
+﻿using Windows.Storage;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
 
 #nullable enable
 

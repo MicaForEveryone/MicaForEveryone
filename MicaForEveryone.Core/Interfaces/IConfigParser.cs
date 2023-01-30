@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-
-namespace MicaForEveryone.Interfaces
+﻿namespace MicaForEveryone.Core.Interfaces
 {
     public interface IConfigParser
     {

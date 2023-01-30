@@ -11,12 +11,17 @@ using Microsoft.Extensions.DependencyInjection;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.Interfaces;
+using MicaForEveryone.Core.Ui.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
-using MicaForEveryone.UI.Models;
 using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
+using IGeneralSettingsViewModel = MicaForEveryone.Interfaces.IGeneralSettingsViewModel;
+using ISettingsViewModel = MicaForEveryone.Interfaces.ISettingsViewModel;
 
 #nullable enable
 
@@ -169,7 +174,7 @@ namespace MicaForEveryone.ViewModels
 
             foreach (var rule in _settingsService.Rules)
             {
-                var item = rule.GetPaneItem(this);
+                var item = rule.GetPaneItem(this, Program.CurrentApp.Container.GetRequiredService<IRuleSettingsViewModel>());
                 item.ViewModel.ParentViewModel = this;
                 PaneItems.Add(item);
             }
@@ -181,7 +186,7 @@ namespace MicaForEveryone.ViewModels
         {
             Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
-                var pane = args.Rule.GetPaneItem(this);
+                var pane = args.Rule.GetPaneItem(this, Program.CurrentApp.Container.GetRequiredService<IRuleSettingsViewModel>());
                 var lastPane = SelectedPane;
 
                 PaneItems.Add(pane!);
@@ -197,7 +202,7 @@ namespace MicaForEveryone.ViewModels
         {
             Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
-                var pane = args.Rule.GetPaneItem(this);
+                var pane = args.Rule.GetPaneItem(this, Program.CurrentApp.Container.GetRequiredService<IRuleSettingsViewModel>());
                 var lastPane = SelectedPane;
 
                 PaneItems.Remove(pane!);
@@ -213,7 +218,7 @@ namespace MicaForEveryone.ViewModels
         {
             Program.CurrentApp.Dispatcher.Enqueue(() =>
             {
-                var pane = args.Rule.GetPaneItem(this);
+                var pane = args.Rule.GetPaneItem(this, Program.CurrentApp.Container.GetRequiredService<IRuleSettingsViewModel>());
                 var lastPane = SelectedPane;
 
                 var index = PaneItems.IndexOf(pane!);

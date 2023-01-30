@@ -6,7 +6,7 @@ using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Interfaces
 {
-    internal interface ISettingsViewModel : UI.ViewModels.ISettingsViewModel
+    internal interface ISettingsViewModel : Core.Ui.ViewModels.ISettingsViewModel
     {
         void Initialize(SettingsWindow sender);
     }

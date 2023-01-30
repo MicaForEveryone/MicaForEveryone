@@ -1,35 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Microsoft.Extensions.DependencyInjection;
+﻿using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
 using XclParser;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
-using Windows.Globalization;
-
-#nullable enable
-
-namespace MicaForEveryone.Services
+namespace MicaForEveryone.Core.Services
 {
-    internal class SettingsService : ISettingsService
+    public class SettingsService : ISettingsService
     {
         private const string ConfigFilePathKey = "config file path";
         private const string FileWatcherKey = "file watcher state";
-        private const string LanguageKey = "language";
+        //private const string LanguageKey = "language";
         private const string TrayIconVisibilityKey = "tray icon visibility";
 
         private readonly ISettingsContainer _container;
-        private readonly ILanguageService _languageService;
+        //private readonly ILanguageService _languageService;
         private bool _trayIconVisibility = true;
 
-        public SettingsService(IConfigFile configFile, ISettingsContainer container, ILanguageService languageService)
+        public SettingsService(IConfigFile configFile, ISettingsContainer container)
         {
             ConfigFile = configFile;
             _container = container;
-            _languageService = languageService;
+            //_languageService = languageService;
 
             ConfigFilePathChanged += SettingsService_ConfigFilePathChanged;
             ConfigFile.FileChanged += ConfigFile_FileChanged;
@@ -39,7 +29,7 @@ namespace MicaForEveryone.Services
 
         public IConfigFile ConfigFile { get; }
 
-        public IRule[] Rules { get; private set; } = new IRule[0];
+        public IRule[] Rules { get; private set; } = Array.Empty<IRule>();
 
         public bool TrayIconVisibility
         {
@@ -85,32 +75,33 @@ namespace MicaForEveryone.Services
                 ConfigFileWatcherStateChanged?.Invoke(this, EventArgs.Empty);
             }
         }
-        public Language Language
-        {
-            get => _languageService.CurrentLanguage;
-            set
-            {
-                if (_languageService.CurrentLanguage == value)
-                    return;
+        
+        //public Language Language
+        //{
+        //    get => _languageService.CurrentLanguage;
+        //    set
+        //    {
+        //        if (_languageService.CurrentLanguage == value)
+        //            return;
 
-                _languageService.SetLanguage(value);
-                _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
+        //        _languageService.SetLanguage(value);
+        //        _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
 
-                LanguageChanged?.Invoke(this, EventArgs.Empty);
-            }
-        }
+        //        LanguageChanged?.Invoke(this, EventArgs.Empty);
+        //    }
+        //}
 
         // initializer
 
         public void Load()
         {
-            var languageTag = _container.GetValue(LanguageKey) as string;
-            var language = _languageService.SupportedLanguages.FirstOrDefault(
-                                language => language.LanguageTag == languageTag);
-            if (language != null)
-            {
-                _languageService.SetLanguage(language);
-            }
+            //var languageTag = _container.GetValue(LanguageKey) as string;
+            //var language = _languageService.SupportedLanguages.FirstOrDefault(
+            //                    language => language.LanguageTag == languageTag);
+            //if (language != null)
+            //{
+            //    _languageService.SetLanguage(language);
+            //}
 
             ConfigFile.FilePath = _container.GetValue(ConfigFilePathKey) as string;
 
@@ -166,23 +157,24 @@ namespace MicaForEveryone.Services
             }
             catch (ParserError error)
             {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
-                {
-                    var ctx = Program.CurrentApp.Container;
-                    var dialogService = ctx.GetService<IDialogService>();
-                    var resources = ResourceLoader.GetForCurrentView();
-                    var title = resources.GetString("ConfigFileError/Header");
-                    var body = string.Format(resources.GetString("ConfigFileError/Content"), error.Message);
-                    var dialog = dialogService?.ShowErrorDialog(null, title, body, 475, 320);
-                    if (dialog != null)
-                    {
-                        dialog.Destroy += (sender, args) =>
-                        {
-                            var viewService = ctx.GetService<IViewService>();
-                            viewService?.MainWindow.ViewModel.EditConfigCommand.Execute(null);
-                        };
-                    }
-                });
+                // TODO: show error
+                //Program.CurrentApp.Dispatcher.Enqueue(() =>
+                //{
+                //    var ctx = Program.CurrentApp.Container;
+                //    var dialogService = ctx.GetService<IDialogService>();
+                //    var resources = ResourceLoader.GetForCurrentView();
+                //    var title = resources.GetString("ConfigFileError/Header");
+                //    var body = string.Format(resources.GetString("ConfigFileError/Content"), error.Message);
+                //    var dialog = dialogService?.ShowErrorDialog(null, title, body, 475, 320);
+                //    if (dialog != null)
+                //    {
+                //        dialog.Destroy += (sender, args) =>
+                //        {
+                //            var viewService = ctx.GetService<IViewService>();
+                //            viewService?.MainWindow.ViewModel.EditConfigCommand.Execute(null);
+                //        };
+                //    }
+                //});
 
                 return;
             }
@@ -196,7 +188,7 @@ namespace MicaForEveryone.Services
             }
 
             // Check for duplicates
-            var duplicates = rules.GroupBy(x => x.Name).Where(group => group.Skip(1).Any());
+            var duplicates = rules.GroupBy(x => x.Name).Where(group => group.Skip(1).Any()).ToArray();
             if (duplicates.Any())
             {
                 var duplicateRuleNames = duplicates.Select(x => x.Key);
@@ -234,6 +226,6 @@ namespace MicaForEveryone.Services
         public event EventHandler? ConfigFileWatcherStateChanged;
         public event EventHandler? ConfigFileReloaded;
         public event EventHandler? TrayIconVisibilityChanged;
-        public event EventHandler? LanguageChanged;
+        //public event EventHandler? LanguageChanged;
     }
 }

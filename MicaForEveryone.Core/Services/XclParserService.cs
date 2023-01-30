@@ -1,21 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.IO;
-using System.Threading.Tasks;
+﻿using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
 using XclParser;
 using XclParser.Reflection;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
-
-namespace MicaForEveryone.Services
+namespace MicaForEveryone.Core.Services
 {
-    internal class XclParserService : IConfigParser
+    public class XclParserService : IConfigParser
     {
-        private Context _xclContext = new();
-        private XclDocument _configDocument;
+        private readonly Context _xclContext = new();
+        private XclDocument? _configDocument;
 
-        public IRule[] Rules { get; private set; }
+        public IRule[] Rules { get; private set; } = Array.Empty<IRule>();
 
         public XclParserService()
         {
@@ -36,6 +31,8 @@ namespace MicaForEveryone.Services
 
         public async Task SaveAsync(StreamWriter writer)
         {
+            if (_configDocument == null) return; // TODO: should we throw an exception instead?
+            
             await _configDocument.SaveAsync(writer);
         }
 
@@ -48,15 +45,17 @@ namespace MicaForEveryone.Services
                 throw new Exception("Rule already exists.");
 
             var xclClass = _xclContext.TypeMap.GetXclType(rule.GetType()) as XclClass;
-            var instance = xclClass.ToXclInstance(rule);
+            var instance = xclClass!.ToXclInstance(rule);
 
             _configDocument.Instances.Add(instance);
 
-            Rules = _configDocument.Instances.Select(instance => (IRule)instance.Value).ToArray();
+            Rules = _configDocument.Instances.Select(eachInstance => (IRule)eachInstance.Value).ToArray();
         }
 
         public void SetRule(IRule rule)
         {
+            if (_configDocument == null) return;
+            
             var target = _configDocument.Instances.FirstOrDefault(
                 instance => instance.Value == rule);
 
@@ -68,10 +67,12 @@ namespace MicaForEveryone.Services
 
         public void RemoveRule(IRule rule)
         {
-            var instance = _configDocument.Instances.First(instance => instance.Value == rule);
+            if (_configDocument == null) return;
+            
+            var instance = _configDocument.Instances.First(eachInstance => eachInstance.Value == rule);
             _configDocument.Instances.Remove(instance);
 
-            Rules = _configDocument.Instances.Select(instance => (IRule)instance.Value).ToArray();
+            Rules = _configDocument.Instances.Select(eachInstance => (IRule)eachInstance.Value).ToArray();
         }
     }
 }

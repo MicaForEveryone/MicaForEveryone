@@ -2,9 +2,9 @@
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 
-using MicaForEveryone.Models;
+using MicaForEveryone.Core.Models;
 
-namespace MicaForEveryone.UI.ViewModels
+namespace MicaForEveryone.Core.Ui.ViewModels
 {
     public interface ITrayIconViewModel : INotifyPropertyChanged
     {
@@ -20,7 +20,7 @@ namespace MicaForEveryone.UI.ViewModels
         IAsyncRelayCommand ChangeTitlebarColorModeAsyncCommand { get; }
         IAsyncRelayCommand ChangeBackdropTypeAsyncCommand { get; }
         IAsyncRelayCommand ChangeCornerPreferenceAsyncCommand { get; }
-        
+
         IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         ICommand EditConfigCommand { get; }
 

@@ -1,8 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
-
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
+﻿using MicaForEveryone.Interfaces;
 using MicaForEveryone.Views;
 
 namespace MicaForEveryone.Services

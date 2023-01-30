@@ -1,16 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-using MicaForEveryone.Models;
-using MicaForEveryone.Interfaces;
+﻿using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.Events;
 
-namespace MicaForEveryone.Services
+namespace MicaForEveryone.Core.Services
 {
-    internal class RuleService : IRuleService
+    public class RuleService : IRuleService
     {
         private readonly ISettingsService _settingsService;
 
@@ -105,11 +100,11 @@ namespace MicaForEveryone.Services
 
         }
 
-        private void SettingsService_Changed(object sender, EventArgs args)
+        private void SettingsService_Changed(object? sender, EventArgs args)
         {
             _ = MatchAndApplyRuleToAllWindowsAsync();
         }
-
+        
         private void WinEvent_Handler(object sender, WindowOpenedEventArgs args)
         {
 			if (args.Window.InstanceHandle == Application.InstanceHandle)
@@ -122,7 +117,7 @@ namespace MicaForEveryone.Services
         private void Dispose(bool disposing)
         {
             if (!disposing) return;
-            _applyAllWindowsMutex?.Dispose();
+            _applyAllWindowsMutex.Dispose();
         }
 
         public void Dispose()
