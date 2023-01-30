@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Windows.Globalization;
+
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Core.Interfaces;
 
@@ -33,6 +36,17 @@ namespace MicaForEveryone.Services
                 _container.SetValue(LanguageKey, _languageService.CurrentLanguage.LanguageTag);
 
                 LanguageChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public void Load()
+        {
+            var languageTag = _container.GetValue(LanguageKey) as string;
+            var language = _languageService.SupportedLanguages.FirstOrDefault(
+                                language => language.LanguageTag == languageTag);
+            if (language != null)
+            {
+                _languageService.SetLanguage(language);
             }
         }
 

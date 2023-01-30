@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +11,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Ui.ViewModels;
+using MicaForEveryone.Core.Ui.Views;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.Xaml;
 
@@ -24,7 +27,7 @@ namespace MicaForEveryone.ViewModels
         private readonly IStartupService _startupService;
         private readonly ITaskSchedulerService _taskSchedulerService;
 
-        private XamlWindow? _window;
+        private ISettingsView? _window;
         private readonly Win32.Window? _mainWindow;
 
         public GeneralSettingsViewModel(ISettingsService settingsService, IUiSettingsService uiSettingsService, IStartupService startupService, ILanguageService languageService, ITaskSchedulerService taskSchedulerService, IViewService viewService)
@@ -36,7 +39,7 @@ namespace MicaForEveryone.ViewModels
 
             _mainWindow = viewService.MainWindow;
             
-            Languages = languageService.SupportedLanguages;
+            Languages = languageService.SupportedLanguages.ToImmutableList();
             BrowseAsyncCommand = new AsyncRelayCommand(DoBrowseAsync);
 
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
@@ -44,17 +47,17 @@ namespace MicaForEveryone.ViewModels
             ResetConfigAsyncCommand = new AsyncRelayCommand(DoResetConfigAsync);
             ExitCommand = new RelayCommand(DoExit);
 
-            _settingsService.ConfigFilePathChanged += SettingsService_ConfigFilePathChanged; ;
+            _settingsService.ConfigFilePathChanged += SettingsService_ConfigFilePathChanged;
             _settingsService.ConfigFileWatcherStateChanged += SettingsService_ConfigFileWatcherStateChanged;
         }
 
         ~GeneralSettingsViewModel()
         {
-            _settingsService.ConfigFilePathChanged -= SettingsService_ConfigFilePathChanged; ;
+            _settingsService.ConfigFilePathChanged -= SettingsService_ConfigFilePathChanged;
             _settingsService.ConfigFileWatcherStateChanged -= SettingsService_ConfigFileWatcherStateChanged;
         }
 
-        public void Initialize(XamlWindow sender)
+        public void Attach(ISettingsView sender)
         {
             _window = sender;
         }
@@ -78,26 +81,22 @@ namespace MicaForEveryone.ViewModels
             }
         }
 
-        public bool RunOnStartupAvailable
-        {
-            get => _startupService.IsAvailable;
-        }
+        public bool RunOnStartupAvailable => _startupService.IsAvailable;
 
         public bool RunOnStartupAsAdmin
         {
             get => _taskSchedulerService.IsRunAsAdminTaskEnabled();
             set
             {
-                if (_taskSchedulerService.IsRunAsAdminTaskEnabled() != value)
+                if (_taskSchedulerService.IsRunAsAdminTaskEnabled() == value) return;
+                
+                if (value)
                 {
-                    if (value)
-                    {
-                        _taskSchedulerService.CreateRunAsAdminTask();
-                    }
-                    else
-                    {
-                        _taskSchedulerService.RemoveRunAsAdminTask();
-                    }
+                    _taskSchedulerService.CreateRunAsAdminTask();
+                }
+                else
+                {
+                    _taskSchedulerService.RemoveRunAsAdminTask();
                 }
             }
         }
@@ -122,7 +121,7 @@ namespace MicaForEveryone.ViewModels
             set => _settingsService.ConfigFilePath = value;
         }
 
-        public IList<object> Languages { get; }
+        public IReadOnlyList<object>? Languages { get; }
 
         public object SelectedLanguage
         {
@@ -172,7 +171,10 @@ namespace MicaForEveryone.ViewModels
             };
 
             // initialize picker with parent window
-            ((IInitializeWithWindow)(object)picker).Initialize(_window!.Interop.WindowHandle);
+            if (_window is XamlWindow xamlWindow)
+            {
+                ((IInitializeWithWindow)(object)picker).Initialize(xamlWindow.Interop.WindowHandle);
+            }
 
             // ask user to pick a file
             var file = await picker.PickSingleFileAsync();

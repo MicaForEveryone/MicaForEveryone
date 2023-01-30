@@ -24,16 +24,13 @@ namespace MicaForEveryone.Services
 
         public void RunDialog(Dialog dialog)
         {
-            dialog.Destroy += (sender, args) =>
-            {
-                Program.CurrentApp.Exit();
-            };
+            using var app = new App();
             dialog.Activate();
             dialog.ShowWindow();
-            Program.CurrentApp.Run(dialog);
+            app.Run(dialog);
         }
 
-        public Dialog ShowErrorDialog(Window parent, object title, object content, int width, int height)
+        public Dialog ShowErrorDialog(Window? parent, object title, object content, int width, int height)
         {
             var dialog = new ErrorDialog
             {

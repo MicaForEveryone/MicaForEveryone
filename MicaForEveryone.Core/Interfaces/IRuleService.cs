@@ -9,6 +9,7 @@ namespace MicaForEveryone.Core.Interfaces
         Task MatchAndApplyRuleToAllWindowsAsync();
         void MatchAndApplyRuleToWindow(TargetWindow target);
 
+        bool IsRunning { get; }
         TitlebarColorMode SystemTitlebarColorMode { get; set; }
     }
 }

@@ -10,9 +10,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Core.Interfaces;
 using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
+using MicaForEveryone.Core.Ui.Views;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Xaml;
 
 #nullable enable
 
@@ -22,15 +24,17 @@ namespace MicaForEveryone.ViewModels
     {
         private readonly ISettingsService _settingsService;
         private readonly IRuleService _ruleService;
+        private readonly IViewService _appLifeTimeService;
 
-        private MainWindow? _mainWindow;
+        private ITrayIconView? _view;
         private GlobalRule? _globalRule;
         private bool _trayIconVisible;
 
-        public TrayIconViewModel(ISettingsService settingsService, IRuleService ruleService)
+        public TrayIconViewModel(ISettingsService settingsService, IRuleService ruleService, IViewService appLifeTimeService)
         {
             _settingsService = settingsService;
             _ruleService = ruleService;
+            _appLifeTimeService = appLifeTimeService;
 
             _trayIconVisible = _settingsService.TrayIconVisibility;
             _settingsService.TrayIconVisibilityChanged += SettingsService_TrayIconVisibilityChanged;
@@ -98,14 +102,16 @@ namespace MicaForEveryone.ViewModels
 
         // public methods
 
-        public void Initialize(MainWindow sender)
+        public void Attach(ITrayIconView view)
         {
             // initialize view model
-            _mainWindow = sender;
-            _mainWindow.Destroy += MainWindow_Destroy;
+            _view = view;
+
+            if (_view is not XamlWindow window) return;
             
-            _mainWindow.View.ActualThemeChanged += View_ActualThemeChanged;
-            _ruleService.SystemTitlebarColorMode = _mainWindow.View.ActualTheme switch
+            window.Destroy += MainWindow_Destroy;
+            window.View.ActualThemeChanged += View_ActualThemeChanged;
+            _ruleService.SystemTitlebarColorMode = window.View.ActualTheme switch
             {
                 ElementTheme.Light => TitlebarColorMode.Light,
                 ElementTheme.Dark => TitlebarColorMode.Dark,
@@ -122,7 +128,7 @@ namespace MicaForEveryone.ViewModels
 
         private void SettingsService_ConfigFileReloaded(object? sender, EventArgs args)
         {
-            Program.CurrentApp.Dispatcher.Enqueue(() =>
+            _appLifeTimeService.DispatcherEnqueue(() =>
             {
                 if (args is RulesChangeEventArgs ruleChangeArgs)
                 {
@@ -216,7 +222,7 @@ namespace MicaForEveryone.ViewModels
 
         private void DoExit()
         {
-            _mainWindow?.Close();
+            _view?.Close();
         }
 
         private void DoOpenConfigInEditor()
@@ -234,7 +240,7 @@ namespace MicaForEveryone.ViewModels
 
         private void DoOpenSettings()
         {
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+            var viewService = Program.Container.GetService<IViewService>();
             viewService?.ShowSettingsWindow();
         }
     }

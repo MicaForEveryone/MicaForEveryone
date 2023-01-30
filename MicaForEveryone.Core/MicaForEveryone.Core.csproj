@@ -23,4 +23,8 @@
       <ProjectReference Include="..\MicaForEveryone.Win32\MicaForEveryone.Win32.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Ui\Views\" />
+    </ItemGroup>
+
 </Project>

@@ -3,6 +3,7 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
 
 using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.Views;
 
 namespace MicaForEveryone.Core.Ui.ViewModels
 {
@@ -12,6 +13,7 @@ namespace MicaForEveryone.Core.Ui.ViewModels
         bool IsMicaSupported { get; }
         bool IsImmersiveDarkModeSupported { get; }
         bool IsCornerPreferenceSupported { get; }
+        bool TrayIconVisible { get; set; }
 
         BackdropType BackdropType { get; }
         TitlebarColorMode TitlebarColor { get; }
@@ -26,5 +28,7 @@ namespace MicaForEveryone.Core.Ui.ViewModels
 
         ICommand OpenSettingsCommand { get; }
         ICommand ExitCommand { get; }
+
+        void Attach(ITrayIconView view);
     }
 }

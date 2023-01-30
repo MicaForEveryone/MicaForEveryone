@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.Input;
+
+using MicaForEveryone.Core.Ui.Views;
 
 namespace MicaForEveryone.Core.Ui.ViewModels
 {
     public interface IGeneralSettingsViewModel : INotifyPropertyChanged
     {
-        IList<object> Languages { get; }
+        IReadOnlyList<object>? Languages { get; }
         object SelectedLanguage { get; set; }
 
         bool ReloadOnChange { get; set; }
@@ -24,5 +25,7 @@ namespace MicaForEveryone.Core.Ui.ViewModels
         IAsyncRelayCommand ReloadConfigAsyncCommand { get; }
         IAsyncRelayCommand ResetConfigAsyncCommand { get; }
         ICommand ExitCommand { get; }
+        
+        void Attach(ISettingsView view);
     }
 }
