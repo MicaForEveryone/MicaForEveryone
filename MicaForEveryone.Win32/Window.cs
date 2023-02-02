@@ -37,7 +37,7 @@ namespace MicaForEveryone.Win32
                 Handle = hWnd,
                 Class = WindowClass.GetClassOfWindow(hWnd),
             };
-            result.InstanceHandle = result.Class.Module;
+            result.InstanceHandle = result.Class?.Module ?? IntPtr.Zero;
             return result;
         }
 
@@ -434,13 +434,14 @@ namespace MicaForEveryone.Win32
         {
             StyleEx = GetWindowExStyle();
 
-            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE) || StyleEx.HasFlag(WindowStylesEx.WS_EX_LAYERED))
-                return false;
-
             if (StyleEx.HasFlag(WindowStylesEx.WS_EX_APPWINDOW))
                 return true;
 
+            if (StyleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE))
+                return false;
+
             Style = GetWindowStyle();
+            
             if (Style == 0)
                 return false;
 
@@ -453,9 +454,8 @@ namespace MicaForEveryone.Win32
             if (Style.HasFlag(WindowStyles.WS_POPUP) && !hasTitleBar)
                 return false;
 
-            var desktopWindow = NativeMethods.GetDesktopWindow();
-            var parent = NativeMethods.GetAncestor(Handle, GetAncestorFlag.GA_PARENT);
-            if (parent != desktopWindow && !StyleEx.HasFlag(WindowStylesEx.WS_EX_MDICHILD))
+            var isTopLevelWindow = NativeMethods.GetAncestor(Handle, GetAncestorFlag.GA_PARENT) == NativeMethods.GetDesktopWindow();
+            if (!isTopLevelWindow && !StyleEx.HasFlag(WindowStylesEx.WS_EX_MDICHILD))
                 return false;
 
             return true;

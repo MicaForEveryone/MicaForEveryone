@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -118,199 +118,190 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>このアプリの情報</value>
+    <value>關於此應用</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>「アクリル」はすべてのアプリで強制的に Windows 10 風の壁紙透かし効果を使用します。</value>
+    <value>現在將強製應用程序窗口背景使用實時渲染模糊的亞克力材質特效。</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>アクリル</value>
+    <value>亞克力</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>追加</value>
+    <value>添加</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>新しいクラスのルール</value>
+    <value>新建窗口類規則</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>クラスのルールを追加</value>
+    <value>依據窗口類類名添加規則</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>多らしいプロセスのルール</value>
+    <value>新建程序名規則</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>プロセスのルールを追加</value>
+    <value>依據程序文件名添加規則</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>ルールの追加</value>
+    <value>添加新規則</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>ルールの追加</value>
+    <value>添加新規則</value>
   </data>
-   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>設定ファイル</value>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>配置文件</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>アプリの初期化中にエラー発生</value>
-  </data>
-  <data name="AppName" xml:space="preserve">
-    <value>Mica For Everyone</value>
-  </data>
-  <data name="AppNameLabel.Text" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>應用程序無法啓動</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>背景の種類を設定。</value>
+    <value>該選項用於設置應用程序窗口背景模糊類型，</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>背景の種類</value>
+    <value>模糊類型</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>背景の種類</value>
+    <value>模糊類型</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>ウィンドウを半透明にしぼかします。このオプションを無効にした後、効果が反映されたウィンドウを閉じて再び開く必要があります。</value>
+    <value>打開此選項，窗口將會半透明並且使用模糊特效。該選項可能不適用於所有應用程序。 關閉此選項需要重啓已生效的窗口。</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>背景のぼかし</value>
+    <value>Blur Behind</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>参照</value>
+    <value>瀏覽</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>キャンセル</value>
+    <value>取消</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>ウィンドウのクラス名を入力</value>
+    <value>請輸入窗口類類名</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>クラス名:</value>
+    <value>類名：</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>閉じる</value>
+    <value>關閉本窗口</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>設定ファイル内のエラー:
+    <value>配置文件中存在以下錯誤：
 {0}
 
-エラーを修正してから、設定ファイルを再読み込みしてください。</value>
+請先修正錯誤，然後點擊“重新加載配置文件”按鈕。</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>設定ファイルのエラー</value>
+    <value>配置文件中存在錯誤</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>ルールの保存と読み込み用のファイルです。</value>
+    <value>該文件將用於存儲Mica For Everyone的設置。</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>ファイルのパス</value>
+    <value>文件路徑</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>ダーク</value>
+    <value>深色</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>ダークはダークテーマを使用します。</value>
+    <value>現在將強製應用程序標題欄使用深色模式。</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>「標準」は、アプリの標準の背景のままで何もしません。</value>
+    <value>現在將由應用程序自行決定使用何種模糊類型。</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>標準</value>
+    <value>由應用程序決定</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>「標準」オプションは、アプリの標準のテーマのままです。</value>
+    <value>現在將由應用程序自行決定使用淺色或深色標題欄。</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>終了</value>
+    <value>退出</value>
   </data>
-    <data name="ExitSetting.Header" xml:space="preserve">
-    <value>終了</value>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>退出</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>クライアント領域までフレームを拡張</value>
+    <value>將窗口框架擴展到客戶區</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>ウィンドウフレームのクライアント領域まで拡張し、一部のアプリの壁紙部分に背景の効果を追加します。この機能はすべてのアプリでは動作せず表示を破損させる可能性があるため、何をしているのか把握していないなら有効化しないでください。このオプションを無効にした後、効果が反映されたウィンドウを閉じて再び開く必要があります。</value>
+    <value>打開此選項，會將窗口標題欄特效擴展至整個窗口。該選項可能不適用於所有應用程序，甚至會使它們崩潰，請謹慎打開此選項。 關閉此選項需要重啓已生效的窗口。</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>一般</value>
+    <value>常規設置</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>一般</value>
-  </data>
-  <data name="GitHubButton.Content" xml:space="preserve">
-    <value>GitHub</value>
+    <value>常規設置</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Global Rule</value>
+    <value>默認規則</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>UI の言語を設定します。言語設定の反映には、再起動が必要です。</value>
+    <value>為Mica For Everyone設置您喜歡的語言，需要重啓本應用才能生效。</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>Language/言語</value>
+    <value>語言</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>ライト</value>
+    <value>淺色</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>ライトはライトテーマを使用します。</value>
+    <value>現在將強製應用程序標題欄使用淺色模式。</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>「マイカ」はすべてのアプリで強制的に Windows 11 風の壁紙を反映した色付き背景の効果を使用します。</value>
+    <value>現在將強製應用程序窗口背景使用根據桌麵壁紙背景色進行淡染的雲母材質特效。</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>マイカ</value>
+    <value>雲母</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>「なし」は背景を無効化します。既に有効化されているものも含まれます。</value>
+    <value>現在將強製應用程序不使用任何特效而直接顯示純色。</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>なし</value>
+    <value>純色</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>OK</value>
+    <value>確定</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>テキストエディターで開く</value>
+    <value>在文本編輯器中打開</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>拡張子 (.exe) 抜きで実行ファイル名を入力</value>
+    <value>請輸入可執行程序文件名，但不要包括“.exe”後綴名。</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>プロセス名:</value>
+    <value>程序文件名：</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>再読み込み</value>
+    <value>重新加載配置文件</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>設定ファイルが変更されたら自動で設定を再読み込みします。</value>
+    <value>修改設置時自動重新加載配置文件，您修改的規則將立即生效。</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>変更時に再読み込み</value>
+    <value>熱重載</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>ルールの除去</value>
+    <value>刪除該規則</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>設置</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>設置</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>起動時にこのアプリを自動で実行します。</value>
+    <value>在計算機啓動時自動啓動Mica For Everyone。</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>起動時に実行</value>
+    <value>開機自啓</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>システム</value>
+    <value>跟隨係統</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>「システム」では、お使いのテーマ設定を使用します。</value>
+    <value>現在將強製應用程序標題欄跟隨係統深淺主題設置。</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>「Tabbed」はすべてのアプリで強制的に 壁紙をぼかす効果を使用します。</value>
+    <value>現在將強製應用程序窗口背景使用根據桌麵壁紙背景色進行模糊的Tabbed特效。</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -319,117 +310,126 @@
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>タイトルバーのカラーテーマを設定。</value>
+    <value>該選項用於設置應用程序標題欄主題，</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>タイトルバーの色</value>
+    <value>標題欄顔色</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>タイトルバーの色</value>
-  </data>
-  <data name="TrayIconTooltip.Content" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>標題欄顔色</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>未処理の例外</value>
+    <value>未處理的異常</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>UIの未処理の例外</value>
+    <value>用戶界麵中未處理的異常</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>アクリルおよびTabbedの背景効果には、Windows ビルド22523以降が必要です。</value>
+    <value>亞克力材質和Tabbed特效隻支持Windows 11 22H2(Build 22523+)及更高版本操作係統。</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>没入感のあるダークモードを使用するには、Windowsビルド19041以降が必要です。</value>
+    <value>標題欄深色模式隻支持Windows 10 20H1(Build 19041+)及更高版本操作係統。</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>マイカの効果には、Windows ビルド22000以降が必要です。</value>
+    <value>雲母材質隻支持Windows 11 21H2(Build 22000+)及更高版本操作係統。</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>バージョン</value>
+    <value>版本</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>高度</value>
+    <value>高級設置</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>設定ファイル</value>
+    <value>配置文件</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>スタイル</value>
+    <value>樣式設置</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>設定ファイルを既定のテキストエディターで開きます。</value>
+    <value>使用默認文本編輯器中打開配置文件。</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>テキストエディターで編集</value>
+    <value>在文本編輯器中編輯</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>設定ファイルからルールを再読み込みし、開いているすべてのウィンドウに適用します。</value>
+    <value>重新加載配置文件，並將您修改的規則立即生效。</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>再読み込み</value>
+    <value>重新加載配置文件</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>すべての変更を削除しルールを初期値に復元します。</value>
+    <value>恢複默認規則並撤銷所有修改。</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>初期化</value>
+    <value>重置配置文件</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>開発者</value>
+    <value>作者：</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>アイコン作成:</value>
+    <value>圖標設計：感謝</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>日本語翻訳:</value>
+    <value>界麵語言翻譯：感謝</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>角の形</value>
-   </data>
+    <value>窗口邊角</value>
+  </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>角の形</value>
+    <value>窗口邊角</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>四角</value>
+    <value>直角</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>丸</value>
+    <value>圓角</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>少し丸く</value>
+    <value>稍圓</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>角の丸みの形を設定</value>
+    <value>該選項用於設置應用程序窗口邊角半徑，</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>「標準」は何もせず、そのアプリが指定している角の形のままにします。</value>
+    <value>現在將由應用程序自行決定使用直角或圓角窗口邊框。</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>「四角」は、角の丸め指定を無効化します。</value>
+    <value>現在將強製應用程序使用直角窗口邊框。</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>「丸」は、強制的に角の丸めを有効化します。</value>
+    <value>現在將強製應用程序使用圓角窗口邊框。</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>「少し丸く」は、「四角」と「丸」の中間の形です。</value>
+    <value>現在將強製應用程序使用圓角半徑稍小的窗口邊框。</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>起動時に自動的に管理者として実行します。有効にするには、管理者として本アプリを実行する必要があります。</value>
+    <value>開機時自動以管理員身份運行。您需要以管理員身份運行此應用來啓用此選項。</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>起動時に管理者権限で実行</value>
+    <value>開機時以管理員身份運行</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>貢献者:</value>
+    <value>貢獻者：</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>通知領域に本アプリのアイコンを表示します。</value>
+    <value>在通知區域顯示應用圖標</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>システムトレイにアイコンを表示</value>
+    <value>顯示通知圖標</value>
   </data>
 </root>

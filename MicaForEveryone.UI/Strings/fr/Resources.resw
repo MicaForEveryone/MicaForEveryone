@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-    <!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,380 +59,377 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-        <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-        <xsd:element name="root" msdata:IsDataSet="true">
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
             <xsd:complexType>
-                <xsd:choice maxOccurs="unbounded">
-                    <xsd:element name="metadata">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" use="required" type="xsd:string" />
-                            <xsd:attribute name="type" type="xsd:string" />
-                            <xsd:attribute name="mimetype" type="xsd:string" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="assembly">
-                        <xsd:complexType>
-                            <xsd:attribute name="alias" type="xsd:string" />
-                            <xsd:attribute name="name" type="xsd:string" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="data">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-                            <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-                            <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-                            <xsd:attribute ref="xml:space" />
-                        </xsd:complexType>
-                    </xsd:element>
-                    <xsd:element name="resheader">
-                        <xsd:complexType>
-                            <xsd:sequence>
-                                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                            </xsd:sequence>
-                            <xsd:attribute name="name" type="xsd:string" use="required" />
-                        </xsd:complexType>
-                    </xsd:element>
-                </xsd:choice>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
-        </xsd:element>
-    </xsd:schema>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>2.0</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-    </resheader>
-    <data name="AboutTitle.Text" xml:space="preserve">
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
     <value>A propos</value>
   </data>
-    <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
     <value>"Acrylique" oblige toutes les applications à utiliser l'effet de flou de Windows 10.</value>
   </data>
-    <data name="AcrylicMenuItem.Text" xml:space="preserve">
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylique</value>
   </data>
-    <data name="AddButton.Content" xml:space="preserve">
+  <data name="AddButton.Content" xml:space="preserve">
     <value>Ajouter</value>
   </data>
-    <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
     <value>Nouvelle classe</value>
   </data>
-    <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
     <value>Nouvelle classe</value>
   </data>
-    <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
     <value>Nouveau processus</value>
   </data>
-    <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
     <value>Nouveau processus</value>
   </data>
-    <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
     <value>Ajouter règle</value>
   </data>
-    <data name="AddRuleDialog.Title" xml:space="preserve">
+  <data name="AddRuleDialog.Title" xml:space="preserve">
     <value>Ajouter règle</value>
   </data>
-    <data name="AdvancedMenu.Text" xml:space="preserve">
+  <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>Fichier de configuration</value>
   </data>
-    <data name="AppInitializationError.Title" xml:space="preserve">
+  <data name="AppInitializationError.Title" xml:space="preserve">
     <value>Erreur lors de l'initialisation de l'application</value>
   </data>
-    <data name="AppName" xml:space="preserve">
+  <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
   </data>
-    <data name="AppNameLabel.Text" xml:space="preserve">
+  <data name="AppNameLabel.Text" xml:space="preserve">
     <value>Mica For Everyone</value>
   </data>
-    <data name="BackdropDescription.Text" xml:space="preserve">
+  <data name="BackdropDescription.Text" xml:space="preserve">
     <value>Définir le style d'arrière-plan,</value>
   </data>
-    <data name="BackdropMenu.Text" xml:space="preserve">
+  <data name="BackdropMenu.Text" xml:space="preserve">
     <value>Style d'arrière-plan</value>
   </data>
-    <data name="BackdropTypeSetting.Header" xml:space="preserve">
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
     <value>Style d'arrière-plan</value>
   </data>
-    <data name="BlurBehindSetting.Description" xml:space="preserve">
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
     <value>Rendre les fenêtres translucides et floues. La désactivation de cette option nécessite de fermer et de rouvrir les fenêtres concernées.</value>
   </data>
-    <data name="BlurBehindSetting.Header" xml:space="preserve">
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
     <value>Flou derrière</value>
   </data>
-    <data name="BrowseButton.Content" xml:space="preserve">
+  <data name="BrowseButton.Content" xml:space="preserve">
     <value>Chercher</value>
   </data>
-    <data name="CancelButton.Content" xml:space="preserve">
+  <data name="CancelButton.Content" xml:space="preserve">
     <value>Annuler</value>
   </data>
-    <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
     <value>Entrez le nom de la règle</value>
   </data>
-    <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
     <value>Nom de règle:</value>
   </data>
-    <data name="CloseButton.Content" xml:space="preserve">
+  <data name="CloseButton.Content" xml:space="preserve">
     <value>Quitter</value>
   </data>
-    <data name="ConfigFileError.Content" xml:space="preserve">
+  <data name="ConfigFileError.Content" xml:space="preserve">
     <value>Erreur dans le fichier de configuration:
 {0}
 
 Corrigez les erreurs puis utilisez l'option "Recharger le fichier de configuration" pour le recharger.</value>
   </data>
-    <data name="ConfigFileError.Header" xml:space="preserve">
+  <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Erreur dans le fichier de configuration</value>
   </data>
-    <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
     <value>Fichier à utiliser pour l'enregistrement et le chargement des règles.</value>
   </data>
-    <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
     <value>Emplacement du fichier</value>
   </data>
-    <data name="DarkMenuItem.Text" xml:space="preserve">
+  <data name="DarkMenuItem.Text" xml:space="preserve">
     <value>Sombre</value>
   </data>
-    <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
     <value>Sombre utilise un thème sombre.</value>
   </data>
-    <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
     <value>La valeur Défaut ne conserve pas le style de fond par défaut de l'application.</value>
   </data>
-    <data name="DefaultMenuItem.Text" xml:space="preserve">
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
     <value>Défaut</value>
   </data>
-    <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
     <value>L'option "Par défaut" conserve le thème par défaut de l'application.</value>
   </data>
-    <data name="ExitMenuItem.Text" xml:space="preserve">
+  <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Quitter</value>
   </data>
-    <data name="ExitSetting.Header" xml:space="preserve">
+  <data name="ExitSetting.Header" xml:space="preserve">
     <value>Quitter</value>
   </data>
-    <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
     <value>Étendre l'arrière-plan sur l'intégralité de la fenêtre</value>
   </data>
-    <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
     <value>Étend le style choisi sur la zone client de l'explorateur (arrière plan) de certaines applications. Cela ne fonctionne pas sur toutes les applications et peut provoquer des bugs, activez cette option seulement si vous savez ce que vous faites. La désactivation de cette option nécessite que vous fermiez et rouvriez les fenêtres concernées.</value>
   </data>
-    <data name="GeneralPaneItem.Text" xml:space="preserve">
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>Général</value>
   </data>
-    <data name="GeneralSetting.Header" xml:space="preserve">
+  <data name="GeneralSetting.Header" xml:space="preserve">
     <value>Général</value>
   </data>
-    <data name="GitHubButton.Content" xml:space="preserve">
+  <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
-    <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
     <value>Règle globale</value>
   </data>
-    <data name="LanguageSetting.Description" xml:space="preserve">
+  <data name="LanguageSetting.Description" xml:space="preserve">
     <value>Définissez votre langue préférée pour l'interface utilisateur. L'application a besoin d'un redémarrage pour que les changements soient pris en compte.</value>
   </data>
-    <data name="LanguageSetting.Header" xml:space="preserve">
+  <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Langage</value>
   </data>
-    <data name="LightMenuItem.Text" xml:space="preserve">
+  <data name="LightMenuItem.Text" xml:space="preserve">
     <value>Clair</value>
   </data>
-    <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
     <value>Clair utilise le thème clair.</value>
   </data>
-    <data name="MicaBackdropDescription.Text" xml:space="preserve">
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
     <value>Mica force toutes les applications à utiliser l'effet de fond de Windows 11.</value>
   </data>
-    <data name="MicaMenuItem.Text" xml:space="preserve">
+  <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
-    <data name="NoneBackdropDescription.Text" xml:space="preserve">
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
     <value>"Aucun" désactive les arrière-plans, même sur les applications déjà activées.</value>
   </data>
-    <data name="NoneMenuItem.Text" xml:space="preserve">
+  <data name="NoneMenuItem.Text" xml:space="preserve">
     <value>Aucun</value>
   </data>
-    <data name="OkButton.Text" xml:space="preserve">
+  <data name="OkButton.Text" xml:space="preserve">
     <value>OK</value>
   </data>
-    <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
     <value>Ouvrir dans l'éditeur de texte</value>
   </data>
-    <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
     <value>Entrez le nom du fichier exécutable sans son extension (.exe)</value>
   </data>
-    <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
     <value>Nom du processus:</value>
   </data>
-    <data name="ReloadMenuItem.Text" xml:space="preserve">
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
     <value>Recharger</value>
   </data>
-    <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
     <value>Recharge automatiquement la configuration lorsque le fichier de configuration est modifié.</value>
   </data>
-    <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
     <value>Recharger lors d'un changement</value>
   </data>
-    <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Supprimer règle</value>
   </data>
-    <data name="SettingsMenuItem.Text" xml:space="preserve">
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>Paramètres</value>
   </data>
-    <data name="SettingsTitle.Text" xml:space="preserve">
+  <data name="SettingsTitle.Text" xml:space="preserve">
     <value>Paramètres</value>
   </data>
-    <data name="StartupSetting.Description" xml:space="preserve">
+  <data name="StartupSetting.Description" xml:space="preserve">
     <value>Lancer cette application automatiquemlent au démarrage.</value>
   </data>
-    <data name="StartupSetting.Header" xml:space="preserve">
+  <data name="StartupSetting.Header" xml:space="preserve">
     <value>Lancer au démarrage</value>
   </data>
-    <data name="SystemMenuItem.Text" xml:space="preserve">
+  <data name="SystemMenuItem.Text" xml:space="preserve">
     <value>Système</value>
   </data>
-    <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
     <value>"Système" utilise votre préférence de thème.</value>
   </data>
-    <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
     <value>"Tabbed" force toutes les applications à utiliser un effet de fond de papier peint flou.</value>
   </data>
-    <data name="TabbedMenuItem.Text" xml:space="preserve">
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
   </data>
-    <data name="TelegramButton.Content" xml:space="preserve">
+  <data name="TelegramButton.Content" xml:space="preserve">
     <value>Telegram</value>
   </data>
-    <data name="TitlebarColorDescription.Text" xml:space="preserve">
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
     <value>Définir le thème des barres de titre</value>
   </data>
-    <data name="TitlebarColorMenu.Text" xml:space="preserve">
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
     <value>Couleur de la barre de titre</value>
   </data>
-    <data name="TitleBarColorSetting.Header" xml:space="preserve">
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
     <value>Couleur de la barre de titre</value>
   </data>
-    <data name="TrayIconTooltip.Content" xml:space="preserve">
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
   </data>
-    <data name="TwitterButton.Content" xml:space="preserve">
+  <data name="TwitterButton.Content" xml:space="preserve">
     <value>Twitter</value>
   </data>
-    <data name="UnhandledException.Header" xml:space="preserve">
+  <data name="UnhandledException.Header" xml:space="preserve">
     <value>Exception non-gérée</value>
   </data>
-    <data name="UnhandledUIException.Header" xml:space="preserve">
+  <data name="UnhandledUIException.Header" xml:space="preserve">
     <value>Exception non-gérée dans l'interface utilisateur</value>
   </data>
-    <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
     <value>Les effets de fond acrylique nécessitent au moins la version 22523 de Windows.</value>
   </data>
-    <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
     <value>Le mode sombre immersif nécessite au moins la version 19041 de Windows.</value>
   </data>
-    <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
     <value>L'effet Mica nécessite au moins Windows build 22000.</value>
   </data>
-    <data name="VersionLabel.Text" xml:space="preserve">
+  <data name="VersionLabel.Text" xml:space="preserve">
     <value>Version</value>
   </data>
-    <data name="AdvancedSetting.Header" xml:space="preserve">
+  <data name="AdvancedSetting.Header" xml:space="preserve">
     <value>Avancé</value>
   </data>
-    <data name="ConfigFileSetting.Header" xml:space="preserve">
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
     <value>Fichier de configuration</value>
   </data>
-    <data name="StyleSetting.Header" xml:space="preserve">
+  <data name="StyleSetting.Header" xml:space="preserve">
     <value>Style</value>
   </data>
-    <data name="OpenInEditorSetting.Description" xml:space="preserve">
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
     <value>Ouvrir le fichier de configuration dans l'éditeur de texte par défaut.</value>
   </data>
-    <data name="OpenInEditorSetting.Header" xml:space="preserve">
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
     <value>Modifier dans l'éditeur de texte.</value>
   </data>
-    <data name="ReloadSetting.Description" xml:space="preserve">
+  <data name="ReloadSetting.Description" xml:space="preserve">
     <value>Rechargez les règles à partir du fichier de configuration, puis appliquez-les à toutes les fenêtres ouvertes.</value>
   </data>
-    <data name="ReloadSetting.Header" xml:space="preserve">
+  <data name="ReloadSetting.Header" xml:space="preserve">
     <value>Recharger</value>
   </data>
-    <data name="ResetSetting.Description" xml:space="preserve">
+  <data name="ResetSetting.Description" xml:space="preserve">
     <value>Restaure les règles par défaut et supprime tous les changements.</value>
   </data>
-    <data name="ResetSetting.Header" xml:space="preserve">
+  <data name="ResetSetting.Header" xml:space="preserve">
     <value>Réinitialiser</value>
   </data>
-    <data name="Credit.Text" xml:space="preserve">
+  <data name="Credit.Text" xml:space="preserve">
     <value>par</value>
   </data>
-    <data name="IconCredit.Text" xml:space="preserve">
+  <data name="IconCredit.Text" xml:space="preserve">
     <value>Icône par:</value>
   </data>
-    <data name="TranslatorsCredit.Text" xml:space="preserve">
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
     <value>Traductions par:</value>
   </data>
-    <data name="CornerMenu.Text" xml:space="preserve">
+  <data name="CornerMenu.Text" xml:space="preserve">
     <value>Personnalisation des coins</value>
   </data>
-    <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
     <value>Personnalisation des coins</value>
   </data>
-    <data name="SquareMenuItem.Text" xml:space="preserve">
+  <data name="SquareMenuItem.Text" xml:space="preserve">
     <value>Carré</value>
   </data>
-    <data name="RoundedMenuItem.Text" xml:space="preserve">
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
     <value>Arrondi</value>
   </data>
-    <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
     <value>Légèrement arrondi</value>
   </data>
-    <data name="CornerDescription.Text" xml:space="preserve">
+  <data name="CornerDescription.Text" xml:space="preserve">
     <value>Définir le mode arrondi des coins,</value>
   </data>
-    <data name="DefaultCornerDescription.Text" xml:space="preserve">
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
     <value>"Défaut" ne conserve pas le mode arrondi des coins préféré dans l'application.</value>
   </data>
-    <data name="SquareCornerDescription.Text" xml:space="preserve">
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
     <value>"Carré" désactive l'arrondi des coins.</value>
   </data>
-    <data name="RoundedCornerDescription.Text" xml:space="preserve">
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
     <value>"Arrondi" force l'activation des coins arrondis.</value>
   </data>
-    <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>"légèrement arrondi" active les coins semi-arrondis.</value>
   </data>
-    <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>Exécutez cette application automatiquement en tant
-qu'administrateur au démarrage. Vous devez exécuter l'application en tant
-qu'administrateur pour activer cette option.</value>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Exécutez cette application automatiquement en tant qu'administrateur au démarrage. Vous devez exécuter l'application en tant qu'administrateur pour activer cette option.</value>
   </data>
-    <data name="AdminStartupSetting.Header" xml:space="preserve">
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
     <value>Exécuter en tant qu'administrateur au démarrage</value>
   </data>
-    <data name="ContributorsLabel.Text" xml:space="preserve">
+  <data name="ContributorsLabel.Text" xml:space="preserve">
     <value>Contributeurs:</value>
   </data>
-    <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>Afficher l'icône de l'application dans la zone de
-notification</value>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Afficher l'icône de l'application dans la zone de notification</value>
   </data>
-    <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
     <value>Afficher l'icône dans la barre des tâches</value>
   </data>
 </root>
