@@ -43,7 +43,7 @@
         <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
         <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
         <PackageReference Include="TaskScheduler" Version="2.10.1" />
-        <PackageReference Include="XclParser" Version="1.0.7" />
+        <PackageReference Include="XclParser" Version="1.0.8" />
     </ItemGroup>
 
     <ItemGroup>
