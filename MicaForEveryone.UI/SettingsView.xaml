@@ -548,14 +548,15 @@
                     <CommandBar Grid.Row="1"
                                 Margin="0, 8, 0, 8"
                                 HorizontalAlignment="Left"
-                                DefaultLabelPosition="Right"
+                                DefaultLabelPosition="Collapsed"
                                 IsTabStop="True"
                                 OverflowButtonVisibility="Collapsed"
                                 TabIndex="2"
                                 XYFocusKeyboardNavigation="Enabled">
                         <AppBarButton x:Uid="AddRuleAppBarButton"
                                       Margin="2"
-                                      Icon="Add">
+                                      Icon="Add"
+                                      Loaded="AddRuleAppBarButton_OnLoaded">
                             <Button.Flyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem"
@@ -578,7 +579,8 @@
                         <AppBarButton x:Uid="RemoveRuleAppBarButton"
                                       Margin="2"
                                       Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
-                                      Icon="Remove" />
+                                      Icon="Remove"
+                                      Loaded="RemoveRuleAppBarButton_OnLoaded"/>
                     </CommandBar>
                 </Grid>
             </SplitView.Pane>

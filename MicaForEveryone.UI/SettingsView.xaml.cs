@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
@@ -51,24 +52,14 @@ namespace MicaForEveryone.UI
             MainSplitView.IsPaneOpen = !MainSplitView.IsPaneOpen;
         }
 
-        private void RulesAppBarButton_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void AddRuleAppBarButton_OnLoaded(object sender, RoutedEventArgs e)
         {
-            AnimatedIcon.SetState((UIElement)sender, "PointerOver");
+            ToolTipService.SetToolTip((DependencyObject)sender, new ResourceLoader().GetString("AddRuleAppBarButton/Label"));
         }
 
-        private void RulesAppBarButton_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void RemoveRuleAppBarButton_OnLoaded(object sender, RoutedEventArgs e)
         {
-            AnimatedIcon.SetState((UIElement)sender, "Pressed");
-        }
-
-        private void RulesAppBarButton_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            AnimatedIcon.SetState((UIElement)sender, "Normal");
-        }
-
-        private void RulesAppBarButton_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            AnimatedIcon.SetState((UIElement)sender, "Normal");
+            ToolTipService.SetToolTip((DependencyObject)sender, new ResourceLoader().GetString("RemoveRuleAppBarButton/Label"));
         }
     }
 }
