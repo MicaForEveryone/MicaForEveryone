@@ -55,12 +55,12 @@ namespace MicaForEveryone.Services
 
                 target.ApplyRule(rule, SystemTitlebarColorMode);
 
-                _loggerService.Add(new LogEntry(true, target.Title, target.ClassName, target.ProcessName));
+                _loggerService.Add(new LogEntry(true, target.Title, target.ClassName, target.ProcessName, ""));
             }
 #if DEBUG
             catch (Exception ex)
             {
-				_loggerService.Add(new LogEntry(false, target.Title, target.ClassName, target.ProcessName));
+				_loggerService.Add(new LogEntry(false, target.Title, target.ClassName, target.ProcessName, ex.Message));
 				System.Diagnostics.Debug.WriteLine(ex);
 				System.Diagnostics.Debugger.Break();
             }

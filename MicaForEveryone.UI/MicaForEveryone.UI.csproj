@@ -93,6 +93,7 @@
     <Compile Include="Models\PaneItemType.cs" />
     <Compile Include="Selectors\CornerPreferenceSelector.cs" />
     <Compile Include="Selectors\BackdropTypeSelector.cs" />
+    <Compile Include="Selectors\LogTreeTemplateSelector.cs" />
     <Compile Include="Selectors\PaneItemTypeSelector.cs" />
     <Compile Include="Selectors\TitlebarColorSelector.cs" />
     <Compile Include="SettingsView.xaml.cs">

@@ -1,24 +1,52 @@
 ﻿<UserControl x:Class="MicaForEveryone.UI.LogsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="using:MicaForEveryone.UI.Converters"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="using:MicaForEveryone.UI"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:models="using:MicaForEveryone.Models"
+             xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+             xmlns:selectors="using:MicaForEveryone.UI.Selectors"
+             xmlns:viewModels="using:MicaForEveryone.UI.ViewModels"
              d:DesignHeight="300"
              d:DesignWidth="400"
+             Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
              mc:Ignorable="d">
-    <ListView ItemsSource="{x:Bind ViewModel.Logs}">
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="models:LogEntry">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{x:Bind TimeStamp}" />
-                    <TextBlock Text="{x:Bind Success}" />
-                    <TextBlock Text="{x:Bind WindowTitle}" />
-                    <TextBlock Text="{x:Bind WindowClass}" />
-                    <TextBlock Text="{x:Bind ProcessName}" />
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <UserControl.Resources>
+        <converters:VisibleIfTrue x:Key="VisibleIfTrueConverter" />
+        <converters:VisibleIfFalse x:Key="VisibleIfFalseConverter" />
+
+        <DataTemplate x:Key="LogEntryTemplate" x:DataType="viewModels:ILogEntryViewModel">
+            <muxc:TreeViewItem ItemsSource="{x:Bind Properties}">
+                <muxc:TreeViewItem.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE73E;"
+                                  Visibility="{x:Bind Success, Converter={StaticResource VisibleIfTrueConverter}}" />
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
+                                  Glyph="&#xE783;"
+                                  Visibility="{x:Bind Success, Converter={StaticResource VisibleIfFalseConverter}}" />
+                        <TextBlock Margin="8,0" Text="{x:Bind Header}" />
+                    </StackPanel>
+                </muxc:TreeViewItem.Content>
+            </muxc:TreeViewItem>
+        </DataTemplate>
+
+        <DataTemplate x:Key="LogPropertiesTemplate" x:DataType="viewModels:LogEntryProperty">
+            <TextBlock>
+                <Run Text="{x:Bind PropertyName}" />
+                <Run Text=": " />
+                <Run Text="{x:Bind Value}" />
+            </TextBlock>
+        </DataTemplate>
+
+        <selectors:LogTreeTemplateSelector x:Key="LogTreeTemplateSelector"
+                                           LogEntryTemplate="{StaticResource LogEntryTemplate}"
+                                           PropertiesTemplate="{StaticResource LogPropertiesTemplate}" />
+    </UserControl.Resources>
+    <muxc:TreeView ItemTemplateSelector="{StaticResource LogTreeTemplateSelector}"
+                   ItemsSource="{x:Bind ViewModel.Logs}"
+                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                   ScrollViewer.HorizontalScrollMode="Auto"
+                   SelectionMode="None" />
 </UserControl>
