@@ -34,7 +34,7 @@ namespace MicaForEveryone.UI
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
             new Contributor("RTFTR", "https://github.com/RTFTR", "ko"),
             new Contributor("krlvm", "https://github.com/krlvm", "ru"),
-            new Contributor("Phyan", "https://github.com/Phyan", "ua"),
+            new Contributor("Phyan", "https://github.com/Phyan", "uk"),
             new Contributor("FrzMtrsprt", "https://github.com/FrzMtrsprt", "zh-Hans"),
             new Contributor("Piteriuz", "https://github.com/Piteriuz", "pl"),
             new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
