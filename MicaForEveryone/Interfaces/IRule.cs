@@ -1,6 +1,7 @@
 ﻿using MicaForEveryone.Models;
 using MicaForEveryone.UI.Models;
 using MicaForEveryone.UI.ViewModels;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Interfaces
 {
@@ -17,6 +18,9 @@ namespace MicaForEveryone.Interfaces
         CornerPreference CornerPreference { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
         bool EnableBlurBehind { get; set; }
+        string CaptionColor { get; set; }
+        string CaptionTextColor { get; set; }
+        string BorderColor { get; set; }
 
         RulePaneItem GetPaneItem(UI.ViewModels.ISettingsViewModel parent);
     }

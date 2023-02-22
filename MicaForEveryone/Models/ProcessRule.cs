@@ -3,6 +3,7 @@ using XclParser.Reflection;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI.Models;
+using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Models
 {
@@ -36,6 +37,15 @@ namespace MicaForEveryone.Models
 
         [XclField]
         public bool EnableBlurBehind { get; set; }
+
+        [XclField]
+        public string CaptionColor { get; set; } = string.Empty;
+
+        [XclField]
+        public string CaptionTextColor { get; set; } = string.Empty;
+
+        [XclField]
+        public string BorderColor { get; set; } = string.Empty;
 
         public bool IsApplicable(TargetWindow target) =>
             target.ProcessName == ProcessName;
