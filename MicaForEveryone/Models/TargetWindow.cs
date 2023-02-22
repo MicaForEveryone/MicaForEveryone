@@ -125,6 +125,9 @@ namespace MicaForEveryone.Models
                 catch (FormatException) 
                 {
                 }
+                catch (ArgumentOutOfRangeException)
+                {
+                }
             }
             if (rule.CaptionTextColor != null)
             {
@@ -135,6 +138,8 @@ namespace MicaForEveryone.Models
                 catch (FormatException)
                 {
                 }
+                catch (ArgumentOutOfRangeException) {
+                }
             }
             if (rule.BorderColor != null)
             {
@@ -144,7 +149,9 @@ namespace MicaForEveryone.Models
                 }
                 catch (FormatException)
                 {
-                } 
+                }
+                catch (ArgumentOutOfRangeException) {
+                }
             }
             
             if (rule.ExtendFrameIntoClientArea)
