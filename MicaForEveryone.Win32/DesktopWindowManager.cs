@@ -197,14 +197,16 @@ namespace MicaForEveryone.Win32
         /// Change border color of window.
         /// Requires Windows build 22000 or higher.
         /// </summary>
-        public static void SetBorderColor(IntPtr hWnd, COLORREF color) {
+        public static void SetBorderColor(IntPtr hWnd, COLORREF color)
+        {
             if (Environment.OSVersion.Version.Build < 22000)
                 return;
 
             var value = GCHandle.Alloc(color, GCHandleType.Pinned);
             var result = DwmSetWindowAttribute(hWnd, DWMWA_BORDER_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
             value.Free();
-            if (result != 0) {
+            if (result != 0)
+            {
                 throw Marshal.GetExceptionForHR(result);
             }
         }

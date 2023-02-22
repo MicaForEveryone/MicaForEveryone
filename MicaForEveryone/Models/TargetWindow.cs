@@ -85,19 +85,22 @@ namespace MicaForEveryone.Models
             }
         }
 
-        public void ApplyCaptionColorRule(COLORREF captionColor) {
+        public void ApplyCaptionColorRule(COLORREF captionColor)
+        {
             if (!DesktopWindowManager.IsCaptionColorSupported) return;
             if (captionColor == COLORREF.Default) return;
             DesktopWindowManager.SetCaptionColor(WindowHandle, captionColor);
         }
 
-        public void ApplyCaptionTextColorRule(COLORREF captionTextColor) {
+        public void ApplyCaptionTextColorRule(COLORREF captionTextColor)
+        {
             if (!DesktopWindowManager.IsCaptionTextColorSupported) return;
             if (captionTextColor == COLORREF.Default) return;
             DesktopWindowManager.SetCaptionTextColor(WindowHandle, captionTextColor);
         }
 
-        public void ApplyBorderColorRule(COLORREF borderColor) {
+        public void ApplyBorderColorRule(COLORREF borderColor)
+        {
             if (!DesktopWindowManager.IsBorderColorSupported)
                 return;
             if (borderColor == COLORREF.Default)
@@ -113,22 +116,35 @@ namespace MicaForEveryone.Models
             ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
             ApplyBackdropRule(rule.BackdropPreference);
             ApplyCornerPreferenceRule(rule.CornerPreference);
-            if (rule.CaptionColor != null) {
-                try {
+            if (rule.CaptionColor != null)
+            {
+                try
+                {
                     ApplyCaptionColorRule(Convert.ToUInt32(rule.CaptionColor, 16));
-                } catch (FormatException) {}
+                }
+                catch (FormatException) 
+                {
+                }
             }
-            if (rule.CaptionTextColor != null) {
-                try {
+            if (rule.CaptionTextColor != null)
+            {
+                try
+                {
                     ApplyCaptionTextColorRule(Convert.ToUInt32(rule.CaptionTextColor, 16));
                 }
-                catch (FormatException) {}
+                catch (FormatException)
+                {
+                }
             }
-            if (rule.BorderColor != null) {
-                try {
+            if (rule.BorderColor != null)
+            {
+                try
+                {
                     ApplyBorderColorRule(Convert.ToUInt32(rule.BorderColor, 16));
                 }
-                catch (FormatException) {} 
+                catch (FormatException)
+                {
+                } 
             }
             
             if (rule.ExtendFrameIntoClientArea)

@@ -434,21 +434,24 @@
                     <controls:Setting x:Uid="CaptionColor">
                         <controls:Setting.ActionContent>
                             <TextBox TextAlignment="End"
-                                     Text="{x:Bind ViewModel.CaptionColor, Mode=TwoWay}"/>
+                                     Text="{x:Bind ViewModel.CaptionColor, Mode=TwoWay}"
+                                     FontFamily="Consolas"/>
                         </controls:Setting.ActionContent>
                     </controls:Setting>
 
                     <controls:Setting x:Uid="CaptionTextColor">
                         <controls:Setting.ActionContent>
                             <TextBox TextAlignment="End"
-                                     Text="{x:Bind ViewModel.CaptionTextColor, Mode=TwoWay}"/>
+                                     Text="{x:Bind ViewModel.CaptionTextColor, Mode=TwoWay}"
+                                     FontFamily="Consolas"/>
                         </controls:Setting.ActionContent>
                     </controls:Setting>
 
                     <controls:Setting x:Uid="BorderColor">
                         <controls:Setting.ActionContent>
                             <TextBox TextAlignment="End"
-                                     Text="{x:Bind ViewModel.BorderColor, Mode=TwoWay}"/>
+                                     Text="{x:Bind ViewModel.BorderColor, Mode=TwoWay}"
+                                     FontFamily="Consolas"/>
                         </controls:Setting.ActionContent>
                     </controls:Setting>
                 </controls:SettingsGroup>
