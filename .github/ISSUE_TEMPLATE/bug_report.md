@@ -4,7 +4,6 @@ about: Report bugs in Mica For Everyone itself. This can't be about rendering is
   in other apps.
 title: ''
 labels: bug
-assignees: xmine64
 
 ---
 
