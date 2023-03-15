@@ -7,6 +7,7 @@ public interface IAppLifeTimeService
     Task InitializeRuleServiceAsync();
     void ShutdownRuleService();
     
+    bool IsViewServiceRunning { get; }
     Task RunViewServiceAsync();
     void ShutdownViewService();
 

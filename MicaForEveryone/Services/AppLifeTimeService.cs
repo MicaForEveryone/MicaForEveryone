@@ -31,6 +31,8 @@ namespace MicaForEveryone.Services
             _viewService = viewService;
         }
 
+        public bool IsViewServiceRunning => _uiThread != null;
+
         public bool IsFirstInstance()
         {
             return _singleInstanceMutex.WaitOne(0, true);

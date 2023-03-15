@@ -1,6 +1,7 @@
-﻿using MicaForEveryone.Interfaces;
-using MicaForEveryone.Win32;
+﻿using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Interfaces;
 using MicaForEveryone.Views;
+using MicaForEveryone.Win32;
 
 #nullable enable
 
@@ -8,6 +9,13 @@ namespace MicaForEveryone.Services
 {
     internal class DialogService : IDialogService
     {
+        private IAppLifeTimeService _lifetimeService;
+
+        public DialogService(IAppLifeTimeService lifetimeService)
+        {
+            _lifetimeService = lifetimeService;
+        }
+
         public void ShowDialog(Window? parent, Dialog dialog)
         {
             if (parent != null)
@@ -67,7 +75,14 @@ namespace MicaForEveryone.Services
                     Content = content,
                 }
             };
-            RunDialog(dialog);
+            if (_lifetimeService.IsViewServiceRunning)
+            {
+                ShowDialog(null, dialog);
+            }
+            else
+            {
+                RunDialog(dialog);
+            }
         }
     }
 }
