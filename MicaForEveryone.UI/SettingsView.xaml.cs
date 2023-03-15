@@ -43,6 +43,7 @@ namespace MicaForEveryone.UI
             new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
             new Contributor("seanardhana", "https://github.com/seanardhana", "id"),
             new Contributor("Zan1456", "https://github.com/Zan1456", "hu"),
+            new Contributor("Meriç Bağlayan", "https://github.com/baglayan", "tr"),
         };
 
         private void ListView_Loaded(object sender, RoutedEventArgs args)
