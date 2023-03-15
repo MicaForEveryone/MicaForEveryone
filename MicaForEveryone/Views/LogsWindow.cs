@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,12 +21,15 @@ namespace MicaForEveryone.Views
 
 		private LogsWindow(LogsView view) : base(view)
 		{
-			Style = Win32.PInvoke.WindowStyles.WS_OVERLAPPEDWINDOW | Win32.PInvoke.WindowStyles.WS_VISIBLE;
+			Style = WindowStyles.WS_OVERLAPPEDWINDOW | WindowStyles.WS_VISIBLE;
 			Width = 800;
 			Height = 450;
 			_view = view;
 			_view.ViewModel = ViewModel;
             _view.Loaded += View_Loaded;
+
+            var resources = ResourceLoader.GetForCurrentView();
+            Title = resources.GetString("LogsWindow/Title");
 		}
 
         public ILogsViewModel ViewModel { get; } = Program.CurrentApp.Container.GetRequiredService<ILogsViewModel>();

@@ -435,4 +435,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="LogsMenuItem.Text" xml:space="preserve">
     <value>Logs</value>
   </data>
+  <data name="LogsWindow.Title" xml:space="preserve">
+    <value>Logs</value>
+  </data>
 </root>

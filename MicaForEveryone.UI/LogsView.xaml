@@ -44,10 +44,12 @@
                                            LogEntryTemplate="{StaticResource LogEntryTemplate}"
                                            PropertiesTemplate="{StaticResource LogPropertiesTemplate}" />
     </UserControl.Resources>
-    <muxc:TreeView CanReorderItems="False"
-                   ItemTemplateSelector="{StaticResource LogTreeTemplateSelector}"
-                   ItemsSource="{x:Bind ViewModel.Logs}"
-                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                   ScrollViewer.HorizontalScrollMode="Auto"
-                   SelectionMode="None" />
+    <Grid Padding="6" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <muxc:TreeView CanReorderItems="False"
+                       ItemTemplateSelector="{StaticResource LogTreeTemplateSelector}"
+                       ItemsSource="{x:Bind ViewModel.Logs}"
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.HorizontalScrollMode="Auto"
+                       SelectionMode="None" />
+    </Grid>
 </UserControl>
