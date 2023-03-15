@@ -118,7 +118,6 @@
                     <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE15E;" />
                 </MenuFlyoutSubItem.Icon>
                 <MenuFlyoutSubItem.Items>
-                    <MenuFlyoutItem Command="{x:Bind ViewModel.OpenLogsCommand}" Text="Logs" />
                     <MenuFlyoutItem x:Uid="OpenInEditorMenuItem" Command="{x:Bind ViewModel.EditConfigCommand}">
                         <MenuFlyoutItem.Icon>
                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xE104;" />
@@ -131,6 +130,14 @@
                     </MenuFlyoutItem>
                 </MenuFlyoutSubItem.Items>
             </MenuFlyoutSubItem>
+
+            <MenuFlyoutItem x:Uid="LogsMenuItem" Command="{x:Bind ViewModel.OpenLogsCommand}">
+                <MenuFlyoutItem.Icon>
+                    <SymbolIcon Symbol="List" />
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+
+            <MenuFlyoutSeparator />
 
             <MenuFlyoutItem x:Uid="ExitMenuItem" Command="{x:Bind ViewModel.ExitCommand}">
                 <MenuFlyoutItem.Icon>
