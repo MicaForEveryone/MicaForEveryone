@@ -65,10 +65,9 @@ namespace MicaForEveryone.Services
 				System.Diagnostics.Debugger.Break();
             }
 #else
-            catch
+            catch (Exception ex)
             {
-                _loggerService.Add(new LogEntry(false, target.Title, target.ClassName, target.ProcessName));
-                // ignore
+                _loggerService.Add(new LogEntry(false, target.Title, target.ClassName, target.ProcessName, ex.Message));
             }
 #endif
 		}
