@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Az alkalmazásról</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Az Akril rákényszeríti az összes alkalmazást, hogy a Windows 10 stílusú elmosódó háttérhatást használja.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Akril</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Hozzáadás</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Osztályszabály hozzáadása</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Osztályszabály hozzáadása</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Folyamati szabály hozzáadása</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Folyamati szabály hozzáadása</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Szabály hozzáadása</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Szabály hozzáadása</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Konfigurációs fájl</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Hiba az alkalmazás inicializálásakor</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Háttér típusának beállítása,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Háttér típusa</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Háttér típusa</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Az ablakok átlátszóvá és homályossá tétele. Ha letiltja ezt az opciót, be kell zárnia és újra meg kell nyitnia az érintett ablakokat.</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Elmosódás mögötte</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Tallózás</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Mégsem</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Adja meg az ablakosztály nevét</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Osztály neve:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Bezárás</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Hiba a konfigurációs fájlban:
+{0}
+
+Javítsa ki a hibákat, majd használja a „Konfigurációs fájl újratöltése” lehetőséget az újratöltéshez.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Hiba a konfigurációs fájlban</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>A szabályok mentéséhez és betöltéséhez használandó fájl.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Fájl elérési útja</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Sötét</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>A Sötét, sötét témát használ.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Az Alapértelmezett nem tesz semmit az alkalmazás alapértelmezett hátterének megőrzéséért.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Alapértelmezett</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Az „Alapértelmezett” opció megtartja az alkalmazás alapértelmezett témáját.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Kilépés</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Bővítse ki a keretet az ügyfélterületre</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Kiterjeszti az ablakkeretet az ügyfélterületre, hogy hátteret adjon egyes alkalmazások hátteréhez. Nem működik minden alkalmazásnál, és megszakíthatja azokat, ezért ne engedélyezze, hacsak nem tudja, mit csinál. Ennek az opciónak a letiltásához be kell zárnia, majd újra meg kell nyitnia az érintett ablakokat.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Általános</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Általános</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Globális szabály</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Állítsa be a kívánt nyelvet a felhasználói felülethez. Az alkalmazást újra kell indítani, hogy életbe lépjen.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Világos</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>A Világos, világos témát használ.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>A Mica minden alkalmazást a Windows 11-stílusú színezett háttérkép háttérhatás használatára kényszerít.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>Egyik sem tiltja le a háttereket, még azoknál az alkalmazásoknál sem, amelyeknél már engedélyezve vannak.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Egyik sem</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Megnyitás szövegszerkesztőben</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Írja be a futtatható fájl nevét a kiterjesztése nélkül (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Folyamat neve:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Újratöltés</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Automatikusan újratölti a konfigurációt, amikor a konfigurációs fájl megváltozik.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Változáskor újratöltés</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Szabály eltávolítása</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Beállítások</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Futtassa automatikusan ezt az alkalmazást indításkor.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Futtatás indításkor</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Rendszer</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>A rendszer az Ön témapreferenciáját használja.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>A füles minden alkalmazást arra kényszerít, hogy elmosódott háttérkép-háttérhatást használjon.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Lapos</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>A címsorok színtémájának beállítása,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Címsor színe</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Címsor színe</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Nem kezelt kivétel</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Kezeletlen kivétel a felhasználói felületen</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Az akril és a lapos hátterek effektusához legalább 22523-as Windows build szükséges.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>A magával ragadó sötét módhoz legalább Windows build 19041 szükséges.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>A csillámhatáshoz legalább Windows build 22000 szükséges.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Verzió</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Fejlett</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Konfigurációs fájl</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Stílus</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Nyissa meg a konfigurációs fájlt az alapértelmezett szövegszerkesztőben.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Szerkesztés szövegszerkesztőben</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Töltse be újra a szabályokat a konfigurációs fájlból, majd alkalmazza őket az összes megnyitott ablakra.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Újratöltés</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Az alapértelmezett szabályok visszaállítása és az összes módosítás törlése.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Visszaállítás</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Készítő</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Ikon:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Fordítások:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Sarok mód</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Sarok mód</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Négyzet</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Lekerekített</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Enyhén lekerekített</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Sarokkerekítési mód,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Az alapértelmezett beállítás nem tesz semmit az alkalmazás preferált saroklekerekítési módjának megőrzéséért.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>A négyzetes mód letiltja a saroklekerekítést.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>A Lekerekített mód lehetővé teszi a sarkok erőszakos lekerekítését.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Az enyhén lekerekített mód középen van a négyzet alakú és a lekerekített sarkok között.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Indításkor automatikusan futtatja ezt az alkalmazást rendszergazdaként. Az opció engedélyezéséhez rendszergazdaként kell futtatnia az alkalmazást.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Indításkor futtatás rendszergazdaként</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Közreműködők:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Jelenítse meg az alkalmazás ikonját az értesítési területen</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Tálca ikon megjelenítése</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Kilépés</value>
+  </data>
+</root>
