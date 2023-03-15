@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
-
 using MicaForEveryone.UI.Models;
+using MicaForEveryone.Core.Ui.Interfaces;
+using MicaForEveryone.Core.Ui.Models;
 
 namespace MicaForEveryone.UI.Triggers
 {

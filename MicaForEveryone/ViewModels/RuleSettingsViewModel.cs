@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 
 #nullable enable
 
@@ -24,7 +26,7 @@ namespace MicaForEveryone.ViewModels
                 if (Rule != null && Rule.BackdropPreference != value)
                 {
                     Rule.BackdropPreference = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService.UpdateRuleAsync(Rule);
                 }
             }
         }
@@ -37,7 +39,7 @@ namespace MicaForEveryone.ViewModels
                 if (Rule != null && Rule.TitleBarColor != value)
                 {
                     Rule.TitleBarColor = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService.UpdateRuleAsync(Rule);
                 }
             }
         }
@@ -50,7 +52,7 @@ namespace MicaForEveryone.ViewModels
                 if (Rule != null && Rule.CornerPreference != value)
                 {
                     Rule.CornerPreference = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService.UpdateRuleAsync(Rule);
                 }
             }
         }
@@ -63,7 +65,7 @@ namespace MicaForEveryone.ViewModels
                 if (Rule != null && Rule.ExtendFrameIntoClientArea != value)
                 {
                     Rule.ExtendFrameIntoClientArea = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService.UpdateRuleAsync(Rule);
                 }
             }
         }
@@ -76,12 +78,12 @@ namespace MicaForEveryone.ViewModels
                 if (Rule != null && Rule.EnableBlurBehind != value)
                 {
                     Rule.EnableBlurBehind = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService.UpdateRuleAsync(Rule);
                 }
             }
         }
 
-        public UI.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
+        public Core.Ui.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
 
         public IRule? Rule { get; set; }
     }

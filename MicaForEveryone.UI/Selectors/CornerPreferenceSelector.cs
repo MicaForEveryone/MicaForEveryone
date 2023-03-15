@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using MicaForEveryone.Models;
+using MicaForEveryone.Core.Models;
 
 namespace MicaForEveryone.UI.Selectors
 {
@@ -12,22 +12,15 @@ namespace MicaForEveryone.UI.Selectors
         public DataTemplate Rounded { get; set; }
         public DataTemplate RoundedSmall { get; set; }
 
-        protected override DataTemplate SelectTemplateCore(object item)
-        {
-            switch (item as CornerPreference?)
+        protected override DataTemplate SelectTemplateCore(object item) =>
+            item switch
             {
-                case CornerPreference.Default:
-                    return Default;
-                case CornerPreference.Square:
-                    return Square;
-                case CornerPreference.Rounded:
-                    return Rounded;
-                case CornerPreference.RoundedSmall:
-                    return RoundedSmall;
-                default:
-                    return null;
-            }
-        }
+                CornerPreference.Default => Default,
+                CornerPreference.Square => Square,
+                CornerPreference.Rounded => Rounded,
+                CornerPreference.RoundedSmall => RoundedSmall,
+                _ => null
+            };
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {

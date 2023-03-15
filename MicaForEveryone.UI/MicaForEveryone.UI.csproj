@@ -31,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM64'">
     <OutputPath>bin\ARM64\Release\</OutputPath>
@@ -43,6 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -54,6 +56,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
@@ -66,6 +69,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
@@ -84,10 +88,6 @@
     <Compile Include="Converters\VisibleIfFlase.cs" />
     <Compile Include="Converters\VisibleIfTrue.cs" />
     <Compile Include="Models\Contributor.cs" />
-    <Compile Include="Models\GeneralPaneItem.cs" />
-    <Compile Include="Models\IPaneItem.cs" />
-    <Compile Include="Models\RulePaneItem.cs" />
-    <Compile Include="Models\PaneItemType.cs" />
     <Compile Include="Selectors\CornerPreferenceSelector.cs" />
     <Compile Include="Selectors\BackdropTypeSelector.cs" />
     <Compile Include="Selectors\PaneItemTypeSelector.cs" />
@@ -106,10 +106,6 @@
     <Compile Include="Triggers\RulePaneTrigger.cs" />
     <Compile Include="Triggers\VisibilityTrigger.cs" />
     <Compile Include="ViewModels\IContentDialogViewModel.cs" />
-    <Compile Include="ViewModels\IGeneralSettingsViewModel.cs" />
-    <Compile Include="ViewModels\IRuleSettingsViewModel.cs" />
-    <Compile Include="ViewModels\ISettingsViewModel.cs" />
-    <Compile Include="ViewModels\ITrayIconViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\MicaForEveryone.Package\Assets\Square150x150Logo.scale-100.png">
@@ -192,12 +188,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj">
-      <Project>{198e1c79-b186-47ed-806d-9a02d78ec653}</Project>
-      <Name>MicaForEveryone.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <PRIResource Include="Strings\en\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
@@ -250,6 +240,13 @@
       <SubType>Designer</SubType>
     </PRIResource>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MicaForEveryone.Core\MicaForEveryone.Core.csproj">
+      <Project>{56aa4f47-4776-49a1-9d7c-c9d8eb92a453}</Project>
+      <Name>MicaForEveryone.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
@@ -265,7 +262,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
@@ -277,8 +274,20 @@
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <LangVersion>7.3</LangVersion>
+    <LangVersion>9</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|Win32'">
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|Win32'">
+    <LangVersion>9</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <LangVersion>9</LangVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Target Name="RemoveWebView2" BeforeTargets="ResolveAssemblyReferences" Condition="$(BuildingInCI) != 'true'">

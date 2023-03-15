@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using Windows.Globalization;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.System.UserProfile;
@@ -34,7 +33,7 @@ namespace MicaForEveryone.Services
             }
         }
 
-        public Language[] SupportedLanguages { get; }
+        public IReadOnlyList<Language> SupportedLanguages { get; }
 
         public Language CurrentLanguage { get; private set; }
 

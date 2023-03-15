@@ -1,7 +1,4 @@
-﻿using System;
-using Windows.ApplicationModel.Activation;
-
-namespace MicaForEveryone.UI
+﻿namespace MicaForEveryone.UI
 {
     public sealed partial class App
     {

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using Windows.ApplicationModel.Resources;
+﻿using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Extensions.DependencyInjection;
 
-using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
+using MicaForEveryone.Core.Ui.Views;
+using MicaForEveryone.Core.Ui.ViewModels;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.Brushes;
 using MicaForEveryone.Win32;
@@ -15,7 +13,7 @@ using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
-    internal class SettingsWindow : XamlWindow
+    internal class SettingsWindow : XamlWindow, ISettingsView
     {
         private readonly XamlMicaBrush _backgroundBrush;
 
@@ -39,7 +37,7 @@ namespace MicaForEveryone.Views
         }
 
         private ISettingsViewModel ViewModel { get; } =
-            Program.CurrentApp.Container.GetService<ISettingsViewModel>();
+            Program.Container.GetService<ISettingsViewModel>();
 
         public override void Activate()
         {
@@ -55,7 +53,7 @@ namespace MicaForEveryone.Views
             DesktopWindowManager.SetImmersiveDarkMode(Handle, View.ActualTheme == ElementTheme.Dark);
             DesktopWindowManager.EnableMicaIfSupported(Handle);
 
-            ViewModel.Initialize(this);
+            ViewModel.Attach(this);
             ShowWindow();
             SetForegroundWindow();
         }

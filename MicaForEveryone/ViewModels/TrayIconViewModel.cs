@@ -8,10 +8,13 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.DependencyInjection;
 
+using MicaForEveryone.Core.Interfaces;
+using MicaForEveryone.Core.Models;
+using MicaForEveryone.Core.Ui.ViewModels;
+using MicaForEveryone.Core.Ui.Views;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
-using MicaForEveryone.Views;
 using MicaForEveryone.Win32;
+using MicaForEveryone.Xaml;
 
 #nullable enable
 
@@ -21,18 +24,22 @@ namespace MicaForEveryone.ViewModels
     {
         private readonly ISettingsService _settingsService;
         private readonly IRuleService _ruleService;
+        private readonly IViewService _appLifeTimeService;
 
-        private MainWindow? _mainWindow;
+        private ITrayIconView? _view;
         private GlobalRule? _globalRule;
         private bool _trayIconVisible;
 
-        public TrayIconViewModel(ISettingsService settingsService, IRuleService ruleService)
+        public TrayIconViewModel(ISettingsService settingsService, IRuleService ruleService, IViewService appLifeTimeService)
         {
             _settingsService = settingsService;
             _ruleService = ruleService;
+            _appLifeTimeService = appLifeTimeService;
 
             _trayIconVisible = _settingsService.TrayIconVisibility;
-            _settingsService.Changed += Settings_Changed;
+            _settingsService.TrayIconVisibilityChanged += SettingsService_TrayIconVisibilityChanged;
+            _settingsService.RuleChanged += SettingsService_ConfigFileReloaded;
+            _settingsService.ConfigFileReloaded += SettingsService_ConfigFileReloaded;
 
             ReloadConfigAsyncCommand = new AsyncRelayCommand(DoReloadConfigAsync);
             ChangeTitlebarColorModeAsyncCommand = new AsyncRelayCommand<string>(DoChangeTitlebarColorModeAsync);
@@ -45,7 +52,9 @@ namespace MicaForEveryone.ViewModels
 
         ~TrayIconViewModel()
         {
-            _settingsService.Changed -= Settings_Changed;
+            _settingsService.TrayIconVisibilityChanged -= SettingsService_TrayIconVisibilityChanged;
+            _settingsService.RuleChanged -= SettingsService_ConfigFileReloaded;
+            _settingsService.ConfigFileReloaded -= SettingsService_ConfigFileReloaded;
         }
 
         // properties
@@ -93,72 +102,51 @@ namespace MicaForEveryone.ViewModels
 
         // public methods
 
-        public async Task InitializeAsync(MainWindow sender)
+        public void Attach(ITrayIconView view)
         {
             // initialize view model
-            _mainWindow = sender;
-            _mainWindow.Destroy += MainWindow_Destroy;
+            _view = view;
 
-            // initialize rule service
-            _mainWindow.View.ActualThemeChanged += View_ActualThemeChanged;
-            _ruleService.SystemTitlebarColorMode = _mainWindow.View.ActualTheme switch
+            if (_view is not XamlWindow window) return;
+            
+            window.Destroy += MainWindow_Destroy;
+            window.View.ActualThemeChanged += View_ActualThemeChanged;
+            _ruleService.SystemTitlebarColorMode = window.View.ActualTheme switch
             {
                 ElementTheme.Light => TitlebarColorMode.Light,
                 ElementTheme.Dark => TitlebarColorMode.Dark,
                 _ => throw new ArgumentOutOfRangeException(),
             };
-
-            // initialize and load config file
-            await _settingsService.ConfigFile.InitializeAsync();
-            await _settingsService.LoadRulesAsync();
-
-            // initialize startup service
-            var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
-            _ = startupService.InitializeAsync();
-
-            // start rule service
-            await _ruleService.MatchAndApplyRuleToAllWindowsAsync();
-
-            // need to be started on UI thread
-            Program.CurrentApp.Dispatcher.Enqueue(() =>
-            {
-                _ruleService.StartService();
-            });
-
-            // post a message to window to invoke dispatcher
-            sender.PostMessage(Win32.PInvoke.WindowMessage.WM_NULL);
         }
 
         // event handlers
-
-        private void Settings_Changed(object? sender, SettingsChangedEventArgs args)
+        
+        private void SettingsService_TrayIconVisibilityChanged(object? sender, EventArgs e)
         {
-            if (args.Type == SettingsChangeType.TrayIconVisibilityChanged)
-            {
-                TrayIconVisible = _settingsService.TrayIconVisibility;
-            }
+            TrayIconVisible = _settingsService.TrayIconVisibility;
+        }
 
-            if ((args.Type == SettingsChangeType.RuleChanged && args.Rule is GlobalRule)
-                || args.Type == SettingsChangeType.ConfigFileReloaded)
+        private void SettingsService_ConfigFileReloaded(object? sender, EventArgs args)
+        {
+            _appLifeTimeService.DispatcherEnqueue(() =>
             {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
+                if (args is RulesChangeEventArgs ruleChangeArgs)
                 {
-                    if (args.Type == SettingsChangeType.ConfigFileReloaded)
-                    {
-                        GlobalRule = _settingsService.ConfigFile.Parser.Rules.First(
-                            rule => rule is GlobalRule) as GlobalRule;
-                    }
-                    else if (GlobalRule == args.Rule)
+                    if (GlobalRule == ruleChangeArgs.Rule)
                     {
                         OnPropertyChanged(nameof(BackdropType));
                         OnPropertyChanged(nameof(TitlebarColor));
                     }
-                    else
+                    else if (ruleChangeArgs.Rule is GlobalRule globalRule)
                     {
-                        GlobalRule = args.Rule as GlobalRule;
+                        GlobalRule = globalRule;
                     }
-                });
-            }
+                }
+                else
+                {
+                    GlobalRule = (GlobalRule)_settingsService.Rules.First(rule => rule is GlobalRule);
+                }
+            });
         }
 
         private void View_ActualThemeChanged(FrameworkElement sender, object args)
@@ -198,7 +186,7 @@ namespace MicaForEveryone.ViewModels
 
             if (GlobalRule == null) return;
             GlobalRule.TitleBarColor = value;
-            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+            await _settingsService.UpdateRuleAsync(GlobalRule);
         }
 
         private async Task DoChangeBackdropTypeAsync(string? parameter)
@@ -214,7 +202,7 @@ namespace MicaForEveryone.ViewModels
             };
             if (GlobalRule == null) return;
             GlobalRule.BackdropPreference = value;
-            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+            await _settingsService.UpdateRuleAsync(GlobalRule);
         }
 
         private async Task DoChangeCornerPreferenceAsync(string? parameter)
@@ -229,17 +217,17 @@ namespace MicaForEveryone.ViewModels
             };
             if (GlobalRule == null) return;
             GlobalRule.CornerPreference = value;
-            await _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, GlobalRule);
+            await _settingsService.UpdateRuleAsync(GlobalRule);
         }
 
         private void DoExit()
         {
-            _mainWindow?.Close();
+            _view?.Close();
         }
 
         private void DoOpenConfigInEditor()
         {
-            var startInfo = new ProcessStartInfo(_settingsService.ConfigFile.FilePath)
+            var startInfo = new ProcessStartInfo(_settingsService.ConfigFilePath)
             {
                 UseShellExecute = true
             };
@@ -252,7 +240,7 @@ namespace MicaForEveryone.ViewModels
 
         private void DoOpenSettings()
         {
-            var viewService = Program.CurrentApp.Container.GetService<IViewService>();
+            var viewService = Program.Container.GetService<IViewService>();
             viewService?.ShowSettingsWindow();
         }
     }
