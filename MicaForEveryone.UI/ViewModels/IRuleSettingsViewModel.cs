@@ -12,7 +12,9 @@ namespace MicaForEveryone.UI.ViewModels
         CornerPreference CornerPreference { get; set; }
         bool ExtendFrameIntoClientArea { get; set; }
         bool EnableBlurBehind { get; set; }
-
+        string CaptionColor { get; set; }
+        string CaptionTextColor { get; set; }
+        string BorderColor { get; set; }
         ISettingsViewModel ParentViewModel { get; set; }
     }
 }
