@@ -25,25 +25,25 @@ namespace MicaForEveryone.UI
 
         internal Contributor[] Translators { get; } =
         {
-            new Contributor("Amaro Martínez", "https://github.com/xoascf", "es"),
-            new Contributor("Danik2343", "https://github.com/Danik2343", "ru"),
-            new Contributor("maboroshin", "https://github.com/maboroshin", "ja"),
             new Contributor("uDEV2019", "https://github.com/uDEV2019", "de"),
-            new Contributor("alessandrocaseti", "https://github.com/alessandrocaseti", "it"),
-            new Contributor("AndromedaMelody", "https://github.com/AndromedaMelody", "zh-Hans"),
+            new Contributor("Amaro Martínez", "https://github.com/xoascf", "es"),
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
+            new Contributor("Zan1456", "https://github.com/Zan1456", "hu"),
+            new Contributor("seanardhana", "https://github.com/seanardhana", "id"),
+            new Contributor("alessandrocaseti", "https://github.com/alessandrocaseti", "it"),
+            new Contributor("A-Loot", "https://github.com/A-Loot", "it"),
+            new Contributor("maboroshin", "https://github.com/maboroshin", "ja"),
             new Contributor("RTFTR", "https://github.com/RTFTR", "ko"),
-            new Contributor("krlvm", "https://github.com/krlvm", "ru"),
-            new Contributor("Phyan", "https://github.com/Phyan", "uk"),
-            new Contributor("FrzMtrsprt", "https://github.com/FrzMtrsprt", "zh-Hans"),
+            new Contributor("toineenzo", "https://github.com/toineenzo", "nl"),
             new Contributor("Piteriuz", "https://github.com/Piteriuz", "pl"),
             new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
-            new Contributor("toineenzo", "https://github.com/toineenzo", "nl"),
-            new Contributor("A-Loot", "https://github.com/A-Loot", "it"),
-            new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
-            new Contributor("seanardhana", "https://github.com/seanardhana", "id"),
-            new Contributor("Zan1456", "https://github.com/Zan1456", "hu"),
+            new Contributor("Danik2343", "https://github.com/Danik2343", "ru"),
+            new Contributor("krlvm", "https://github.com/krlvm", "ru"),
             new Contributor("Meriç Bağlayan", "https://github.com/baglayan", "tr"),
+            new Contributor("Phyan", "https://github.com/Phyan", "uk"),
+            new Contributor("AndromedaMelody", "https://github.com/AndromedaMelody", "zh-Hans"),
+            new Contributor("FrzMtrsprt", "https://github.com/FrzMtrsprt", "zh-Hans"),
+            new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
         };
 
         private void ListView_Loaded(object sender, RoutedEventArgs args)
