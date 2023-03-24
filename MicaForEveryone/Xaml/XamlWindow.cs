@@ -5,8 +5,8 @@ using Windows.UI.Xaml.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Win32.UI.XamlHost;
 
+using MicaForEveryone.Core.Ui.Interfaces;
 using MicaForEveryone.Interfaces;
-using MicaForEveryone.Models;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
 
@@ -26,7 +26,7 @@ namespace MicaForEveryone.Xaml
 
         public FrameworkElement View => (FrameworkElement)_xamlSource.Content;
 
-        public IDesktopWindowXamlSourceNative2 Interop { get; private set; }
+        public IDesktopWindowXamlSourceNative2 Interop { get; }
 
         public override void Dispose()
         {
@@ -36,8 +36,8 @@ namespace MicaForEveryone.Xaml
 
         public override void Activate()
         {
-            // set direction to rtl if a rtl language is choosen
-            var svcLanguage = Program.CurrentApp.Container.GetService<ILanguageService>();
+            // set direction to rtl if a rtl language is chosen
+            var svcLanguage = Program.Container.GetService<ILanguageService>();
             if (svcLanguage?.CurrentLanguage.LayoutDirection is LanguageLayoutDirection.Rtl
                 or LanguageLayoutDirection.TtbRtl)
             {
@@ -64,7 +64,6 @@ namespace MicaForEveryone.Xaml
 
         protected virtual void UpdateXamlSourcePosition()
         {
-            if (Interop == null) return;
             var clientArea = GetClientRect();
             var xamlWindow = FromHandle(Interop.WindowHandle);
             xamlWindow.X = clientArea.X;

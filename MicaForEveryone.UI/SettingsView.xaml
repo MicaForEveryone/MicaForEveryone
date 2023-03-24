@@ -7,12 +7,13 @@
              xmlns:mux="using:Microsoft.UI.Xaml.Controls"
              xmlns:selectors="using:MicaForEveryone.UI.Selectors"
              xmlns:triggers="using:MicaForEveryone.UI.Triggers"
+             xmlns:coreModels="using:MicaForEveryone.Core.Ui.Models"
              DataContext="{x:Bind ViewModel}">
     <UserControl.Resources>
         <converters:VisibleIfFalse x:Key="VisibilityConverter" />
 
         <DataTemplate x:Key="GeneralTemplate"
-                      x:DataType="models:GeneralPaneItem">
+                      x:DataType="coreModels:GeneralPaneItem">
             <StackPanel>
                 <controls:SettingsGroup x:Uid="GeneralSetting"
                                         Margin="0,-32,0,0">
@@ -160,7 +161,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="RulesTemplate"
-                      x:DataType="models:RulePaneItem">
+                      x:DataType="coreModels:RulePaneItem">
             <StackPanel>
                 <controls:SettingsGroup x:Uid="StyleSetting"
                                         Margin="0,-32,0,0">
@@ -490,7 +491,7 @@
                         <ListView.ItemTemplateSelector>
                             <selectors:PaneItemTypeSelector>
                                 <selectors:PaneItemTypeSelector.General>
-                                    <DataTemplate x:DataType="models:GeneralPaneItem">
+                                    <DataTemplate x:DataType="coreModels:GeneralPaneItem">
                                         <StackPanel Margin="7,12,0,12"
                                                     Orientation="Horizontal">
                                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -503,7 +504,7 @@
                                     </DataTemplate>
                                 </selectors:PaneItemTypeSelector.General>
                                 <selectors:PaneItemTypeSelector.Global>
-                                    <DataTemplate x:DataType="models:RulePaneItem">
+                                    <DataTemplate x:DataType="coreModels:RulePaneItem">
                                         <StackPanel Margin="7,12,0,12"
                                                     Orientation="Horizontal">
                                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -516,7 +517,7 @@
                                     </DataTemplate>
                                 </selectors:PaneItemTypeSelector.Global>
                                 <selectors:PaneItemTypeSelector.Process>
-                                    <DataTemplate x:DataType="models:RulePaneItem">
+                                    <DataTemplate x:DataType="coreModels:RulePaneItem">
                                         <StackPanel Margin="7,12,0,12"
                                                     Orientation="Horizontal">
                                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -529,7 +530,7 @@
                                     </DataTemplate>
                                 </selectors:PaneItemTypeSelector.Process>
                                 <selectors:PaneItemTypeSelector.Class>
-                                    <DataTemplate x:DataType="models:RulePaneItem">
+                                    <DataTemplate x:DataType="coreModels:RulePaneItem">
                                         <StackPanel Margin="7,12,0,12"
                                                     Orientation="Horizontal">
                                             <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}"
@@ -548,14 +549,15 @@
                     <CommandBar Grid.Row="1"
                                 Margin="0, 8, 0, 8"
                                 HorizontalAlignment="Left"
-                                DefaultLabelPosition="Right"
+                                DefaultLabelPosition="Collapsed"
                                 IsTabStop="True"
                                 OverflowButtonVisibility="Collapsed"
                                 TabIndex="2"
                                 XYFocusKeyboardNavigation="Enabled">
                         <AppBarButton x:Uid="AddRuleAppBarButton"
                                       Margin="2"
-                                      Icon="Add">
+                                      Icon="Add"
+                                      Loaded="AddRuleAppBarButton_OnLoaded">
                             <Button.Flyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem x:Uid="AddProcessRuleMenuItem"
@@ -578,7 +580,8 @@
                         <AppBarButton x:Uid="RemoveRuleAppBarButton"
                                       Margin="2"
                                       Command="{x:Bind ViewModel.RemoveRuleAsyncCommand}"
-                                      Icon="Remove" />
+                                      Icon="Remove"
+                                      Loaded="RemoveRuleAppBarButton_OnLoaded"/>
                     </CommandBar>
                 </Grid>
             </SplitView.Pane>

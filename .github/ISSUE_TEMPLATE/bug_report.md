@@ -1,11 +1,16 @@
 ---
 name: Bug report
-about: Report bugs in Mica For Everyone itself, not Windows or third-party apps
+about: Report bugs in Mica For Everyone itself. This can't be about rendering issues
+  in other apps.
 title: ''
 labels: bug
-assignees: ''
 
 ---
+
+[ ] This is not about other apps being displayed weird or etc.
+[ ] This is not about rendering issues that caused by a bug in the Windows.
+[ ] I've read [FAQ](https://github.com/MicaForEveryone/MicaForEveryone/wiki/FAQ).
+[ ] I've checked other issues and this is not a duplicate.
 
 **Describe the bug**
 A clear and concise description of what the bug is.

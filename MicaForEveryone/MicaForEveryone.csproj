@@ -36,18 +36,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
         <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
         <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
         <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
         <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
         <PackageReference Include="TaskScheduler" Version="2.10.1" />
-        <PackageReference Include="XclParser" Version="1.0.7" />
+        <PackageReference Include="XclParser" Version="1.0.8" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
+        <ProjectReference Include="..\MicaForEveryone.Core\MicaForEveryone.Core.csproj" />
         <ProjectReference Include="..\MicaForEveryone.UI\MicaForEveryone.UI.csproj" />
         <ProjectReference Include="..\MicaForEveryone.Win32\MicaForEveryone.Win32.csproj" />
     </ItemGroup>

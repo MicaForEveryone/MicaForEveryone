@@ -16,7 +16,7 @@ namespace MicaForEveryone.Services
                 return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Microsoft\\WindowsApps\\mfe.exe";
             }
 
-            return System.Reflection.Assembly.GetExecutingAssembly().Location;
+            return System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
         }
 
         public void CreateRunAsAdminTask()
@@ -44,6 +44,12 @@ namespace MicaForEveryone.Services
         {
             using var taskService = new TaskService();
             taskService.RootFolder.DeleteTask("MicaForEveryone_RunAsAdmin");
+        }
+
+        public bool IsRunAsAdminTaskCreated()
+        {
+            using var taskService = new TaskService();
+            return taskService.RootFolder.Tasks.Count((task) => task.Name == "MicaForEveryone_RunAsAdmin") > 0;
         }
 
         public bool IsRunAsAdminTaskEnabled()

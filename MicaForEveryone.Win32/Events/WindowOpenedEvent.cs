@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Threading;
 
 using MicaForEveryone.Win32.PInvoke;
 
 namespace MicaForEveryone.Win32.Events
 {
-    /// <summary>
-    /// Event for new window opened
-    /// </summary>
-    public class WindowOpenedEvent : WinEvent
+	/// <summary>
+	/// Event for new window opened
+	/// </summary>
+	public class WindowOpenedEvent : WinEvent
     {
         public WindowOpenedEvent() : base(WinEventType.ObjectShown)
         {
@@ -18,14 +19,18 @@ namespace MicaForEveryone.Win32.Events
             if (args.ObjectId != ObjectIdentifiers.OBJID_WINDOW)
                 return;
 
-            args.Window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
+            var window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
+            if (window == null)
+            {
+                // wait a little then try again, it may get a valid window later
+                Thread.Sleep(10);
+				window = Window.GetWindowIfWindowPatternValid(args.WindowHandle);
+                if (window == null) return;
+			}
 
-            if (args.Window == null)
-                return;
-
-            Handler?.Invoke(this, args);
+			Handler?.Invoke(this, new WindowOpenedEventArgs(window));
         }
 
-        public event EventHandler<WinEventArgs> Handler;
+        public event EventHandler<WindowOpenedEventArgs> Handler;
     }
 }

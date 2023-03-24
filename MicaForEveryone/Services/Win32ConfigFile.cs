@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
+
+#nullable enable
 
 namespace MicaForEveryone.Services
 {
@@ -33,19 +35,29 @@ namespace MicaForEveryone.Services
         private static string GetDefaultConfigFilePath()
         {
             var appData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+#if NETFRAMEWORK
+            return Path.Combine(appData, "Mica For Everyone", "MicaForEveryone.conf");
+#else
             return Path.Join(appData, "Mica For Everyone", "MicaForEveryone.conf");
+#endif
         }
 
         public static string GetBundledConfigFilePath()
         {
             var appFolder = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+#if NETFRAMEWORK
+            return Path.Combine(appFolder, "MicaForEveryone.conf");
+#else
             return Path.Join(appFolder, "MicaForEveryone.conf");
+#endif
         }
 
         private readonly FileSystemWatcher _fileSystemWatcher = new();
 
         private bool _isFileWatcherEnabled;
-        private string _fileName;
+        private string? _fileName;
+
+        private bool _isInitialized = false;
 
         public Win32ConfigFile(IConfigParser parser)
         {
@@ -55,7 +67,7 @@ namespace MicaForEveryone.Services
 
         public IConfigParser Parser { get; }
 
-        public string FilePath { get; set; }
+        public string? FilePath { get; set; }
 
         public bool IsFileWatcherEnabled
         {
@@ -63,10 +75,8 @@ namespace MicaForEveryone.Services
             set
             {
                 _isFileWatcherEnabled = value;
-                if (_fileName != null)
-                {
-                    _fileSystemWatcher.EnableRaisingEvents = value;
-                }
+                if (_isInitialized == false) return;
+                _fileSystemWatcher.EnableRaisingEvents = value;
             }
         }
 
@@ -74,8 +84,7 @@ namespace MicaForEveryone.Services
         {
             return Task.Run(() =>
             {
-                if (FilePath == null)
-                    FilePath = GetDefaultConfigFilePath();
+                FilePath ??= GetDefaultConfigFilePath();
                 _fileName = Path.GetFileName(FilePath);
                 var directoryPath = Directory.GetParent(FilePath).FullName;
                 if (!Directory.Exists(directoryPath))
@@ -91,6 +100,7 @@ namespace MicaForEveryone.Services
                     }
                 }
                 _fileSystemWatcher.Path = directoryPath;
+                _isInitialized = true;
                 _fileSystemWatcher.EnableRaisingEvents = IsFileWatcherEnabled;
             });
         }
@@ -155,6 +165,6 @@ namespace MicaForEveryone.Services
             _fileSystemWatcher.Dispose();
         }
 
-        public event EventHandler FileChanged;
+        public event EventHandler? FileChanged;
     }
 }

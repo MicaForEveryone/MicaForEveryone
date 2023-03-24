@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
+
+#nullable enable
 
 namespace MicaForEveryone.Services
 {
@@ -29,13 +28,18 @@ namespace MicaForEveryone.Services
             _key.Flush();
         }
 
-        public object GetValue(string key)
+        public object? GetValue(string key)
         {
             return _key.GetValue(key);
         }
 
-        public void SetValue(string key, object value)
+        public void SetValue(string key, object? value)
         {
+            if (value == null)
+            {
+                _key.DeleteValue(key, false);
+                return;
+            }
             _key.SetValue(key, value);
         }
     }

@@ -1,11 +1,16 @@
 ---
 name: Third-Party problems
-about: Bugs related to third-party apps
+about: Issues related to third-party apps being displayed or rendered incorrectly
+  when Mica For Everyone is running.
 title: ''
 labels: third-party
 assignees: ''
 
 ---
+
+[ ] I've read [FAQ](https://github.com/MicaForEveryone/MicaForEveryone/wiki/FAQ).
+[ ] I've restarted the affected app after adding rule for it.
+[ ] I've checked other issues and this is not a duplicate.
 
 **Describe the bug**
 A clear and concise description of what the bug is. Problems with third-party apps is not our priority and prefer finding a workaround on your own. Check our wiki for more help.
@@ -32,6 +37,12 @@ If applicable, add screenshots to help explain your problem.
 
 **Windows Version**
 E.g. Windows 10 build 19042, Windows 11 Build 22000, Windows 11 Build 25217 Insider Dev Channel, ...
+
+**Other tools being used**
+[ ] Rectify11
+[ ] StartIsBack
+[ ] Chrome/Firefox themes or config to add system backdrop
+[ ] Add it yourself (Any other tool that you may use)
 
 **Additional context**
 Add any other context about the problem here.

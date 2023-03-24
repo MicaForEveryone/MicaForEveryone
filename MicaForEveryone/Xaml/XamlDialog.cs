@@ -35,7 +35,7 @@ namespace MicaForEveryone.Xaml
 
         public override void Activate()
         {
-            var svcLanguage = Program.CurrentApp.Container.GetService<ILanguageService>();
+            var svcLanguage = Program.Container.GetService<ILanguageService>();
             if (svcLanguage?.CurrentLanguage.LayoutDirection is LanguageLayoutDirection.Rtl
                 or LanguageLayoutDirection.TtbRtl)
             {
@@ -58,7 +58,6 @@ namespace MicaForEveryone.Xaml
 
         protected virtual void UpdateXamlSourcePosition()
         {
-            if (Interop == null) return;
             var clientArea = GetClientRect();
             var xamlWindow = FromHandle(Interop.WindowHandle);
             xamlWindow.X = clientArea.X;

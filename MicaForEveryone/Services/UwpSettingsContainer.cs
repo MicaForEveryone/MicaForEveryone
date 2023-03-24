@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.Storage;
+﻿using Windows.Storage;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
+
+#nullable enable
 
 namespace MicaForEveryone.Services
 {
@@ -24,12 +23,13 @@ namespace MicaForEveryone.Services
         {
         }
 
-        public object GetValue(string key)
+        public object? GetValue(string key)
         {
+            if (_container.Values.ContainsKey(key) == false) return null;
             return _container.Values[key];
         }
 
-        public void SetValue(string key, object value)
+        public void SetValue(string key, object? value)
         {
             _container.Values[key] = value;
         }

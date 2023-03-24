@@ -1,8 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Windows.ApplicationModel.Resources;
+﻿using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
+using Microsoft.Extensions.DependencyInjection;
 
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI;
@@ -12,7 +12,7 @@ namespace MicaForEveryone.Views
     internal class AddClassRuleDialog : ContentDialog
     {
         public AddClassRuleDialog() : 
-            this(new(), Program.CurrentApp.Container.GetService<IAddClassRuleViewModel>())
+            this(new(), Program.Container.GetService<IAddClassRuleViewModel>())
         {
         }
 

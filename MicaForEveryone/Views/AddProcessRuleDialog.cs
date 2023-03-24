@@ -7,14 +7,13 @@ using Windows.UI.Xaml.Markup;
 using MicaForEveryone.Interfaces;
 using MicaForEveryone.UI;
 using MicaForEveryone.UI.ViewModels;
-using MicaForEveryone.ViewModels;
 
 namespace MicaForEveryone.Views
 {
     internal class AddProcessRuleDialog : ContentDialog
     {
         public AddProcessRuleDialog() : 
-            this(new(), Program.CurrentApp.Container.GetService<IAddProcessRuleViewModel>())
+            this(new(), Program.Container.GetService<IAddProcessRuleViewModel>())
         {
         }
 

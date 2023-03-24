@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.Search;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
 
 #nullable enable
 

@@ -1,8 +1,9 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MicaForEveryone.UI.Models;
-using MicaForEveryone.UI.ViewModels;
 using Microsoft.UI.Xaml.Controls;
+using MicaForEveryone.Core.Ui.ViewModels;
 
 namespace MicaForEveryone.UI
 {
@@ -33,8 +34,16 @@ namespace MicaForEveryone.UI
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
             new Contributor("RTFTR", "https://github.com/RTFTR", "ko"),
             new Contributor("krlvm", "https://github.com/krlvm", "ru"),
+            new Contributor("Phyan", "https://github.com/Phyan", "uk"),
             new Contributor("FrzMtrsprt", "https://github.com/FrzMtrsprt", "zh-Hans"),
             new Contributor("Piteriuz", "https://github.com/Piteriuz", "pl"),
+            new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
+            new Contributor("toineenzo", "https://github.com/toineenzo", "nl"),
+            new Contributor("A-Loot", "https://github.com/A-Loot", "it"),
+            new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
+            new Contributor("seanardhana", "https://github.com/seanardhana", "id"),
+            new Contributor("Zan1456", "https://github.com/Zan1456", "hu"),
+            new Contributor("Meriç Bağlayan", "https://github.com/baglayan", "tr"),
         };
 
         private void ListView_Loaded(object sender, RoutedEventArgs args)
@@ -47,24 +56,14 @@ namespace MicaForEveryone.UI
             MainSplitView.IsPaneOpen = !MainSplitView.IsPaneOpen;
         }
 
-        private void RulesAppBarButton_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void AddRuleAppBarButton_OnLoaded(object sender, RoutedEventArgs e)
         {
-            AnimatedIcon.SetState((UIElement)sender, "PointerOver");
+            ToolTipService.SetToolTip((DependencyObject)sender, new ResourceLoader().GetString("AddRuleAppBarButton/Label"));
         }
 
-        private void RulesAppBarButton_PointerPressed(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        private void RemoveRuleAppBarButton_OnLoaded(object sender, RoutedEventArgs e)
         {
-            AnimatedIcon.SetState((UIElement)sender, "Pressed");
-        }
-
-        private void RulesAppBarButton_PointerReleased(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            AnimatedIcon.SetState((UIElement)sender, "Normal");
-        }
-
-        private void RulesAppBarButton_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        {
-            AnimatedIcon.SetState((UIElement)sender, "Normal");
+            ToolTipService.SetToolTip((DependencyObject)sender, new ResourceLoader().GetString("RemoveRuleAppBarButton/Label"));
         }
     }
 }

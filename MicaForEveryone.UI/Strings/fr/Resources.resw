@@ -417,4 +417,19 @@ Corrigez les erreurs puis utilisez l'option "Recharger le fichier de configurati
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
     <value>"légèrement arrondi" active les coins semi-arrondis.</value>
   </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Exécutez cette application automatiquement en tant qu'administrateur au démarrage. Vous devez exécuter l'application en tant qu'administrateur pour activer cette option.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Exécuter en tant qu'administrateur au démarrage</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Contributeurs:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Afficher l'icône de l'application dans la zone de notification</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Afficher l'icône dans la barre des tâches</value>
+  </data>
 </root>

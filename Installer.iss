@@ -58,3 +58,9 @@ Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: de
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
+[Registry]
+; HKCU is intended here.
+Root: HKCU; Subkey: "Software\MicaForEveryone"; Flags: uninsdeletekey
+
+[UninstallRun]
+Filename: "{app}\{#MyAppExeName}"; Parameters: "--uninstall"; StatusMsg: "Removing Task Scheduler Entry..."; Flags: waituntilterminated

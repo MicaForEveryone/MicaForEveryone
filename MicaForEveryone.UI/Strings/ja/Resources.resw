@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<!-- 
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,364 +59,364 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-		<xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
-		<xsd:element name="root" msdata:IsDataSet="true">
-			<xsd:complexType>
-				<xsd:choice maxOccurs="unbounded">
-					<xsd:element name="metadata">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0"/>
-							</xsd:sequence>
-							<xsd:attribute name="name" use="required" type="xsd:string"/>
-							<xsd:attribute name="type" type="xsd:string"/>
-							<xsd:attribute name="mimetype" type="xsd:string"/>
-							<xsd:attribute ref="xml:space"/>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="assembly">
-						<xsd:complexType>
-							<xsd:attribute name="alias" type="xsd:string"/>
-							<xsd:attribute name="name" type="xsd:string"/>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="data">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-							<xsd:attribute ref="xml:space"/>
-						</xsd:complexType>
-					</xsd:element>
-					<xsd:element name="resheader">
-						<xsd:complexType>
-							<xsd:sequence>
-								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-							</xsd:sequence>
-							<xsd:attribute name="name" type="xsd:string" use="required"/>
-						</xsd:complexType>
-					</xsd:element>
-				</xsd:choice>
-			</xsd:complexType>
-		</xsd:element>
-	</xsd:schema>
-	<resheader name="resmimetype">
-		<value>text/microsoft-resx</value>
-	</resheader>
-	<resheader name="version">
-		<value>2.0</value>
-	</resheader>
-	<resheader name="reader">
-		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<resheader name="writer">
-		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-	</resheader>
-	<data name="AboutTitle.Text" xml:space="preserve">
-		<value>このアプリの情報</value>
-	</data>
-	<data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-		<value>「アクリル」はすべてのアプリで強制的に Windows 10 風の壁紙透かし効果を使用します。</value>
-	</data>
-	<data name="AcrylicMenuItem.Text" xml:space="preserve">
-		<value>アクリル</value>
-	</data>
-	<data name="AddButton.Content" xml:space="preserve">
-		<value>追加</value>
-	</data>
-	<data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-		<value>新しいクラスのルール</value>
-	</data>
-	<data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-		<value>クラスのルールを追加</value>
-	</data>
-	<data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-		<value>多らしいプロセスのルール</value>
-	</data>
-	<data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-		<value>プロセスのルールを追加</value>
-	</data>
-	<data name="AddRuleAppBarButton.Label" xml:space="preserve">
-		<value>ルールの追加</value>
-	</data>
-	<data name="AddRuleDialog.Title" xml:space="preserve">
-		<value>ルールの追加</value>
-	</data>
-	<data name="AdvancedMenu.Text" xml:space="preserve">
-		<value>設定ファイル</value>
-	</data>
-	<data name="AppInitializationError.Title" xml:space="preserve">
-		<value>アプリの初期化中にエラー発生</value>
-	</data>
-	<data name="AppName" xml:space="preserve">
-		<value>Mica For Everyone</value>
-	</data>
-	<data name="AppNameLabel.Text" xml:space="preserve">
-		<value>Mica For Everyone</value>
-	</data>
-	<data name="BackdropDescription.Text" xml:space="preserve">
-		<value>背景の種類を設定。</value>
-	</data>
-	<data name="BackdropMenu.Text" xml:space="preserve">
-		<value>背景の種類</value>
-	</data>
-	<data name="BackdropTypeSetting.Header" xml:space="preserve">
-		<value>背景の種類</value>
-	</data>
-	<data name="BlurBehindSetting.Description" xml:space="preserve">
-		<value>ウィンドウを半透明にしぼかします。このオプションを無効にした後、効果が反映されたウィンドウを閉じて再び開く必要があります。</value>
-	</data>
-	<data name="BlurBehindSetting.Header" xml:space="preserve">
-		<value>背景のぼかし</value>
-	</data>
-	<data name="BrowseButton.Content" xml:space="preserve">
-		<value>参照</value>
-	</data>
-	<data name="CancelButton.Content" xml:space="preserve">
-		<value>キャンセル</value>
-	</data>
-	<data name="ClassNameSuggestBox.Description" xml:space="preserve">
-		<value>ウィンドウのクラス名を入力</value>
-	</data>
-	<data name="ClassNameSuggestBox.Header" xml:space="preserve">
-		<value>クラス名:</value>
-	</data>
-	<data name="CloseButton.Content" xml:space="preserve">
-		<value>閉じる</value>
-	</data>
-	<data name="ConfigFileError.Content" xml:space="preserve">
-		<value>設定ファイル内のエラー:
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>このアプリの情報</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>「アクリル」はすべてのアプリで強制的に Windows 10 風の壁紙透かし効果を使用します。</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>アクリル</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>新しいクラスのルール</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>クラスのルールを追加</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>多らしいプロセスのルール</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>プロセスのルールを追加</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>ルールの追加</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>ルールの追加</value>
+  </data>
+   <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>設定ファイル</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>アプリの初期化中にエラー発生</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>背景の種類を設定。</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>背景の種類</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>背景の種類</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>ウィンドウを半透明にしぼかします。このオプションを無効にした後、効果が反映されたウィンドウを閉じて再び開く必要があります。</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>背景のぼかし</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>参照</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>ウィンドウのクラス名を入力</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>クラス名:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>設定ファイル内のエラー:
 {0}
 
 エラーを修正してから、設定ファイルを再読み込みしてください。</value>
-	</data>
-	<data name="ConfigFileError.Header" xml:space="preserve">
-		<value>設定ファイルのエラー</value>
-	</data>
-	<data name="ConfigFilePathSetting.Description" xml:space="preserve">
-		<value>ルールの保存と読み込み用のファイルです。</value>
-	</data>
-	<data name="ConfigFilePathSetting.Header" xml:space="preserve">
-		<value>ファイルのパス</value>
-	</data>
-	<data name="DarkMenuItem.Text" xml:space="preserve">
-		<value>ダーク</value>
-	</data>
-	<data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-		<value>ダークはダークテーマを使用します。</value>
-	</data>
-	<data name="DefaultBackdropDescription.Text" xml:space="preserve">
-		<value>「標準」は、アプリの標準の背景のままで何もしません。</value>
-	</data>
-	<data name="DefaultMenuItem.Text" xml:space="preserve">
-		<value>標準</value>
-	</data>
-	<data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-		<value>「標準」オプションは、アプリの標準のテーマのままです。</value>
-	</data>
-	<data name="ExitMenuItem.Text" xml:space="preserve">
-		<value>終了</value>
-	</data>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>設定ファイルのエラー</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>ルールの保存と読み込み用のファイルです。</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>ファイルのパス</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>ダーク</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>ダークはダークテーマを使用します。</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>「標準」は、アプリの標準の背景のままで何もしません。</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>標準</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>「標準」オプションは、アプリの標準のテーマのままです。</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>終了</value>
+  </data>
     <data name="ExitSetting.Header" xml:space="preserve">
-		<value>終了</value>
-	</data>
-	<data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-		<value>クライアント領域までフレームを拡張</value>
-	</data>
-	<data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-		<value>ウィンドウフレームのクライアント領域まで拡張し、一部のアプリの壁紙部分に背景の効果を追加します。この機能はすべてのアプリでは動作せず表示を破損させる可能性があるため、何をしているのか把握していないなら有効化しないでください。このオプションを無効にした後、効果が反映されたウィンドウを閉じて再び開く必要があります。</value>
-	</data>
-	<data name="GeneralPaneItem.Text" xml:space="preserve">
-		<value>一般</value>
-	</data>
-	<data name="GeneralSetting.Header" xml:space="preserve">
-		<value>一般</value>
-	</data>
-	<data name="GitHubButton.Content" xml:space="preserve">
-		<value>GitHub</value>
-	</data>
-	<data name="GlobalRulePaneItem.Text" xml:space="preserve">
-		<value>Global Rule</value>
-	</data>
-	<data name="LanguageSetting.Description" xml:space="preserve">
-		<value>UI の言語を設定します。言語設定の反映には、再起動が必要です。</value>
-	</data>
-	<data name="LanguageSetting.Header" xml:space="preserve">
-		<value>Language/言語</value>
-	</data>
-	<data name="LightMenuItem.Text" xml:space="preserve">
-		<value>ライト</value>
-	</data>
-	<data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-		<value>ライトはライトテーマを使用します。</value>
-	</data>
-	<data name="MicaBackdropDescription.Text" xml:space="preserve">
-		<value>「マイカ」はすべてのアプリで強制的に Windows 11 風の壁紙を反映した色付き背景の効果を使用します。</value>
-	</data>
-	<data name="MicaMenuItem.Text" xml:space="preserve">
-		<value>マイカ</value>
-	</data>
-	<data name="NoneBackdropDescription.Text" xml:space="preserve">
-		<value>「なし」は背景を無効化します。既に有効化されているものも含まれます。</value>
-	</data>
-	<data name="NoneMenuItem.Text" xml:space="preserve">
-		<value>なし</value>
-	</data>
-	<data name="OkButton.Text" xml:space="preserve">
-		<value>OK</value>
-	</data>
-	<data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-		<value>テキストエディターで開く</value>
-	</data>
-	<data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-		<value>拡張子 (.exe) 抜きで実行ファイル名を入力</value>
-	</data>
-	<data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-		<value>プロセス名:</value>
-	</data>
-	<data name="ReloadMenuItem.Text" xml:space="preserve">
-		<value>再読み込み</value>
-	</data>
-	<data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-		<value>設定ファイルが変更されたら自動で設定を再読み込みします。</value>
-	</data>
-	<data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-		<value>変更時に再読み込み</value>
-	</data>
-	<data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-		<value>ルールの除去</value>
-	</data>
-	<data name="SettingsMenuItem.Text" xml:space="preserve">
-		<value>設定</value>
-	</data>
-	<data name="SettingsTitle.Text" xml:space="preserve">
-		<value>設定</value>
-	</data>
-	<data name="StartupSetting.Description" xml:space="preserve">
-		<value>起動時にこのアプリを自動で実行します。</value>
-	</data>
-	<data name="StartupSetting.Header" xml:space="preserve">
-		<value>起動時に実行</value>
-	</data>
-	<data name="SystemMenuItem.Text" xml:space="preserve">
-		<value>システム</value>
-	</data>
-	<data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-		<value>「システム」では、お使いのテーマ設定を使用します。</value>
-	</data>
-	<data name="TabbedBackdropDescription.Text" xml:space="preserve">
-		<value>「Tabbed」はすべてのアプリで強制的に 壁紙をぼかす効果を使用します。</value>
-	</data>
-	<data name="TabbedMenuItem.Text" xml:space="preserve">
-		<value>Tabbed</value>
-	</data>
-	<data name="TelegramButton.Content" xml:space="preserve">
-		<value>Telegram</value>
-	</data>
-	<data name="TitlebarColorDescription.Text" xml:space="preserve">
-		<value>タイトルバーのカラーテーマを設定。</value>
-	</data>
-	<data name="TitlebarColorMenu.Text" xml:space="preserve">
-		<value>タイトルバーの色</value>
-	</data>
-	<data name="TitleBarColorSetting.Header" xml:space="preserve">
-		<value>タイトルバーの色</value>
-	</data>
-	<data name="TrayIconTooltip.Content" xml:space="preserve">
-		<value>Mica For Everyone</value>
-	</data>
-	<data name="TwitterButton.Content" xml:space="preserve">
-		<value>Twitter</value>
-	</data>
-	<data name="UnhandledException.Header" xml:space="preserve">
-		<value>未処理の例外</value>
-	</data>
-	<data name="UnhandledUIException.Header" xml:space="preserve">
-		<value>UIの未処理の例外</value>
-	</data>
-	<data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-		<value>アクリルおよびTabbedの背景効果には、Windows ビルド22523以降が必要です。</value>
-	</data>
-	<data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-		<value>没入感のあるダークモードを使用するには、Windowsビルド19041以降が必要です。</value>
-	</data>
-	<data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-		<value>マイカの効果には、Windows ビルド22000以降が必要です。</value>
-	</data>
-	<data name="VersionLabel.Text" xml:space="preserve">
-		<value>バージョン</value>
-	</data>
-	<data name="AdvancedSetting.Header" xml:space="preserve">
-		<value>高度</value>
-	</data>
-	<data name="ConfigFileSetting.Header" xml:space="preserve">
-		<value>設定ファイル</value>
-	</data>
-	<data name="StyleSetting.Header" xml:space="preserve">
-		<value>スタイル</value>
-	</data>
-	<data name="OpenInEditorSetting.Description" xml:space="preserve">
-		<value>設定ファイルを既定のテキストエディターで開きます。</value>
-	</data>
-	<data name="OpenInEditorSetting.Header" xml:space="preserve">
-		<value>テキストエディターで編集</value>
-	</data>
-	<data name="ReloadSetting.Description" xml:space="preserve">
-		<value>設定ファイルからルールを再読み込みし、開いているすべてのウィンドウに適用します。</value>
-	</data>
-	<data name="ReloadSetting.Header" xml:space="preserve">
-		<value>再読み込み</value>
-	</data>
-	<data name="ResetSetting.Description" xml:space="preserve">
-		<value>すべての変更を削除しルールを初期値に復元します。</value>
-	</data>
-	<data name="ResetSetting.Header" xml:space="preserve">
-		<value>初期化</value>
-	</data>
-	<data name="Credit.Text" xml:space="preserve">
-		<value>開発者</value>
-	</data>
-	<data name="IconCredit.Text" xml:space="preserve">
-		<value>アイコン作成:</value>
-	</data>
-	<data name="TranslatorsCredit.Text" xml:space="preserve">
-		<value>日本語翻訳:</value>
-	</data>
-	<data name="CornerMenu.Text" xml:space="preserve">
-		<value>角の形</value>
-	 </data>
-	<data name="CornerPreferenceSetting.Header" xml:space="preserve">
-		<value>角の形</value>
-	</data>
-	<data name="SquareMenuItem.Text" xml:space="preserve">
-		<value>四角</value>
-	</data>
-	<data name="RoundedMenuItem.Text" xml:space="preserve">
-		<value>丸</value>
-	</data>
-	<data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-		<value>少し丸く</value>
-	</data>
-	<data name="CornerDescription.Text" xml:space="preserve">
-		<value>角の丸みの形を設定</value>
-	</data>
-	<data name="DefaultCornerDescription.Text" xml:space="preserve">
-		<value>「標準」は何もせず、そのアプリが指定している角の形のままにします。</value>
-	</data>
-	<data name="SquareCornerDescription.Text" xml:space="preserve">
-		<value>「四角」は、角の丸め指定を無効化します。</value>
-	</data>
-	<data name="RoundedCornerDescription.Text" xml:space="preserve">
-		<value>「丸」は、強制的に角の丸めを有効化します。</value>
-	</data>
-	<data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-		<value>「少し丸く」は、「四角」と「丸」の中間の形です。</value>
-	</data>
+    <value>終了</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>クライアント領域までフレームを拡張</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>ウィンドウフレームのクライアント領域まで拡張し、一部のアプリの壁紙部分に背景の効果を追加します。この機能はすべてのアプリでは動作せず表示を破損させる可能性があるため、何をしているのか把握していないなら有効化しないでください。このオプションを無効にした後、効果が反映されたウィンドウを閉じて再び開く必要があります。</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Global Rule</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>UI の言語を設定します。言語設定の反映には、再起動が必要です。</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Language/言語</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>ライト</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>ライトはライトテーマを使用します。</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>「マイカ」はすべてのアプリで強制的に Windows 11 風の壁紙を反映した色付き背景の効果を使用します。</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>マイカ</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>「なし」は背景を無効化します。既に有効化されているものも含まれます。</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>テキストエディターで開く</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>拡張子 (.exe) 抜きで実行ファイル名を入力</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>プロセス名:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>設定ファイルが変更されたら自動で設定を再読み込みします。</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>変更時に再読み込み</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>ルールの除去</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>起動時にこのアプリを自動で実行します。</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>起動時に実行</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>「システム」では、お使いのテーマ設定を使用します。</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>「Tabbed」はすべてのアプリで強制的に 壁紙をぼかす効果を使用します。</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>タイトルバーのカラーテーマを設定。</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>タイトルバーの色</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>タイトルバーの色</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>未処理の例外</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>UIの未処理の例外</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>アクリルおよびTabbedの背景効果には、Windows ビルド22523以降が必要です。</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>没入感のあるダークモードを使用するには、Windowsビルド19041以降が必要です。</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>マイカの効果には、Windows ビルド22000以降が必要です。</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>設定ファイル</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>スタイル</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>設定ファイルを既定のテキストエディターで開きます。</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>テキストエディターで編集</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>設定ファイルからルールを再読み込みし、開いているすべてのウィンドウに適用します。</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>再読み込み</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>すべての変更を削除しルールを初期値に復元します。</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>初期化</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>開発者</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>アイコン作成:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>日本語翻訳:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>角の形</value>
+   </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>角の形</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>四角</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>丸</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>少し丸く</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>角の丸みの形を設定</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>「標準」は何もせず、そのアプリが指定している角の形のままにします。</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>「四角」は、角の丸め指定を無効化します。</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>「丸」は、強制的に角の丸めを有効化します。</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>「少し丸く」は、「四角」と「丸」の中間の形です。</value>
+  </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
     <value>起動時に自動的に管理者として実行します。有効にするには、管理者として本アプリを実行する必要があります。</value>
   </data>

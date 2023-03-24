@@ -1,5 +1,8 @@
-﻿namespace MicaForEveryone.Win32.PInvoke
+﻿using System;
+
+namespace MicaForEveryone.Win32.PInvoke
 {
+    [Flags]
     internal enum AccentState
     {
         ACCENT_DISABLED = 0,

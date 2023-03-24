@@ -9,6 +9,5 @@ namespace MicaForEveryone.Win32.Events
         public int ObjectId { get; set; }
         public int ChildId { get; set; }
         public uint EventTime { get; set; }
-        public Window Window { get; set; }
     }
 }
