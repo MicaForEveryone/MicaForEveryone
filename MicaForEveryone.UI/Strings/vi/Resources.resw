@@ -343,7 +343,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Chế độ tối đặc biệt yêu cầu ít nhất Windows build 1904.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Hiệu ứng Mica yêu cầu ít nhất Windows build22000.</value>
+    <value>Hiệu ứng Mica yêu cầu ít nhất Windows build 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Phiên bản</value>
