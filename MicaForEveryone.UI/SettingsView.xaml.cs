@@ -2,8 +2,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MicaForEveryone.UI.Models;
-using MicaForEveryone.UI.ViewModels;
 using Microsoft.UI.Xaml.Controls;
+using MicaForEveryone.Core.Ui.ViewModels;
 
 namespace MicaForEveryone.UI
 {

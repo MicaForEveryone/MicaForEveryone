@@ -1,16 +1,20 @@
 ﻿using System;
 
-using MicaForEveryone.Models;
 using MicaForEveryone.Views;
+using MicaForEveryone.Win32;
+
+#nullable enable
 
 namespace MicaForEveryone.Interfaces
 {
     internal interface IViewService : IDisposable
     {
-        MainWindow MainWindow { get; }
-        SettingsWindow SettingsWindow { get; }
+        MainWindow? MainWindow { get; }
+        SettingsWindow? SettingsWindow { get; }
 
-        void Run();
+        void Initialize(Application app);
+        void Unload();
         void ShowSettingsWindow();
+        void DispatcherEnqueue(Action action);
     }
 }

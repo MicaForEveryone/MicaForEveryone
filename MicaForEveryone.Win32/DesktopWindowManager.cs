@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-using MicaForEveryone.Models;
 using MicaForEveryone.Win32.PInvoke;
 
 using static MicaForEveryone.Win32.PInvoke.NativeMethods;
@@ -48,7 +47,7 @@ namespace MicaForEveryone.Win32
         {
             if (IsBackdropTypeSupported)
             {
-                SetBackdropType(hWnd, BackdropType.Mica);
+                SetBackdropType(hWnd, DWM_SYSTEMBACKDROP_TYPE.DWMSBT_MAINWINDOW);
             }
             else if (IsUndocumentedMicaSupported)
             {
@@ -86,12 +85,7 @@ namespace MicaForEveryone.Win32
             }
 
         }
-
-        public static void SetBackdropType(IntPtr target, BackdropType backdropType)
-        {
-            SetBackdropType(target, (DWM_SYSTEMBACKDROP_TYPE)backdropType);
-        }
-
+        
         /// <summary>
         /// Set corner preference on target window
         /// Requires Windows build 22000 or higher.
@@ -107,12 +101,7 @@ namespace MicaForEveryone.Win32
             }
 
         }
-
-        public static void SetCornerPreference(IntPtr target, CornerPreference cornerPreference)
-        {
-            SetCornerPreference(target, (DWM_WINDOW_CORNER_PREFERENCE)cornerPreference);
-        }
-
+        
         /// <summary>
         /// Enable or disable immersive dark mode.
         /// Requires Windows build 19041 or higher.

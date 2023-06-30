@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using MicaForEveryone.Models;
+using MicaForEveryone.Core.Models;
 
 namespace MicaForEveryone.UI.Selectors
 {
@@ -12,22 +12,15 @@ namespace MicaForEveryone.UI.Selectors
         public DataTemplate Light { get; set; }
         public DataTemplate Dark { get; set; }
 
-        protected override DataTemplate SelectTemplateCore(object item)
-        {
-            switch (item as TitlebarColorMode?)
+        protected override DataTemplate SelectTemplateCore(object item) =>
+            item switch
             {
-                case TitlebarColorMode.Default:
-                    return Default;
-                case TitlebarColorMode.System:
-                    return System;
-                case TitlebarColorMode.Light:
-                    return Light;
-                case TitlebarColorMode.Dark:
-                    return Dark;
-                default:
-                    return null;
-            }
-        }
+                TitlebarColorMode.Default => Default,
+                TitlebarColorMode.System => System,
+                TitlebarColorMode.Light => Light,
+                TitlebarColorMode.Dark => Dark,
+                _ => null
+            };
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {

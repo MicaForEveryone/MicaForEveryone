@@ -12,8 +12,4 @@
         <Compile Include="..\Properties\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
     </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\MicaForEveryone.Shared\MicaForEveryone.Shared.csproj" />
-    </ItemGroup>
-
 </Project>

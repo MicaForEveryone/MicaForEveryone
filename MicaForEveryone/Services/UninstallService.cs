@@ -11,18 +11,18 @@ namespace MicaForEveryone.Services
 {
     internal static class UninstallService
     {
-        private static Mutex _uninstallationMutex = new(false, "MicaForEveryone_UninstallService");
+        private static readonly Mutex UninstallationMutex = new(false, "MicaForEveryone_UninstallService");
 
         public static void Run()
         {
-            var startupService = Program.CurrentApp.Container.GetRequiredService<IStartupService>();
-            var taskSchedulerService = Program.CurrentApp.Container.GetRequiredService<ITaskSchedulerService>();
+            var startupService = Program.Container.GetRequiredService<IStartupService>();
+            var taskSchedulerService = Program.Container.GetRequiredService<ITaskSchedulerService>();
 
-            var dialogService = Program.CurrentApp.Container.GetRequiredService<IDialogService>();
+            var dialogService = Program.Container.GetRequiredService<IDialogService>();
 
             // remove startup entry
             startupService.InitializeAsync().Wait();
-            if (startupService.IsAvailable && startupService.IsEnabled)
+            if (startupService is { IsAvailable: true, IsEnabled: true })
             {
                 startupService.SetStateAsync(false).Wait();
             }
@@ -58,7 +58,7 @@ namespace MicaForEveryone.Services
         private static Process? ElevateProcess()
         {
             // using a mutex to prevent it from running itself again and again if something is going wrong with process elevation
-            if (_uninstallationMutex.WaitOne(0) == false) return null;
+            if (UninstallationMutex.WaitOne(0) == false) return null;
 
             try
             {

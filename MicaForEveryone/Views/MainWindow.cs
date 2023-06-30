@@ -5,7 +5,8 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Ui.Views;
+using MicaForEveryone.Core.Ui.ViewModels;
 using MicaForEveryone.UI;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
@@ -13,7 +14,7 @@ using MicaForEveryone.Xaml;
 
 namespace MicaForEveryone.Views
 {
-    internal class MainWindow : XamlWindow
+    internal class MainWindow : XamlWindow, ITrayIconView
     {
         public const string OpenSettingsMessage = "MicaForEveryone_OpenSettings";
 
@@ -68,9 +69,9 @@ namespace MicaForEveryone.Views
         }
 
         public ITrayIconViewModel ViewModel { get; } =
-            Program.CurrentApp.Container.GetService<ITrayIconViewModel>();
+            Program.Container.GetService<ITrayIconViewModel>();
 
-        public override async void Activate()
+        public override void Activate()
         {
             base.Activate();
 
@@ -86,7 +87,7 @@ namespace MicaForEveryone.Views
 
             try
             {
-                await ViewModel.InitializeAsync(this);
+                ViewModel.Attach(this);
             }
 #if DEBUG
             catch
