@@ -15,7 +15,7 @@ namespace MicaForEveryone.UI
         }
 
         public ISettingsViewModel ViewModel { get; set; }
-
+            new Contributor("Amer Alhlhli", "https://github.com/Alhlhli", "ar"),
         internal Contributor[] Contributors { get; } =
         {
             new Contributor("Dongle the Gadget", "https://github.com/dongle-the-gadget", null),
