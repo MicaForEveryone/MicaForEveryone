@@ -30,6 +30,7 @@ namespace MicaForEveryone.UI
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
             new Contributor("Zan1456", "https://github.com/Zan1456", "hu"),
             new Contributor("seanardhana", "https://github.com/seanardhana", "id"),
+            new Contributor("GID0317", "https://github.com/GID0317", "id"),
             new Contributor("alessandrocaseti", "https://github.com/alessandrocaseti", "it"),
             new Contributor("A-Loot", "https://github.com/A-Loot", "it"),
             new Contributor("maboroshin", "https://github.com/maboroshin", "ja"),
@@ -39,6 +40,7 @@ namespace MicaForEveryone.UI
             new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
             new Contributor("Danik2343", "https://github.com/Danik2343", "ru"),
             new Contributor("krlvm", "https://github.com/krlvm", "ru"),
+            new Contributor("bzzrak", "https://github.com/bzzrak", "sr"),
             new Contributor("Meriç Bağlayan", "https://github.com/baglayan", "tr"),
             new Contributor("Phyan", "https://github.com/Phyan", "uk-ua"),
             new Contributor("lowl1f3", "https://github.com/lowl1f3", "uk-ua"),
@@ -46,6 +48,7 @@ namespace MicaForEveryone.UI
             new Contributor("AndromedaMelody", "https://github.com/AndromedaMelody", "zh-Hans"),
             new Contributor("FrzMtrsprt", "https://github.com/FrzMtrsprt", "zh-Hans"),
             new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
+            new Contributor("宥叡", "https://github.com/jay900604", "zh-Hant"),
         };
 
         private void ListView_Loaded(object sender, RoutedEventArgs args)
