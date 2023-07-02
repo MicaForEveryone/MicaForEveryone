@@ -154,10 +154,10 @@
     <value>Kesalahan saat menginisialisasi aplikasi</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Mika Untuk Semua</value>
+    <value>Mica For Everyone</value>
   </data>
   <data name="AppNameLabel.Text" xml:space="preserve">
-    <value>Mika Untuk Semua</value>
+    <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
     <value>Tetapkan jenis tampilan latar,</value>
@@ -241,7 +241,7 @@ Perbaiki kesalahan lalu gunakan opsi "Muat ulang file konfigurasi" untuk memuatn
     <value>Aturan Global</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Setel bahasa pilihan Anda untuk UI. Aplikasi membutuhkan restart untuk berlaku.</value>
+    <value>Setel bahasa pilihan Anda untuk UI. Aplikasi perlu restart untuk diterapkan.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Bahasa</value>
@@ -325,7 +325,7 @@ Perbaiki kesalahan lalu gunakan opsi "Muat ulang file konfigurasi" untuk memuatn
     <value>Warna Bilah Judul</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
-    <value>Mika Untuk Semua</value>
+    <value>Mica For Everyone</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
     <value>Twitter</value>
@@ -361,7 +361,7 @@ Perbaiki kesalahan lalu gunakan opsi "Muat ulang file konfigurasi" untuk memuatn
     <value>Buka berkas konfigurasi di editor teks default Anda.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Sunting di penyunting teks</value>
+    <value>Ubah di editor teks</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
     <value>Muat ulang aturan dari berkas konfigurasi lalu terapkan ke semua jendela yang terbuka.</value>
@@ -427,7 +427,7 @@ Perbaiki kesalahan lalu gunakan opsi "Muat ulang file konfigurasi" untuk memuatn
     <value>Tampilkan ikon aplikasi di area notifikasi</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>Tampilkan ikon baki</value>
+    <value>Tampilkan ikon tray</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
     <value>Keluar</value>

@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>關於此應用程式</value>
+    <value>Про додаток</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>強制所有應用程式使用 Windows 10 風格的壓克力背景模糊效果。</value>
+    <value>Acrylic змушує всі додатки використовувати ефект розмиття фону у стилі Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>壓克力</value>
+    <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>新增</value>
+    <value>Додати</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>新增視窗類規則</value>
+    <value>Нове правило класу</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>新增視窗類規則</value>
+    <value>Додати правило класу</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>新增程序名稱規則</value>
+    <value>Нове правило процесу</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>新增程序名稱規則</value>
+    <value>Додати правило процесу</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>新增規則</value>
+    <value>Додати правило</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>新增規則</value>
+    <value>Додати правило</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>配置檔案</value>
+    <value>Файл конфігурації</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>初始化應用程式時發生錯誤</value>
+    <value>Помилка під час ініціалізації додатку</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -160,169 +160,169 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>此選項用於設定應用程式視窗背景模糊類型，</value>
+    <value>Встановлює тип фону,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>模糊類型</value>
+    <value>Тип фону</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>模糊類型</value>
+    <value>Тип фону</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>開啟此選項，視窗將會半透明並且使用模糊特效。此選項可能不適用於所有應用程式。關閉此選項需要重新啟動已作用的視窗。</value>
+    <value>Робить вікна напівпрозорими та розмитими. Вимкнення цієї опції вимагає закриття та повторного відкриття відповідних вікон.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>背景模糊</value>
+    <value>Фонове розмиття</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>瀏覽</value>
+    <value>Огляд</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>取消</value>
+    <value>Скасувати</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>請輸入視窗類名稱</value>
+    <value>Введіть назву класу вікна</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>類名稱：</value>
+    <value>Назва класу:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>關閉</value>
+    <value>Закрити</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>配置檔案中存在以下錯誤：
+    <value>Помилка у файлі конфігурації:
 {0}
 
-請先修正錯誤，然後點擊「重新載入配置檔案」按鈕。</value>
+Виправте помилки, а після скористайтеся опцією "Перезавантажити файл конфігурації", щоб перезавантажитись.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>配置檔案中存在錯誤</value>
+    <value>Помилка у файлі конфігурації</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>此檔案將用於儲存 Mica For Everyone 的設定。</value>
+    <value>Файл для збереження та завантаження правил.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>檔案路徑</value>
+    <value>Шлях до файлу</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>深色</value>
+    <value>Темний</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式標題欄使用深色模式。</value>
+    <value>Темний режим використовує темну тему.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>現在將由應用程式自行決定使用何種模糊類型。</value>
+    <value>Режим "За замовчуванням" нічого не робить для збереження звичайного фону додатка.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>預設</value>
+    <value>За замовчуванням</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>現在將由應用程式自行決定使用淺色或深色標題欄。</value>
+    <value>Режим "За замовчуванням" зберігає тему додатка за замовчуванням.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>離開</value>
+    <value>Вийти</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>將視窗框架擴展到客戶區</value>
+    <value>Розширити рамку вікна в клієнтську область</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>開啟此選項，會將視窗標題欄特效擴展至整個視窗。此選項可能不適用於所有應用程式，甚至會使它們崩潰，請謹慎開啟此選項。關閉此選項需要重新啟動已作用的視窗。</value>
+    <value>Розширює рамку вікна в клієнтську область для додавання фону на задній план деяких додатків. Не працює з усіма додатками і може зламати їх, тому не вмикайте цю опцію, якщо ви не знаєте, що робите. Вимкнення цієї опції вимагає закриття і повторного відкриття відповідних вікон.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>一般</value>
+    <value>Загальні</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>一般</value>
+    <value>Загальні</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>預設規則</value>
+    <value>Глобальне правило</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>為 Mica For Everyone 設定您喜歡的語言，需要重新啟動本應用程式才能作用。</value>
+    <value>Встановіть бажану мову інтерфейсу. Для внесення змін перезапустіть додаток.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>語言</value>
+    <value>Мова</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>淺色</value>
+    <value>Світлий</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式標題欄使用淺色模式。</value>
+    <value>Світлий режим використовує світлу тему.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式視窗背景使用根據桌布背景色進行淡染的雲母材質特效。</value>
+    <value>Mica змушує всі додатки використовувати ефект розмиття шпалер у стилі Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>雲母</value>
+    <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式不使用任何特效而直接顯示純色。</value>
+    <value>Вимикає фон навіть у додатках, де він був.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>純色</value>
+    <value>Ніякий</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>確定</value>
+    <value>ОК</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>在檔案編輯器中開啟</value>
+    <value>Відкрити в текстовому редакторі</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>請輸入可執行程序檔案名稱，但不要包括「.exe」後綴名稱。</value>
+    <value>Введіть назву виконуваного файлу без розширення (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>程序檔案名稱：</value>
+    <value>Назва процесу:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>重新載入配置檔案</value>
+    <value>Перезавантажити</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>修改設定時自動重新載入配置檔案，您修改的規則將立即作用。</value>
+    <value>Перезавантажує конфігурацію автоматично при зміні конфігураційного файлу.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>熱重載</value>
+    <value>Перезавантажуватись при змінах</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>刪除此規則</value>
+    <value>Видалити правило</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>Налаштування</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>Налаштування</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>在電腦啟動時自動啟動 Mica For Everyone。</value>
+    <value>Запускати додаток автоматично під час запуску системи.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>開機時自動啟動</value>
+    <value>Автозавантаження</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>系統</value>
+    <value>Системний</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式標題欄跟隨系統主題設定。</value>
+    <value>Використовує вашу обрану системну тему.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式視窗背景使用桌布背景色進行模糊的標籤特效。</value>
+    <value>Змушує всі додатки використовувати ефект розмиття фонових шпалер.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>標籤</value>
+    <value>Tabbed</value>
   </data>
   <data name="TelegramButton.Content" xml:space="preserve">
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>此選項用於設定應用程式標題欄主題，</value>
+    <value>Встановити кольорову тему заголовків вікон,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>標題欄顔色</value>
+    <value>Колір заголовка</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>標題欄顔色</value>
+    <value>Колір заголовка</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -331,105 +331,105 @@
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>未處理的異常</value>
+    <value>Необроблюване виключення</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>使用者介面中未處理的異常</value>
+    <value>Необроблюване виключення в інтерфейсі</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>壓克力材質和標籤特效需要 Windows 11 22H2(Build 22523+) 及更高版本作業系統。</value>
+    <value>Ефекти "Acrylic" і "Tabbed" потребують принаймні Windows версії 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>標題欄深色模式需要 Windows 10 20H1(Build 19041+) 及更高版本作業系統。</value>
+    <value>Для імерсивного темного режиму потрібна версія Windows 19041 та вище.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>雲母材質需要 Windows 11 21H2(Build 22000+) 及更高版本作業系統。</value>
+    <value>Ефект "Mica" потребує принаймні Windows версії 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>版本</value>
+    <value>Версія</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>進階設定</value>
+    <value>Додатково</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>配置檔案</value>
+    <value>Файл конфігурації</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>樣式設定</value>
+    <value>Стиль</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>使用預設檔案編輯器中開啟配置檔案。</value>
+    <value>Відкрити файл конфігурації в стандартному текстовому редакторі.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>在檔案編輯器中編輯</value>
+    <value>Редагувати в текстовому редакторі</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>重新載入配置檔案，並將您修改的規則立即作用。</value>
+    <value>Перезавантажує правила з файлу конфігурації та застосовує їх до всіх відкритих вікон.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>重新載入配置檔案</value>
+    <value>Перезавантажити</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>恢複預設規則並撤銷所有修改。</value>
+    <value>Відновити стандартні правила і видалити всі зміни.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>重置配置檔案</value>
+    <value>Відновити</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>作者：</value>
+    <value>Від</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>圖標設計：感謝</value>
+    <value>Іконка від:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>介面語言翻譯：感謝</value>
+    <value>Переклали:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>視窗邊角</value>
+    <value>Режим закруглення рамок</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>視窗邊角</value>
+    <value>Режим закруглення рамок</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>直角</value>
+    <value>Гострі</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>圓角</value>
+    <value>Закруглені</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>稍圓</value>
+    <value>Злегка закруглені</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>此選項用於設定應用程式視窗邊角半徑，</value>
+    <value>Встановити режим закруглення кутів,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>現在將由應用程式自行決定使用直角或圓角視窗邊框。</value>
+    <value>Режим "За замовчуванням" нічого не робить, щоб зберегти поточний режим закруглення кутів у додатку.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式使用直角視窗邊框。</value>
+    <value>Режим "Гострі" вимикає закруглення кутів.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式使用圓角視窗邊框。</value>
+    <value>Режим "Закруглені" примусово закруглює кути.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>現在將強制應用程式使用圓角半徑稍小的視窗邊框。</value>
+    <value>Режим "Злегка закруглені" являє собою щось середнє між квадратними та закругленими кутами.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>開機時自動以系統管理員身分執行。您需要以系統管理員身分執行此應用程式來啟用此選項。</value>
+    <value>Автоматично запускати додаток від імені адміністратора під час завантаження системи. Для активації цього параметра запустіть додаток від імені адміністратора.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>開機時以系統管理員身分執行</value>
+    <value>Запускати від імені адміністратора під час завантаження системи</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>貢獻者：</value>
+    <value>Учасники:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>在通知區域顯示應用程式圖標</value>
+    <value>Відображати іконку додатка в області сповіщень</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>顯示通知圖標</value>
+    <value>Відображати іконку в треї</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
-    <value>離開</value>
+    <value>Вихід</value>
   </data>
 </root>
