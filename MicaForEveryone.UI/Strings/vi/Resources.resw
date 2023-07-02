@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Về ứng dụng này</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Acrylic buộc mọi ứng dụng dùng hiệu ứng nền mờ theo kiểu Windows 10.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Thêm</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Thêm Rule của Class</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Thêm Rule của Class</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Rule quá trình mới</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Rule quá trình mới</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Thêm Rule</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Thêm Rule</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Tệp cấu hình</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Lỗi chạy ứng dụng</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Thiết lập kiểu nền,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Kiểu nền</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Kiểu nền</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Làm cửa sổ có hiệu ứng mờ. Tắt lựa chọn này có thể yêu cầu bạn đóng và mở lại các cửa sổ bị ảnh hưởng .</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Làm mờ đằng sau</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Tìm</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Nhập tên class của window </value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Tên class:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Lỗi trong tệp cấu hình:
+{0}
+
+Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải lại .</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Lỗi trong tệp cấu hình</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>File dùng để tải và lưu thiết lập.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Đường dẫn file</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Dark dùng chủ đề tối.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Mặc định giữ nguyên nền mặc định của cửa sổ.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Mặc định</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Mặc định giữ nguyên chủ đề mặc định của cửa sổ.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Mở rộng khung vào khu vực chính</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Mở rộng khung cửa sổ vào khu vực chính của nó để thêm phông nền trên một số ứng dụng. Tính năng này không hoạt động trên mọi ứng dụng và có thể làm hỏng chúng, vì vậy đừng bật tính năng này trừ khi bạn biết mình đang làm gì. Tắt tùy chọn này yêu cầu bạn phải đóng và mở lại các cửa sổ bị ảnh hưởng.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Chung</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Chung</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Global Rule</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Chọn ngôn ngữ của bạn. Yêu cầu khởi động lại ứng dụng </value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Light dùng chủ đề sáng.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica buộc mọi ứng dụng dùng hiệu ứng nền mờ theo kiểu Windows 11.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>None vô hiệu hóa phông nền, ngay cả trên các ứng dụng đã bật chúng.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Mở trong trình chỉnh sửa văn bản</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Nhập tên tệp thực thi mà không có phần mở rộng của nó (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Tên quá trình:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Tải lại</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Tải lại làm mới ứng dụng khi tệp cấu hình được chỉnh sửa.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Tải lại khi có thay đổi</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Bỏ rule</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Thiết lập</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Chạy cùng hệ điều hành.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Chạy cùng hệ điều hành</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Thiết đặt chủ đề hệ thống.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Tabbed buộc tất cả các ứng dụng sử dụng hiệu ứng phông nền mờ.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Chỉnh màu thanh tiêu đề,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Màu tiêu đề</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Màu tiêu đềr</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Unhandled Exception</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Unhandled Exception in UI</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Lựa chọn Acrylic và Tabbed yêu cầu ít nhất Windows build 22523.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Chế độ tối đặc biệt yêu cầu ít nhất Windows build 1904.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Hiệu ứng Mica yêu cầu ít nhất Windows build 22000.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Phiên bản</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Nâng cao</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Tệp cấu hình</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Kiểu</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Chỉnh trong trình biên tập mặc định.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Chỉnh trong trình biên tập</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Tải lại tất cả các thiết lập.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Khôi phục tất cả thiết lập.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Thiết lập lại</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Bởi</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Biểu tượng bởi:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Dịch bởi:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Chế độ viền</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Chế độ viền</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Vuông</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Tròn</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Kết hợp</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Set corner rounding mode,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Mặc định không làm điều gì để giữ chế độ làm tròn góc của ứng dụng.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Chế độ vuông vô hiệu hóa làm tròn góc.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Chế độ bo tròn buộc các góc được làm tròn.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Chế độ kết hợp giữa góc vuông và bo tròn.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Tự động chạy ứng dụng với quyền quản trị lúc khởi động máy. Bạn cần chạy ứng dụng với quyền quản trị để bật tính năng này .</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Tự động chạy với quyền quản trị </value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Người đóng góp:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Hiện biểu tượng vùng thông báo</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Hiện biểu tượng khay hệ thống</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
+</root>
