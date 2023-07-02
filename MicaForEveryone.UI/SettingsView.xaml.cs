@@ -30,6 +30,7 @@ namespace MicaForEveryone.UI
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
             new Contributor("Zan1456", "https://github.com/Zan1456", "hu"),
             new Contributor("seanardhana", "https://github.com/seanardhana", "id"),
+            new Contributor("GID0317", "https://github.com/GID0317", "id"),
             new Contributor("alessandrocaseti", "https://github.com/alessandrocaseti", "it"),
             new Contributor("A-Loot", "https://github.com/A-Loot", "it"),
             new Contributor("maboroshin", "https://github.com/maboroshin", "ja"),
