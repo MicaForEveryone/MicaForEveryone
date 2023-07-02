@@ -212,7 +212,7 @@
     <PRIResource Include="Strings\ru\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
-    <PRIResource Include="Strings\uk\Resources.resw">
+    <PRIResource Include="Strings\uk-ua\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
     <PRIResource Include="Strings\zh-Hans\Resources.resw">
