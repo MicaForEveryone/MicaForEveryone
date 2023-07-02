@@ -10,3 +10,4 @@ AppPackages/
 BundleArtifacts/
 Release/
 Output/
+*.cache

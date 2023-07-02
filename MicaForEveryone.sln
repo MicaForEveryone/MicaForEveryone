@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8704F1B-DF09-46DD-80AC-B7C6C442BE1D}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		CONTRIBUTING.md = CONTRIBUTING.md
 		Installer.iss = Installer.iss
 		LICENSE = LICENSE
 		MicaForEveryone.pfx = MicaForEveryone.pfx
