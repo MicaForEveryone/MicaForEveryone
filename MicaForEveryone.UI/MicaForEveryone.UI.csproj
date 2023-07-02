@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -188,8 +188,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="Strings\az\Resources.resw">
-    <SubType>Designer</SubType>
+    <PRIResource Include="Strings\az-Latn\Resources.resw">
+      <SubType>Designer</SubType>
     </PRIResource>
     <PRIResource Include="Strings\en\Resources.resw">
       <SubType>Designer</SubType>
