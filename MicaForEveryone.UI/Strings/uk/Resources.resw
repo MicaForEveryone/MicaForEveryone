@@ -169,7 +169,7 @@
     <value>Тип фону</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Робить вікна напівпрозорими та розмитими. Вимкнення цієї опції вимагає закриття та повторного відкриття відповідних вікон.</value>
+    <value>Робить вікна напівпрозорими та розмитими. Вимкнення цієї опції потребує закриття та повторного відкриття відповідних вікон.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
     <value>Фонове розмиття</value>
@@ -208,16 +208,16 @@
     <value>Темний</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Темний режим використовує темну тему.</value>
+    <value>темний режим використовує темну системну тему.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>Режим "За замовчуванням" нічого не робить для збереження звичайного фону додатка.</value>
+    <value>режим "За замовчуванням" зберігає звичайний фон додатка.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
     <value>За замовчуванням</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Режим "За замовчуванням" зберігає тему додатка за замовчуванням.</value>
+    <value>режим "За замовчуванням" зберігає звичайну тему додатка.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Вийти</value>
@@ -226,7 +226,7 @@
     <value>Розширити рамку вікна в клієнтську область</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Розширює рамку вікна в клієнтську область для додавання фону на задній план деяких додатків. Не працює з усіма додатками і може зламати їх, тому не вмикайте цю опцію, якщо ви не знаєте, що робите. Вимкнення цієї опції вимагає закриття і повторного відкриття відповідних вікон.</value>
+    <value>Розширює рамку вікна в клієнтську область для додавання фону на задній план деяких додатків. Працює не з усіма додатками і може зламати їх, тому не вмикайте цю опцію, якщо ви не знаєте, що робите. Вимкнення цієї опції потребує закриття і повторного відкриття відповідних вікон.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>Загальні</value>
@@ -241,7 +241,7 @@
     <value>Глобальне правило</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Встановіть бажану мову інтерфейсу. Для внесення змін перезапустіть додаток.</value>
+    <value>Встановіть бажану мову інтерфейсу. Перезапустіть додаток для внесення змін.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Мова</value>
@@ -250,16 +250,16 @@
     <value>Світлий</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Світлий режим використовує світлу тему.</value>
+    <value>світлий режим використовує світлу системну тему.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Mica змушує всі додатки використовувати ефект розмиття шпалер у стилі Windows 11.</value>
+    <value>Mica змушує всі додатки використовувати ефект розмиття на основі шпалер у стилі Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>Вимикає фон навіть у додатках, де він був.</value>
+    <value>вимикає фон у додатках, де він вже наявний за замовчуванням.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
     <value>Ніякий</value>
@@ -295,19 +295,19 @@
     <value>Налаштування</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Запускати додаток автоматично під час запуску системи.</value>
+    <value>Запускати додаток автоматично під час завантаження системи.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Автозавантаження</value>
+    <value>Автозапуск</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
     <value>Системний</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Використовує вашу обрану системну тему.</value>
+    <value>використовує обрану вами системну тему.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Змушує всі додатки використовувати ефект розмиття фонових шпалер.</value>
+    <value>Змушує всі додатки використовувати ефект розмиття на основі фонових шпалер.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -379,55 +379,55 @@
     <value>Від</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>Іконка від:</value>
+    <value>Автор піктограми:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>Переклали:</value>
+    <value>Перекладачі:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>Режим закруглення рамок</value>
+    <value>Режим заокруглення рамок</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>Режим закруглення рамок</value>
+    <value>Режим заокруглення рамок</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
     <value>Гострі</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>Закруглені</value>
+    <value>Заокруглені</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>Злегка закруглені</value>
+    <value>Злегка заокруглені</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>Встановити режим закруглення кутів,</value>
+    <value>Встановити режим заокруглення кутів,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>Режим "За замовчуванням" нічого не робить, щоб зберегти поточний режим закруглення кутів у додатку.</value>
+    <value>режим "За замовчуванням" зберігає стандартне заокруглення кутів додатка.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>Режим "Гострі" вимикає закруглення кутів.</value>
+    <value>режим "Гострі" вимикає заокруглення кутів.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>Режим "Закруглені" примусово закруглює кути.</value>
+    <value>режим "Заокруглені" примусово заокруглює кути.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>Режим "Злегка закруглені" являє собою щось середнє між квадратними та закругленими кутами.</value>
+    <value>режим "Злегка заокруглені" являє собою щось середнє між квадратними та заокругленими кутами.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
     <value>Автоматично запускати додаток від імені адміністратора під час завантаження системи. Для активації цього параметра запустіть додаток від імені адміністратора.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>Запускати від імені адміністратора під час завантаження системи</value>
+    <value>Автозапуск від імені адміністратора</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
     <value>Учасники:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>Відображати іконку додатка в області сповіщень</value>
+    <value>Відображати піктограму додатка в області сповіщень</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>Відображати іконку в треї</value>
+    <value>Відображати піктограму в треї</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
     <value>Вихід</value>
