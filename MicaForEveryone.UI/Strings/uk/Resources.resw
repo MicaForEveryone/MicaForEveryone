@@ -211,13 +211,13 @@
     <value>темний режим використовує темну системну тему.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" залишає звичайний фон додатка.</value>
+    <value>режим "За замовчуванням" зберігає звичайний фон додатка.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
     <value>За замовчуванням</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" залишає звичайну тему додатка.</value>
+    <value>режим "За замовчуванням" зберігає звичайну тему додатка.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Вийти</value>
@@ -403,7 +403,7 @@
     <value>Встановити режим заокруглення кутів,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" залишає стандартне заокруглення кутів додатка.</value>
+    <value>режим "За замовчуванням" зберігає стандартне заокруглення кутів додатка.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
     <value>режим "Гострі" вимикає заокруглення кутів.</value>
