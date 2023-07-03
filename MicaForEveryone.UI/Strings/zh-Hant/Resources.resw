@@ -190,7 +190,7 @@
     <value>關閉</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>設定檔發生錯誤:
+    <value>設定檔發生錯誤：
 {0}
 
 請修正錯誤並以「重新載入設定檔」重試。</value>
@@ -241,7 +241,7 @@
     <value>全域規則</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>設定您的慣用語言，必須重新開啟應用程式才會生效。</value>
+    <value>設定您的慣用語言，必須重新開啟應用程式才會套用。</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>語言</value>
@@ -274,7 +274,7 @@
     <value>輸入處理程序名稱，不含副檔名(.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>處理程序名稱:</value>
+    <value>處理程序名稱：</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
     <value>重新載入設定檔</value>
@@ -295,7 +295,7 @@
     <value>設定</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>隨 Windows 自動啟動應用程式。</value>
+    <value>跟隨 Windows 自動啟動應用程式。</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
     <value>開機時啟動</value>
@@ -376,13 +376,13 @@
     <value>重設</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>作者:</value>
+    <value>作者：</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>圖示設計:</value>
+    <value>圖示設計：</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>介面翻譯:</value>
+    <value>介面翻譯：</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
     <value>視窗邊角</value>
@@ -421,7 +421,7 @@
     <value>開機時以系統管理員身分執行</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>參與者:</value>
+    <value>參與者：</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
     <value>於工作列角落顯示應用程式圖示</value>
