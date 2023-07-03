@@ -10,6 +10,8 @@ namespace MicaForEveryone.Services
 {
     internal class ViewService : IViewService
     {
+        private readonly object _lock = new();
+
         private readonly IUiSettingsService _uiSettingsService;
 
         private Application? _app;
@@ -30,34 +32,43 @@ namespace MicaForEveryone.Services
 
         public void Initialize(Application app)
         {
-            _app = app;
-            if (MainWindow != null) return;
-            MainWindow = new MainWindow();
-            MainWindow.Destroy += MainWindow_Destroy;
-            MainWindow.Activate();
-            _app.AddWindow(MainWindow);
+            lock (_lock)
+            {
+                _app = app;
+                if (MainWindow != null) return;
+                MainWindow = new MainWindow();
+                MainWindow.Destroy += MainWindow_Destroy;
+                MainWindow.Activate();
+                _app.AddWindow(MainWindow);
+            }
         }
 
         public void Unload()
         {
-            MainWindow?.Close();
-            MainWindow?.Dispose();
-            MainWindow = null;
-            _app = null;
+            lock (_lock)
+            {
+                MainWindow?.Close();
+                MainWindow?.Dispose();
+                MainWindow = null;
+                _app = null;
+            }
         }
 
         public void ShowSettingsWindow()
         {
-            if (SettingsWindow == null)
+            lock (_lock)
             {
-                SettingsWindow = new SettingsWindow();
-                SettingsWindow.Destroy += SettingsWindow_Destroy;
+                if (SettingsWindow == null)
+                {
+                    SettingsWindow = new SettingsWindow();
+                    SettingsWindow.Destroy += SettingsWindow_Destroy;
 
-                SettingsWindow.Activate();
-            }
-            else
-            {
-                SettingsWindow.SetForegroundWindow();
+                    SettingsWindow.Activate();
+                }
+                else
+                {
+                    SettingsWindow.SetForegroundWindow();
+                }
             }
         }
 
@@ -72,41 +83,50 @@ namespace MicaForEveryone.Services
             SettingsWindow?.Dispose();
         }
 
-        private void MainWindow_Destroy(object? sender, Win32.WndProcEventArgs e)
+        private void MainWindow_Destroy(object? sender, WndProcEventArgs e)
         {
-            MainWindow?.Dispose();
-            MainWindow = null;
-            _app?.Exit();
+            lock (_lock)
+            {
+                MainWindow?.Dispose();
+                MainWindow = null;
+                _app?.Exit();
+            }
         }
 
-        private void SettingsWindow_Destroy(object? sender, Win32.WndProcEventArgs e)
+        private void SettingsWindow_Destroy(object? sender, WndProcEventArgs e)
         {
-            SettingsWindow?.Dispose();
-            SettingsWindow = null;
+            lock (_lock)
+            {
+                SettingsWindow?.Dispose();
+                SettingsWindow = null;
+            }
         }
 
         private void UiSettingsService_OnLanguageChanged(object? sender, EventArgs e)
         {
-            if (_app == null) return;
-            
-            var showSettingsWindow = SettingsWindow != null;
-            if (showSettingsWindow)
+            lock (_lock)
             {
-                SettingsWindow?.Close();
-                SettingsWindow?.Dispose();
-                SettingsWindow = null;
-            }
+                if (_app == null) return;
 
-            MainWindow!.Destroy -= MainWindow_Destroy;
-            MainWindow.Close();
-            MainWindow.Dispose();
-            MainWindow = null;
-            
-            Initialize(_app);
-            
-            if (showSettingsWindow)
-            {
-                ShowSettingsWindow();
+                var showSettingsWindow = SettingsWindow != null;
+                if (showSettingsWindow)
+                {
+                    SettingsWindow?.Close();
+                    SettingsWindow?.Dispose();
+                    SettingsWindow = null;
+                }
+
+                MainWindow!.Destroy -= MainWindow_Destroy;
+                MainWindow.Close();
+                MainWindow.Dispose();
+                MainWindow = null;
+
+                Initialize(_app);
+
+                if (showSettingsWindow)
+                {
+                    ShowSettingsWindow();
+                }
             }
         }
     }
