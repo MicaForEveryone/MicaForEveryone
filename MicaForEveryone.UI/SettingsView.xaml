@@ -629,6 +629,8 @@
                                 <HyperlinkButton x:Uid="GitHubButton"
                                                  NavigateUri="https://github.com/MicaForEveryone/MicaForEveryone"
                                                  TabIndex="3" />
+                                <HyperlinkButton x:Uid="DiscordButton"
+                                                 NavigateUri="https://discord.gg/ec6DEakgMv" />
                                 <HyperlinkButton x:Uid="TelegramButton"
                                                  NavigateUri="https://t.me/xMine64" />
                                 <HyperlinkButton x:Uid="TwitterButton"
