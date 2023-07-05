@@ -25,7 +25,7 @@ namespace MicaForEveryone.UI
 
         internal Contributor[] Translators { get; } =
         {
-            new Contributor("Merhab Poladov", "https://github.com/thepoladov13", "az"),
+            new Contributor("Mehrab Poladov", "https://github.com/thepoladov13", "az"),
             new Contributor("uDEV2019", "https://github.com/uDEV2019", "de"),
             new Contributor("Amaro Martínez", "https://github.com/xoascf", "es"),
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
