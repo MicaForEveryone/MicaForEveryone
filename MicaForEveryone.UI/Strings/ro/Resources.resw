@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Despre aplicație</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Acirilic forțează toate aplicațiile în a folosi stilul de fundal din Windows 10.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acirilic</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Adaugă</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Clasă nouă de reguli</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Adaugă o clasă de reguli</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Regulă nouă pentru procese</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Adaugă regulă pentru procese</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Adaugare regulă</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Adaugă regulă</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Fișier de configurare</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Eroare la inițializarea aplicației</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Setează stilul fundalului,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Tip de fundal</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Tip de fundal</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Ferestrele vor fi transparente și cu efect de blur. Dezactivarea acestei opțiuni va necesita închiderea și redeschiderea ferestrelor afectate.</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Blur în fundal</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Răsfoiește</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Anulează</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Introduceți numele clasei de ferestre</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Nume Clasă:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Închide</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Eroare în fișierul de configurare
+{0}
+
+Rezolvă problemele, apoi apasă opțiunea "Reîncărcare fișier de configurare" pentru a reîncărca configurația.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Eroare în fișierul de configurare</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Cale către fișierul de configurare</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Întunecat</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Se va folosi tema întunecată.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Modul Implicit nu modifică nimic pentru a păstra fundalul implicit de către aplicație.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Implicit</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Opțiunea "Implicit" păstrează tema implicită a aplicației.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Ieșire</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Extinde cadrul în zona de client</value>
+    <comment>Needs to be improved
+Used DeepL.</comment>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Extinde cadrul ferestrei în zona sa de client pentru a adăuga un fundal pe fundalul unor aplicații. Nu funcționează pe toate aplicațiile și le poate strica, așa că nu activați acest lucru decât dacă știți ce faceți. Dezactivarea acestei opțiuni necesită să închideți și să redeschideți ferestrele afectate.</value>
+    <comment>Needs to be improved
+Used DeepL.</comment>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Reguli Globale</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Setează limba pentru interfața de utilizator. Aplicația va necesita o repornire pentru ca schimbarea să intre în vigoare.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Limbă</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Luminos</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Se va folosi tema luminoasă.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica forțează toate aplicațiile in a folosi stilul de fundal ușor colorat din Windows 11.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>'Niciuna' dezactivează efectele de fundal, chiar și în aplicațiile care au efectul activat.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Niciuna</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Deschide în editor text</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Introdu numelele executabilului, fără extensia (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Nume Proces:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Reîncarcă</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Reîncarcă configurația automat când fișierul de configurare primește schimbări.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Reîncarcă la modificarea configurării</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Șterge regulă</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Setări</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Setări</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Aplicația va porni automat după conectarea în Windows.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Rulează la pornire</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Sistem</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Sistemul utilizează tema preferată.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Va forța toate aplicațiile în a folosi un efect de blur la fundal.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Cu file</value>
+    <comment>Needs to be improved // Couldn't find a better wording alt.
+Used DeepL.</comment>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Setează tema de culoare la bara de titlu,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Culoarea barei de titlu</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Culoarea barei de titlu</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Problemă neașteptată</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Problemă neașteptată în UI</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Efectele de fundal Acirilic cu file necesită măcar Windows build 22523.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Modul Întunecat imersiv necesită măcar Windows build 19041.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Efectul Mica necesită măcar Windows build 22000.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Versiune</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Avansat</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Fișier de configurare</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Stil</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Deschide fișier de configurare în editorul de text prestabilit.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Editează în editor text</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Reîncarcă regulile din fișierul de configurare, apoi se aplică la toate ferestrele deschise.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Reîncarcă</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Restaurează regulile implicite și anulează toate schimbările.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Resetează</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>De către</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Iconiță de către:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Traduceri de către:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Tip de rotunjire a colțurilor</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Tip de rotunjire a colțurilor</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Pătrat</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Rotunjit</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Ușor Rotunjit</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Setează tipul de rotunjire al colțurilor,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Modul Implicit nu modifică nimic, pentru a păstra modul de rotunjire al colțurilor preferat de aplicație.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Modul pătrățos dezactivează rotunjirea colțurilor.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Modul rotunjit forțează activarea colțurilor rotunjite.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Modul Ușor Rotunjit este o combinație dintre modul pătrățos si modul rotunjit.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Rulează această aplicație ca Administrator automat la pornire. Trebuie sa rulezi această aplicație ca Administrator ca să poți activa această opțiune.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Rulează ca Administrator la pornire</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Contribuitori:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Arată iconița aplicației in zona de notificări</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Arată iconița în tray</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Ieșire</value>
+  </data>
+</root>

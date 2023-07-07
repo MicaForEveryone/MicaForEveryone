@@ -39,6 +39,7 @@ namespace MicaForEveryone.UI
             new Contributor("toineenzo", "https://github.com/toineenzo", "nl"),
             new Contributor("Piteriuz", "https://github.com/Piteriuz", "pl"),
             new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
+            new Contributor("DavidJoacaRo", "https://github.com/DavidJoacaRo", "ro"),
             new Contributor("Danik2343", "https://github.com/Danik2343", "ru"),
             new Contributor("krlvm", "https://github.com/krlvm", "ru"),
             new Contributor("bzzrak", "https://github.com/bzzrak", "sr"),
