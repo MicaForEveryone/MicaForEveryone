@@ -9,11 +9,11 @@ PRs are welcome, but please keep these notes in mind:
 
 * Translate [this](MicaForEveryone.UI/Strings/en/Resources.resw) file to your language.
 
-* Create a folder with your language code as its name in the [Strings](MicaForEveryone.UI/Strings/) folder and put the translated file in it.
+* Create a folder with your [BCP-47 language tag](https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) as its name in the [Strings](MicaForEveryone.UI/Strings/) folder and put the translated file in it.
 
 * If you are not using Visual Studio, add the new file to the [project file](MicaForEveryone.UI/MicaForEveryone.UI.csproj#201) manually like this:
 ```xml
-<PRIResource Include="Strings\<Your Language Code>\Resources.resw">
+<PRIResource Include="Strings\<Your Language Tag>\Resources.resw">
     <SubType>Designer</SubType>
 </PRIResource>
 ```

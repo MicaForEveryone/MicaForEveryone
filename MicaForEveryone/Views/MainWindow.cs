@@ -11,6 +11,8 @@ using MicaForEveryone.UI;
 using MicaForEveryone.Win32;
 using MicaForEveryone.Win32.PInvoke;
 using MicaForEveryone.Xaml;
+using MicaForEveryone.Interfaces;
+using MicaForEveryone.Core.Interfaces;
 
 namespace MicaForEveryone.Views
 {
@@ -97,13 +99,13 @@ namespace MicaForEveryone.Views
 #else
             catch (Exception ex)
             {
-                Program.CurrentApp.Dispatcher.Enqueue(() =>
+                Program.Container.GetRequiredService<IViewService>().DispatcherEnqueue(() =>
                 {
                     var title = ResourceLoader.GetForCurrentView().GetString("AppInitializationError/Title");
-                    var dialogService = Program.CurrentApp.Container.GetService<IDialogService>();
+                    var dialogService = Program.Container.GetService<IDialogService>();
                     dialogService.ShowErrorDialog(null, title, ex, 500, 320).Destroy += (sender, args) =>
                     {
-                        Program.CurrentApp.Exit();
+                        Program.Container.GetRequiredService<IAppLifeTimeService>().ShutdownViewService();
                     };
                 });
             }

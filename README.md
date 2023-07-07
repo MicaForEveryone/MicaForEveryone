@@ -45,18 +45,28 @@ For more information check our [wiki page](https://github.com/MicaForEveryone/Mi
 ## 🌍 Globalization
 Translations into versions for other languages are welcome! Please read the [translation guide](./CONTRIBUTING.md#translating) before starting translations.
 
-| Key     | Name                 | Translator                                                                                         |
-|---------|:---------------------|:---------------------------------------------------------------------------------------------------|
-| es      | Spanish              | [Amaro Martínez](https://github.com/xoascf)                                                        |
-| ru      | Russian              | [Danik2343](https://github.com/Danik2343), [krlvm](https://github.com/krlvm)                       |
-| ja      | Japanese             | [maboroshin](https://github.com/maboroshin)                                                        |
-| de      | German               | [uDEV2019](https://github.com/uDEV2019)                                                            |
-| it      | Italian              | [alessandrocaseti](https://github.com/alessandrocaseti)                                            |
-| zh-hans | Chinese (Simplified) | [AndromedaMelody](https://github.com/AndromedaMelody), [FrzMtrsprt](https://github.com/FrzMtrsprt) |
-| fr      | French               | [SaiyajinK](https://github.com/SaiyajinK)                                                          |
-| ko      | Korean               | [RTFTR](https://github.com/RTFTR)                                                                  |
-| pl      | Polish               | [Piteriuz](https://github.com/Piteriuz)                                                            |
-
+| Key     | Name                  | Translator                                                                                         |
+|---------|:----------------------|:---------------------------------------------------------------------------------------------------|
+| az-Latn | Azerbaijian (Latin)   | [thepoladov13](https://github.com/thepoladov13)
+| de      | German                | [uDEV2019](https://github.com/uDEV2019)                                                            |
+| es      | Spanish               | [Amaro Martínez](https://github.com/xoascf)                                                        |
+| fr      | French                | [SaiyajinK](https://github.com/SaiyajinK)                                                          |
+| hu      | Hungarian             | [Zan1456](https://github.com/Zan1456)                                                              |
+| id      | Indonesian            | [seanardhana](https://github.com/seanardhana), [GID0317](https://github.com/GID0317)               |
+| it      | Italian               | [alessandrocaseti](https://github.com/alessandrocaseti), [A-Loot](https://github.com/A-Loot)       |
+| ja      | Japanese              | [maboroshin](https://github.com/maboroshin)                                                        |        
+| ko      | Korean                | [RTFTR](https://github.com/RTFTR)                                                                  |
+| nl      | Dutch                 | [toineenzo](https://github.com/toineenzo)                                                          |
+| pl      | Polish                | [Piteriuz](https://github.com/Piteriuz)                                                            |
+| pt-br   | Brazilian Portuguese  | [Douglas Vianna](https://github.com/dgsmiley18)                                                    |
+| ru      | Russian               | [Danik2343](https://github.com/Danik2343), [krlvm](https://github.com/krlvm)                       |
+| sr      | Serbian               | [bzzrak](https://github.com/bzzrak)                                                                |
+| tr      | Turkish               | [Meriç Bağlayan](https://github.com/baglayan)                                                      |
+| uk-ua   | Ukrainian             | [Phyan](https://github.com/Phyan), [lowl1f3](https://github.com/lowl1f3)                           |
+| vi      | Vietnamese            | [chefkozaki](https://github.com/chefkozaki)                                                        |
+| zh-Hans | Chinese (Simplified)  | [AndromedaMelody](https://github.com/AndromedaMelody), [FrzMtrsprt](https://github.com/FrzMtrsprt) |
+| zh-Hant | Chinese (Traditional) | [MW1Z](https://github.com/MW1Z), [jay900604](https://github.com/jay900604)                         |
+ 
 ## 🖊️ Contributing
 If you're interested in contributing or translating Mica For Everyone, check our [CONTRIBUTING.md](CONTRIBUTING.md) file.
 

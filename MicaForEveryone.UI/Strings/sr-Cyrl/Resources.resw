@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>Про додаток</value>
+    <value>О овој апликацији</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic змушує всі додатки використовувати ефект розмиття фону у стилі Windows 10.</value>
+    <value>Acrylic чини да све апликације користе позадински ефекат замућења у стилу Windows-а 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>Додати</value>
+    <value>Додај</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>Нове правило класу</value>
+    <value>Ново правило за класу</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>Додати правило класу</value>
+    <value>Додај правило за класу</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>Нове правило процесу</value>
+    <value>Ново правило за процес</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Додати правило процесу</value>
+    <value>Додај правило за процес</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Додати правило</value>
+    <value>Додај правило</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Додати правило</value>
+    <value>Додај правило</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Файл конфігурації</value>
+    <value>Конф. датотека</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>Помилка під час ініціалізації додатку</value>
+    <value>Грешка у иницијализацији апликације</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -160,154 +160,154 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Встановлює тип фону,</value>
+    <value>Изаберите тип позадине.</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Тип фону</value>
+    <value>Тип позадинског ефекта</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Тип фону</value>
+    <value>Тип позадинског ефекта</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Робить вікна напівпрозорими та розмитими. Вимкнення цієї опції потребує закриття та повторного відкриття відповідних вікон.</value>
+    <value>Чини да прозори буду прозирни и замућени. Након што онемогућите ову опцију, морате да затворите и поново отворите прозоре.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Фонове розмиття</value>
+    <value>Замућење позади</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>Огляд</value>
+    <value>Потражи</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>Скасувати</value>
+    <value>Откажи</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Введіть назву класу вікна</value>
+    <value>Унесите име класе прозора</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Назва класу:</value>
+    <value>Име класе:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Закрити</value>
+    <value>Затвори</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>Помилка у файлі конфігурації:
+    <value>Грешка у конфигурационој датотеци:
 {0}
 
-Виправте помилки, а після скористайтеся опцією "Перезавантажити файл конфігурації", щоб перезавантажитись.</value>
+Поправите грешке, па притисните "Поново учитај конф. датотеку"</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>Помилка у файлі конфігурації</value>
+    <value>Грешка у конф. датотеци</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>Файл для збереження та завантаження правил.</value>
+    <value>Датотека која ће се користити за чување и читање правила.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>Шлях до файлу</value>
+    <value>Путања датотеке</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Темний</value>
+    <value>Тамно</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>темний режим використовує темну системну тему.</value>
+    <value>Тамно користи тамну тему.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" зберігає звичайний фон додатка.</value>
+    <value>Опција "Подразумевано" оставља подразумевани позадински ефекат апликације.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>За замовчуванням</value>
+    <value>Подразумевано</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" зберігає звичайну тему додатка.</value>
+    <value>Опција "Подразумевано" оставља подразумевану тему апликације.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>Вийти</value>
+    <value>Изађи</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Розширити рамку вікна в клієнтську область</value>
+    <value>Продужи рам у клијентски простор</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Розширює рамку вікна в клієнтську область для додавання фону на задній план деяких додатків. Працює не з усіма додатками і може зламати їх, тому не вмикайте цю опцію, якщо ви не знаєте, що робите. Вимкнення цієї опції потребує закриття і повторного відкриття відповідних вікон.</value>
+    <value>Продужава рам прозора у клијентску област и додаје позадински ефекат на позадину неких апликација. Не ради за све апликације и може изазвати нежељене последице, тако да не омогућавајте ово ако не знате шта радите. Након што онемогућите ову опцију, морате да затворите и поново отворите прозоре.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>Загальні</value>
+    <value>Опште</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>Загальні</value>
+    <value>Опште</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Глобальне правило</value>
+    <value>Глобално правило</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Встановіть бажану мову інтерфейсу. Перезапустіть додаток для внесення змін.</value>
+    <value>Изаберите језик апликације. Ступа на снагу од следећег покретања.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>Мова</value>
+    <value>Језик</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Світлий</value>
+    <value>Светло</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>світлий режим використовує світлу системну тему.</value>
+    <value>Светло користи светлу тему.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Mica змушує всі додатки використовувати ефект розмиття на основі шпалер у стилі Windows 11.</value>
+    <value>Mica чини да све апликације користе позадински ефекат обојене позадине у стилу Windows-а 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>вимикає фон у додатках, де він вже наявний за замовчуванням.</value>
+    <value>"Ништа" онемогућава позадинске ефекте, чак и у апликацијама у којима су омогућени.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>Ніякий</value>
+    <value>Ништа</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
     <value>ОК</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>Відкрити в текстовому редакторі</value>
+    <value>Отвори у текстуалном едитору</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>Введіть назву виконуваного файлу без розширення (.exe)</value>
+    <value>Унесите име извршне датотеке без екстензије (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>Назва процесу:</value>
+    <value>Име процеса:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>Перезавантажити</value>
+    <value>Поново учитај</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Перезавантажує конфігурацію автоматично при зміні конфігураційного файлу.</value>
+    <value>Аутоматски учитава конфигурацију чим се конф. датотека промени.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Перезавантажуватись при змінах</value>
+    <value>Поново учитај при промени</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>Видалити правило</value>
+    <value>Уклони правило</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>Налаштування</value>
+    <value>Поставке</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>Налаштування</value>
+    <value>Поставке</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Запускати додаток автоматично під час завантаження системи.</value>
+    <value>Покреће апликацију аутоматски чим се пријавите.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Автозапуск</value>
+    <value>Покрећи при пријављивању</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>Системний</value>
+    <value>Систем</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>використовує обрану вами системну тему.</value>
+    <value>Систем користи вашу преферирану тему.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Змушує всі додатки використовувати ефект розмиття на основі фонових шпалер.</value>
+    <value>Tabbed чини да све апликације користе позадински ефекат замућене позадине.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -316,13 +316,13 @@
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>Встановити кольорову тему заголовків вікон,</value>
+    <value>Подешава тему боје насловних трака.</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>Колір заголовка</value>
+    <value>Боја насловне траке</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Колір заголовка</value>
+    <value>Боја насловне траке</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -331,105 +331,105 @@
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>Необроблюване виключення</value>
+    <value>Unhandled Exception</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Необроблюване виключення в інтерфейсі</value>
+    <value>Unhandled Exception in UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Ефекти "Acrylic" і "Tabbed" потребують принаймні Windows версії 22523.</value>
+    <value>Позадински ефекти Acrylic и Tabbed захтевају барем Windows подверзију 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Для імерсивного темного режиму потрібна версія Windows 19041 та вище.</value>
+    <value>Имерзивна тамна тема захтева барем Windows подверзију 19041.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Ефект "Mica" потребує принаймні Windows версії 22000.</value>
+    <value>Ефекат Mica захтева барем Windows подверзију 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Версія</value>
+    <value>Верзија</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>Додатково</value>
+    <value>Напредно</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Файл конфігурації</value>
+    <value>Конфигурациона датотека</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>Стиль</value>
+    <value>Стил</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>Відкрити файл конфігурації в стандартному текстовому редакторі.</value>
+    <value>Отвара конф. датотеку у подразумеваном текстуалном едитору.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Редагувати в текстовому редакторі</value>
+    <value>Отвори у текстуалном едитору</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>Перезавантажує правила з файлу конфігурації та застосовує їх до всіх відкритих вікон.</value>
+    <value>Поново учитава правила из конф. датотеке, па их примењује на све отворене прозоре.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>Перезавантажити</value>
+    <value>Поново учитај конф. датотеку</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>Відновити стандартні правила і видалити всі зміни.</value>
+    <value>Враћа предефинисана правила и брише све промене.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>Відновити</value>
+    <value>Ресетуј</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>Від</value>
+    <value>Аутор:</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>Автор піктограми:</value>
+    <value>Иконицу урадио:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>Перекладачі:</value>
+    <value>Преводиоци:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>Режим заокруглення рамок</value>
+    <value>Режим углова</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>Режим заокруглення рамок</value>
+    <value>Режим углова</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>Гострі</value>
+    <value>Четвртасти</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>Заокруглені</value>
+    <value>Закругљени</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>Злегка заокруглені</value>
+    <value>Благо закругљени</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>Встановити режим заокруглення кутів,</value>
+    <value>Подешава режим углова прозора.</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" зберігає стандартне заокруглення кутів додатка.</value>
+    <value>Опција "Подразумевано" оставља подразумевано закругљење углова прозора.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>режим "Гострі" вимикає заокруглення кутів.</value>
+    <value>Четвртасти режим онемогућава закругљивање углова.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>режим "Заокруглені" примусово заокруглює кути.</value>
+    <value>Закругљени режим принудно омогућава закругљене углове.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>режим "Злегка заокруглені" являє собою щось середнє між квадратними та заокругленими кутами.</value>
+    <value>Благо закругљени режим је нешто између четвртастих и закругљених углова.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>Автоматично запускати додаток від імені адміністратора під час завантаження системи. Для активації цього параметра запустіть додаток від імені адміністратора.</value>
+    <value>Покреће апликацију као администратор аутоматски чим се пријавите. Морате да покренете ову апликацију као администратор да омогућите ову опцију.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>Автозапуск від імені адміністратора</value>
+    <value>Покрећи као администратор при пријављивању</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>Учасники:</value>
+    <value>Допринели:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>Відображати піктограму додатка в області сповіщень</value>
+    <value>Прикажи иконицу апликације у области за обавештења</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>Відображати піктограму в треї</value>
+    <value>Прикажи иконицу у палети</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
-    <value>Вихід</value>
+    <value>Изађи</value>
   </data>
 </root>

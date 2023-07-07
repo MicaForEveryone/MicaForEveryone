@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>Про додаток</value>
+    <value>Về ứng dụng này</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic змушує всі додатки використовувати ефект розмиття фону у стилі Windows 10.</value>
+    <value>Acrylic buộc mọi ứng dụng dùng hiệu ứng nền mờ theo kiểu Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>Додати</value>
+    <value>Thêm</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>Нове правило класу</value>
+    <value>Thêm Rule của Class</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>Додати правило класу</value>
+    <value>Thêm Rule của Class</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>Нове правило процесу</value>
+    <value>Rule quá trình mới</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Додати правило процесу</value>
+    <value>Rule quá trình mới</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Додати правило</value>
+    <value>Thêm Rule</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Додати правило</value>
+    <value>Thêm Rule</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Файл конфігурації</value>
+    <value>Tệp cấu hình</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>Помилка під час ініціалізації додатку</value>
+    <value>Lỗi chạy ứng dụng</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -160,154 +160,154 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Встановлює тип фону,</value>
+    <value>Thiết lập kiểu nền,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Тип фону</value>
+    <value>Kiểu nền</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Тип фону</value>
+    <value>Kiểu nền</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Робить вікна напівпрозорими та розмитими. Вимкнення цієї опції потребує закриття та повторного відкриття відповідних вікон.</value>
+    <value>Làm cửa sổ có hiệu ứng mờ. Tắt lựa chọn này có thể yêu cầu bạn đóng và mở lại các cửa sổ bị ảnh hưởng .</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Фонове розмиття</value>
+    <value>Làm mờ đằng sau</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>Огляд</value>
+    <value>Tìm</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>Скасувати</value>
+    <value>Hủy</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Введіть назву класу вікна</value>
+    <value>Nhập tên class của window </value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Назва класу:</value>
+    <value>Tên class:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Закрити</value>
+    <value>Đóng</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>Помилка у файлі конфігурації:
+    <value>Lỗi trong tệp cấu hình:
 {0}
 
-Виправте помилки, а після скористайтеся опцією "Перезавантажити файл конфігурації", щоб перезавантажитись.</value>
+Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải lại .</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>Помилка у файлі конфігурації</value>
+    <value>Lỗi trong tệp cấu hình</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>Файл для збереження та завантаження правил.</value>
+    <value>File dùng để tải và lưu thiết lập.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>Шлях до файлу</value>
+    <value>Đường dẫn file</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Темний</value>
+    <value>Dark</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>темний режим використовує темну системну тему.</value>
+    <value>Dark dùng chủ đề tối.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" зберігає звичайний фон додатка.</value>
+    <value>Mặc định giữ nguyên nền mặc định của cửa sổ.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>За замовчуванням</value>
+    <value>Mặc định</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" зберігає звичайну тему додатка.</value>
+    <value>Mặc định giữ nguyên chủ đề mặc định của cửa sổ.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>Вийти</value>
+    <value>Thoát</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Розширити рамку вікна в клієнтську область</value>
+    <value>Mở rộng khung vào khu vực chính</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Розширює рамку вікна в клієнтську область для додавання фону на задній план деяких додатків. Працює не з усіма додатками і може зламати їх, тому не вмикайте цю опцію, якщо ви не знаєте, що робите. Вимкнення цієї опції потребує закриття і повторного відкриття відповідних вікон.</value>
+    <value>Mở rộng khung cửa sổ vào khu vực chính của nó để thêm phông nền trên một số ứng dụng. Tính năng này không hoạt động trên mọi ứng dụng và có thể làm hỏng chúng, vì vậy đừng bật tính năng này trừ khi bạn biết mình đang làm gì. Tắt tùy chọn này yêu cầu bạn phải đóng và mở lại các cửa sổ bị ảnh hưởng.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>Загальні</value>
+    <value>Chung</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>Загальні</value>
+    <value>Chung</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Глобальне правило</value>
+    <value>Global Rule</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Встановіть бажану мову інтерфейсу. Перезапустіть додаток для внесення змін.</value>
+    <value>Chọn ngôn ngữ của bạn. Yêu cầu khởi động lại ứng dụng </value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>Мова</value>
+    <value>Ngôn ngữ</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Світлий</value>
+    <value>Light</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>світлий режим використовує світлу системну тему.</value>
+    <value>Light dùng chủ đề sáng.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>Mica змушує всі додатки використовувати ефект розмиття на основі шпалер у стилі Windows 11.</value>
+    <value>Mica buộc mọi ứng dụng dùng hiệu ứng nền mờ theo kiểu Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>вимикає фон у додатках, де він вже наявний за замовчуванням.</value>
+    <value>None vô hiệu hóa phông nền, ngay cả trên các ứng dụng đã bật chúng.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>Ніякий</value>
+    <value>None</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>ОК</value>
+    <value>OK</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>Відкрити в текстовому редакторі</value>
+    <value>Mở trong trình chỉnh sửa văn bản</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>Введіть назву виконуваного файлу без розширення (.exe)</value>
+    <value>Nhập tên tệp thực thi mà không có phần mở rộng của nó (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>Назва процесу:</value>
+    <value>Tên quá trình:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>Перезавантажити</value>
+    <value>Tải lại</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Перезавантажує конфігурацію автоматично при зміні конфігураційного файлу.</value>
+    <value>Tải lại làm mới ứng dụng khi tệp cấu hình được chỉnh sửa.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Перезавантажуватись при змінах</value>
+    <value>Tải lại khi có thay đổi</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>Видалити правило</value>
+    <value>Bỏ rule</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>Налаштування</value>
+    <value>Thiết lập</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>Налаштування</value>
+    <value>Thiết lập</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Запускати додаток автоматично під час завантаження системи.</value>
+    <value>Chạy cùng hệ điều hành.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Автозапуск</value>
+    <value>Chạy cùng hệ điều hành</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>Системний</value>
+    <value>System</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>використовує обрану вами системну тему.</value>
+    <value>Thiết đặt chủ đề hệ thống.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>Змушує всі додатки використовувати ефект розмиття на основі фонових шпалер.</value>
+    <value>Tabbed buộc tất cả các ứng dụng sử dụng hiệu ứng phông nền mờ.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
     <value>Tabbed</value>
@@ -316,13 +316,13 @@
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>Встановити кольорову тему заголовків вікон,</value>
+    <value>Chỉnh màu thanh tiêu đề,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>Колір заголовка</value>
+    <value>Màu tiêu đề</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Колір заголовка</value>
+    <value>Màu tiêu đềr</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -331,105 +331,105 @@
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>Необроблюване виключення</value>
+    <value>Unhandled Exception</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Необроблюване виключення в інтерфейсі</value>
+    <value>Unhandled Exception in UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Ефекти "Acrylic" і "Tabbed" потребують принаймні Windows версії 22523.</value>
+    <value>Lựa chọn Acrylic và Tabbed yêu cầu ít nhất Windows build 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Для імерсивного темного режиму потрібна версія Windows 19041 та вище.</value>
+    <value>Chế độ tối đặc biệt yêu cầu ít nhất Windows build 1904.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Ефект "Mica" потребує принаймні Windows версії 22000.</value>
+    <value>Hiệu ứng Mica yêu cầu ít nhất Windows build 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>Версія</value>
+    <value>Phiên bản</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>Додатково</value>
+    <value>Nâng cao</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Файл конфігурації</value>
+    <value>Tệp cấu hình</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>Стиль</value>
+    <value>Kiểu</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>Відкрити файл конфігурації в стандартному текстовому редакторі.</value>
+    <value>Chỉnh trong trình biên tập mặc định.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Редагувати в текстовому редакторі</value>
+    <value>Chỉnh trong trình biên tập</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>Перезавантажує правила з файлу конфігурації та застосовує їх до всіх відкритих вікон.</value>
+    <value>Tải lại tất cả các thiết lập.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>Перезавантажити</value>
+    <value>Reload</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>Відновити стандартні правила і видалити всі зміни.</value>
+    <value>Khôi phục tất cả thiết lập.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>Відновити</value>
+    <value>Thiết lập lại</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>Від</value>
+    <value>Bởi</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>Автор піктограми:</value>
+    <value>Biểu tượng bởi:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>Перекладачі:</value>
+    <value>Dịch bởi:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>Режим заокруглення рамок</value>
+    <value>Chế độ viền</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>Режим заокруглення рамок</value>
+    <value>Chế độ viền</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>Гострі</value>
+    <value>Vuông</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>Заокруглені</value>
+    <value>Tròn</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>Злегка заокруглені</value>
+    <value>Kết hợp</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>Встановити режим заокруглення кутів,</value>
+    <value>Set corner rounding mode,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>режим "За замовчуванням" зберігає стандартне заокруглення кутів додатка.</value>
+    <value>Mặc định không làm điều gì để giữ chế độ làm tròn góc của ứng dụng.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>режим "Гострі" вимикає заокруглення кутів.</value>
+    <value>Chế độ vuông vô hiệu hóa làm tròn góc.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>режим "Заокруглені" примусово заокруглює кути.</value>
+    <value>Chế độ bo tròn buộc các góc được làm tròn.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>режим "Злегка заокруглені" являє собою щось середнє між квадратними та заокругленими кутами.</value>
+    <value>Chế độ kết hợp giữa góc vuông và bo tròn.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>Автоматично запускати додаток від імені адміністратора під час завантаження системи. Для активації цього параметра запустіть додаток від імені адміністратора.</value>
+    <value>Tự động chạy ứng dụng với quyền quản trị lúc khởi động máy. Bạn cần chạy ứng dụng với quyền quản trị để bật tính năng này .</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>Автозапуск від імені адміністратора</value>
+    <value>Tự động chạy với quyền quản trị </value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>Учасники:</value>
+    <value>Người đóng góp:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>Відображати піктограму додатка в області сповіщень</value>
+    <value>Hiện biểu tượng vùng thông báo</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>Відображати піктограму в треї</value>
+    <value>Hiện biểu tượng khay hệ thống</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
-    <value>Вихід</value>
+    <value>Thoát</value>
   </data>
 </root>
