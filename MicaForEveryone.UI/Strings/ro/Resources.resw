@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>About this app</value>
+    <value>Despre aplicație</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>Acrylic forces all apps to use Windows 10-style blur backdrop effect.</value>
+    <value>Acril forțează toate aplicațiile să folosească effectul de fundal estompat din Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>Acrylic</value>
+    <value>Acril</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>Add</value>
+    <value>Adaugă</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>New Class Rule</value>
+    <value>Nouă regulă de Clasă</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>Add Class Rule</value>
+    <value>Adaugă regulă de Clasă</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>New Process Rule</value>
+    <value>Nouă regulă de process</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Add Process Rule</value>
+    <value>Adaugă regulă de process</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Add Rule</value>
+    <value>Adaugă regulă</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Add Rule</value>
+    <value>Adaugă regulă</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Config file</value>
+    <value>Fișier de configurare</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>Error in Initializing application</value>
+    <value>Eroare la inițializarea aplicației</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -160,70 +160,70 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Set backdrop type,</value>
+    <value>Setează tipul fundalului,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>Backdrop Type</value>
+    <value>Tipul fundalului</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>Backdrop Type</value>
+    <value>Tipul fundalului</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Make windows translucent and blurred. Disabling this option requires you to close and reopen affected windows.</value>
+    <value>Fă ferestre translucid și estompate. Dezactivarea acestei opțiuni iți cere să închizi și să redeschizi ferestrele afectate.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>Blur Behind</value>
+    <value>estompează în spate</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>Browse</value>
+    <value>Caută</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Anulează</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Enter window class name</value>
+    <value>Introduce numele clasei a ferestrei</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Class Name:</value>
+    <value>Numele clasei:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>Close</value>
+    <value>Închide</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>Error in config file:
+    <value>Eroare în fișierul de configurare:
 {0}
 
-Fix errors then use "Reload config file" option to reload it.</value>
+Repară erori, atunci folosește opțiunea "Reîncarcă fișierul de configurare" pentru a-l reîncarca.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>Error in config file</value>
+    <value>Eroare în fișierul de configurare</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>File to be used for saving and loading rules.</value>
+    <value>Fișierul de folosit pentru a salva și incărca reguli.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>File Path</value>
+    <value>Cale spre fișier</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Dark</value>
+    <value>Închis</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Dark uses dark theme.</value>
+    <value>Închis folosește temă închisă.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>Default doesn't do anything to keep app's default backdrop.</value>
+    <value>Modul implicit nu face nimic pentru a păstra fundalul implicit al aplicației.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>Default</value>
+    <value>Mod implicit</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>The "Default" option keeps app's default theme.</value>
+    <value>Opțiunea "Mod implicit" păstrează tema implicită al aplicației.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Extend Frame Into Client Area</value>
+    <value>Extinde cadrul in zona clientului</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
     <value>Extends window frame into its client area to add backdrop on background of some apps. It doesn't work on every app and may break them, so don't enable this unless you know what you are doing. Disabling this option requires you to close and reopen affected windows.</value>
