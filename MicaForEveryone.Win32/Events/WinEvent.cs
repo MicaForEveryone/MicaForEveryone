@@ -21,7 +21,7 @@ namespace MicaForEveryone.Win32.Events
 
 		internal void StartListening()
 		{
-			_handle = NativeMethods.SetWinEventHook((uint)EventType, (uint)EventType, Application.InstanceHandle, _callback, 0, 0, WINEVENT.WINEVENT_OUTOFCONTEXT);
+			_handle = NativeMethods.SetWinEventHook((uint)EventType, (uint)EventType, IntPtr.Zero, _callback, 0, 0, WINEVENT.WINEVENT_OUTOFCONTEXT);
 		}
 
 		internal void StopListening()
