@@ -54,7 +54,6 @@ namespace MicaForEveryone.Services
 
             // start rule service
             await _ruleService.MatchAndApplyRuleToAllWindowsAsync();
-            _ruleService.StartService();
         }
 
         public async Task RunViewServiceAsync()
@@ -73,6 +72,8 @@ namespace MicaForEveryone.Services
 
                 _viewService.Initialize(_app);
                 _app.RegisterExceptionHandlers();
+
+                _ruleService.StartService();
 
                 _app.Run();
 
