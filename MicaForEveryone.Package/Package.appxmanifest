@@ -10,7 +10,7 @@
     <Identity
         Name="MicaForEveryone"
         Publisher="CN=MicaForEveryone"
-        Version="1.3.1.1" />
+        Version="1.3.1.2" />
 
     <Properties>
         <DisplayName>ms-resource:AppName</DisplayName>
