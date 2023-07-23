@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>O této aplikaci</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Akrylický režim nutí všechny aplikace aby používaly styl rozmazání Windows 10</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Akrylický</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Přidat</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Nové Pravidlo Třídy</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Přidat Pravidlo Třídy</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Nové Pravidlo Procesu</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Přidat Pravidlo Procesu</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Přidat Pravidlo</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Přidat Pravidlo</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Konfigurační Soubor</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Chyba při inicializaci aplikaci</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Nastavit Typ Pozadí</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Typ Pozadí</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Typ Pozadí</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Rozmazat a zprůhlednit okna. Vypnutí této funkce vyžaduje opětovné spuštění ovlivněných aplikací</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Rozmazat Pozadí</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Prohližet</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Zrušit</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Vložte jméno třídy okna</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Jméno Třídy:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Zavřít</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Chyba v konfiguračním souboru:</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Chyba v konfiguračním souboru</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>Soubor který se bude používat k ukládání a načítání pravidel</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Cesta k souboru</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Temný</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Temný používá tmavý motiv</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Výchozí nedělá nic k ponechání výchozího pozadí</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Výchozí</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Výchozí ponechá výchozí motiv aplikace</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Odejít</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Rozšířit okraj do oblasti klienta</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Rozšíří okraj okna do jeho oblasti klienta aby se přidalo některým aplikacím pozadí. Nefunguje ve všech aplikacích a může je poškodit, takže tuto možnost nezapínejte dokud nevíte co děláte. Vypnutí této funkce vyžaduje opětovné spuštění ovlivněných aplikací</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Obecné</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Obecné</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Globální Pravidlo</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Vyberte jazyk pro UI. Aplikace se musí restartovat</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Světlý</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Světlý používá světlý motiv</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica nutí všechny aplikace aby používaly efekt pozadí Windows 11</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>"Žádné" vypíná pozadí, včetně aplikací které je již má</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Žádné</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Otevřít v textovém editoru</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Vložte název spustitelného souboru bez přípony (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Jméno Procesu:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Znovu načíst</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Znovu načte konfigurační soubor při jeho změně</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Znovu načíst při změně</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Odstranit</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Spustit tuto aplikaci při startu systému.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Spusit při startu</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Systémový</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Systémový styl použije váš motiv</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Záložkový nutí všechny aplikace aby používaly efekt rozmazané tapety</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Záložkový</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Nastavit barevný motiv hlavní lišty</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Barva Lišty</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Barva Lišty</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Neošetřená vyjímka</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Neošetřená vyjímka v UI</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Akrylické a Záložkové pozadí vyžadují alespoň sestavení 22523.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Imerzivní Tmavý Režim vyžaduje alespoň sestavení 19041.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Mica efekt vyžaduje alespoň sestavení 22000.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Verze</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Pokročilé</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Konfigurační Soubor</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Styl</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Otevřít konfigurační soubor ve výchozím textovém editoru</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Upravit v textovém editoru</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Znovu načte pravidla a nastaví je na všechny otevřené okna.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Znovu načíst</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Obnovit všechny změny a vymazat změny</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Resetovat</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Od</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Ikona od:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Překlady od:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Režim rohu</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Režim rohu</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Hranaté</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Zakulacené</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Lehce zakulacené</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Nastavit režim zaoblení oken,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Výchozí nedělá nic k ponechání výchozího zaoblení rohů</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Hranatý režim vypne zakulacení oken</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Zakulacený režim vynutí zakulacené okna</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Lehce zakulacený režim je mezi hranatými a kulatými rohy</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Spustit tuto aplikaci při startu systému jako administrátor. Tato aplikace musí být spuštěna jako Administrátor pro povolení této funkce.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Spustit při startu jako administrátor</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Přispěvatelé:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Zobrazit ikonu aplikace v oznamovací oblasti</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Zobrazit oznam. ikonu</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Odejít</value>
+  </data>
+</root>
