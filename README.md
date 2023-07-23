@@ -48,6 +48,7 @@ Translations into versions for other languages are welcome! Please read the [tra
 | Key     | Name                  | Translator                                                                                         |
 |---------|:----------------------|:---------------------------------------------------------------------------------------------------|
 | az-Latn | Azerbaijian (Latin)   | [thepoladov13](https://github.com/thepoladov13)
+| cs	  | Czech		  | [maggster165](https://github.com/maggster165]						       |
 | de      | German                | [uDEV2019](https://github.com/uDEV2019)                                                            |
 | es      | Spanish               | [Amaro Martínez](https://github.com/xoascf)                                                        |
 | fr      | French                | [SaiyajinK](https://github.com/SaiyajinK)                                                          |
