@@ -88,6 +88,29 @@ namespace MicaForEveryone.Core.Models
             }
         }
 
+        public void ApplyCaptionColorRule(COLORREF captionColor)
+        {
+            if (!DesktopWindowManager.IsCaptionColorSupported) return;
+            if (captionColor == COLORREF.Default) return;
+            DesktopWindowManager.SetCaptionColor(WindowHandle, captionColor);
+        }
+
+        public void ApplyCaptionTextColorRule(COLORREF captionTextColor)
+        {
+            if (!DesktopWindowManager.IsCaptionTextColorSupported) return;
+            if (captionTextColor == COLORREF.Default) return;
+            DesktopWindowManager.SetCaptionTextColor(WindowHandle, captionTextColor);
+        }
+
+        public void ApplyBorderColorRule(COLORREF borderColor)
+        {
+            if (!DesktopWindowManager.IsBorderColorSupported)
+                return;
+            if (borderColor == COLORREF.Default)
+                return;
+            DesktopWindowManager.SetBorderColor(WindowHandle, borderColor);
+        }
+
         public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
         {
 #if DEBUG
@@ -96,7 +119,44 @@ namespace MicaForEveryone.Core.Models
             ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
             ApplyBackdropRule(rule.BackdropPreference);
             ApplyCornerPreferenceRule(rule.CornerPreference);
-
+            if (rule.CaptionColor != null)
+            {
+                try
+                {
+                    ApplyCaptionColorRule(Convert.ToUInt32(rule.CaptionColor, 16));
+                }
+                catch (FormatException) 
+                {
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                }
+            }
+            if (rule.CaptionTextColor != null)
+            {
+                try
+                {
+                    ApplyCaptionTextColorRule(Convert.ToUInt32(rule.CaptionTextColor, 16));
+                }
+                catch (FormatException)
+                {
+                }
+                catch (ArgumentOutOfRangeException) {
+                }
+            }
+            if (rule.BorderColor != null)
+            {
+                try
+                {
+                    ApplyBorderColorRule(Convert.ToUInt32(rule.BorderColor, 16));
+                }
+                catch (FormatException)
+                {
+                }
+                catch (ArgumentOutOfRangeException) {
+                }
+            }
+            
             if (rule.ExtendFrameIntoClientArea)
                 DesktopWindowManager.ExtendFrameIntoClientArea(WindowHandle);
 

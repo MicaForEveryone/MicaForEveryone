@@ -15,6 +15,7 @@ namespace MicaForEveryone.Win32
         private const uint DWMWA_WINDOW_CORNER_PREFERENCE = 33;
         private const uint DWMWA_CAPTION_COLOR = 35;
         private const uint DWMWA_TEXT_COLOR = 36;
+        private const uint DWMWA_BORDER_COLOR = 34;
 
         /// <summary>
         /// Check whether Windows build is 19041 or higher, that supports <see cref="SetImmersiveDarkMode(IntPtr, bool)"/>.
@@ -38,6 +39,24 @@ namespace MicaForEveryone.Win32
         /// Check whether Windows Windows build is 22000 or higher, that supports <see cref="SetCornerPreference(IntPtr, DWM_WINDOW_CORNER_PREFERENCE)"/>
         /// </summary>
         public static bool IsCornerPreferenceSupported { get; } =
+            Environment.OSVersion.Version.Build >= 22000;
+
+        /// <summary>
+        /// Check whether Windows Windows build is 22000 or higher, that supports <see cref="SetCaptionColor(IntPtr, COLORREF)"/>
+        /// </summary>
+        public static bool IsCaptionColorSupported { get; } =
+            Environment.OSVersion.Version.Build >= 22000;
+
+        /// <summary>
+        /// Check whether Windows Windows build is 22000 or higher, that supports <see cref="SetCaptionTextColor(IntPtr, COLORREF)"/>
+        /// </summary>
+        public static bool IsCaptionTextColorSupported { get; } =
+            Environment.OSVersion.Version.Build >= 22000;
+
+        /// <summary>
+        /// Check whether Windows Windows build is 22000 or higher, that supports <see cref="SetBorderColor(IntPtr, COLORREF)"/>
+        /// </summary>
+        public static bool IsBorderColorSupported { get; } =
             Environment.OSVersion.Version.Build >= 22000;
 
         /// <summary>
@@ -156,6 +175,24 @@ namespace MicaForEveryone.Win32
             
             var value = GCHandle.Alloc(color, GCHandleType.Pinned);
             var result = DwmSetWindowAttribute(hWnd, DWMWA_TEXT_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
+            value.Free();
+            if (result != 0)
+            {
+                throw Marshal.GetExceptionForHR(result);
+            }
+        }
+
+        /// <summary>
+        /// Change border color of window.
+        /// Requires Windows build 22000 or higher.
+        /// </summary>
+        public static void SetBorderColor(IntPtr hWnd, COLORREF color)
+        {
+            if (Environment.OSVersion.Version.Build < 22000)
+                return;
+
+            var value = GCHandle.Alloc(color, GCHandleType.Pinned);
+            var result = DwmSetWindowAttribute(hWnd, DWMWA_BORDER_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
             value.Free();
             if (result != 0)
             {
