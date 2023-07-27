@@ -66,7 +66,7 @@ namespace MicaForEveryone.Core.Services
             catch (Exception ex)
             {
 				System.Diagnostics.Debug.WriteLine(ex);
-				System.Diagnostics.Debugger.Break();
+				// System.Diagnostics.Debugger.Break();
             }
 #else
             catch

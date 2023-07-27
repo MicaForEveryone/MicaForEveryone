@@ -89,7 +89,8 @@ namespace MicaForEveryone.ViewModels
             set {
                 if (Rule != null && Rule.CaptionColor != value) {
                     Rule.CaptionColor = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    // _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService.UpdateRuleAsync(Rule);
                 }
             }
         }
@@ -99,7 +100,8 @@ namespace MicaForEveryone.ViewModels
             set {
                 if (Rule != null && Rule.CaptionTextColor != value) {
                     Rule.CaptionTextColor = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    // _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService?.UpdateRuleAsync(Rule);
                 }
             }
         }
@@ -109,12 +111,11 @@ namespace MicaForEveryone.ViewModels
             set {
                 if (Rule != null && Rule.BorderColor != value) {
                     Rule.BorderColor = value;
-                    _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    // _settingsService.CommitChangesAsync(SettingsChangeType.RuleChanged, Rule);
+                    _settingsService?.UpdateRuleAsync(Rule);
                 }
             }
         }
-
-        public UI.ViewModels.ISettingsViewModel? ParentViewModel { get; set; }
 
         public IRule? Rule { get; set; }
     }
