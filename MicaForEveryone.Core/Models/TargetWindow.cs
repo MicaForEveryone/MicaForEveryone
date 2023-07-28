@@ -111,6 +111,16 @@ namespace MicaForEveryone.Core.Models
             DesktopWindowManager.SetBorderColor(WindowHandle, borderColor);
         }
 
+        private static UInt32 HexToColorRef(string? value)
+        {
+            if (value == null)
+                return 0;
+
+            var rgb = Convert.ToUInt32(value, 16);
+            var bgr = ((rgb & 0xFF) << 16) | (rgb & 0xFF00) | ((rgb >> 16) & 0xFF);
+            return bgr;
+        }
+
         public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
         {
 #if DEBUG
@@ -123,7 +133,7 @@ namespace MicaForEveryone.Core.Models
             {
                 try
                 {
-                    ApplyCaptionColorRule(Convert.ToUInt32(rule.CaptionColor, 16));
+                    ApplyCaptionColorRule(HexToColorRef(rule.CaptionColor));
                 }
                 catch (FormatException) 
                 {
@@ -136,7 +146,7 @@ namespace MicaForEveryone.Core.Models
             {
                 try
                 {
-                    ApplyCaptionTextColorRule(Convert.ToUInt32(rule.CaptionTextColor, 16));
+                    ApplyCaptionTextColorRule(HexToColorRef(rule.CaptionTextColor));
                 }
                 catch (FormatException)
                 {
@@ -148,7 +158,7 @@ namespace MicaForEveryone.Core.Models
             {
                 try
                 {
-                    ApplyBorderColorRule(Convert.ToUInt32(rule.BorderColor, 16));
+                    ApplyBorderColorRule(HexToColorRef(rule.BorderColor));
                 }
                 catch (FormatException)
                 {
