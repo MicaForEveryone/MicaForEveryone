@@ -12,6 +12,7 @@ namespace MicaForEveryone.Core.Models
         public ProcessRule(string processName)
         {
             ProcessName = processName;
+            ProcessNames = processName.Split("|").ToList();
         }
 
         public string Name => $"Process({ProcessName})";
@@ -20,6 +21,8 @@ namespace MicaForEveryone.Core.Models
 
         [XclParameter]
         public string ProcessName { get; }
+
+        public List<string> ProcessNames { get; }
 
         [XclField]
         public TitlebarColorMode TitleBarColor { get; set; }
@@ -45,8 +48,7 @@ namespace MicaForEveryone.Core.Models
         [XclField]
         public string BorderColor { get; set; } = string.Empty;
 
-        public bool IsApplicable(TargetWindow target) =>
-            target.ProcessName == ProcessName;
+        public bool IsApplicable(TargetWindow target) => ProcessNames.Contains(target.ProcessName);
 
         public override string ToString() => Name;
 

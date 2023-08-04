@@ -111,14 +111,28 @@ namespace MicaForEveryone.Core.Models
             DesktopWindowManager.SetBorderColor(WindowHandle, borderColor);
         }
 
-        private static UInt32 HexToColorRef(string? value)
+        /**
+         * Converts a string, that may be a special value (i.e. Accent) to a COLORREF.
+         */
+        private static UInt32 StringToColorRef(string? value)
         {
-            if (value == null)
-                return 0;
+            // Special values
+            if (value == "Accent")
+                return AccentColor.GetAccentColor();
 
-            var rgb = Convert.ToUInt32(value, 16);
-            var bgr = ((rgb & 0xFF) << 16) | (rgb & 0xFF00) | ((rgb >> 16) & 0xFF);
-            return bgr;
+            try
+            {
+                if (value == null)
+                    return 0;
+
+                var rgb = Convert.ToUInt32(value, 16);
+                var bgr = ((rgb & 0xFF) << 16) | (rgb & 0xFF00) | ((rgb >> 16) & 0xFF);
+                return bgr;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public void ApplyRule(IRule rule, TitlebarColorMode systemTitlebarColorMode)
@@ -129,44 +143,23 @@ namespace MicaForEveryone.Core.Models
             ApplyTitlebarColorRule(rule.TitleBarColor, systemTitlebarColorMode);
             ApplyBackdropRule(rule.BackdropPreference);
             ApplyCornerPreferenceRule(rule.CornerPreference);
-            if (rule.CaptionColor != null)
+
+            try
             {
-                try
-                {
-                    ApplyCaptionColorRule(HexToColorRef(rule.CaptionColor));
-                }
-                catch (FormatException) 
-                {
-                }
-                catch (ArgumentOutOfRangeException)
-                {
-                }
+                if (rule.CaptionColor != null)
+                    ApplyCaptionColorRule(StringToColorRef(rule.CaptionColor));
+                if (rule.CaptionTextColor != null)
+                    ApplyCaptionTextColorRule(StringToColorRef(rule.CaptionTextColor));
+                if (rule.BorderColor != null)
+                    ApplyBorderColorRule(StringToColorRef(rule.BorderColor));
             }
-            if (rule.CaptionTextColor != null)
+            catch (FormatException)
             {
-                try
-                {
-                    ApplyCaptionTextColorRule(HexToColorRef(rule.CaptionTextColor));
-                }
-                catch (FormatException)
-                {
-                }
-                catch (ArgumentOutOfRangeException) {
-                }
             }
-            if (rule.BorderColor != null)
+            catch (ArgumentOutOfRangeException)
             {
-                try
-                {
-                    ApplyBorderColorRule(HexToColorRef(rule.BorderColor));
-                }
-                catch (FormatException)
-                {
-                }
-                catch (ArgumentOutOfRangeException) {
-                }
             }
-            
+
             if (rule.ExtendFrameIntoClientArea)
                 DesktopWindowManager.ExtendFrameIntoClientArea(WindowHandle);
 
