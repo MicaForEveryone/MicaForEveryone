@@ -3,6 +3,10 @@ using System;
 using System.Runtime.InteropServices;
 using static MicaForEveryone.Win32.PInvoke.NativeMethods;
 
+#if NET6_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
+
 namespace MicaForEveryone.Win32
 {
     public static class DesktopWindowManager
@@ -37,7 +41,9 @@ namespace MicaForEveryone.Win32
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         public static void EnableMicaIfSupported(IntPtr hWnd)
         {
-
+#if NET6_0_OR_GREATER
+#pragma warning disable CA1416
+#endif
             if (IsBackdropTypeSupported)
             {
                 SetBackdropType(hWnd, DWM_SYSTEMBACKDROP_TYPE.DWMSBT_MAINWINDOW);
@@ -46,6 +52,9 @@ namespace MicaForEveryone.Win32
             {
                 SetMica(hWnd, true);
             }
+#if NET6_0_OR_GREATER
+#pragma warning restore CA1416
+#endif
         }
 
         /// <summary>
@@ -55,6 +64,10 @@ namespace MicaForEveryone.Win32
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         /// <param name="state"><see langword="true"/> to enable Mica effects on the target window, <see langword="false"/> to disable them.</param>
         /// <seealso cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+        [UnsupportedOSPlatform("windows10.0.22523")]
+# endif
         public static void SetMica(IntPtr hWnd, bool state)
         {
             SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_MICA, state ? 1 : 0, sizeof(int));
@@ -66,6 +79,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         /// <param name="backdropType">Type of backdrop to apply to the target window's background.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22523")]
+#endif
         public static void SetBackdropType(IntPtr hWnd, DWM_SYSTEMBACKDROP_TYPE backdropType)
         {
             SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_SYSTEMBACKDROP_TYPE, (uint)backdropType, sizeof(uint));
@@ -77,6 +93,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         /// <param name="cornerPreference">Corner preference to apply on the window's border.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+#endif
         public static void SetCornerPreference(IntPtr hWnd, DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
         {
             SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_WINDOW_CORNER_PREFERENCE, (uint)cornerPreference, sizeof(uint));
@@ -88,6 +107,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         /// <param name="state"><see langword="true"/> to enable the immersive dark mode, <see langword="false"/> to disable it.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.19041")]
+#endif
         public static void SetImmersiveDarkMode(IntPtr hWnd, bool state)
         {
             SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, state ? 1 : 0, sizeof(int));
@@ -109,6 +131,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         /// <param name="color">Color value to apply to the window's caption.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+#endif
         public static void SetCaptionColor(IntPtr hWnd, COLORREF color)
         {
             if (Environment.OSVersion.Version.Build < 22000)
@@ -122,6 +147,9 @@ namespace MicaForEveryone.Win32
         /// </summary>
         /// <param name="hWnd">Handle of the target window for the operation.</param>
         /// <param name="color">Color value to apply to the window's caption text.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+#endif
         public static void SetCaptionTextColor(IntPtr hWnd, COLORREF color)
         {
             if (Environment.OSVersion.Version.Build < 22000)
