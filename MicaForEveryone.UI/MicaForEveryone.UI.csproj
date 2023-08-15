@@ -146,7 +146,7 @@
       <Version>2.8.2-prerelease.220830001</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
-      <Version>1.26.0</Version>
+      <Version>1.27.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
