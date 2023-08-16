@@ -142,10 +142,10 @@
     <value>Thêm thiết đặt cho quá trình mới</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Thêm Rule</value>
+    <value>Thêm thiết đặt</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Thêm Rule</value>
+    <value>Thêm thiết đặt</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>Tệp cấu hình</value>
@@ -160,7 +160,7 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Thiết lập kiểu nền,</value>
+    <value>Thiết lập kiểu nền</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
     <value>Kiểu nền</value>
@@ -169,7 +169,7 @@
     <value>Kiểu nền</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>Làm cửa sổ có hiệu ứng mờ. Tắt lựa chọn này có thể yêu cầu bạn khởi động lại các cửa sổ bị ảnh hưởng .</value>
+    <value>Làm cửa sổ có hiệu ứng mờ. Tắt lựa chọn này có thể yêu cầu bạn khởi động lại các cửa sổ bị ảnh hưởng.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
     <value>Làm mờ đằng sau</value>
@@ -181,7 +181,7 @@
     <value>Hủy</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Nhập tên class của window </value>
+    <value>Nhập tên class của window</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
     <value>Tên class:</value>
@@ -193,7 +193,7 @@
     <value>Lỗi trong tệp cấu hình:
 {0}
 
-Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải lại .</value>
+Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải lại.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Lỗi trong tệp cấu hình</value>
@@ -241,7 +241,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải l
     <value>Thiết đặt chung</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Chọn ngôn ngữ của bạn. Yêu cầu khởi động lại ứng dụng </value>
+    <value>Chọn ngôn ngữ của bạn. Yêu cầu khởi động lại ứng dụng</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Ngôn ngữ</value>
@@ -271,7 +271,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải l
     <value>Mở trong trình chỉnh sửa văn bản</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>Nhập tên tệp thực thi mà không có phần mở rộng của nó (.exe)</value>
+    <value>Nhập tên tệp thực thi mà không có phần mở rộng của nó(.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
     <value>Tên quá trình:</value>
@@ -286,7 +286,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải l
     <value>Tải lại khi có thay đổi</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>Bỏ thiết đặt </value>
+    <value>Bỏ thiết đặt</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>Thiết lập</value>
@@ -316,7 +316,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải l
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>Chỉnh màu thanh tiêu đề,</value>
+    <value>Chỉnh màu thanh tiêu đề</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
     <value>Màu tiêu đề</value>
@@ -400,7 +400,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải l
     <value>Kết hợp</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>Set corner rounding mode,</value>
+    <value>Set corner rounding mode</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
     <value>Mặc định không làm điều gì để giữ chế độ làm tròn góc của ứng dụng.</value>
@@ -415,10 +415,10 @@ Sửa lỗi và dùng lựa chọn 'Tải lại tệp cấu hình' để tải l
     <value>Chế độ kết hợp giữa góc vuông và bo tròn.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>Chạy cùng Windows với quyền quản trị. Bạn cần mở ứng dụng với quyền quản trị để bật tính năng này .</value>
+    <value>Chạy cùng Windows với quyền quản trị. Bạn cần mở ứng dụng với quyền quản trị để bật tính năng này.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>Tự động chạy với quyền quản trị </value>
+    <value>Tự động chạy với quyền quản trị</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
     <value>Người đóng góp:</value>
