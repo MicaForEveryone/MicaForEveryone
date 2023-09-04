@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="MicaForEveryone.App.Views.TrayIconPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Page.ContextFlyout>
+        <MenuFlyout>
+            <MenuFlyoutItem Text="First" />
+            <MenuFlyoutItem Text="Second" />
+        </MenuFlyout>
+    </Page.ContextFlyout>
+
+    <ToolTipService.ToolTip>
+        <ToolTip Content="Mica For Everyone" />
+    </ToolTipService.ToolTip>
+</Page>
