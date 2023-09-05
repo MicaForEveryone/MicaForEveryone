@@ -266,6 +266,20 @@ public static unsafe partial class Windowing
         public static HICON NULL => new HICON(null);
     }
 
+    public readonly unsafe partial struct HMENU
+    {
+        public readonly void* Value;
+
+        public HMENU(void* value)
+        {
+            Value = value;
+        }
+
+        public static HMENU INVALID_VALUE => new HMENU((void*)(-1));
+
+        public static HMENU NULL => new HMENU(null);
+    }
+
     public readonly unsafe partial struct HCURSOR
     {
         public readonly void* Value;
@@ -428,12 +442,39 @@ public static unsafe partial class Windowing
 
         public HICON hIconSm;
     }
+
+    public unsafe partial struct CREATESTRUCTW
+    {
+        public void* lpCreateParams;
+
+        public HINSTANCE hInstance;
+
+        public HMENU hMenu;
+
+        public HWND hwndParent;
+
+        public int cy;
+
+        public int cx;
+
+        public int y;
+
+        public int x;
+
+        public int style;
+
+        public ushort* lpszName;
+
+        public ushort* lpszClass;
+
+        public uint dwExStyle;
+    }
     #endregion
 
     #region Methods
 
     [LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16)]
-    public static unsafe partial HWND CreateWindowExW(WindowStylesEx dwExStyle, string lpClassName, string lpWindowName, WindowStyles dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, void* hMenu, HINSTANCE hInstance, void* lpParam);
+    public static unsafe partial HWND CreateWindowExW(WindowStylesEx dwExStyle, string lpClassName, string? lpWindowName, WindowStyles dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, void* hMenu, HINSTANCE hInstance, void* lpParam);
 
     [DllImport("user32.dll", EntryPoint = "RegisterClassExW", ExactSpelling = true)]
     public static extern ushort RegisterClassExW(WNDCLASSEXW* param0);

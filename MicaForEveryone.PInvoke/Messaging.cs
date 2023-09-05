@@ -30,4 +30,7 @@ public unsafe static partial class Messaging
 
     [DllImport("user32.dll", ExactSpelling = true)]
     public static extern LRESULT DispatchMessageW(MSG* lpMsg);
+
+    [DllImport("user32.dll", ExactSpelling = true)]
+    public static extern void PostQuitMessage(int nExitCode);
 }

@@ -1,3 +1,5 @@
+using MicaForEveryone.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -10,8 +12,12 @@ namespace MicaForEveryone.App.Views;
 /// </summary>
 public unsafe sealed partial class TrayIconPage : Page
 {
+    private TrayIconViewModel ViewModel { get; }
+
     public TrayIconPage()
     {
         InitializeComponent();
+
+        ViewModel = App.Services.GetRequiredService<TrayIconViewModel>();
     }
 }

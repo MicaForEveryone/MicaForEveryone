@@ -1,4 +1,6 @@
 ﻿using MicaForEveryone.App.Dispatching;
+using MicaForEveryone.App.Service;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
 using System;
@@ -48,9 +50,9 @@ class Program
         return isRedirect;
     }
 
-    private static async void OnActivated(object _, AppActivationArguments __)
+    private static async void OnActivated(object? _, AppActivationArguments __)
     {
         await _dispatcherQueue.AsValueTask();
-        App.ActivateSettings();
+        App.Services.GetRequiredService<MainAppService>().ActivateSettings();
     }
 }
