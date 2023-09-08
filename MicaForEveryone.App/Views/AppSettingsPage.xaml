@@ -18,7 +18,7 @@
     <controls:SettingsPageControl Header="_App settings">
         <StackPanel Spacing="{StaticResource SettingsCardSpacing}">
             <StackPanel.ChildrenTransitions>
-                <EntranceThemeTransition FromVerticalOffset="50" />
+                <EntranceThemeTransition FromVerticalOffset="50" IsStaggeringEnabled="True" />
                 <RepositionThemeTransition IsStaggeringEnabled="False" />
             </StackPanel.ChildrenTransitions>
 
