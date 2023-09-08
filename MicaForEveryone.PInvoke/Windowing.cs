@@ -539,6 +539,10 @@ public static unsafe partial class Windowing
     [LibraryImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static partial bool SetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool IsIconic(HWND hWnd);
     #endregion
 
     #region Constants
@@ -547,8 +551,12 @@ public static unsafe partial class Windowing
     public const int WM_LBUTTONUP = 0x202;
     public const int WM_DESTROY = 0x0002;
     public const int WM_QUIT = 0x0012;
+
     public static ushort* IDI_APPLICATION => ((ushort*)((nuint)((ushort)(32512))));
+
     public const uint SWP_NOZORDER = 0x0004;
     public const uint SWP_NOACTIVATE = 0x0010;
+
+    public const int SW_RESTORE = 9;
     #endregion
 }

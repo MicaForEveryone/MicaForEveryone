@@ -70,7 +70,14 @@ public unsafe class MainAppService
                 _window.Activate();
             }
             else
+            {
+                var hwnd = new HWND((void*)_window.GetWindowHandle());
+                if (IsIconic(hwnd))
+                {
+                    ShowWindow(hwnd, SW_RESTORE);
+                }
                 _window.BringToFront();
+            }
         }
     }
 

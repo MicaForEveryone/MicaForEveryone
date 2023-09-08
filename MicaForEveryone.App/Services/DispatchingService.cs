@@ -7,13 +7,13 @@ namespace MicaForEveryone.App.Services;
 
 public class DispatchingService : IDispatchingService
 {
-    private DispatcherQueue _dispatcherQueue;
+    private DispatcherQueueValueTaskSource _dispatcherQueueValueTaskSource;
 
     public DispatchingService(DispatcherQueue dispatcherQueue)
     {
-        _dispatcherQueue = dispatcherQueue;
+        _dispatcherQueueValueTaskSource = new(dispatcherQueue);
     }
 
     public ValueTask YieldAsync()
-        => new ValueTask(new DispatcherQueueValueTaskSource(_dispatcherQueue), 0);
+        => new ValueTask(_dispatcherQueueValueTaskSource, 0);
 }
