@@ -6,12 +6,12 @@
 
     <Page.ContextFlyout>
         <MenuFlyout>
-            <MenuFlyoutItem Command="{x:Bind ViewModel.SettingsCommand, Mode=OneWay}" Text="_Settings">
+            <MenuFlyoutItem Command="{x:Bind ViewModel.SettingsCommand}" Text="_Settings">
                 <MenuFlyoutItem.Icon>
                     <SymbolIcon Symbol="Setting" />
                 </MenuFlyoutItem.Icon>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Command="{x:Bind ViewModel.ExitCommand, Mode=OneWay}" Text="_Exit">
+            <MenuFlyoutItem Command="{x:Bind ViewModel.ExitCommand}" Text="_Exit">
                 <MenuFlyoutItem.Icon>
                     <FontIcon Glyph="&#xE7E8;" />
                 </MenuFlyoutItem.Icon>

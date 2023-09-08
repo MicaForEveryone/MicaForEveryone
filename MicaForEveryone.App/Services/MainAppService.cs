@@ -15,7 +15,7 @@ using static MicaForEveryone.PInvoke.Monitor;
 using static MicaForEveryone.PInvoke.NotifyIcon;
 using static MicaForEveryone.PInvoke.Windowing;
 
-namespace MicaForEveryone.App.Service;
+namespace MicaForEveryone.App.Services;
 
 public unsafe class MainAppService
 {
@@ -79,6 +79,7 @@ public unsafe class MainAppService
     {
         lock (_lockObject)
         {
+            _window?.Close();
             DestroyWindow(_mainWnd);
         }
     }
@@ -91,7 +92,7 @@ public unsafe class MainAppService
             case 1:
                 {
                     CREATESTRUCTW* lpCreateStruct = (CREATESTRUCTW*)&lParam;
-                    nint gcHandlePtr = new nint(*(void**)lpCreateStruct->lpCreateParams);
+                    nint gcHandlePtr = *(nint*)lpCreateStruct->lpCreateParams;
                     var gc = GCHandle.FromIntPtr(gcHandlePtr);
                     var appService = Unsafe.As<MainAppService>(gc.Target!);
                     appService._source = new();
@@ -179,8 +180,15 @@ public unsafe class MainAppService
                 }
 
             case WM_DESTROY:
-                PostQuitMessage(0);
-                break;
+                {
+                    NOTIFYICONDATAW notifyIconData = new();
+                    notifyIconData.hWnd = hWnd;
+                    notifyIconData.uID = 1;
+                    notifyIconData.cbSize = (uint)sizeof(NOTIFYICONDATAW);
+                    Shell_NotifyIconW(NIM_DELETE, &notifyIconData);
+                    PostQuitMessage(0);
+                    break;
+                }
         }
         return DefWindowProcW(hWnd, Msg, wParam, lParam);
     }

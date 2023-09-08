@@ -11,7 +11,7 @@ namespace MicaForEveryone.App.Dispatching;
 public partial class DispatcherQueueValueTaskSource
 {
     /// <summary>
-    /// A custom <c>IDispatcherQueueHandler</c> object, that internally stores a captured <see cref="Action{object}"/> instance and the
+    /// A custom <c>IDispatcherQueueHandler</c> object, that internally stores a captured <see cref="Action{object?}"/> instance and the
     /// input captured state. This allows consumers to enqueue a state and a cached stateless delegate without any managed allocations.
     /// </summary>
     private unsafe struct DispatcherQueueProxyHandler
@@ -65,10 +65,10 @@ public partial class DispatcherQueueValueTaskSource
         /// <summary>
         /// Creates a new <see cref="DispatcherQueueProxyHandler"/> instance for the input callback and state.
         /// </summary>
-        /// <param name="handler">The input <see cref="Action{object}"/> callback to enqueue.</param>
+        /// <param name="handler">The input <see cref="Action{object?}"/> callback to enqueue.</param>
         /// <param name="state">The input state to capture and pass to the callback.</param>
         /// <returns>A pointer to the newly initialized <see cref="DispatcherQueueProxyHandler"/> instance.</returns>
-        public static DispatcherQueueProxyHandler* Create(Action<object> handler, object? state)
+        public static DispatcherQueueProxyHandler* Create(Action<object?> handler, object? state)
         {
             DispatcherQueueProxyHandler* @this = (DispatcherQueueProxyHandler*)NativeMemory.Alloc((nuint)sizeof(DispatcherQueueProxyHandler));
 
@@ -198,7 +198,7 @@ public partial class DispatcherQueueValueTaskSource
 
                 try
                 {
-                    Unsafe.As<Action<object>>(callback)(state);
+                    Unsafe.As<Action<object?>>(callback)(state);
                 }
                 catch (Exception e)
                 {

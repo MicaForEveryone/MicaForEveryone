@@ -1,5 +1,5 @@
 ﻿using MicaForEveryone.App.Dispatching;
-using MicaForEveryone.App.Service;
+using MicaForEveryone.App.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
@@ -12,8 +12,6 @@ namespace MicaForEveryone.App;
 
 class Program
 {
-    private static DispatcherQueue _dispatcherQueue;
-
     [STAThread]
     public static async Task Main(string[] _)
     {
@@ -24,8 +22,7 @@ class Program
         {
             Microsoft.UI.Xaml.Application.Start((p) =>
             {
-                var context = new Dispatching.DispatcherQueueSynchronizationContext(
-                    _dispatcherQueue = DispatcherQueue.GetForCurrentThread());
+                var context = new Dispatching.DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
                 SynchronizationContext.SetSynchronizationContext(context);
                 new App();
             });
@@ -52,7 +49,7 @@ class Program
 
     private static async void OnActivated(object? _, AppActivationArguments __)
     {
-        await _dispatcherQueue.AsValueTask();
+        await App.Services.GetRequiredService<IDispatchingService>().YieldAsync();
         App.Services.GetRequiredService<MainAppService>().ActivateSettings();
     }
 }

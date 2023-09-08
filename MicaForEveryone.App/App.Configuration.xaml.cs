@@ -1,7 +1,8 @@
 ﻿using CommunityToolkit.Extensions.DependencyInjection;
-using MicaForEveryone.App.Service;
+using MicaForEveryone.App.Services;
 using MicaForEveryone.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Dispatching;
 using System;
 
 namespace MicaForEveryone.App;
@@ -14,18 +15,24 @@ public partial class App
         get
         {
             App currentApp = (App)Current;
-            if (currentApp._services == null)
-            {
-                ServiceCollection collection = new ServiceCollection();
-                ConfigureServices(collection);
-                currentApp._services = collection.BuildServiceProvider();
-            }
-            return currentApp._services;
+            return currentApp._services ??= ConfigureServices();
         }
+    }
+
+    private static IServiceProvider ConfigureServices()
+    {
+        ServiceCollection collection = new();
+
+        collection.AddSingleton<IDispatchingService>(new DispatchingService(DispatcherQueue.GetForCurrentThread()));
+
+        ConfigureServices(collection);
+
+        return collection.BuildServiceProvider();
     }
 
 
     [Singleton(typeof(MainAppService))]
     [Singleton(typeof(TrayIconViewModel))]
+    [Transient(typeof(SettingsViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 }

@@ -1,8 +1,8 @@
+using MicaForEveryone.App.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
 using WinUIEx;
-using WinUIEx.Messaging;
-using static MicaForEveryone.PInvoke.Generic;
 using static MicaForEveryone.PInvoke.Messaging;
 using static MicaForEveryone.PInvoke.Windowing;
 
@@ -17,10 +17,13 @@ namespace MicaForEveryone.App.Views;
 public unsafe sealed partial class SettingsWindow : WindowEx
 {
     private static delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT> oldWndProc;
+    private SettingsViewModel ViewModel { get; }
+
     public SettingsWindow()
     {
         InitializeComponent();
 
+        ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
         ExtendsContentIntoTitleBar = true;
 
         oldWndProc = (delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT>)SetWindowLongPtrW(new HWND((void*)WindowNative.GetWindowHandle(this)), WindowLongIndex.GWL_WNDPROC, (nint)(delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT>)&WindowProc);

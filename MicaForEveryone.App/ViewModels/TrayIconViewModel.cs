@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MicaForEveryone.App.Service;
+using MicaForEveryone.App.Services;
 
 namespace MicaForEveryone.App.ViewModels;
 

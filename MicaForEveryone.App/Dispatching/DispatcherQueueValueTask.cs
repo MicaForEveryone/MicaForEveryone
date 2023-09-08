@@ -21,7 +21,7 @@ public partial class DispatcherQueueValueTaskSource : IValueTaskSource
     public ValueTaskSourceStatus GetStatus(short token)
         => _queue.HasThreadAccess ? ValueTaskSourceStatus.Succeeded : ValueTaskSourceStatus.Pending;
 
-    public unsafe void OnCompleted(Action<object> continuation, object? state, short token, ValueTaskSourceOnCompletedFlags flags)
+    public unsafe void OnCompleted(Action<object?> continuation, object? state, short token, ValueTaskSourceOnCompletedFlags flags)
     {
         DispatcherQueueProxyHandler* dispatcherQueueProxyHandler = DispatcherQueueProxyHandler.Create(continuation, state);
         int hResult;
@@ -45,10 +45,4 @@ public partial class DispatcherQueueValueTaskSource : IValueTaskSource
             ExceptionHelpers.ThrowExceptionForHR(hResult);
         }
     }
-}
-
-public static class DispatcherQueueValueTaskSourceExtensions
-{
-    public static ValueTask AsValueTask(this DispatcherQueue queue)
-        => new(new DispatcherQueueValueTaskSource(queue), 0);
 }

@@ -15,6 +15,8 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="Controls\SettingsPageControl.xaml" />
+		<None Remove="Views\AppSettingsPage.xaml" />
 		<None Remove="Views\SettingsWindow.xaml" />
 		<None Remove="Views\TrayIconPage.xaml" />
 	</ItemGroup>
@@ -36,6 +38,7 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
 		<PackageReference Include="WinUIEx" Version="2.2.0" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
@@ -51,6 +54,16 @@
   -->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\AppSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Controls\SettingsPageControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<!-- 

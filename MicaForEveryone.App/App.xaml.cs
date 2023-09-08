@@ -1,22 +1,6 @@
-﻿using MicaForEveryone.App.Service;
-using MicaForEveryone.App.Views;
+﻿using MicaForEveryone.App.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Hosting;
-using System;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using Windows.Foundation;
-using WinUIEx;
-using static MicaForEveryone.PInvoke.Generic;
-using static MicaForEveryone.PInvoke.Macros;
-using static MicaForEveryone.PInvoke.Messaging;
-using static MicaForEveryone.PInvoke.Modules;
-using static MicaForEveryone.PInvoke.Monitor;
-using static MicaForEveryone.PInvoke.NotifyIcon;
-using static MicaForEveryone.PInvoke.Windowing;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

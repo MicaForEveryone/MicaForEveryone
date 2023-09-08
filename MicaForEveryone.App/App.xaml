@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <!--  Other merged dictionaries here  -->
+                <ResourceDictionary Source="Controls/SettingsPageControl.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="FontIcon">
