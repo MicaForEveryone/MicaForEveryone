@@ -1,5 +1,5 @@
-﻿using MicaForEveryone.App.Dispatching;
-using MicaForEveryone.App.Services;
+﻿using MicaForEveryone.App.Services;
+using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;

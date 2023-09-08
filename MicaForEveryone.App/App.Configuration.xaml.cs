@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Extensions.DependencyInjection;
 using MicaForEveryone.App.Services;
 using MicaForEveryone.App.ViewModels;
+using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
 using System;
@@ -25,6 +26,9 @@ public partial class App
 
         collection.AddSingleton<IDispatchingService>(new DispatchingService(DispatcherQueue.GetForCurrentThread()));
 
+        // Check if we are really running packaged.
+        collection.AddSingleton<IVersionInfoService, PackagedVersionInfoService>();
+
         ConfigureServices(collection);
 
         return collection.BuildServiceProvider();
@@ -34,5 +38,6 @@ public partial class App
     [Singleton(typeof(MainAppService))]
     [Singleton(typeof(TrayIconViewModel))]
     [Transient(typeof(SettingsViewModel))]
+    [Transient(typeof(AppSettingsPageViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 }

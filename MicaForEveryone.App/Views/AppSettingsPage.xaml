@@ -30,6 +30,18 @@
 
                 <ToggleSwitch />
             </labs:SettingsCard>
+
+            <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="_About" />
+            <labs:SettingsExpander Description="{x:Bind ViewModel.AppVersion}" Header="_About Mica For Everyone">
+                <labs:SettingsExpander.HeaderIcon>
+                    <BitmapIcon UriSource="ms-appx:///Assets/Square44x44Logo.png" />
+                </labs:SettingsExpander.HeaderIcon>
+                <labs:SettingsExpander.Items>
+                    <labs:SettingsCard ContentAlignment="Left">
+                        <HyperlinkButton Content="GitHub" NavigateUri="https://github.com/MicaForEveryone/MicaForEveryone/tree/winui3" />
+                    </labs:SettingsCard>
+                </labs:SettingsExpander.Items>
+            </labs:SettingsExpander>
         </StackPanel>
     </controls:SettingsPageControl>
 </Page>

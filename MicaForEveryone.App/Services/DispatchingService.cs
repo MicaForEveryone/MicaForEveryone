@@ -1,13 +1,9 @@
 ﻿using MicaForEveryone.App.Dispatching;
+using MicaForEveryone.CoreUI;
 using Microsoft.UI.Dispatching;
 using System.Threading.Tasks;
 
 namespace MicaForEveryone.App.Services;
-
-public interface IDispatchingService
-{
-    ValueTask YieldAsync();
-}
 
 public class DispatchingService : IDispatchingService
 {

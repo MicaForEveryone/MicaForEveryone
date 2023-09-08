@@ -23,7 +23,6 @@ public unsafe class MainAppService
     object _lockObject = new();
     SettingsWindow? _window;
     HWND _mainWnd;
-    NOTIFYICONDATAW _notifyIconData;
 
     public void Initialize()
     {
@@ -119,8 +118,6 @@ public unsafe class MainAppService
                     "Mica For Everyone".CopyTo(MemoryMarshal.Cast<ushort, char>(MemoryMarshal.CreateSpan(ref notifyIconData.szTip[0], 128)));
                     Shell_NotifyIconW(NIM_ADD, &notifyIconData);
                     Shell_NotifyIconW(NIM_SETVERSION, &notifyIconData);
-
-                    appService._notifyIconData = notifyIconData;
                     break;
                 }
 
@@ -186,6 +183,13 @@ public unsafe class MainAppService
                     notifyIconData.uID = 1;
                     notifyIconData.cbSize = (uint)sizeof(NOTIFYICONDATAW);
                     Shell_NotifyIconW(NIM_DELETE, &notifyIconData);
+
+                    var pointer = GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_USERDATA);
+                    var gc = GCHandle.FromIntPtr(pointer);
+                    var appService = Unsafe.As<MainAppService>(gc.Target!);
+                    appService._source?.Dispose();
+                    appService._source = null;
+
                     PostQuitMessage(0);
                     break;
                 }

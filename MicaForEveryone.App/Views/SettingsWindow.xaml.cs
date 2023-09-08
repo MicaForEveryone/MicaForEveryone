@@ -1,5 +1,6 @@
 using MicaForEveryone.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
 using WinUIEx;
@@ -49,5 +50,10 @@ public unsafe sealed partial class SettingsWindow : WindowEx
             return result;
         }
         return CallWindowProcW(oldWndProc, hWnd, Msg, wParam, lParam);
+    }
+
+    private void Window_Activated(object _, WindowActivatedEventArgs args)
+    {
+        // TODO: Add code to deal with title bar color change.
     }
 }

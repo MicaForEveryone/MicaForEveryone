@@ -44,6 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj" />
 		<ProjectReference Include="..\MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj" />
 	</ItemGroup>
 
