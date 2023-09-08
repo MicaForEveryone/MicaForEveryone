@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MicaForEveryone.App.Views;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace MicaForEveryone.App.ViewModels;
 
@@ -22,7 +23,7 @@ public partial class SettingsViewModel : ObservableObject
         {
             case "SettingsNavViewItem":
                 _frame?.Navigate(typeof(AppSettingsPage), null, args.RecommendedNavigationTransitionInfo);
-                break;
+                return;
         }
     }
 }
