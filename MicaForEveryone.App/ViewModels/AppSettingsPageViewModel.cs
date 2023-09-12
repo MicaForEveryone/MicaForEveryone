@@ -3,7 +3,7 @@ using MicaForEveryone.CoreUI;
 
 namespace MicaForEveryone.App.ViewModels;
 
-public class AppSettingsPageViewModel : ObservableObject
+public sealed class AppSettingsPageViewModel : ObservableObject
 {
     private IVersionInfoService _versionInfoService;
 

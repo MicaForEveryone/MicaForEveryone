@@ -1,4 +1,5 @@
 ﻿using MicaForEveryone.App.Services;
+using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 
@@ -28,5 +29,6 @@ public unsafe partial class App : Application
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
         Services.GetRequiredService<MainAppService>().Initialize();
+        _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindows();
     }
 }

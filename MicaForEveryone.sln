@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.App", "Mica
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.PInvoke", "MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj", "{F438EFCD-7C20-4565-8AFF-D16A2A045551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.CoreUI", "MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj", "{3DB0A87B-1C1B-4962-980B-22AF75BBD8D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicaForEveryone.CoreUI", "MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj", "{3DB0A87B-1C1B-4962-980B-22AF75BBD8D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicaForEveryone.Models", "MicaForEveryone.Models\MicaForEveryone.Models.csproj", "{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,22 @@ Global
 		{3DB0A87B-1C1B-4962-980B-22AF75BBD8D9}.Release|x64.Build.0 = Release|Any CPU
 		{3DB0A87B-1C1B-4962-980B-22AF75BBD8D9}.Release|x86.ActiveCfg = Release|Any CPU
 		{3DB0A87B-1C1B-4962-980B-22AF75BBD8D9}.Release|x86.Build.0 = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|x64.Build.0 = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Debug|x86.Build.0 = Debug|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|ARM64.Build.0 = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|x64.ActiveCfg = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|x64.Build.0 = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|x86.ActiveCfg = Release|Any CPU
+		{6CCA71A1-8C2B-4756-8A14-DD2FB382E902}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

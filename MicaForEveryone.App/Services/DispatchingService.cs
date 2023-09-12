@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MicaForEveryone.App.Services;
 
-public class DispatchingService : IDispatchingService
+public sealed class DispatchingService : IDispatchingService
 {
     private DispatcherQueueValueTaskSource _dispatcherQueueValueTaskSource;
 

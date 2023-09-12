@@ -3,7 +3,7 @@ using Windows.ApplicationModel;
 
 namespace MicaForEveryone.App.Services;
 
-public class PackagedVersionInfoService : IVersionInfoService
+public sealed class PackagedVersionInfoService : IVersionInfoService
 {
     public string GetVersion()
     {

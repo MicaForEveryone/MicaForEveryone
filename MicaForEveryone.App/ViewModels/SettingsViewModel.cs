@@ -2,11 +2,10 @@
 using CommunityToolkit.Mvvm.Input;
 using MicaForEveryone.App.Views;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
 
 namespace MicaForEveryone.App.ViewModels;
 
-public partial class SettingsViewModel : ObservableObject
+public sealed partial class SettingsViewModel : ObservableObject
 {
     private Frame? _frame;
 

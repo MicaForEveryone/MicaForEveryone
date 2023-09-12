@@ -17,7 +17,7 @@ using static MicaForEveryone.PInvoke.Windowing;
 
 namespace MicaForEveryone.App.Services;
 
-public unsafe class MainAppService
+public sealed unsafe class MainAppService
 {
     DesktopWindowXamlSource? _source;
     object _lockObject = new();
@@ -196,6 +196,8 @@ public unsafe class MainAppService
                     var appService = Unsafe.As<MainAppService>(gc.Target!);
                     appService._source?.Dispose();
                     appService._source = null;
+
+                    gc.Free();
 
                     PostQuitMessage(0);
                     break;

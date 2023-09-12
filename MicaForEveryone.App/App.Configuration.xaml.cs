@@ -28,15 +28,16 @@ public partial class App
 
         // Check if we are really running packaged.
         collection.AddSingleton<IVersionInfoService, PackagedVersionInfoService>();
+        collection.AddSingleton<ISettingsService, PackagedSettingsService>();
 
         ConfigureServices(collection);
 
         return collection.BuildServiceProvider();
     }
 
-
     [Singleton(typeof(MainAppService))]
-    [Singleton(typeof(TrayIconViewModel))]
+    [Singleton(typeof(RuleService), typeof(IRuleService))]
+    [Transient(typeof(TrayIconViewModel))]
     [Transient(typeof(SettingsViewModel))]
     [Transient(typeof(AppSettingsPageViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);

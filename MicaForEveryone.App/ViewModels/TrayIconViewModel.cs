@@ -4,7 +4,7 @@ using MicaForEveryone.App.Services;
 
 namespace MicaForEveryone.App.ViewModels;
 
-public partial class TrayIconViewModel : ObservableObject
+public sealed partial class TrayIconViewModel : ObservableObject
 {
     private readonly MainAppService _mainAppService;
 
