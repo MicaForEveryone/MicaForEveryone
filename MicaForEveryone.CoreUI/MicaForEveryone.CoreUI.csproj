@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
+  </ItemGroup>
+
 </Project>

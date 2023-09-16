@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 
 namespace MicaForEveryone.App.Dispatching;
 
+#pragma warning disable CS0649
+
 /// <summary>
 /// A struct mapping the native WinRT <c>IDispatcherQueue</c> interface.
 /// </summary>

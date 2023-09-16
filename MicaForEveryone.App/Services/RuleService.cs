@@ -1,4 +1,5 @@
 ﻿using MicaForEveryone.CoreUI;
+using MicaForEveryone.Models;
 using Microsoft.VisualStudio.Threading;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -9,6 +10,14 @@ namespace MicaForEveryone.App.Services;
 
 public sealed class RuleService : IRuleService
 {
+    private readonly ISettingsService _settingsService;
+    public SettingsModel? SettingsModel { get; set; }
+
+    public RuleService(ISettingsService settingsService)
+    {
+        _settingsService = settingsService;
+    }
+
     public async Task ApplyRulesToAllWindows()
     {
         // Switch to a background thread, if we are not already in one.

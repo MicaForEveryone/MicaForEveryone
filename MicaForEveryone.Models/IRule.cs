@@ -1,10 +1,14 @@
-﻿namespace MicaForEveryone.Models;
+﻿using System.Text.Json.Serialization;
 
-public interface IRule
+namespace MicaForEveryone.Models;
+
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "scope")]
+[JsonDerivedType(typeof(ProcessRule), "process")]
+[JsonDerivedType(typeof(GlobalRule), "global")]
+[JsonDerivedType(typeof(ClassRule), "windowClass")]
+public interface IRule : IEquatable<IRule>
 {
     string Name { get; }
-
-    const int Priority = 0;
 
     TitleBarColorMode TitleBarColor { get; set; }
 
@@ -16,5 +20,5 @@ public interface IRule
 
     bool EnableBlurBehind { get; set; }
 
-    string TitleBarColorCode { get; set; }
+    string? TitleBarColorCode { get; set; }
 }

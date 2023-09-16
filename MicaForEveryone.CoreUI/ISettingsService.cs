@@ -1,6 +1,12 @@
-﻿namespace MicaForEveryone.CoreUI;
+﻿using MicaForEveryone.Models;
+
+namespace MicaForEveryone.CoreUI;
 
 public interface ISettingsService
 {
-    string GetPathForFileName(string fileName);
+    SettingsModel? Settings { get; set; }
+
+    Task InitializeAsync();
+
+    Task SaveAsync();
 }

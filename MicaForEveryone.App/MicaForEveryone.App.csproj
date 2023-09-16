@@ -15,6 +15,7 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
+		<None Remove="Assets\DefaultConfiguration.json" />
 		<None Remove="Controls\SettingsPageControl.xaml" />
 		<None Remove="Views\AppSettingsPage.xaml" />
 		<None Remove="Views\SettingsWindow.xaml" />
@@ -40,12 +41,14 @@
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+		<PackageReference Include="NeoSmart.AsyncLock" Version="3.2.1" />
 		<PackageReference Include="WinUIEx" Version="2.2.0" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj" />
+		<ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
 		<ProjectReference Include="..\MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj" />
 	</ItemGroup>
 

@@ -35,10 +35,7 @@
                 Height="16"
                 VerticalAlignment="Center"
                 Source="ms-appx:///Assets/Square44x44Logo.png" />
-            <TextBlock
-                x:Name="Title"
-                VerticalAlignment="Center"
-                Style="{StaticResource CaptionTextBlockStyle}">
+            <TextBlock VerticalAlignment="Center" Style="{StaticResource CaptionTextBlockStyle}">
                 _Mica For Everyone
             </TextBlock>
         </StackPanel>

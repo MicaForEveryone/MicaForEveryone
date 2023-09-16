@@ -2,6 +2,7 @@
 using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -11,7 +12,7 @@ namespace MicaForEveryone.App;
 /// <summary>
 /// Provides application-specific behavior to supplement the default Application class.
 /// </summary>
-public unsafe partial class App : Application
+public partial class App : Application
 {
     /// <summary>
     /// Initializes the singleton application object.  This is the first line of authored code
@@ -28,6 +29,12 @@ public unsafe partial class App : Application
     /// <param name="args">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
+        _= LaunchAsync();
+    }
+
+    private async Task LaunchAsync()
+    {
+        await Services.GetRequiredService<ISettingsService>().InitializeAsync();
         Services.GetRequiredService<MainAppService>().Initialize();
         _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindows();
     }

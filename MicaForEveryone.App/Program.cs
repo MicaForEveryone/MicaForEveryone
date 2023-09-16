@@ -17,9 +17,10 @@ class Program
     {
         ComWrappersSupport.InitializeComWrappers();
 
-        bool isRedirect = await DecideRedirection();
+        bool isRedirect = await DecideRedirectionAsync();
         if (!isRedirect)
         {
+
             Microsoft.UI.Xaml.Application.Start((p) =>
             {
                 var context = new Dispatching.DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
@@ -29,7 +30,7 @@ class Program
         }
     }
 
-    private static async Task<bool> DecideRedirection()
+    private static async Task<bool> DecideRedirectionAsync()
     {
         bool isRedirect = false;
         AppActivationArguments args = AppInstance.GetCurrent().GetActivatedEventArgs();
@@ -47,7 +48,9 @@ class Program
         return isRedirect;
     }
 
+#pragma warning disable VSTHRD100 // Avoid async void methods
     private static async void OnActivated(object? _, AppActivationArguments __)
+#pragma warning restore VSTHRD100 // Avoid async void methods
     {
         await App.Services.GetRequiredService<IDispatchingService>().YieldAsync();
         App.Services.GetRequiredService<MainAppService>().ActivateSettings();

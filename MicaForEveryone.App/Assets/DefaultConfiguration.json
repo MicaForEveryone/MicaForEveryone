@@ -1,0 +1,9 @@
+﻿{
+  "rules": [
+    {
+      "scope": "global",
+      "titleBarColor": "system",
+      "backdropPreference": "mica"
+    }
+  ]
+}
