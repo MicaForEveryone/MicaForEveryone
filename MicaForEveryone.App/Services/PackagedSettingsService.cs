@@ -13,6 +13,7 @@ public sealed class PackagedSettingsService : ISettingsService
 {
     private SettingsModel? _settings;
     private readonly AsyncLock _lock = new();
+    private FileSystemWatcher? _watcher;
 
     public SettingsModel? Settings
     {
@@ -33,36 +34,46 @@ public sealed class PackagedSettingsService : ISettingsService
         }
     }
 
-    private static string? _cachedPath;
-
-    public static string GetSettingsPath()
-    {
-        return _cachedPath ??= Path.Combine(ApplicationData.Current.LocalFolder.Path, "settings.json");
-    }
-
     public async Task InitializeAsync()
     {
-        string contents;
-        var file = await ApplicationData.Current.LocalFolder.TryGetItemAsync("settings.json");
+        Stream contentStream;
+        var folder = ApplicationData.Current.LocalFolder;
+        var file = await folder.TryGetItemAsync("settings.json");
         if (file == null)
         {
             StorageFile defaultFile = await StorageFile.GetFileFromApplicationUriAsync(new("ms-appx:///Assets/DefaultConfiguration.json"));
-            contents = await FileIO.ReadTextAsync(defaultFile);
+            contentStream = await defaultFile.OpenStreamForReadAsync();
             await defaultFile.CopyAsync(ApplicationData.Current.LocalFolder, "settings.json");
         }
         else
         {
-            contents = await FileIO.ReadTextAsync((StorageFile)file);
+            contentStream = await ((StorageFile)file).OpenStreamForReadAsync();
         }
 
-        Settings = JsonSerializer.Deserialize(contents, MFESerializationContext.Default.SettingsModel);
+        Settings = await JsonSerializer.DeserializeAsync(contentStream, MFESerializationContext.Default.SettingsModel);
+
+        _watcher = new(folder.Path, "settings.json");
+        _watcher.Changed += (_, e) =>
+        {
+            _ = HandleChangeAsync(e);
+
+            async Task HandleChangeAsync(FileSystemEventArgs args)
+            {
+                StorageFile file = await StorageFile.GetFileFromPathAsync(args.FullPath);
+                using var stream = await file.OpenStreamForReadAsync();
+                Settings = await JsonSerializer.DeserializeAsync(stream, MFESerializationContext.Default.SettingsModel);
+            }
+        };
+        _watcher.EnableRaisingEvents = true;
     }
 
     public async Task SaveAsync()
     {
         using (_ = await _lock.LockAsync())
         {
-            await FileIO.WriteTextAsync(await ApplicationData.Current.LocalFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting), JsonSerializer.Serialize(Settings!, MFESerializationContext.Default.SettingsModel));
+            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
+            using var stream = await file.OpenStreamForWriteAsync();
+            await JsonSerializer.SerializeAsync(stream, Settings!, MFESerializationContext.Default.SettingsModel);
         }
     }
 }

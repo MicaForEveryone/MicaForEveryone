@@ -1,31 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace MicaForEveryone.Models;
 
-public class ClassRule : IRule
+public sealed class ClassRule : Rule
 {
-    public string Name => $"Window class ({ClassName})";
+    public override string Name => $"Window class ({ClassName})";
 
     public required string ClassName { get; set; }
 
-    public TitleBarColorMode TitleBarColor { get; set; }
-
-    public BackdropType BackdropPreference { get; set; }
-
-    public CornerPreference CornerPreference { get; set; }
-
-    public bool ExtendFrameIntoClientArea { get; set; }
-
-    public bool EnableBlurBehind { get; set; }
-
-    public string? TitleBarColorCode { get; set; }
-
-    public bool Equals(IRule? other)
+    public override bool Equals(Rule? other)
     {
-        return other is not null && other is ClassRule classRule && ClassName.Equals(classRule.ClassName, StringComparison.CurrentCultureIgnoreCase);
+        return other is not null
+            && other is ClassRule cRule
+            && ClassName.Equals(cRule.ClassName, StringComparison.CurrentCultureIgnoreCase)
+            && base.Equals(other);
     }
 }

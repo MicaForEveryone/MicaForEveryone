@@ -6,19 +6,29 @@ namespace MicaForEveryone.Models;
 [JsonDerivedType(typeof(ProcessRule), "process")]
 [JsonDerivedType(typeof(GlobalRule), "global")]
 [JsonDerivedType(typeof(ClassRule), "windowClass")]
-public interface IRule : IEquatable<IRule>
+public abstract class Rule : IEquatable<Rule>
 {
-    string Name { get; }
+    public abstract string Name { get; }
 
-    TitleBarColorMode TitleBarColor { get; set; }
+    public TitleBarColorMode TitleBarColor { get; set; }
 
-    BackdropType BackdropPreference { get; set; }
+    public BackdropType BackdropPreference { get; set; }
 
-    CornerPreference CornerPreference { get; set; }
+    public CornerPreference CornerPreference { get; set; }
 
-    bool ExtendFrameIntoClientArea { get; set; }
+    public bool ExtendFrameIntoClientArea { get; set; }
 
-    bool EnableBlurBehind { get; set; }
+    public bool EnableBlurBehind { get; set; }
 
-    string? TitleBarColorCode { get; set; }
+    public string? TitleBarColorCode { get; set; }
+
+    public virtual bool Equals(Rule? other)
+    {
+        return TitleBarColor == other!.TitleBarColor
+            && BackdropPreference == other.BackdropPreference
+            && CornerPreference == other.CornerPreference
+            && ExtendFrameIntoClientArea == other.ExtendFrameIntoClientArea
+            && EnableBlurBehind == other.EnableBlurBehind
+            && TitleBarColorCode == other.TitleBarColorCode;
+    }
 }
