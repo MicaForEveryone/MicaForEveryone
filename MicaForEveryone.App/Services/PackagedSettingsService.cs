@@ -2,6 +2,7 @@
 using MicaForEveryone.Models;
 using NeoSmart.AsyncLock;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ public sealed class PackagedSettingsService : ISettingsService
     private SettingsModel? _settings;
     private readonly AsyncLock _lock = new();
     private FileSystemWatcher? _watcher;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     public SettingsModel? Settings
     {
@@ -31,6 +34,8 @@ public sealed class PackagedSettingsService : ISettingsService
                 if (!wasNull)
                     _ = SaveAsync();
             }
+
+            PropertyChanged?.Invoke(this, new(nameof(Settings)));
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MicaForEveryone.App.Views;
+using MicaForEveryone.CoreUI;
 using Microsoft.UI.Xaml.Controls;
 
 namespace MicaForEveryone.App.ViewModels;
@@ -8,6 +9,13 @@ namespace MicaForEveryone.App.ViewModels;
 public sealed partial class SettingsViewModel : ObservableObject
 {
     private Frame? _frame;
+
+    public ISettingsService SettingsService { get; }
+
+    public SettingsViewModel(ISettingsService settingsService)
+    {
+        SettingsService = settingsService;
+    }
 
     [RelayCommand]
     public void InitializeNavigation(Frame frame)

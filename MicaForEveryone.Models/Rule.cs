@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace MicaForEveryone.Models;
 
@@ -6,21 +7,27 @@ namespace MicaForEveryone.Models;
 [JsonDerivedType(typeof(ProcessRule), "process")]
 [JsonDerivedType(typeof(GlobalRule), "global")]
 [JsonDerivedType(typeof(ClassRule), "windowClass")]
-public abstract class Rule : IEquatable<Rule>
+public abstract partial class Rule: ObservableObject, IEquatable<Rule>
 {
     public abstract string Name { get; }
 
-    public TitleBarColorMode TitleBarColor { get; set; }
+    [ObservableProperty]
+    TitleBarColorMode _titleBarColor;
 
-    public BackdropType BackdropPreference { get; set; }
+    [ObservableProperty]
+    BackdropType _backdropPreference;
 
-    public CornerPreference CornerPreference { get; set; }
+    [ObservableProperty]
+    CornerPreference _cornerPreference;
 
-    public bool ExtendFrameIntoClientArea { get; set; }
+    [ObservableProperty]
+    bool _extendFrameIntoClientArea;
 
-    public bool EnableBlurBehind { get; set; }
+    [ObservableProperty]
+    bool _enableBlurBehind;
 
-    public string? TitleBarColorCode { get; set; }
+    [ObservableProperty]
+    string? _titleBarColorCode;
 
     public virtual bool Equals(Rule? other)
     {

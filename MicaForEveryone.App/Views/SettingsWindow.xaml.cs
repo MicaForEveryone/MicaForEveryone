@@ -1,6 +1,7 @@
 using MicaForEveryone.App.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
 using WinUIEx;
@@ -56,4 +57,13 @@ public unsafe sealed partial class SettingsWindow : WindowEx
     {
         // TODO: Add code to deal with title bar color change.
     }
+}
+
+public class SettingsNavigationItem
+{
+    public string? Uid { get; set; }
+
+    public string? Tag { get; set; }
+
+    public IconElement? Icon { get; set; }
 }
