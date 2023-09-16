@@ -1,7 +1,9 @@
 using MicaForEveryone.App.ViewModels;
+using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
 using WinUIEx;
@@ -56,6 +58,17 @@ public unsafe sealed partial class SettingsWindow : WindowEx
     private void Window_Activated(object _, WindowActivatedEventArgs args)
     {
         // TODO: Add code to deal with title bar color change.
+    }
+
+    public static string GetIconForRule(Rule rule)
+    {
+        if (rule is GlobalRule)
+            return "\uED35";
+        if (rule is ProcessRule)
+            return "\uECAA";
+        if (rule is ClassRule)
+            return "\uE737";
+        throw new ArgumentException("Invalid rule type.", nameof(rule));
     }
 }
 

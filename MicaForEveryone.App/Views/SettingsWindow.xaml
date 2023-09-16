@@ -39,7 +39,11 @@
                 </controls:IsDataTypeTemplateSelector.IsType>
                 <controls:IsDataTypeTemplateSelector.IsNotType>
                     <DataTemplate x:DataType="models:Rule">
-                        <NavigationViewItem Content="{x:Bind Name, Mode=OneWay}" />
+                        <NavigationViewItem Content="{x:Bind Name, Mode=OneWay}">
+                            <NavigationViewItem.Icon>
+                                <FontIcon Glyph="{x:Bind local:SettingsWindow.GetIconForRule((models:Rule))}" />
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
                     </DataTemplate>
                 </controls:IsDataTypeTemplateSelector.IsNotType>
             </controls:IsDataTypeTemplateSelector>
