@@ -160,7 +160,7 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>Thiết lập kiểu nền,</value>
+    <value>Thiết lập kiểu nền</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
     <value>Kiểu nền</value>
@@ -238,7 +238,7 @@ Vui lòng sửa lỗi và nháy 'Tải lại' để tải lại tệp thiết l�
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Quy thuộc toàn diện</value>
+    <value>Thiết đặt chung</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
     <value>Áp dụng ngôn ngữ hệ thống của bạn lên ứng dụng này. Yêu cầu ứng dụng phải được tái khởi động.</value>
