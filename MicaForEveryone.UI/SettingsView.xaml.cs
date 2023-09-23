@@ -46,6 +46,7 @@ namespace MicaForEveryone.UI
             new Contributor("Phyan", "https://github.com/Phyan", "uk"),
             new Contributor("lowl1f3", "https://github.com/lowl1f3", "uk"),
             new Contributor("ChefKozaki", "https://github.com/chefkozaki", "vi"),
+            new Contributor("tnhung2011", "https://github.com/tnhung2011", "vi"),
             new Contributor("AndromedaMelody", "https://github.com/AndromedaMelody", "zh-Hans"),
             new Contributor("FrzMtrsprt", "https://github.com/FrzMtrsprt", "zh-Hans"),
             new Contributor("MW1Z", "https://github.com/MW1Z", "zh-Hant"),
