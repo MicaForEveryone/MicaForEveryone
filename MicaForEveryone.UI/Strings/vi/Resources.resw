@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -130,25 +130,25 @@
     <value>Thêm</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>Thêm Rule của Class</value>
+    <value>Thêm quy lệ lớp mới</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>Thêm Rule của Class</value>
+    <value>Thêm quy lệ lớp mới</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>Rule quá trình mới</value>
+    <value>Quy lệ tác vụ mới</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>Rule quá trình mới</value>
+    <value>Quy lệ tác vụ mới</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>Thêm Rule</value>
+    <value>Thêm quy lệ</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>Thêm Rule</value>
+    <value>Thêm quy lệ</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>Tệp cấu hình</value>
+    <value>Tệp thiết lập</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
     <value>Lỗi chạy ứng dụng</value>
@@ -181,10 +181,10 @@
     <value>Hủy</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>Nhập tên class của window </value>
+    <value>Nhập tên lớp (class) của cửa sổ</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>Tên class:</value>
+    <value>Tên lớp:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
     <value>Đóng</value>
@@ -193,40 +193,40 @@
     <value>Lỗi trong tệp cấu hình:
 {0}
 
-Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải lại .</value>
+Vui lòng sửa lỗi và nháy 'Tải lại' để tải lại tệp thiết lập.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
     <value>Lỗi trong tệp cấu hình</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>File dùng để tải và lưu thiết lập.</value>
+    <value>Đường dẫn tệp dưới dạng chữ dùng để tải và lưu thiết lập.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>Đường dẫn file</value>
+    <value>Đường dẫn tệp</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tối</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Dark dùng chủ đề tối.</value>
+    <value>Dùng chủ đề tối.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>Mặc định giữ nguyên nền mặc định của cửa sổ.</value>
+    <value>Theo mặc định sẽ giữ nguyên chủ đề mặc định của cửa sổ.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
     <value>Mặc định</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Mặc định giữ nguyên chủ đề mặc định của cửa sổ.</value>
+    <value>Theo mặc định sẽ giữ nguyên màu mặc định của thanh tiêu đề cửa sổ.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>Mở rộng khung vào khu vực chính</value>
+    <value>Mở rộng khung vào khu vực chính lưu</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>Mở rộng khung cửa sổ vào khu vực chính của nó để thêm phông nền trên một số ứng dụng. Tính năng này không hoạt động trên mọi ứng dụng và có thể làm hỏng chúng, vì vậy đừng bật tính năng này trừ khi bạn biết mình đang làm gì. Tắt tùy chọn này yêu cầu bạn phải đóng và mở lại các cửa sổ bị ảnh hưởng.</value>
+    <value>Mở rộng khung cửa sổ vào khu vực chính lưu của nó để áp dụng phông nền trên một số ứng dụng. Tính năng này không thích hợp với một số ứng dụng và có thể thủ lưu chúng, vì vậy bạn không nên sử dụng tính năng này. Việc vô hiệu hóa tùy chọn này yêu cầu bạn phải khởi động lại các cửa sổ bị ảnh hưởng.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>Chung</value>
@@ -238,19 +238,19 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>Global Rule</value>
+    <value>Quy thuộc toàn diện</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>Chọn ngôn ngữ của bạn. Yêu cầu khởi động lại ứng dụng </value>
+    <value>Áp dụng ngôn ngữ hệ thống của bạn lên ứng dụng này. Yêu cầu ứng dụng phải được tái khởi động.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>Ngôn ngữ</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>Light</value>
+    <value>Sáng</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Light dùng chủ đề sáng.</value>
+    <value>Dùng chế độ sáng.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
     <value>Mica buộc mọi ứng dụng dùng hiệu ứng nền mờ theo kiểu Windows 11.</value>
@@ -259,10 +259,10 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>None vô hiệu hóa phông nền, ngay cả trên các ứng dụng đã bật chúng.</value>
+    <value>Null vô hiệu hóa tất cả loại phông nền, cả trên những chương trình đang sử dụng chúng.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>None</value>
+    <value>Null</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -271,19 +271,19 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Mở trong trình chỉnh sửa văn bản</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>Nhập tên tệp thực thi mà không có phần mở rộng của nó (.exe)</value>
+    <value>Nhập tên tệp thực thi với không phần mở rộng của nó (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>Tên quá trình:</value>
+    <value>Tên tác vụ:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
     <value>Tải lại</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>Tải lại làm mới ứng dụng khi tệp cấu hình được chỉnh sửa.</value>
+    <value>Tự động tải lại khi tệp cấu hình có thay đổi.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>Tải lại khi có thay đổi</value>
+    <value>Tự động tải lại khi có thay đổi</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
     <value>Bỏ rule</value>
@@ -295,16 +295,16 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Thiết lập</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>Chạy cùng hệ điều hành.</value>
+    <value>Tự động chạy ứng dụng lúc khởi động máy.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>Chạy cùng hệ điều hành</value>
+    <value>Khởi động cùng Windows</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>System</value>
+    <value>Hệ thống</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Thiết đặt chủ đề hệ thống.</value>
+    <value>Hệ thống đang, hoặc sẽ sử dụng màu sắc bạn thiết lập.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
     <value>Tabbed buộc tất cả các ứng dụng sử dụng hiệu ứng phông nền mờ.</value>
@@ -319,10 +319,10 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Chỉnh màu thanh tiêu đề,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>Màu tiêu đề</value>
+    <value>Màu sắc của thanh tiêu đề</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>Màu tiêu đềr</value>
+    <value>Màu thanh tiêu đề</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -331,19 +331,19 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>Unhandled Exception</value>
+    <value>Lỗi ngoại lệ</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>Unhandled Exception in UI</value>
+    <value>Lỗi ngoại lệ trong UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>Lựa chọn Acrylic và Tabbed yêu cầu ít nhất Windows build 22523.</value>
+    <value>Lựa chọn Acrylic và Tabbed yêu cầu từ Windows 11 bản 22523 trở lên.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Chế độ tối đặc biệt yêu cầu ít nhất Windows build 1904.</value>
+    <value>Chế độ tối đồng bộ yêu cầu từ Windows 10 bản 1904 trờ lên.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>Hiệu ứng Mica yêu cầu ít nhất Windows build 22000.</value>
+    <value>Hiệu ứng Mica yêu cầu từ Windows 11 bản 22000 trở lên.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
     <value>Phiên bản</value>
@@ -352,28 +352,28 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Nâng cao</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>Tệp cấu hình</value>
+    <value>Tệp thiết lập</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
     <value>Kiểu</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>Chỉnh trong trình biên tập mặc định.</value>
+    <value>Chỉnh sửa tệp thiết lập trong trình biên tập mặc định.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>Chỉnh trong trình biên tập</value>
+    <value>Chỉnh sửa</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>Tải lại tất cả các thiết lập.</value>
+    <value>Áp dụng thiết lập hiện tại lên các cửa sổ</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>Reload</value>
+    <value>Tải lại</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>Khôi phục tất cả thiết lập.</value>
+    <value>Khôi phục lại thiết lập mặc định.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>Thiết lập lại</value>
+    <value>Khôi phục</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
     <value>Bởi</value>
@@ -382,7 +382,7 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Biểu tượng bởi:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>Dịch bởi:</value>
+    <value>Phiên dịch bởi:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
     <value>Chế độ viền</value>
@@ -391,37 +391,37 @@ Sửa lỗi và dùng lựa chọn 'Tải lại file cấu hình' để tải l�
     <value>Chế độ viền</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>Vuông</value>
+    <value>Viền vuông</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>Tròn</value>
+    <value>Viền tròn</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
     <value>Kết hợp</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>Set corner rounding mode,</value>
+    <value>Thiết lập viền tròn,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>Mặc định không làm điều gì để giữ chế độ làm tròn góc của ứng dụng.</value>
+    <value>Theo mặc định không làm gì để giữ viền tròn của ứng dụng.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>Chế độ vuông vô hiệu hóa làm tròn góc.</value>
+    <value>Chế độ viền vuông vô hiệu hóa sự viền tròn góc.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>Chế độ bo tròn buộc các góc được làm tròn.</value>
+    <value>Chế độ viền tròn buộc các góc phải được viền tròn.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>Chế độ kết hợp giữa góc vuông và bo tròn.</value>
+    <value>Chế độ kết hợp giữa góc vuông và viền tròn.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>Tự động chạy ứng dụng với quyền quản trị lúc khởi động máy. Bạn cần chạy ứng dụng với quyền quản trị để bật tính năng này .</value>
+    <value>Tự động chạy ứng dụng với quyền quản trị viên lúc khởi động máy. Bạn cần chạy ứng dụng với quyền quản trị viên để bật tính năng này.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>Tự động chạy với quyền quản trị </value>
+    <value>Khởi động cùng Windows với quyền quản trị viên</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>Người đóng góp:</value>
+    <value>Đóng góp viên:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
     <value>Hiện biểu tượng vùng thông báo</value>
