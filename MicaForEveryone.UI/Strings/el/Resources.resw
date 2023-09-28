@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Σχετικά με την εφαρμογή</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Το Ακρυλικό αναγκάζει όλες τις εφαρμογές να χρησιμοποιούν εφέ θόλωσης σκηνικού σε στυλ Windows 10.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Ακρυλικό</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Πρόσθήκη</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Νέος Κανόνας Κλάσης</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Πρόσθήκη Νέου Κανόνα Κλάσης</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Νέος Κανόνας Διεργασίας</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Πρόσθήκη Νέου Κανόνα Διεργασίας</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Πρόσθήκη Κανόνα</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Πρόσθήκη Κανόνα</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Αρχείο Config</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Σφάλμα κατά την αρχικοποίηση της εφαρμογής</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica Για Όλους</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica Για Όλους</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Ορισθμός τύπου σκηνικού,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Τύπος Σκηνικού</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Τύπος Σκηνικού</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Κάνε τα παράθυρα ημιδιαφανή και θολά. Απενεργοποιώντας αυτή την επιλογή απαιτεί να κλείσεις και να ξανανοίξεις παράθυρα που επηρεάζονται.</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Θόλωση από Πίσω</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Περιήγηση</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Ακύρωση</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Εισαγωγή ονόματος κλάσης παραθύρου</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Όνομα Κλάσης:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Κλείσιμο</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Σφάλμα στο αρχείο config:
+{0}
+
+Διόρθωσε τα σφάλματα και μετά χρησιμοποίησε την επιλογή "Επαναφόρτωση αρχείου config" για να το επαναφορτώσεις.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Σφάλμα στο αρχείο config</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>Αρχείο για αποθήκευση και φόρτωση κανόνων.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Διαδρομή Αρχείου</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Σκοτεινό</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Το Σκοτεινό χρησιμοποιεί σκοτεινό θέμα.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Η Προεπιλογή δεν κάνει τίποτα για να διατηρήσει το προεπιλεγμένο σκηνικό της εφαρμογής.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Προεπιλογή</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Η επιλογή "Προεπιλογή" διατηρεί το προεπιλεγμένο θέμα της εφαρμογής.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Έξοδος</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Επέκταση Πλαισίου εντός της Περιοχής Πελάτη</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Επεκτείνει το πλάισιο παραθύρου εντός της περιοχής του Πελάτη για να προσθέσει σκηνικό στο παρασκήνιο κάποιων εφαρμογών. Δε δουλεύει με όλες τις εφαρμογές και μπορεί να τις χαλάσει , οπότε μην το ενεργοποιείς αν δε ξέρεις τί κάνεις. Η απενεργοποίηση αυτής της ρύθμισης απαιτεί να κλείσεις και να ξανανοίξεις τα παράθυρα που επηρεάζονται.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>Γενικά</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>Γενικά</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Καθολικός Κανόνας</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>Όρισε την προτιμώμενη γλώσσα σου για το UI. Η εφαρμογή πρέπει να επανεκκινηθεί.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Γλώσσα</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Φωτεινό</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Το Φωτεινό χρησιμοποιεί φωτεινό θέμα.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Το Mica αναγκάζει όλες τις εφαρμογές να χρησιμοποιούν εφέ σκηνικού απόχρωσης ταπετσαρίας τύπου Windows 11.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>Το Τίποτα απενεργοποιεί τα σκηνικά, ακόμα και για εφαρμογές που το έχουν ήδη ενεργό.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Τίποτα</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Άνοιγμα σε συντάκτη κειμένου</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>Εισαγωγή ονόματος εκτελέσιμου αρχείου χωρίς την επέκτασή του (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Όνομα Διεργασίας:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Επαναφόρτωση</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Επαναφορτώνει το config αυτόματα όταν το αρχείο config αλλάζει.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Επαναφόρτωση κατά την αλλάγη</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Αφαίρεση Κανόνα</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Ρυθμίσεις</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Αυτόματη εκκίνηση της εφαρμογής κατά την έναρξη.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Εκκίνηση κατά την Έναρξη</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Σύστημα</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Το Σύστημα χρησιμοποιεί την δική σου προτίμηση θέματος.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Το Καρτέλες αναγκάζει όλες τις εφαρμογές να χρησιμοποιούν εφέ σκηνικού θολής ταπετσαρίας.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Καρτέλες</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Ορισμός χρώματος θέματος Γραμμών Τίτλων,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Χρώμα Γραμμής Τίτλων</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Χρώμα Γραμμής Τίτλων</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica Για Όλους</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Χ</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>Μη Χειριζόμενη Εξαίρεση</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>Μη Χειριζόμενη Εξαίρεση στο UI</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Τα εφέ σκηνικού Ακρυλικό και Καρτέλες απαιτούν τουλάχιστον Windows build 22523.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Η Καθηλωτική Σκοτεινή Λειτουργία απαιτεί τουλάχιστον Windows build 19041.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Το εφέ Mica απαιτεί τουλάχιστον Windows build 22000.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Έκδοση</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Προχωρημένα</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Αρχείο Config</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Στυλ</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Άνοιγμα αρχείου config στον προεπιλεγμένο σου συντάκτη κειμένου.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Επεξεργασία στον Συντάκτη Κειμένου</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Επαναφόρτωση κανόνων από αρχείο config και μετά εφαρμογή τους σε όλα τα παράθυρα.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Επαναφόρτωση</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Επαναφορά προεπιλεγμένων κανόνων και διαγραφή όλων των αλλαγών.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Επαναφορά</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Από</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>Εικονίδιο από:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Μεταφράσεις από:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Λειτουργία Γωνίας</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Λειτουργία Γωνίας</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Τετράγωνη</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Στρογγυλεμένη</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Λίγο Στρογγυλεμένη</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Ορισμός λειτουργίας στρογγυλέματος γωνίας,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Η Προεπιλογή δεν κάνει τίποτα για για να διατηρησει την προτιμώμενη λειτουργία στρογγυλέματος γωνίας της εφαρμογής.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Η λειτουργία Τετράγωνη απενεργοποιεί την στρογγυλοποίηση γωνιών.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Η λειτουργία Στρογγυλεμένη ενεργοποιεί αναγκαστικά τις στρογγυλές γωνίες.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Η λειτουργία Λίγο Στρογγυλεμένη είναι μεταξύ τετράγωνης και στρογγυλής γωνίας.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Εκκίνηση αυτής της εφαρμογής ως διαχειριστής αυτόματα κατά την έναρξη. Πρέπει να εκκινήσεις αυτή την εφαρμογή ως Διαχειριστής για να ενεργοποιήσεις αυτή τη ρύθμιση.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Εκκίνηση ως Διαχειριστής κατά την έναρξη</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Συνεισφέροντες:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Εμφάνιση του εικονιδίου εφαρμογής στη περιοχή ειδοποίησεων</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Εμφάνιση εικονιδίου συρταριού</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Έξοδος</value>
+  </data>
+</root>
