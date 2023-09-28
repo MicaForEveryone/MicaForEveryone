@@ -9,8 +9,6 @@ namespace MicaForEveryone.Models;
 [JsonDerivedType(typeof(ClassRule), "windowClass")]
 public abstract partial class Rule: ObservableObject, IEquatable<Rule>
 {
-    public abstract string Name { get; }
-
     [ObservableProperty]
     TitleBarColorMode _titleBarColor;
 

@@ -19,6 +19,7 @@
 		<None Remove="Assets\DefaultConfiguration.json" />
 		<None Remove="Controls\SettingsPageControl.xaml" />
 		<None Remove="Views\AppSettingsPage.xaml" />
+		<None Remove="Views\RuleSettingsPage.xaml" />
 		<None Remove="Views\SettingsWindow.xaml" />
 		<None Remove="Views\TrayIconPage.xaml" />
 	</ItemGroup>
@@ -35,15 +36,16 @@
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.230830" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.0.230907" />
 		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.230907" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-rc.2.23470.7" />
 		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.7.30" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.0.3" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230822000" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
 		<PackageReference Include="NeoSmart.AsyncLock" Version="3.2.1" />
-		<PackageReference Include="WinUIEx" Version="2.2.0" />
+		<PackageReference Include="WinUIEx" Version="2.3.0" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
@@ -60,6 +62,11 @@
   -->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Views\RuleSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\AppSettingsPage.xaml">

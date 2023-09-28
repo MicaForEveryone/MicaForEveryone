@@ -44,7 +44,7 @@ public sealed class PackagedSettingsService : ISettingsService
         Stream contentStream;
         var folder = ApplicationData.Current.LocalFolder;
         var file = await folder.TryGetItemAsync("settings.json");
-        if (file == null)
+        if (file is null)
         {
             StorageFile defaultFile = await StorageFile.GetFileFromApplicationUriAsync(new("ms-appx:///Assets/DefaultConfiguration.json"));
             contentStream = await defaultFile.OpenStreamForReadAsync();

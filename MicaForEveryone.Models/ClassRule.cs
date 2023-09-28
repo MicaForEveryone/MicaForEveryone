@@ -2,8 +2,6 @@
 
 public sealed class ClassRule : Rule
 {
-    public override string Name => $"Window class ({ClassName})";
-
     public required string ClassName { get; set; }
 
     public override bool Equals(Rule? other)

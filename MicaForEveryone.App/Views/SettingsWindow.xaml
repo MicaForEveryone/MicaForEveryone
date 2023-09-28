@@ -6,6 +6,7 @@
     xmlns:animatedVisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:controls="using:MicaForEveryone.App.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:MicaForEveryone.App.Helpers"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:local="using:MicaForEveryone.App.Views"
@@ -31,17 +32,14 @@
             <controls:IsDataTypeTemplateSelector x:Key="IsDataTypeTemplateSelector" Type="local:SettingsNavigationItem">
                 <controls:IsDataTypeTemplateSelector.IsType>
                     <DataTemplate x:DataType="local:SettingsNavigationItem">
-                        <NavigationViewItem
-                            Content="{x:Bind Uid}"
-                            Icon="{x:Bind Icon}"
-                            Tag="{x:Bind Tag}" />
+                        <NavigationViewItem Content="{x:Bind Uid}" Icon="{x:Bind Icon}" />
                     </DataTemplate>
                 </controls:IsDataTypeTemplateSelector.IsType>
                 <controls:IsDataTypeTemplateSelector.IsNotType>
                     <DataTemplate x:DataType="models:Rule">
-                        <NavigationViewItem Content="{x:Bind Name, Mode=OneWay}">
+                        <NavigationViewItem Content="{x:Bind helpers:RuleInfoHelper.GetRuleName((models:Rule))}">
                             <NavigationViewItem.Icon>
-                                <FontIcon Glyph="{x:Bind local:SettingsWindow.GetIconForRule((models:Rule))}" />
+                                <FontIcon Glyph="{x:Bind helpers:RuleInfoHelper.GetIcon((models:Rule))}" />
                             </NavigationViewItem.Icon>
                         </NavigationViewItem>
                     </DataTemplate>
@@ -110,8 +108,8 @@
                 </Frame>
             </NavigationView.Content>
             <i:Interaction.Behaviors>
-                <ic:EventTriggerBehavior EventName="ItemInvoked">
-                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NavItemInvokedCommand}" />
+                <ic:EventTriggerBehavior EventName="SelectionChanged">
+                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NavSelectionChangedCommand}" />
                 </ic:EventTriggerBehavior>
             </i:Interaction.Behaviors>
         </NavigationView>

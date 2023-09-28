@@ -15,6 +15,8 @@
             <Style TargetType="FontIcon">
                 <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
             </Style>
+
+            <x:Double x:Key="SettingsCardSpacing">3</x:Double>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

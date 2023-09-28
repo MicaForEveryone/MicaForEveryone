@@ -1,6 +1,7 @@
 ﻿using MicaForEveryone.App.Services;
 using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualStudio.Threading;
 using Microsoft.UI.Xaml;
 using System.Threading.Tasks;
 
@@ -29,13 +30,11 @@ public partial class App : Application
     /// <param name="args">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
-        _= LaunchAsync();
-    }
-
-    private async Task LaunchAsync()
-    {
-        await Services.GetRequiredService<ISettingsService>().InitializeAsync();
-        Services.GetRequiredService<MainAppService>().Initialize();
-        _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindows();
+        new JoinableTaskFactory(new JoinableTaskContext()).Run(async () =>
+        {
+            await Services.GetRequiredService<ISettingsService>().InitializeAsync();
+            Services.GetRequiredService<MainAppService>().Initialize();
+            _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindows();
+        });
     }
 }

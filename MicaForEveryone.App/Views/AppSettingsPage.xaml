@@ -6,14 +6,8 @@
     xmlns:controls="using:MicaForEveryone.App.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:labs="using:CommunityToolkit.WinUI.Controls"
-    xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <Page.Resources>
-        <!--  Spacing between cards  -->
-        <x:Double x:Key="SettingsCardSpacing">3</x:Double>
-    </Page.Resources>
 
     <controls:SettingsPageControl Header="_App settings">
         <StackPanel Spacing="{StaticResource SettingsCardSpacing}">

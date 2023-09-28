@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System;
 using Windows.Foundation;
 using WinUIEx;
+using static MicaForEveryone.PInvoke.GDI;
 using static MicaForEveryone.PInvoke.Generic;
 using static MicaForEveryone.PInvoke.Macros;
 using static MicaForEveryone.PInvoke.Messaging;
@@ -49,6 +50,8 @@ public sealed unsafe class MainAppService
         }
         nint gcHandlePtr = GCHandle.ToIntPtr(GCHandle.Alloc(this));
         _mainWnd = CreateWindowExW(WindowStylesEx.WS_EX_NOACTIVATE | WindowStylesEx.WS_EX_TOPMOST, "MicaForEveryoneNotificationIcon", null, WindowStyles.WS_POPUPWINDOW, 0, 0, 0, 0, HWND.NULL, null, instance, gcHandlePtr.ToPointer());
+        var rgn = CreateRectRgn(0, 0, 0, 0);
+        SetWindowRgn(_mainWnd, rgn, false);
         // We have to show the window, or it crashes.
         ShowWindow(_mainWnd, 5);
     }
@@ -145,9 +148,9 @@ public sealed unsafe class MainAppService
 
                     if (monitor != HMONITOR.NULL && (monitorSuccessful = GetMonitorInfoW(monitor, &monitorInfo)))
                         if ((workBottom = monitorInfo.rcWork.bottom) < iconRect.bottom)
-                            iconRect.top = iconRect.bottom - 1;
+                            iconRect.top = workBottom.Value - 1;
 
-                    SetWindowPos(hWnd, HWND.NULL, iconRect.left, iconRect.top, 0, 0, SWP_NOACTIVATE | SWP_NOZORDER);
+                    SetWindowPos(hWnd, HWND.NULL, iconRect.left, iconRect.top, iconRect.right - iconRect.left, iconRect.bottom - iconRect.left, SWP_NOACTIVATE | SWP_NOZORDER);
 
                     var pointer = GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_USERDATA);
                     var gc = GCHandle.FromIntPtr(pointer);

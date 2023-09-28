@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MicaForEveryone.App.Views;
 using MicaForEveryone.CoreUI;
+using MicaForEveryone.Models;
 using Microsoft.UI.Xaml.Controls;
 
 namespace MicaForEveryone.App.ViewModels;
@@ -24,13 +25,20 @@ public sealed partial class SettingsViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void NavItemInvoked(NavigationViewItemInvokedEventArgs args)
+    private void NavSelectionChanged(NavigationViewSelectionChangedEventArgs args)
     {
-        switch (args.InvokedItemContainer.Tag)
+        if (args.SelectedItem is SettingsNavigationItem navItem)
         {
-            case "SettingsNavViewItem":
-                _frame?.Navigate(typeof(AppSettingsPage), null, args.RecommendedNavigationTransitionInfo);
-                return;
+            switch (navItem.Tag)
+            {
+                case "SettingsNavViewItem":
+                    _frame?.Navigate(typeof(AppSettingsPage), null, args.RecommendedNavigationTransitionInfo);
+                    return;
+            }
+        }
+        else if (args.SelectedItem is Rule rule)
+        {
+            _frame?.Navigate(typeof(RuleSettingsPage), rule, args.RecommendedNavigationTransitionInfo);
         }
     }
 }

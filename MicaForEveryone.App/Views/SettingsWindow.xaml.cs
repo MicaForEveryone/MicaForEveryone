@@ -59,17 +59,6 @@ public unsafe sealed partial class SettingsWindow : WindowEx
     {
         // TODO: Add code to deal with title bar color change.
     }
-
-    public static string GetIconForRule(Rule rule)
-    {
-        if (rule is GlobalRule)
-            return "\uED35";
-        if (rule is ProcessRule)
-            return "\uECAA";
-        if (rule is ClassRule)
-            return "\uE737";
-        throw new ArgumentException("Invalid rule type.", nameof(rule));
-    }
 }
 
 public class SettingsNavigationItem

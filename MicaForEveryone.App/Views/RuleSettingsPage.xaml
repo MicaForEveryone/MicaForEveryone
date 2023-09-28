@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page
+    x:Class="MicaForEveryone.App.Views.RuleSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MicaForEveryone.App.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:MicaForEveryone.App.Helpers"
+    xmlns:labs="using:CommunityToolkit.WinUI.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:MicaForEveryone.Models"
+    mc:Ignorable="d">
+
+    <controls:SettingsPageControl Header="{x:Bind helpers:RuleInfoHelper.GetRuleName(Rule)}">
+        <StackPanel Spacing="{StaticResource SettingsCardSpacing}">
+            <StackPanel.ChildrenTransitions>
+                <EntranceThemeTransition FromVerticalOffset="50" IsStaggeringEnabled="True" />
+                <RepositionThemeTransition IsStaggeringEnabled="False" />
+            </StackPanel.ChildrenTransitions>
+
+            <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="_Style" />
+            <labs:SettingsCard Header="_Title bar color">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE790;" />
+                </labs:SettingsCard.HeaderIcon>
+
+                <ComboBox
+                    MinWidth="110"
+                    ItemsSource="{x:Bind helpers:EnumHelper.TitleBarColorModes}"
+                    SelectedItem="{x:Bind helpers:EnumHelper.TitleBarColorModeToString(Rule.TitleBarColor), BindBack=helpers:EnumHelper.StringToTitleBarColorMode, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <labs:SwitchPresenter Value="{x:Bind}">
+                                <labs:Case Value="Default">
+                                    <TextBlock Text="_Default" />
+                                </labs:Case>
+                                <labs:Case Value="System">
+                                    <TextBlock Text="_System" />
+                                </labs:Case>
+                                <labs:Case Value="Light">
+                                    <TextBlock Text="_Light" />
+                                </labs:Case>
+                                <labs:Case Value="Dark">
+                                    <TextBlock Text="_Dark" />
+                                </labs:Case>
+                                <labs:Case Value="Custom">
+                                    <TextBlock Text="_Custom" />
+                                </labs:Case>
+                            </labs:SwitchPresenter>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </labs:SettingsCard>
+        </StackPanel>
+    </controls:SettingsPageControl>
+</Page>

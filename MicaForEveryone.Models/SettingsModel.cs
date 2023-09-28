@@ -1,11 +1,24 @@
-﻿using System.Collections.ObjectModel;
-using System.Runtime.InteropServices;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace MicaForEveryone.Models;
 
-public class SettingsModel : IEquatable<SettingsModel>
+public class SettingsModel : ObservableObject, IEquatable<SettingsModel>
 {
-    public required ObservableCollection<Rule> Rules { get; set; }
+    private ObservableCollection<Rule>? _rules;
+
+    public required ObservableCollection<Rule> Rules
+    {
+        get => _rules!;
+        set
+        {
+            if (_rules is not null && Enumerable.SequenceEqual(_rules, value))
+                return;
+
+            _rules = value;
+            OnPropertyChanged(nameof(Rules));
+        }
+    }
 
     // Define equal operator
     public static bool operator ==(SettingsModel? left, SettingsModel? right)
