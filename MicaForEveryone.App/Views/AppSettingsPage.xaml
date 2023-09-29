@@ -28,7 +28,11 @@
             <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="_About" />
             <labs:SettingsExpander Description="{x:Bind ViewModel.AppVersion}" Header="_About Mica For Everyone">
                 <labs:SettingsExpander.HeaderIcon>
-                    <BitmapIcon UriSource="ms-appx:///Assets/Square44x44Logo.png" />
+                    <BitmapIcon
+                        Width="64"
+                        Height="64"
+                        ShowAsMonochrome="False"
+                        UriSource="ms-appx:///Assets/Square44x44Logo.png" />
                 </labs:SettingsExpander.HeaderIcon>
                 <labs:SettingsExpander.Items>
                     <labs:SettingsCard ContentAlignment="Left">

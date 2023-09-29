@@ -28,6 +28,10 @@ public sealed unsafe class MainAppService
     public void Initialize()
     {
         HINSTANCE instance = GetModuleHandleW(null);
+        HICON largeIcon, smallIcon;
+        LoadIconMetric(instance, IDI_APPLICATION, LIM_LARGE, &largeIcon);
+        LoadIconMetric(instance, IDI_APPLICATION, LIM_SMALL, &smallIcon);
+
         fixed (char* lpClassName = "MicaForEveryoneNotificationIcon")
         {
             WNDCLASSEXW wndClass = new()
@@ -39,8 +43,8 @@ public sealed unsafe class MainAppService
                 hCursor = HCURSOR.NULL,
                 lpszClassName = (ushort*)lpClassName,
                 lpszMenuName = null,
-                hIcon = LoadIconW(instance, IDI_APPLICATION),
-                hIconSm = LoadIconW(instance, IDI_APPLICATION),
+                hIcon = largeIcon,
+                hIconSm = smallIcon,
                 cbClsExtra = 0,
                 cbWndExtra = 0,
                 hbrBackground = HBRUSH.NULL
@@ -100,6 +104,9 @@ public sealed unsafe class MainAppService
         {
             case 1:
                 {
+                    HICON smallIcon;
+                    LoadIconMetric(GetModuleHandleW(null), IDI_APPLICATION, LIM_SMALL, &smallIcon);
+
                     CREATESTRUCTW* lpCreateStruct = (CREATESTRUCTW*)&lParam;
                     nint gcHandlePtr = *(nint*)lpCreateStruct->lpCreateParams;
                     var gc = GCHandle.FromIntPtr(gcHandlePtr);
@@ -117,7 +124,7 @@ public sealed unsafe class MainAppService
                     notifyIconData.hWnd = hWnd;
                     notifyIconData.uID = 1;
                     notifyIconData.cbSize = (uint)sizeof(NOTIFYICONDATAW);
-                    notifyIconData.hIcon = LoadIconW(GetModuleHandleW(null), IDI_APPLICATION);
+                    notifyIconData.hIcon = smallIcon;
                     notifyIconData.uVersion = 4;
                     notifyIconData.uCallbackMessage = WM_APP + 1;
 

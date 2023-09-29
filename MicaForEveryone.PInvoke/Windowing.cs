@@ -530,8 +530,8 @@ public static unsafe partial class Windowing
         }
     }
 
-    [DllImport("user32.dll", EntryPoint = "LoadIconW", ExactSpelling = true)]
-    public static extern unsafe HICON LoadIconW(HINSTANCE hInstance, ushort* lpIconName);
+    [DllImport("comctl32.dll", ExactSpelling = true)]
+    public static extern unsafe HRESULT LoadIconMetric(HINSTANCE hInstance, ushort* pszName, int lims, HICON* phico);
 
     [DllImport("user32.dll")]
     public static extern bool ShowWindow(HWND hWnd, int nCmdShow);
@@ -558,5 +558,8 @@ public static unsafe partial class Windowing
     public const uint SWP_NOACTIVATE = 0x0010;
 
     public const int SW_RESTORE = 9;
+
+    public const int LIM_SMALL = 0;
+    public const int LIM_LARGE = 1;
     #endregion
 }

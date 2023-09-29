@@ -16,6 +16,15 @@
 		<UseRidGraph>true</UseRidGraph>
 	</PropertyGroup>
 	<ItemGroup>
+	  <Content Remove="Assets\SmallTile.scale-100.png" />
+	  <Content Remove="Assets\SmallTile.scale-200.png" />
+	  <Content Remove="Assets\SmallTile.scale-400.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-100.png" />
+	  <Content Remove="Assets\Square150x150Logo.scale-400.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-100.png" />
+	  <Content Remove="Assets\Wide310x150Logo.scale-400.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<None Remove="Assets\DefaultConfiguration.json" />
 		<None Remove="Controls\SettingsPageControl.xaml" />
 		<None Remove="Views\AppSettingsPage.xaml" />
@@ -25,12 +34,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Assets\SplashScreen.scale-200.png" />
 		<Content Include="Assets\LockScreenLogo.scale-200.png" />
 		<Content Include="Assets\Square150x150Logo.scale-200.png" />
 		<Content Include="Assets\Square44x44Logo.scale-200.png" />
 		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-		<Content Include="Assets\StoreLogo.png" />
 		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
 	</ItemGroup>
 

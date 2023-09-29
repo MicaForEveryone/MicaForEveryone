@@ -1,13 +1,13 @@
 using MicaForEveryone.App.ViewModels;
-using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
 using WinUIEx;
 using static MicaForEveryone.PInvoke.Messaging;
+using static MicaForEveryone.PInvoke.Modules;
 using static MicaForEveryone.PInvoke.Windowing;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -29,6 +29,13 @@ public unsafe sealed partial class SettingsWindow : WindowEx
 
         ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
         ExtendsContentIntoTitleBar = true;
+
+        Title = "_Mica For Everyone Settings";
+
+        HICON icon;
+        LoadIconMetric(GetModuleHandleW(null), IDI_APPLICATION, LIM_LARGE, &icon);
+
+        AppWindow.SetIcon(Win32Interop.GetIconIdFromIcon(new nint(icon.Value)));
 
         oldWndProc = (delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT>)SetWindowLongPtrW(new HWND((void*)WindowNative.GetWindowHandle(this)), WindowLongIndex.GWL_WNDPROC, (nint)(delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT>)&WindowProc);
     }
