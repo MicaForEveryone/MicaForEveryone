@@ -4,6 +4,7 @@ using MicaForEveryone.App.Views;
 using MicaForEveryone.CoreUI;
 using MicaForEveryone.Models;
 using Microsoft.UI.Xaml.Controls;
+using System.Linq;
 
 namespace MicaForEveryone.App.ViewModels;
 
@@ -38,7 +39,7 @@ public sealed partial class SettingsViewModel : ObservableObject
         }
         else if (args.SelectedItem is Rule rule)
         {
-            _frame?.Navigate(typeof(RuleSettingsPage), rule, args.RecommendedNavigationTransitionInfo);
+            _frame?.Navigate(typeof(RuleSettingsPage), SettingsService.Settings!.Rules.IndexOf(rule), args.RecommendedNavigationTransitionInfo);
         }
     }
 }

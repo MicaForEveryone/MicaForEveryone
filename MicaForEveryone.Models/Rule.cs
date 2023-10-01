@@ -9,23 +9,48 @@ namespace MicaForEveryone.Models;
 [JsonDerivedType(typeof(ClassRule), "windowClass")]
 public abstract partial class Rule: ObservableObject, IEquatable<Rule>
 {
-    [ObservableProperty]
     TitleBarColorMode _titleBarColor;
-
-    [ObservableProperty]
     BackdropType _backdropPreference;
-
-    [ObservableProperty]
     CornerPreference _cornerPreference;
-
-    [ObservableProperty]
     bool _extendFrameIntoClientArea;
-
-    [ObservableProperty]
     bool _enableBlurBehind;
-
-    [ObservableProperty]
     string? _titleBarColorCode;
+
+    public TitleBarColorMode TitleBarColor
+    {
+        get => _titleBarColor;
+        set => SetProperty(ref _titleBarColor, value);
+    }
+
+    public BackdropType BackdropPreference
+    {
+        get => _backdropPreference;
+        set => SetProperty(ref _backdropPreference, value);
+    }
+
+    public CornerPreference CornerPreference
+    {
+        get => _cornerPreference;
+        set => SetProperty(ref _cornerPreference, value);
+    }
+
+    public bool ExtendFrameIntoClientArea
+    {
+        get => _extendFrameIntoClientArea;
+        set => SetProperty(ref _extendFrameIntoClientArea, value);
+    }
+
+    public bool EnableBlurBehind
+    {
+        get => _enableBlurBehind;
+        set => SetProperty(ref _enableBlurBehind, value);
+    }
+
+    public string? TitleBarColorCode
+    {
+        get => _titleBarColorCode;
+        set => SetProperty(ref _titleBarColorCode, value);
+    }
 
     public virtual bool Equals(Rule? other)
     {

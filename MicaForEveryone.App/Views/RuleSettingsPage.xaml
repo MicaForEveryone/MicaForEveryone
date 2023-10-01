@@ -6,6 +6,8 @@
     xmlns:controls="using:MicaForEveryone.App.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:MicaForEveryone.App.Helpers"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:labs="using:CommunityToolkit.WinUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:MicaForEveryone.Models"
@@ -27,23 +29,23 @@
                 <ComboBox
                     MinWidth="110"
                     ItemsSource="{x:Bind helpers:EnumHelper.TitleBarColorModes}"
-                    SelectedItem="{x:Bind helpers:EnumHelper.TitleBarColorModeToString(Rule.TitleBarColor), BindBack=helpers:EnumHelper.StringToTitleBarColorMode, Mode=TwoWay}">
+                    SelectedItem="{x:Bind Rule.TitleBarColor, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="x:String">
-                            <labs:SwitchPresenter Value="{x:Bind}">
-                                <labs:Case Value="Default">
+                        <DataTemplate x:DataType="models:TitleBarColorMode">
+                            <labs:SwitchPresenter Value="{x:Bind (models:TitleBarColorMode)}">
+                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Default}">
                                     <TextBlock Text="_Default" />
                                 </labs:Case>
-                                <labs:Case Value="System">
+                                <labs:Case Value="{x:Bind models:TitleBarColorMode.System}">
                                     <TextBlock Text="_System" />
                                 </labs:Case>
-                                <labs:Case Value="Light">
+                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Light}">
                                     <TextBlock Text="_Light" />
                                 </labs:Case>
-                                <labs:Case Value="Dark">
+                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Dark}">
                                     <TextBlock Text="_Dark" />
                                 </labs:Case>
-                                <labs:Case Value="Custom">
+                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Custom}">
                                     <TextBlock Text="_Custom" />
                                 </labs:Case>
                             </labs:SwitchPresenter>

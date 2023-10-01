@@ -5,21 +5,13 @@ namespace MicaForEveryone.App.Helpers;
 
 public static class EnumHelper
 {
-    private static string[]? _titleBarColorModes;
+    private static TitleBarColorMode[]? _titleBarColorModes;
 
-    public static string[] TitleBarColorModes
+    public static TitleBarColorMode[] TitleBarColorModes
     {
         get
         {
-            return _titleBarColorModes ??= Enum.GetNames<TitleBarColorMode>();
+            return _titleBarColorModes ??= Enum.GetValues<TitleBarColorMode>();
         }
     }
-
-    public static TitleBarColorMode StringToTitleBarColorMode(object value)
-    {
-        return Enum.Parse<TitleBarColorMode>((string)value);
-    }
-
-    public static string TitleBarColorModeToString(TitleBarColorMode t)
-        => t.ToString();
 }
