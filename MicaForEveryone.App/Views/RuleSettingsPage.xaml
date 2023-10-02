@@ -9,8 +9,10 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:labs="using:CommunityToolkit.WinUI.Controls"
+    xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:MicaForEveryone.Models"
+    x:Name="ThisPage"
     mc:Ignorable="d">
 
     <controls:SettingsPageControl Header="{x:Bind helpers:RuleInfoHelper.GetRuleName(Rule)}">
@@ -32,25 +34,14 @@
                     SelectedItem="{x:Bind Rule.TitleBarColor, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="models:TitleBarColorMode">
-                            <labs:SwitchPresenter Value="{x:Bind (models:TitleBarColorMode)}">
-                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Default}">
-                                    <TextBlock Text="_Default" />
-                                </labs:Case>
-                                <labs:Case Value="{x:Bind models:TitleBarColorMode.System}">
-                                    <TextBlock Text="_System" />
-                                </labs:Case>
-                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Light}">
-                                    <TextBlock Text="_Light" />
-                                </labs:Case>
-                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Dark}">
-                                    <TextBlock Text="_Dark" />
-                                </labs:Case>
-                                <labs:Case Value="{x:Bind models:TitleBarColorMode.Custom}">
-                                    <TextBlock Text="_Custom" />
-                                </labs:Case>
-                            </labs:SwitchPresenter>
+                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetTitleBarColorLocalized((models:TitleBarColorMode))}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="SelectionChanged">
+                            <ic:InvokeCommandAction Command="{x:Bind ComboBoxChangedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
                 </ComboBox>
             </labs:SettingsCard>
         </StackPanel>

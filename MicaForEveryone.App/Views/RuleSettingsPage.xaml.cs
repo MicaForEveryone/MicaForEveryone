@@ -4,6 +4,7 @@ using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -28,7 +29,23 @@ public sealed partial class RuleSettingsPage : Page
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
-        Rule = SettingsService.Settings!.Rules[(int)e.Parameter];
+        Rule = Unsafe.As<Rule>(e.Parameter);
         base.OnNavigatedTo(e);
+    }
+
+    public static string GetTitleBarColorLocalized(TitleBarColorMode titleBarColorMode)
+    {
+        return App.Services.GetRequiredService<ILocalizationService>().GetLocalizedTitleBarColor(titleBarColorMode);
+    }
+
+    [RelayCommand]
+    public async Task ComboBoxChangedAsync(SelectionChangedEventArgs args)
+    {
+        if (args.RemovedItems!.Count == 0)
+        {
+            return;
+        }
+
+        await SettingsService.SaveAsync();
     }
 }

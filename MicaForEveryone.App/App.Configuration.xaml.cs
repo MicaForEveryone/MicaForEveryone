@@ -4,6 +4,7 @@ using MicaForEveryone.App.ViewModels;
 using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
+using Microsoft.Windows.ApplicationModel.Resources;
 using System;
 
 namespace MicaForEveryone.App;
@@ -25,6 +26,7 @@ public partial class App
         ServiceCollection collection = new();
 
         collection.AddSingleton<IDispatchingService>(new DispatchingService(DispatcherQueue.GetForCurrentThread()));
+        collection.AddSingleton<ILocalizationService>(new LocalizationService());
 
         // Check if we are really running packaged.
         collection.AddSingleton<IVersionInfoService, PackagedVersionInfoService>();
