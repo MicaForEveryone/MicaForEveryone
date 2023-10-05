@@ -1,6 +1,5 @@
 ﻿using MicaForEveryone.CoreUI;
 using MicaForEveryone.Models;
-using NeoSmart.AsyncLock;
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -13,7 +12,6 @@ namespace MicaForEveryone.App.Services;
 public sealed class PackagedSettingsService : ISettingsService
 {
     private SettingsModel? _settings;
-    private readonly AsyncLock _lock = new();
     private FileSystemWatcher? _watcher;
 
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -26,14 +24,7 @@ public sealed class PackagedSettingsService : ISettingsService
             if (_settings == value)
                 return;
 
-            using (_ = _lock.Lock())
-            {
-                bool wasNull = _settings is null;
-                _settings = value;
-
-                if (!wasNull)
-                    _ = SaveAsync();
-            }
+            _settings = value;
 
             PropertyChanged?.Invoke(this, new(nameof(Settings)));
         }
@@ -74,11 +65,8 @@ public sealed class PackagedSettingsService : ISettingsService
 
     public async Task SaveAsync()
     {
-        using (_ = await _lock.LockAsync())
-        {
-            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
-            using var stream = await file.OpenStreamForWriteAsync();
-            await JsonSerializer.SerializeAsync(stream, Settings!, MFESerializationContext.Default.SettingsModel);
-        }
+        var file = await ApplicationData.Current.LocalFolder.CreateFileAsync("settings.json", CreationCollisionOption.ReplaceExisting);
+        using var stream = await file.OpenStreamForWriteAsync();
+        await JsonSerializer.SerializeAsync(stream, Settings!, MFESerializationContext.Default.SettingsModel);
     }
 }
