@@ -44,6 +44,49 @@
                     </i:Interaction.Behaviors>
                 </ComboBox>
             </labs:SettingsCard>
+            <labs:SettingsCard Header="_Backdrop type">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xF5EF;" />
+                </labs:SettingsCard.HeaderIcon>
+
+                <ComboBox
+                    MinWidth="110"
+                    ItemsSource="{x:Bind helpers:EnumHelper.BackdropTypes}"
+                    SelectedItem="{x:Bind Rule.BackdropPreference, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:BackdropType">
+                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetBackdropTypeLocalized((models:BackdropType))}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="SelectionChanged">
+                            <ic:InvokeCommandAction Command="{x:Bind ComboBoxChangedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ComboBox>
+            </labs:SettingsCard>
+            <labs:SettingsCard Header="_Corner preference">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE71A;" />
+                </labs:SettingsCard.HeaderIcon>
+
+                <ComboBox
+                    MinWidth="110"
+                    ItemsSource="{x:Bind helpers:EnumHelper.CornerPreferences}"
+                    SelectedItem="{x:Bind Rule.CornerPreference, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="models:CornerPreference">
+                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetCornerPreferenceLocalized((models:CornerPreference))}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <i:Interaction.Behaviors>
+                        <ic:EventTriggerBehavior EventName="SelectionChanged">
+                            <ic:InvokeCommandAction Command="{x:Bind ComboBoxChangedCommand}" />
+                        </ic:EventTriggerBehavior>
+                    </i:Interaction.Behaviors>
+                </ComboBox>
+            </labs:SettingsCard>
+
         </StackPanel>
     </controls:SettingsPageControl>
 </Page>

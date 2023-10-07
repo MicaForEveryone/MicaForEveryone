@@ -38,6 +38,16 @@ public sealed partial class RuleSettingsPage : Page
         return App.Services.GetRequiredService<ILocalizationService>().GetLocalizedTitleBarColor(titleBarColorMode);
     }
 
+    public static string GetBackdropTypeLocalized(BackdropType backdropType)
+    {
+        return App.Services.GetRequiredService<ILocalizationService>().GetLocalizedBackdropType(backdropType);
+    }
+
+    public static string GetCornerPreferenceLocalized(CornerPreference cornerPreference)
+    {
+        return App.Services.GetRequiredService<ILocalizationService>().GetLocalizedCornerPreference(cornerPreference);
+    }
+
     [RelayCommand]
     public async Task ComboBoxChangedAsync(SelectionChangedEventArgs args)
     {
