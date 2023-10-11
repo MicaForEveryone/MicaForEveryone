@@ -26,7 +26,8 @@
 **Mica For Everyone** is a tool to customize system backdrop on Win32 apps using [DwmSetWindowAttribute](https://docs.microsoft.com/en-us/windows/win32/api/dwmapi/nf-dwmapi-dwmsetwindowattribute) and other methods.
 It can apply Mica (or any other backdrop materials) on the non-client area (window frame) or background of supported apps and its behavior is customizable through a GUI and a config file.
 
-> **NOTE**: Mica For Everyone is not responsible for rendering the effects you set, it just asks Windows to do that for you. If there's any problem with the effects it's a third-party issue. Try creating a rule for the affected apps and try different settings before opening an issue for it.
+> **Note**
+> Mica For Everyone is not responsible for rendering the effects you set, it just asks Windows to do that for you. If there's any problem with the effects it's a third-party issue. Try creating a rule for the affected apps and try different settings before opening an issue for it.
 
 ## 🕹 How do I get it?
 Go to **[Releases page](https://github.com/MicaForEveryone/MicaForEveryone/releases) > Assets > and choose the appropriate download** or [just click here to download the latest version of Mica For Everyone](https://github.com/MicaForEveryone/MicaForEveryone/releases/latest).
@@ -42,7 +43,7 @@ For more information check our [wiki page](https://github.com/MicaForEveryone/Mi
 
 ![Screenshot 3](Assets/3.png)
 
-## 🌍 Globalization
+## 🌍 Localization
 Translations into versions for other languages are welcome! Please read the [translation guide](./CONTRIBUTING.md#translating) before starting translations.
 
 | Key     | Name                  | Translator                                                                                         |
