@@ -1,12 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Text.Json.Serialization;
 
 namespace MicaForEveryone.Models;
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "scope")]
-[JsonDerivedType(typeof(ProcessRule), "process")]
-[JsonDerivedType(typeof(GlobalRule), "global")]
-[JsonDerivedType(typeof(ClassRule), "windowClass")]
 public abstract partial class Rule: ObservableObject, IEquatable<Rule>
 {
     TitleBarColorMode _titleBarColor;

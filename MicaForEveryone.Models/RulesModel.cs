@@ -1,9 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MicaForEveryone.Models;
 
-public class SettingsModel : ObservableObject, IEquatable<SettingsModel>
+public partial class RulesModel : ObservableObject, IEquatable<RulesModel>
 {
     private ObservableCollection<Rule>? _rules;
 
@@ -21,7 +23,7 @@ public class SettingsModel : ObservableObject, IEquatable<SettingsModel>
     }
 
     // Define equal operator
-    public static bool operator ==(SettingsModel? left, SettingsModel? right)
+    public static bool operator ==(RulesModel? left, RulesModel? right)
     {
         if (left is null)
             return right is null;
@@ -30,10 +32,10 @@ public class SettingsModel : ObservableObject, IEquatable<SettingsModel>
     }
 
     // Define not equal operator
-    public static bool operator !=(SettingsModel? left, SettingsModel? right)
+    public static bool operator !=(RulesModel? left, RulesModel? right)
         => !(left == right);
 
-    public bool Equals(SettingsModel? other)
+    public bool Equals(RulesModel? other)
     {
         if (other is null)
             return false;
@@ -43,7 +45,7 @@ public class SettingsModel : ObservableObject, IEquatable<SettingsModel>
 
     public override bool Equals(object? obj)
     {
-        return obj is SettingsModel model && Equals(model);
+        return obj is RulesModel model && Equals(model);
     }
 
     public override int GetHashCode()

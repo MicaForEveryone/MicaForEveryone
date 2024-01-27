@@ -5,7 +5,7 @@ namespace MicaForEveryone.CoreUI;
 
 public interface ISettingsService : INotifyPropertyChanged
 {
-    SettingsModel? Settings { get; set; }
+    RulesModel? Settings { get; set; }
 
     Task InitializeAsync();
 

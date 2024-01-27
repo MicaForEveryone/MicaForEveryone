@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace MicaForEveryone.Models;
+﻿namespace MicaForEveryone.Models;
 
 public enum TitleBarColorMode
 {
