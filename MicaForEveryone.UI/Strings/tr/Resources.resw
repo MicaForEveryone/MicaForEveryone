@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -205,10 +205,10 @@ Yeniden yüklemek için hataları düzeltin ve "Konfigürasyon dosyasını yenid
     <value>Dosya Yolu</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>Karanlık</value>
+    <value>Koyu</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>Karanlık, karanlık temayı kullanır.</value>
+    <value>Koyu, koyu temayı kullanır.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
     <value>Varsayılan, uygulamanın varsayılan arka plan efektini tutmak için hiçbir şey yapmaz.</value>
@@ -340,7 +340,7 @@ Yeniden yüklemek için hataları düzeltin ve "Konfigürasyon dosyasını yenid
     <value>Acrylic ve Sekmeli arka plan efektleri en az Windows İS derlemesi 22523'ü gerektirir.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>Sürükleyici Karanlık Mod en az Windows İS derlemesi 19041'i gerektirir.</value>
+    <value>Sürükleyici Koyu Mod en az Windows İS derlemesi 19041'i gerektirir.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
     <value>Mica efekti en az Windows İS derlemesi 22000'i gerektirir.</value>
