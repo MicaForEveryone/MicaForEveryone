@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,40 +118,40 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>關於此程式</value>
+    <value>Bu tətbiq haqqında</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用 Windows 10 風格的壓克力半透明效果。</value>
+    <value>Acrylic bütün tətbiqləri Windows 10 üslublu bulanıq fon effektindən istifadə etməyə məcbur edir.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>壓克力</value>
+    <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>建立</value>
+    <value>Əlavə et</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>建立視窗類別規則</value>
+    <value>Yeni Sinif Qaydası</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>視窗類別規則</value>
+    <value>Sinif qaydası əlavə edin</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>建立處理程序規則</value>
+    <value>Yeni Proses Qaydası</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>處理程序規則</value>
+    <value>Proses Qaydasını əlavə edin</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>新增規則</value>
+    <value>Qayda əlavə edin</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>新增規則</value>
+    <value>Qayda əlavə edin</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>設定檔</value>
+    <value>Konfiqurasiya faylı</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>初始化應用程式時發生錯誤</value>
+    <value>Tətbiqin işə salınmasında xəta</value>
   </data>
   <data name="AppName" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -160,169 +160,169 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>設定視窗背景類型，</value>
+    <value>Arxa Fon növünü təyin edin,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>模糊類型</value>
+    <value>Arxa Fon Növü</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>模糊類型</value>
+    <value>Arxa Fon Növü</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>視窗呈現半透明與模糊。變更此選項需重新開啟作用中的視窗。</value>
+    <value>Pəncərələri şəffaf və bulanıq edin. Bu seçimi söndürmək üçün təsirlənmiş pəncərələri bağlamaq və yenidən açmaq lazımdır.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>後置模糊</value>
+    <value>Arxasını Bulanlıqlaşdır</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>瀏覽</value>
+    <value>Gözdən keçirin</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>取消</value>
+    <value>Ləğv et</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>輸入視窗類別名稱</value>
+    <value>Pəncərə sinif adını daxil edin</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>類別名稱:</value>
+    <value>Sinif Adı:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>關閉</value>
+    <value>Bağla</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>設定檔發生錯誤：
+    <value>Konfiqurasiya faylında xəta:
 {0}
 
-請修正錯誤並以「重新載入設定檔」重試。</value>
+Səhvləri düzəldin, sonra onu yenidən yükləmək üçün "Konfiqurasiya faylını yenidən yüklə" seçimindən istifadə edin.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>設定檔中有錯誤</value>
+    <value>Konfiqurasiya faylında xəta</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>用於儲存與載入規則的檔案。</value>
+    <value>Qaydaları yadda saxlamaq və yükləmək üçün istifadə ediləcək fayl.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>檔案路徑</value>
+    <value>Fayl yolu</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>深色</value>
+    <value>Qaranlıq</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用深色主題。</value>
+    <value>Qaranlıq, qaranlıq temadan istifadə edir.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>不執行任何動作以使用預設背景。</value>
+    <value>Defolt tətbiqin defolt fonunu saxlamaq üçün heç nə etmir.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>預設</value>
+    <value>Defolt</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用預設應用程式主題。</value>
+    <value>"Defolt" seçimi tətbiqin defolt mövzusunu saxlayır.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>結束</value>
+    <value>Çıx</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>延伸外框至工作區</value>
+    <value>Çərçivəni Müştəri Sahəsinə Genişləndirin</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>將視窗外框延伸至工作區讓應用程式表面呈現半透明效果。此選項不適用於所有程式甚至可能造成應用程式損毀，除非您了解正在執行的動作否則請勿啟用。變更此選項需重新開啟作用中的視窗。</value>
+    <value>Bəzi proqramların fonunda fon əlavə etmək üçün pəncərə çərçivəsini müştəri sahəsinə genişləndirir. O, hər proqramda işləmir və onları poza bilər, ona görə də nə etdiyinizi bilmədiyiniz halda bunu aktiv etməyin. Bu seçimi söndürmək üçün təsirlənmiş pəncərələri bağlamaq və yenidən açmaq lazımdır.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>一般</value>
+    <value>General</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>一般</value>
+    <value>General</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>全域規則</value>
+    <value>Qlobal Qayda</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>設定您的慣用語言，必須重新開啟應用程式才會套用。</value>
+    <value>UI üçün üstünlük verdiyiniz dili təyin edin. Tətbiqin qüvvəyə minməsi üçün tətbiq yenidən işə salınmalıdır.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>語言</value>
+    <value>Dil</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>淺色</value>
+    <value>Açıq</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用淺色主題。</value>
+    <value>Açıq, açıq mövzudan istifadə edir.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用 Windows 11 風格的雲母桌面背景子著色效果。</value>
+    <value>Mica bütün tətbiqləri Windows 11 üslublu rəngli divar kağızı fon effektindən istifadə etməyə məcbur edir.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>雲母</value>
+    <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>不使用任何效果以顯示純色背景。</value>
+    <value>Heç biri arxa fonları, hətta onları artıq aktivləşdirmiş proqramlarda deaktiv etmir.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>純色</value>
+    <value>Heç biri</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>確定</value>
+    <value>Yaxşı</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>在文字編輯器中開啟</value>
+    <value>Mətn redaktorunda açın</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>輸入處理程序名稱，不含副檔名(.exe)</value>
+    <value>İcra edilə bilən fayl adını genişləndirmədən daxil edin (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>處理程序名稱：</value>
+    <value>Proses Adı:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>重新載入設定檔</value>
+    <value>Yenidən yükləyin</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>當變更設定檔時自動重新載入。</value>
+    <value>Konfiqurasiya faylı dəyişdirildikdə konfiqurasiya avtomatik olaraq yenidən yüklənir.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>自動重新載入</value>
+    <value>Dəyişiklik zamanı yenidən yükləyin</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>移除規則</value>
+    <value>Qaydaları silin</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>Parametrlər</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>Parametrlər</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>跟隨 Windows 自動啟動應用程式。</value>
+    <value>Başlanğıcda bu proqramı avtomatik işə salın.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>開機時啟動</value>
+    <value>Başlanğıcda işə salın</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>系統</value>
+    <value>Sistem</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用您的 Windows 主題設定。</value>
+    <value>Sistem, mövzu seçiminizdən istifadə edir.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>已強制索引標籤使用雲母桌面背景子著色效果。</value>
+    <value>Tabbed bütün proqramları bulanıq divar kağızı fon effektindən istifadə etməyə məcbur edir.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>索引標籤</value>
+    <value>Tabbed</value>
   </data>
   <data name="TelegramButton.Content" xml:space="preserve">
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>設定標題列主題，</value>
+    <value>Başlıq panelinin rəng mövzusunu təyin edin,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>標題列顔色</value>
+    <value>Başlıq Panelinin Rəngi</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>標題列顔色</value>
+    <value>Başlıq Panelinin Rəngi</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
     <value>Mica For Everyone</value>
@@ -331,105 +331,105 @@
     <value>Twitter</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>未處理的例外狀況</value>
+    <value>İdarə olunmayan İstisna</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>使用者介面發生未處理的例外狀況</value>
+    <value>UI-də idarə olunmayan İstisna</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>壓克力與索引標籤效果至少需要 Windows 11 (組建22523) 才能運作。</value>
+    <value>Acryl və Tabbed fon effektləri ən azı Windows build 22523 tələb edir.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>標題列深色主題需要至少需要 Windows 10 (組建19041) 才能運作。</value>
+    <value>Immersive Dark Mode üçün ən azı Windows build 19041 tələb olunur.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>雲母效果需要至少需要 Windows 11 (組建22000) 才能運作。</value>
+    <value>Mika effekti ən azı Windows build 22000 tələb edir.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>版本</value>
+    <value>Versiya</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>進階</value>
+    <value>Qabaqcıl</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>設定檔</value>
+    <value>Konfiqurasiya faylı</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>樣式設定</value>
+    <value>Stil</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>在預設文字編輯器中開啟設定檔。</value>
+    <value>Defolt mətn redaktorunuzda konfiqurasiya faylını açın.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>在文字編輯器中編輯</value>
+    <value>Mətn redaktorunda redaktə edin</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>重新載入設定檔並套用於作用中的視窗。</value>
+    <value>Qaydaları konfiqurasiya faylından yenidən yükləyin, sonra onları bütün açıq pəncərələrə tətbiq edin.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>重新載入</value>
+    <value>Yenidən yükləyin</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>還原成預設規則並移除所有變更。</value>
+    <value>Standart qaydaları bərpa edin və bütün dəyişiklikləri silin.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>重設</value>
+    <value>Sıfırla</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>作者：</value>
+    <value>Yaradıcılar</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>圖示設計：</value>
+    <value>İkonun yaradıcısı:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>介面翻譯：</value>
+    <value>Tərcüməçilər:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>視窗邊角</value>
+    <value>Künc rejimi</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>視窗邊角</value>
+    <value>Künc rejimi</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>直角</value>
+    <value>Kvadrat</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>圓角</value>
+    <value>Dairəvi</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>稍微圓角</value>
+    <value>Yüngül dairəvi</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>設定視窗邊角形狀，</value>
+    <value>Künc dairəvi rejimini təyin edin,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>不執行任何動作以使用應用程式預設邊角樣式。</value>
+    <value>Defolt tətbiqin üstünlük verdiyi künc dairəvi rejimini saxlamaq üçün heç nə etmir.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用直角邊框。</value>
+    <value>Kvadrat rejimi künc dairəvisini söndürür.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用圓角邊框。</value>
+    <value>Dairəvi rejim məcburi dairəvi küncləri təmin edir.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用稍圓角邊框。</value>
+    <value>Bir az dairəvi rejim, kvadrat və dairəvi künclər arasında ortadadır.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>開機時自動以系統管理員身分執行。需要以系統管理員身分執行應用程式才能啟用此選項。</value>
+    <value>Başlanğıcda bu tətbiqi avtomatik olaraq idarəçi kimi işə salın. Bu seçimi aktivləşdirmək üçün proqramı Administrator olaraq işə salmalısınız.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>開機時以系統管理員身分執行</value>
+    <value>Başlanğıcda Administrator olaraq işə salın</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>參與者：</value>
+    <value>Töhfəçilər:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>於工作列角落顯示應用程式圖示</value>
+    <value>Bildiriş sahəsində tətbiq ikonunu göstərin</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>顯示通知列圖示</value>
+    <value>Tray ikonunu göstərin</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
-    <value>結束</value>
+    <value>Çıx</value>
   </data>
 </root>

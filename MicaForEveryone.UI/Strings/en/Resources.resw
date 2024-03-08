@@ -432,4 +432,7 @@ Fix errors then use "Reload config file" option to reload it.</value>
   <data name="ExitSetting.Header" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="DiscordButton.Content" xml:space="preserve">
+    <value>Discord</value>
+  </data>
 </root>

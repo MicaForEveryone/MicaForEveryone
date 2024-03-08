@@ -25,8 +25,9 @@ namespace MicaForEveryone.UI
 
         internal Contributor[] Translators { get; } =
         {
+            new Contributor("Mehrab Poladov", "https://github.com/thepoladov13", "az"),
+            new Contributor("maggster165", "https://github.com/maggster165", "cs"),
             new Contributor("WinExperiments", "https://github.com/WinExperiments", "ar"),
-            new Contributor("Merhab Poladov", "https://github.com/thepoladov13", "az"),
             new Contributor("uDEV2019", "https://github.com/uDEV2019", "de"),
             new Contributor("Amaro Martínez", "https://github.com/xoascf", "es"),
             new Contributor("SaiyajinK", "https://github.com/SaiyajinK", "fr"),
@@ -40,6 +41,7 @@ namespace MicaForEveryone.UI
             new Contributor("toineenzo", "https://github.com/toineenzo", "nl"),
             new Contributor("Piteriuz", "https://github.com/Piteriuz", "pl"),
             new Contributor("Douglas Vianna", "https://github.com/dgsmiley18", "pt-br"),
+            new Contributor("DavidJoacaRo", "https://github.com/DavidJoacaRo", "ro"),
             new Contributor("Danik2343", "https://github.com/Danik2343", "ru"),
             new Contributor("krlvm", "https://github.com/krlvm", "ru"),
             new Contributor("bzzrak", "https://github.com/bzzrak", "sr"),
