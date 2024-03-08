@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,318 +118,318 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle.Text" xml:space="preserve">
-    <value>關於此程式</value>
+    <value>Σχετικά με την εφαρμογή</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用 Windows 10 風格的壓克力半透明效果。</value>
+    <value>Το Ακρυλικό αναγκάζει όλες τις εφαρμογές να χρησιμοποιούν εφέ θόλωσης σκηνικού σε στυλ Windows 10.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>壓克力</value>
+    <value>Ακρυλικό</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
-    <value>建立</value>
+    <value>Πρόσθήκη</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>建立視窗類別規則</value>
+    <value>Νέος Κανόνας Κλάσης</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
-    <value>視窗類別規則</value>
+    <value>Πρόσθήκη Νέου Κανόνα Κλάσης</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>建立處理程序規則</value>
+    <value>Νέος Κανόνας Διεργασίας</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
-    <value>處理程序規則</value>
+    <value>Πρόσθήκη Νέου Κανόνα Διεργασίας</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>新增規則</value>
+    <value>Πρόσθήκη Κανόνα</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>新增規則</value>
+    <value>Πρόσθήκη Κανόνα</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
-    <value>設定檔</value>
+    <value>Αρχείο Config</value>
   </data>
   <data name="AppInitializationError.Title" xml:space="preserve">
-    <value>初始化應用程式時發生錯誤</value>
+    <value>Σφάλμα κατά την αρχικοποίηση της εφαρμογής</value>
   </data>
   <data name="AppName" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Mica Για Όλους</value>
   </data>
   <data name="AppNameLabel.Text" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Mica Για Όλους</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>設定視窗背景類型，</value>
+    <value>Ορισθμός τύπου σκηνικού,</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>模糊類型</value>
+    <value>Τύπος Σκηνικού</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>模糊類型</value>
+    <value>Τύπος Σκηνικού</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>視窗呈現半透明與模糊。變更此選項需重新開啟作用中的視窗。</value>
+    <value>Κάνε τα παράθυρα ημιδιαφανή και θολά. Απενεργοποιώντας αυτή την επιλογή απαιτεί να κλείσεις και να ξανανοίξεις παράθυρα που επηρεάζονται.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
-    <value>後置模糊</value>
+    <value>Θόλωση από Πίσω</value>
   </data>
   <data name="BrowseButton.Content" xml:space="preserve">
-    <value>瀏覽</value>
+    <value>Περιήγηση</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
-    <value>取消</value>
+    <value>Ακύρωση</value>
   </data>
   <data name="ClassNameSuggestBox.Description" xml:space="preserve">
-    <value>輸入視窗類別名稱</value>
+    <value>Εισαγωγή ονόματος κλάσης παραθύρου</value>
   </data>
   <data name="ClassNameSuggestBox.Header" xml:space="preserve">
-    <value>類別名稱:</value>
+    <value>Όνομα Κλάσης:</value>
   </data>
   <data name="CloseButton.Content" xml:space="preserve">
-    <value>關閉</value>
+    <value>Κλείσιμο</value>
   </data>
   <data name="ConfigFileError.Content" xml:space="preserve">
-    <value>設定檔發生錯誤：
+    <value>Σφάλμα στο αρχείο config:
 {0}
 
-請修正錯誤並以「重新載入設定檔」重試。</value>
+Διόρθωσε τα σφάλματα και μετά χρησιμοποίησε την επιλογή "Επαναφόρτωση αρχείου config" για να το επαναφορτώσεις.</value>
   </data>
   <data name="ConfigFileError.Header" xml:space="preserve">
-    <value>設定檔中有錯誤</value>
+    <value>Σφάλμα στο αρχείο config</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>用於儲存與載入規則的檔案。</value>
+    <value>Αρχείο για αποθήκευση και φόρτωση κανόνων.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>檔案路徑</value>
+    <value>Διαδρομή Αρχείου</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>深色</value>
+    <value>Σκοτεινό</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用深色主題。</value>
+    <value>Το Σκοτεινό χρησιμοποιεί σκοτεινό θέμα.</value>
   </data>
   <data name="DefaultBackdropDescription.Text" xml:space="preserve">
-    <value>不執行任何動作以使用預設背景。</value>
+    <value>Η Προεπιλογή δεν κάνει τίποτα για να διατηρήσει το προεπιλεγμένο σκηνικό της εφαρμογής.</value>
   </data>
   <data name="DefaultMenuItem.Text" xml:space="preserve">
-    <value>預設</value>
+    <value>Προεπιλογή</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用預設應用程式主題。</value>
+    <value>Η επιλογή "Προεπιλογή" διατηρεί το προεπιλεγμένο θέμα της εφαρμογής.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
-    <value>結束</value>
+    <value>Έξοδος</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
-    <value>延伸外框至工作區</value>
+    <value>Επέκταση Πλαισίου εντός της Περιοχής Πελάτη</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>將視窗外框延伸至工作區讓應用程式表面呈現半透明效果。此選項不適用於所有程式甚至可能造成應用程式損毀，除非您了解正在執行的動作否則請勿啟用。變更此選項需重新開啟作用中的視窗。</value>
+    <value>Επεκτείνει το πλάισιο παραθύρου εντός της περιοχής του Πελάτη για να προσθέσει σκηνικό στο παρασκήνιο κάποιων εφαρμογών. Δε δουλεύει με όλες τις εφαρμογές και μπορεί να τις χαλάσει , οπότε μην το ενεργοποιείς αν δε ξέρεις τί κάνεις. Η απενεργοποίηση αυτής της ρύθμισης απαιτεί να κλείσεις και να ξανανοίξεις τα παράθυρα που επηρεάζονται.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
-    <value>一般</value>
+    <value>Γενικά</value>
   </data>
   <data name="GeneralSetting.Header" xml:space="preserve">
-    <value>一般</value>
+    <value>Γενικά</value>
   </data>
   <data name="GitHubButton.Content" xml:space="preserve">
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>全域規則</value>
+    <value>Καθολικός Κανόνας</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>設定您的慣用語言，必須重新開啟應用程式才會套用。</value>
+    <value>Όρισε την προτιμώμενη γλώσσα σου για το UI. Η εφαρμογή πρέπει να επανεκκινηθεί.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
-    <value>語言</value>
+    <value>Γλώσσα</value>
   </data>
   <data name="LightMenuItem.Text" xml:space="preserve">
-    <value>淺色</value>
+    <value>Φωτεινό</value>
   </data>
   <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用淺色主題。</value>
+    <value>Το Φωτεινό χρησιμοποιεί φωτεινό θέμα.</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用 Windows 11 風格的雲母桌面背景子著色效果。</value>
+    <value>Το Mica αναγκάζει όλες τις εφαρμογές να χρησιμοποιούν εφέ σκηνικού απόχρωσης ταπετσαρίας τύπου Windows 11.</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
-    <value>雲母</value>
+    <value>Mica</value>
   </data>
   <data name="NoneBackdropDescription.Text" xml:space="preserve">
-    <value>不使用任何效果以顯示純色背景。</value>
+    <value>Το Τίποτα απενεργοποιεί τα σκηνικά, ακόμα και για εφαρμογές που το έχουν ήδη ενεργό.</value>
   </data>
   <data name="NoneMenuItem.Text" xml:space="preserve">
-    <value>純色</value>
+    <value>Τίποτα</value>
   </data>
   <data name="OkButton.Text" xml:space="preserve">
-    <value>確定</value>
+    <value>OK</value>
   </data>
   <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
-    <value>在文字編輯器中開啟</value>
+    <value>Άνοιγμα σε συντάκτη κειμένου</value>
   </data>
   <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
-    <value>輸入處理程序名稱，不含副檔名(.exe)</value>
+    <value>Εισαγωγή ονόματος εκτελέσιμου αρχείου χωρίς την επέκτασή του (.exe)</value>
   </data>
   <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
-    <value>處理程序名稱：</value>
+    <value>Όνομα Διεργασίας:</value>
   </data>
   <data name="ReloadMenuItem.Text" xml:space="preserve">
-    <value>重新載入設定檔</value>
+    <value>Επαναφόρτωση</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>當變更設定檔時自動重新載入。</value>
+    <value>Επαναφορτώνει το config αυτόματα όταν το αρχείο config αλλάζει.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
-    <value>自動重新載入</value>
+    <value>Επαναφόρτωση κατά την αλλάγη</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>移除規則</value>
+    <value>Αφαίρεση Κανόνα</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>Ρυθμίσεις</value>
   </data>
   <data name="SettingsTitle.Text" xml:space="preserve">
-    <value>設定</value>
+    <value>Ρυθμίσεις</value>
   </data>
   <data name="StartupSetting.Description" xml:space="preserve">
-    <value>跟隨 Windows 自動啟動應用程式。</value>
+    <value>Αυτόματη εκκίνηση της εφαρμογής κατά την έναρξη.</value>
   </data>
   <data name="StartupSetting.Header" xml:space="preserve">
-    <value>開機時啟動</value>
+    <value>Εκκίνηση κατά την Έναρξη</value>
   </data>
   <data name="SystemMenuItem.Text" xml:space="preserve">
-    <value>系統</value>
+    <value>Σύστημα</value>
   </data>
   <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
-    <value>正在使用您的 Windows 主題設定。</value>
+    <value>Το Σύστημα χρησιμοποιεί την δική σου προτίμηση θέματος.</value>
   </data>
   <data name="TabbedBackdropDescription.Text" xml:space="preserve">
-    <value>已強制索引標籤使用雲母桌面背景子著色效果。</value>
+    <value>Το Καρτέλες αναγκάζει όλες τις εφαρμογές να χρησιμοποιούν εφέ σκηνικού θολής ταπετσαρίας.</value>
   </data>
   <data name="TabbedMenuItem.Text" xml:space="preserve">
-    <value>索引標籤</value>
+    <value>Καρτέλες</value>
   </data>
   <data name="TelegramButton.Content" xml:space="preserve">
     <value>Telegram</value>
   </data>
   <data name="TitlebarColorDescription.Text" xml:space="preserve">
-    <value>設定標題列主題，</value>
+    <value>Ορισμός χρώματος θέματος Γραμμών Τίτλων,</value>
   </data>
   <data name="TitlebarColorMenu.Text" xml:space="preserve">
-    <value>標題列顔色</value>
+    <value>Χρώμα Γραμμής Τίτλων</value>
   </data>
   <data name="TitleBarColorSetting.Header" xml:space="preserve">
-    <value>標題列顔色</value>
+    <value>Χρώμα Γραμμής Τίτλων</value>
   </data>
   <data name="TrayIconTooltip.Content" xml:space="preserve">
-    <value>Mica For Everyone</value>
+    <value>Mica Για Όλους</value>
   </data>
   <data name="TwitterButton.Content" xml:space="preserve">
-    <value>Twitter</value>
+    <value>Χ</value>
   </data>
   <data name="UnhandledException.Header" xml:space="preserve">
-    <value>未處理的例外狀況</value>
+    <value>Μη Χειριζόμενη Εξαίρεση</value>
   </data>
   <data name="UnhandledUIException.Header" xml:space="preserve">
-    <value>使用者介面發生未處理的例外狀況</value>
+    <value>Μη Χειριζόμενη Εξαίρεση στο UI</value>
   </data>
   <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
-    <value>壓克力與索引標籤效果至少需要 Windows 11 (組建22523) 才能運作。</value>
+    <value>Τα εφέ σκηνικού Ακρυλικό και Καρτέλες απαιτούν τουλάχιστον Windows build 22523.</value>
   </data>
   <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
-    <value>標題列深色主題需要至少需要 Windows 10 (組建19041) 才能運作。</value>
+    <value>Η Καθηλωτική Σκοτεινή Λειτουργία απαιτεί τουλάχιστον Windows build 19041.</value>
   </data>
   <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
-    <value>雲母效果需要至少需要 Windows 11 (組建22000) 才能運作。</value>
+    <value>Το εφέ Mica απαιτεί τουλάχιστον Windows build 22000.</value>
   </data>
   <data name="VersionLabel.Text" xml:space="preserve">
-    <value>版本</value>
+    <value>Έκδοση</value>
   </data>
   <data name="AdvancedSetting.Header" xml:space="preserve">
-    <value>進階</value>
+    <value>Προχωρημένα</value>
   </data>
   <data name="ConfigFileSetting.Header" xml:space="preserve">
-    <value>設定檔</value>
+    <value>Αρχείο Config</value>
   </data>
   <data name="StyleSetting.Header" xml:space="preserve">
-    <value>樣式設定</value>
+    <value>Στυλ</value>
   </data>
   <data name="OpenInEditorSetting.Description" xml:space="preserve">
-    <value>在預設文字編輯器中開啟設定檔。</value>
+    <value>Άνοιγμα αρχείου config στον προεπιλεγμένο σου συντάκτη κειμένου.</value>
   </data>
   <data name="OpenInEditorSetting.Header" xml:space="preserve">
-    <value>在文字編輯器中編輯</value>
+    <value>Επεξεργασία στον Συντάκτη Κειμένου</value>
   </data>
   <data name="ReloadSetting.Description" xml:space="preserve">
-    <value>重新載入設定檔並套用於作用中的視窗。</value>
+    <value>Επαναφόρτωση κανόνων από αρχείο config και μετά εφαρμογή τους σε όλα τα παράθυρα.</value>
   </data>
   <data name="ReloadSetting.Header" xml:space="preserve">
-    <value>重新載入</value>
+    <value>Επαναφόρτωση</value>
   </data>
   <data name="ResetSetting.Description" xml:space="preserve">
-    <value>還原成預設規則並移除所有變更。</value>
+    <value>Επαναφορά προεπιλεγμένων κανόνων και διαγραφή όλων των αλλαγών.</value>
   </data>
   <data name="ResetSetting.Header" xml:space="preserve">
-    <value>重設</value>
+    <value>Επαναφορά</value>
   </data>
   <data name="Credit.Text" xml:space="preserve">
-    <value>作者：</value>
+    <value>Από</value>
   </data>
   <data name="IconCredit.Text" xml:space="preserve">
-    <value>圖示設計：</value>
+    <value>Εικονίδιο από:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>介面翻譯：</value>
+    <value>Μεταφράσεις από:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
-    <value>視窗邊角</value>
+    <value>Λειτουργία Γωνίας</value>
   </data>
   <data name="CornerPreferenceSetting.Header" xml:space="preserve">
-    <value>視窗邊角</value>
+    <value>Λειτουργία Γωνίας</value>
   </data>
   <data name="SquareMenuItem.Text" xml:space="preserve">
-    <value>直角</value>
+    <value>Τετράγωνη</value>
   </data>
   <data name="RoundedMenuItem.Text" xml:space="preserve">
-    <value>圓角</value>
+    <value>Στρογγυλεμένη</value>
   </data>
   <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
-    <value>稍微圓角</value>
+    <value>Λίγο Στρογγυλεμένη</value>
   </data>
   <data name="CornerDescription.Text" xml:space="preserve">
-    <value>設定視窗邊角形狀，</value>
+    <value>Ορισμός λειτουργίας στρογγυλέματος γωνίας,</value>
   </data>
   <data name="DefaultCornerDescription.Text" xml:space="preserve">
-    <value>不執行任何動作以使用應用程式預設邊角樣式。</value>
+    <value>Η Προεπιλογή δεν κάνει τίποτα για για να διατηρησει την προτιμώμενη λειτουργία στρογγυλέματος γωνίας της εφαρμογής.</value>
   </data>
   <data name="SquareCornerDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用直角邊框。</value>
+    <value>Η λειτουργία Τετράγωνη απενεργοποιεί την στρογγυλοποίηση γωνιών.</value>
   </data>
   <data name="RoundedCornerDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用圓角邊框。</value>
+    <value>Η λειτουργία Στρογγυλεμένη ενεργοποιεί αναγκαστικά τις στρογγυλές γωνίες.</value>
   </data>
   <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
-    <value>已強制應用程式使用稍圓角邊框。</value>
+    <value>Η λειτουργία Λίγο Στρογγυλεμένη είναι μεταξύ τετράγωνης και στρογγυλής γωνίας.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>開機時自動以系統管理員身分執行。需要以系統管理員身分執行應用程式才能啟用此選項。</value>
+    <value>Εκκίνηση αυτής της εφαρμογής ως διαχειριστής αυτόματα κατά την έναρξη. Πρέπει να εκκινήσεις αυτή την εφαρμογή ως Διαχειριστής για να ενεργοποιήσεις αυτή τη ρύθμιση.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>開機時以系統管理員身分執行</value>
+    <value>Εκκίνηση ως Διαχειριστής κατά την έναρξη</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>參與者：</value>
+    <value>Συνεισφέροντες:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
-    <value>於工作列角落顯示應用程式圖示</value>
+    <value>Εμφάνιση του εικονιδίου εφαρμογής στη περιοχή ειδοποίησεων</value>
   </data>
   <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
-    <value>顯示通知列圖示</value>
+    <value>Εμφάνιση εικονιδίου συρταριού</value>
   </data>
   <data name="ExitSetting.Header" xml:space="preserve">
-    <value>結束</value>
+    <value>Έξοδος</value>
   </data>
 </root>

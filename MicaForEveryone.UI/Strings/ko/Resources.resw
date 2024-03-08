@@ -121,31 +121,31 @@
     <value>앱 정보</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>아크릭은 모든 앱에 윈도우 10 스타일 이펙트를 적용합니다.</value>
+    <value>아크릭은 프로그램 창에 윈도우 10 아크릭 효과를 적용합니다.</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
-    <value>아크릭</value>
+    <value>Acrylic</value>
   </data>
   <data name="AddButton.Content" xml:space="preserve">
     <value>추가하기</value>
   </data>
   <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
-    <value>새로운 클래스</value>
+    <value>적용할 새로운 클래스</value>
   </data>
   <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
     <value>클래스 추가</value>
   </data>
   <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
-    <value>새로운 프로세스</value>
+    <value>적용할 새로운 프로세스</value>
   </data>
   <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
     <value>프로세스 추가</value>
   </data>
   <data name="AddRuleAppBarButton.Label" xml:space="preserve">
-    <value>변수 추가</value>
+    <value>추가하기</value>
   </data>
   <data name="AddRuleDialog.Title" xml:space="preserve">
-    <value>변수 추가</value>
+    <value>추가하기</value>
   </data>
   <data name="AdvancedMenu.Text" xml:space="preserve">
     <value>구성 파일</value>
@@ -160,16 +160,16 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropDescription.Text" xml:space="preserve">
-    <value>배경 효과 종류를 설정하세요.</value>
+    <value>창 배경 효과 종류를 설정하세요.</value>
   </data>
   <data name="BackdropMenu.Text" xml:space="preserve">
-    <value>배경 종류</value>
+    <value>창 배경 종류</value>
   </data>
   <data name="BackdropTypeSetting.Header" xml:space="preserve">
-    <value>배경 종류</value>
+    <value>창 배경 종류</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>창들을 투명화시키고 흐리게 합니다. 이 효과를 없애려면 이 모드를 꺼주시고 창들을 다시 껏다 켜주세요.</value>
+    <value>창들을 투명화시키고 흐리게 합니다. 비활성화 하시려면 이 모드를 꺼준 다음 효과가 적용된 창들을 다시 재시작 해주세요.</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
     <value>윈도우 배경 흐릿함 효과</value>
@@ -199,13 +199,13 @@
     <value>구성 파일에 오류가 있습니다:</value>
   </data>
   <data name="ConfigFilePathSetting.Description" xml:space="preserve">
-    <value>프로세스 변수를 저장하고 불러올때 사용되는 파일</value>
+    <value>프로세스 리스트를 저장하고 불러올 때 사용하는 파일입니다.</value>
   </data>
   <data name="ConfigFilePathSetting.Header" xml:space="preserve">
-    <value>파일 경로:</value>
+    <value>Config 경로:</value>
   </data>
   <data name="DarkMenuItem.Text" xml:space="preserve">
-    <value>다크 모드.</value>
+    <value>다크 모드</value>
   </data>
   <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
     <value>이 항목을 선택 시 다크 모드를 사용합니다.</value>
@@ -217,7 +217,7 @@
     <value>기본</value>
   </data>
   <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
-    <value>기본 옵션은 앱의 기본 효과를 적용시킵니다.</value>
+    <value>기본 옵션은 앱 배경을 바꾸지 않습니다.</value>
   </data>
   <data name="ExitMenuItem.Text" xml:space="preserve">
     <value>나가기</value>
@@ -229,7 +229,7 @@
     <value>효과를 전체 앱에다가 적용시키기</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>이 항목을 선택하면 몇몇 앱이 배경 효과가 적용됩니다. 모든 앱에 적용되지 않으며 어떤 앱은 이상해 보일수도 있습니다. 이것이 어떻게 작동하는 지 모르시면 함부로 선택하지 마세요. 이 효과를 비활성화 시키려면 앱을 다시 껏다 켜주세요.</value>
+    <value>이 항목을 선택하면 앱이 설정한 배경 효과를 가지게 됩니다. 모든 앱에 적용되지 않으며 몇몇 앱은 약간 이상하게 보일 수 있습니다.  이것이 어떻게 작동하는 지 모르시면 활성화를 안하는 것을 추천합니다. 이 효과를 비활성화 시키려면 앱을 다시 껐다 켜주세요.</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>일반</value>
@@ -241,10 +241,10 @@
     <value>GitHub</value>
   </data>
   <data name="GlobalRulePaneItem.Text" xml:space="preserve">
-    <value>글로벌 변수</value>
+    <value>공통 앱 설정</value>
   </data>
   <data name="LanguageSetting.Description" xml:space="preserve">
-    <value>원하는 언어를 선택하세요. 언어를 적용시키려면 앱을 재시작 해야합니다.</value>
+    <value>원하는 언어를 선택하세요. 언어를 설정한 뒤 이 앱의 창을 껐다 켜주셔야지 언어가 정상적으로 적용됩니다.</value>
   </data>
   <data name="LanguageSetting.Header" xml:space="preserve">
     <value>언어</value>
@@ -283,13 +283,13 @@
     <value>리로드</value>
   </data>
   <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
-    <value>구성 파일이 바뀌어 있으면 자동으로 효과를 입힙니다.</value>
+    <value>설정 후 바뀌면 자동으로 효과를 입힙니다.</value>
   </data>
   <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
     <value>변경 시 리로드</value>
   </data>
   <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
-    <value>변수 삭제</value>
+    <value>삭제하</value>
   </data>
   <data name="SettingsMenuItem.Text" xml:space="preserve">
     <value>설정</value>
@@ -385,7 +385,7 @@
     <value>아이콘 제작자:</value>
   </data>
   <data name="TranslatorsCredit.Text" xml:space="preserve">
-    <value>번역가들:</value>
+    <value>번역:</value>
   </data>
   <data name="CornerMenu.Text" xml:space="preserve">
     <value>모서리 모드</value>
@@ -418,13 +418,13 @@
     <value>약간 둥글게 모드는 창 모서리를 살짝 둥글게 합니다.</value>
   </data>
   <data name="AdminStartupSetting.Description" xml:space="preserve">
-    <value>컴퓨터 시작 후에 이 앱을 관리자 권한으로 자동 실행하기 (이 설정을 활성화 시키려면 이 앱을 관리자 권한으로 실행하셔야 합니다.)</value>
+    <value>컴퓨터 시작 후에 이 앱을 관리자 권한으로 자동 실행합니다. 이 설정을 활성화 시키려면 이 앱을 관리자 권한으로 실행하셔야 합니다.</value>
   </data>
   <data name="AdminStartupSetting.Header" xml:space="preserve">
-    <value>컴퓨터 시작 후에 이 앱을 관리자 권한으로 자동 실행하기</value>
+    <value>관리자 권한으로 실행</value>
   </data>
   <data name="ContributorsLabel.Text" xml:space="preserve">
-    <value>이 앱에 기여자들:</value>
+    <value>이 앱 개발에 도와준 사람들:</value>
   </data>
   <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
     <value>알림 구역에 이 앱 아이콘 표시하기</value>

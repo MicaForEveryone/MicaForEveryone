@@ -452,5 +452,7 @@ requires build 22000+</value>
   </data>
   <data name="CaptionTextColor.Header" xml:space="preserve">
     <value>TitleBar Text Color</value>
+  <data name="DiscordButton.Content" xml:space="preserve">
+    <value>Discord</value>
   </data>
 </root>

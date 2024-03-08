@@ -8,19 +8,19 @@
 
     <Identity
         Name="MicaForEveryone"
-        Publisher="CN=Minusium"
+        Publisher="CN=MicaForEveryone"
         Version="1.2.0.0" />
 
     <mp:PhoneIdentity PhoneProductId="533584ee-ace8-4310-adb6-d59b701b7236" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
     <Properties>
         <DisplayName>MicaForEveryone.UI</DisplayName>
-        <PublisherDisplayName>Minusium</PublisherDisplayName>
+        <PublisherDisplayName>MicaForEveryone</PublisherDisplayName>
         <Logo>Assets\StoreLogo.png</Logo>
     </Properties>
 
     <Dependencies>
-        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22523.0" />
+        <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22621.0" />
     </Dependencies>
 
     <Resources>
