@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutTitle.Text" xml:space="preserve">
+    <value>Bu tətbiq haqqında</value>
+  </data>
+  <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
+    <value>Acrylic bütün tətbiqləri Windows 10 üslublu bulanıq fon effektindən istifadə etməyə məcbur edir.</value>
+  </data>
+  <data name="AcrylicMenuItem.Text" xml:space="preserve">
+    <value>Acrylic</value>
+  </data>
+  <data name="AddButton.Content" xml:space="preserve">
+    <value>Əlavə et</value>
+  </data>
+  <data name="AddClassRuleContentDialog.Title" xml:space="preserve">
+    <value>Yeni Sinif Qaydası</value>
+  </data>
+  <data name="AddClassRuleMenuItem.Text" xml:space="preserve">
+    <value>Sinif qaydası əlavə edin</value>
+  </data>
+  <data name="AddProcessRuleContentDialog.Title" xml:space="preserve">
+    <value>Yeni Proses Qaydası</value>
+  </data>
+  <data name="AddProcessRuleMenuItem.Text" xml:space="preserve">
+    <value>Proses Qaydasını əlavə edin</value>
+  </data>
+  <data name="AddRuleAppBarButton.Label" xml:space="preserve">
+    <value>Qayda əlavə edin</value>
+  </data>
+  <data name="AddRuleDialog.Title" xml:space="preserve">
+    <value>Qayda əlavə edin</value>
+  </data>
+  <data name="AdvancedMenu.Text" xml:space="preserve">
+    <value>Konfiqurasiya faylı</value>
+  </data>
+  <data name="AppInitializationError.Title" xml:space="preserve">
+    <value>Tətbiqin işə salınmasında xəta</value>
+  </data>
+  <data name="AppName" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="AppNameLabel.Text" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropDescription.Text" xml:space="preserve">
+    <value>Arxa Fon növünü təyin edin,</value>
+  </data>
+  <data name="BackdropMenu.Text" xml:space="preserve">
+    <value>Arxa Fon Növü</value>
+  </data>
+  <data name="BackdropTypeSetting.Header" xml:space="preserve">
+    <value>Arxa Fon Növü</value>
+  </data>
+  <data name="BlurBehindSetting.Description" xml:space="preserve">
+    <value>Pəncərələri şəffaf və bulanıq edin. Bu seçimi söndürmək üçün təsirlənmiş pəncərələri bağlamaq və yenidən açmaq lazımdır.</value>
+  </data>
+  <data name="BlurBehindSetting.Header" xml:space="preserve">
+    <value>Arxasını Bulanlıqlaşdır</value>
+  </data>
+  <data name="BrowseButton.Content" xml:space="preserve">
+    <value>Gözdən keçirin</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Ləğv et</value>
+  </data>
+  <data name="ClassNameSuggestBox.Description" xml:space="preserve">
+    <value>Pəncərə sinif adını daxil edin</value>
+  </data>
+  <data name="ClassNameSuggestBox.Header" xml:space="preserve">
+    <value>Sinif Adı:</value>
+  </data>
+  <data name="CloseButton.Content" xml:space="preserve">
+    <value>Bağla</value>
+  </data>
+  <data name="ConfigFileError.Content" xml:space="preserve">
+    <value>Konfiqurasiya faylında xəta:
+{0}
+
+Səhvləri düzəldin, sonra onu yenidən yükləmək üçün "Konfiqurasiya faylını yenidən yüklə" seçimindən istifadə edin.</value>
+  </data>
+  <data name="ConfigFileError.Header" xml:space="preserve">
+    <value>Konfiqurasiya faylında xəta</value>
+  </data>
+  <data name="ConfigFilePathSetting.Description" xml:space="preserve">
+    <value>Qaydaları yadda saxlamaq və yükləmək üçün istifadə ediləcək fayl.</value>
+  </data>
+  <data name="ConfigFilePathSetting.Header" xml:space="preserve">
+    <value>Fayl yolu</value>
+  </data>
+  <data name="DarkMenuItem.Text" xml:space="preserve">
+    <value>Qaranlıq</value>
+  </data>
+  <data name="DarkTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Qaranlıq, qaranlıq temadan istifadə edir.</value>
+  </data>
+  <data name="DefaultBackdropDescription.Text" xml:space="preserve">
+    <value>Defolt tətbiqin defolt fonunu saxlamaq üçün heç nə etmir.</value>
+  </data>
+  <data name="DefaultMenuItem.Text" xml:space="preserve">
+    <value>Defolt</value>
+  </data>
+  <data name="DefaultTitlebarColorDescription.Text" xml:space="preserve">
+    <value>"Defolt" seçimi tətbiqin defolt mövzusunu saxlayır.</value>
+  </data>
+  <data name="ExitMenuItem.Text" xml:space="preserve">
+    <value>Çıx</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Header" xml:space="preserve">
+    <value>Çərçivəni Müştəri Sahəsinə Genişləndirin</value>
+  </data>
+  <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
+    <value>Bəzi proqramların fonunda fon əlavə etmək üçün pəncərə çərçivəsini müştəri sahəsinə genişləndirir. O, hər proqramda işləmir və onları poza bilər, ona görə də nə etdiyinizi bilmədiyiniz halda bunu aktiv etməyin. Bu seçimi söndürmək üçün təsirlənmiş pəncərələri bağlamaq və yenidən açmaq lazımdır.</value>
+  </data>
+  <data name="GeneralPaneItem.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GeneralSetting.Header" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GitHubButton.Content" xml:space="preserve">
+    <value>GitHub</value>
+  </data>
+  <data name="GlobalRulePaneItem.Text" xml:space="preserve">
+    <value>Qlobal Qayda</value>
+  </data>
+  <data name="LanguageSetting.Description" xml:space="preserve">
+    <value>UI üçün üstünlük verdiyiniz dili təyin edin. Tətbiqin qüvvəyə minməsi üçün tətbiq yenidən işə salınmalıdır.</value>
+  </data>
+  <data name="LanguageSetting.Header" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="LightMenuItem.Text" xml:space="preserve">
+    <value>Açıq</value>
+  </data>
+  <data name="LightTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Açıq, açıq mövzudan istifadə edir.</value>
+  </data>
+  <data name="MicaBackdropDescription.Text" xml:space="preserve">
+    <value>Mica bütün tətbiqləri Windows 11 üslublu rəngli divar kağızı fon effektindən istifadə etməyə məcbur edir.</value>
+  </data>
+  <data name="MicaMenuItem.Text" xml:space="preserve">
+    <value>Mica</value>
+  </data>
+  <data name="NoneBackdropDescription.Text" xml:space="preserve">
+    <value>Heç biri arxa fonları, hətta onları artıq aktivləşdirmiş proqramlarda deaktiv etmir.</value>
+  </data>
+  <data name="NoneMenuItem.Text" xml:space="preserve">
+    <value>Heç biri</value>
+  </data>
+  <data name="OkButton.Text" xml:space="preserve">
+    <value>Yaxşı</value>
+  </data>
+  <data name="OpenInEditorMenuItem.Text" xml:space="preserve">
+    <value>Mətn redaktorunda açın</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Description" xml:space="preserve">
+    <value>İcra edilə bilən fayl adını genişləndirmədən daxil edin (.exe)</value>
+  </data>
+  <data name="ProcessNameSuggestBox.Header" xml:space="preserve">
+    <value>Proses Adı:</value>
+  </data>
+  <data name="ReloadMenuItem.Text" xml:space="preserve">
+    <value>Yenidən yükləyin</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Description" xml:space="preserve">
+    <value>Konfiqurasiya faylı dəyişdirildikdə konfiqurasiya avtomatik olaraq yenidən yüklənir.</value>
+  </data>
+  <data name="ReloadOnChangeSetting.Header" xml:space="preserve">
+    <value>Dəyişiklik zamanı yenidən yükləyin</value>
+  </data>
+  <data name="RemoveRuleAppBarButton.Label" xml:space="preserve">
+    <value>Qaydaları silin</value>
+  </data>
+  <data name="SettingsMenuItem.Text" xml:space="preserve">
+    <value>Parametrlər</value>
+  </data>
+  <data name="SettingsTitle.Text" xml:space="preserve">
+    <value>Parametrlər</value>
+  </data>
+  <data name="StartupSetting.Description" xml:space="preserve">
+    <value>Başlanğıcda bu proqramı avtomatik işə salın.</value>
+  </data>
+  <data name="StartupSetting.Header" xml:space="preserve">
+    <value>Başlanğıcda işə salın</value>
+  </data>
+  <data name="SystemMenuItem.Text" xml:space="preserve">
+    <value>Sistem</value>
+  </data>
+  <data name="SystemTitlebarColorDescription.Text" xml:space="preserve">
+    <value>Sistem, mövzu seçiminizdən istifadə edir.</value>
+  </data>
+  <data name="TabbedBackdropDescription.Text" xml:space="preserve">
+    <value>Tabbed bütün proqramları bulanıq divar kağızı fon effektindən istifadə etməyə məcbur edir.</value>
+  </data>
+  <data name="TabbedMenuItem.Text" xml:space="preserve">
+    <value>Tabbed</value>
+  </data>
+  <data name="TelegramButton.Content" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
+  <data name="TitlebarColorDescription.Text" xml:space="preserve">
+    <value>Başlıq panelinin rəng mövzusunu təyin edin,</value>
+  </data>
+  <data name="TitlebarColorMenu.Text" xml:space="preserve">
+    <value>Başlıq Panelinin Rəngi</value>
+  </data>
+  <data name="TitleBarColorSetting.Header" xml:space="preserve">
+    <value>Başlıq Panelinin Rəngi</value>
+  </data>
+  <data name="TrayIconTooltip.Content" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="TwitterButton.Content" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="UnhandledException.Header" xml:space="preserve">
+    <value>İdarə olunmayan İstisna</value>
+  </data>
+  <data name="UnhandledUIException.Header" xml:space="preserve">
+    <value>UI-də idarə olunmayan İstisna</value>
+  </data>
+  <data name="UnsupportedBackdropDescription.Text" xml:space="preserve">
+    <value>Acryl və Tabbed fon effektləri ən azı Windows build 22523 tələb edir.</value>
+  </data>
+  <data name="UnsupportedImmersiveDarkModeDescription.Text" xml:space="preserve">
+    <value>Immersive Dark Mode üçün ən azı Windows build 19041 tələb olunur.</value>
+  </data>
+  <data name="UnsupportedMicaDescription.Text" xml:space="preserve">
+    <value>Mika effekti ən azı Windows build 22000 tələb edir.</value>
+  </data>
+  <data name="VersionLabel.Text" xml:space="preserve">
+    <value>Versiya</value>
+  </data>
+  <data name="AdvancedSetting.Header" xml:space="preserve">
+    <value>Qabaqcıl</value>
+  </data>
+  <data name="ConfigFileSetting.Header" xml:space="preserve">
+    <value>Konfiqurasiya faylı</value>
+  </data>
+  <data name="StyleSetting.Header" xml:space="preserve">
+    <value>Stil</value>
+  </data>
+  <data name="OpenInEditorSetting.Description" xml:space="preserve">
+    <value>Defolt mətn redaktorunuzda konfiqurasiya faylını açın.</value>
+  </data>
+  <data name="OpenInEditorSetting.Header" xml:space="preserve">
+    <value>Mətn redaktorunda redaktə edin</value>
+  </data>
+  <data name="ReloadSetting.Description" xml:space="preserve">
+    <value>Qaydaları konfiqurasiya faylından yenidən yükləyin, sonra onları bütün açıq pəncərələrə tətbiq edin.</value>
+  </data>
+  <data name="ReloadSetting.Header" xml:space="preserve">
+    <value>Yenidən yükləyin</value>
+  </data>
+  <data name="ResetSetting.Description" xml:space="preserve">
+    <value>Standart qaydaları bərpa edin və bütün dəyişiklikləri silin.</value>
+  </data>
+  <data name="ResetSetting.Header" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="Credit.Text" xml:space="preserve">
+    <value>Yaradıcılar</value>
+  </data>
+  <data name="IconCredit.Text" xml:space="preserve">
+    <value>İkonun yaradıcısı:</value>
+  </data>
+  <data name="TranslatorsCredit.Text" xml:space="preserve">
+    <value>Tərcüməçilər:</value>
+  </data>
+  <data name="CornerMenu.Text" xml:space="preserve">
+    <value>Künc rejimi</value>
+  </data>
+  <data name="CornerPreferenceSetting.Header" xml:space="preserve">
+    <value>Künc rejimi</value>
+  </data>
+  <data name="SquareMenuItem.Text" xml:space="preserve">
+    <value>Kvadrat</value>
+  </data>
+  <data name="RoundedMenuItem.Text" xml:space="preserve">
+    <value>Dairəvi</value>
+  </data>
+  <data name="RoundedSmallMenuItem.Text" xml:space="preserve">
+    <value>Yüngül dairəvi</value>
+  </data>
+  <data name="CornerDescription.Text" xml:space="preserve">
+    <value>Künc dairəvi rejimini təyin edin,</value>
+  </data>
+  <data name="DefaultCornerDescription.Text" xml:space="preserve">
+    <value>Defolt tətbiqin üstünlük verdiyi künc dairəvi rejimini saxlamaq üçün heç nə etmir.</value>
+  </data>
+  <data name="SquareCornerDescription.Text" xml:space="preserve">
+    <value>Kvadrat rejimi künc dairəvisini söndürür.</value>
+  </data>
+  <data name="RoundedCornerDescription.Text" xml:space="preserve">
+    <value>Dairəvi rejim məcburi dairəvi küncləri təmin edir.</value>
+  </data>
+  <data name="RoundedSmallCornerDescription.Text" xml:space="preserve">
+    <value>Bir az dairəvi rejim, kvadrat və dairəvi künclər arasında ortadadır.</value>
+  </data>
+  <data name="AdminStartupSetting.Description" xml:space="preserve">
+    <value>Başlanğıcda bu tətbiqi avtomatik olaraq idarəçi kimi işə salın. Bu seçimi aktivləşdirmək üçün proqramı Administrator olaraq işə salmalısınız.</value>
+  </data>
+  <data name="AdminStartupSetting.Header" xml:space="preserve">
+    <value>Başlanğıcda Administrator olaraq işə salın</value>
+  </data>
+  <data name="ContributorsLabel.Text" xml:space="preserve">
+    <value>Töhfəçilər:</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Description" xml:space="preserve">
+    <value>Bildiriş sahəsində tətbiq ikonunu göstərin</value>
+  </data>
+  <data name="TrayIconVisibilitySetting.Header" xml:space="preserve">
+    <value>Tray ikonunu göstərin</value>
+  </data>
+  <data name="ExitSetting.Header" xml:space="preserve">
+    <value>Çıx</value>
+  </data>
+</root>
