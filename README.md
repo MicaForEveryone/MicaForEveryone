@@ -37,10 +37,11 @@ Translations into versions for other languages are welcome! Please read the [tra
 
 | Key     | Name                  | Translator                                                                                         |
 |---------|:----------------------|:---------------------------------------------------------------------------------------------------|
-| az-Latn | Azerbaijian (Latin)   | [thepoladov13](https://github.com/thepoladov13)
-| cs	  | Czech		  | [maggster165](https://github.com/maggster165)						       |
+| az-Latn | Azerbaijian (Latin)   | [thepoladov13](https://github.com/thepoladov13)                                                    |
+| cs      | Czech                 | [maggster165](https://github.com/maggster165)                                                      |
 | de      | German                | [uDEV2019](https://github.com/uDEV2019)                                                            |
 | es      | Spanish               | [Amaro Martínez](https://github.com/xoascf)                                                        |
+| el      | Greek                 | [Lefteris T.](https://github.com/trlef19)                                                          |
 | fr      | French                | [SaiyajinK](https://github.com/SaiyajinK)                                                          |
 | hu      | Hungarian             | [Zan1456](https://github.com/Zan1456)                                                              |
 | id      | Indonesian            | [seanardhana](https://github.com/seanardhana), [GID0317](https://github.com/GID0317)               |
@@ -50,12 +51,13 @@ Translations into versions for other languages are welcome! Please read the [tra
 | nl      | Dutch                 | [toineenzo](https://github.com/toineenzo)                                                          |
 | pl      | Polish                | [Piteriuz](https://github.com/Piteriuz)                                                            |
 | pt-br   | Brazilian Portuguese  | [Douglas Vianna](https://github.com/dgsmiley18)                                                    |
+| ro      | Romanian              | [dabardibid](https://github.com/DavidJoacaRo)                                                      |
 | ru      | Russian               | [Danik2343](https://github.com/Danik2343), [krlvm](https://github.com/krlvm)                       |
 | sr      | Serbian               | [bzzrak](https://github.com/bzzrak)                                                                |
 | tr      | Turkish               | [Meriç Bağlayan](https://github.com/baglayan)                                                      |
 | uk-ua   | Ukrainian             | [Phyan](https://github.com/Phyan), [lowl1f3](https://github.com/lowl1f3)                           |
 | vi      | Vietnamese            | [chefkozaki](https://github.com/chefkozaki)                                                        |
-| zh-Hans | Chinese (Simplified)  | [AndromedaMelody](https://github.com/AndromedaMelody), [FrzMtrsprt](https://github.com/FrzMtrsprt) |
+| zh-Hans | Chinese (Simplified)  | [AndromedaMelody](https://github.com/AndromedaMelody), [FrzMtrsprt](https://github.com/FrzMtrsprt), [ritxsen](https://github.com/ritxsen) |
 | zh-Hant | Chinese (Traditional) | [MW1Z](https://github.com/MW1Z), [jay900604](https://github.com/jay900604)                         |
  
 ## 🖊️ Contributing

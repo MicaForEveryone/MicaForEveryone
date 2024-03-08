@@ -257,18 +257,15 @@
     <PRIResource Include="Strings\sr-Latn\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
+    <PRIResource Include="Strings\ro\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MicaForEveryone.Core\MicaForEveryone.Core.csproj">
       <Project>{56aa4f47-4776-49a1-9d7c-c9d8eb92a453}</Project>
       <Name>MicaForEveryone.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Strings\ro\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
