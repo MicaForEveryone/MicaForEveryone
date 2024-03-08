@@ -1,21 +1,16 @@
-﻿using System;
+﻿using MicaForEveryone.Win32.PInvoke;
+using System;
 using System.Runtime.InteropServices;
-
-using MicaForEveryone.Win32.PInvoke;
-
 using static MicaForEveryone.Win32.PInvoke.NativeMethods;
+
+#if NET6_0_OR_GREATER
+using System.Runtime.Versioning;
+#endif
 
 namespace MicaForEveryone.Win32
 {
     public static class DesktopWindowManager
     {
-        private const uint DWMWA_MICA = 1029;
-        private const uint DWMWA_IMMERSIVE_DARK_MODE = 20;
-        private const uint DWMWA_SYSTEMBACKDROP_TYPE = 38;
-        private const uint DWMWA_WINDOW_CORNER_PREFERENCE = 33;
-        private const uint DWMWA_CAPTION_COLOR = 35;
-        private const uint DWMWA_TEXT_COLOR = 36;
-
         /// <summary>
         /// Check whether Windows build is 19041 or higher, that supports <see cref="SetImmersiveDarkMode(IntPtr, bool)"/>.
         /// </summary>
@@ -43,8 +38,12 @@ namespace MicaForEveryone.Win32
         /// <summary>
         /// Enable Mica on target window with <see cref="SetMica(IntPtr, bool)"/> or <see cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/> if supported.
         /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
         public static void EnableMicaIfSupported(IntPtr hWnd)
         {
+#if NET6_0_OR_GREATER
+#pragma warning disable CA1416
+#endif
             if (IsBackdropTypeSupported)
             {
                 SetBackdropType(hWnd, DWM_SYSTEMBACKDROP_TYPE.DWMSBT_MAINWINDOW);
@@ -53,124 +52,120 @@ namespace MicaForEveryone.Win32
             {
                 SetMica(hWnd, true);
             }
+#if NET6_0_OR_GREATER
+#pragma warning restore CA1416
+#endif
         }
 
         /// <summary>
         /// Enable or Disable Mica on target window
         /// Supported on Windows builds from 22000 to 22523. It doesn't work on 22523, use <see cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/> instead.
         /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        /// <param name="state"><see langword="true"/> to enable Mica effects on the target window, <see langword="false"/> to disable them.</param>
+        /// <seealso cref="SetBackdropType(IntPtr, DWM_SYSTEMBACKDROP_TYPE)"/>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+        [UnsupportedOSPlatform("windows10.0.22523")]
+# endif
         public static void SetMica(IntPtr hWnd, bool state)
         {
-            var value = GCHandle.Alloc(state ? 1 : 0, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(hWnd, DWMWA_MICA, value.AddrOfPinnedObject(), sizeof(int));
-            value.Free();
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
+            SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_MICA, state ? 1 : 0, sizeof(int));
         }
 
         /// <summary>
         /// Set backdrop type on target window
         /// Requires Windows build 22523 or higher.
         /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        /// <param name="backdropType">Type of backdrop to apply to the target window's background.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22523")]
+#endif
         public static void SetBackdropType(IntPtr hWnd, DWM_SYSTEMBACKDROP_TYPE backdropType)
         {
-            var value = GCHandle.Alloc((uint)backdropType, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(hWnd, DWMWA_SYSTEMBACKDROP_TYPE, value.AddrOfPinnedObject(), sizeof(uint));
-            value.Free();
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
-
+            SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_SYSTEMBACKDROP_TYPE, (uint)backdropType, sizeof(uint));
         }
-        
+
         /// <summary>
         /// Set corner preference on target window
         /// Requires Windows build 22000 or higher.
         /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        /// <param name="cornerPreference">Corner preference to apply on the window's border.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+#endif
         public static void SetCornerPreference(IntPtr hWnd, DWM_WINDOW_CORNER_PREFERENCE cornerPreference)
         {
-            var value = GCHandle.Alloc((uint)cornerPreference, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(hWnd, DWMWA_WINDOW_CORNER_PREFERENCE, value.AddrOfPinnedObject(), sizeof(uint));
-            value.Free();
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
-
+            SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_WINDOW_CORNER_PREFERENCE, (uint)cornerPreference, sizeof(uint));
         }
-        
+
         /// <summary>
         /// Enable or disable immersive dark mode.
         /// Requires Windows build 19041 or higher.
         /// </summary>
-        public static void SetImmersiveDarkMode(IntPtr target, bool state)
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        /// <param name="state"><see langword="true"/> to enable the immersive dark mode, <see langword="false"/> to disable it.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.19041")]
+#endif
+        public static void SetImmersiveDarkMode(IntPtr hWnd, bool state)
         {
-            var value = GCHandle.Alloc(state ? 1 : 0, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(target, DWMWA_IMMERSIVE_DARK_MODE, value.AddrOfPinnedObject(), sizeof(int));
-            value.Free();
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
+            SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, state ? 1 : 0, sizeof(int));
         }
 
-        public static void ExtendFrameIntoClientArea(IntPtr target)
+        /// <summary>
+        /// Extends the window's frame into the client area.
+        /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        public static void ExtendFrameIntoClientArea(IntPtr hWnd)
         {
             var margins = new MARGINS(-1);
-            var result = DwmExtendFrameIntoClientArea(target, margins);
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
+            CheckHResult(DwmExtendFrameIntoClientArea(hWnd, margins));
         }
 
         /// <summary>
         /// Change background color of titlebar.
         /// Requires Windows build 22000 or higher.
         /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        /// <param name="color">Color value to apply to the window's caption.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+#endif
         public static void SetCaptionColor(IntPtr hWnd, COLORREF color)
         {
             if (Environment.OSVersion.Version.Build < 22000)
                 return;
-            
-            var value = GCHandle.Alloc(color, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(hWnd, DWMWA_CAPTION_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
-            value.Free();
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
+            SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_CAPTION_COLOR, color, Marshal.SizeOf(color));
         }
 
         /// <summary>
         /// Change text color of titlebar.
         /// Requires Windows build 22000 or higher.
         /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        /// <param name="color">Color value to apply to the window's caption text.</param>
+#if NET6_0_OR_GREATER
+        [SupportedOSPlatform("windows10.0.22000")]
+#endif
         public static void SetCaptionTextColor(IntPtr hWnd, COLORREF color)
         {
             if (Environment.OSVersion.Version.Build < 22000)
                 return;
-            
-            var value = GCHandle.Alloc(color, GCHandleType.Pinned);
-            var result = DwmSetWindowAttribute(hWnd, DWMWA_TEXT_COLOR, value.AddrOfPinnedObject(), Marshal.SizeOf(color));
-            value.Free();
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
+
+            SetWindowAttribute(hWnd, DwmWindowAttribute.DWMWA_TEXT_COLOR, color, Marshal.SizeOf(color));
         }
 
-        public static void EnableBlurBehind(IntPtr target)
+        /// <summary>
+        /// Enables the Blur effects to be rendered in the window's background.
+        /// </summary>
+        /// <param name="hWnd">Handle of the target window for the operation.</param>
+        public static void EnableBlurBehind(IntPtr hWnd)
         {
             var value = new DWM_BLURBEHIND(true);
-            var result = DwmEnableBlurBehindWindow(target, value);
-            if (result != 0)
-            {
-                throw Marshal.GetExceptionForHR(result);
-            }
+            CheckHResult(DwmEnableBlurBehindWindow(hWnd, value));
 
             var accentPolicy = new AccentPolicy
             {
@@ -186,8 +181,24 @@ namespace MicaForEveryone.Win32
                 Data = accentPolicyPtr,
             };
             compositionAttributeData.SizeOfData = Marshal.SizeOf(compositionAttributeData);
-            SetWindowCompositionAttribute(target, ref compositionAttributeData);
+            var result = SetWindowCompositionAttribute(hWnd, ref compositionAttributeData);
             Marshal.FreeHGlobal(accentPolicyPtr);
+            CheckHResult(result);
+        }
+
+        private static void SetWindowAttribute<T>(IntPtr hWnd, DwmWindowAttribute attribute, T value, int sizeOf)
+        {
+            var pinnedValue = GCHandle.Alloc(value, GCHandleType.Pinned);
+            var valueAddr = pinnedValue.AddrOfPinnedObject();
+            var result = DwmSetWindowAttribute(hWnd, (uint)attribute, valueAddr, sizeOf);
+            pinnedValue.Free();
+            CheckHResult(result);
+        }
+
+        private static int CheckHResult(int result)
+        {
+            if (Marshal.GetExceptionForHR(result) is { } ex) throw ex;
+            return result;
         }
     }
 }
