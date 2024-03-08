@@ -4,10 +4,10 @@
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<OutputType>WinExe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <TargetPlatformVersion>10.0.22000</TargetPlatformVersion>
-        <AssetTargetFallback>uap10.0.22000</AssetTargetFallback>
+        <TargetPlatformVersion>10.0.22621</TargetPlatformVersion>
+        <AssetTargetFallback>uap10.0.22621</AssetTargetFallback>
         <Platforms>x64;arm64;x86</Platforms>
-        <LangVersion>9.0</LangVersion>
+        <LangVersion>10.0</LangVersion>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <ApplicationIcon>Resources\MicaForEveryone.ico</ApplicationIcon>
         <ApplicationManifest>Resources\app.manifest</ApplicationManifest>
@@ -36,9 +36,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
         <PackageReference Include="Microsoft.Toolkit.UI.XamlHost" Version="6.1.2" />
-        <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.0.7" />
+        <PackageReference Include="Microsoft.VCRTForwarders.140" Version="1.1.0" />
         <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
         <PackageReference Include="TaskScheduler" Version="2.10.1" />
         <PackageReference Include="XclParser" Version="1.0.8" />
