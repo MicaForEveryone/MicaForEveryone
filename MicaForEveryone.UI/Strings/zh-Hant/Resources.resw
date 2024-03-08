@@ -121,7 +121,7 @@
     <value>關於此程式</value>
   </data>
   <data name="AcrylicBackdropDescription.Text" xml:space="preserve">
-    <value>已強制所有應用程式使用 Windows 10 風格的壓克力半透明效果。</value>
+    <value>已強制應用程式使用 Windows 10 風格的壓克力半透明效果。</value>
   </data>
   <data name="AcrylicMenuItem.Text" xml:space="preserve">
     <value>壓克力</value>
@@ -169,7 +169,7 @@
     <value>模糊類型</value>
   </data>
   <data name="BlurBehindSetting.Description" xml:space="preserve">
-    <value>視窗呈現半透明與模糊。停用此選項需重新開啟作用中的視窗。</value>
+    <value>視窗呈現半透明與模糊。變更此選項需重新開啟作用中的視窗。</value>
   </data>
   <data name="BlurBehindSetting.Header" xml:space="preserve">
     <value>後置模糊</value>
@@ -226,7 +226,7 @@
     <value>延伸外框至工作區</value>
   </data>
   <data name="ExtendFrameIntoClientAreaSetting.Description" xml:space="preserve">
-    <value>將視窗外框延伸至工作區讓應用程式表面呈現半透明效果。此選項不適用於所有程式甚至可能造成應用程式損毀，除非您了解正在執行的動作否則請勿啟用。停用此選項需重新開啟作用中的視窗。</value>
+    <value>將視窗外框延伸至工作區讓應用程式表面呈現半透明效果。此選項不適用於所有程式甚至可能造成應用程式損毀，除非您了解正在執行的動作否則請勿啟用。變更此選項需重新開啟作用中的視窗。</value>
   </data>
   <data name="GeneralPaneItem.Text" xml:space="preserve">
     <value>一般</value>
@@ -253,7 +253,7 @@
     <value>正在使用淺色主題。</value>
   </data>
   <data name="MicaBackdropDescription.Text" xml:space="preserve">
-    <value>已強制所有應用程式使用 Windows 11 風格的雲母桌面背景子著色效果。</value>
+    <value>已強制應用程式使用 Windows 11 風格的雲母桌面背景子著色效果。</value>
   </data>
   <data name="MicaMenuItem.Text" xml:space="preserve">
     <value>雲母</value>
