@@ -3,9 +3,9 @@ using System.ComponentModel;
 
 namespace MicaForEveryone.CoreUI;
 
-public interface ISettingsService : INotifyPropertyChanged
+public interface ISettingsService : INotifyPropertyChanged, IDisposable
 {
-    RulesModel? Settings { get; set; }
+    SettingsFileModel? Settings { get; set; }
 
     Task InitializeAsync();
 

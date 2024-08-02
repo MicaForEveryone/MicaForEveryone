@@ -473,6 +473,13 @@ public static unsafe partial class Windowing
 
     #region Methods
 
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool SetForegroundWindow(HWND hwnd);
+
+    [DllImport("user32.dll", ExactSpelling = true)]
+    public static extern uint GetDpiForWindow(HWND hwnd);
+
     [LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16)]
     public static unsafe partial HWND CreateWindowExW(WindowStylesEx dwExStyle, string lpClassName, string? lpWindowName, WindowStyles dwStyle, int X, int Y, int nWidth, int nHeight, HWND hWndParent, void* hMenu, HINSTANCE hInstance, void* lpParam);
 

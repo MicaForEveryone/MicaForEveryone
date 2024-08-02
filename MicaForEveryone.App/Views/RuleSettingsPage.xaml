@@ -6,8 +6,6 @@
     xmlns:controls="using:MicaForEveryone.App.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:MicaForEveryone.App.Helpers"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:labs="using:CommunityToolkit.WinUI.Controls"
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -18,7 +16,7 @@
     <controls:SettingsPageControl Header="{x:Bind helpers:RuleInfoHelper.GetRuleName(Rule)}">
         <StackPanel Spacing="{StaticResource SettingsCardSpacing}">
             <StackPanel.ChildrenTransitions>
-                <EntranceThemeTransition FromVerticalOffset="50" IsStaggeringEnabled="True" />
+                <EntranceThemeTransition FromVerticalOffset="50" />
                 <RepositionThemeTransition IsStaggeringEnabled="False" />
             </StackPanel.ChildrenTransitions>
 
@@ -34,14 +32,9 @@
                     SelectedItem="{x:Bind Rule.TitleBarColor, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="models:TitleBarColorMode">
-                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetTitleBarColorLocalized((models:TitleBarColorMode))}" />
+                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetTitleBarColorLocalized((models:TitleBarColorMode)), Mode=OneWay}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
-                    <i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="SelectionChanged">
-                            <ic:InvokeCommandAction Command="{x:Bind ComboBoxChangedCommand}" />
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
                 </ComboBox>
             </labs:SettingsCard>
             <labs:SettingsCard Header="_Backdrop type">
@@ -55,14 +48,9 @@
                     SelectedItem="{x:Bind Rule.BackdropPreference, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="models:BackdropType">
-                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetBackdropTypeLocalized((models:BackdropType))}" />
+                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetBackdropTypeLocalized((models:BackdropType)), Mode=OneWay}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
-                    <i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="SelectionChanged">
-                            <ic:InvokeCommandAction Command="{x:Bind ComboBoxChangedCommand}" />
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
                 </ComboBox>
             </labs:SettingsCard>
             <labs:SettingsCard Header="_Corner preference">
@@ -76,14 +64,9 @@
                     SelectedItem="{x:Bind Rule.CornerPreference, Mode=TwoWay}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate x:DataType="models:CornerPreference">
-                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetCornerPreferenceLocalized((models:CornerPreference))}" />
+                            <TextBlock Text="{x:Bind local:RuleSettingsPage.GetCornerPreferenceLocalized((models:CornerPreference)), Mode=OneWay}" />
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
-                    <i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="SelectionChanged">
-                            <ic:InvokeCommandAction Command="{x:Bind ComboBoxChangedCommand}" />
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
                 </ComboBox>
             </labs:SettingsCard>
 

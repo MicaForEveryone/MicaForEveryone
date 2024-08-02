@@ -11,7 +11,7 @@ namespace MicaForEveryone.App.Services;
 public sealed class RuleService : IRuleService
 {
     private readonly ISettingsService _settingsService;
-    public RulesModel? SettingsModel { get; set; }
+    public SettingsFileModel? SettingsModel { get; set; }
 
     public RuleService(ISettingsService settingsService)
     {

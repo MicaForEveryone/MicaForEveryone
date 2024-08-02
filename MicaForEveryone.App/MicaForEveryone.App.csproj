@@ -6,14 +6,14 @@
 		<RootNamespace>MicaForEveryone.App</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;ARM64</Platforms>
-		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
-		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
+		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
 		<ApplicationIcon>Assets\MicaForEveryone.ico</ApplicationIcon>
 		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;$(DefineConstants)</DefineConstants>
 		<Nullable>enable</Nullable>
-		<UseRidGraph>true</UseRidGraph>
+		<WindowsSdkPackageVersion>10.0.22621.37-preview</WindowsSdkPackageVersion>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Content Remove="Assets\SmallTile.scale-100.png" />
@@ -25,6 +25,8 @@
 	  <Content Remove="Assets\Wide310x150Logo.scale-400.png" />
 	</ItemGroup>
 	<ItemGroup>
+		<None Remove="Assets\default.json" />
+		<None Remove="Controls\AddRuleContextFlyout.xaml" />
 		<None Remove="Controls\SettingsPageControl.xaml" />
 		<None Remove="Views\AppSettingsPage.xaml" />
 		<None Remove="Views\RuleSettingsPage.xaml" />
@@ -41,15 +43,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.230830" />
-		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.0.240109" />
-		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.0.240109" />
+		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.240801-build.1708" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.1.240606-rc" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240606-rc" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.8.14" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.231219000" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.2428" />
-		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
-		<PackageReference Include="WinUIEx" Version="2.3.3" />
+		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.10.48" />
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.0-prerelease.240722.1" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240701003-experimental2" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
@@ -66,6 +67,11 @@
   -->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Page Update="Controls\AddRuleContextFlyout.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 	<ItemGroup>
 	  <Page Update="Views\RuleSettingsPage.xaml">

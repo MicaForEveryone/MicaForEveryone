@@ -1,9 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace MicaForEveryone.Models;
 
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "type")]
+[JsonDerivedType(typeof(GlobalRule), "global")]
+[JsonDerivedType(typeof(ProcessRule), "process")]
+[JsonDerivedType(typeof(ClassRule), "class")]
 public abstract partial class Rule: ObservableObject, IEquatable<Rule>
 {
+    // We need to declare properties manually as sourcegens can't access code from other sourcegens.
+
     TitleBarColorMode _titleBarColor;
     BackdropType _backdropPreference;
     CornerPreference _cornerPreference;

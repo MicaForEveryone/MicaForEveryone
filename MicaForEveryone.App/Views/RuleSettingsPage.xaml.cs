@@ -30,7 +30,19 @@ public sealed partial class RuleSettingsPage : Page
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         Rule = Unsafe.As<Rule>(e.Parameter);
+        Rule.PropertyChanged += Rule_PropertyChanged;
         base.OnNavigatedTo(e);
+    }
+
+    protected override void OnNavigatedFrom(NavigationEventArgs e)
+    {
+        Rule!.PropertyChanged -= Rule_PropertyChanged;
+        base.OnNavigatedFrom(e);
+    }
+
+    private void Rule_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        _ = SettingsService.SaveAsync().ConfigureAwait(false);
     }
 
     public static string GetTitleBarColorLocalized(TitleBarColorMode titleBarColorMode)
@@ -46,16 +58,5 @@ public sealed partial class RuleSettingsPage : Page
     public static string GetCornerPreferenceLocalized(CornerPreference cornerPreference)
     {
         return App.Services.GetRequiredService<ILocalizationService>().GetLocalizedCornerPreference(cornerPreference);
-    }
-
-    [RelayCommand]
-    public async Task ComboBoxChangedAsync(SelectionChangedEventArgs args)
-    {
-        if (args.RemovedItems!.Count == 0)
-        {
-            return;
-        }
-
-        await SettingsService.SaveAsync();
     }
 }

@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System;
 using Windows.Foundation;
-using WinUIEx;
 using static MicaForEveryone.PInvoke.GDI;
 using static MicaForEveryone.PInvoke.Generic;
 using static MicaForEveryone.PInvoke.Macros;
@@ -15,6 +14,7 @@ using static MicaForEveryone.PInvoke.Modules;
 using static MicaForEveryone.PInvoke.Monitor;
 using static MicaForEveryone.PInvoke.NotifyIcon;
 using static MicaForEveryone.PInvoke.Windowing;
+using WinRT.Interop;
 
 namespace MicaForEveryone.App.Services;
 
@@ -78,12 +78,12 @@ public sealed unsafe class MainAppService
             }
             else
             {
-                var hwnd = new HWND((void*)_window.GetWindowHandle());
+                var hwnd = new HWND((void*)WindowNative.GetWindowHandle(_window));
                 if (IsIconic(hwnd))
                 {
                     ShowWindow(hwnd, SW_RESTORE);
                 }
-                _window.BringToFront();
+                SetForegroundWindow(hwnd);
             }
         }
     }
@@ -166,9 +166,8 @@ public sealed unsafe class MainAppService
                     switch (LOWORD(lParam))
                     {
                         case 0x007B:
-                            nint handleIntPtr = new nint(hWnd.Value);
-                            var scaleFactor = HwndExtensions.GetDpiForWindow(handleIntPtr) / 96f;
-                            HwndExtensions.SetForegroundWindow(handleIntPtr);
+                            var scaleFactor = GetDpiForWindow(hWnd) / 96f;
+                            SetForegroundWindow(hWnd);
 
                             Point point = new(
                                 GET_X_LPARAM(new((nint)wParam.Value)),

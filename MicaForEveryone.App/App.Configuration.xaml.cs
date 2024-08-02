@@ -4,7 +4,6 @@ using MicaForEveryone.App.ViewModels;
 using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Dispatching;
-using Microsoft.Windows.ApplicationModel.Resources;
 using System;
 
 namespace MicaForEveryone.App;

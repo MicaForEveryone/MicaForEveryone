@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<winuiex:WindowEx
+<Window
     x:Class="MicaForEveryone.App.Views.SettingsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,14 +7,9 @@
     xmlns:controls="using:MicaForEveryone.App.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:MicaForEveryone.App.Helpers"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:ic="using:Microsoft.Xaml.Interactions.Core"
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:MicaForEveryone.Models"
-    xmlns:winuiex="using:WinUIEx"
-    Width="1000"
-    Height="700"
     Activated="Window_Activated"
     mc:Ignorable="d">
 
@@ -32,7 +27,7 @@
             <controls:IsDataTypeTemplateSelector x:Key="IsDataTypeTemplateSelector" Type="local:SettingsNavigationItem">
                 <controls:IsDataTypeTemplateSelector.IsType>
                     <DataTemplate x:DataType="local:SettingsNavigationItem">
-                        <NavigationViewItem Content="{x:Bind Uid}" Icon="{x:Bind Icon}" />
+                        <NavigationViewItem Tag="{x:Bind}" Content="{x:Bind Uid}" Icon="{x:Bind Icon}" SelectsOnInvoked="{x:Bind Selectable}" />
                     </DataTemplate>
                 </controls:IsDataTypeTemplateSelector.IsType>
                 <controls:IsDataTypeTemplateSelector.IsNotType>
@@ -73,14 +68,16 @@
             IsPaneToggleButtonVisible="False"
             IsSettingsVisible="False"
             MenuItemTemplateSelector="{StaticResource IsDataTypeTemplateSelector}"
-            MenuItemsSource="{x:Bind ViewModel.SettingsService.Settings.Rules}"
-            PaneDisplayMode="Left">
+            MenuItemsSource="{x:Bind ViewModel.SettingsService.Settings.Rules, Mode=OneWay}"
+            PaneDisplayMode="Left"
+            SelectionChanged="NavigationViewControl_SelectionChanged"
+            ItemInvoked="NavigationViewControl_ItemInvoked">
             <NavigationView.Resources>
                 <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
                 <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
             </NavigationView.Resources>
             <NavigationView.FooterMenuItems>
-                <local:SettingsNavigationItem Uid="_Add rule" Tag="AddRuleNavViewItem">
+                <local:SettingsNavigationItem Uid="_Add rule" Tag="AddRuleNavViewItem" Selectable="False">
                     <local:SettingsNavigationItem.Icon>
                         <SymbolIcon Symbol="Add" />
                     </local:SettingsNavigationItem.Icon>
@@ -99,20 +96,9 @@
                 </local:SettingsNavigationItem>
             </NavigationView.FooterMenuItems>
             <NavigationView.Content>
-                <Frame x:Name="_contentFrame">
-                    <i:Interaction.Behaviors>
-                        <ic:EventTriggerBehavior EventName="Loaded">
-                            <ic:InvokeCommandAction Command="{x:Bind ViewModel.InitializeNavigationCommand}" CommandParameter="{x:Bind _contentFrame}" />
-                        </ic:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
-                </Frame>
+                <Frame x:Name="_contentFrame" />
             </NavigationView.Content>
-            <i:Interaction.Behaviors>
-                <ic:EventTriggerBehavior EventName="SelectionChanged">
-                    <ic:InvokeCommandAction Command="{x:Bind ViewModel.NavSelectionChangedCommand}" />
-                </ic:EventTriggerBehavior>
-            </i:Interaction.Behaviors>
         </NavigationView>
     </Grid>
 
-</winuiex:WindowEx>
+</Window>

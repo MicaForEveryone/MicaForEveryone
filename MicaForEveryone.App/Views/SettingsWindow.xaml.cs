@@ -1,11 +1,12 @@
+using MicaForEveryone.App.Controls;
 using MicaForEveryone.App.ViewModels;
+using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Runtime.InteropServices;
 using WinRT.Interop;
-using WinUIEx;
 using static MicaForEveryone.PInvoke.Messaging;
 using static MicaForEveryone.PInvoke.Modules;
 using static MicaForEveryone.PInvoke.Windowing;
@@ -18,7 +19,7 @@ namespace MicaForEveryone.App.Views;
 /// <summary>
 /// An empty window that can be used on its own or navigated to within a Frame.
 /// </summary>
-public unsafe sealed partial class SettingsWindow : WindowEx
+public unsafe sealed partial class SettingsWindow : Window
 {
     private static delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT> oldWndProc;
     private SettingsViewModel ViewModel { get; }
@@ -66,6 +67,27 @@ public unsafe sealed partial class SettingsWindow : WindowEx
     {
         // TODO: Add code to deal with title bar color change.
     }
+
+    private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    {
+        if (args.SelectedItem is Rule rule)
+        {
+            _contentFrame.Navigate(typeof(RuleSettingsPage), rule);
+        }
+        else
+        {
+            _contentFrame.Navigate(typeof(AppSettingsPage));
+        }
+    }
+
+    private void NavigationViewControl_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    {
+        if (args.InvokedItemContainer.Tag is SettingsNavigationItem { Tag: "AddRuleNavViewItem" })
+        {
+            AddRuleContextFlyout addRuleContextFlyout = new AddRuleContextFlyout();
+            addRuleContextFlyout.ShowAt(args.InvokedItemContainer);
+        }
+    }
 }
 
 public class SettingsNavigationItem
@@ -75,4 +97,6 @@ public class SettingsNavigationItem
     public string? Tag { get; set; }
 
     public IconElement? Icon { get; set; }
+
+    public bool Selectable { get; set; } = true;
 }
