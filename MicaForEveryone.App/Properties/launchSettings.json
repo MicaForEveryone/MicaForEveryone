@@ -2,7 +2,7 @@
   "profiles": {
     "MicaForEveryone.App (Package)": {
       "commandName": "MsixPackage",
-      "nativeDebugging": false
+      "nativeDebugging": true
     },
     "MicaForEveryone.App (Unpackaged)": {
       "commandName": "Project",

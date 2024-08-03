@@ -6,7 +6,7 @@
     xmlns:controls="using:MicaForEveryone.App.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:helpers="using:MicaForEveryone.App.Helpers"
-    xmlns:labs="using:CommunityToolkit.WinUI.Controls"
+    xmlns:ct="using:CommunityToolkit.WinUI.Controls"
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:MicaForEveryone.Models"
@@ -21,10 +21,10 @@
             </StackPanel.ChildrenTransitions>
 
             <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="_Style" />
-            <labs:SettingsCard Header="_Title bar color">
-                <labs:SettingsCard.HeaderIcon>
+            <ct:SettingsCard Header="_Title bar color">
+                <ct:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE790;" />
-                </labs:SettingsCard.HeaderIcon>
+                </ct:SettingsCard.HeaderIcon>
 
                 <ComboBox
                     MinWidth="110"
@@ -36,11 +36,11 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </labs:SettingsCard>
-            <labs:SettingsCard Header="_Backdrop type">
-                <labs:SettingsCard.HeaderIcon>
+            </ct:SettingsCard>
+            <ct:SettingsCard Header="_Backdrop type">
+                <ct:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xF5EF;" />
-                </labs:SettingsCard.HeaderIcon>
+                </ct:SettingsCard.HeaderIcon>
 
                 <ComboBox
                     MinWidth="110"
@@ -52,11 +52,11 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </labs:SettingsCard>
-            <labs:SettingsCard Header="_Corner preference">
-                <labs:SettingsCard.HeaderIcon>
+            </ct:SettingsCard>
+            <ct:SettingsCard Header="_Corner preference">
+                <ct:SettingsCard.HeaderIcon>
                     <FontIcon Glyph="&#xE71A;" />
-                </labs:SettingsCard.HeaderIcon>
+                </ct:SettingsCard.HeaderIcon>
 
                 <ComboBox
                     MinWidth="110"
@@ -68,8 +68,10 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-            </labs:SettingsCard>
+            </ct:SettingsCard>
 
+            <TextBlock Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" Text="_Remove" Visibility="{x:Bind local:RuleSettingsPage.NotGlobalRuleVisibility(Rule)}" />
+            <ct:SettingsCard Header="_Remove rule" IsClickEnabled="True" HeaderIcon="Delete" Click="SettingsCard_Click" Visibility="{x:Bind local:RuleSettingsPage.NotGlobalRuleVisibility(Rule)}" />
         </StackPanel>
     </controls:SettingsPageControl>
 </Page>

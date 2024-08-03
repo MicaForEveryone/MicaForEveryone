@@ -2,6 +2,7 @@ using CommunityToolkit.Mvvm.Input;
 using MicaForEveryone.CoreUI;
 using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System.Runtime.CompilerServices;
@@ -58,5 +59,16 @@ public sealed partial class RuleSettingsPage : Page
     public static string GetCornerPreferenceLocalized(CornerPreference cornerPreference)
     {
         return App.Services.GetRequiredService<ILocalizationService>().GetLocalizedCornerPreference(cornerPreference);
+    }
+
+    public static Visibility NotGlobalRuleVisibility(Rule rule)
+    {
+        return rule is GlobalRule ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+    private void SettingsCard_Click(object sender, RoutedEventArgs e)
+    {
+        SettingsService.Settings!.Rules.Remove(Rule!);
+        _ = SettingsService.SaveAsync().ConfigureAwait(false);
     }
 }

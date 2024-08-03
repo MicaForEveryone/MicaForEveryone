@@ -1,4 +1,3 @@
-using MicaForEveryone.App.Controls;
 using MicaForEveryone.App.ViewModels;
 using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,11 +21,32 @@ namespace MicaForEveryone.App.Views;
 public unsafe sealed partial class SettingsWindow : Window
 {
     private static delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT> oldWndProc;
+
     private SettingsViewModel ViewModel { get; }
+
+    private MenuFlyout _addNewItemFlyout = new();
 
     public SettingsWindow()
     {
         InitializeComponent();
+
+        MenuFlyoutItem processRuleItem = new() { Text = "_Add Process Rule" };
+        processRuleItem.Click += (_, _) =>
+        {
+            AddProcessRuleContentDialog addProcessRuleContentDialog = new();
+            addProcessRuleContentDialog.XamlRoot = Content.XamlRoot;
+            _ = addProcessRuleContentDialog.ShowAsync();
+        };
+        _addNewItemFlyout.Items.Add(processRuleItem);
+
+        MenuFlyoutItem classRuleItem = new() { Text = "_Add Class Rule" };
+        classRuleItem.Click += (_, _) =>
+        {
+            AddClassRuleContentDialog addClassRuleContentDialog = new();
+            addClassRuleContentDialog.XamlRoot = Content.XamlRoot;
+            _ = addClassRuleContentDialog.ShowAsync();
+        };
+        _addNewItemFlyout.Items.Add(classRuleItem);
 
         ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
         ExtendsContentIntoTitleBar = true;
@@ -84,8 +104,7 @@ public unsafe sealed partial class SettingsWindow : Window
     {
         if (args.InvokedItemContainer.Tag is SettingsNavigationItem { Tag: "AddRuleNavViewItem" })
         {
-            AddRuleContextFlyout addRuleContextFlyout = new AddRuleContextFlyout();
-            addRuleContextFlyout.ShowAt(args.InvokedItemContainer);
+            _addNewItemFlyout.ShowAt(args.InvokedItemContainer);
         }
     }
 }

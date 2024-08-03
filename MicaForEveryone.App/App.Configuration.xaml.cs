@@ -41,5 +41,7 @@ public partial class App
     [Transient(typeof(TrayIconViewModel))]
     [Transient(typeof(SettingsViewModel))]
     [Transient(typeof(AppSettingsPageViewModel))]
+    [Transient(typeof(AddProcessRuleContentDialogViewModel))]
+    [Transient(typeof(AddClassRuleContentDialogViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 }

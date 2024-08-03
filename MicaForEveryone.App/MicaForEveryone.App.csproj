@@ -26,8 +26,9 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Remove="Assets\default.json" />
-		<None Remove="Controls\AddRuleContextFlyout.xaml" />
 		<None Remove="Controls\SettingsPageControl.xaml" />
+		<None Remove="Views\AddClassRuleContentDialog.xaml" />
+		<None Remove="Views\AddProcessRuleContentDialog.xaml" />
 		<None Remove="Views\AppSettingsPage.xaml" />
 		<None Remove="Views\RuleSettingsPage.xaml" />
 		<None Remove="Views\SettingsWindow.xaml" />
@@ -69,7 +70,10 @@
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Page Update="Controls\AddRuleContextFlyout.xaml">
+	  <Page Update="Views\AddClassRuleContentDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
+	  <Page Update="Views\AddProcessRuleContentDialog.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </Page>
 	</ItemGroup>
