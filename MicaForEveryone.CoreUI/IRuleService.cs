@@ -4,7 +4,9 @@ namespace MicaForEveryone.CoreUI;
 
 public interface IRuleService
 {
+    void Initialize();
+
     Task ApplyRulesToAllWindows();
 
-    void ApplyRuleToWindow(HWND hwnd);
+    Task ApplyRuleToWindowAsync(HWND hwnd);
 }

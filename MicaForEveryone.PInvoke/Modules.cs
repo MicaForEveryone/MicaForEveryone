@@ -9,6 +9,8 @@ public static partial class Modules
     {
         public readonly void* Value;
 
+        public static HINSTANCE NULL => new HINSTANCE(null);
+
         public HINSTANCE(void* value)
         {
             Value = value;

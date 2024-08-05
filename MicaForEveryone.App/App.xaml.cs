@@ -30,6 +30,7 @@ public partial class App : Application
     /// <param name="args">Details about the launch request and process.</param>
     protected override void OnLaunched(LaunchActivatedEventArgs args)
     {
+        Services.GetRequiredService<IRuleService>().Initialize();
         new JoinableTaskFactory(new JoinableTaskContext()).Run(async () =>
         {
             await Services.GetRequiredService<ISettingsService>().InitializeAsync();

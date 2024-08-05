@@ -8,12 +8,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using static MicaForEveryone.PInvoke.Generic;
 using static MicaForEveryone.PInvoke.Windowing;
+using static MicaForEveryone.PInvoke.Events;
+using static MicaForEveryone.PInvoke.Modules;
 
 namespace MicaForEveryone.App.Services;
 
 public sealed class RuleService : IRuleService
 {
     private readonly ISettingsService _settingsService;
+    private HWINEVENTHOOK _eventHookHandler;
 
     public RuleService(ISettingsService settingsService)
     {
@@ -21,6 +24,24 @@ public sealed class RuleService : IRuleService
     }
 
     private static int _currentSession;
+
+    public unsafe void Initialize()
+    {
+        _eventHookHandler = SetWinEventHook(EVENT_OBJECT_SHOW, EVENT_OBJECT_SHOW, HINSTANCE.NULL, &NewWindowShown, 0, 0, WINEVENT_OUTOFCONTEXT);
+    }
+
+    [UnmanagedCallersOnly]
+    private static void NewWindowShown(HWINEVENTHOOK handler, uint winEvent, HWND hWnd, int idObject, int idChild, uint idEventThread, uint dwmsEventTime)
+    {
+        async Task NewWindowShowHandlerAsync(IRuleService service, HWND hwnd)
+        {
+            if (!IsWindowEligible(hwnd))
+                await Task.Delay(10);
+            await service.ApplyRuleToWindowAsync(hwnd);
+        }
+
+        _ = NewWindowShowHandlerAsync(App.Services.GetRequiredService<IRuleService>(), hWnd);
+    }
 
     public async Task ApplyRulesToAllWindows()
     {
@@ -45,7 +66,7 @@ public sealed class RuleService : IRuleService
             // User changed the settings, cancel the operation.
             return BOOL.FALSE;
 
-        App.Services.GetRequiredService<IRuleService>().ApplyRuleToWindow(hWnd);
+        _ = App.Services.GetRequiredService<IRuleService>().ApplyRuleToWindowAsync(hWnd);
 
         return BOOL.TRUE;
     }
@@ -80,17 +101,22 @@ public sealed class RuleService : IRuleService
         return true;
     }
 
-    public unsafe void ApplyRuleToWindow(HWND hWnd)
+    public Task ApplyRuleToWindowAsync(HWND hWnd)
     {
         if (!IsWindowEligible(hWnd))
-            return;
+            return Task.CompletedTask;
 
         Rule mostApplicableRule = _settingsService.Settings!.Rules.Where(f => f.IsRuleApplicable(hWnd)).OrderBy(f => f is not GlobalRule).First();
 
         if (mostApplicableRule.BackdropPreference != BackdropType.Default)
         {
             uint bp = (uint)mostApplicableRule.BackdropPreference;
-            DwmSetWindowAttribute(hWnd, DWMWA_SYSTEMBACKDROP_TYPE, &bp, sizeof(uint));
+            unsafe
+            {
+                DwmSetWindowAttribute(hWnd, DWMWA_SYSTEMBACKDROP_TYPE, &bp, sizeof(uint));
+            }
         }
+
+        return Task.CompletedTask;
     }
 }
