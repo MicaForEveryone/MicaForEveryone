@@ -34,7 +34,7 @@ public partial class App : Application
         {
             await Services.GetRequiredService<ISettingsService>().InitializeAsync();
             Services.GetRequiredService<MainAppService>().Initialize();
-            _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindows();
         });
+        _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindows();
     }
 }

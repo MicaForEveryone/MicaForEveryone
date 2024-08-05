@@ -39,12 +39,10 @@ public static unsafe partial class Windowing
     public enum WindowStylesEx : uint
     {
         WS_EX_NOACTIVATE = 0x08000000,
-
-        /// <summary>
-        /// Specifies a window that should be placed above all non-topmost windows and should stay above them, even when the window is
-        /// deactivated. To add or remove this style, use the SetWindowPos function.
-        /// </summary>
         WS_EX_TOPMOST = 0x00000008,
+        WS_EX_APPWINDOW = 262144,
+        WS_EX_TOOLWINDOW = 128,
+        WS_EX_MDICHILD = 64,
     }
 
     [Flags]
@@ -249,6 +247,8 @@ public static unsafe partial class Windowing
     public enum WindowLongIndex : int
     {
         GWL_WNDPROC = -4,
+        GWL_STYLE = -16,
+        GWL_EXSTYLE = -20,
         GWL_USERDATA = -21
     }
 
@@ -477,6 +477,10 @@ public static unsafe partial class Windowing
     [return: MarshalAs(UnmanagedType.Bool)]
     public static partial bool SetForegroundWindow(HWND hwnd);
 
+    [LibraryImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static partial bool IsWindowVisible(HWND hwnd);
+
     [DllImport("user32.dll", ExactSpelling = true)]
     public static extern uint GetDpiForWindow(HWND hwnd);
 
@@ -493,14 +497,14 @@ public static unsafe partial class Windowing
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool DestroyWindow(HWND hWnd);
 
-    [DllImport("user32,dll", ExactSpelling = true)]
-    public static extern int GetWindowLongW(HWND hWnd, WindowLongIndex nIndex);
 
     public static nint GetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex)
     {
         if (sizeof(nint) == 4)
         {
-            return GetWindowLongW(hWnd, nIndex);
+            [DllImport("user32.dll", ExactSpelling = true)]
+            static extern int _GetWindowLongW(HWND hWnd, WindowLongIndex nIndex);
+            return _GetWindowLongW(hWnd, nIndex);
         }
         else
         {
@@ -550,6 +554,21 @@ public static unsafe partial class Windowing
     [LibraryImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static partial bool IsIconic(HWND hWnd);
+
+    [DllImport("dwmapi", ExactSpelling = true)]
+    public static extern HRESULT DwmSetWindowAttribute(HWND hwnd, uint dwAttribute, void* pvAttribute, uint cbAttribute);
+
+    [DllImport("user32", ExactSpelling = true)]
+    public static extern HWND GetAncestor(HWND hwnd, uint gaFlags);
+
+    [DllImport("user32", ExactSpelling = true)]
+    public static extern HWND GetDesktopWindow();
+
+    [DllImport("user32", ExactSpelling = true)]
+    public static extern uint GetWindowThreadProcessId(HWND hWnd, uint* lpdwProcessId);
+
+    [DllImport("user32", ExactSpelling = true)]
+    public static extern int GetClassNameW(HWND hWnd, char* lpClassName, int nMaxCount);
     #endregion
 
     #region Constants
@@ -568,5 +587,10 @@ public static unsafe partial class Windowing
 
     public const int LIM_SMALL = 0;
     public const int LIM_LARGE = 1;
+
+    public const uint GA_PARENT = 1;
+
+    public const uint DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+    public const uint DWMWA_SYSTEMBACKDROP_TYPE = 38;
     #endregion
 }

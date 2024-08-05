@@ -1,4 +1,7 @@
-﻿namespace MicaForEveryone.Models;
+﻿using MicaForEveryone.PInvoke;
+using System.Runtime.InteropServices;
+
+namespace MicaForEveryone.Models;
 
 public sealed class ClassRule : Rule
 {
@@ -10,5 +13,16 @@ public sealed class ClassRule : Rule
             && other is ClassRule cRule
             && ClassName.Equals(cRule.ClassName, StringComparison.CurrentCultureIgnoreCase)
             && base.Equals(other);
+    }
+
+    public override unsafe bool IsRuleApplicable(Windowing.HWND hWnd)
+    {
+        char* lpClassName = stackalloc char[256];
+        if (Windowing.GetClassNameW(hWnd, lpClassName, 256) == 0)
+        {
+            return false;
+        }
+        ReadOnlySpan<char> className = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(lpClassName);
+        return className.Equals(ClassName.AsSpan(), StringComparison.CurrentCultureIgnoreCase);
     }
 }

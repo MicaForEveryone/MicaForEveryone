@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Text.Json.Serialization;
+using static MicaForEveryone.PInvoke.Windowing;
 
 namespace MicaForEveryone.Models;
 
@@ -63,4 +64,6 @@ public abstract partial class Rule: ObservableObject, IEquatable<Rule>
             && EnableBlurBehind == other.EnableBlurBehind
             && TitleBarColorCode == other.TitleBarColorCode;
     }
+
+    public abstract bool IsRuleApplicable(HWND hWnd);
 }

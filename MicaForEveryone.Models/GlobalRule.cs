@@ -1,4 +1,6 @@
-﻿namespace MicaForEveryone.Models;
+﻿using MicaForEveryone.PInvoke;
+
+namespace MicaForEveryone.Models;
 
 public class GlobalRule : Rule
 {
@@ -8,4 +10,6 @@ public class GlobalRule : Rule
             && other is GlobalRule
             && base.Equals(other);
     }
+
+    public override bool IsRuleApplicable(Windowing.HWND hWnd) => true;
 }
