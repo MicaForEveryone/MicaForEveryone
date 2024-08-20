@@ -569,6 +569,9 @@ public static unsafe partial class Windowing
 
     [DllImport("user32", ExactSpelling = true)]
     public static extern int GetClassNameW(HWND hWnd, char* lpClassName, int nMaxCount);
+
+    [DllImport("user32", ExactSpelling = true)]
+    public static extern BOOL IsTopLevelWindow(HWND hWnd);
     #endregion
 
     #region Constants

@@ -78,13 +78,13 @@ public sealed class RuleService : IRuleService
 
         WindowStylesEx styleEx = (WindowStylesEx)GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_EXSTYLE);
 
-        if (styleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE))
+        WindowStyles style = (WindowStyles)GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_STYLE);
+
+        if (styleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE) || style.HasFlag(WindowStyles.WS_DISABLED))
             return false;
 
-        if (styleEx.HasFlag(WindowStylesEx.WS_EX_APPWINDOW))
-            return true;
-
-        WindowStyles style = (WindowStyles)GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_STYLE);
+        if (IsTopLevelWindow(hWnd) == BOOL.FALSE)
+            return false;
 
         bool hasTitleBar = style.HasFlag(WindowStyles.WS_BORDER) && style.HasFlag(WindowStyles.WS_DLGFRAME);
 
@@ -92,10 +92,6 @@ public sealed class RuleService : IRuleService
             return false;
 
         if (style.HasFlag(WindowStyles.WS_BORDER) & !hasTitleBar)
-            return false;
-
-        var isTopLevelWindow = GetAncestor(hWnd, GA_PARENT) == GetDesktopWindow();
-        if (!isTopLevelWindow && !styleEx.HasFlag(WindowStylesEx.WS_EX_MDICHILD))
             return false;
 
         return true;
