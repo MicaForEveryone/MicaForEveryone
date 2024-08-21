@@ -81,15 +81,6 @@ public sealed class RuleService : IRuleService
 
         WindowStyles style = (WindowStyles)GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_STYLE);
 
-        char* lpClassName = stackalloc char[256];
-        if (GetClassNameW(hWnd, lpClassName, 256) != 0)
-        {
-            ReadOnlySpan<char> className = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(lpClassName);
-
-            if (className.Equals("Windows.UI.Core.CoreWindow", StringComparison.CurrentCultureIgnoreCase)) // Notification Center
-                return false;
-        }
-
         if (styleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE))
             return false;
 
@@ -101,7 +92,7 @@ public sealed class RuleService : IRuleService
         if (styleEx.HasFlag(WindowStylesEx.WS_EX_TOOLWINDOW) && !hasTitleBar)
             return false;
 
-        if (style.HasFlag(WindowStyles.WS_BORDER) & !hasTitleBar)
+        if (style.HasFlag(WindowStyles.WS_POPUP) & !hasTitleBar)
             return false;
 
         return true;
