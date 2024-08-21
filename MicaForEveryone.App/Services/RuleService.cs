@@ -10,6 +10,7 @@ using static MicaForEveryone.PInvoke.Generic;
 using static MicaForEveryone.PInvoke.Windowing;
 using static MicaForEveryone.PInvoke.Events;
 using static MicaForEveryone.PInvoke.Modules;
+using System;
 
 namespace MicaForEveryone.App.Services;
 
@@ -71,7 +72,7 @@ public sealed class RuleService : IRuleService
         return BOOL.TRUE;
     }
 
-    private static bool IsWindowEligible(HWND hWnd)
+    private static unsafe bool IsWindowEligible(HWND hWnd)
     {
         if (!IsWindowVisible(hWnd))
             return false;
@@ -80,7 +81,14 @@ public sealed class RuleService : IRuleService
 
         WindowStyles style = (WindowStyles)GetWindowLongPtrW(hWnd, WindowLongIndex.GWL_STYLE);
 
-        if (styleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE) || style.HasFlag(WindowStyles.WS_DISABLED))
+        char* lpClassName = stackalloc char[256];
+        GetClassNameW(hWnd, lpClassName, 256);
+        ReadOnlySpan<char> className = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(lpClassName);
+
+        if (className.Equals("Windows.UI.Core.CoreWindow", StringComparison.CurrentCultureIgnoreCase)) // Notification Center
+            return false;
+
+        if (styleEx.HasFlag(WindowStylesEx.WS_EX_NOACTIVATE))
             return false;
 
         if (IsTopLevelWindow(hWnd) == BOOL.FALSE)
