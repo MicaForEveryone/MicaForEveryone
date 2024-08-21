@@ -23,6 +23,7 @@ public sealed class ProcessRule : Rule
             return false;
         }
         Process proc = Process.GetProcessById((int)processId);
-        return proc.ProcessName.Equals(ProcessName, StringComparison.CurrentCultureIgnoreCase);
+        string procName = proc.ProcessName;
+        return procName.Equals(ProcessName, StringComparison.CurrentCultureIgnoreCase);
     }
 }
