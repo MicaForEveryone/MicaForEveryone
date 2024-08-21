@@ -185,7 +185,6 @@ public sealed unsafe class MainAppService
 
                         case NIN_SELECT:
                         case NIN_KEYSELECT:
-                        case WM_LBUTTONUP:
                             appService.ActivateSettings();
                             break;
                     }
