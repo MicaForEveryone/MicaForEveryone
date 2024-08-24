@@ -27,7 +27,11 @@
             <controls:IsDataTypeTemplateSelector x:Key="IsDataTypeTemplateSelector" Type="local:SettingsNavigationItem">
                 <controls:IsDataTypeTemplateSelector.IsType>
                     <DataTemplate x:DataType="local:SettingsNavigationItem">
-                        <NavigationViewItem Tag="{x:Bind}" Content="{x:Bind Uid}" Icon="{x:Bind Icon}" SelectsOnInvoked="{x:Bind Selectable}" />
+                        <NavigationViewItem
+                            Content="{x:Bind Uid}"
+                            Icon="{x:Bind Icon}"
+                            SelectsOnInvoked="{x:Bind Selectable}"
+                            Tag="{x:Bind}" />
                     </DataTemplate>
                 </controls:IsDataTypeTemplateSelector.IsType>
                 <controls:IsDataTypeTemplateSelector.IsNotType>
@@ -67,17 +71,20 @@
             IsPaneOpen="True"
             IsPaneToggleButtonVisible="False"
             IsSettingsVisible="False"
+            ItemInvoked="NavigationViewControl_ItemInvoked"
             MenuItemTemplateSelector="{StaticResource IsDataTypeTemplateSelector}"
             MenuItemsSource="{x:Bind ViewModel.SettingsService.Settings.Rules, Mode=OneWay}"
             PaneDisplayMode="Left"
-            SelectionChanged="NavigationViewControl_SelectionChanged"
-            ItemInvoked="NavigationViewControl_ItemInvoked">
+            SelectionChanged="NavigationViewControl_SelectionChanged">
             <NavigationView.Resources>
                 <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
                 <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
             </NavigationView.Resources>
             <NavigationView.FooterMenuItems>
-                <local:SettingsNavigationItem Uid="_Add rule" Tag="AddRuleNavViewItem" Selectable="False">
+                <local:SettingsNavigationItem
+                    Uid="_Add rule"
+                    Selectable="False"
+                    Tag="AddRuleNavViewItem">
                     <local:SettingsNavigationItem.Icon>
                         <SymbolIcon Symbol="Add" />
                     </local:SettingsNavigationItem.Icon>

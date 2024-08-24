@@ -44,7 +44,7 @@ public sealed class RuleService : IRuleService
         _ = NewWindowShowHandlerAsync(App.Services.GetRequiredService<IRuleService>(), hWnd);
     }
 
-    public async Task ApplyRulesToAllWindows()
+    public async Task ApplyRulesToAllWindowsAsync()
     {
         // Switch to a background thread, if we are not already in one.
         await TaskScheduler.Default;

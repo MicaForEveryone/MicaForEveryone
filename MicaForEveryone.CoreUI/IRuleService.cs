@@ -6,7 +6,7 @@ public interface IRuleService
 {
     void Initialize();
 
-    Task ApplyRulesToAllWindows();
+    Task ApplyRulesToAllWindowsAsync();
 
     Task ApplyRuleToWindowAsync(HWND hwnd);
 }

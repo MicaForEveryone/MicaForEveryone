@@ -20,11 +20,13 @@ public sealed partial class RuleSettingsPage : Page
 {
     private Rule? Rule { get; set; }
     private ISettingsService SettingsService { get; }
+    private IRuleService RuleService { get; }
 
     public RuleSettingsPage()
     {
         this.InitializeComponent();
 
+        RuleService = App.Services.GetRequiredService<IRuleService>();
         SettingsService = App.Services.GetRequiredService<ISettingsService>();
     }
 
@@ -44,6 +46,7 @@ public sealed partial class RuleSettingsPage : Page
     private void Rule_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
         _ = SettingsService.SaveAsync().ConfigureAwait(false);
+        _ = RuleService.ApplyRulesToAllWindowsAsync().ConfigureAwait(false);
     }
 
     public static string GetTitleBarColorLocalized(TitleBarColorMode titleBarColorMode)
@@ -70,5 +73,6 @@ public sealed partial class RuleSettingsPage : Page
     {
         SettingsService.Settings!.Rules.Remove(Rule!);
         _ = SettingsService.SaveAsync().ConfigureAwait(false);
+        _ = RuleService.ApplyRulesToAllWindowsAsync().ConfigureAwait(false);
     }
 }

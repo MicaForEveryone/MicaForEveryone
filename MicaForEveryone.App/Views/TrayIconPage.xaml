@@ -18,4 +18,8 @@
             </MenuFlyoutItem>
         </MenuFlyout>
     </Page.ContextFlyout>
+
+    <ToolTipService.ToolTip>
+        <ToolTip Content="_Mica For Everyone" />
+    </ToolTipService.ToolTip>
 </Page>

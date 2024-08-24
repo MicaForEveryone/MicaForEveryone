@@ -131,7 +131,7 @@ public sealed unsafe class MainAppService
                     // Currently, we can't show a tool tip for the app name,
                     // so we just tell Windows to show it for us.
                     // It might look a bit ugly, but it works.
-                    notifyIconData.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP | NIF_SHOWTIP;
+                    notifyIconData.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
                     "Mica For Everyone".CopyTo(MemoryMarshal.Cast<ushort, char>(MemoryMarshal.CreateSpan(ref notifyIconData.szTip[0], 128)));
                     Shell_NotifyIconW(NIM_ADD, &notifyIconData);
                     Shell_NotifyIconW(NIM_SETVERSION, &notifyIconData);
@@ -165,7 +165,7 @@ public sealed unsafe class MainAppService
 
                     switch (LOWORD(lParam))
                     {
-                        case 0x007B:
+                        case WM_CONTEXTMENU:
                             var scaleFactor = GetDpiForWindow(hWnd) / 96f;
                             SetForegroundWindow(hWnd);
 
@@ -187,6 +187,20 @@ public sealed unsafe class MainAppService
                         case NIN_KEYSELECT:
                             appService.ActivateSettings();
                             break;
+
+                        case NIN_POPUPOPEN:
+                            ((ToolTip)ToolTipService.GetToolTip(Unsafe.As<TrayIconPage>(appService._source!.Content))).IsOpen = true;
+                            break;
+
+                        case NIN_POPUPCLOSE:
+                            ToolTip tooltip = (ToolTip)ToolTipService.GetToolTip(Unsafe.As<TrayIconPage>(appService._source!.Content));
+                            try
+                            {
+                                tooltip.IsOpen = false;
+                            }
+                            catch { }
+                            break;
+
                     }
                     break;
                 }

@@ -174,6 +174,11 @@ public static partial class NotifyIcon
     public const int NINF_KEY = 0x1;
     public const int NIN_KEYSELECT = NIN_SELECT | NINF_KEY;
 
+    public const int NIN_POPUPOPEN = 0x406;
+    public const int NIN_POPUPCLOSE = 0x407;
+
+    public const int WM_CONTEXTMENU = 0x7B;
+
     [LibraryImport("shell32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static unsafe partial bool Shell_NotifyIconW(uint dwMessage, NOTIFYICONDATAW* lpData);

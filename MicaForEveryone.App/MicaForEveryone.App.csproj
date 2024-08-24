@@ -13,7 +13,10 @@
 		<ApplicationIcon>Assets\MicaForEveryone.ico</ApplicationIcon>
 		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;$(DefineConstants)</DefineConstants>
 		<Nullable>enable</Nullable>
-		<WindowsSdkPackageVersion>10.0.22621.37-preview</WindowsSdkPackageVersion>
+		<WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
+		<RestoreAdditionalProjectSources>
+			https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json
+		</RestoreAdditionalProjectSources>
 	</PropertyGroup>
 	<ItemGroup>
 	  <Content Remove="Assets\SmallTile.scale-100.png" />
@@ -44,14 +47,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.240801-build.1708" />
-		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.1.240606-rc" />
-		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240606-rc" />
+		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.240820-build.1730" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.1.240821" />
+		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240821" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.10.48" />
-		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.0-prerelease.240801.1" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240701003-experimental2" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.11.20" />
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.1" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240821007-preview2" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
