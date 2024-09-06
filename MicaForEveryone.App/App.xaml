@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <Application
     x:Class="MicaForEveryone.App.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -8,15 +8,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <!--  Other merged dictionaries here  -->
-                <ResourceDictionary Source="Controls/SettingsPageControl.xaml" />
+                <!-- Other merged dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
-
-            <Style TargetType="FontIcon">
-                <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
-            </Style>
-
-            <x:Double x:Key="SettingsCardSpacing">3</x:Double>
+            <!-- Other app resources here -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

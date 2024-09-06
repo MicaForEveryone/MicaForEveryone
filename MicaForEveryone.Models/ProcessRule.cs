@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace MicaForEveryone.Models;
 
-public sealed class ProcessRule : Rule
+public sealed partial class ProcessRule : Rule
 {
     public required string ProcessName { get; set; }
 

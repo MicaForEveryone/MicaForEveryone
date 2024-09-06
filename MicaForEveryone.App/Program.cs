@@ -1,7 +1,4 @@
-﻿using MicaForEveryone.App.Services;
-using MicaForEveryone.CoreUI;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.UI.Dispatching;
+﻿using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
 using System;
 using System.Threading;
@@ -23,7 +20,7 @@ class Program
 
             Microsoft.UI.Xaml.Application.Start((p) =>
             {
-                var context = new Dispatching.DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
+                var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
                 SynchronizationContext.SetSynchronizationContext(context);
                 new App();
             });
@@ -38,7 +35,6 @@ class Program
 
         if (keyInstance.IsCurrent)
         {
-            keyInstance.Activated += OnActivated;
         }
         else
         {
@@ -46,13 +42,5 @@ class Program
             await keyInstance.RedirectActivationToAsync(args);
         }
         return isRedirect;
-    }
-
-#pragma warning disable VSTHRD100 // Avoid async void methods
-    private static async void OnActivated(object? _, AppActivationArguments __)
-#pragma warning restore VSTHRD100 // Avoid async void methods
-    {
-        await App.Services.GetRequiredService<IDispatchingService>().YieldAsync();
-        App.Services.GetRequiredService<MainAppService>().ActivateSettings();
     }
 }

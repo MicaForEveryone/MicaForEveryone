@@ -6,65 +6,28 @@
 		<RootNamespace>MicaForEveryone.App</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<Platforms>x86;x64;ARM64</Platforms>
-		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
-		<PublishProfile>win-$(Platform).pubxml</PublishProfile>
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &gt;= 8">win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+		<RuntimeIdentifiers Condition="$([MSBuild]::GetTargetFrameworkVersion('$(TargetFramework)')) &lt; 8">win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+		<RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
+		<PublishAot>true</PublishAot>
+		<IncludePublishItemsOutputGroup>true</IncludePublishItemsOutputGroup>
 		<ApplicationIcon>Assets\MicaForEveryone.ico</ApplicationIcon>
 		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;$(DefineConstants)</DefineConstants>
 		<Nullable>enable</Nullable>
 		<WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
-		<RestoreAdditionalProjectSources>
-			https://pkgs.dev.azure.com/dotnet/CommunityToolkit/_packaging/CommunityToolkit-Labs/nuget/v3/index.json
-		</RestoreAdditionalProjectSources>
+
 	</PropertyGroup>
-	<ItemGroup>
-	  <Content Remove="Assets\SmallTile.scale-100.png" />
-	  <Content Remove="Assets\SmallTile.scale-200.png" />
-	  <Content Remove="Assets\SmallTile.scale-400.png" />
-	  <Content Remove="Assets\Square150x150Logo.scale-100.png" />
-	  <Content Remove="Assets\Square150x150Logo.scale-400.png" />
-	  <Content Remove="Assets\Wide310x150Logo.scale-100.png" />
-	  <Content Remove="Assets\Wide310x150Logo.scale-400.png" />
-	</ItemGroup>
-	<ItemGroup>
-		<None Remove="Assets\default.json" />
-		<None Remove="Controls\SettingsPageControl.xaml" />
-		<None Remove="Views\AddClassRuleContentDialog.xaml" />
-		<None Remove="Views\AddProcessRuleContentDialog.xaml" />
-		<None Remove="Views\AppSettingsPage.xaml" />
-		<None Remove="Views\RuleSettingsPage.xaml" />
-		<None Remove="Views\SettingsWindow.xaml" />
-		<None Remove="Views\TrayIconPage.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="Assets\LockScreenLogo.scale-200.png" />
-		<Content Include="Assets\Square150x150Logo.scale-200.png" />
-		<Content Include="Assets\Square44x44Logo.scale-200.png" />
-		<Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-		<Content Include="Assets\Wide310x150Logo.scale-200.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.240820-build.1730" />
-		<PackageReference Include="CommunityToolkit.WinUI.Controls.Primitives" Version="8.1.240821" />
-		<PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240821" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.VisualStudio.Threading" Version="17.11.20" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.1" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240821007-preview2" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj" />
-		<ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
-		<ProjectReference Include="..\MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj" />
-	</ItemGroup>
-
-	<!-- 
+	<!--
     Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
     Tools extension to be activated for this project even if the Windows App SDK Nuget
     package has not yet been restored.
@@ -72,33 +35,10 @@
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Views\AddClassRuleContentDialog.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	  <Page Update="Views\AddProcessRuleContentDialog.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Views\RuleSettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Views\AppSettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-	<ItemGroup>
-	  <Page Update="Controls\SettingsPageControl.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
 
-	<!-- 
-    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution 
-    Explorer "Package and Publish" context menu entry to be enabled for this project even if 
+	<!--
+    Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
+    Explorer "Package and Publish" context menu entry to be enabled for this project even if
     the Windows App SDK Nuget package has not yet been restored.
   -->
 	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">

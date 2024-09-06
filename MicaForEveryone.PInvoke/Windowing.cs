@@ -498,22 +498,9 @@ public static unsafe partial class Windowing
     public static extern bool DestroyWindow(HWND hWnd);
 
 
-    public static nint GetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex)
-    {
-        if (sizeof(nint) == 4)
-        {
-            [DllImport("user32.dll", ExactSpelling = true)]
-            static extern int _GetWindowLongW(HWND hWnd, WindowLongIndex nIndex);
-            return _GetWindowLongW(hWnd, nIndex);
-        }
-        else
-        {
-            [DllImport("user32.dll", EntryPoint = "GetWindowLongPtrW", ExactSpelling = true)]
-            static extern nint _GetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex);
+    [DllImport("user32.dll", ExactSpelling = true)]
+    public static extern nint GetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex);
 
-            return _GetWindowLongPtrW(hWnd, nIndex);
-        }
-    }
 
     [LibraryImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
@@ -522,26 +509,16 @@ public static unsafe partial class Windowing
     [DllImport("user32.dll", ExactSpelling = true)]
     public static extern LRESULT CallWindowProcW(delegate* unmanaged<HWND, uint, WPARAM, LPARAM, LRESULT> lpPrevWndFunc, HWND hWnd, uint Msg, WPARAM wParam, LPARAM lParam);
 
+    [DllImport("user32.dll", ExactSpelling = true)]
+    public static extern int SetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex, nint dwNewLong);
 
-    [DllImport("user32.dll", EntryPoint = "SetWindowLong", ExactSpelling = true)]
-    public static extern int SetWindowLongW(HWND hWnd, WindowLongIndex nIndex, int dwNewLong);
+    [DllImport("comctl32", ExactSpelling = true)]
+    public static extern BOOL SetWindowSubclass(HWND hWnd, delegate* unmanaged<HWND, uint, WPARAM, LPARAM, nuint, nuint, LRESULT> pfnSubclass, nuint uIdSubclass, nuint dwRefData);
 
-    public static nint SetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex, nint dwNewLong)
-    {
-        if (sizeof(nint) == 4)
-        {
-            return SetWindowLongW(hWnd, nIndex, (int)dwNewLong);
-        }
-        else
-        {
-            [DllImport("user32", EntryPoint = "SetWindowLongPtrW", ExactSpelling = true)]
-            static extern nint _SetWindowLongPtrW(HWND hWnd, WindowLongIndex nIndex, nint dwNewLong);
+    [DllImport("comctl32", ExactSpelling = true)]
+    public static extern LRESULT DefSubclassProc(HWND hwnd, uint uMsg, WPARAM wParam, LPARAM lParam);
 
-            return _SetWindowLongPtrW(hWnd, nIndex, dwNewLong);
-        }
-    }
-
-    [DllImport("comctl32.dll", ExactSpelling = true)]
+    [DllImport("comctl32", ExactSpelling = true)]
     public static extern unsafe HRESULT LoadIconMetric(HINSTANCE hInstance, ushort* pszName, int lims, HICON* phico);
 
     [DllImport("user32.dll")]
@@ -575,11 +552,12 @@ public static unsafe partial class Windowing
     #endregion
 
     #region Constants
-    public const int WM_APP = 0x8000;
+    public const uint WM_APP = 0x8000;
     public const int WM_USER = 0x0400;
-    public const int WM_LBUTTONUP = 0x202;
-    public const int WM_DESTROY = 0x0002;
-    public const int WM_QUIT = 0x0012;
+    public const uint WM_LBUTTONUP = 0x202;
+    public const uint WM_DESTROY = 0x0002;
+    public const uint WM_QUIT = 0x0012;
+    public const uint WM_CREATE = 0x1;
 
     public static ushort* IDI_APPLICATION => ((ushort*)((nuint)((ushort)(32512))));
 

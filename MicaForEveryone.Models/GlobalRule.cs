@@ -2,7 +2,7 @@
 
 namespace MicaForEveryone.Models;
 
-public class GlobalRule : Rule
+public sealed partial class GlobalRule : Rule
 {
     public override bool Equals(Rule? other)
     {

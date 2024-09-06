@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace MicaForEveryone.Models;
 
-public sealed class ClassRule : Rule
+public sealed partial class ClassRule : Rule
 {
     public required string ClassName { get; set; }
 

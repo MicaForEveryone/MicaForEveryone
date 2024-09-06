@@ -1,12 +1,10 @@
 {
   "profiles": {
     "MicaForEveryone.App (Package)": {
-      "commandName": "MsixPackage",
-      "nativeDebugging": true
+      "commandName": "MsixPackage"
     },
     "MicaForEveryone.App (Unpackaged)": {
-      "commandName": "Project",
-      "nativeDebugging": true
+      "commandName": "Project"
     }
   }
 }
