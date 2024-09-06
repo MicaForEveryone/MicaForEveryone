@@ -312,6 +312,8 @@ public static unsafe partial class Windowing
     {
         public readonly nuint Value;
 
+        public static WPARAM NULL => new WPARAM(0);
+
         public WPARAM(nuint value)
         {
             Value = value;

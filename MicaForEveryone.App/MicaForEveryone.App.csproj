@@ -17,10 +17,12 @@
 		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;$(DefineConstants)</DefineConstants>
 		<Nullable>enable</Nullable>
 		<WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
-
+		<CsWinRTRcwFactoryFallbackGeneratorForceOptOut>true</CsWinRTRcwFactoryFallbackGeneratorForceOptOut>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.240823-build.1737" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
 		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.1" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007" />
@@ -34,6 +36,12 @@
   -->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj" />
+	  <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
+	  <ProjectReference Include="..\MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj" />
 	</ItemGroup>
 
 	<!--

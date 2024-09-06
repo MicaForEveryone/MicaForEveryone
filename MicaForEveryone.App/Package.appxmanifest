@@ -8,14 +8,14 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="1be51f49-253e-46f4-ac2c-f9e60719f241"
+    Name="MicaForEveryone"
     Publisher="CN=Dongle"
     Version="2.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="1be51f49-253e-46f4-ac2c-f9e60719f241" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>MicaForEveryone.App</DisplayName>
+    <DisplayName>Mica For Everyone</DisplayName>
     <PublisherDisplayName>Dongle</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
