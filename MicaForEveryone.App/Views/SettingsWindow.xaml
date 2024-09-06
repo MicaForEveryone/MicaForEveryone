@@ -4,8 +4,10 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:helpers="using:MicaForEveryone.App.Helpers"
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:MicaForEveryone.Models"
     Closed="Window_Closed"
     mc:Ignorable="d">
 
@@ -49,6 +51,15 @@
                 <Thickness x:Key="NavigationViewContentGridBorderThickness">0</Thickness>
                 <SolidColorBrush x:Key="NavigationViewContentBackground" Color="Transparent" />
             </NavigationView.Resources>
+            <NavigationView.MenuItemTemplate>
+                <DataTemplate x:DataType="models:Rule">
+                    <NavigationViewItem Content="{x:Bind helpers:RuleInfoHelper.GetRuleName((models:Rule))}">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="{x:Bind helpers:RuleInfoHelper.GetIcon((models:Rule))}" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+                </DataTemplate>
+            </NavigationView.MenuItemTemplate>
         </NavigationView>
     </Grid>
 </Window>

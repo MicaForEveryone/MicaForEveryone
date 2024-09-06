@@ -70,6 +70,7 @@ public sealed unsafe class MainAppService
 
     public void Shutdown()
     {
+        _window?.AppWindow.Destroy();
         DestroyWindow(_mainWnd);
     }
 

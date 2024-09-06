@@ -37,6 +37,8 @@ public partial class App
     }
 
     [Singleton(typeof(MainAppService))]
+    [Singleton(typeof(RuleService), [typeof(IRuleService)])]
     [Transient(typeof(SettingsViewModel))]
+    [Transient(typeof(TrayIconViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 }

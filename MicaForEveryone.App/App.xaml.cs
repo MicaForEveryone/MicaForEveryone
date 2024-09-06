@@ -35,7 +35,9 @@ namespace MicaForEveryone.App
         private async Task OnLaunchedAsync()
         {
             await Services.GetRequiredService<ISettingsService>().InitializeAsync();
+            Services.GetRequiredService<IRuleService>().Initialize();
             Services.GetRequiredService<MainAppService>().Initialize();
+            _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindowsAsync();
         }
     }
 }
