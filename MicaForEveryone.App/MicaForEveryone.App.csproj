@@ -1,5 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		
+		<!-- Built-in -->
+		
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
 		<TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
@@ -10,14 +13,33 @@
 		<RuntimeIdentifier>win-$(Platform)</RuntimeIdentifier>
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
+		
+		<!-- Enable AOT publishing on F5 -->
+		
 		<PublishAot>true</PublishAot>
 		<IncludePublishItemsOutputGroup>true</IncludePublishItemsOutputGroup>
+		
+		<!-- App-specific settings -->
+		
 		<ApplicationIcon>Assets\MicaForEveryone.ico</ApplicationIcon>
 		<DefineConstants>DISABLE_XAML_GENERATED_MAIN;$(DefineConstants)</DefineConstants>
 		<Nullable>enable</Nullable>
+
+		<!-- C#/WinRT AOT compliance -->
+
 		<WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
 		<CsWinRTRcwFactoryFallbackGeneratorForceOptOut>true</CsWinRTRcwFactoryFallbackGeneratorForceOptOut>
 		<WarnAsError>CsWinRT1028;CsWinRT1029</WarnAsError>
+		
+		<!-- Prevent WebView2Loader.dll from being copied to the runtime folder -->
+		
+		<WebView2UseWinRT>true</WebView2UseWinRT>
+		<WebView2EnableCsWinRTProjection>false</WebView2EnableCsWinRTProjection>
+		
+		<!-- Enable size inspection using sizoscope -->
+		<IlcGenerateMstatFile>true</IlcGenerateMstatFile>
+		<IlcGenerateDgmlFile>true</IlcGenerateDgmlFile>
+		
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,11 +59,11 @@
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <ProjectReference Include="..\MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj" />
-	  <ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
-	  <ProjectReference Include="..\MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj" />
+		<ProjectReference Include="..\MicaForEveryone.CoreUI\MicaForEveryone.CoreUI.csproj" />
+		<ProjectReference Include="..\MicaForEveryone.Models\MicaForEveryone.Models.csproj" />
+		<ProjectReference Include="..\MicaForEveryone.PInvoke\MicaForEveryone.PInvoke.csproj" />
 	</ItemGroup>
 
 	<!--
@@ -52,4 +74,17 @@
 	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
 	</PropertyGroup>
+
+	<Target Name="RemoveWebView2" BeforeTargets="ResolveAssemblyReferences">
+		<ItemGroup>
+			<_WebView2Reference Include="@(Reference)" Condition="'%(Filename)' == 'Microsoft.Web.WebView2.Core'" />
+			<Reference Remove="@(_WebView2Reference)" />
+			<Reference Include="@(_WebView2Reference)" RemoveMetadata="Implementation">
+				<Private>false</Private>
+			</Reference>
+
+			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'Microsoft.Web.WebView2.Core'" />
+		</ItemGroup>
+	</Target>
+
 </Project>

@@ -113,9 +113,6 @@ public sealed partial class WinRTFileSystemWatcher : IDisposable
     [return: MarshalAs(UnmanagedType.Bool)]
     private static unsafe partial bool ReadDirectoryChangesW(SafeFileHandle hDirectory, byte[] lpBuffer, uint nBufferLength, [MarshalAs(UnmanagedType.Bool)] bool bWatchSubtree, NotifyFilters dwNotifyFilter, uint* lpBytesReturned, NativeOverlapped* lpOverlapped, delegate* unmanaged<uint, uint, NativeOverlapped*, void> lpCompletionRoutine);
 
-    [UnsafeAccessor(UnsafeAccessorKind.StaticMethod, Name = "get_DefaultMarshallingInstance")]
-    private static extern StrategyBasedComWrappers DefaultMarshallingInstance(StrategyBasedComWrappers? comWrappers);
-
     private SafeFileHandle? DirectoryHandle;
 
     private NotifyFilters filters;
@@ -130,8 +127,7 @@ public sealed partial class WinRTFileSystemWatcher : IDisposable
         this.filters = filters;
         this.includeSubdirectories = includeSubdirectories;
 
-        StrategyBasedComWrappers wrappers = DefaultMarshallingInstance(null);
-        var folderHandleAccess = (WinRTInternals.IStorageItemHandleAccess)wrappers.GetOrCreateObjectForComInstance(((IWinRTObject)folder).NativeObject.GetRef(), CreateObjectFlags.None);
+        var folderHandleAccess = (WinRTInternals.IStorageItemHandleAccess)(object)folder;
         IntPtr folderHandle = folderHandleAccess.Create(WinRTInternals.HANDLE_ACCESS_OPTIONS.HAO_READ, WinRTInternals.HANDLE_SHARING_OPTIONS.HSO_SHARE_READ | WinRTInternals.HANDLE_SHARING_OPTIONS.HSO_SHARE_WRITE | WinRTInternals.HANDLE_SHARING_OPTIONS.HSO_SHARE_DELETE, WinRTInternals.HANDLE_OPTIONS.HO_OVERLAPPED, IntPtr.Zero);
         DirectoryHandle = new(folderHandle, true);
         byte[] buffer = new byte[8192];
