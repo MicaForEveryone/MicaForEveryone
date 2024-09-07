@@ -17,6 +17,7 @@
 		<Nullable>enable</Nullable>
 		<WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
 		<CsWinRTRcwFactoryFallbackGeneratorForceOptOut>true</CsWinRTRcwFactoryFallbackGeneratorForceOptOut>
+		<WarnAsError>CsWinRT1028;CsWinRT1029</WarnAsError>
 	</PropertyGroup>
 
 	<ItemGroup>
