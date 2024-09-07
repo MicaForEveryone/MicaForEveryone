@@ -55,6 +55,10 @@ public sealed partial class SettingsWindow : Window
 
         ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
         ExtendsContentIntoTitleBar = true;
+
+        Title = "_Mica For Everyone Settings";
+
+        AppWindow.SetIcon("Assets\\MicaForEveryone.ico");
     }
 
     private unsafe void Window_Closed(object sender, WindowEventArgs args)
