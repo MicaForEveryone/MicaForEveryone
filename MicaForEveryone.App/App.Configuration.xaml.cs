@@ -10,13 +10,12 @@ namespace MicaForEveryone.App;
 
 public partial class App
 {
-    private IServiceProvider? _services;
+    private static IServiceProvider? _services;
     public static IServiceProvider Services
     {
         get
         {
-            App currentApp = (App)Current;
-            return currentApp._services ??= ConfigureServices();
+            return _services ??= ConfigureServices();
         }
     }
 
@@ -40,5 +39,7 @@ public partial class App
     [Singleton(typeof(RuleService), [typeof(IRuleService)])]
     [Transient(typeof(SettingsViewModel))]
     [Transient(typeof(TrayIconViewModel))]
+    [Transient(typeof(AddClassRuleContentDialogViewModel))]
+    [Transient(typeof(AddProcessRuleContentDialogViewModel))]
     private static partial void ConfigureServices(IServiceCollection services);
 }

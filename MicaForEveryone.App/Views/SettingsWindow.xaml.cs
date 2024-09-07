@@ -20,26 +20,64 @@ using WinRT.Interop;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace MicaForEveryone.App.Views
+namespace MicaForEveryone.App.Views;
+
+/// <summary>
+/// An empty window that can be used on its own or navigated to within a Frame.
+/// </summary>
+public sealed partial class SettingsWindow : Window
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class SettingsWindow : Window
+    private SettingsViewModel ViewModel { get; }
+
+    private MenuFlyout _addNewItemFlyout = new();
+
+    public SettingsWindow()
     {
-        private SettingsViewModel ViewModel { get; }
+        this.InitializeComponent();
 
-        public SettingsWindow()
+        MenuFlyoutItem processRuleItem = new() { Text = "_Add Process Rule" };
+        processRuleItem.Click += (_, _) =>
         {
-            this.InitializeComponent();
-            ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
-            ExtendsContentIntoTitleBar = true;
-        }
+            AddProcessRuleContentDialog addProcessRuleContentDialog = new();
+            addProcessRuleContentDialog.XamlRoot = Content.XamlRoot;
+            _ = addProcessRuleContentDialog.ShowAsync();
+        };
+        _addNewItemFlyout.Items.Add(processRuleItem);
 
-        private unsafe void Window_Closed(object sender, WindowEventArgs args)
+        MenuFlyoutItem classRuleItem = new() { Text = "_Add Class Rule" };
+        classRuleItem.Click += (_, _) =>
         {
-            args.Handled = true;
-            AppWindow.Hide();
+            AddClassRuleContentDialog addClassRuleContentDialog = new();
+            addClassRuleContentDialog.XamlRoot = Content.XamlRoot;
+            _ = addClassRuleContentDialog.ShowAsync();
+        };
+        _addNewItemFlyout.Items.Add(classRuleItem);
+
+        ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
+        ExtendsContentIntoTitleBar = true;
+    }
+
+    private unsafe void Window_Closed(object sender, WindowEventArgs args)
+    {
+        args.Handled = true;
+        AppWindow.Hide();
+    }
+
+    private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    {
+        if (args.InvokedItemContainer.Tag is SettingsNavigationItem { Tag: "AddRuleNavViewItem" })
+        {
+            _addNewItemFlyout.ShowAt(args.InvokedItemContainer);
         }
     }
+}
+public partial class SettingsNavigationItem
+{
+    public string? Uid { get; set; }
+
+    public string? Tag { get; set; }
+
+    public IconElement? Icon { get; set; }
+
+    public bool Selectable { get; set; } = true;
 }
