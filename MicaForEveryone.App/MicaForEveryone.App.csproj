@@ -27,7 +27,7 @@
 
 		<!-- C#/WinRT AOT compliance -->
 
-		<WindowsSdkPackageVersion>10.0.22621.41</WindowsSdkPackageVersion>
+		<WindowsSdkPackageVersion>10.0.22621.44</WindowsSdkPackageVersion>
 		<CsWinRTRcwFactoryFallbackGeneratorForceOptOut>true</CsWinRTRcwFactoryFallbackGeneratorForceOptOut>
 		<WarnAsError>CsWinRT1028;CsWinRT1029</WarnAsError>
 		
