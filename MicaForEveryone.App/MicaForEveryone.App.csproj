@@ -30,11 +30,11 @@
 		<WindowsSdkPackageVersion>10.0.22621.44</WindowsSdkPackageVersion>
 		<CsWinRTRcwFactoryFallbackGeneratorForceOptOut>true</CsWinRTRcwFactoryFallbackGeneratorForceOptOut>
 		<WarnAsError>CsWinRT1028;CsWinRT1029</WarnAsError>
+		<CsWinRTIIDOptimizerOptOut>true</CsWinRTIIDOptimizerOptOut>
 		
 		<!-- Prevent WebView2Loader.dll from being copied to the runtime folder -->
 		
 		<WebView2UseWinRT>true</WebView2UseWinRT>
-		<WebView2EnableCsWinRTProjection>false</WebView2EnableCsWinRTProjection>
 		
 		<!-- Enable size inspection using sizoscope -->
 		<IlcGenerateMstatFile>true</IlcGenerateMstatFile>
@@ -45,9 +45,9 @@
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Labs.Extensions.DependencyInjection" Version="0.1.240823-build.1737" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.1" />
+		<PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.1.3" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240829007" />
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
@@ -84,6 +84,13 @@
 			</Reference>
 
 			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)" Condition="'%(Filename)' == 'Microsoft.Web.WebView2.Core'" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="RemoveWebView2Loader" AfterTargets="ResolvePackageAssets">
+		<ItemGroup>
+			<_WebView2Loader Include="@(NativeCopyLocalItems)" Condition="'%(Filename)' == 'WebView2Loader'" />
+			<NativeCopyLocalItems Remove="@(_WebView2Loader)" />
 		</ItemGroup>
 	</Target>
 
