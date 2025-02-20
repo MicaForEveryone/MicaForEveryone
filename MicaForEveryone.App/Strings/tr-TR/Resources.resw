@@ -4,7 +4,7 @@
     Microsoft ResX Schema 
     
     Version 2.0
-    ""
+    
     The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
     various data types are done through the TypeConverter classes 
@@ -269,5 +269,23 @@
   </data>
   <data name="CustomTitleBarColorMode" xml:space="preserve">
     <value>Özel</value>
+  </data>
+  <data name="AppSettingsNavigationViewItem.Content" xml:space="preserve">
+    <value>Uygulama ayarları</value>
+  </data>
+  <data name="AddNewRuleNavigationViewItem.Content" xml:space="preserve">
+    <value>Yeni kural ekle</value>
+  </data>
+  <data name="GlobalRuleNavigationViewItem.Content" xml:space="preserve">
+    <value>Küresel</value>
+  </data>
+  <data name="AddProcessRuleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>İşlem kuralı ekle</value>
+  </data>
+  <data name="AddClassRuleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>Sınıf kuralı ekle</value>
+  </data>
+  <data name="SettingsWindowTitle" xml:space="preserve">
+    <value>Mica For Everyone Ayarları</value>
   </data>
 </root>
