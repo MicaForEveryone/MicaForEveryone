@@ -142,7 +142,7 @@
     <value>Frissítések keresése</value>
   </data>
   <data name="CornerPreferenceCard.Header" xml:space="preserve">
-    <value>Frissítések keresése</value>
+    <value>Sarok beállítása</value>
   </data>
   <data name="DangerousInfoBar.Title" xml:space="preserve">
     <value>Veszélyes beállítások</value>
