@@ -160,7 +160,7 @@
     <value>Usuń regułę</value>
   </data>
   <data name="RemoveLabel.Text" xml:space="preserve">
-    <value>Usuwuanie</value>
+    <value>Usuwanie</value>
   </data>
   <data name="SettingsFlyoutItem.Text" xml:space="preserve">
     <value>Ustawienia</value>
@@ -190,7 +190,7 @@
     <value>Nie udało się sprawdzić aktualizacji. Spróbuj ponownie później.</value>
   </data>
   <data name="UpdateErrorInfoBar.Title" xml:space="preserve">
-    <value>Wystapił błąd</value>
+    <value>Wystapił błąd.</value>
   </data>
   <data name="UpdateLabel.Text" xml:space="preserve">
     <value>Aktualizacje</value>
