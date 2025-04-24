@@ -145,16 +145,16 @@
     <value>Preferensi bingkai</value>
   </data>
   <data name="DangerousInfoBar.Title" xml:space="preserve">
-    <value>Dangerous options ahead</value>
+    <value>Pilihan berbahaya</value>
   </data>
   <data name="DangerousInfoBar.Message" xml:space="preserve">
-    <value>The following settings may break apps. Save your work before enabling any of them!</value>
+    <value>Pengaturan berikut dapat merusak aplikasi. Simpan pekerjaan Anda sebelum mengaktifkan salah satunya!</value>
   </data>
   <data name="ExitFlyoutItem.Text" xml:space="preserve">
     <value>Keluar</value>
   </data>
   <data name="ExtendFrameCard.Header" xml:space="preserve">
-    <value>Perpanjang frame hingga area klien</value>
+    <value>Perpanjang bingkai hingga area klien</value>
   </data>
   <data name="RemoveCard.Header" xml:space="preserve">
     <value>Hapus rule</value>
