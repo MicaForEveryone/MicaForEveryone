@@ -8,6 +8,8 @@ public sealed partial class ProcessRule : Rule
 {
     public required string ProcessName { get; set; }
 
+    public required string FilePath { get; set; }
+
     public override int Priority => 1;
 
     public override bool Equals(Rule? other)
