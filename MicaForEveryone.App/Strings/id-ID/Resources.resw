@@ -130,10 +130,10 @@
     <value>Mica For Everyone</value>
   </data>
   <data name="BackdropTypeCard.Header" xml:space="preserve">
-    <value>Tipe Backdrop</value>
+    <value>Tipe Latar Belakang</value>
   </data>
   <data name="BlurBehindCard.Header" xml:space="preserve">
-    <value>Aktifkan blur behind</value>
+    <value>Aktifkan efek blur dibelakang</value>
   </data>
   <data name="CheckForUpdatesButton.Content" xml:space="preserve">
     <value>Periksa untuk pembaruan</value>
@@ -214,7 +214,7 @@
     <value>Tambahkan rule</value>
   </data>
   <data name="AddProcessRuleDialog.Title" xml:space="preserve">
-    <value>Tambahkan Rule Process</value>
+    <value>Tambahkan Rule Proses</value>
   </data>
   <data name="AddClassRuleDialog.CloseButtonText" xml:space="preserve">
     <value>Tutup</value>
@@ -229,7 +229,7 @@
     <value>Global</value>
   </data>
   <data name="MicaBackdropName" xml:space="preserve">
-    <value>Mica</value>
+    <value>Mika</value>
   </data>
   <data name="DefaultBackdropName" xml:space="preserve">
     <value>Default</value>
@@ -274,13 +274,13 @@
     <value>Pengaturan Aplikasi</value>
   </data>
   <data name="AddNewRuleNavigationViewItem.Content" xml:space="preserve">
-    <value>Add new rule</value>
+    <value>Add rule baru</value>
   </data>
   <data name="GlobalRuleNavigationViewItem.Content" xml:space="preserve">
     <value>Global</value>
   </data>
   <data name="AddProcessRuleMenuFlyoutItem.Text" xml:space="preserve">
-    <value>Add process rule</value>
+    <value>Tambahkan proses rule</value>
   </data>
   <data name="AddClassRuleMenuFlyoutItem.Text" xml:space="preserve">
     <value>Tambahkan rule class</value>
