@@ -166,7 +166,7 @@
     <value>Ustawienia</value>
   </data>
   <data name="StartupCard.Description" xml:space="preserve">
-    <value>Uruchamia Mica For Everyone automatycznie po zalogowaniu.</value> 
+    <value>Uruchamia Mica For Everyone automatycznie po zalogowaniu.</value>
   </data>
   <data name="StartupCard.Header" xml:space="preserve">
     <value>Autostart</value>
@@ -287,5 +287,29 @@
   </data>
   <data name="SettingsWindowTitle" xml:space="preserve">
     <value>Ustawienia Mica For Everyone</value>
+  </data>
+  <data name="InvalidConfigTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="InvalidConfigMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TelemetryCard.Header" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TelemetryCard.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TelemetryLabel.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CustomColorCard.Header" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OkButton.Content" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Zamknij</value>
   </data>
 </root>

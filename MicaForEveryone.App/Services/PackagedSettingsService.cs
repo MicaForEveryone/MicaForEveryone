@@ -65,6 +65,12 @@ public sealed partial class PackagedSettingsService : ISettingsService
         watcher.Changed += Watcher_Changed;
     }
 
+    public async Task OpenConfigurationFileAsync()
+    {
+        StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(SettingsFileName);
+        await Windows.System.Launcher.LaunchFileAsync(file);
+    }
+
     private void Watcher_Changed(WinRTFileSystemWatcher watcher, WinRTFileSystemWatcher.FileAction action, string fileName)
     {
         _ = WatcherChangedAsync(fileName);

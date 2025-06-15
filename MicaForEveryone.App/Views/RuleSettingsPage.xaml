@@ -37,6 +37,31 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </ct:SettingsCard>
+
+            <ct:SettingsCard x:Uid="CustomColorCard">
+                <ct:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE66A;" />
+                </ct:SettingsCard.HeaderIcon>
+
+                <DropDownButton Padding="3,3,6,3">
+                    <Border
+                        Width="32"
+                        Height="22"
+                        CornerRadius="2">
+                        <Border.Background>
+                            <SolidColorBrush Color="{x:Bind Rule.TitleBarColorCode, Converter={StaticResource ColorConverter}, Mode=OneWay}" />
+                        </Border.Background>
+                    </Border>
+                    <DropDownButton.Flyout>
+                        <Flyout x:Name="TitleBarColorPickerFlyout" ShouldConstrainToRootBounds="False">
+                            <controls:CustomColorPicker
+                                CancelButtonClicked="TitleBarCustomColorPicker_ButtonClicked"
+                                OkButtonClicked="TitleBarCustomColorPicker_ButtonClicked"
+                                SelectedColor="{x:Bind Rule.TitleBarColorCode, Converter={StaticResource ColorConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </Flyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+            </ct:SettingsCard>
             <ct:SettingsCard
                 x:Name="BackdropTypeCard"
                 x:Uid="BackdropTypeCard"

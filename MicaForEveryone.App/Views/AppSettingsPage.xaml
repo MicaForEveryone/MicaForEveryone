@@ -75,6 +75,17 @@
                 </labs:Case>
             </labs:SwitchPresenter>
 
+            <TextBlock x:Uid="TelemetryLabel" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
+            <labs:SettingsCard x:Uid="TelemetryCard">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE9D9;" />
+                </labs:SettingsCard.HeaderIcon>
+                <ToggleSwitch
+                    x:Name="TelemetryToggle"
+                    IsOn="{x:Bind SettingsService.Settings.TelemetryEnabled, Mode=TwoWay}"
+                    Toggled="TelemetryToggle_Toggled" />
+            </labs:SettingsCard>
+
             <TextBlock x:Uid="AboutLabel" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
             <labs:SettingsExpander x:Uid="AboutCard" Description="{x:Bind ViewModel.AppVersion}">
                 <labs:SettingsExpander.HeaderIcon>

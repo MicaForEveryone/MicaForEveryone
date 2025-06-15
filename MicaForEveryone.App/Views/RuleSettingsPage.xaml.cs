@@ -75,4 +75,9 @@ public sealed partial class RuleSettingsPage : Page
         _ = SettingsService.SaveAsync().ConfigureAwait(false);
         _ = RuleService.ApplyRulesToAllWindowsAsync().ConfigureAwait(false);
     }
+
+    private void TitleBarCustomColorPicker_ButtonClicked(object sender, RoutedEventArgs e)
+    {
+        TitleBarColorPickerFlyout.Hide();
+    }
 }

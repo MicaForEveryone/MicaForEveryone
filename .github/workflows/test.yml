@@ -1,0 +1,17 @@
+name: Testing Azure
+on: [workflow_dispatch]
+jobs:
+  sign-in:
+    environment: publishing
+    
+    permissions:
+      id-token: write
+  
+    runs-on: windows-latest
+    steps:
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.TS_CLIENT_ID }}
+        tenant-id: ${{ secrets.TS_TENANT_ID }}
+        subscription-id: ${{ secrets.TS_SUBSCRIPTION_ID }}

@@ -288,4 +288,28 @@
   <data name="SettingsWindowTitle" xml:space="preserve">
     <value>Mica For Everyone Settings</value>
   </data>
+  <data name="InvalidConfigTitle" xml:space="preserve">
+    <value>Invalid configuration file</value>
+  </data>
+  <data name="InvalidConfigMessage" xml:space="preserve">
+    <value>The configuration file is either malformed or corrupt.</value>
+  </data>
+  <data name="TelemetryCard.Header" xml:space="preserve">
+    <value>Telemetry</value>
+  </data>
+  <data name="TelemetryCard.Description" xml:space="preserve">
+    <value>Automatically sends anonymous crash information to the developer.</value>
+  </data>
+  <data name="TelemetryLabel.Text" xml:space="preserve">
+    <value>Telemetry</value>
+  </data>
+  <data name="CustomColorCard.Header" xml:space="preserve">
+    <value>Custom color</value>
+  </data>
+  <data name="OkButton.Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using MicaForEveryone.CoreUI;
+﻿using MicaForEveryone.App.Helpers;
+using MicaForEveryone.CoreUI;
 using MicaForEveryone.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -86,8 +87,6 @@ public sealed class RuleService : IRuleService
         else
             SupportedBackdropTypes = Enum.GetValues<BackdropType>();
     }
-
-    private static int _currentSession;
 
     Lazy<bool> _is22000 = new(static () => Environment.OSVersion.Version >= new Version(10, 0, 22000));
     Lazy<bool> _is22523 = new(static () => Environment.OSVersion.Version >= new Version(10, 0, 22523));
@@ -194,14 +193,26 @@ public sealed class RuleService : IRuleService
 
         Rule mostApplicableRule = _settingsService.Settings!.Rules.Where(f => f.IsRuleApplicable(hWnd)).OrderByDescending(x => x.Priority).First();
 
-        if (mostApplicableRule.TitleBarColor != TitleBarColorMode.Default)
+        unsafe
         {
-            unsafe
+            const uint DWMWA_CAPTION_COLOR = 35;
+            switch (mostApplicableRule.TitleBarColor)
             {
-                const uint DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
-                TitleBarColorMode normalizedTitleBarColorMode = mostApplicableRule.TitleBarColor == TitleBarColorMode.System ? _themingService.IsDarkMode() ? TitleBarColorMode.Dark : TitleBarColorMode.Light : mostApplicableRule.TitleBarColor;
-                uint useImmersiveDarkMode = (uint)(normalizedTitleBarColorMode == TitleBarColorMode.Dark ? 1 : 0);
-                DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &useImmersiveDarkMode, sizeof(uint));
+                case TitleBarColorMode.System:
+                case TitleBarColorMode.Light:
+                case TitleBarColorMode.Dark:
+                    const uint DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
+                    TitleBarColorMode normalizedTitleBarColorMode = mostApplicableRule.TitleBarColor == TitleBarColorMode.System ? _themingService.IsDarkMode() ? TitleBarColorMode.Dark : TitleBarColorMode.Light : mostApplicableRule.TitleBarColor;
+                    uint useImmersiveDarkMode = (uint)(normalizedTitleBarColorMode == TitleBarColorMode.Dark ? 1 : 0);
+                    DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &useImmersiveDarkMode, sizeof(uint));
+                    uint defaultCaption = DWMWA_COLOR_DEFAULT;
+                    DwmSetWindowAttribute(hWnd, DWMWA_CAPTION_COLOR, &defaultCaption, sizeof(uint));
+                    break;
+                case TitleBarColorMode.Custom:
+                    Windows.UI.Color color = ColorConverter.ConvertToColor(mostApplicableRule.TitleBarColorCode);
+                    COLORREF colorref = RGB(color.R, color.G, color.B);
+                    DwmSetWindowAttribute(hWnd, DWMWA_CAPTION_COLOR, &colorref, (uint)sizeof(COLORREF));
+                    break;
             }
         }
 

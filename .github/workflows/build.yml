@@ -1,0 +1,116 @@
+name: Build (WinUI 3)
+on: [push, pull_request]
+jobs:
+  build-architectures:
+    runs-on: windows-latest
+    
+    strategy:
+      matrix:
+        architecture: [x64, x86, arm64]
+        configuration: [Debug, Release]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Restore
+        run: msbuild /t:Restore
+      - name: Build
+        run: msbuild /t:Build /p:Platform=${{ matrix.architecture }} /p:Configuration=${{ matrix.configuration }} /p:GenerateAppxPackageOnBuild=true /p:PublishAot=${{ matrix.configuration == 'Debug' && 'false' || 'true' }}
+      - name: Copy build binaries
+        run: |
+          Get-ChildItem -Path . -Recurse -Filter *.msix |
+          Where-Object { $_.FullName -notmatch '\\Dependencies\\' } |
+          ForEach-Object {
+            Copy-Item -Path $_.FullName -Destination . -Force
+          }
+      - name: Copy build symbols
+        run: |
+          $folderSearch = "${{ matrix.configuration == 'Release' && '\\native\\' || '' }}"
+          Get-ChildItem -Path . -Recurse -Filter *.pdb |
+          Where-Object { $_.FullName -match $folderSearch } |
+          ForEach-Object {
+            Copy-Item -Path $_.FullName -Destination . -Force
+          }
+      - name: Produce msixsym
+        run: Compress-Archive -Path *.pdb -DestinationPath MicaForEveryone_${{ matrix.configuration }}_${{ matrix.architecture }}.msixsym
+      - name: Upload build binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: Binaries - ${{ matrix.configuration }} - ${{ matrix.architecture }}
+          path: "*.msix"
+      - name: Upload build symbols
+        uses: actions/upload-artifact@v4
+        with:
+          name: Symbols - ${{ matrix.configuration }} - ${{ matrix.architecture }}
+          path: MicaForEveryone_${{ matrix.configuration }}_${{ matrix.architecture }}.msixsym
+
+  bundle:
+    runs-on: windows-latest
+
+    needs: [build-architectures]
+
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Find binary artifacts
+        id: getartifactids
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $configuration = "${{ matrix.configuration }}"
+          $runId = "${{ github.run_id }}"
+          $artifactsJson = gh api repos/${{ github.repository }}/actions/runs/$runId/artifacts | ConvertFrom-Json
+
+          $matchingIds = $artifactsJson.artifacts `
+            | Where-Object { $_.name -like "Binaries - $configuration - *" } `
+            | ForEach-Object { $_.id }
+
+          $csvIds = ($matchingIds -join ",")
+          Write-Output "Matching artifact IDs: $csvIds"
+          Write-Output "artifact_ids=$csvIds" >> $env:GITHUB_OUTPUT
+      - name: Download binary artifacts
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ steps.getartifactids.outputs.artifact_ids }}
+          path: ${{ github.workspace }}/BundleArtifacts
+          merge-multiple: true
+      - name: Extract bundle version
+        id: getbundlever
+        run: |
+          $ns = @{ "ns" = "http://schemas.microsoft.com/appx/manifest/foundation/windows10" }
+          $identity = Select-Xml -Path ${{ github.workspace }}/MicaForEveryone.App/Package.appxmanifest -Namespace $ns -XPath "/ns:Package/ns:Identity"
+          $version=$identity.Node.Version
+          Write-Output "version=$version" >> $env:GITHUB_OUTPUT
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Restore
+        run: msbuild /t:Restore
+      - name: Get makeappx path
+        id: getmakeappx
+        run: |
+          $path = msbuild MicaForEveryone.App\MicaForEveryone.App.csproj -getProperty:MakeAppxExeFullPath
+          Write-Output "makeappxpath=$path" >> $env:GITHUB_OUTPUT
+      - name: Build bundle
+        run: >-
+          & "${{ steps.getmakeappx.outputs.makeappxpath }}" bundle /v /d "${{ github.workspace }}/BundleArtifacts" /bv ${{ steps.getbundlever.outputs.version }} /p bundle.msixbundle
+      - name: Upload bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Binaries - ${{ matrix.configuration }} - Bundle
+          path: bundle.msixbundle
+      - name: Delete architecture-specific artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $csvIds = "${{ steps.getartifactids.outputs.artifact_ids }}"
+          $csvIds -split "," | ForEach-Object {
+            gh api "repos/${{ github.repository }}/actions/artifacts/$_" --method DELETE
+          }

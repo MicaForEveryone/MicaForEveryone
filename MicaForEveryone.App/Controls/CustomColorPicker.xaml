@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    x:Class="MicaForEveryone.App.Controls.CustomColorPickerTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MicaForEveryone.App.Controls">
+
+    <Style TargetType="local:CustomColorPicker">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:CustomColorPicker">
+                    <Grid
+                        ColumnDefinitions="*,*"
+                        ColumnSpacing="8"
+                        RowDefinitions="Auto,Auto">
+                        <ColorPicker
+                            x:Name="Picker"
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Color="{x:Bind SelectedColor, Mode=OneWay}" />
+                        <Button
+                            x:Name="OkButton"
+                            x:Uid="OkButton"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalAlignment="Stretch"
+                            Style="{StaticResource AccentButtonStyle}" />
+                        <Button
+                            x:Name="CancelButton"
+                            x:Uid="CancelButton"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

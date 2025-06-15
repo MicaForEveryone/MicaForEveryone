@@ -10,4 +10,6 @@ public interface ISettingsService : INotifyPropertyChanged, IDisposable
     Task InitializeAsync();
 
     Task SaveAsync();
+
+    Task OpenConfigurationFileAsync();
 }

@@ -23,7 +23,7 @@ class Program
 
             Microsoft.UI.Xaml.Application.Start((p) =>
             {
-                var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
+                var context = new MicaForEveryone.App.Dispatching.DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
                 SynchronizationContext.SetSynchronizationContext(context);
                 new App();
             });
@@ -38,7 +38,7 @@ class Program
 
         if (keyInstance.IsCurrent)
         {
-            AppInstance.GetCurrent().Activated +=Program_Activated;
+            AppInstance.GetCurrent().Activated += Program_Activated;
         }
         else
         {

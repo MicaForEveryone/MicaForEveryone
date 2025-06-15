@@ -20,6 +20,9 @@ public partial class SettingsFileModel : ObservableObject, IEquatable<SettingsFi
         }
     }
 
+    [ObservableProperty]
+    public partial bool TelemetryEnabled { get; set; } = true;
+
     // Define equal operator
     public static bool operator ==(SettingsFileModel? left, SettingsFileModel? right)
     {

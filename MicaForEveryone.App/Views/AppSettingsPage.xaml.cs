@@ -17,12 +17,15 @@ public sealed partial class AppSettingsPage : Page
     private AppSettingsPageViewModel ViewModel { get; }
     private IStartupService StartupService { get; }
 
+    private ISettingsService SettingsService { get; }
+
     public AppSettingsPage()
     {
         this.InitializeComponent();
 
         ViewModel = App.Services.GetRequiredService<AppSettingsPageViewModel>();
         StartupService = App.Services.GetRequiredService<IStartupService>();
+        SettingsService = App.Services.GetRequiredService<ISettingsService>();
 
         _ = PopulateStartupToggle();
     }
@@ -40,5 +43,10 @@ public sealed partial class AppSettingsPage : Page
             await StartupService.SetStartupEnabledAsync(StartupToggle.IsOn);
             await PopulateStartupToggle();
         }
+    }
+
+    private void TelemetryToggle_Toggled(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        _ = SettingsService.SaveAsync();
     }
 }
