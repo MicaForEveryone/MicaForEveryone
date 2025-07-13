@@ -166,7 +166,7 @@
 		<value>設定</value>
 	</data>
 	<data name="StartupCard.Description" xml:space="preserve">
-		<value>起動時にMica For Everyonを実行 </value>
+		<value>起動時にMica For Everyoneを実行</value>
 	</data>
 	<data name="StartupCard.Header" xml:space="preserve">
 		<value>起動時に実行</value>
