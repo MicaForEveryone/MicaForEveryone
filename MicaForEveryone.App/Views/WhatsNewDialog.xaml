@@ -1,0 +1,22 @@
+<ContentDialog
+    x:Class="MicaForEveryone.App.Views.WhatsNewDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Welcome to the New Version!"
+    CloseButtonText="Awesome!">
+
+    <StackPanel Spacing="15">
+        <TextBlock x:Name="VersionTextBlock" FontWeight="Bold" />
+        <TextBlock Text="Here's what's new:" />
+        <StackPanel Spacing="5" Padding="10,0,0,0">
+            <TextBlock Text="• ✨ Added a beautiful Acrylic effect to the settings window." />
+            <TextBlock Text="• 🚀 Added a 'Toggle All Effects' option to the tray menu." />
+            <TextBlock Text="• 💖 Added your social media links to the about page." />
+            <TextBlock Text="• 🔧 Many under-the-hood improvements for stability." />
+        </StackPanel>
+        <TextBlock Text="More amazing features like Theme Packs and Live Preview are coming soon!" TextWrapping="Wrap" />
+    </StackPanel>
+</ContentDialog>
