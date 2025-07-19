@@ -10,6 +10,7 @@ public sealed partial class TrayIconViewModel : ObservableObject
     private readonly MainAppService _mainAppService;
     private readonly IRuleService _ruleService;
 
+    // MODIFICATION: Add state and text for the toggle effects feature
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(ToggleEffectsText))]
     private bool _areEffectsEnabled = true;
@@ -20,6 +21,7 @@ public sealed partial class TrayIconViewModel : ObservableObject
     {
         _mainAppService = mainAppService;
         _ruleService = ruleService;
+        // MODIFICATION: Initialize the effects state from the service
         AreEffectsEnabled = _ruleService.AreEffectsEnabled;
     }
 
@@ -31,11 +33,12 @@ public sealed partial class TrayIconViewModel : ObservableObject
     private void Settings()
         => _mainAppService.ActivateSettings();
 
+    // MODIFICATION: Add command to toggle effects on and off
     [RelayCommand]
     private void ToggleEffects()
     {
         _ruleService.AreEffectsEnabled = !_ruleService.AreEffectsEnabled;
         AreEffectsEnabled = _ruleService.AreEffectsEnabled;
-        _ruleService.ApplyRulesToAllWindowsAsync();
+        _ = _ruleService.ApplyRulesToAllWindowsAsync();
     }
 }
