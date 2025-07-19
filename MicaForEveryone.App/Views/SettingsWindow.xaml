@@ -5,6 +5,7 @@
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:MicaForEveryone.Models"
     mc:Ignorable="d"
     Activated="Window_Activated"
     Closed="Window_Closed">
@@ -14,17 +15,34 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        
+        <Grid.Background>
+            <AcrylicBrush TintColor="{ThemeResource AcrylicInAppLuminosity}" TintOpacity="0.8" />
+        </Grid.Background>
+
         <local:TitleBar x:Name="TitleBarControl" PaneToggleRequested="TitleBarControl_PaneToggleRequested" />
+
         <NavigationView x:Name="NavigationViewControl" Grid.Row="1"
                         SelectionChanged="NavigationViewControl_SelectionChanged"
                         ItemInvoked="NavigationView_ItemInvoked"
                         ItemsSource="{x:Bind ViewModel.Settings.Rules}"
                         IsSettingsVisible="True"
                         IsBackButtonVisible="Collapsed"
-                        PaneDisplayMode="Left">
+                        PaneDisplayMode="Left"
+                        ItemTemplateSelector="{StaticResource SettingsNavigationItemSelector}"
+                        MenuItemTemplateSelector="{StaticResource SettingsNavigationItemSelector}">
+            <NavigationView.MenuItems>
+                <local:AppSettingsMenuItem />
+            </NavigationView.MenuItems>
             <NavigationView.Footer>
                 <StackPanel>
-                    <TextBlock Text="Made With 🫀 By 〆༯𝙎คAEED✘🫀" HorizontalAlignment="Center" Margin="0,10,0,10" />
+                    <TextBlock Text="Made With 🫀 By 〆༯𝙎คAEED✘🫀" HorizontalAlignment="Center" Margin="0,20,0,10" FontWeight="Bold" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="0,0,0,20">
+                        <HyperlinkButton Content="GitHub" NavigateUri="https://github.com/SaeedX302"/>
+                        <HyperlinkButton Content="Twitter" NavigateUri="https://x.com/saeedx300"/>
+                        <HyperlinkButton Content="Instagram" NavigateUri="https://www.instagram.com/saeedxdie"/>
+                        <HyperlinkButton Content="Telegram" NavigateUri="https://t.me/saeedxdie"/>
+                    </StackPanel>
                 </StackPanel>
             </NavigationView.Footer>
             <Frame x:Name="_contentFrame" />
