@@ -17,7 +17,7 @@ Should you have any concerns about the behavior of others, or any questions rega
 you are free to private contact the maintainers through one of the channels below of your choosing:
 
 #### Email
-- really-dongle@outlook.com
+- tsuncca19@gmail.com
 
 ### Strategy
 Depending on the severity of the issue, we may choose to exercise the following methods to keep the community safe
