@@ -5,6 +5,7 @@ namespace MicaForEveryone.CoreUI;
 
 public interface IRuleService
 {
+    // MODIFICATION: Add property to control if effects are globally enabled
     bool AreEffectsEnabled { get; set; }
     void Initialize();
     Task ApplyRulesToAllWindowsAsync();
