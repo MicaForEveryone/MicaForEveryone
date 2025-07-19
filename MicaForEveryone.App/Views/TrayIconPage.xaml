@@ -1,26 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <Page
     x:Class="MicaForEveryone.App.Views.TrayIconPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Background="Transparent">
 
     <Page.ContextFlyout>
-        <MenuFlyout ShouldConstrainToRootBounds="False">
-            <MenuFlyoutItem x:Uid="SettingsFlyoutItem" Command="{x:Bind ViewModel.SettingsCommand}">
-                <MenuFlyoutItem.Icon>
-                    <SymbolIcon Symbol="Setting" />
-                </MenuFlyoutItem.Icon>
-            </MenuFlyoutItem>
-            <MenuFlyoutItem x:Uid="ExitFlyoutItem" Command="{x:Bind ViewModel.ExitCommand}">
-                <MenuFlyoutItem.Icon>
-                    <FontIcon Glyph="&#xE7E8;" />
-                </MenuFlyoutItem.Icon>
-            </MenuFlyoutItem>
+        <MenuFlyout>
+            <MenuFlyoutItem Text="Settings" Command="{x:Bind ViewModel.SettingsCommand}" />
+            <MenuFlyoutItem Text="{x:Bind ViewModel.ToggleEffectsText, Mode=OneWay}" Command="{x:Bind ViewModel.ToggleEffectsCommand}" />
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Exit" Command="{x:Bind ViewModel.ExitCommand}" />
         </MenuFlyout>
     </Page.ContextFlyout>
 </Page>
