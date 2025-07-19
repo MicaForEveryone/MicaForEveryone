@@ -1,17 +1,17 @@
-﻿using MicaForEveryone.App.Views;
+using MicaForEveryone.App.Views;
 using Microsoft.UI;
-using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Hosting;
-using System.Runtime.InteropServices;
-using System;
-using Windows.Foundation;
-using TerraFX.Interop.Windows;
-using static TerraFX.Interop.Windows.Windows;
-using WinRT.Interop;
-using WinRT;
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Content;
 using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Hosting;
+using System;
+using System.Runtime.InteropServices;
+using TerraFX.Interop.Windows;
+using Windows.Foundation;
+using WinRT;
+using WinRT.Interop;
+using static TerraFX.Interop.Windows.Windows;
 
 namespace MicaForEveryone.App.Services;
 
@@ -23,6 +23,23 @@ public sealed unsafe class MainAppService
     private uint _taskbarCreatedMessage;
     private NOTIFYICONDATAW* _notifyIconData;
 
+    // MODIFICATION: New public method to get XamlRoot for dialogs
+    public XamlRoot? GetMainWindowXamlRoot()
+    {
+        // The tray icon is hosted in a XamlIsland within a hidden window.
+        // We can use its XamlRoot to show dialogs.
+        if (_source?.Content != null)
+        {
+            return _source.Content.XamlRoot;
+        }
+        // If the settings window is open, we can use that too.
+        if (_window?.Content != null)
+        {
+            return _window.Content.XamlRoot;
+        }
+        return null;
+    }
+
     public void Initialize()
     {
         HINSTANCE instance = GetModuleHandleW(null);
@@ -32,22 +49,7 @@ public sealed unsafe class MainAppService
 
         fixed (char* lpClassName = "MicaForEveryoneNotificationIcon")
         {
-            WNDCLASSEXW wndClass = new()
-            {
-                cbSize = (uint)sizeof(WNDCLASSEXW),
-                style = CS.CS_HREDRAW | CS.CS_VREDRAW,
-                lpfnWndProc = &WindowProc,
-                hInstance = instance,
-                hCursor = HCURSOR.NULL,
-                lpszClassName = lpClassName,
-                lpszMenuName = null,
-                hIcon = largeIcon,
-                hIconSm = smallIcon,
-                cbClsExtra = 0,
-                cbWndExtra = 0,
-                hbrBackground = HBRUSH.NULL
-            };
-
+            WNDCLASSEXW wndClass = new() { cbSize = (uint)sizeof(WNDCLASSEXW), style = CS.CS_HREDRAW | CS.CS_VREDRAW, lpfnWndProc = &WindowProc, hInstance = instance, hCursor = HCURSOR.NULL, lpszClassName = lpClassName, lpszMenuName = null, hIcon = largeIcon, hIconSm = smallIcon, cbClsExtra = 0, cbWndExtra = 0, hbrBackground = HBRUSH.NULL };
             RegisterClassExW(&wndClass);
         }
         nint gcHandlePtr = GCHandle.ToIntPtr(GCHandle.Alloc(this));
@@ -68,16 +70,23 @@ public sealed unsafe class MainAppService
 
     public void ActivateSettings()
     {
-        _window ??= new SettingsWindow();
-        _window.Closed += _window_Closed;
-        _window.Activate();
-        HWND hwnd = new HWND((void*)WindowNative.GetWindowHandle(_window));
-        SetForegroundWindow(hwnd);
+        if (_window == null)
+        {
+            _window = new SettingsWindow();
+            _window.Closed += _window_Closed;
+            _window.Activate();
+            HWND hwnd = new HWND((void*)WindowNative.GetWindowHandle(_window));
+            SetForegroundWindow(hwnd);
+        }
+        else
+        {
+            _window.Activate();
+        }
     }
 
-    private void _window_Closed(object sender, Microsoft.UI.Xaml.WindowEventArgs args)
+    private void _window_Closed(object sender, WindowEventArgs args)
     {
-        ((Microsoft.UI.Xaml.Window)sender).Closed -= _window_Closed;
+        ((Window)sender).Closed -= _window_Closed;
         _window = null;
     }
 
@@ -92,133 +101,98 @@ public sealed unsafe class MainAppService
     {
         switch (Msg)
         {
-            case 1:
-                {
-                    HICON smallIcon;
-                    LoadIconMetric(GetModuleHandleW(null), IDI.IDI_APPLICATION, (int)_LI_METRIC.LIM_SMALL, &smallIcon);
+            case WM.WM_CREATE:
+            {
+                HICON smallIcon;
+                LoadIconMetric(GetModuleHandleW(null), IDI.IDI_APPLICATION, (int)_LI_METRIC.LIM_SMALL, &smallIcon);
 
-                    CREATESTRUCTW* lpCreateStruct = (CREATESTRUCTW*)&lParam;
-                    nint gcHandlePtr = *(nint*)lpCreateStruct->lpCreateParams;
-                    var gc = GCHandle.FromIntPtr(gcHandlePtr);
-                    var appService = (MainAppService)(gc.Target!);
-                    appService._source = new();
-                    var thing = Win32Interop.GetWindowIdFromWindow(new IntPtr(hWnd.Value));
+                CREATESTRUCTW* lpCreateStruct = (CREATESTRUCTW*)lParam;
+                nint gcHandlePtr = lpCreateStruct->lpCreateParams;
+                var gc = GCHandle.FromIntPtr(gcHandlePtr);
+                var appService = (MainAppService)(gc.Target!);
+                appService._source = new XamlIsland();
+                var thing = Win32Interop.GetWindowIdFromWindow(new IntPtr(hWnd.Value));
 
-                    DesktopChildSiteBridge bridge = DesktopChildSiteBridge.CreateWithDispatcherQueue(DispatcherQueue.GetForCurrentThread(), thing);
-                    appService._source.Content = new TrayIconPage();
-                    bridge.Connect(appService._source.ContentIsland);
-                    bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
-                    bridge.Show();
+                DesktopChildSiteBridge bridge = DesktopChildSiteBridge.CreateWithDispatcherQueue(DispatcherQueue.GetForCurrentThread(), thing);
+                appService._source.Content = new TrayIconPage();
+                bridge.Connect(appService._source.ContentIsland);
+                bridge.ResizePolicy = ContentSizePolicy.ResizeContentToParentWindow;
+                bridge.Show();
 
-                    SetWindowLongPtrW(hWnd, GWL.GWL_USERDATA, gcHandlePtr);
+                SetWindowLongPtrW(hWnd, GWL.GWL_USERDATA, gcHandlePtr);
 
-                    NOTIFYICONDATAW* notifyIconData = appService._notifyIconData = (NOTIFYICONDATAW*)NativeMemory.AllocZeroed((nuint)sizeof(NOTIFYICONDATAW));
-                    notifyIconData->hWnd = hWnd;
-                    notifyIconData->guidItem = new Guid([0xA0, 0x23, 0x5A, 0x9F, 0xC6, 0xB6, 0x41, 0x89, 0xAE, 0x4B, 0xAC, 0x00, 0x9F, 0xC6, 0x78, 0x7C]);
-                    notifyIconData->cbSize = (uint)sizeof(NOTIFYICONDATAW);
-                    notifyIconData->hIcon = smallIcon;
-                    notifyIconData->uVersion = 4;
-                    notifyIconData->uCallbackMessage = WM.WM_APP + 1;
-
-                    // Currently, we can't show a tool tip for the app name,
-                    // so we just tell Windows to show it for us.
-                    // It might look a bit ugly, but it works.
-                    notifyIconData->uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP | NIF_GUID;
-                    "Mica For Everyone".CopyTo(MemoryMarshal.CreateSpan(ref notifyIconData->szTip[0], 128));
-                    Shell_NotifyIconW(NIM_ADD, notifyIconData);
-                    Shell_NotifyIconW(NIM_SETVERSION, notifyIconData);
-                    break;
-                }
-
+                appService._notifyIconData = (NOTIFYICONDATAW*)NativeMemory.AllocZeroed((nuint)sizeof(NOTIFYICONDATAW));
+                appService._notifyIconData->hWnd = hWnd;
+                appService._notifyIconData->guidItem = new Guid("A0235A9F-C6B6-4189-AE4B-AC009FC6787C");
+                appService._notifyIconData->cbSize = (uint)sizeof(NOTIFYICONDATAW);
+                appService._notifyIconData->hIcon = smallIcon;
+                appService._notifyIconData->uVersion = 4;
+                appService._notifyIconData->uCallbackMessage = WM.WM_APP + 1;
+                appService._notifyIconData->uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP | NIF_GUID;
+                "Mica For Everyone".CopyTo(MemoryMarshal.CreateSpan(ref appService._notifyIconData->szTip[0], 128));
+                Shell_NotifyIconW(NIM_ADD, appService._notifyIconData);
+                Shell_NotifyIconW(NIM_SETVERSION, appService._notifyIconData);
+                break;
+            }
             case WM.WM_APP + 1:
+            {
+                var pointer = GetWindowLongPtrW(hWnd, GWL.GWL_USERDATA);
+                var gc = GCHandle.FromIntPtr(pointer);
+                var appService = (MainAppService)(gc.Target!);
+
+                if (LOWORD(lParam) is WM.WM_CONTEXTMENU or WM.WM_RBUTTONUP)
                 {
                     RECT iconRect;
-                    NOTIFYICONIDENTIFIER id = new NOTIFYICONIDENTIFIER()
-                    {
-                        cbSize = (uint)sizeof(NOTIFYICONIDENTIFIER),
-                        uID = 1,
-                        hWnd = hWnd
-                    };
+                    NOTIFYICONIDENTIFIER id = new() { cbSize = (uint)sizeof(NOTIFYICONIDENTIFIER), hWnd = hWnd, guidItem = appService._notifyIconData->guidItem };
                     Shell_NotifyIconGetRect(&id, &iconRect);
-                    HMONITOR monitor = MonitorFromRect(&iconRect, MONITOR.MONITOR_DEFAULTTONULL);
-                    MONITORINFO monitorInfo;
-                    bool monitorSuccessful = false;
-                    int? workBottom = null;
 
-                    if (monitor != HMONITOR.NULL && (monitorSuccessful = GetMonitorInfoW(monitor, &monitorInfo)))
-                        if ((workBottom = monitorInfo.rcWork.bottom) < iconRect.bottom)
-                            iconRect.top = workBottom.Value - 1;
+                    SetForegroundWindow(hWnd);
 
-                    SetWindowPos(hWnd, HWND.NULL, iconRect.left, iconRect.top, iconRect.right - iconRect.left, iconRect.bottom - iconRect.left, SWP.SWP_NOACTIVATE | SWP.SWP_NOZORDER);
-
-                    var pointer = GetWindowLongPtrW(hWnd, GWL.GWL_USERDATA);
-                    var gc = GCHandle.FromIntPtr(pointer);
-                    var appService = (MainAppService)(gc.Target!);
-
-                    switch (LOWORD(lParam))
-                    {
-                        case WM.WM_CONTEXTMENU:
-                            var scaleFactor = GetDpiForWindow(hWnd) / 96f;
-                            SetForegroundWindow(hWnd);
-
-                            Point point = new(
-                                GET_X_LPARAM(new((nint)wParam.Value)),
-                                GET_Y_LPARAM(new((nint)wParam.Value))
-                            );
-
-                            point = new(
-                                (point.X - iconRect.left) / scaleFactor,
-                                (point.Y - iconRect.top) / scaleFactor
-                            );
-
-                            var page = (TrayIconPage)(appService._source!.Content);
-                            page.ContextFlyout.As<MenuFlyout>().ShowAt(page, point);
-                            break;
-
-                        case NIN_SELECT:
-                        case NIN_KEYSELECT:
-                            appService.ActivateSettings();
-                            break;
-
-                    }
-                    break;
+                    var page = (TrayIconPage)(appService._source!.Content);
+                    page.ContextFlyout.ShowAt(null, new Point(iconRect.left, iconRect.top));
                 }
-
+                else if (LOWORD(lParam) is NIN_SELECT or NIN_KEYSELECT)
+                {
+                    appService.ActivateSettings();
+                }
+                break;
+            }
             case WM.WM_DESTROY:
-                {
-                    var pointer = GetWindowLongPtrW(hWnd, GWL.GWL_USERDATA);
-                    var gc = GCHandle.FromIntPtr(pointer);
-                    var appService = (MainAppService)(gc.Target!);
+            {
+                var pointer = GetWindowLongPtrW(hWnd, GWL.GWL_USERDATA);
+                var gc = GCHandle.FromIntPtr(pointer);
+                var appService = (MainAppService)(gc.Target!);
 
+                if (appService._notifyIconData != null)
+                {
+                    Shell_NotifyIconW(NIM_DELETE, appService._notifyIconData);
                     NativeMemory.Free(appService._notifyIconData);
-
-                    appService._source?.Dispose();
-                    appService._source = null;
-
-                    gc.Free();
-
-                    PostQuitMessage(0);
-                    break;
                 }
 
+                appService._source?.Dispose();
+                appService._source = null;
+                gc.Free();
+                PostQuitMessage(0);
+                break;
+            }
             default:
+            {
+                var pointer = GetWindowLongPtrW(hWnd, GWL.GWL_USERDATA);
+                if (pointer == IntPtr.Zero)
+                    return DefWindowProcW(hWnd, Msg, wParam, lParam);
+                var gc = GCHandle.FromIntPtr(pointer);
+                var appService = (MainAppService?)(gc.Target);
+                if (appService != null && Msg == appService._taskbarCreatedMessage)
                 {
-                    var pointer = GetWindowLongPtrW(hWnd, GWL.GWL_USERDATA);
-                    if (pointer == IntPtr.Zero)
-                        break;
-                    var gc = GCHandle.FromIntPtr(pointer);
-                    var appService = (MainAppService?)(gc.Target);
-                    if (Msg == appService?._taskbarCreatedMessage)
+                    if (!Shell_NotifyIconW(NIM_MODIFY, appService._notifyIconData))
                     {
-                        if (!Shell_NotifyIconW(NIM_MODIFY, appService._notifyIconData))
-                        {
-                            Shell_NotifyIconW(NIM_ADD, appService._notifyIconData);
-                            Shell_NotifyIconW(NIM_SETVERSION, appService._notifyIconData);
-                        }
-                        return 0;
+                        Shell_NotifyIconW(NIM_ADD, appService._notifyIconData);
+                        Shell_NotifyIconW(NIM_SETVERSION, appService._notifyIconData);
                     }
-                    break;
+                    return 0;
                 }
+                break;
+            }
         }
         return DefWindowProcW(hWnd, Msg, wParam, lParam);
     }
