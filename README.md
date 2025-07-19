@@ -16,4 +16,6 @@ It can apply Mica (or any other backdrop materials) on the non-client area (wind
 Go to **[Releases page](https://github.com/SaeedX302/MicaForEveryone/releases) > Assets > and choose the appropriate download** or [just click here to download the latest version of Mica For Everyone](https://github.com/SaeedX302/MicaForEveryone/releases/latest).
 
 ## Credits
-Made With 🫀 By 〆༯𝙎คAEED✘🫀
+To Original MicaForEveryone Dev
+## Redesign
+Remake With 🫀 By 〆༯𝙎คAEED✘🫀
