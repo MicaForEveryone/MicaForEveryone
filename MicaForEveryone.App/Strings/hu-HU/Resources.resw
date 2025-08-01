@@ -289,30 +289,30 @@
     <value>Mica For Everyone beállításai</value>
   </data>
   <data name="InvalidConfigTitle" xml:space="preserve">
-    <value />
+    <value>Érvénytelen konfigurációs fájl</value>
   </data>
   <data name="InvalidConfigMessage" xml:space="preserve">
-    <value />
+    <value>A konfigurációs fájl vagy rosszul formázott, vagy hibás.</value>
   </data>
   <data name="TelemetryCard.Header" xml:space="preserve">
-    <value />
+    <value>Telemetria</value>
   </data>
   <data name="TelemetryCard.Description" xml:space="preserve">
-    <value />
+    <value>Automatikusan elküldi az névtelen összeomlási információkat a fejlesztőnek.</value>
   </data>
   <data name="TelemetryLabel.Text" xml:space="preserve">
-    <value />
+    <value>Telemetria</value>
   </data>
   <data name="CustomColorCard.Header" xml:space="preserve">
-    <value />
+    <value>Egyedi szín</value>
   </data>
   <data name="OkButton.Content" xml:space="preserve">
-    <value />
+    <value>Oké</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
     <value>Bezár</value>
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
-    <value />
+    <value>Adatvédelmi irányelvek</value>
   </data>
 </root>
