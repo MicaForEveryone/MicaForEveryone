@@ -324,9 +324,6 @@
   <data name="TelemetryCard.Description" xml:space="preserve">
     <value />
   </data>
-  <data name="TelemetryLabel.Text" xml:space="preserve">
-    <value />
-  </data>
   <data name="CustomColorCard.Header" xml:space="preserve">
     <value />
   </data>
