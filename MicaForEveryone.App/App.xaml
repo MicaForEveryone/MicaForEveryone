@@ -17,6 +17,7 @@
                         <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
                     </Style>
                     <helpers:ColorConverter x:Key="ColorConverter" />
+                    <helpers:FileIconToBitmapImageConverter x:Key="FileIconToBitmapImageConverter" />
                 </ResourceDictionary>
             </XamlControlsResources.MergedDictionaries>
         </XamlControlsResources>

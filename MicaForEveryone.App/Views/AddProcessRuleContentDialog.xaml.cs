@@ -39,5 +39,27 @@ public sealed partial class AddProcessRuleContentDialog : ContentDialog
         }
         Process proc = Process.GetProcessById((int)procId);
         ViewModel.ProcessName = proc.ProcessName;
+        try
+        {
+            ViewModel.FilePath = proc.MainModule is null ? string.Empty : proc.MainModule.FileName;
+        }
+        catch
+        {
+            ViewModel.FilePath = string.Empty;
+        }
+    }
+
+    private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+    {
+        Process proc = (Process) args.SelectedItem;
+        ViewModel.ProcessName = proc.ProcessName;
+        try
+        {
+            ViewModel.FilePath = proc.MainModule is null ? string.Empty : proc.MainModule.FileName;
+        }
+        catch
+        {
+            ViewModel.FilePath = string.Empty;
+        }
     }
 }

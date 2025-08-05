@@ -8,6 +8,7 @@
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Uid="AddProcessRuleDialog"
+    xmlns:systemdiagnostics="using:System.Diagnostics"
     DefaultButton="Primary"
     IsPrimaryButtonEnabled="{x:Bind ViewModel.IsAddButtonEnabled, Mode=OneWay}"
     PrimaryButtonCommand="{x:Bind ViewModel.AddRuleCommand}"
@@ -26,7 +27,14 @@
             x:Uid="ProcessTextBox"
             ItemsSource="{x:Bind ViewModel.Recommendations, Mode=OneWay}"
             Text="{x:Bind ViewModel.ProcessName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            TextChanged="AutoSuggestBox_TextChanged" />
+            SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+            TextChanged="AutoSuggestBox_TextChanged">
+            <AutoSuggestBox.ItemTemplate>
+                <DataTemplate x:DataType="systemdiagnostics:Process">
+                    <TextBlock Text="{x:Bind ProcessName}" />
+                </DataTemplate>
+            </AutoSuggestBox.ItemTemplate>
+        </AutoSuggestBox>
         <controls:WindowPickerButton Grid.Column="1" WindowChanged="WindowPickerButton_WindowChanged">
             <FontIcon Glyph="&#xF7ED;" />
         </controls:WindowPickerButton>

@@ -23,23 +23,20 @@ namespace MicaForEveryone.App.Views;
 /// </summary>
 public sealed partial class SettingsWindow : Window
 {
-    private SettingsViewModel ViewModel { get; }
-
     private ILocalizationService LocalizationService { get; }
 
     public SettingsWindow()
     {
         this.InitializeComponent();
 
-        ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
         LocalizationService = App.Services.GetRequiredService<ILocalizationService>();
 
         ExtendsContentIntoTitleBar = true;
         AppWindow.TitleBar.ButtonBackgroundColor = AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-        ChangeButtonBackground();
         Title = LocalizationService.GetLocalizedString("SettingsWindowTitle");
         AppWindow.SetIcon("Assets\\MicaForEveryone.ico");
-        SetTitleBar(TitleBarControl);
+
+        RootPage.OwnerWindow = this;
 
         unsafe
         {
@@ -100,22 +97,6 @@ public sealed partial class SettingsWindow : Window
         return DefSubclassProc(hWND, arg2, wPARAM, lPARAM);
     }
 
-    private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-    {
-    }
-
-    private void NavigationViewControl_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-    {
-        if (args.SelectedItem is Rule rule)
-        {
-            _contentFrame.Navigate(typeof(RuleSettingsPage), rule);
-        }
-        else
-        {
-            _contentFrame.Navigate(typeof(AppSettingsPage));
-        }
-    }
-
     private void Window_Activated(object sender, WindowActivatedEventArgs args)
     {
         /*
@@ -135,71 +116,8 @@ public sealed partial class SettingsWindow : Window
         */
     }
 
-    private void ChangeButtonBackground()
-    {
-        AppWindow.TitleBar.ButtonHoverBackgroundColor = (Color)Application.Current.Resources["SubtleFillColorSecondary"];
-        AppWindow.TitleBar.ButtonPressedBackgroundColor = (Color)Application.Current.Resources["SubtleFillColorTertiary"];
-        AppWindow.TitleBar.ButtonForegroundColor = AppWindow.TitleBar.ButtonHoverForegroundColor = (Color)Application.Current.Resources["TextFillColorPrimary"];
-    }
-
-    private void RootPage_ActualThemeChanged(FrameworkElement sender, object args) => ChangeButtonBackground();
-
-    private void RootPage_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        if (e.NewSize.Width < 700)
-        {
-            AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Tall;
-        }
-        else
-        {
-            AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Standard;
-        }
-    }
-
     private void Window_Closed(object sender, WindowEventArgs args)
     {
         Activated -= Window_Activated;
-    }
-
-    private void TitleBarControl_PaneToggleRequested(TitleBar sender, object args)
-    {
-        NavigationViewControl.IsPaneOpen = !NavigationViewControl.IsPaneOpen;
-    }
-}
-
-public sealed class AddNewRuleMenuItem;
-
-public sealed class AppSettingsMenuItem;
-
-public sealed partial class SettingsNavigationItemSelector : DataTemplateSelector
-{
-    public DataTemplate GlobalRuleTemplate { get; set; } = new();
-
-    public DataTemplate ProcessRuleTemplate { get; set; } = new();
-
-    public DataTemplate ClassRuleTemplate { get; set; } = new();
-
-    public DataTemplate AddNewRuleTemplate { get; set; } = new();
-
-    public DataTemplate AppSettingsTemplate { get; set; } = new();
-
-    protected override DataTemplate SelectTemplateCore(object item)
-    {
-        if (item is GlobalRule)
-            return GlobalRuleTemplate;
-
-        if (item is ProcessRule)
-            return ProcessRuleTemplate;
-
-        if (item is ClassRule)
-            return ClassRuleTemplate;
-
-        if (item is AddNewRuleMenuItem)
-            return AddNewRuleTemplate;
-
-        if (item is AppSettingsMenuItem)
-            return AppSettingsTemplate;
-
-        throw new ArgumentException("Navigation menu item type is invalid.");
     }
 }
