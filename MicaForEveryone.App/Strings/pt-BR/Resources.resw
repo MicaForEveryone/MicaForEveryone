@@ -145,10 +145,10 @@
     <value>Preferência de canto</value>
   </data>
   <data name="DangerousInfoBar.Title" xml:space="preserve">
-    <value>Opções perigosas abaixo</value>
+    <value>CUIDADO!</value>
   </data>
   <data name="DangerousInfoBar.Message" xml:space="preserve">
-    <value>As seguintes configurações podem quebrar apps. Salve seu trabalho antes de habilitar qualquer uma delas!</value>
+    <value>As seguintes configurações podem quebrar apps. Salve seu trabalho antes de habilitar qualquer uma delas.</value>
   </data>
   <data name="ExitFlyoutItem.Text" xml:space="preserve">
     <value>Sair</value>
@@ -289,30 +289,30 @@
     <value>Configurações do Mica For Everyone</value>
   </data>
   <data name="InvalidConfigTitle" xml:space="preserve">
-    <value />
+    <value />Arquivo de configuração inválido</value>
   </data>
   <data name="InvalidConfigMessage" xml:space="preserve">
-    <value />
+    <value />O arquivo de configuração é inválido ou está corrompido.</value>
   </data>
   <data name="TelemetryCard.Header" xml:space="preserve">
-    <value />
+    <value />Telemetria</value>
   </data>
   <data name="TelemetryCard.Description" xml:space="preserve">
-    <value />
+    <value />Envia automaticamente informações anônimas sobre falhas ao desenvolvedor.</value>
   </data>
   <data name="TelemetryLabel.Text" xml:space="preserve">
-    <value />
+    <value />Telemetria</value>
   </data>
   <data name="CustomColorCard.Header" xml:space="preserve">
-    <value />
+    <value />Cor personalizada</value>
   </data>
   <data name="OkButton.Content" xml:space="preserve">
-    <value />
+    <value />OK</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
-    <value />
+    <value />Política de Privacidade</value>
   </data>
 </root>
