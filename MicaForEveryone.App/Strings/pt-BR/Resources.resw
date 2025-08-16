@@ -157,7 +157,7 @@
     <value>Estenda o efeito para a área do cliente</value>
   </data>
   <data name="RemoveCard.Header" xml:space="preserve">
-    <value>Estenda o efeito para a área do cliente</value>
+    <value>Remover regra</value>
   </data>
   <data name="RemoveLabel.Text" xml:space="preserve">
     <value>Remover</value>
