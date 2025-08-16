@@ -136,7 +136,7 @@
     <value>Desfoque atrás</value>
   </data>
   <data name="CheckForUpdatesButton.Content" xml:space="preserve">
-    <value>Verifique se há atualizações</value>
+    <value>Verificar</value>
   </data>
   <data name="CheckForUpdatesCard.Header" xml:space="preserve">
     <value>Verifique se há atualizações</value>
@@ -148,7 +148,7 @@
     <value>CUIDADO!</value>
   </data>
   <data name="DangerousInfoBar.Message" xml:space="preserve">
-    <value>As seguintes configurações podem quebrar apps. Salve seu trabalho antes de habilitar qualquer uma delas.</value>
+    <value>As seguintes configurações podem quebrar apps. Salve seu trabalho antes de habilitar qualquer uma delas!</value>
   </data>
   <data name="ExitFlyoutItem.Text" xml:space="preserve">
     <value>Sair</value>
@@ -157,7 +157,7 @@
     <value>Estenda o efeito para a área do cliente</value>
   </data>
   <data name="RemoveCard.Header" xml:space="preserve">
-    <value>Remover regra</value>
+    <value>Estenda o efeito para a área do cliente</value>
   </data>
   <data name="RemoveLabel.Text" xml:space="preserve">
     <value>Remover</value>
@@ -190,7 +190,7 @@
     <value>Não foi possível verificar atualizações neste momento. Tente novamente mais tarde.</value>
   </data>
   <data name="UpdateErrorInfoBar.Title" xml:space="preserve">
-    <value>Ocorreu um erro</value>
+    <value>Ocorreu um erro<</value>
   </data>
   <data name="UpdateLabel.Text" xml:space="preserve">
     <value>Atualizar</value>
@@ -289,30 +289,30 @@
     <value>Configurações do Mica For Everyone</value>
   </data>
   <data name="InvalidConfigTitle" xml:space="preserve">
-    <value />Arquivo de configuração inválido</value>
+    <value>Arquivo de configuração inválido</value>
   </data>
   <data name="InvalidConfigMessage" xml:space="preserve">
-    <value />O arquivo de configuração é inválido ou está corrompido.</value>
+    <value>O arquivo de configuração é inválido ou está corrompido.</value>
   </data>
   <data name="TelemetryCard.Header" xml:space="preserve">
-    <value />Telemetria</value>
+    <value>Telemetria</value>
   </data>
   <data name="TelemetryCard.Description" xml:space="preserve">
-    <value />Envia automaticamente informações anônimas sobre falhas ao desenvolvedor.</value>
+    <value>Envia automaticamente informações anônimas sobre falhas ao desenvolvedor.</value>
   </data>
   <data name="TelemetryLabel.Text" xml:space="preserve">
-    <value />Telemetria</value>
+    <value>Telemetria</value>
   </data>
   <data name="CustomColorCard.Header" xml:space="preserve">
-    <value />Cor personalizada</value>
+    <value>Cor personalizada</value>
   </data>
   <data name="OkButton.Content" xml:space="preserve">
-    <value />OK</value>
+    <value>OK</value>
   </data>
   <data name="CancelButton.Content" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
-    <value />Política de Privacidade</value>
+    <value>Política de Privacidade</value>
   </data>
 </root>
