@@ -18,6 +18,8 @@
                         <Setter Property="FontFamily" Value="{StaticResource SymbolThemeFontFamily}" />
                     </Style>
                     <helpers:ColorConverter x:Key="ColorConverter" />
+                    <helpers:PathToImageSourceConverter x:Key="PathToImageSourceConverter" />
+                    <helpers:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
                 </ResourceDictionary>
             </XamlControlsResources.MergedDictionaries>
         </XamlControlsResources>

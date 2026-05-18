@@ -25,6 +25,7 @@ public sealed partial class AddClassRuleContentDialog : ContentDialog
         if (window == HWND.NULL)
         {
             ViewModel.ClassName = string.Empty;
+            ViewModel.IconSource = null;
             return;
         }
         char* lpClassName = stackalloc char[256];
@@ -34,5 +35,6 @@ public sealed partial class AddClassRuleContentDialog : ContentDialog
         }
         ReadOnlySpan<char> className = MemoryMarshal.CreateReadOnlySpanFromNullTerminated(lpClassName);
         ViewModel.ClassName = className.ToString();
+        ViewModel.TryFetchIcon(window);
     }
 }

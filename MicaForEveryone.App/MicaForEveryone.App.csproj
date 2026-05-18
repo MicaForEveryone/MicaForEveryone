@@ -75,6 +75,7 @@
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.251106002" />
+		<PackageReference Include="System.Drawing.Common" Version="10.0.8" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 
