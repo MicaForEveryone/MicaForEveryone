@@ -30,6 +30,7 @@ public sealed partial class AddProcessRuleContentDialog : ContentDialog
         if (window == HWND.NULL)
         {
             ViewModel.ProcessName = string.Empty;
+            ViewModel.IconSource = null;
             return;
         }
         uint procId;
@@ -42,6 +43,7 @@ public sealed partial class AddProcessRuleContentDialog : ContentDialog
         {
             Process proc = Process.GetProcessById((int)procId);
             ViewModel.ProcessName = proc.ProcessName;
+            ViewModel.TryFetchIcon(window);
         }
         catch { }
     }

@@ -2,11 +2,14 @@
 using CommunityToolkit.Mvvm.Input;
 using MicaForEveryone.CoreUI;
 using MicaForEveryone.Models;
+using Microsoft.UI.Xaml.Media;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TerraFX.Interop.Windows;
+using MicaForEveryone.App.Helpers;
 
 namespace MicaForEveryone.App.ViewModels;
 
@@ -19,6 +22,9 @@ public partial class AddProcessRuleContentDialogViewModel : ObservableObject
     [ObservableProperty]
     public partial ObservableCollection<string> Recommendations { get; set; }
 
+    [ObservableProperty]
+    public partial ImageSource? IconSource { get; set; }
+
     public bool IsAddButtonEnabled => !string.IsNullOrWhiteSpace(ProcessName);
 
     private readonly ISettingsService _settingsService;
@@ -28,6 +34,33 @@ public partial class AddProcessRuleContentDialogViewModel : ObservableObject
         _settingsService = settingsService;
         ProcessName = string.Empty;
         Recommendations = new ObservableCollection<string>();
+    }
+
+    public async void TryFetchIcon(HWND hwnd)
+    {
+        try
+        {
+            var icon = await IconHelper.ExtractIconFromWindowAsync(hwnd);
+            if (icon != null)
+            {
+                var bitmapImage = IconHelper.IconToBitmapImage(icon);
+                icon.Dispose();
+                IconSource = bitmapImage;
+            }
+            else
+            {
+                IconSource = null;
+            }
+        }
+        catch
+        {
+            IconSource = null;
+        }
+    }
+
+    partial void OnProcessNameChanged(string value)
+    {
+        IconSource = null;
     }
 
     public void RequestSuggestions()
@@ -60,7 +93,14 @@ public partial class AddProcessRuleContentDialogViewModel : ObservableObject
     [RelayCommand]
     private async Task AddRuleAsync()
     {
-        _settingsService.Settings!.Rules.Insert(1, new ProcessRule() { ProcessName = ProcessName });
+        var rule = new ProcessRule() { ProcessName = ProcessName };
+
+        if (IconSource != null)
+        {
+            rule.IconPath = IconHelper.GetLastExtractedPath();
+        }
+
+        _settingsService.Settings!.Rules.Insert(1, rule);
         await _settingsService.SaveAsync();
     }
 }

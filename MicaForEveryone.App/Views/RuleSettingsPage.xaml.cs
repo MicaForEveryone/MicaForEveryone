@@ -82,6 +82,8 @@ public sealed partial class RuleSettingsPage : Page
         SettingsService.Settings!.Rules.Remove(Rule!);
         _ = SettingsService.SaveAsync().ConfigureAwait(false);
         _ = RuleService.ApplyRulesToAllWindowsAsync().ConfigureAwait(false);
+
+        this.Frame?.Navigate(typeof(AppSettingsPage));
     }
 
     private void TitleBarCustomColorPicker_ButtonClicked(object sender, RoutedEventArgs e)

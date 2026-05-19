@@ -83,8 +83,9 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.WindowsAppSDK.Runtime" Version="2.0.1" />
-		<PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="2.0.12" />
+      <PackageReference Include="Microsoft.WindowsAppSDK.Runtime" Version="2.0.1" />
+      <PackageReference Include="Microsoft.WindowsAppSDK.WinUI" Version="2.0.12" />
+      <PackageReference Include="System.Drawing.Common" Version="10.0.8" />
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
 

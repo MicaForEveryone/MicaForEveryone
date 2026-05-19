@@ -7,19 +7,36 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:MicaForEveryone.App.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:helpers="using:MicaForEveryone.App.Helpers"
     x:Uid="AddClassRuleDialog"
     DefaultButton="Primary"
     IsPrimaryButtonEnabled="{x:Bind ViewModel.IsAddButtonEnabled, Mode=OneWay}"
     PrimaryButtonCommand="{x:Bind ViewModel.AddRuleCommand}"
     mc:Ignorable="d">
 
+    <ContentDialog.Resources>
+        <helpers:MultiplyConverter x:Key="MultiplyConverter" Multiplier="0.75" />
+    </ContentDialog.Resources>
+    
     <ContentDialog.Style>
         <Style BasedOn="{StaticResource DefaultContentDialogStyle}" TargetType="local:AddClassRuleContentDialog" />
     </ContentDialog.Style>
 
-    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
-        <TextBox x:Uid="ClassTextBox" Text="{x:Bind ViewModel.ClassName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        <controls:WindowPickerButton Grid.Column="1" WindowChanged="WindowPickerButton_WindowChanged">
+    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+        <Image Source="{x:Bind ViewModel.IconSource, Mode=OneWay}"
+               Height="{Binding ActualHeight, ElementName=ClassNameTextBox, 
+                       Converter={StaticResource MultiplyConverter}}"
+               Stretch="Uniform"
+               VerticalAlignment="Center"
+               Margin="0,0,4,0" />
+
+        <TextBox x:Name="ClassNameTextBox"
+                 Grid.Column="1"
+                 x:Uid="ClassTextBox"
+                 Text="{x:Bind ViewModel.ClassName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <controls:WindowPickerButton Grid.Column="2"
+                                     WindowChanged="WindowPickerButton_WindowChanged">
             <FontIcon Glyph="&#xF7ED;" />
         </controls:WindowPickerButton>
     </Grid>

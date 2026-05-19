@@ -28,6 +28,9 @@ public abstract partial class Rule: ObservableObject, IEquatable<Rule>
     [ObservableProperty]
     public partial string? TitleBarColorCode { get; set; }
 
+    [ObservableProperty]
+    public partial string? IconPath { get; set; }
+
     [JsonIgnore]
     public abstract int Priority { get; }
     
