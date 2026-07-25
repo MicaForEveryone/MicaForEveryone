@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutCard.Header" xml:space="preserve">
+    <value>關於 Mica For Everyone</value>
+  </data>
+  <data name="AboutLabel.Text" xml:space="preserve">
+    <value>關於</value>
+  </data>
+  <data name="AppSettingsPage.Header" xml:space="preserve">
+    <value>應用設定</value>
+  </data>
+  <data name="TitleBarControl.Title" xml:space="preserve">
+    <value>Mica For Everyone</value>
+  </data>
+  <data name="BackdropTypeCard.Header" xml:space="preserve">
+    <value>背景類型</value>
+  </data>
+  <data name="BlurBehindCard.Header" xml:space="preserve">
+    <value>啟用背景模糊</value>
+  </data>
+  <data name="CheckForUpdatesButton.Content" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="CheckForUpdatesCard.Header" xml:space="preserve">
+    <value>檢查更新</value>
+  </data>
+  <data name="CornerPreferenceCard.Header" xml:space="preserve">
+    <value>邊角偏好設定</value>
+  </data>
+  <data name="DangerousInfoBar.Title" xml:space="preserve">
+    <value>前方危險選項警告</value>
+  </data>
+  <data name="DangerousInfoBar.Message" xml:space="preserve">
+    <value>以下設定可能導致應用異常，請在啟用任何一項前先儲存您的工作！</value>
+  </data>
+  <data name="ExitFlyoutItem.Text" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="ExtendFrameCard.Header" xml:space="preserve">
+    <value>將視窗框架擴充到客戶區域</value>
+  </data>
+  <data name="RemoveCard.Header" xml:space="preserve">
+    <value>移除該規則</value>
+  </data>
+  <data name="RemoveLabel.Text" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="SettingsFlyoutItem.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="StartupCard.Description" xml:space="preserve">
+    <value>在開啟電腦時自動啟動 Mica For Everyone。</value>
+  </data>
+  <data name="StartupCard.Header" xml:space="preserve">
+    <value>開機自啟</value>
+  </data>
+  <data name="StartupLabel.Text" xml:space="preserve">
+    <value>啟動項</value>
+  </data>
+  <data name="StyleLabel.Text" xml:space="preserve">
+    <value>樣式</value>
+  </data>
+  <data name="TitleBarColorCard.Header" xml:space="preserve">
+    <value>標題列顏色</value>
+  </data>
+  <data name="UpdateAvailableInfoBar.Message" xml:space="preserve">
+    <value>請重新啟動 Mica For Everyone 以安裝更新。</value>
+  </data>
+  <data name="UpdateAvailableInfoBar.Title" xml:space="preserve">
+    <value>更新可用</value>
+  </data>
+  <data name="UpdateErrorInfoBar.Message" xml:space="preserve">
+    <value>此時無法檢查更新，請稍後再試。</value>
+  </data>
+  <data name="UpdateErrorInfoBar.Title" xml:space="preserve">
+    <value>發生錯誤</value>
+  </data>
+  <data name="UpdateLabel.Text" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="UpToDateInfoBar.Title" xml:space="preserve">
+    <value>Mica For Everyone 目前為最新版本</value>
+  </data>
+  <data name="AdvancedLabel.Text" xml:space="preserve">
+    <value>進階</value>
+  </data>
+  <data name="AddClassRuleDialog.Title" xml:space="preserve">
+    <value>新增視窗類規則</value>
+  </data>
+  <data name="AddClassRuleDialog.PrimaryButtonText" xml:space="preserve">
+    <value>新增規則</value>
+  </data>
+  <data name="ClassTextBox.PlaceholderText" xml:space="preserve">
+    <value>輸入視窗類類名</value>
+  </data>
+  <data name="AddProcessRuleDialog.PrimaryButtonText" xml:space="preserve">
+    <value>新增規則</value>
+  </data>
+  <data name="AddProcessRuleDialog.Title" xml:space="preserve">
+    <value>新增處理程序規則</value>
+  </data>
+  <data name="AddClassRuleDialog.CloseButtonText" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="AddProcessRuleDialog.CloseButtonText" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="ProcessTextBox.PlaceholderText" xml:space="preserve">
+    <value>輸入處理程序檔名</value>
+  </data>
+  <data name="GlobalRuleName" xml:space="preserve">
+    <value>全局</value>
+  </data>
+  <data name="MicaBackdropName" xml:space="preserve">
+    <value>雲母</value>
+  </data>
+  <data name="DefaultBackdropName" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="AcrylicBackdropName" xml:space="preserve">
+    <value>亞克力</value>
+  </data>
+  <data name="MicaAltBackdropName" xml:space="preserve">
+    <value>雲母變體</value>
+  </data>
+  <data name="NoneBackdropName" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="DefaultCornerPreference" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="SquareCornerPreference" xml:space="preserve">
+    <value>尖角</value>
+  </data>
+  <data name="RoundedCornerPreference" xml:space="preserve">
+    <value>圓角</value>
+  </data>
+  <data name="RoundedSmallCornerPreference" xml:space="preserve">
+    <value>圓角 (小)</value>
+  </data>
+  <data name="DefaultTitleBarColorMode" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="SystemTitleBarColorMode" xml:space="preserve">
+    <value>跟隨系統</value>
+  </data>
+  <data name="LightTitleBarColorMode" xml:space="preserve">
+    <value>淺色</value>
+  </data>
+  <data name="DarkTitleBarColorMode" xml:space="preserve">
+    <value>深色</value>
+  </data>
+  <data name="CustomTitleBarColorMode" xml:space="preserve">
+    <value>自訂</value>
+  </data>
+  <data name="AppSettingsNavigationViewItem.Content" xml:space="preserve">
+    <value>應用設定</value>
+  </data>
+  <data name="AddNewRuleNavigationViewItem.Content" xml:space="preserve">
+    <value>新增新規則</value>
+  </data>
+  <data name="GlobalRuleNavigationViewItem.Content" xml:space="preserve">
+    <value>全局</value>
+  </data>
+  <data name="AddProcessRuleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>新增處理程序規則</value>
+  </data>
+  <data name="AddClassRuleMenuFlyoutItem.Text" xml:space="preserve">
+    <value>新增視窗類規則</value>
+  </data>
+  <data name="SettingsWindowTitle" xml:space="preserve">
+    <value>Mica For Everyone 設定</value>
+  </data>
+  <data name="InvalidConfigTitle" xml:space="preserve">
+    <value>組態檔案無效</value>
+  </data>
+  <data name="InvalidConfigMessage" xml:space="preserve">
+    <value>組態檔案格式錯誤或損壞。</value>
+  </data>
+  <data name="TelemetryCard.Header" xml:space="preserve">
+    <value>遙測</value>
+  </data>
+  <data name="TelemetryCard.Description" xml:space="preserve">
+    <value>自動向開發人員傳送匿名崩潰資訊。</value>
+  </data>
+  <data name="TelemetryLabel.Text" xml:space="preserve">
+    <value>遙測</value>
+  </data>
+  <data name="CustomColorCard.Header" xml:space="preserve">
+    <value>自訂顏色</value>
+  </data>
+  <data name="OkButton.Content" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="CancelButton.Content" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>隱私權政策</value>
+  </data>
+</root>
