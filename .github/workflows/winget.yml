@@ -1,0 +1,16 @@
+name: Publish to Winget
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: vedantmgoyal9/winget-releaser@main
+        with:
+          identifier: MicaForEveryone.MicaForEveryone
+          version: ${{ github.event.release.tag_name }}
+          installers-regex: '\.msixbundle$'
+          token: ${{ secrets.WINGET_TOKEN }}
