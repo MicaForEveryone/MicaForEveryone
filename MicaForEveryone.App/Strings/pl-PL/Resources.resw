@@ -160,7 +160,7 @@
     <value>Usuń regułę</value>
   </data>
   <data name="RemoveLabel.Text" xml:space="preserve">
-    <value>Usuwanie</value>
+    <value>Usuń</value>
   </data>
   <data name="SettingsFlyoutItem.Text" xml:space="preserve">
     <value>Ustawienia</value>
@@ -190,7 +190,7 @@
     <value>Nie udało się sprawdzić aktualizacji. Spróbuj ponownie później.</value>
   </data>
   <data name="UpdateErrorInfoBar.Title" xml:space="preserve">
-    <value>Wystapił błąd.</value>
+    <value>Wystąpił błąd.</value>
   </data>
   <data name="UpdateLabel.Text" xml:space="preserve">
     <value>Aktualizacje</value>
@@ -219,8 +219,23 @@
   <data name="AddClassRuleDialog.CloseButtonText" xml:space="preserve">
     <value>Zamknij</value>
   </data>
+  <data name="InvalidConfigMessage" xml:space="preserve">
+    <value>Plik konfiguracyjny jest uszkodzony lub ma nieprawidłowy format.</value>
+  </data>
+  <data name="InvalidConfigTitle" xml:space="preserve">
+    <value>Nieprawidłowy plik konfiguracyjny</value>
+  </data>
+  <data name="CustomColorCard.Header" xml:space="preserve">
+    <value>Kolor niestandardowy</value>
+  </data>
   <data name="AddProcessRuleDialog.CloseButtonText" xml:space="preserve">
     <value>Zamknij</value>
+  </data>
+  <data name="OkButton.Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="PrivacyButton.Content" xml:space="preserve">
+    <value>Polityka Prywatności</value>
   </data>
   <data name="ProcessTextBox.PlaceholderText" xml:space="preserve">
     <value>Wpisz nazwę procesu</value>
@@ -261,6 +276,15 @@
   <data name="SystemTitleBarColorMode" xml:space="preserve">
     <value>Systemowy</value>
   </data>
+  <data name="TelemetryCard.Description" xml:space="preserve">
+    <value>Automatycznie wysyła anonimowe informacje o błędach do dewelopera.</value>
+  </data>
+  <data name="TelemetryCard.Header" xml:space="preserve">
+    <value>Telemetria</value>
+  </data>
+  <data name="TelemetryLabel.Text" xml:space="preserve">
+    <value>Telemetria</value>
+  </data>
   <data name="LightTitleBarColorMode" xml:space="preserve">
     <value>Jasny</value>
   </data>
@@ -298,9 +322,6 @@
     <value />
   </data>
   <data name="TelemetryCard.Description" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TelemetryLabel.Text" xml:space="preserve">
     <value />
   </data>
   <data name="CustomColorCard.Header" xml:space="preserve">
