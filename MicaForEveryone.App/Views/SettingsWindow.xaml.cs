@@ -93,6 +93,8 @@ public sealed partial class SettingsWindow : Window
 
     
 
+    public void ShowAppSettings() => RootPage.ShowAppSettings();
+
     private void ChangeButtonBackground()
     {
         AppWindow.TitleBar.ButtonHoverBackgroundColor = (Color)Application.Current.Resources["SubtleFillColorSecondary"];

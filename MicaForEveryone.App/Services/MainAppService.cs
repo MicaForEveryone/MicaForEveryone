@@ -66,13 +66,15 @@ public sealed unsafe class MainAppService
         }
     }
 
-    public void ActivateSettings()
+    public void ActivateSettings(bool showAppSettings = false)
     {
         _window ??= new SettingsWindow();
         _window.Closed += _window_Closed;
         _window.Activate();
         HWND hwnd = new HWND((void*)WindowNative.GetWindowHandle(_window));
         SetForegroundWindow(hwnd);
+        if (showAppSettings)
+            _window.ShowAppSettings();
     }
 
     [DynamicWindowsRuntimeCast(typeof(Window))]

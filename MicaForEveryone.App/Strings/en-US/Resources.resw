@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -314,5 +314,29 @@
   </data>
   <data name="PrivacyButton.Content" xml:space="preserve">
     <value>Privacy Policy</value>
+  </data>
+  <data name="GeneralLabel.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="LanguageCard.Header" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LanguageCard.Description" xml:space="preserve">
+    <value>The app restarts automatically to apply your choice.</value>
+  </data>
+  <data name="SystemLanguageName" xml:space="preserve">
+    <value>Follow system</value>
+  </data>
+  <data name="LanguageRestartErrorTitle" xml:space="preserve">
+    <value>Could not restart the app</value>
+  </data>
+  <data name="LanguageRestartErrorMessage" xml:space="preserve">
+    <value>Your language choice is saved. Restart the app manually to apply it.</value>
+  </data>
+  <data name="LanguageChangeErrorTitle" xml:space="preserve">
+    <value>Could not change the language</value>
+  </data>
+  <data name="LanguageChangeErrorMessage" xml:space="preserve">
+    <value>Your language choice has not changed. Resolve any saving errors and save your settings successfully before trying again.</value>
   </data>
 </root>

@@ -2,13 +2,27 @@
 using MicaForEveryone.Models;
 using Microsoft.Windows.ApplicationModel.Resources;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Windows.Globalization;
 
 namespace MicaForEveryone.App.Services;
 
-// TODO: actually implement this class
 public sealed class LocalizationService : ILocalizationService
 {
     private readonly ResourceLoader resourceLoader = new();
+
+    public IReadOnlyList<string> SupportedLanguages => ApplicationLanguages.ManifestLanguages;
+
+    public string CurrentLanguage => ApplicationLanguages.PrimaryLanguageOverride;
+
+    public void SetLanguage(string languageTag)
+    {
+        if (languageTag.Length != 0 && !SupportedLanguages.Contains(languageTag, StringComparer.OrdinalIgnoreCase))
+            throw new ArgumentException("Unsupported language.", nameof(languageTag));
+
+        ApplicationLanguages.PrimaryLanguageOverride = languageTag;
+    }
 
     public string GetLocalizedBackdropType(BackdropType backdropType)
     {

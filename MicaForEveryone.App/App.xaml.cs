@@ -4,6 +4,7 @@ using MicaForEveryone.CoreUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System.Linq;
 using System.Text.Json;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -50,8 +51,11 @@ namespace MicaForEveryone.App
                 return;
             }
             Services.GetRequiredService<IRuleService>().Initialize();
-            Services.GetRequiredService<MainAppService>().Initialize();
+            MainAppService mainAppService = Services.GetRequiredService<MainAppService>();
+            mainAppService.Initialize();
             _ = Services.GetRequiredService<IRuleService>().ApplyRulesToAllWindowsAsync();
+            if (System.Environment.GetCommandLineArgs().Contains("--settings"))
+                mainAppService.ActivateSettings(showAppSettings: true);
         }
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)

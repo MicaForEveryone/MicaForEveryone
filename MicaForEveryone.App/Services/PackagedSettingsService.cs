@@ -38,6 +38,8 @@ public sealed partial class PackagedSettingsService : ISettingsService
 
     private bool recentWriteDueToApp = false;
 
+    private Task pendingSave = Task.CompletedTask;
+
     private IDispatchingService _dispatching;
 
     private SemaphoreSlim semaphore = new(1, 1);
@@ -109,7 +111,20 @@ RELEASE_SEMAPHORE:
         semaphore.Release();
     }
 
-    public async Task SaveAsync()
+    public Task SaveAsync() => pendingSave = SaveCoreAsync();
+
+    public async Task WaitForPendingSaveAsync()
+    {
+        Task save;
+        do
+        {
+            save = pendingSave;
+            await save;
+        }
+        while (!ReferenceEquals(save, pendingSave));
+    }
+
+    private async Task SaveCoreAsync()
     {
         using (Stream settingsStream = new FileStream($"{Microsoft.Windows.Storage.ApplicationData.GetDefault().LocalPath}\\{SettingsFileName}", FileMode.Open, FileAccess.Write))
         {

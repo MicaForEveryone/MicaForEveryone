@@ -11,5 +11,7 @@ public interface ISettingsService : INotifyPropertyChanged, IDisposable
 
     Task SaveAsync();
 
+    Task WaitForPendingSaveAsync();
+
     Task OpenConfigurationFileAsync();
 }

@@ -20,6 +20,14 @@
                 <RepositionThemeTransition IsStaggeringEnabled="False" />
             </StackPanel.ChildrenTransitions>
 
+            <TextBlock x:Uid="GeneralLabel" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
+            <labs:SettingsCard x:Uid="LanguageCard">
+                <labs:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xF2B7;" />
+                </labs:SettingsCard.HeaderIcon>
+                <ComboBox x:Name="LanguageComboBox" MinWidth="200" />
+            </labs:SettingsCard>
+
             <TextBlock x:Uid="StartupLabel" Style="{StaticResource SettingsSectionHeaderTextBlockStyle}" />
             <labs:SettingsCard x:Uid="StartupCard">
                 <labs:SettingsCard.HeaderIcon>

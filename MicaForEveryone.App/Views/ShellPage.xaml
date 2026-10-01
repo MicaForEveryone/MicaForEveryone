@@ -71,7 +71,7 @@
             <nav:NavigationView.FooterMenuItems>
                 <nav:NavigationViewItem
                     x:Name="AddNewRuleItem"
-                    Content="Add new rule"
+                    x:Uid="AddNewRuleNavigationViewItem"
                     Icon="Add"
                     SelectsOnInvoked="False">
                     <nav:NavigationViewItem.Flyout>
@@ -89,7 +89,7 @@
                         </MenuFlyout>
                     </nav:NavigationViewItem.Flyout>
                 </nav:NavigationViewItem>
-                <nav:NavigationViewItem Content="Settings">
+                <nav:NavigationViewItem x:Name="AppSettingsItem" x:Uid="AppSettingsNavigationViewItem">
                     <nav:NavigationViewItem.Icon>
                         <AnimatedIcon>
                             <animatedVisuals:AnimatedSettingsVisualSource />
